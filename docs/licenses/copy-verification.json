@@ -1,0 +1,44 @@
+[
+  {
+    "name": "phaser",
+    "source": "node_modules/phaser/LICENSE.md",
+    "file": "phaser-LICENSE.txt",
+    "sha256": "D59C20A9DEB5DC240614B428DCE5246AE561D15EFEEEBEA0E069D73F0A78FBFF"
+  },
+  {
+    "name": "react",
+    "source": "node_modules/react/LICENSE",
+    "file": "react-LICENSE.txt",
+    "sha256": "DA6D3703ED11CBE42BD212C725957C98DA23CBFF1998C05FA4B3D976D1A58E93"
+  },
+  {
+    "name": "react-dom",
+    "source": "node_modules/react-dom/LICENSE",
+    "file": "react-dom-LICENSE.txt",
+    "sha256": "DA6D3703ED11CBE42BD212C725957C98DA23CBFF1998C05FA4B3D976D1A58E93"
+  },
+  {
+    "name": "lucide-react",
+    "source": "node_modules/lucide-react/LICENSE",
+    "file": "lucide-react-LICENSE.txt",
+    "sha256": "1E7290B35280A048667BBF0EBABAC1C7FD52A75300E8B2946AC165715997F2BC"
+  },
+  {
+    "name": "eventemitter3",
+    "source": "node_modules/eventemitter3/LICENSE",
+    "file": "eventemitter3-LICENSE.txt",
+    "sha256": "3AECC12B1CB28832B5F65AB64291DE96568C3F236A74D646281B4491F7BCADBF"
+  },
+  {
+    "name": "scheduler",
+    "source": "node_modules/scheduler/LICENSE",
+    "file": "scheduler-LICENSE.txt",
+    "sha256": "DA6D3703ED11CBE42BD212C725957C98DA23CBFF1998C05FA4B3D976D1A58E93"
+  },
+  {
+    "name": "phaser-matter-js",
+    "source": "node_modules/phaser/src/physics/matter-js/lib/license.js",
+    "file": "phaser-matter-js-LICENSE.txt",
+    "sha256": "A82F87B8B4ABB02DFF997984672070D3B73C4022373D530AF5A2D9DAE033F7BC"
+  }
+]
