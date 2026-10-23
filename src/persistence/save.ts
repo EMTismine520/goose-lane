@@ -1,5 +1,8 @@
 import { APPLIANCES, CHAINS, CONTENT_VERSION, DECORATIONS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import type { GameState, ItemInstance } from '../domain/types';
+import { createInitialState, unlockedCells } from '../domain/engine';
+import { BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
+import { TUTORIAL_STEPS } from '../content/tutorial';
 
 const MAX_SAVE_BYTES = 1_000_000;
 const MAX_COUNTER = 1_000_000_000_000;
@@ -51,25 +54,71 @@ function uniqueIds(value: unknown, choices: readonly string[], path: string): st
   return ids;
 }
 
-/** v0 was the local prototype: same inventory, muted flag, no contentVersion/capacity/undo. */
+const LEGACY_FIELDS = ['schemaVersion', 'contentVersion', 'revision', 'seed', 'nextId', 'board', 'storage', 'storageCapacity', 'generators', 'jobs', 'completedOrders', 'day', 'coins', 'reputation', 'shops', 'decorations', 'discovered', 'stats', 'tutorial', 'settings', 'lastSeen', 'undo'];
+const CURRENT_FIELDS = [...LEGACY_FIELDS, 'energy', 'appliances', 'construction', 'tutorialState', 'session', 'migrationInbox', 'processedCommandIds', 'cellVersions', 'campaign'];
+
+/** Explicit, lossless inventory migration. Unknown content never silently changes identity. */
 function migrate(value: unknown): RecordValue {
   const source = object(value, '根对象');
   const version = integer(source.schemaVersion, '版本', 0, Number.MAX_SAFE_INTEGER);
   if (version > SCHEMA_VERSION) throw new SaveError('这是较新版本的存档，请使用新版游戏打开。原档已保留。', 'future');
   if (version === SCHEMA_VERSION) return source;
-  if (version !== 0) return invalid('版本');
-  const settings = object(source.settings, '旧版设置', ['muted', 'volume']);
-  boolean(settings.muted, '旧版静音');
-  if ('contentVersion' in source || 'storageCapacity' in source || 'undo' in source) return invalid('旧版结构');
-  return {
-    ...source, schemaVersion: SCHEMA_VERSION, contentVersion: CONTENT_VERSION, storageCapacity: 8, undo: null,
-    settings: { music: !settings.muted, sound: !settings.muted, volume: settings.volume, reducedMotion: false },
+  if (version !== 0 && version !== 1) return invalid('版本');
+  object(source, '旧版根对象', LEGACY_FIELDS);
+  let legacy = { ...source };
+  if (version === 0) {
+    const settings = object(source.settings, '旧版设置', ['muted', 'volume']);
+    boolean(settings.muted, '旧版静音');
+    if ('contentVersion' in source || 'storageCapacity' in source || 'undo' in source) return invalid('旧版结构');
+    legacy = { ...legacy, storageCapacity: 8, undo: null, settings: { music: !settings.muted, sound: !settings.muted, volume: settings.volume, reducedMotion: false } };
+  } else if (source.contentVersion !== '1.0.0') throw new SaveError('存档内容版本不兼容，请使用对应版本游戏；原档未被覆盖。', 'future');
+  const day = integer(legacy.day, '经营日', 1, 6);
+  const oldBoard = array(legacy.board, '旧版棋盘', 56);
+  const oldLimit = day < 3 ? 42 : day < 5 ? 49 : 56;
+  if (oldBoard.length !== 56 || oldBoard.some((entry, index) => entry !== null && index >= oldLimit)) return invalid('旧版棋盘格数');
+  const initial = createInitialState(integer(legacy.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER));
+  const limit = day >= 5 ? 63 : day >= 4 ? 56 : day >= 3 ? 49 : 42;
+  const occupied = new Set(BOARD_LAYOUT.entities.map((entry) => entry.index));
+  const board: unknown[] = Array(63).fill(null);
+  const migrationInbox: unknown[] = [];
+  let undo = legacy.undo;
+  let undoIndex = -1;
+  if (undo !== null) {
+    const record = object(undo, '旧版撤销', ['item', 'index', 'coins', 'revision']);
+    const index = integer(record.index, '旧版撤销位置', 0, oldLimit - 1);
+    if (oldBoard[index] !== null || record.revision !== legacy.revision) return invalid('撤销状态');
+    undoIndex = index < limit && !occupied.has(index) ? index : board.findIndex((_, index) => index < limit && !occupied.has(index));
+    undo = { ...record, index: undoIndex };
+  }
+  const displaced: unknown[] = [];
+  oldBoard.forEach((entry, index) => {
+    if (entry === null) return;
+    if (index < limit && !occupied.has(index) && index !== undoIndex) board[index] = entry;
+    else displaced.push(entry);
+  });
+  displaced.forEach((entry) => {
+    const free = board.findIndex((value, index) => value === null && index < limit && !occupied.has(index) && index !== undoIndex);
+    if (free < 0) migrationInbox.push(entry); else board[free] = entry;
+  });
+  const generators = object(legacy.generators, '旧版生产器', ['grain', 'coffee', 'vegetable', 'dairy', 'fruit', 'seafood', 'meat', 'dessert']);
+  for (const id of ['grain', 'coffee', 'vegetable', 'dairy', 'fruit', 'seafood', 'meat', 'dessert']) if (!(id in generators)) return invalid('旧版生产器');
+  const jobs = array(legacy.jobs, '旧版加工槽', APPLIANCES.length).map((raw) => {
+    if (raw === null) return null;
+    const job = object(raw, '旧版加工任务', ['id', 'recipe', 'startedAt', 'endsAt']);
+    const recipe = RECIPES.find((entry) => entry.id === job.recipe);
+    return { ...job, ...(recipe ? { output: recipe.output } : {}) };
+  });
+  const tutorial = integer(legacy.tutorial, '旧版教学', 0, 5);
+  const tutorialIndex = tutorial >= 4 || day > 1 ? TUTORIAL_STEPS.length : [0, 1, 2, 3][tutorial];
+  return { ...initial, ...legacy, schemaVersion: SCHEMA_VERSION, contentVersion: CONTENT_VERSION, board, jobs, undo,
+    generators: { ...initial.generators, ...generators }, migrationInbox, campaign: 'legacy',
+    tutorialState: { node: TUTORIAL_STEPS[tutorialIndex]?.id ?? 'complete', completed: TUTORIAL_STEPS.slice(0, tutorialIndex).map((step) => step.id), targetUid: null },
   };
 }
 
 /** Validate every persisted field and build a detached, bounded, known-shape state. */
 export function validateSave(input: unknown): GameState {
-  const value = object(migrate(input), '根对象', ['schemaVersion', 'contentVersion', 'revision', 'seed', 'nextId', 'board', 'storage', 'storageCapacity', 'generators', 'jobs', 'completedOrders', 'day', 'coins', 'reputation', 'shops', 'decorations', 'discovered', 'stats', 'tutorial', 'settings', 'lastSeen', 'undo']);
+  const value = object(migrate(input), '根对象', CURRENT_FIELDS);
   if (value.contentVersion !== CONTENT_VERSION) throw new SaveError('存档内容版本不兼容，请使用对应版本游戏；原档未被覆盖。', 'future');
   const day = integer(value.day, '经营日', 1, 6);
   const revision = integer(value.revision, '修订号');
@@ -87,8 +136,17 @@ export function validateSave(input: unknown): GameState {
     const entry = object(raw, path, ['uid', 'item']);
     return { uid: takeUid(entry.uid, `${path}编号`), item: known(entry.item, itemIds, `${path}物品`) };
   };
-  const board = array(value.board, '棋盘', 56).map((raw, index) => raw === null ? null : item(raw, `棋盘${index + 1}`));
-  if (board.length !== 56 || board.some((entry, index) => entry && index >= (day < 3 ? 42 : day < 5 ? 49 : 56))) return invalid('棋盘格数');
+  const campaign = known(value.campaign, ['fresh', 'legacy'], '内容章节') as 'fresh' | 'legacy';
+  const constructionRaw = object(value.construction, '建设', ['completed', 'hats', 'rewardClaimed']);
+  const completed = uniqueIds(constructionRaw.completed, BUILD_NODES.map((node) => node.id), '建设步骤');
+  if (completed.some((id, index) => id !== BUILD_NODES[index].id)) return invalid('建设顺序');
+  const rewardClaimed = boolean(constructionRaw.rewardClaimed, '建设阶段奖励');
+  if (rewardClaimed && completed.length !== BUILD_NODES.length) return invalid('建设阶段奖励');
+  const construction = { completed, hats: integer(constructionRaw.hats, '厨师帽'), rewardClaimed };
+  const limit = unlockedCells({ schemaVersion: SCHEMA_VERSION, day, campaign, construction } as GameState);
+  const occupied = new Set(BOARD_LAYOUT.entities.map((entry) => entry.index));
+  const board = array(value.board, '棋盘', 63).map((raw, index) => raw === null ? null : item(raw, `棋盘${index + 1}`));
+  if (board.length !== 63 || board.some((entry, index) => entry && (index >= limit || occupied.has(index)))) return invalid('棋盘格数');
   const storageCapacity = integer(value.storageCapacity, '仓库容量', 8, 8);
   const storage = array(value.storage, '仓库', storageCapacity).map((raw, index) => item(raw, `仓库${index + 1}`));
   const generatorKeys = CHAINS.map((chain) => chain.id);
@@ -99,13 +157,15 @@ export function validateSave(input: unknown): GameState {
   }));
   const jobs = array(value.jobs, '加工槽', APPLIANCES.length).map((raw, slot) => {
     if (raw === null) return null;
-    const entry = object(raw, '加工任务', ['id', 'recipe', 'startedAt', 'endsAt']);
+    const entry = object(raw, '加工任务', ['id', 'recipe', 'startedAt', 'endsAt', 'output']);
     const recipe = known(entry.recipe, RECIPES.map((recipe) => recipe.id), '加工配方');
     const definition = RECIPES.find((entry) => entry.id === recipe)!;
     const startedAt = integer(entry.startedAt, '开始时间', 0, Number.MAX_SAFE_INTEGER);
     const endsAt = integer(entry.endsAt, '结束时间', startedAt, Number.MAX_SAFE_INTEGER);
     if (definition.appliance !== slot || definition.unlockDay > day) return invalid('加工槽配方');
-    return { id: takeUid(entry.id, '加工编号'), recipe, startedAt, endsAt };
+    const output = entry.output === undefined ? undefined : known(entry.output, itemIds, '加工产物');
+    if (output !== undefined && output !== definition.output) return invalid('加工产物');
+    return { id: takeUid(entry.id, '加工编号'), recipe, startedAt, endsAt, ...(output ? { output } : {}) };
   });
   if (jobs.length !== APPLIANCES.length) return invalid('加工槽数量');
   const completedOrders = uniqueIds(value.completedOrders, ORDERS.map((order) => order.id), '已完成订单');
@@ -122,12 +182,52 @@ export function validateSave(input: unknown): GameState {
   let undo: GameState['undo'] = null;
   if (value.undo !== null) {
     const entry = object(value.undo, '撤销', ['item', 'index', 'coins', 'revision']);
-    const index = integer(entry.index, '撤销位置', 0, (day < 3 ? 42 : day < 5 ? 49 : 56) - 1);
+    const index = integer(entry.index, '撤销位置', 0, limit - 1);
     const undoItem = item(entry.item, '撤销物品');
     const undoCoins = integer(entry.coins, '撤销金币', 0, coins);
-    if (board[index] !== null || entry.revision !== revision || ITEMS[undoItem.item].sell !== undoCoins) return invalid('撤销状态');
+    if (board[index] !== null || occupied.has(index) || entry.revision !== revision || ITEMS[undoItem.item].sell !== undoCoins) return invalid('撤销状态');
     undo = { item: undoItem, index, coins: undoCoins, revision };
   }
+  const lastSeen = integer(value.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER);
+  const energyRaw = object(value.energy, '体力', ['value', 'lastRecoveryAt']);
+  const energy = { value: integer(energyRaw.value, '体力数值'), lastRecoveryAt: integer(energyRaw.lastRecoveryAt, '体力回复时间', 0, lastSeen) };
+  const applianceDefinitions = BOARD_LAYOUT.entities.filter((entry) => entry.kind === 'appliance');
+  const applianceIds = new Set<string>();
+  const appliances = array(value.appliances, '厨具', applianceDefinitions.length).map((raw) => {
+    const entry = object(raw, '厨具', ['id', 'slot', 'index', 'inputSlots', 'job', 'outputSlot', 'version']);
+    const definition = applianceDefinitions.find((device) => device.id === entry.id);
+    if (!definition || applianceIds.has(definition.id) || entry.slot !== definition.slot || entry.index !== definition.index) return invalid('厨具位置');
+    applianceIds.add(definition.id);
+    const inputSlots = array(entry.inputSlots, '投料槽', 12).map((raw, index) => item(raw, `投料${index + 1}`));
+    let job: GameState['appliances'][number]['job'] = null;
+    if (entry.job !== null) {
+      const rawJob = object(entry.job, '厨具任务', ['id', 'recipe', 'startedAt', 'endsAt', 'output']);
+      const recipe = RECIPES.find((recipe) => recipe.id === rawJob.recipe);
+      if (!recipe || recipe.appliance !== definition.slot || recipe.unlockDay > day || inputSlots.length) return invalid('厨具任务配方');
+      const startedAt = integer(rawJob.startedAt, '厨具开始时间', 0, Number.MAX_SAFE_INTEGER);
+      const endsAt = integer(rawJob.endsAt, '厨具结束时间', startedAt, Number.MAX_SAFE_INTEGER);
+      const output = known(rawJob.output ?? recipe.output, itemIds, '厨具产物');
+      if (output !== recipe.output) return invalid('厨具产物');
+      job = { id: takeUid(rawJob.id, '厨具任务编号'), recipe: recipe.id, startedAt, endsAt, output };
+    }
+    const outputSlot = entry.outputSlot === null ? null : item(entry.outputSlot, '待取料理');
+    if (outputSlot && (!job || job.output !== outputSlot.item || job.endsAt > lastSeen)) return invalid('待取料理状态');
+    if (inputSlots.length && !RECIPES.some((recipe) => recipe.appliance === definition.slot && recipe.unlockDay <= day && inputSlots.every((ingredient) => recipe.inputs.some((need) => need.item === ingredient.item)) && recipe.inputs.every((need) => inputSlots.filter((ingredient) => ingredient.item === need.item).length <= need.count))) return invalid('厨具投料');
+    return { id: definition.id, slot: definition.slot!, index: definition.index, inputSlots, job, outputSlot, version: integer(entry.version, '厨具版本') };
+  });
+  if (appliances.length !== applianceDefinitions.length) return invalid('厨具数量');
+  const migrationInbox = array(value.migrationInbox, '迁移待领取', 256).map((raw, index) => item(raw, `待领取${index + 1}`));
+
+  const tutorialRaw = object(value.tutorialState, '教学', ['node', 'completed', 'targetUid']);
+  const tutorialIds = TUTORIAL_STEPS.map((step) => step.id);
+  const reference = (raw: unknown, path: string) => raw === null ? null : text(raw, path);
+  const tutorialState = { node: known(tutorialRaw.node, [...tutorialIds, 'complete'], '教学节点'), completed: uniqueIds(tutorialRaw.completed, tutorialIds, '已完成教学'), targetUid: reference(tutorialRaw.targetUid, '教学目标') };
+  const sessionRaw = object(value.session, '页面现场', ['page', 'selectedUid', 'orderScroll']);
+  const session = { page: known(sessionRaw.page, ['merge', 'street'], '页面') as 'merge' | 'street', selectedUid: reference(sessionRaw.selectedUid, '选中物'), orderScroll: integer(sessionRaw.orderScroll, '订单滚动位置', 0, 100000) };
+  const processedCommandIds = array(value.processedCommandIds, '命令记录', 256).map((id) => text(id, '命令编号', 160));
+  if (new Set(processedCommandIds).size !== processedCommandIds.length) return invalid('重复命令编号');
+  const cellVersions = array(value.cellVersions, '格子版本', 63).map((version) => integer(version, '格子版本'));
+  if (cellVersions.length !== 63) return invalid('格子版本数量');
   return {
     schemaVersion: SCHEMA_VERSION, contentVersion: CONTENT_VERSION, revision,
     seed: integer(value.seed, '随机种子', 0, 0xffffffff), nextId, board, storage, storageCapacity,
@@ -135,7 +235,7 @@ export function validateSave(input: unknown): GameState {
     stats: { merges: integer(statsRaw.merges, '合成统计'), generated: integer(statsRaw.generated, '生产统计'), cooked: integer(statsRaw.cooked, '料理统计'), earned: integer(statsRaw.earned, '收入统计') },
     tutorial: integer(value.tutorial, '教学进度', 0, 5),
     settings: { music: boolean(settingsRaw.music, '音乐开关'), sound: boolean(settingsRaw.sound, '音效开关'), reducedMotion: boolean(settingsRaw.reducedMotion, '减少动态'), volume: settingsRaw.volume },
-    lastSeen: integer(value.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER), undo,
+    lastSeen, undo, energy, appliances, construction, tutorialState, session, migrationInbox, processedCommandIds, cellVersions, campaign,
   };
 }
 
@@ -262,7 +362,11 @@ export class SaveRepository {
             let valid: Snapshot | null = null;
             try { const current = snapshot(rawCurrent); if (current) { parseSave(current.data); valid = current; } } catch { /* Preserve damaged input verbatim. */ }
             // Never turn a corrupt current snapshot into the last known-good backup.
-            if (valid) store.put(valid, 'previous');
+            if (valid) {
+              store.put(valid, 'previous');
+              const originalVersion: unknown = JSON.parse(valid.data).schemaVersion;
+              if (originalVersion === 0 || originalVersion === 1) store.put(valid, `migration-v${originalVersion}`);
+            }
             else store.put(rawCurrent, 'recovery');
           }
           store.put(candidate, 'current');
@@ -316,9 +420,9 @@ export class SaveRepository {
     const transaction = this.database.transaction(STORE, 'readonly');
     const done = completed(transaction);
     const store = transaction.objectStore(STORE);
-    const [current, previous, recovery] = await Promise.all(['current', 'previous', 'recovery'].map((key) => request(store.get(key))));
+    const [current, previous, recovery, migrationV0, migrationV1] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1'].map((key) => request(store.get(key))));
     await done;
-    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery }, null, 2);
+    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1 }, null, 2);
   }
 
   close(): void { this.database?.close(); this.database = null; this.opened = false; this.corrupt = false; }

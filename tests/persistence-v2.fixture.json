@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 2,
+  "contentVersion": "2.0.0",
+  "revision": 0,
+  "seed": 1868919585,
+  "nextId": 5,
+  "board": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    {
+      "uid": "g1",
+      "item": "fresh-veg-1"
+    },
+    {
+      "uid": "g2",
+      "item": "fresh-veg-1"
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    {
+      "uid": "g3",
+      "item": "fresh-fruit-1"
+    },
+    {
+      "uid": "g4",
+      "item": "fresh-fruit-1"
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "storage": [],
+  "storageCapacity": 8,
+  "generators": {
+    "grain": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "coffee": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "vegetable": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "dairy": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "fruit": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "seafood": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "meat": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "dessert": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "fresh-veg": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "fresh-fruit": {
+      "remaining": 12,
+      "readyAt": 0
+    }
+  },
+  "jobs": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "completedOrders": [],
+  "day": 1,
+  "coins": 0,
+  "reputation": 0,
+  "shops": {
+    "breakfast": 0,
+    "cafe": 0,
+    "steam": 0,
+    "grill": 0,
+    "dessert": 0,
+    "night": 0
+  },
+  "decorations": [],
+  "discovered": [
+    "fresh-veg-1",
+    "fresh-fruit-1"
+  ],
+  "stats": {
+    "merges": 0,
+    "generated": 0,
+    "cooked": 0,
+    "earned": 0
+  },
+  "tutorial": 0,
+  "settings": {
+    "music": false,
+    "sound": true,
+    "reducedMotion": false,
+    "volume": 0.55
+  },
+  "lastSeen": 1792713600000,
+  "undo": null,
+  "campaign": "fresh",
+  "energy": {
+    "value": 60,
+    "lastRecoveryAt": 1792713600000
+  },
+  "appliances": [
+    {
+      "id": "chopping-board",
+      "slot": 0,
+      "index": 40,
+      "inputSlots": [],
+      "job": null,
+      "outputSlot": null,
+      "version": 0
+    },
+    {
+      "id": "fruit-press",
+      "slot": 1,
+      "index": 41,
+      "inputSlots": [],
+      "job": null,
+      "outputSlot": null,
+      "version": 0
+    }
+  ],
+  "construction": {
+    "completed": [],
+    "hats": 0,
+    "rewardClaimed": false
+  },
+  "tutorialState": {
+    "node": "produce",
+    "completed": [],
+    "targetUid": "vegetable-cart"
+  },
+  "session": {
+    "page": "merge",
+    "selectedUid": null,
+    "orderScroll": 0
+  },
+  "migrationInbox": [],
+  "processedCommandIds": [],
+  "cellVersions": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { APPLIANCES, baseUnits, CHAINS, CUSTOMERS, DECORATIONS, ITEMS, ORDERS, RECIPES, SHOPS } from '../src/content/catalog';
-import { availableOrders, canAffordRequirements, createInitialState, effectiveNow, execute, GENERATOR_CAPACITY, GENERATOR_COOLDOWN, getBonuses, getDayProgress, getGeneratorStatus, getOrderReward, getRecipeDuration, inventoryCount, MAX_OFFLINE_MS, mergeTarget, stateInvariantErrors, unlockedCells } from '../src/domain/engine';
+import { APPLIANCES, baseUnits, LEGACY_CHAINS as CHAINS, CUSTOMERS, DECORATIONS, LEGACY_ITEMS as ITEMS, LEGACY_ORDERS as ORDERS, LEGACY_RECIPES as RECIPES, SHOPS } from '../src/content/catalog';
+import { availableOrders, canAffordRequirements, createLegacyInitialState as createInitialState, effectiveNow, execute, GENERATOR_CAPACITY, GENERATOR_COOLDOWN, getBonuses, getDayProgress, getGeneratorStatus, getOrderReward, getRecipeDuration, inventoryCount, MAX_OFFLINE_MS, mergeTarget, stateInvariantErrors, unlockedCells } from '../src/domain/engine';
 import type { Command, GameState, ItemInstance } from '../src/domain/types';
 import { simulateCampaign } from '../src/diagnostics/campaign';
 

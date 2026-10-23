@@ -1,5 +1,5 @@
-import { baseUnits, CHAINS, DECORATIONS, ITEMS, ORDERS, RECIPES, SHOPS } from '../content/catalog';
-import { availableOrders, canAffordRequirements, createInitialState, execute, getGeneratorStatus, inventoryCount, stateInvariantErrors, unlockedCells } from '../domain/engine';
+import { baseUnits, LEGACY_CHAINS as CHAINS, DECORATIONS, LEGACY_ITEMS as ITEMS, LEGACY_ORDERS as ORDERS, LEGACY_RECIPES as RECIPES, SHOPS } from '../content/catalog';
+import { availableOrders, canAffordRequirements, createLegacyInitialState as createInitialState, execute, getGeneratorStatus, inventoryCount, stateInvariantErrors, unlockedCells } from '../domain/engine';
 import type { Command, GameState, Requirement } from '../domain/types';
 
 export type SimulationStrategy = 'simple-first' | 'reward-first' | 'stockpile' | 'storage-heavy';

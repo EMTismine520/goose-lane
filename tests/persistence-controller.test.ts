@@ -36,6 +36,124 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
 afterEach(() => { controllers.splice(0).forEach((controller) => controller.dispose()); vi.restoreAllMocks(); });
 
 describe('UI persistence orchestration', () => {
+  it('increments the scene restore epoch only when loading or replacing a session', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    expect(controller.view.sessionEpoch).toBe(1);
+    await controller.dispatch({ type: 'generate', chain: 'fresh-veg' });
+    expect(controller.view.sessionEpoch).toBe(1);
+    const imported = createInitialState(now);
+    imported.session = { page: 'street', selectedUid: 'g3', orderScroll: 120 };
+    await controller.importSave(serializeSave(imported));
+    expect(controller.view.sessionEpoch).toBe(2);
+    expect(controller.view.state?.session).toEqual(imported.session);
+    const restored = { ...imported, revision: 3, session: { ...imported.session, orderScroll: 20 } };
+    repository.restorePrevious.mockResolvedValue(restored);
+    await controller.recoverPrevious();
+    expect(controller.view.sessionEpoch).toBe(3);
+    expect(controller.view.state?.session.orderScroll).toBe(20);
+    repository.open.mockResolvedValue({ state: restored, recovered: false });
+    await controller.retry();
+    expect(controller.view.sessionEpoch).toBe(4);
+  });
+  it('freezes new gestures and drains both queued writes before activating an update', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const save = deferred<void>(), activation = deferred<void>();
+    repository.save.mockReturnValueOnce(save.promise);
+    const first = controller.dispatch({ type: 'move', from: 16, to: 15 });
+    const second = controller.dispatch({ type: 'move', from: 23, to: 22 });
+    const activate = vi.fn(() => activation.promise);
+    const updating = controller.applyUpdate(activate);
+    expect(controller.view.busy).toBe(true);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
+    await Promise.resolve(); expect(activate).not.toHaveBeenCalled();
+    save.resolve(); expect(await Promise.all([first, second])).toEqual([true, true]);
+    await Promise.resolve(); expect(activate).toHaveBeenCalledTimes(1);
+    expect(repository.save).toHaveBeenCalledTimes(2);
+    activation.resolve(); await updating;
+    expect(controller.view.busy).toBe(true);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
+  });
+  it('unfreezes after update activation failure and permits an explicit retry', async () => {
+    const { controller } = setup(); await controller.start();
+    const activate = vi.fn(() => { throw new Error('更新等待超时'); });
+    await expect(controller.applyUpdate(activate)).rejects.toThrow('更新等待超时');
+    expect(controller.view.busy).toBe(false);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(true);
+    await controller.applyUpdate(async () => undefined);
+    expect(controller.view.busy).toBe(true);
+  });
+  it('aborts activation if a queued persistence transaction fails while draining', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const command = controller.dispatch({ type: 'generate', chain: 'fresh-veg' });
+    const activate = vi.fn().mockResolvedValue(undefined);
+    const updating = controller.applyUpdate(activate);
+    save.reject(new SaveError('保存失败', 'storage'));
+    expect(await command).toBe(false);
+    await expect(updating).rejects.toThrow(/尚未保存成功/);
+    expect(activate).not.toHaveBeenCalled(); expect(controller.view.busy).toBe(false);
+  });
+  it('queues independent gestures during storage without blocking the board', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const first = controller.dispatch({ type: 'move', from: 16, to: 15 });
+    const second = controller.dispatch({ type: 'move', from: 23, to: 22 });
+    expect(controller.view.busy).toBe(false);
+    expect(controller.view.pendingCommands).toBe(2);
+    expect(controller.view.pendingUids).toEqual(expect.arrayContaining(['g1', 'g3']));
+    expect(controller.view.state?.board[16]?.uid).toBe('g1');
+    save.resolve();
+    expect(await Promise.all([first, second])).toEqual([true, true]);
+    expect(repository.save).toHaveBeenCalledTimes(2);
+    expect(controller.view.state?.board[15]?.uid).toBe('g1');
+    expect(controller.view.state?.board[22]?.uid).toBe('g3');
+    expect(controller.view.pendingCommands).toBe(0);
+    expect(controller.view.pendingUids).toEqual([]);
+  });
+  it('rejects a duplicate in-flight UID and revalidates an empty destination at execution', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const first = controller.dispatch({ type: 'move', from: 16, to: 15 });
+    expect(await controller.dispatch({ type: 'sell', index: 16 })).toBe(false);
+    const collision = controller.dispatch({ type: 'move', from: 23, to: 15 });
+    save.resolve();
+    expect(await first).toBe(true); expect(await collision).toBe(false);
+    expect(controller.view.state?.board[15]?.uid).toBe('g1');
+    expect(controller.view.state?.board[23]?.uid).toBe('g3');
+    expect(repository.save).toHaveBeenCalledTimes(1);
+  });
+  it('cancels queued commands after a failed write and preserves the random sequence', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const original = controller.view.state!;
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const first = controller.dispatch({ type: 'generate', chain: 'fresh-veg' });
+    const second = controller.dispatch({ type: 'generate', chain: 'fresh-veg' });
+    const third = controller.dispatch({ type: 'move', from: 16, to: 15 });
+    save.reject(new SaveError('磁盘写入失败', 'storage'));
+    expect(await Promise.all([first, second, third])).toEqual([false, false, false]);
+    expect(controller.view.state).toBe(original);
+    expect(controller.view.state?.seed).toBe(original.seed);
+    expect(controller.view.pendingCommands).toBe(0);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(true);
+    expect(controller.view.state?.seed).toBe(execute(original, { type: 'generate', chain: 'fresh-veg' }, now).state.seed);
+  });
+  it('honors the UID supplied by pointer-down rather than replacing it at dispatch', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const state = controller.view.state;
+    expect(await controller.dispatch({ type: 'move', from: 16, to: 15, expectedUid: 'g999' })).toBe(false);
+    expect(controller.view.state).toBe(state); expect(repository.save).not.toHaveBeenCalled();
+  });
+  it('reserves the actual order ingredients until its transaction finishes', async () => {
+    let state = createInitialState(now);
+    state = execute(state, { type: 'move', from: 16, to: 17 }, now).state;
+    const { controller, repository } = setup(state); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const delivery = controller.dispatch({ type: 'deliver', order: 'opening-order-1' });
+    expect(await controller.dispatch({ type: 'sell', index: 17 })).toBe(false);
+    save.resolve(); expect(await delivery).toBe(true);
+    expect(controller.view.state?.completedOrders).toContain('opening-order-1');
+    expect(repository.save).toHaveBeenCalledTimes(1);
+  });
   it('does not expose successful gameplay or a saved badge when storage fails during boot', async () => {
     const { controller, repository } = setup(null);
     repository.save.mockRejectedValue(new SaveError('设备存储空间不足', 'storage'));

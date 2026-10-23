@@ -48,7 +48,16 @@ export async function acquireSession(onReadOnlyChange: (readOnly: boolean) => vo
       if (typeof window !== 'undefined') window.removeEventListener('pagehide', onPageHide);
     },
   };
-  const onPageHide = () => session.release();
+  const onPageHide = (event: PageTransitionEvent) => {
+    // BFCache restores the same React tree and the same permanently released session.
+    // Reload only on a persisted return so boot acquires a fresh lock and the latest save.
+    if (event.persisted && typeof window !== 'undefined') {
+      window.addEventListener('pageshow', (shown: PageTransitionEvent) => {
+        if (shown.persisted) window.location.reload();
+      }, { once: true });
+    }
+    session.release();
+  };
   if (typeof window !== 'undefined') window.addEventListener('pagehide', onPageHide, { once: true });
   // No time-based lease: a suspended/background tab must never silently lose its authority.
   // Browsers without Web Locks stay read-only; IndexedDB revision checks are a second guard.

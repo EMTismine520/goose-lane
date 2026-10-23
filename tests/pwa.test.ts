@@ -130,18 +130,30 @@ describe('production offline release', () => {
     expect(await offline!.text()).toBe('<html>release one</html>');
   });
 
-  it('only removes obsolete caches in its scope, and ignores external/non-GET/API requests', async () => {
+  it('retains only the most recent previous release and ignores external/non-GET/API requests', async () => {
     const worker = workerHarness({ 'index.html': 'release one' });
     await worker.lifecycle('install');
+    worker.stores.set('goose-lane::https://example.test/game/::obsolete', new Map());
     worker.stores.set('goose-lane::https://example.test/game/::old', new Map());
     worker.stores.set('goose-lane::https://example.test/other/::old', new Map());
     await worker.lifecycle('activate');
     expect(worker.claim).toHaveBeenCalledOnce();
-    expect(worker.stores.has('goose-lane::https://example.test/game/::old')).toBe(false);
+    expect(worker.stores.has('goose-lane::https://example.test/game/::obsolete')).toBe(false);
+    expect(worker.stores.has('goose-lane::https://example.test/game/::old')).toBe(true);
     expect(worker.stores.has('goose-lane::https://example.test/other/::old')).toBe(true);
     expect(await worker.request(new Request('https://elsewhere.test/index.html'))).toBeUndefined();
     expect(await worker.request(new Request(worker.scope + 'index.html', { method: 'POST', body: 'save' }))).toBeUndefined();
     expect(await worker.request(new Request(worker.scope + 'api/save'))).toBeUndefined();
+  });
+  it('serves the previous release lazy chunk offline after claiming an older open window', async () => {
+    const worker = workerHarness({ 'index.html': 'new release', 'assets/app-new.js': 'new code' });
+    const oldChunk = worker.scope + 'assets/Board-oldhash.js';
+    worker.stores.set('goose-lane::https://example.test/game/::previous', new Map([[oldChunk, new Response('old board chunk')]]));
+    await worker.lifecycle('install'); await worker.lifecycle('activate');
+    worker.fetcher.mockRejectedValue(new Error('offline'));
+    const response = await worker.request(new Request(oldChunk));
+    expect(await response!.text()).toBe('old board chunk');
+    expect([...worker.stores.keys()].filter((name) => name.startsWith('goose-lane::https://example.test/game/::'))).toHaveLength(2);
   });
 });
 

@@ -1,277 +1,253 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type Phaser from 'phaser';
+import { BOARD_LAYOUT } from '../content/board-layouts';
 import { ITEMS } from '../content/catalog';
-import { mergeTarget, unlockedCells } from '../domain/engine';
-import type { GameState } from '../domain/types';
+import { getApplianceStatus, getBoardEntity } from '../domain/engine';
+import type { Command, GameState } from '../domain/types';
+import { audio } from '../platform/audio';
+import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, DRAG_THRESHOLD, cellAt, isDropCommitted, moveCommand, nextKeyboardCell, selectionAfterDrop } from './board-input';
+import type { DropSelection } from './board-input';
+import { BoardRenderer, entityAsset, itemDisplaySize, itemTexture } from './board-render';
 
 export interface BoardProps {
   state: GameState;
   selected: number | null;
   onSelect: (index: number | null) => void;
-  onMove: (from: number, to: number) => void;
+  act?: (command: Command) => Promise<boolean | void> | boolean | void;
+  /** Compatibility for consumers which have not yet moved to command dispatch. */
+  onMove?: (from: number, to: number) => void;
   hint?: [number, number] | null;
+  tutorialTarget?: number | null;
+  active?: boolean;
+  inputEnabled?: boolean;
 }
+interface BoardBridge { sync: () => void; activate: (index: number) => void; cancel: () => void; }
+interface Gesture { index: number; x: number; y: number; pointerId: number; uid: string | null; selectedUid: string | null; selected: number | null; }
 
-const CELL = 72;
-const COLS = 7;
-const ROWS = 8;
-const WIDTH = CELL * COLS;
-const HEIGHT = CELL * ROWS;
-const center = (index: number) => ({ x: (index % COLS) * CELL + CELL / 2, y: Math.floor(index / COLS) * CELL + CELL / 2 });
-
-/** Phaser only renders and reports gestures. All game mutations go through the domain reducer. */
+/** One scene per mounted board. React supplies snapshots; Phaser never mutates inventory. */
 export default function Board(props: BoardProps) {
   const mount = useRef<HTMLDivElement>(null);
   const live = useRef(props);
-  const bridge = useRef<{ render: () => void } | null>(null);
+  const bridge = useRef<BoardBridge | null>(null);
+  const buttons = useRef(new Map<number, HTMLButtonElement>());
+  const [focused, setFocused] = useState<number | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'failed'>('loading');
   live.current = props;
 
-  useEffect(() => { bridge.current?.render(); }, [props.state, props.selected, props.hint]);
+  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled]);
 
   useEffect(() => {
     let disposed = false;
     let game: Phaser.Game | undefined;
-    let removeCancellationListeners: (() => void) | undefined;
+    let removeListeners: (() => void) | undefined;
 
     void import('phaser').then(({ default: Engine }) => {
       if (disposed || !mount.current) return;
 
       class PantryScene extends Engine.Scene {
-        private tiles!: Phaser.GameObjects.Graphics;
-        private contents!: Phaser.GameObjects.Container;
-        private halo!: Phaser.GameObjects.Graphics;
-        private previous: (string | null)[] = [];
-        private previousMergeCount = 0;
-        private icons = new Map<number, Phaser.GameObjects.Container>();
-        private start: { index: number; x: number; y: number; selected: number | null; pointerId: number } | null = null;
+        private board!: BoardRenderer;
+        private start: Gesture | null = null;
         private dragged: number | null = null;
         private ghost: Phaser.GameObjects.Image | null = null;
         private hovered: number | null = null;
-        private textureReady = false;
+        private pending = new Set<string>();
+        private pendingSelection: DropSelection | null = null;
+        private selectionIntent = 0;
+        private paused = false;
+        private lastPressed = -Infinity;
 
         constructor() { super('pantry'); }
 
         preload() {
-          this.load.image('food-atlas', `${import.meta.env.BASE_URL}assets/foods.webp`);
-          this.load.on('loaderror', () => { if (!disposed) setStatus('failed'); });
+          const base = `${import.meta.env.BASE_URL}assets/`;
+          this.load.image('legacy-foods', `${base}foods.webp`);
+          for (const item of Object.values(ITEMS)) {
+            if (item.assetId) this.load.svg(`item:${item.assetId}`, `${base}items/${item.assetId}.svg`, { width: 96, height: 96 });
+          }
+          for (const entity of BOARD_LAYOUT.entities) this.load.svg(`entity:${entity.id}`, `${base}entities/${entityAsset(entity.id)}.svg`, { width: 96, height: 96 });
+          this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96, height: 96 });
         }
 
         create() {
-          const texture = this.textures.get('food-atlas');
-          this.textureReady = this.textures.exists('food-atlas');
-          if (this.textureReady) {
+          if (this.textures.exists('legacy-foods')) {
+            const texture = this.textures.get('legacy-foods');
             const source = texture.getSourceImage() as HTMLImageElement;
-            const frameWidth = source.width / 8;
-            const frameHeight = source.height / 8;
-            for (let index = 0; index < 64; index++) {
-              texture.add(index, 0, (index % 8) * frameWidth, Math.floor(index / 8) * frameHeight, frameWidth, frameHeight);
-            }
+            for (let i = 0; i < 64; i++) texture.add(i, 0, (i % 8) * source.width / 8, Math.floor(i / 8) * source.height / 8, source.width / 8, source.height / 8);
           }
-          this.tiles = this.add.graphics();
-          this.halo = this.add.graphics().setDepth(2);
-          this.contents = this.add.container(0, 0).setDepth(3);
+          this.board = new BoardRenderer(this, () => live.current.state);
           this.input.on('pointerdown', this.press, this);
           this.input.on('pointermove', this.drag, this);
           this.input.on('pointerup', this.release, this);
           this.input.on('pointerupoutside', this.cancel, this);
-          this.game.events.on('blur', this.cancel, this);
           const cancel = () => this.cancel();
-          const visibility = () => { if (document.hidden) cancel(); };
+          const visibility = () => this.sync();
+          const keydown = (event: KeyboardEvent) => { if (event.key === 'Escape') this.cancel(); };
           window.addEventListener('blur', cancel);
           document.addEventListener('visibilitychange', visibility);
+          document.addEventListener('keydown', keydown);
           this.game.canvas.addEventListener('pointercancel', cancel);
-          this.game.canvas.setAttribute('aria-label', '食材合成棋盘，7列8行。可拖动食材，也可点选食材后点目标格。下方提供键盘操作。');
-          this.game.canvas.setAttribute('role', 'img');
-          removeCancellationListeners = () => {
+          this.game.canvas.addEventListener('touchcancel', cancel);
+          this.game.canvas.setAttribute('aria-hidden', 'true');
+          removeListeners = () => {
             window.removeEventListener('blur', cancel);
             document.removeEventListener('visibilitychange', visibility);
+            document.removeEventListener('keydown', keydown);
             this.game.canvas.removeEventListener('pointercancel', cancel);
+            this.game.canvas.removeEventListener('touchcancel', cancel);
           };
-          bridge.current = { render: () => this.paint() };
-          this.paint();
-          if (!disposed && this.textureReady) setStatus('ready');
+          bridge.current = { sync: () => this.sync(), activate: index => this.activate(index), cancel: () => this.cancel() };
+          this.sync();
+          if (!disposed) setStatus('ready');
         }
 
-        private cellAt(x: number, y: number) {
-          if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT) return null;
-          const index = Math.floor(y / CELL) * COLS + Math.floor(x / CELL);
-          return index < unlockedCells(live.current.state) ? index : null;
-        }
+        update() { this.board?.updateClock(Date.now()); }
 
-        private mergeable(from: number, to: number) {
-          const board = live.current.state.board;
-          return from !== to && !!board[from] && board[from]?.item === board[to]?.item && !!mergeTarget(board[from]!.item);
+        private allowed() { return live.current.active !== false && live.current.inputEnabled !== false && !document.hidden; }
+
+        private sync() {
+          if (!this.board) return;
+          const inactive = live.current.active === false || document.hidden;
+          if (!this.allowed()) this.cancel();
+          if (this.start?.uid && live.current.state.board[this.start.index]?.uid !== this.start.uid) this.cancel();
+          if (inactive !== this.paused) {
+            this.paused = inactive;
+            if (inactive) {
+              this.board.settle();
+              this.scene.pause();
+            } else {
+              this.scale.refresh();
+              this.scene.resume();
+            }
+          }
+          this.input.enabled = this.allowed();
+          this.board.sync(!inactive);
+          this.reconcileSelection();
+          this.paintHighlights();
         }
 
         private press(pointer: Phaser.Input.Pointer) {
-          if (this.start || !pointer.primaryDown) return;
-          const index = this.cellAt(pointer.x, pointer.y);
+          if (!this.allowed() || this.start || !pointer.primaryDown) return;
+          const index = cellAt(pointer.x, pointer.y);
           if (index === null) return;
-          this.start = { index, x: pointer.x, y: pointer.y, selected: live.current.selected, pointerId: pointer.id };
+          const entity = getBoardEntity(live.current.state, index);
+          if (entity.item && this.pending.has(entity.item.uid)) return;
+          this.selectionIntent++;
+          this.pendingSelection = null;
+          const selected = live.current.selected;
+          this.start = { index, x: pointer.x, y: pointer.y, pointerId: pointer.id, uid: entity.item?.uid ?? null, selected, selectedUid: selected === null ? null : live.current.state.board[selected]?.uid ?? null };
+          this.board.press(index);
+          void audio.unlock();
+          if (this.time.now - this.lastPressed > 70) { audio.play('click'); this.lastPressed = this.time.now; }
         }
 
         private drag(pointer: Phaser.Input.Pointer) {
-          if (!this.start || pointer.id !== this.start.pointerId || !pointer.isDown) return;
-          const item = live.current.state.board[this.start.index];
-          if (!item) return;
-          if (this.dragged === null && Math.hypot(pointer.x - this.start.x, pointer.y - this.start.y) > 7) {
+          if (!this.allowed() || !this.start || pointer.id !== this.start.pointerId || !pointer.isDown || !this.start.uid) return;
+          const entity = getBoardEntity(live.current.state, this.start.index);
+          if (!entity.canMove || entity.item?.uid !== this.start.uid) { this.cancel(); return; }
+          const canvasScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH;
+          if (this.dragged === null && Math.hypot(pointer.x - this.start.x, pointer.y - this.start.y) * canvasScale >= DRAG_THRESHOLD) {
             this.dragged = this.start.index;
             live.current.onSelect(this.dragged);
-            if (this.textureReady) {
-              this.ghost = this.add.image(pointer.x, pointer.y - 10, 'food-atlas', ITEMS[item.item].icon)
-                .setDisplaySize(68, 68).setDepth(20).setAlpha(0.96);
-              this.icons.get(this.dragged)?.setAlpha(0.18);
-            }
+            const texture = itemTexture(this, entity.item.item);
+            const size = itemDisplaySize(entity.item.item) * 1.1;
+            this.ghost = this.add.image(pointer.x, pointer.y, texture.key, texture.frame).setDisplaySize(size, size).setDepth(40);
+            this.board.setDragging(this.start.uid);
           }
           if (this.dragged !== null) {
-            this.ghost?.setPosition(pointer.x, pointer.y - 10);
-            this.hovered = this.cellAt(pointer.x, pointer.y);
+            this.ghost?.setPosition(pointer.x, pointer.y - (pointer.wasTouch ? 18 : 4));
+            this.hovered = cellAt(pointer.x, pointer.y);
             this.paintHighlights();
           }
         }
 
         private release(pointer: Phaser.Input.Pointer) {
           if (!this.start || pointer.id !== this.start.pointerId) return;
+          // Phaser emits pointerup for native touchcancel before our DOM listener runs.
+          if (pointer.wasCanceled) { this.cancel(); return; }
           const start = this.start;
-          const target = this.cellAt(pointer.x, pointer.y);
+          const target = cellAt(pointer.x, pointer.y);
           const dragged = this.dragged;
           this.cancel();
-          if (target === null) return;
-          if (dragged !== null) {
-            if (target !== dragged) live.current.onMove(dragged, target);
-            return;
-          }
+          if (!this.allowed() || target === null) return;
+          if (dragged !== null && start.uid) { void this.drop(start.index, target, start.uid); return; }
           if (target !== start.index) return;
-          if (start.selected !== null && start.selected !== target) {
-            live.current.onMove(start.selected, target);
-          } else if (live.current.state.board[target]) {
-            live.current.onSelect(start.selected === target ? null : target);
+          this.activate(target, start);
+        }
+
+        private activate(index: number, gesture?: Gesture) {
+          if (!this.allowed()) return;
+          if (!gesture) { this.selectionIntent++; this.pendingSelection = null; void audio.unlock(); }
+          const state = live.current.state;
+          const entity = getBoardEntity(state, index);
+          const selected = gesture ? gesture.selected : live.current.selected;
+          const selectedUid = gesture ? gesture.selectedUid : selected === null ? null : state.board[selected]?.uid ?? null;
+          if (entity.kind === 'generator' && entity.chain) {
+            live.current.onSelect(index);
+            void this.submit({ type: 'generate', chain: entity.chain });
+          } else if (selected !== null && selected !== index && selectedUid) {
+            void this.drop(selected, index, selectedUid);
+          } else if (entity.kind === 'appliance') {
+            live.current.onSelect(index);
+            const appliance = getApplianceStatus(state, entity.id);
+            if (appliance?.phase === 'ready') void this.submit({ type: 'collectAppliance', appliance: entity.id, expectedJobId: appliance.appliance.job?.id }, `appliance:${entity.id}`);
+            else if (appliance?.canStart) void this.submit({ type: 'startCooking', appliance: entity.id }, `appliance:${entity.id}`);
           } else {
-            live.current.onSelect(null);
+            live.current.onSelect(entity.kind === 'empty' || selected === index ? null : index);
+          }
+        }
+
+        private async drop(from: number, to: number, uid: string) {
+          if (this.pending.has(uid)) return;
+          const command = moveCommand(live.current.state, from, to, uid);
+          if (!command) { this.board.reject(from); return; }
+          const selection = selectionAfterDrop(live.current.state, from, to, uid);
+          const intent = this.selectionIntent;
+          const success = await this.submit(command, uid);
+          if (disposed) return;
+          if (success && intent === this.selectionIntent) { this.pendingSelection = selection; this.reconcileSelection(); }
+          else if (!success) this.board.reject(from);
+        }
+
+        private reconcileSelection() {
+          if (!this.pendingSelection || !isDropCommitted(live.current.state, this.pendingSelection)) return;
+          const index = this.pendingSelection.index;
+          this.pendingSelection = null;
+          live.current.onSelect(index);
+        }
+
+        private async submit(command: Command, identity?: string): Promise<boolean> {
+          if (identity && this.pending.has(identity)) return false;
+          if (identity) this.pending.add(identity);
+          try {
+            if (live.current.act) return (await live.current.act(command)) !== false;
+            if (command.type === 'move' && live.current.onMove) { live.current.onMove(command.from, command.to); return true; }
+            return false;
+          } catch {
+            return false;
+          } finally {
+            if (identity) this.pending.delete(identity);
           }
         }
 
         private cancel() {
           this.start = null;
-          if (this.dragged !== null) this.icons.get(this.dragged)?.setAlpha(1);
           this.dragged = null;
           this.hovered = null;
           this.ghost?.destroy();
           this.ghost = null;
-          if (this.halo) this.paintHighlights();
-        }
-
-        private paintHighlights() {
-          this.halo.clear();
-          const source = this.dragged ?? live.current.selected;
-          for (let index = 0; index < unlockedCells(live.current.state); index++) {
-            const { x, y } = center(index);
-            const selected = source === index;
-            const matching = source !== null && this.mergeable(source, index);
-            const hinted = live.current.hint?.includes(index);
-            const over = this.hovered === index && this.dragged !== index;
-            if (selected || matching || hinted || over) {
-              this.halo.fillStyle(selected ? 0x427a60 : matching || hinted ? 0xf2c15e : 0x9eb19a, selected ? 0.11 : 0.15);
-              this.halo.fillRoundedRect(x - 32, y - 32, 64, 64, 15);
-              this.halo.lineStyle(selected || over ? 2.5 : 1.7, selected || over ? 0x4b8468 : 0xd6a348, 0.95);
-              this.halo.strokeRoundedRect(x - 32, y - 32, 64, 64, 15);
-              if (matching || hinted) {
-                this.halo.fillStyle(0xd6a348, 1);
-                this.halo.fillCircle(x + 25, y - 25, 3);
-              }
-            }
-          }
-        }
-
-        private paint() {
-          if (!this.tiles) return;
-          const { state } = live.current;
-          const unlocked = unlockedCells(state);
-          const didMerge = state.stats.merges > this.previousMergeCount;
-          this.tweens.killTweensOf(this.contents.list);
-          this.contents.removeAll(true);
-          this.icons.clear();
-          this.tiles.clear();
-          this.tiles.fillStyle(0xe5dece, 1);
-          this.tiles.fillRoundedRect(0, 0, WIDTH, HEIGHT, 16);
-          const next: (string | null)[] = [];
-
-          for (let index = 0; index < COLS * ROWS; index++) {
-            const { x, y } = center(index);
-            const locked = index >= unlocked;
-            this.tiles.fillStyle(0xc9c1af, locked ? 0.15 : 0.25);
-            this.tiles.fillRoundedRect(x - 31, y - 29, 62, 62, 14);
-            this.tiles.fillStyle(locked ? 0xdcd8cb : (Math.floor(index / COLS) + index % COLS) % 2 ? 0xf9f5e9 : 0xfffcf3, 1);
-            this.tiles.fillRoundedRect(x - 31, y - 32, 62, 62, 14);
-
-            if (locked) {
-              this.tiles.lineStyle(1.5, 0xa5a995, 0.7);
-              this.tiles.strokeRoundedRect(x - 5, y - 8, 10, 12, 5);
-              this.tiles.fillStyle(0xa5a995, 0.7);
-              this.tiles.fillRoundedRect(x - 8, y - 3, 16, 13, 3);
-              this.tiles.fillStyle(0xdcd8cb, 1);
-              this.tiles.fillCircle(x, y + 2, 1.6);
-              next.push(null);
-              continue;
-            }
-
-            const instance = state.board[index];
-            next.push(instance ? `${instance.uid}:${instance.item}` : null);
-            if (!instance || !ITEMS[instance.item]) continue;
-            const def = ITEMS[instance.item];
-            const item = this.add.container(x, y);
-            if (this.textureReady) {
-              const sprite = this.add.image(0, -3, 'food-atlas', def.icon).setDisplaySize(57, 57);
-              item.add(sprite);
-            } else {
-              item.add(this.add.text(0, -6, def.name.slice(0, 3), { fontFamily: 'sans-serif', fontSize: '13px', color: '#466652' }).setOrigin(0.5));
-            }
-            const badge = this.add.graphics();
-            badge.fillStyle(def.kind === 'dish' ? 0xd49454 : 0x69866a, 1);
-            badge.fillRoundedRect(15, 15, 16, 15, 5);
-            item.add(badge);
-            item.add(this.add.text(23, 22.5, def.kind === 'dish' ? '成' : String(def.level), {
-              fontFamily: 'Arial, sans-serif', fontSize: '10px', fontStyle: 'bold', color: '#ffffff',
-            }).setOrigin(0.5));
-            this.contents.add(item);
-            this.icons.set(index, item);
-            if (this.dragged === index) item.setAlpha(0.18);
-
-            if (this.previous.length && this.previous[index] !== next[index] && !state.settings.reducedMotion && this.dragged === null) {
-              item.setScale(0.66);
-              this.tweens.add({ targets: item, scaleX: 1, scaleY: 1, duration: 260, ease: 'Back.easeOut' });
-              if (this.previous[index] && didMerge) this.sparkle(x, y);
-            }
-          }
-          this.previous = next;
-          this.previousMergeCount = state.stats.merges;
+          this.board?.setDragging(null);
           this.paintHighlights();
         }
 
-        private sparkle(x: number, y: number) {
-          for (let i = 0; i < 6; i++) {
-            const angle = i * Math.PI / 3;
-            const dot = this.add.circle(x, y, i % 2 ? 2 : 3, i % 2 ? 0xe8bc69 : 0x83a47f).setDepth(10);
-            this.tweens.add({ targets: dot, x: x + Math.cos(angle) * 31, y: y + Math.sin(angle) * 31, alpha: 0, scale: 0.4, duration: 390, ease: 'Cubic.easeOut', onComplete: () => dot.destroy() });
-          }
-        }
+        private paintHighlights() { this.board?.highlight(live.current.selected, live.current.hint, this.hovered, this.dragged, live.current.tutorialTarget); }
       }
 
       game = new Engine.Game({
-        type: Engine.AUTO,
-        parent: mount.current,
-        width: WIDTH,
-        height: HEIGHT,
-        transparent: true,
-        antialias: true,
-        roundPixels: false,
-        scene: PantryScene,
-        scale: { mode: Engine.Scale.FIT, autoCenter: Engine.Scale.CENTER_BOTH, width: WIDTH, height: HEIGHT },
+        type: Engine.AUTO, parent: mount.current, width: BOARD_WIDTH, height: BOARD_HEIGHT,
+        transparent: true, antialias: true, roundPixels: false, scene: PantryScene,
+        scale: { mode: Engine.Scale.FIT, autoCenter: Engine.Scale.CENTER_BOTH, width: BOARD_WIDTH, height: BOARD_HEIGHT },
         input: { activePointers: 1, touch: { capture: true }, mouse: { preventDefaultWheel: false } },
-        render: { antialias: true, pixelArt: false },
-        audio: { noAudio: true },
-        banner: false,
+        render: { antialias: true, pixelArt: false }, audio: { noAudio: true }, banner: false,
       });
     }).catch(error => {
       console.error('The pantry canvas could not start.', error);
@@ -281,14 +257,39 @@ export default function Board(props: BoardProps) {
     return () => {
       disposed = true;
       bridge.current = null;
-      removeCancellationListeners?.();
+      removeListeners?.();
       game?.destroy(true);
     };
   }, []);
 
-  return <div className="board-shell" data-board-status={status}>
-    <div ref={mount} className="phaser-board" style={{ width: '100%', aspectRatio: '7 / 8', touchAction: 'none', overflow: 'hidden', borderRadius: 16 }} />
+  const interactive = props.active !== false && props.inputEnabled !== false;
+  return <div className="board-shell" data-board-status={status} style={{ position: 'relative' }}>
+    <div ref={mount} className="phaser-board" style={{ width: '100%', aspectRatio: '7 / 9', touchAction: 'none', overflow: 'hidden', borderRadius: 9 }} />
+    <div className="board-keyboard-grid" role="grid" aria-label="料理棋盘，方向键换格，回车选择和操作，Escape取消选择" aria-rowcount={BOARD_ROWS} aria-colcount={BOARD_COLUMNS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateRows: 'repeat(9, 1fr)', pointerEvents: 'none' }}>
+      {Array.from({ length: BOARD_ROWS }, (_, row) => <div key={row} role="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
+        {Array.from({ length: BOARD_COLUMNS }, (_, column) => {
+          const index = row * BOARD_COLUMNS + column;
+          const entity = getBoardEntity(props.state, index);
+          const appliance = entity.kind === 'appliance' ? getApplianceStatus(props.state, entity.id) : null;
+          const details = entity.item ? `${ITEMS[entity.item.item].level}级` : appliance ? { idle: '等待投料', loaded: '已投料', cooking: '烹饪中', ready: '点击领取' }[appliance.phase] : '';
+          return <div key={index} role="gridcell" aria-selected={props.selected === index} aria-rowindex={row + 1} aria-colindex={column + 1}>
+            <button ref={node => { if (node) buttons.current.set(index, node); else buttons.current.delete(index); }} type="button" disabled={!interactive} tabIndex={interactive && index === (focused ?? 0) ? 0 : -1}
+              aria-label={`第${row + 1}行第${column + 1}列，${entity.name}${details ? `，${details}` : ''}`}
+              onFocus={() => setFocused(index)} onBlur={() => setFocused(null)}
+              onClick={() => bridge.current?.activate(index)}
+              onKeyDown={event => {
+                const next = nextKeyboardCell(index, event.key);
+                if (event.key.startsWith('Arrow') || event.key === 'Home' || event.key === 'End') { event.preventDefault(); buttons.current.get(next)?.focus(); }
+                if (event.key === 'Escape') { event.preventDefault(); bridge.current?.cancel(); props.onSelect(null); }
+              }}
+              style={{ width: '100%', height: '100%', opacity: focused === index ? 1 : 0, pointerEvents: 'none', border: '3px solid #4e965a', background: '#fff8e5ee', color: '#4c663b', borderRadius: 7, fontSize: 10, padding: 2, outline: 'none' }}>
+              {entity.name}
+            </button>
+          </div>;
+        })}
+      </div>)}
+    </div>
     {status === 'loading' && <div className="board-loading" role="status">正在铺好料理台…</div>}
-    {status === 'failed' && <p className="board-error" role="status">画布或插画加载遇到问题。可继续使用下方键盘棋盘，刷新后重试。</p>}
+    {status === 'failed' && <p className="board-error" role="status">料理台暂时未能加载，请刷新重试。</p>}
   </div>;
 }
