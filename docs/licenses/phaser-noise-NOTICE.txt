@@ -1,0 +1,8 @@
+// The noise functions are derived from
+// https://github.com/stegu/psrdnoise/,
+// specifically psrdnoise2.glsl and
+// psrdnoise3.glsl, version 2021-12-02
+// Copyright (c) 2021 Stefan Gustavson and Ian McEwan
+// (stefan.gustavson@liu.se, ijm567@gmail.com)
+// Published under the MIT license, see:
+// https://opensource.org/licenses/MIT

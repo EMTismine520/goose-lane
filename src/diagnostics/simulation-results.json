@@ -1,0 +1,346 @@
+{
+  "generatedAt": "2026-10-23T15:38:39.340Z",
+  "methodology": "Legal commands only, fixed initial seed, 400 ms virtual time per action. Timers advance to readiness. This proves reachability and economy, not human session length or entertainment quality.",
+  "reports": [
+    {
+      "strategy": "simple-first",
+      "completedOrders": 84,
+      "chapters": [
+        {
+          "day": 1,
+          "orders": 14,
+          "income": 1132,
+          "necessaryCost": 180,
+          "allStagesCost": 440,
+          "balance": 772,
+          "actions": 118,
+          "generated": 50,
+          "waitMs": 54400
+        },
+        {
+          "day": 2,
+          "orders": 14,
+          "income": 1592,
+          "necessaryCost": 420,
+          "allStagesCost": 840,
+          "balance": 1524,
+          "actions": 182,
+          "generated": 87,
+          "waitMs": 97600
+        },
+        {
+          "day": 3,
+          "orders": 14,
+          "income": 1972,
+          "necessaryCost": 600,
+          "allStagesCost": 1140,
+          "balance": 2356,
+          "actions": 227,
+          "generated": 110,
+          "waitMs": 124000
+        },
+        {
+          "day": 4,
+          "orders": 14,
+          "income": 2488,
+          "necessaryCost": 760,
+          "allStagesCost": 1400,
+          "balance": 3444,
+          "actions": 307,
+          "generated": 150,
+          "waitMs": 196400
+        },
+        {
+          "day": 5,
+          "orders": 14,
+          "income": 2844,
+          "necessaryCost": 920,
+          "allStagesCost": 1640,
+          "balance": 4648,
+          "actions": 346,
+          "generated": 170,
+          "waitMs": 234000
+        },
+        {
+          "day": 6,
+          "orders": 14,
+          "income": 3776,
+          "necessaryCost": 1080,
+          "allStagesCost": 1880,
+          "balance": 6544,
+          "actions": 527,
+          "generated": 262,
+          "waitMs": 372400
+        }
+      ],
+      "actions": 2752,
+      "generated": 1341,
+      "merges": 1208,
+      "cooked": 36,
+      "peakBoardOccupancy": 14,
+      "fullBoardRate": 0,
+      "waitingMs": 1392800,
+      "virtualElapsedMs": 2493600,
+      "finalCoins": 904,
+      "decorations": 24,
+      "discovered": 80,
+      "invariantChecks": 2752,
+      "allContentReachable": true
+    },
+    {
+      "strategy": "reward-first",
+      "completedOrders": 84,
+      "chapters": [
+        {
+          "day": 1,
+          "orders": 14,
+          "income": 1132,
+          "necessaryCost": 180,
+          "allStagesCost": 440,
+          "balance": 772,
+          "actions": 118,
+          "generated": 50,
+          "waitMs": 49200
+        },
+        {
+          "day": 2,
+          "orders": 14,
+          "income": 1592,
+          "necessaryCost": 420,
+          "allStagesCost": 840,
+          "balance": 1524,
+          "actions": 182,
+          "generated": 87,
+          "waitMs": 90000
+        },
+        {
+          "day": 3,
+          "orders": 14,
+          "income": 1972,
+          "necessaryCost": 600,
+          "allStagesCost": 1140,
+          "balance": 2356,
+          "actions": 227,
+          "generated": 110,
+          "waitMs": 130800
+        },
+        {
+          "day": 4,
+          "orders": 14,
+          "income": 2488,
+          "necessaryCost": 760,
+          "allStagesCost": 1400,
+          "balance": 3444,
+          "actions": 307,
+          "generated": 150,
+          "waitMs": 172800
+        },
+        {
+          "day": 5,
+          "orders": 14,
+          "income": 2844,
+          "necessaryCost": 920,
+          "allStagesCost": 1640,
+          "balance": 4648,
+          "actions": 346,
+          "generated": 170,
+          "waitMs": 224800
+        },
+        {
+          "day": 6,
+          "orders": 14,
+          "income": 3776,
+          "necessaryCost": 1080,
+          "allStagesCost": 1880,
+          "balance": 6544,
+          "actions": 527,
+          "generated": 262,
+          "waitMs": 359200
+        }
+      ],
+      "actions": 2752,
+      "generated": 1341,
+      "merges": 1208,
+      "cooked": 36,
+      "peakBoardOccupancy": 14,
+      "fullBoardRate": 0,
+      "waitingMs": 1340800,
+      "virtualElapsedMs": 2441600,
+      "finalCoins": 904,
+      "decorations": 24,
+      "discovered": 80,
+      "invariantChecks": 2752,
+      "allContentReachable": true
+    },
+    {
+      "strategy": "stockpile",
+      "completedOrders": 84,
+      "chapters": [
+        {
+          "day": 1,
+          "orders": 14,
+          "income": 1132,
+          "necessaryCost": 180,
+          "allStagesCost": 440,
+          "balance": 772,
+          "actions": 118,
+          "generated": 50,
+          "waitMs": 54400
+        },
+        {
+          "day": 2,
+          "orders": 14,
+          "income": 1592,
+          "necessaryCost": 420,
+          "allStagesCost": 840,
+          "balance": 1524,
+          "actions": 182,
+          "generated": 87,
+          "waitMs": 90000
+        },
+        {
+          "day": 3,
+          "orders": 14,
+          "income": 1972,
+          "necessaryCost": 600,
+          "allStagesCost": 1140,
+          "balance": 2356,
+          "actions": 227,
+          "generated": 110,
+          "waitMs": 123600
+        },
+        {
+          "day": 4,
+          "orders": 14,
+          "income": 2488,
+          "necessaryCost": 760,
+          "allStagesCost": 1400,
+          "balance": 3444,
+          "actions": 370,
+          "generated": 182,
+          "waitMs": 210400
+        },
+        {
+          "day": 5,
+          "orders": 14,
+          "income": 2844,
+          "necessaryCost": 920,
+          "allStagesCost": 1640,
+          "balance": 4648,
+          "actions": 409,
+          "generated": 202,
+          "waitMs": 255600
+        },
+        {
+          "day": 6,
+          "orders": 14,
+          "income": 3776,
+          "necessaryCost": 1080,
+          "allStagesCost": 1880,
+          "balance": 6544,
+          "actions": 527,
+          "generated": 262,
+          "waitMs": 378800
+        }
+      ],
+      "actions": 2752,
+      "generated": 1341,
+      "merges": 1208,
+      "cooked": 36,
+      "peakBoardOccupancy": 14,
+      "fullBoardRate": 0,
+      "waitingMs": 1381200,
+      "virtualElapsedMs": 2482000,
+      "finalCoins": 904,
+      "decorations": 24,
+      "discovered": 80,
+      "invariantChecks": 2752,
+      "allContentReachable": true
+    },
+    {
+      "strategy": "storage-heavy",
+      "completedOrders": 84,
+      "chapters": [
+        {
+          "day": 1,
+          "orders": 14,
+          "income": 1132,
+          "necessaryCost": 180,
+          "allStagesCost": 440,
+          "balance": 772,
+          "actions": 209,
+          "generated": 50,
+          "waitMs": 47600
+        },
+        {
+          "day": 2,
+          "orders": 14,
+          "income": 1592,
+          "necessaryCost": 420,
+          "allStagesCost": 840,
+          "balance": 1524,
+          "actions": 344,
+          "generated": 87,
+          "waitMs": 93200
+        },
+        {
+          "day": 3,
+          "orders": 14,
+          "income": 1972,
+          "necessaryCost": 600,
+          "allStagesCost": 1140,
+          "balance": 2356,
+          "actions": 443,
+          "generated": 110,
+          "waitMs": 118800
+        },
+        {
+          "day": 4,
+          "orders": 14,
+          "income": 2488,
+          "necessaryCost": 760,
+          "allStagesCost": 1400,
+          "balance": 3444,
+          "actions": 612,
+          "generated": 150,
+          "waitMs": 184400
+        },
+        {
+          "day": 5,
+          "orders": 14,
+          "income": 2844,
+          "necessaryCost": 920,
+          "allStagesCost": 1640,
+          "balance": 4648,
+          "actions": 692,
+          "generated": 170,
+          "waitMs": 223600
+        },
+        {
+          "day": 6,
+          "orders": 14,
+          "income": 3776,
+          "necessaryCost": 1080,
+          "allStagesCost": 1880,
+          "balance": 6544,
+          "actions": 1076,
+          "generated": 262,
+          "waitMs": 354400
+        }
+      ],
+      "actions": 5575,
+      "generated": 1341,
+      "merges": 1208,
+      "cooked": 36,
+      "peakBoardOccupancy": 9,
+      "fullBoardRate": 0,
+      "waitingMs": 1286800,
+      "virtualElapsedMs": 3516800,
+      "finalCoins": 904,
+      "decorations": 24,
+      "discovered": 80,
+      "invariantChecks": 5575,
+      "allContentReachable": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.site-workflow/
+*.zip
+test-results/
+.openai/local*
+.serena/

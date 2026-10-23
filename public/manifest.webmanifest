@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "鹅巷食光 · 把日子煮成喜欢的模样",
+  "short_name": "鹅巷食光",
+  "description": "合成食材，慢慢烹饪，把临河老街变成喜欢的模样。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ec",
+  "theme_color": "#f7f4ec",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "./app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
