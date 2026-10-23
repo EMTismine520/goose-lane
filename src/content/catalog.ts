@@ -1,7 +1,7 @@
 import type { ChainDef, CustomerDef, DecorationDef, ItemDef, OrderDef, RecipeDef, Requirement, ShopDef } from '../domain/types';
 
-export const SCHEMA_VERSION = 1;
-export const CONTENT_VERSION = '1.0.0';
+export const SCHEMA_VERSION = 2;
+export const CONTENT_VERSION = '2.0.0';
 
 const chainData: [string, string, string, number, string[]][] = [
   ['grain', '麦香篮', '#e7b568', 1, ['麦穗', '小麦粉', '柔软面团', '金黄吐司', '牛角面包', '手作面包', '丰收面包篮']],
@@ -120,3 +120,55 @@ export const ORDERS: OrderDef[] = Array.from({ length: 6 }, (_, chapter) => {
 }).flat();
 
 export const CHAPTER_NAMES = ['晨光开张', '河岸醇香', '竹笼蒸汽', '晚风炭火', '莓好时光', '一巷灯火'];
+
+// Never rename historical IDs: imported saves keep their original item and recipe semantics.
+export const LEGACY_ITEMS = { ...ITEMS };
+export const LEGACY_CHAINS = [...CHAINS];
+export const LEGACY_RECIPES = [...RECIPES];
+export const LEGACY_ORDERS = [...ORDERS];
+const freshChains = [
+  { id: 'fresh-veg', name: '蔬菜推车', color: '#79ad50', names: ['番茄', '黄瓜', '彩椒', '胡萝卜', '西兰花', '南瓜', '田园菜篮'] },
+  { id: 'fresh-fruit', name: '鲜果木箱', color: '#f1a842', names: ['草莓', '甜橙', '苹果', '葡萄', '菠萝', '西瓜', '缤纷果篮'] },
+];
+export const FRESH_CHAINS: ChainDef[] = freshChains.map(chain => ({ id: chain.id, name: chain.name, color: chain.color, unlockDay: 1, items: chain.names.map((_, index) => `${chain.id}-${index + 1}`) }));
+CHAINS.push(...FRESH_CHAINS);
+freshChains.forEach((chain, row) => chain.names.forEach((name, index) => {
+  const id = `${chain.id}-${index + 1}`;
+  ITEMS[id] = { id, name, chain: chain.id, level: index + 1, icon: 64 + row * 7 + index, assetId: id, source: chain.name, kind: 'ingredient', sell: 2 ** index, description: index < 6 ? `两份${name}可合成${chain.names[index + 1]}。` : '最高阶食材，留给特别期待它的顾客。' };
+}));
+const freshRecipes: [string, string, number, number, [string, number][], string][] = [
+  ['fresh-tomato-salad', '番茄小沙拉', 0, 12, [['fresh-veg-1', 1]], '红番茄切成小瓣，淋上清新的香草汁。'],
+  ['fresh-carrot-salad', '胡萝卜花园', 0, 22, [['fresh-veg-4', 1]], '胡萝卜切成花朵，撒上脆脆的芝麻。'],
+  ['fresh-garden-bowl', '田园丰收碗', 0, 30, [['fresh-veg-5', 1], ['fresh-fruit-2', 1]], '西兰花和甜橙，把田园的颜色装满一碗。'],
+  ['fresh-berry-cup', '草莓甜心杯', 1, 14, [['fresh-fruit-1', 1]], '鲜切草莓层层堆起，盛进小小玻璃杯。'],
+  ['fresh-orange-juice', '阳光鲜橙汁', 1, 18, [['fresh-fruit-2', 1]], '现榨甜橙，杯里是明亮的清晨。'],
+  ['fresh-fruit-platter', '缤纷水果盘', 1, 26, [['fresh-fruit-4', 1]], '把紫葡萄排成一圈，分享果园的甜。'],
+];
+export const FRESH_RECIPES: RecipeDef[] = freshRecipes.map(([id, name, appliance, seconds, input, description], index) => {
+  const inputs = input.map(([item, count]) => ({ item, count }));
+  const output = `dish-${id}`;
+  ITEMS[output] = { id: output, name, chain: ITEMS[inputs[0].item].chain, level: 1, icon: 78 + index, assetId: output, source: appliance === 0 ? '小鹅砧板' : '鲜果料理台', description, kind: 'dish', sell: Math.max(1, Math.floor(inputs.reduce((sum, need) => sum + ITEMS[need.item].sell * need.count, 0) * 0.8)) };
+  return { id, name, appliance, duration: seconds * 1000, inputs, output, unlockDay: 1, description };
+});
+RECIPES.push(...FRESH_RECIPES);
+const openingOrders: [string, string, number, string][] = [
+  ['fresh-veg-2', '清晨第一口', 12, 'momo'],
+  ['dish-fresh-tomato-salad', '一碗新鲜', 16, 'uncle'],
+  ['fresh-fruit-2', '捎一份阳光', 12, 'taro'],
+  ['dish-fresh-berry-cup', '莓好的约定', 18, 'lin'],
+  ['fresh-veg-3', '彩色午餐', 16, 'momo'],
+  ['dish-fresh-orange-juice', '清甜一杯', 22, 'uncle'],
+  ['fresh-veg-4', '花园来信', 24, 'taro'],
+  ['dish-fresh-carrot-salad', '认真做的好味道', 32, 'lin'],
+  ['fresh-fruit-3', '给朋友带一份', 16, 'momo'],
+  ['dish-fresh-fruit-platter', '果园小聚', 34, 'uncle'],
+  ['fresh-fruit-4', '紫色的甜蜜', 24, 'taro'],
+  ['dish-fresh-garden-bowl', '今日丰收', 48, 'lin'],
+];
+export const FRESH_ORDERS: OrderDef[] = openingOrders.map(([item, title, coins, customer], index) => ({
+  id: `opening-order-${index + 1}`, day: 1, customer, title,
+  message: ['今天也想吃到你做的新鲜味道。', '慢慢来，我就在这里等你。', '一份新鲜，刚刚好。'][index % 3],
+  thanks: `${CUSTOMERS.find(person => person.id === customer)!.name}：${['真新鲜，谢谢你！', '吃饱啦，等会儿再来。', '这份心意，我收到啦！'][index % 3]}`,
+  needs: [{ item, count: 1 }], coins, reputation: 2,
+}));
+ORDERS.push(...FRESH_ORDERS);

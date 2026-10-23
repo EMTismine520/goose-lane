@@ -1,0 +1,2 @@
+import { Hammer, Carrot } from 'lucide-react';
+export function PageSwitch({page,onClick,highlight}:{page:'merge'|'street';onClick:()=>void;highlight?:boolean}) { return <button className={`page-switch ${highlight?'next-action':''}`} onClick={onClick} aria-label={page==='merge'?'去建设':'去合成'}>{page==='merge'?<Hammer size={29}/>:<Carrot size={29}/>}<span>{page==='merge'?'去建设':'去合成'}</span></button>; }

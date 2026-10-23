@@ -31,6 +31,7 @@ const ASSETS = ${JSON.stringify(assets)};
 const SCOPE = self.registration.scope;
 const PREFIX = 'goose-lane::' + SCOPE + '::';
 const CACHE = PREFIX + VERSION;
+const ASSET_ROOT = new URL('assets/', SCOPE).href;
 const URLS = new Set(ASSETS.map(asset => new URL(asset.url, SCOPE).href));
 const INDEX = new URL('index.html', SCOPE).href;
 const INDEX_INTEGRITY = ${JSON.stringify(index.integrity)};
@@ -54,7 +55,9 @@ self.addEventListener('message', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter(key => key.startsWith(PREFIX) && key !== CACHE).map(key => caches.delete(key)));
+    // Keep exactly this release plus the latest previous release for already-open tabs.
+    const previous = keys.filter(key => key.startsWith(PREFIX) && key !== CACHE).slice(-1);
+    await Promise.all(keys.filter(key => key.startsWith(PREFIX) && key !== CACHE && !previous.includes(key)).map(key => caches.delete(key)));
     await self.clients.claim();
   })());
 });
@@ -81,7 +84,21 @@ self.addEventListener('fetch', event => {
     event.respondWith(releaseNavigation(request));
     return;
   }
-  if (!URLS.has(url.href)) return;
+  if (!URLS.has(url.href)) {
+    // An older open tab may still request a hashed lazy chunk after clients.claim().
+    // Only static JS/CSS under this app's assets directory may use the retained release.
+    if (!url.href.startsWith(ASSET_ROOT) || !/\\.(?:js|css)$/.test(url.pathname)) return;
+    event.respondWith((async () => {
+      const keys = await caches.keys();
+      const previous = keys.filter(key => key.startsWith(PREFIX) && key !== CACHE).slice(-1);
+      for (const name of previous) {
+        const cached = await (await caches.open(name)).match(request);
+        if (cached) return cached;
+      }
+      return fetch(request);
+    })());
+    return;
+  }
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     const cached = await cache.match(request);

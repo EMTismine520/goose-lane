@@ -1,0 +1,402 @@
+[
+  {
+    "assetId": "fresh-veg-1",
+    "frame": "assets/items/fresh-veg-1.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-veg-2",
+    "frame": "assets/items/fresh-veg-2.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-veg-3",
+    "frame": "assets/items/fresh-veg-3.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-veg-4",
+    "frame": "assets/items/fresh-veg-4.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-veg-5",
+    "frame": "assets/items/fresh-veg-5.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-veg-6",
+    "frame": "assets/items/fresh-veg-6.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-veg-7",
+    "frame": "assets/items/fresh-veg-7.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-fruit-1",
+    "frame": "assets/items/fresh-fruit-1.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-fruit-2",
+    "frame": "assets/items/fresh-fruit-2.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-fruit-3",
+    "frame": "assets/items/fresh-fruit-3.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-fruit-4",
+    "frame": "assets/items/fresh-fruit-4.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-fruit-5",
+    "frame": "assets/items/fresh-fruit-5.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-fruit-6",
+    "frame": "assets/items/fresh-fruit-6.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-fruit-7",
+    "frame": "assets/items/fresh-fruit-7.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-dish-tomato-salad",
+    "frame": "assets/items/fresh-dish-tomato-salad.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "tomato-salad",
+    "frame": "assets/items/tomato-salad.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-dish-garden-salad",
+    "frame": "assets/items/fresh-dish-garden-salad.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "garden-salad",
+    "frame": "assets/items/garden-salad.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-dish-carrot-soup",
+    "frame": "assets/items/fresh-dish-carrot-soup.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "carrot-soup",
+    "frame": "assets/items/carrot-soup.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-dish-strawberry-juice",
+    "frame": "assets/items/fresh-dish-strawberry-juice.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "strawberry-juice",
+    "frame": "assets/items/strawberry-juice.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-dish-fruit-bowl",
+    "frame": "assets/items/fresh-dish-fruit-bowl.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fruit-bowl",
+    "frame": "assets/items/fruit-bowl.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-dish-peach-smoothie",
+    "frame": "assets/items/fresh-dish-peach-smoothie.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "peach-smoothie",
+    "frame": "assets/items/peach-smoothie.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-tomato-salad",
+    "frame": "assets/items/dish-fresh-tomato-salad.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-carrot-salad",
+    "frame": "assets/items/dish-fresh-carrot-salad.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-garden-bowl",
+    "frame": "assets/items/dish-fresh-garden-bowl.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-berry-cup",
+    "frame": "assets/items/dish-fresh-berry-cup.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-orange-juice",
+    "frame": "assets/items/dish-fresh-orange-juice.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-fruit-platter",
+    "frame": "assets/items/dish-fresh-fruit-platter.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "vegetable-cart",
+    "frame": "assets/entities/vegetable-cart.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fruit-crate",
+    "frame": "assets/entities/fruit-crate.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "chopping-board",
+    "frame": "assets/entities/chopping-board.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fruit-press",
+    "frame": "assets/entities/fruit-press.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "crate",
+    "frame": "assets/entities/crate.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "board",
+    "frame": "assets/entities/board.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "steamer",
+    "frame": "assets/entities/steamer.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fruit-cart",
+    "frame": "assets/entities/fruit-cart.svg",
+    "pivot": [
+      0.5,
+      0.52
+    ],
+    "scale": 0.82,
+    "source": "Original vector artwork · Goose Lane 2026"
+  }
+]

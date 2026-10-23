@@ -1,6 +1,12 @@
 import type { Settings } from '../domain/types';
 
-type SoundKind = 'merge' | 'generate' | 'deliver' | 'cook' | 'click' | 'upgrade';
+export type SoundKind = 'merge' | 'generate' | 'deliver' | 'cook' | 'complete' | 'click' | 'upgrade';
+
+export const SOUND_MOTIFS: Record<SoundKind, readonly number[]> = {
+  click: [660], generate: [392, 523.25], merge: [523.25, 659.25, 783.99],
+  cook: [293.66, 392, 440], complete: [880, 1174.66, 1046.5],
+  deliver: [523.25, 659.25, 783.99, 1046.5], upgrade: [392, 523.25, 659.25, 783.99, 1046.5],
+};
 
 /** Original, locally synthesized score and sound effects: no downloads or copyrighted samples. */
 class GooseAudio {
@@ -14,6 +20,7 @@ class GooseAudio {
   private listening = false;
   private active = new Set<OscillatorNode>();
   private lastSound = -Infinity;
+  private lastByKind = new Map<SoundKind, number>();
 
   async unlock(): Promise<void> {
     if (typeof window === 'undefined') return;
@@ -53,14 +60,12 @@ class GooseAudio {
     const context = this.context;
     if (!context || !this.unlocked || !this.settings.sound || document.hidden || context.state !== 'running') return;
     // Bound polyphony and rapid repeat clicks without affecting the authoritative game state.
-    if (context.currentTime - this.lastSound < 0.025) return;
+    const cooldown = kind === 'click' ? 0.075 : kind === 'generate' ? 0.09 : 0.12;
+    if (context.currentTime - this.lastSound < 0.025 || context.currentTime - (this.lastByKind.get(kind) ?? -Infinity) < cooldown) return;
     this.lastSound = context.currentTime;
-    const motifs: Record<SoundKind, number[]> = {
-      click: [660], generate: [392, 523.25], merge: [523.25, 659.25, 783.99],
-      deliver: [523.25, 659.25, 783.99, 1046.5], cook: [293.66, 392, 440],
-      upgrade: [392, 523.25, 659.25, 783.99, 1046.5],
-    };
-    motifs[kind].forEach((pitch, i) => this.note(pitch, context.currentTime + i * 0.065, kind === 'click' ? 0.07 : 0.24, this.soundGain!, 0.38, 'sine'));
+    this.lastByKind.set(kind, context.currentTime);
+    const duration = kind === 'click' ? 0.07 : kind === 'cook' ? 0.11 : 0.18;
+    SOUND_MOTIFS[kind].forEach((pitch, i) => this.note(pitch, context.currentTime + i * 0.05, duration, this.soundGain!, kind === 'complete' ? 0.28 : 0.35, kind === 'cook' ? 'triangle' : 'sine'));
   }
 
   private note(pitch: number, when: number, duration: number, target: GainNode, loudness: number, type: OscillatorType): void {
@@ -117,6 +122,7 @@ class GooseAudio {
     this.unlocked = false;
     this.beat = 0;
     this.lastSound = -Infinity;
+    this.lastByKind.clear();
     this.active.forEach((voice) => { try { voice.stop(); } catch { /* Already stopped. */ } });
     this.active.clear();
     if (this.context) void this.context.close().catch(() => undefined);

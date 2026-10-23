@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { acquireSession } from '../src/platform/session';
 import type { GameSession } from '../src/platform/session';
-import { audio } from '../src/platform/audio';
+import { audio, SOUND_MOTIFS } from '../src/platform/audio';
 
 const sessions: GameSession[] = [];
 afterEach(() => {
@@ -57,6 +57,29 @@ describe('exclusive browser writer', () => {
     const replacement = await acquireSession(vi.fn()); sessions.push(replacement);
     expect(replacement.readOnly).toBe(false);
   });
+  it('reloads a BFCache return so it acquires a fresh session instead of retrying a released lock', async () => {
+    locks();
+    const reload = vi.fn();
+    const page = Object.assign(new EventTarget(), { location: { reload } });
+    vi.stubGlobal('window', page);
+    const session = await acquireSession(vi.fn()); sessions.push(session);
+    page.dispatchEvent(Object.assign(new Event('pagehide'), { persisted: true }));
+    expect(session.readOnly).toBe(true); expect(await session.takeover()).toBe(false);
+    expect(reload).not.toHaveBeenCalled();
+    page.dispatchEvent(Object.assign(new Event('pageshow'), { persisted: true }));
+    expect(reload).toHaveBeenCalledOnce();
+    page.dispatchEvent(Object.assign(new Event('pageshow'), { persisted: true }));
+    expect(reload).toHaveBeenCalledOnce();
+  });
+  it('does not reload on an ordinary pagehide/pageshow navigation', async () => {
+    locks();
+    const reload = vi.fn(); const page = Object.assign(new EventTarget(), { location: { reload } });
+    vi.stubGlobal('window', page);
+    const session = await acquireSession(vi.fn()); sessions.push(session);
+    page.dispatchEvent(Object.assign(new Event('pagehide'), { persisted: false }));
+    page.dispatchEvent(Object.assign(new Event('pageshow'), { persisted: false }));
+    expect(reload).not.toHaveBeenCalled(); expect(session.readOnly).toBe(true);
+  });
 });
 
 describe('gesture-gated, bounded audio', () => {
@@ -68,10 +91,11 @@ describe('gesture-gated, bounded audio', () => {
     const gains: ReturnType<typeof parameter>[] = [];
     class Context {
       static created = 0;
+      static instances: Context[] = [];
       currentTime = 1;
       state = 'suspended';
       destination = {};
-      constructor() { Context.created++; }
+      constructor() { Context.created++; Context.instances.push(this); }
       async resume() { this.state = 'running'; }
       async suspend() { this.state = 'suspended'; }
       async close() { this.state = 'closed'; }
@@ -115,5 +139,26 @@ describe('gesture-gated, bounded audio', () => {
     expect(gains[1].setTargetAtTime).toHaveBeenLastCalledWith(0, 1, 0.015);
     expect(vi.getTimerCount()).toBe(1);
     audio.dispose(); expect(vi.getTimerCount()).toBe(0);
+  });
+  it('offers seven distinct event motifs and keeps completion audible with reduced motion', async () => {
+    const { voices, Context } = environment();
+    audio.configure({ music: false, sound: true, volume: 0.5, reducedMotion: true }); await audio.unlock();
+    expect(Object.keys(SOUND_MOTIFS)).toHaveLength(7);
+    expect(new Set(Object.values(SOUND_MOTIFS).map((motif) => motif.join(','))).size).toBe(7);
+    audio.play('complete'); expect(voices.length).toBe(3);
+    Context.instances[0].currentTime += 1;
+    audio.play('cook'); expect(voices.length).toBe(6);
+  });
+  it('drops rapid repeats instead of queueing seconds of audio', async () => {
+    const { voices, Context } = environment();
+    audio.configure({ music: false, sound: true, volume: 0.5, reducedMotion: false }); await audio.unlock();
+    for (let click = 0; click < 200; click++) audio.play('generate');
+    expect(voices.length).toBe(2);
+    expect(vi.getTimerCount()).toBe(0);
+    Context.instances[0].currentTime += 0.1;
+    audio.play('generate'); expect(voices.length).toBe(4);
+    audio.configure({ music: false, sound: false, volume: 0.5, reducedMotion: false });
+    Context.instances[0].currentTime += 1;
+    audio.play('complete'); expect(voices.length).toBe(4);
   });
 });

@@ -25,7 +25,7 @@ afterEach(() => { handles.splice(0).forEach((repo) => repo.close()); vi.restoreA
 describe('strict portable save validation', () => {
   it('migrates the fixed v0 fixture without discarding inventory or currency', () => {
     const state = fixture();
-    expect(state.schemaVersion).toBe(1);
+    expect(state.schemaVersion).toBe(2);
     expect(state.contentVersion).toBe(CONTENT_VERSION);
     expect(state.coins).toBe(42);
     expect(state.storage[0]).toEqual({ uid: 'g4', item: 'grain-1' });
@@ -67,7 +67,7 @@ describe('strict portable save validation', () => {
   it('rejects oversized JSON, malformed JSON and injected root properties', () => {
     expect(() => parseSave(' '.repeat(1_000_001))).toThrow(/1 MB/);
     expect(() => parseSave('{')).toThrow(/JSON/);
-    expect(() => parseSave(serializeSave(fixture()).replace('"schemaVersion": 1,', '"__proto__": {}, "schemaVersion": 1,'))).toThrow();
+    expect(() => parseSave(serializeSave(fixture()).replace('"schemaVersion": 2,', '"__proto__": {}, "schemaVersion": 2,'))).toThrow();
   });
   it('returns a detached state and enforces sell undo invariants', () => {
     const state = fixture(); const cloned = validateSave(state); cloned.coins = 3;
@@ -84,6 +84,9 @@ describe('IndexedDB atomic lifecycle', () => {
     const name = `engine-lifecycle-${++counter}`;
     const first = repository(name); await first.open();
     let state = createInitialState(1792713600000);
+    state.campaign = 'legacy';
+    state.board[16]!.item = state.board[17]!.item = 'grain-1';
+    state.board[23]!.item = state.board[24]!.item = 'coffee-1';
     state = execute(state, { type: 'move', from: 16, to: 17 }, state.lastSeen).state;
     expect(inventoryCount(state, 'grain-2')).toBe(1);
     state = execute(state, { type: 'cook', recipe: 'toast', slot: 0 }, state.lastSeen).state;

@@ -13,7 +13,7 @@ export function downloadText(text: string, name: string): void {
 
 export function useGame() {
   const controller = useRef<GameController | null>(null);
-  const [view, setView] = useState<GameView>({ state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false });
+  const [view, setView] = useState<GameView>({ state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0 });
   useEffect(() => {
     const current = new GameController(downloadText);
     controller.current = current;
@@ -42,5 +42,6 @@ export function useGame() {
     recoverPrevious: () => active().recoverPrevious(),
     retry: () => controller.current?.retry(),
     exportRaw: () => controller.current?.exportRaw(),
+    applyUpdate: (activate: () => Promise<void>) => active().applyUpdate(activate),
   };
 }
