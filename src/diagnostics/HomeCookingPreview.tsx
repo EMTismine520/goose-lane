@@ -9,6 +9,10 @@ import '../ui/styles.css';
 import '../ui/home-cooking.css';
 
 const scene = new URLSearchParams(location.search).get('scene') ?? 'play';
+if (scene === 'styles') {
+  const { renderFoodStylePreview } = await import('./FoodStylePreview');
+  await renderFoodStylePreview();
+} else {
 const played = simulateOpening().state;
 const state = resumeManualSlot({ id: 1, status: 'ready', state: played, capturedAt: played.lastSeen, savedAt: played.lastSeen }, Date.now());
 const ids = [...HOME_CHAINS.flatMap(chain => chain.items), ...HOME_RECIPES.map(recipe => recipe.output)];
@@ -32,4 +36,5 @@ if (scene === 'three') initial.session.selectedUid = 'home-cooking-pot';
 const previous = await repository.open();
 initial.revision = Math.max(initial.revision, previous.state?.revision ?? -1) + 1;
 await repository.save(initial);
-createRoot(document.getElementById('root')!).render(<App repository={repository}/>);
+createRoot(document.getElementById('root')!).render(<App repository={repository} sessionScope={'home-qa-' + scene}/>);
+}

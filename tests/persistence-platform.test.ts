@@ -14,12 +14,12 @@ afterEach(() => {
 
 describe('exclusive browser writer', () => {
   function locks() {
-    let occupied = false;
+    const occupied = new Set<string>();
     vi.stubGlobal('navigator', { locks: {
-      async request(_name: string, _options: unknown, callback: (lock: object | null) => Promise<void>): Promise<void> {
-        if (occupied) { await callback(null); return; }
-        occupied = true;
-        try { await callback({}); } finally { occupied = false; }
+      async request(name: string, _options: unknown, callback: (lock: object | null) => Promise<void>): Promise<void> {
+        if (occupied.has(name)) { await callback(null); return; }
+        occupied.add(name);
+        try { await callback({}); } finally { occupied.delete(name); }
       },
     } });
     vi.stubGlobal('BroadcastChannel', undefined);
@@ -37,6 +37,17 @@ describe('exclusive browser writer', () => {
     expect(firstChange).toHaveBeenLastCalledWith(true);
     expect(secondChange).toHaveBeenLastCalledWith(false);
     expect(await first.takeover()).toBe(false);
+  });
+  it('isolates preview writers while retaining exclusive ownership within each save scope', async () => {
+    locks();
+    const normal = await acquireSession(vi.fn()); sessions.push(normal);
+    const preview = await acquireSession(vi.fn(), 'art-qa-one'); sessions.push(preview);
+    const another = await acquireSession(vi.fn(), 'art-qa-two'); sessions.push(another);
+    const duplicate = await acquireSession(vi.fn(), 'art-qa-one'); sessions.push(duplicate);
+    expect([normal.readOnly, preview.readOnly, another.readOnly, duplicate.readOnly]).toEqual([false, false, false, true]);
+    preview.release(); await Promise.resolve(); await Promise.resolve();
+    expect(await duplicate.takeover()).toBe(true);
+    expect(normal.readOnly).toBe(false);
   });
   it('stays read-only without either transactional storage or native locks', async () => {
     vi.stubGlobal('navigator', {}); vi.stubGlobal('BroadcastChannel', undefined); vi.stubGlobal('indexedDB', undefined);

@@ -130,6 +130,15 @@ describe('production offline release', () => {
     expect(await offline!.text()).toBe('<html>release one</html>');
   });
 
+  it('lets standalone comparison pages navigate without substituting the game shell', async () => {
+    const worker = workerHarness({ 'index.html': 'game', 'food-styles.html': 'comparison', 'food-style-frame.html': 'samples' });
+    await worker.lifecycle('install');
+    for (const page of ['food-styles.html', 'food-style-frame.html?style=cartoon']) {
+      expect(await worker.request({ url: worker.scope + page, method: 'GET', mode: 'navigate' })).toBeUndefined();
+    }
+    expect(await (await worker.request({ url: worker.scope + 'index.html?mode=normal', method: 'GET', mode: 'navigate' }))!.text()).toBe('game');
+  });
+
   it('retains only the most recent previous release and ignores external/non-GET/API requests', async () => {
     const worker = workerHarness({ 'index.html': 'release one' });
     await worker.lifecycle('install');

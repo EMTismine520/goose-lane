@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="-4.81250 -3.31250 107.50000 107.50000">
+  <title>鸡蛋 · 暖色卡通手绘源码</title>
+  <defs><radialGradient id="shell" cx=".3" cy=".25" r=".85"><stop stop-color="#fff5d9"/><stop offset=".55" stop-color="#f4d6af"/><stop offset="1" stop-color="#d6a17b"/></radialGradient></defs>
+  <g stroke="#967051" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M35 12c15-5 39 23 42 43 4 20-8 32-23 34S24 82 21 64c-3-21 1-48 14-52Z" fill="url(#shell)"/>
+    <path d="M32 31q-7 10-5 23" fill="none" stroke="#fffbed" stroke-width="5.2"/>
+    <path d="M65 73q-4 8-15 8" fill="none" stroke="#cda07c" stroke-width="2.4"/>
+  </g>
+</svg>

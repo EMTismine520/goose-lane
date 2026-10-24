@@ -1,0 +1,76 @@
+{
+  "painted": {
+    "fresh-beast-1": {
+      "path": "painted/items/fresh-beast-1.webp",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-beast-2": {
+      "path": "painted/items/fresh-beast-2.webp",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-beast-3": {
+      "path": "painted/items/fresh-beast-3.webp",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-poultry-1": {
+      "path": "painted/items/fresh-poultry-1.webp",
+      "displaySize": 45.333333333333336,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-spice-1": {
+      "path": "painted/items/fresh-spice-1.webp",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    }
+  },
+  "cartoon": {
+    "fresh-beast-1": {
+      "path": "cartoon/items/fresh-beast-1.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-beast-2": {
+      "path": "cartoon/items/fresh-beast-2.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-beast-3": {
+      "path": "cartoon/items/fresh-beast-3.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-poultry-1": {
+      "path": "cartoon/items/fresh-poultry-1.svg",
+      "displaySize": 45.333333333333336,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    },
+    "fresh-spice-1": {
+      "path": "cartoon/items/fresh-spice-1.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 256
+    }
+  }
+}

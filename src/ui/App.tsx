@@ -19,8 +19,8 @@ import { RewardFlight } from './RewardFlight';
 import { SaveSlotsPanel, RestartPanel } from './SaveSlotsPanel';
 const Board=lazy(()=>import('../game/Board'));
 type Dialog = {type:'settings'|'save'|'load'|'restart'|'storage'|'book'|'build'|'energy'|'help'|'legacy'}|{type:'item';id:string}|{type:'recipes';slot:number}|null;
-export default function App({repository}:{repository?:SaveRepository}={}){
- const game=useGame(repository),state=game.state;
+export default function App({repository,sessionScope,offline=true}:{repository?:SaveRepository;sessionScope?:string;offline?:boolean}={}){
+ const game=useGame(repository,sessionScope),state=game.state;
  const [page,setPage]=useState<'merge'|'street'>('merge'),[dialog,setDialog]=useState<Dialog>(null),[selected,setSelected]=useState<number|null>(null),[now,setNow]=useState(Date.now()),[hint,setHint]=useState<[number,number]|null>(null),[cell,setCell]=useState(46);
  const [update,setUpdate]=useState<ActivateUpdate|null>(null),[cacheError,setCacheError]=useState(''),[bootMessage,setBootMessage]=useState('');
  const area=useRef<HTMLDivElement>(null),hydrated=useRef(-1),selectedUid=useRef<string|null>(null),stateRef=useRef(state),gameRef=useRef(game),scrollTimer=useRef<ReturnType<typeof setTimeout>|null>(null),input=useRef<HTMLInputElement>(null);
@@ -29,7 +29,7 @@ export default function App({repository}:{repository?:SaveRepository}={}){
  const act=useCallback((command:Command)=>gameRef.current.dispatch(command),[]);
  const close=useCallback(()=>setDialog(null),[]);
  const showItem=useCallback((id:string)=>setDialog({type:'item',id}),[]);
- useEffect(()=>registerPwa(activate=>setUpdate(()=>activate),setCacheError),[]);
+ useEffect(()=>offline?registerPwa(activate=>setUpdate(()=>activate),setCacheError):undefined,[offline]);
  useEffect(()=>{const timer=setInterval(()=>setNow(Date.now()),500);return()=>clearInterval(timer)},[]);
  useEffect(()=>{document.documentElement.dataset.motion=state?.settings.reducedMotion?'reduced':'full'},[state?.settings.reducedMotion]);
  useEffect(()=>{if(!state||hydrated.current===game.sessionEpoch)return;orderPosition.current=state.session.orderScroll;hydrated.current=game.sessionEpoch;if(scrollTimer.current)clearTimeout(scrollTimer.current);setDialog(null);setHint(null);setPage(state.session.page);selectedUid.current=state.session.selectedUid;const index=state.board.findIndex(i=>i?.uid===state.session.selectedUid);setSelected(index>=0?index:activeDevices(state).find(e=>e.id===state.session.selectedUid)?.index??null)},[state,game.sessionEpoch]);

@@ -6,11 +6,12 @@ export interface GameSession {
   release(): void;
 }
 
-export async function acquireSession(onReadOnlyChange: (readOnly: boolean) => void): Promise<GameSession> {
+export async function acquireSession(onReadOnlyChange: (readOnly: boolean) => void, scope?: string): Promise<GameSession> {
+  const suffix = scope ? `:${scope}` : '';
   const hasLocks = typeof navigator !== 'undefined' && typeof navigator.locks?.request === 'function';
   const supported = globalThis.isSecureContext !== false && (hasLocks || typeof indexedDB !== 'undefined');
   let channel: BroadcastChannel | null = null;
-  try { if (typeof BroadcastChannel !== 'undefined') channel = new BroadcastChannel('goose-lane-session-v1'); } catch { /* The Web Lock remains authoritative if messaging is restricted. */ }
+  try { if (typeof BroadcastChannel !== 'undefined') channel = new BroadcastChannel('goose-lane-session-v1' + suffix); } catch { /* The Web Lock remains authoritative if messaging is restricted. */ }
   let readOnly = true;
   let released = false;
   let acquiring: Promise<boolean> | null = null;
@@ -31,7 +32,7 @@ export async function acquireSession(onReadOnlyChange: (readOnly: boolean) => vo
       }
       if (acquiring) return acquiring;
       acquiring = new Promise<boolean>((resolve) => {
-        void navigator.locks.request('goose-lane-writer-v1', { mode: 'exclusive', ifAvailable: true }, async (lock) => {
+        void navigator.locks.request('goose-lane-writer-v1' + suffix, { mode: 'exclusive', ifAvailable: true }, async (lock) => {
           if (!lock || released) { resolve(false); return; }
           const held = new Promise<void>((done) => { unlock = done; });
           change(false);

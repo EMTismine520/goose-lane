@@ -29,6 +29,8 @@ npm run preview
 
 `dist/` 可直接部署到静态 HTTPS 托管。使用相对资源路径，可部署到子目录；服务端必须正确提供 `.js`、`.webp` 和 `.webmanifest`。不能用双击 `index.html` 的 `file://` 模式代替 HTTP 服务。
 
+手机食材美术对照入口为 `food-styles.html`，提供 A／B 同盘切换与独立试玩存档，详见 [预览说明](docs/FOOD_STYLE_PREVIEW.md)。
+
 ## 怎么玩
 
 1. 两份相同食材可以二合。拖拽、点选来源再点目标都可操作；不同食材会交换位置。

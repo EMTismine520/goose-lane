@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import { activeDevices, BOARD_LAYOUT } from '../content/board-layouts';
 import { ITEMS } from '../content/catalog';
+import { itemPresentation, type ItemArtOverrides } from '../content/assets';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { GameState, ItemInstance } from '../domain/types';
 import { BoardEffects } from './board-fx';
@@ -28,9 +29,8 @@ export function itemTexture(scene: Phaser.Scene, item: string): { key: string; f
   return scene.textures.exists(key) ? { key } : { key: 'legacy-foods', frame: def?.icon ?? 0 };
 }
 
-export function itemDisplaySize(item: string): number {
-  const def = ITEMS[item];
-  return def?.assetId ? def.kind === 'dish' ? 50 : 54 : 44;
+export function itemDisplaySize(item: string, art?: ItemArtOverrides): number {
+  return itemPresentation(item, art).displaySize;
 }
 
 /** Static tiles, devices, UID-owned item sprites, and temporary FX are separate layers. */
@@ -46,7 +46,7 @@ export class BoardRenderer {
   private draggedUid: string | null = null;
   private lastClock = 0;
 
-  constructor(private scene: Phaser.Scene, private state: () => GameState) {
+  constructor(private scene: Phaser.Scene, private state: () => GameState, private art?: ItemArtOverrides, private pixelRatio = 1) {
     this.tiles = scene.add.graphics().setDepth(0);
     this.highlights = scene.add.graphics().setDepth(2);
     this.crates = scene.add.container(0, 0).setDepth(1);
@@ -115,14 +115,15 @@ export class BoardRenderer {
     const container = this.scene.add.container(at.x, at.y).setDepth(5);
     const shadow = this.scene.add.ellipse(0, 16, 29, 7, 0x8d6443, 0.13);
     const texture = itemTexture(this.scene, instance.item);
-    const size = itemDisplaySize(instance.item);
-    const image = this.scene.add.image(0, -2, texture.key, texture.frame).setDisplaySize(size, size);
+    const presentation = itemPresentation(instance.item, this.art);
+    const size = presentation.displaySize;
+    const image = this.scene.add.image(presentation.offsetX, presentation.offsetY, texture.key, texture.frame).setDisplaySize(size, size);
     const badge = this.scene.add.graphics();
     badge.fillStyle(def.kind === 'dish' ? 0xf29b45 : 0x77ae64, 1);
     badge.fillRoundedRect(10, 10, 13, 13, 4);
     badge.lineStyle(1.5, 0xfffdf2, 1);
     badge.strokeRoundedRect(10, 10, 13, 13, 4);
-    const level = this.scene.add.text(16.5, 16.5, def.kind === 'dish' ? '成' : `${def.level}`, { fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
+    const level = this.scene.add.text(16.5, 16.5, def.kind === 'dish' ? '成' : `${def.level}`, { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
     container.add([shadow, image, badge, level]);
     return { uid: instance.uid, item: instance.item, index, container };
   }
@@ -136,10 +137,10 @@ export class BoardRenderer {
     const texture = `entity:${id}`;
     const image = this.scene.textures.exists(texture)
       ? this.scene.add.image(0, -2, texture).setDisplaySize(47, 47)
-      : this.scene.add.text(0, 0, entity.name, { fontFamily: 'sans-serif', fontSize: '10px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(0.5);
+      : this.scene.add.text(0, 0, entity.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '10px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(0.5);
     const labelBack = this.scene.add.graphics();
     const activity = this.scene.add.graphics();
-    const label = this.scene.add.text(0, -22, '', { fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef2' }).setOrigin(0.5);
+    const label = this.scene.add.text(0, -22, '', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef2' }).setOrigin(0.5);
     container.add([shadow, image, activity, labelBack, label]);
     this.devices.set(id, { container, label, labelBack, activity, phase: '' });
     if (entity.kind === 'generator') {

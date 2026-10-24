@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type Phaser from 'phaser';
 import { ALL_DEVICES } from '../content/board-layouts';
-import { deviceAssetPath, itemAssetPath } from '../content/assets';
+import { deviceAssetPath, itemImageUrl, itemPresentation } from '../content/assets';
 import { ITEMS } from '../content/catalog';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
@@ -9,8 +9,9 @@ import { audio } from '../platform/audio';
 import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, DRAG_THRESHOLD, cellAt, isDropCommitted, moveCommand, nextKeyboardCell, selectionAfterDrop } from './board-input';
 import type { DropSelection } from './board-input';
 import { BoardRenderer, itemDisplaySize, itemTexture } from './board-render';
-import { refreshBoardViewport } from './board-viewport';
+import { boardPixelRatio, boardPoint, refreshBoardViewport } from './board-viewport';
 import { boardRendererMode } from './board-renderer-mode';
+import { useItemArt } from '../ui/ItemArtContext';
 
 export interface BoardProps {
   state: GameState;
@@ -30,6 +31,7 @@ interface Gesture { index: number; x: number; y: number; pointerId: number; uid:
 
 /** One scene per mounted board. React supplies snapshots; Phaser never mutates inventory. */
 export default function Board(props: BoardProps) {
+  const art = useItemArt();
   const mount = useRef<HTMLDivElement>(null);
   const live = useRef(props);
   const bridge = useRef<BoardBridge | null>(null);
@@ -37,12 +39,14 @@ export default function Board(props: BoardProps) {
   const [focused, setFocused] = useState<number | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [loadingMessage, setLoadingMessage] = useState('正在加载绘图引擎…');
-  const rendererMode = boardRendererMode(typeof navigator === 'undefined' ? '' : navigator.userAgent);
+  const rendererMode = art.renderer ?? boardRendererMode(typeof navigator === 'undefined' ? '' : navigator.userAgent);
+  const pixelRatio = boardPixelRatio(art.pixelRatio ?? (typeof window === 'undefined' ? 1 : window.devicePixelRatio));
   live.current = props;
 
   useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled, props.sessionEpoch]);
 
   useEffect(() => {
+    setStatus('loading');
     let disposed = false;
     let game: Phaser.Game | undefined;
     let removeListeners: (() => void) | undefined;
@@ -92,18 +96,19 @@ export default function Board(props: BoardProps) {
           this.load.image('legacy-foods', `${base}foods.webp`);
           for (const item of Object.values(ITEMS)) {
             if (item.assetId) {
-              const path = `${import.meta.env.BASE_URL}${itemAssetPath(item.id)}`;
-              if (path.endsWith('.svg') && !directImages) this.load.svg(`item:${item.assetId}`, path, { width: 96, height: 96 });
+              const path = itemImageUrl(item.id, art.items);
+              const size = Math.max(itemPresentation(item.id, art.items).svgSize, 96 * pixelRatio);
+              if (path.endsWith('.svg') && !directImages) this.load.svg(`item:${item.assetId}`, path, { width: size, height: size });
               else this.load.image(`item:${item.assetId}`, path);
             }
           }
           for (const entity of ALL_DEVICES) {
             const path = `${import.meta.env.BASE_URL}${deviceAssetPath(entity.id)}`;
-            if (path.endsWith('.svg') && !directImages) this.load.svg(`entity:${entity.id}`, path, { width: 96, height: 96 });
+            if (path.endsWith('.svg') && !directImages) this.load.svg(`entity:${entity.id}`, path, { width: 96 * pixelRatio, height: 96 * pixelRatio });
             else this.load.image(`entity:${entity.id}`, path);
           }
           if (directImages) this.load.image('entity:crate', `${base}entities/crate.svg`);
-          else this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96, height: 96 });
+          else this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96 * pixelRatio, height: 96 * pixelRatio });
         }
 
         create() {
@@ -113,12 +118,18 @@ export default function Board(props: BoardProps) {
         }
 
         private createBoard() {
+          this.cameras.main.setZoom(pixelRatio).centerOn(BOARD_WIDTH / 2, BOARD_HEIGHT / 2);
+          this.game.canvas.dataset.renderBackend = this.game.renderer.type === Engine.CANVAS ? 'canvas' : 'webgl';
+          if (this.game.renderer instanceof Engine.Renderer.Canvas.CanvasRenderer) {
+            this.game.renderer.gameContext.imageSmoothingEnabled = true;
+            this.game.renderer.gameContext.imageSmoothingQuality = 'high';
+          }
           if (this.textures.exists('legacy-foods')) {
             const texture = this.textures.get('legacy-foods');
             const source = texture.getSourceImage() as HTMLImageElement;
             for (let i = 0; i < 64; i++) texture.add(i, 0, (i % 8) * source.width / 8, Math.floor(i / 8) * source.height / 8, source.width / 8, source.height / 8);
           }
-          this.board = new BoardRenderer(this, () => live.current.state);
+          this.board = new BoardRenderer(this, () => live.current.state, art.items, pixelRatio);
           this.input.on('pointerdown', this.press, this);
           this.input.on('pointermove', this.drag, this);
           this.input.on('pointerup', this.release, this);
@@ -181,14 +192,15 @@ export default function Board(props: BoardProps) {
 
         private press(pointer: Phaser.Input.Pointer) {
           if (!this.allowed() || this.start || !pointer.primaryDown) return;
-          const index = cellAt(pointer.x, pointer.y);
+          const point = boardPoint(pointer, pixelRatio);
+          const index = cellAt(point.x, point.y);
           if (index === null) return;
           const entity = getBoardEntity(live.current.state, index);
           if (entity.item && this.pending.has(entity.item.uid)) return;
           this.selectionIntent++;
           this.pendingSelection = null;
           const selected = live.current.selected;
-          this.start = { index, x: pointer.x, y: pointer.y, pointerId: pointer.id, uid: entity.item?.uid ?? null, selected, selectedUid: selected === null ? null : live.current.state.board[selected]?.uid ?? null };
+          this.start = { index, x: point.x, y: point.y, pointerId: pointer.id, uid: entity.item?.uid ?? null, selected, selectedUid: selected === null ? null : live.current.state.board[selected]?.uid ?? null };
           this.board.press(index);
           void audio.unlock();
           if (this.time.now - this.lastPressed > 70) { audio.play('click'); this.lastPressed = this.time.now; }
@@ -199,17 +211,19 @@ export default function Board(props: BoardProps) {
           const entity = getBoardEntity(live.current.state, this.start.index);
           if (!entity.canMove || entity.item?.uid !== this.start.uid) { this.cancel(); return; }
           const canvasScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH;
-          if (this.dragged === null && Math.hypot(pointer.x - this.start.x, pointer.y - this.start.y) * canvasScale >= DRAG_THRESHOLD) {
+          const point = boardPoint(pointer, pixelRatio);
+          if (this.dragged === null && Math.hypot(point.x - this.start.x, point.y - this.start.y) * canvasScale >= DRAG_THRESHOLD) {
             this.dragged = this.start.index;
             live.current.onSelect(this.dragged);
             const texture = itemTexture(this, entity.item.item);
-            const size = itemDisplaySize(entity.item.item) * 1.1;
-            this.ghost = this.add.image(pointer.x, pointer.y, texture.key, texture.frame).setDisplaySize(size, size).setDepth(40);
+            const size = itemDisplaySize(entity.item.item, art.items) * 1.1;
+            this.ghost = this.add.image(point.x, point.y, texture.key, texture.frame).setDisplaySize(size, size).setDepth(40);
             this.board.setDragging(this.start.uid);
           }
           if (this.dragged !== null) {
-            this.ghost?.setPosition(pointer.x, pointer.y - (pointer.wasTouch ? 18 : 4));
-            this.hovered = cellAt(pointer.x, pointer.y);
+            const presentation = itemPresentation(entity.item.item, art.items);
+            this.ghost?.setPosition(point.x + presentation.offsetX, point.y + presentation.offsetY - (pointer.wasTouch ? 18 : 4));
+            this.hovered = cellAt(point.x, point.y);
             this.paintHighlights();
           }
         }
@@ -219,7 +233,8 @@ export default function Board(props: BoardProps) {
           // Phaser emits pointerup for native touchcancel before our DOM listener runs.
           if (pointer.wasCanceled) { this.cancel(); return; }
           const start = this.start;
-          const target = cellAt(pointer.x, pointer.y);
+          const point = boardPoint(pointer, pixelRatio);
+          const target = cellAt(point.x, point.y);
           const dragged = this.dragged;
           this.cancel();
           if (!this.allowed() || target === null) return;
@@ -297,9 +312,9 @@ export default function Board(props: BoardProps) {
       }
 
       game = new Engine.Game({
-        type: rendererMode === 'canvas' ? Engine.CANVAS : Engine.AUTO, parent: mount.current, width: BOARD_WIDTH, height: BOARD_HEIGHT,
+        type: rendererMode === 'canvas' ? Engine.CANVAS : Engine.AUTO, parent: mount.current, width: BOARD_WIDTH * pixelRatio, height: BOARD_HEIGHT * pixelRatio,
         transparent: true, antialias: true, roundPixels: false, scene: PantryScene,
-        scale: { mode: Engine.Scale.FIT, autoCenter: Engine.Scale.CENTER_BOTH, width: BOARD_WIDTH, height: BOARD_HEIGHT },
+        scale: { mode: Engine.Scale.FIT, autoCenter: Engine.Scale.CENTER_BOTH, width: BOARD_WIDTH * pixelRatio, height: BOARD_HEIGHT * pixelRatio },
         input: { activePointers: 1, touch: { capture: true }, mouse: { preventDefaultWheel: false } },
         render: { antialias: true, pixelArt: false }, audio: { noAudio: true }, banner: false,
         loader: { imageLoadType: directImages ? 'HTMLImageElement' : 'XHR' },
@@ -318,10 +333,10 @@ export default function Board(props: BoardProps) {
       removeListeners?.();
       game?.destroy(true);
     };
-  }, [rendererMode]);
+  }, [rendererMode, pixelRatio, art.items]);
 
   const interactive = props.active !== false && props.inputEnabled !== false;
-  return <div className="board-shell" data-board-status={status} data-board-renderer={rendererMode} style={{ position: 'relative' }}>
+  return <div className="board-shell" data-board-status={status} data-board-renderer={rendererMode} data-board-pixel-ratio={pixelRatio} style={{ position: 'relative' }}>
     <div ref={mount} className="phaser-board" style={{ width: '100%', height: '100%', touchAction: 'none', overflow: 'hidden', borderRadius: 9 }} />
     <div className="board-keyboard-grid" role="grid" aria-label="料理棋盘，方向键换格，回车选择和操作，Escape取消选择" aria-rowcount={BOARD_ROWS} aria-colcount={BOARD_COLUMNS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateRows: 'repeat(9, 1fr)', pointerEvents: 'none' }}>
       {Array.from({ length: BOARD_ROWS }, (_, row) => <div key={row} role="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>

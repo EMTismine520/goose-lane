@@ -3,6 +3,7 @@ import type { Command, GameEvent } from '../domain/types';
 import { GameController } from '../platform/game-controller';
 import type { GameView } from '../platform/game-controller';
 import type { SaveRepository, SaveSlotId } from '../persistence/save';
+import { acquireSession } from '../platform/session';
 
 export function downloadText(text: string, name: string): void {
   const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
@@ -12,11 +13,11 @@ export function downloadText(text: string, name: string): void {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function useGame(repository?: SaveRepository) {
+export function useGame(repository?: SaveRepository, sessionScope?: string) {
   const controller = useRef<GameController | null>(null);
   const [view, setView] = useState<GameView>({ state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0 });
   useEffect(() => {
-    const current = new GameController(downloadText, { repository });
+    const current = new GameController(downloadText, { repository, acquire: sessionScope ? change => acquireSession(change, sessionScope) : undefined });
     controller.current = current;
     const unsubscribe = current.subscribe(setView);
     void current.start();
@@ -24,7 +25,7 @@ export function useGame(repository?: SaveRepository) {
       unsubscribe(); current.dispose();
       if (controller.current === current) controller.current = null;
     };
-  }, [repository]);
+  }, [repository, sessionScope]);
   useEffect(() => {
     if (!view.notice) return;
     const timer = setTimeout(() => controller.current?.setNotice(null), 3400);

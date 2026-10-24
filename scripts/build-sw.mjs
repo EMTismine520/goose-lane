@@ -81,6 +81,8 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
   if (request.mode === 'navigate') {
+    // Comparison HTML has its own entry point and must never receive the game shell.
+    if (url.pathname !== new URL(SCOPE).pathname && url.pathname !== new URL(INDEX).pathname) return;
     event.respondWith(releaseNavigation(request));
     return;
   }
