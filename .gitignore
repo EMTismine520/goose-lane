@@ -1,6 +1,7 @@
 # Dependencies, generated builds, and verification output
 node_modules/
 /dist/
+/dist-preview/
 *.tsbuildinfo
 /coverage/
 /test-results/

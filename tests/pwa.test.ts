@@ -139,6 +139,35 @@ describe('production offline release', () => {
     expect(await (await worker.request({ url: worker.scope + 'index.html?mode=normal', method: 'GET', mode: 'navigate' }))!.text()).toBe('game');
   });
 
+  it('opens the healthy online release when an old worker has lost its cached HTML', async () => {
+    const worker = workerHarness({ 'index.html': 'old release', 'assets/old.js': 'old chunk' });
+    await worker.lifecycle('install');
+    const cache = [...worker.stores.values()][0];
+    cache.delete(worker.scope + 'index.html');
+    worker.fetcher.mockResolvedValue(new Response('<html>new release</html>'));
+    const response = await worker.request({ url: worker.scope, method: 'GET', mode: 'navigate' });
+    expect(await response!.text()).toBe('<html>new release</html>');
+    expect(cache.has(worker.scope + 'index.html')).toBe(false);
+    expect(await cache.get(worker.scope + 'assets/old.js')!.clone().text()).toBe('old chunk');
+    expect(worker.skipWaiting).not.toHaveBeenCalled();
+  });
+
+  it.each(['offline', 'HTTP failure'])('provides a readable recovery route when the shell is missing and the network has %s', async failure => {
+    const worker = workerHarness({ 'index.html': 'old release' });
+    await worker.lifecycle('install');
+    [...worker.stores.values()][0].delete(worker.scope + 'index.html');
+    if (failure === 'offline') worker.fetcher.mockRejectedValue(new Error('offline'));
+    else worker.fetcher.mockResolvedValue(new Response('server error', { status: 502 }));
+    const response = await worker.request({ url: worker.scope, method: 'GET', mode: 'navigate' });
+    expect(response!.status).toBe(503);
+    expect(response!.headers.get('Content-Type')).toContain('text/html');
+    expect(response!.headers.get('Cache-Control')).toBe('no-store');
+    const html = await response!.text();
+    expect(html).toContain('name="viewport"');
+    expect(html).toContain('重新加载');
+    expect(html).toContain('https://emtismine520.github.io/goose-lane-art-preview/recover.html');
+  });
+
   it('retains only the most recent previous release and ignores external/non-GET/API requests', async () => {
     const worker = workerHarness({ 'index.html': 'release one' });
     await worker.lifecycle('install');

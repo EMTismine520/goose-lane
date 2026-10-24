@@ -1,6 +1,8 @@
 # 手机食材美术对照
 
-`food-styles.html` 是微信内置浏览器可打开的 H5 试玩入口；正式游戏仍是 `index.html`。
+[独立微信 A／B 对照](https://emtismine520.github.io/goose-lane-art-preview/)是推荐的 H5 试玩入口；正式游戏仍在原 `/goose-lane/` 地址。
+
+旧地址白屏时使用[恢复入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html)，点击“修复并打开美术对照”。只解除旧游戏 worker 注册，不清除存档。
 
 - A 为透明位图精细手绘，B 为可编辑 SVG 暖色卡通。香肠、培根、肉丸、鸡蛋、红椒各一份。
 - 顶部切换保留当前棋盘、选中项、投料和弹窗；“重置”恢复肉类已解锁的测试盘面。刷新也会重置测试盘面。
@@ -12,7 +14,9 @@
 
 运行 `npm test`、`npm run build`，将整个 `dist/` 发布到既有 GitHub Pages 的 `gh-pages` 分支。`dist/food-styles.html` 和 `dist/food-style-frame.html` 是 Vite 的独立入口，共享游戏代码。所有预览所需运行资源均已纳入源码仓库；构建不依赖私有母稿。
 
-预览不注册离线缓存。正式游戏的 Service Worker 仅接管正式入口导航；对照页走网络，以免被替换成正式游戏。已经安装旧版离线缓存的设备，需要先在游戏内接受更新，再重新打开对照链接。
+之后运行 `npm run package:food-preview`，生成 `dist-preview/`，将其发布到 `EMTismine520/goose-lane-art-preview` 仓库的 `main` 分支，Pages 来源为该分支根目录。预览根入口复制自同一构建的 `food-styles.html`；同时包含 `recover.html`，不包含 Service Worker 或离线 manifest。源码和版本来源写入发布仓库 README。
+
+独立预览不注册离线缓存，并且位于旧游戏 worker 范围之外。只改原地址的 worker 规则不能立即救回已经被旧 worker 拦截的白屏设备，因此使用独立恢复地址。相关缓存恢复测试和说明见 [PWA 说明](PWA.md)。
 
 ## 样板源文件
 

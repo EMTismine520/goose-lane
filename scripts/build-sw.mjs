@@ -35,6 +35,7 @@ const ASSET_ROOT = new URL('assets/', SCOPE).href;
 const URLS = new Set(ASSETS.map(asset => new URL(asset.url, SCOPE).href));
 const INDEX = new URL('index.html', SCOPE).href;
 const INDEX_INTEGRITY = ${JSON.stringify(index.integrity)};
+const RECOVERY_HTML = ${JSON.stringify(`<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>鹅巷食光 · 恢复加载</title><style>body{font:16px/1.8 system-ui,sans-serif;color:#594a32;background:#fff7e5;margin:0;padding:48px 24px}main{max-width:420px;margin:auto}a,button{display:block;box-sizing:border-box;width:100%;margin:16px 0;padding:12px;border:1px solid #819b70;border-radius:12px;background:#e1efd7;color:#365c40;font:inherit;text-align:center;text-decoration:none}</style></head><body><main><h1>暂时无法加载游戏</h1><p>离线页面已经缺失，当前也未能连上游戏服务器。请联网后重试。修复加载入口不会清除游戏存档。</p><button onclick="location.reload()">重新加载</button><a href="https://emtismine520.github.io/goose-lane-art-preview/recover.html">打开恢复入口</a></main></body></html>`)};
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
@@ -64,16 +65,20 @@ self.addEventListener('activate', event => {
 
 async function releaseNavigation(request) {
   const cache = await caches.open(CACHE);
+  const savedIndex = await cache.match(INDEX);
   try {
     const response = await fetch(request, { cache: 'no-cache' });
     if (response.ok) {
+      // A browser can evict the cached shell while retaining its active worker.
+      // With no old shell left to run, a healthy network response must remain usable.
+      if (!savedIndex) return response;
       const digest = await crypto.subtle.digest('SHA-256', await response.clone().arrayBuffer());
       const integrity = 'sha256-' + btoa(String.fromCharCode(...new Uint8Array(digest)));
       // Pin HTML to the same release as cached chunks until the player accepts an update.
       if (integrity === INDEX_INTEGRITY) return response;
     }
   } catch { /* Offline navigation uses this release's complete installed shell. */ }
-  return await cache.match(INDEX) || new Response('离线资源未完整保留，请联网后重新打开鹅巷食光。', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+  return savedIndex || new Response(RECOVERY_HTML, { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' } });
 }
 
 self.addEventListener('fetch', event => {
