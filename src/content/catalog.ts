@@ -182,7 +182,7 @@ export const HOME_CHAINS: ChainDef[] = homeChains.map(chain => ({ id: chain.id, 
 CHAINS.push(...HOME_CHAINS);
 homeChains.forEach(chain => chain.names.forEach((name, i) => {
   const id = `${chain.id}-${i + 1}`;
-  ITEMS[id] = { id, name, chain: chain.id, level: i + 1, icon: 0, assetId: id, assetPath: `assets/items/${id}.webp`, source: chain.source, kind: 'ingredient', sell: 2 ** i, description: i < chain.names.length - 1 ? `两份${name}可合成${chain.names[i + 1]}。` : '最高阶食材，留给特别期待它的顾客。' };
+  ITEMS[id] = { id, name, chain: chain.id, level: i + 1, icon: 0, assetId: id, assetPath: `assets/items/${id}.svg`, source: chain.source, kind: 'ingredient', sell: 2 ** i, description: i < chain.names.length - 1 ? `两份${name}可合成${chain.names[i + 1]}。` : '最高阶食材，留给特别期待它的顾客。' };
 }));
 const homeRecipes: [string, string, number, string[], string][] = [
   ['onion-salad', '凉拌紫洋葱', 18, ['fresh-veg-2', 'fresh-spice-3'], '紫洋葱丝拌上清脆黄瓜，酸甜开胃。'],
@@ -199,7 +199,7 @@ const homeRecipes: [string, string, number, string[], string][] = [
 export const HOME_RECIPES: RecipeDef[] = homeRecipes.map(([slug, name, seconds, ingredients, description]) => {
   const id = `fresh-home-${slug}`, output = `dish-${id}`;
   const inputs = ingredients.map(item => ({ item, count: 1 }));
-  ITEMS[output] = { id: output, name, chain: 'fresh-home', level: 1, icon: 0, assetId: output, assetPath: `assets/items/${output}.webp`, source: '料理锅', description, kind: 'dish', sell: Math.max(1, Math.floor(inputs.reduce((sum, need) => sum + ITEMS[need.item].sell, 0) * 0.8)) };
+  ITEMS[output] = { id: output, name, chain: 'fresh-home', level: 1, icon: 0, assetId: output, assetPath: `assets/items/${output}.svg`, source: '料理锅', description, kind: 'dish', sell: Math.max(1, Math.floor(inputs.reduce((sum, need) => sum + ITEMS[need.item].sell, 0) * 0.8)) };
   return { id, name, inputs, output, appliance: 4, duration: seconds * 1000, unlockDay: 1, description };
 });
 RECIPES.push(...HOME_RECIPES);

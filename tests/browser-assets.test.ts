@@ -16,7 +16,11 @@ describe('native SVG image loading', () => {
       const root = readFileSync('public/' + path, 'utf8').match(/<svg\b[^>]*>/)?.[0];
       expect(root, path).toMatch(/\bwidth="96"/);
       expect(root, path).toMatch(/\bheight="96"/);
-      expect(root, path).toContain('viewBox="0 0 96 96"');
+      const viewBox = root!.match(/viewBox="([^"]+)"/)?.[1].trim().split(/\s+/).map(Number);
+      expect(viewBox, path).toHaveLength(4);
+      expect(viewBox!.every(Number.isFinite), path).toBe(true);
+      expect(viewBox![2], path).toBeGreaterThan(0);
+      expect(viewBox![2], path).toBe(viewBox![3]);
     }
   });
 });

@@ -1,15 +1,13 @@
 import { createContext, useContext, type ReactNode } from 'react';
-import type { ItemArtOverrides } from '../content/assets';
 
 export interface ItemArtConfig {
-  items?: ItemArtOverrides;
   renderer?: 'canvas' | 'auto';
   pixelRatio?: number;
 }
 
 const ItemArtContext = createContext<ItemArtConfig>({});
 
-/** Only the separate development preview supplies a value. */
+/** Preview controls rendering only; every page uses the same default B artwork. */
 export function ItemArtProvider({ value, children }: { value: ItemArtConfig; children: ReactNode }) {
   return <ItemArtContext.Provider value={value}>{children}</ItemArtContext.Provider>;
 }

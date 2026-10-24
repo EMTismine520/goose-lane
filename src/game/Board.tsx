@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type Phaser from 'phaser';
 import { ALL_DEVICES } from '../content/board-layouts';
-import { deviceAssetPath, itemImageUrl, itemPresentation } from '../content/assets';
+import { deviceAssetPath, devicePresentation, itemImageUrl, itemPresentation, svgRasterSize } from '../content/assets';
 import { ITEMS } from '../content/catalog';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
@@ -96,15 +96,16 @@ export default function Board(props: BoardProps) {
           this.load.image('legacy-foods', `${base}foods.webp`);
           for (const item of Object.values(ITEMS)) {
             if (item.assetId) {
-              const path = itemImageUrl(item.id, art.items);
-              const size = Math.max(itemPresentation(item.id, art.items).svgSize, 96 * pixelRatio);
+              const path = itemImageUrl(item.id);
+              const size = svgRasterSize(itemPresentation(item.id), pixelRatio);
               if (path.endsWith('.svg') && !directImages) this.load.svg(`item:${item.assetId}`, path, { width: size, height: size });
               else this.load.image(`item:${item.assetId}`, path);
             }
           }
           for (const entity of ALL_DEVICES) {
             const path = `${import.meta.env.BASE_URL}${deviceAssetPath(entity.id)}`;
-            if (path.endsWith('.svg') && !directImages) this.load.svg(`entity:${entity.id}`, path, { width: 96 * pixelRatio, height: 96 * pixelRatio });
+            const size = svgRasterSize(devicePresentation(entity.id), pixelRatio);
+            if (path.endsWith('.svg') && !directImages) this.load.svg(`entity:${entity.id}`, path, { width: size, height: size });
             else this.load.image(`entity:${entity.id}`, path);
           }
           if (directImages) this.load.image('entity:crate', `${base}entities/crate.svg`);
@@ -129,7 +130,7 @@ export default function Board(props: BoardProps) {
             const source = texture.getSourceImage() as HTMLImageElement;
             for (let i = 0; i < 64; i++) texture.add(i, 0, (i % 8) * source.width / 8, Math.floor(i / 8) * source.height / 8, source.width / 8, source.height / 8);
           }
-          this.board = new BoardRenderer(this, () => live.current.state, art.items, pixelRatio);
+          this.board = new BoardRenderer(this, () => live.current.state, pixelRatio);
           this.input.on('pointerdown', this.press, this);
           this.input.on('pointermove', this.drag, this);
           this.input.on('pointerup', this.release, this);
@@ -216,12 +217,12 @@ export default function Board(props: BoardProps) {
             this.dragged = this.start.index;
             live.current.onSelect(this.dragged);
             const texture = itemTexture(this, entity.item.item);
-            const size = itemDisplaySize(entity.item.item, art.items) * 1.1;
+            const size = itemDisplaySize(entity.item.item) * 1.1;
             this.ghost = this.add.image(point.x, point.y, texture.key, texture.frame).setDisplaySize(size, size).setDepth(40);
             this.board.setDragging(this.start.uid);
           }
           if (this.dragged !== null) {
-            const presentation = itemPresentation(entity.item.item, art.items);
+            const presentation = itemPresentation(entity.item.item);
             this.ghost?.setPosition(point.x + presentation.offsetX, point.y + presentation.offsetY - (pointer.wasTouch ? 18 : 4));
             this.hovered = cellAt(point.x, point.y);
             this.paintHighlights();
@@ -333,7 +334,7 @@ export default function Board(props: BoardProps) {
       removeListeners?.();
       game?.destroy(true);
     };
-  }, [rendererMode, pixelRatio, art.items]);
+  }, [rendererMode, pixelRatio]);
 
   const interactive = props.active !== false && props.inputEnabled !== false;
   return <div className="board-shell" data-board-status={status} data-board-renderer={rendererMode} data-board-pixel-ratio={pixelRatio} style={{ position: 'relative' }}>

@@ -40,7 +40,7 @@ describe('home content and gated production', () => {
     expect(HOME_CHAINS.map(chain => chain.items.length)).toEqual([10, 7, 7]);
     const ids = [...HOME_CHAINS.flatMap(chain => chain.items), ...HOME_RECIPES.map(recipe => recipe.output)];
     expect(new Set(ids).size).toBe(34);
-    expect(ids.every(id => ITEMS[id].assetPath?.endsWith('.webp'))).toBe(true);
+    expect(ids.every(id => ITEMS[id].assetPath?.endsWith('.svg'))).toBe(true);
     expect(HOME_RECIPES.reduce((sum, recipe) => sum + baseUnits(recipe.output), 0)).toBe(126);
     expect(HOME_ORDERS.reduce((sum, order) => sum + order.coins, 0)).toBe(498);
     expect(new Set(HOME_ORDERS.map(order => order.customer)).size).toBe(4);

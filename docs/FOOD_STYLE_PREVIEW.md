@@ -1,25 +1,39 @@
-# 手机食材美术对照
+# B 组暖色卡通试玩
 
-[独立微信 A／B 对照](https://emtismine520.github.io/goose-lane-art-preview/)是推荐的 H5 试玩入口；正式游戏仍在原 `/goose-lane/` 地址。
+[独立 B 组试玩](https://emtismine520.github.io/goose-lane-art-preview/)展示全部 34 项食材与料理、4 个新增设备，另有旧蔬果和重复食材，支持真实合成、交换、烹饪与交单。[正式游戏](https://emtismine520.github.io/goose-lane/)使用完全相同的 B 默认资源。
 
-旧地址白屏时使用[恢复入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html)，点击“修复并打开美术对照”。只解除旧游戏 worker 注册，不清除存档。
+“重置”与刷新会恢复试玩盘面。每个标签页使用独立测试数据库与写锁，正式游戏和手动存档不受影响。旧的 `style=painted`、`style=cartoon` 链接与风格消息均显示 B；页面没有 A 切换入口。
 
-- A 为透明位图精细手绘，B 为可编辑 SVG 暖色卡通。香肠、培根、肉丸、鸡蛋、红椒各一份。
-- 顶部切换保留当前棋盘、选中项、投料和弹窗；“重置”恢复肉类已解锁的测试盘面。刷新也会重置测试盘面。
-- 运行真实游戏交互。预览每个标签页使用独立 IndexedDB 和写锁，不读取正式游戏进度。
-- Canvas 根据设备像素比绘制，最高 3 倍；50 格内可见主体最长边为 36，鸡蛋为 34。格子的点击和拖拽范围保持完整。
-- 样板文件在 `public/food-styles/`，相对路径支持 GitHub Pages 子目录。A 的原始 PNG、提示词、B 的原始 SVG 和本地验收材料保留在忽略的 `art/food-styles/`。
+旧游戏白屏时打开[保留存档的恢复入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html)，点击“修复并打开 B 组试玩”。仅注销精确匹配旧游戏范围的 worker，不清除 IndexedDB、手动存档、Local Storage 或缓存。
 
-## 构建与发布
+## 美术与尺寸
 
-运行 `npm test`、`npm run build`，将整个 `dist/` 发布到既有 GitHub Pages 的 `gh-pages` 分支。`dist/food-styles.html` 和 `dist/food-style-frame.html` 是 Vite 的独立入口，共享游戏代码。所有预览所需运行资源均已纳入源码仓库；构建不依赖私有母稿。
+- 全部 38 项 SVG 母稿在受版本控制的 [artwork/b/masters](../artwork/b/masters)，源码为真实路径、描边与渐变。
+- 文件声明统一为 96×96。运行版只调整方形 viewBox 留白，保留母稿路径。
+- 以 50×50 棋盘设计格计，鸡蛋可见最长边 34、其他食材 36、料理 38、设备 42，容差 0.7。
+- 显示框包含透明留白，由共享展示配置决定。DPR 只提高采样精度，不改变主体大小或输入坐标。
+- 实际资源在 `public/assets/items` 与 `public/assets/entities`，来源、哈希与展示配置见 `public/assets/b-art.json`。
+- A 与旧 PNG/WebP 母稿仅保留在本地归档，当前源码、构建及试玩不再提供 A。
 
-之后运行 `npm run package:food-preview`，生成 `dist-preview/`，将其发布到 `EMTismine520/goose-lane-art-preview` 仓库的 `main` 分支，Pages 来源为该分支根目录。预览根入口复制自同一构建的 `food-styles.html`；同时包含 `recover.html`，不包含 Service Worker 或离线 manifest。源码和版本来源写入发布仓库 README。
+## 从公开源码复现
 
-独立预览不注册离线缓存，并且位于旧游戏 worker 范围之外。只改原地址的 worker 规则不能立即救回已经被旧 worker 拦截的白屏设备，因此使用独立恢复地址。相关缓存恢复测试和说明见 [PWA 说明](PWA.md)。
+```powershell
+npm ci --registry=https://registry.npmjs.org
+npm run art:build
+npm run art:check
+npm test
+npm run build
+npm run package:food-preview
+```
 
-## 样板源文件
+Sharp 固定为 0.35.5，无需助手机器私有模块或 PNG 母稿。美术生成是确定性的；重复运行应无差异。
 
-B 的运行时 SVG 本身保留可编辑路径。A 的五张 1254×1254 透明母稿导出为 256×256 无损 WebP；公开仓库仅包含运行图。两套运行配置均在 `public/food-styles/manifest.json`。
+`dist/` 发布到正式仓库的 `gh-pages`；`dist-preview/` 发布到试玩仓库的 `main`。两个包使用同一源码提交，`release.json` 记录 SHA。试玩不包含 service worker 或离线 manifest。
 
-本地制作脚本 `scripts/package-food-style-art.mjs` 与 `scripts/check-food-style-art.mjs` 用于已有私有母稿的再打包和像素验收，不参与生产构建。原有旧蔬果和其余料理的资源保持现状；本次供用户先选择画风。
+## 验收入口
+
+本地打开 `food-styles.html`。验收参数 `renderer=canvas|auto`、`dpr=1|2|3` 控制渲染模式与画布倍率。360×640、390×844、430×900 均需检查完整盘面、角标与设备状态。
+
+直接打开 `food-style-frame.html?layout=sausages&renderer=canvas&dpr=3` 可检查重复香肠满盘；该盘面仍使用独立测试存档，合成后会正常空出格子。
+
+桌面浏览器、模拟尺寸及 HTTP 文件校验与微信真机结果分别记录。桌面检查通过不代表微信真机已通过。

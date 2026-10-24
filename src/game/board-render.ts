@@ -1,7 +1,7 @@
 import type Phaser from 'phaser';
 import { activeDevices, BOARD_LAYOUT } from '../content/board-layouts';
 import { ITEMS } from '../content/catalog';
-import { itemPresentation, type ItemArtOverrides } from '../content/assets';
+import { devicePresentation, itemPresentation } from '../content/assets';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { GameState, ItemInstance } from '../domain/types';
 import { BoardEffects } from './board-fx';
@@ -29,8 +29,8 @@ export function itemTexture(scene: Phaser.Scene, item: string): { key: string; f
   return scene.textures.exists(key) ? { key } : { key: 'legacy-foods', frame: def?.icon ?? 0 };
 }
 
-export function itemDisplaySize(item: string, art?: ItemArtOverrides): number {
-  return itemPresentation(item, art).displaySize;
+export function itemDisplaySize(item: string): number {
+  return itemPresentation(item).displaySize;
 }
 
 /** Static tiles, devices, UID-owned item sprites, and temporary FX are separate layers. */
@@ -46,7 +46,7 @@ export class BoardRenderer {
   private draggedUid: string | null = null;
   private lastClock = 0;
 
-  constructor(private scene: Phaser.Scene, private state: () => GameState, private art?: ItemArtOverrides, private pixelRatio = 1) {
+  constructor(private scene: Phaser.Scene, private state: () => GameState, private pixelRatio = 1) {
     this.tiles = scene.add.graphics().setDepth(0);
     this.highlights = scene.add.graphics().setDepth(2);
     this.crates = scene.add.container(0, 0).setDepth(1);
@@ -115,7 +115,7 @@ export class BoardRenderer {
     const container = this.scene.add.container(at.x, at.y).setDepth(5);
     const shadow = this.scene.add.ellipse(0, 16, 29, 7, 0x8d6443, 0.13);
     const texture = itemTexture(this.scene, instance.item);
-    const presentation = itemPresentation(instance.item, this.art);
+    const presentation = itemPresentation(instance.item);
     const size = presentation.displaySize;
     const image = this.scene.add.image(presentation.offsetX, presentation.offsetY, texture.key, texture.frame).setDisplaySize(size, size);
     const badge = this.scene.add.graphics();
@@ -135,8 +135,9 @@ export class BoardRenderer {
     const container = this.scene.add.container(at.x, at.y).setDepth(4);
     const shadow = this.scene.add.ellipse(0, 17, 37, 9, 0x795834, 0.17);
     const texture = `entity:${id}`;
+    const presentation = devicePresentation(id);
     const image = this.scene.textures.exists(texture)
-      ? this.scene.add.image(0, -2, texture).setDisplaySize(47, 47)
+      ? this.scene.add.image(presentation.offsetX, presentation.offsetY, texture).setDisplaySize(presentation.displaySize, presentation.displaySize)
       : this.scene.add.text(0, 0, entity.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '10px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(0.5);
     const labelBack = this.scene.add.graphics();
     const activity = this.scene.add.graphics();

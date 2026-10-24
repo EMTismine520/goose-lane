@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-3.52083 -3.52083 103.16667 103.16667">
+  <title>整鸡 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="chicken" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#ffdfba"/><stop offset=".55" stop-color="#f3bb94"/><stop offset="1" stop-color="#df9c77"/></linearGradient><linearGradient id="bone" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#fff9e4"/><stop offset="1" stop-color="#e3caa3"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(2 -.4) scale(.96)">
+    <path d="M26 35q-12 2-14 15-2 13 10 18l13-13Z" fill="url(#chicken)"/><path d="M70 35q12 2 14 15 2 13-10 18L61 55Z" fill="url(#chicken)"/><path d="M37 14q11-5 22 0l-1 14H38Z" fill="url(#chicken)"/><path d="M48 21c18 0 29 17 28 35-1 20-13 29-28 29S21 76 20 56c-1-18 10-35 28-35Z" fill="url(#chicken)"/><path d="M36 30q10-7 18-1c-12 7-17 22-16 35-12 2-17-12-11-24Z" fill="#fbd7b2" stroke="none"/><path d="M28 62q12-2 14 9 3 10-6 13l-13-3-2-9q0-6 7-10Z" fill="url(#chicken)"/><path d="M68 62q-12-2-14 9-3 10 6 13l13-3 2-9q0-6-7-10Z" fill="url(#chicken)"/><path d="m24 78-5 4q-4-1-4 3 0 4 4 3 3 3 6 0l4-5Z" fill="url(#bone)"/><path d="m72 78 5 4q4-1 4 3 0 4-4 3-3 3-6 0l-4-5Z" fill="url(#bone)"/><path d="M48 36q-4 13 0 27m-28-19q-5 7-1 13m57-13q5 7 1 13" fill="none" stroke="#d59a76" stroke-width="1.8"/><path d="M31 38q3-7 10-10m-15 41 6-2" fill="none" stroke="#ffe7bd" stroke-width="3.6"/>
+  </g>
+</svg>

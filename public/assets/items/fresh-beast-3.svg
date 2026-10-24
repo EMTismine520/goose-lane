@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-7.00000 -4.93750 110.00000 110.00000">
+  <title>肉丸 · 暖色卡通手绘源码</title>
+  <defs><radialGradient id="ball" cx=".3" cy=".24" r=".8"><stop stop-color="#e5a174"/><stop offset=".6" stop-color="#ce805a"/><stop offset="1" stop-color="#ad6247"/></radialGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="29" cy="35" r="21" fill="url(#ball)"/>
+    <circle cx="67" cy="36" r="21" fill="url(#ball)"/>
+    <path d="M17 29q2-8 11-9m29 9q3-8 11-8" fill="none" stroke="#f9c695" stroke-width="4"/>
+    <path d="m24 40 4 2m8-7 3-2m23 8 4 1m7-9 3-2" fill="none" stroke="#a86248" stroke-width="2"/>
+    <circle cx="48" cy="63" r="23" fill="url(#ball)"/>
+    <path d="M34 57q3-9 12-10" fill="none" stroke="#f9c695" stroke-width="4.5"/>
+    <path d="m44 65 5 2m8-9 3-2m-10 20 4-1" fill="none" stroke="#a86248" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,5 +1,8 @@
 import { ALL_DEVICES } from './board-layouts';
 import { ITEMS } from './catalog';
+import B_ART from './b-art.json';
+
+export { B_ART };
 
 /** Same paths for React and Phaser, relative to Vite's public base. */
 export function itemAssetPath(item: string): string | null {
@@ -10,18 +13,16 @@ export function deviceAssetPath(id: string): string {
   return ALL_DEVICES.find(device => device.id === id)?.assetPath ?? `assets/entities/${id}.svg`;
 }
 
-/** Visual overrides belong to a preview, never to an item or a saved game. */
-export interface ItemArtOverride {
+export interface ArtPresentation {
   path: string;
   displaySize: number;
-  offsetX?: number;
-  offsetY?: number;
-  svgSize?: number;
+  offsetX: number;
+  offsetY: number;
+  svgSize: number;
 }
-export type ItemArtOverrides = Readonly<Record<string, ItemArtOverride>>;
 
-export function itemPresentation(item: string, overrides?: ItemArtOverrides) {
-  const custom = overrides?.[item];
+export function itemPresentation(item: string) {
+  const custom = (B_ART as Record<string, ArtPresentation>)[item];
   const def = ITEMS[item];
   return {
     path: custom?.path ?? itemAssetPath(item),
@@ -32,8 +33,19 @@ export function itemPresentation(item: string, overrides?: ItemArtOverrides) {
   };
 }
 
-export function itemImageUrl(item: string, overrides?: ItemArtOverrides): string {
-  const path = itemPresentation(item, overrides).path;
+export function devicePresentation(id: string): ArtPresentation {
+  return (B_ART as Record<string, ArtPresentation>)[id] ?? {
+    path: deviceAssetPath(id), displaySize: 47, offsetX: 0, offsetY: -2, svgSize: 96,
+  };
+}
+
+/** Texture sampling is independent of the board's display size. */
+export function svgRasterSize(presentation: { svgSize: number }, pixelRatio: number) {
+  return Math.max(presentation.svgSize, 96 * pixelRatio);
+}
+
+export function itemImageUrl(item: string): string {
+  const path = itemPresentation(item).path;
   if (!path) return '';
   return path.startsWith('/') ? path : `${import.meta.env.BASE_URL}${path}`;
 }

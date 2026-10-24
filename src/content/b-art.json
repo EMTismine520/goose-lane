@@ -1,0 +1,268 @@
+{
+  "fresh-beast-1": {
+    "path": "assets/items/fresh-beast-1.svg",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-beast-2": {
+    "path": "assets/items/fresh-beast-2.svg",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-beast-3": {
+    "path": "assets/items/fresh-beast-3.svg",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-beast-4": {
+    "path": "assets/items/fresh-beast-4.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-5": {
+    "path": "assets/items/fresh-beast-5.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-6": {
+    "path": "assets/items/fresh-beast-6.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-7": {
+    "path": "assets/items/fresh-beast-7.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-8": {
+    "path": "assets/items/fresh-beast-8.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-9": {
+    "path": "assets/items/fresh-beast-9.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-10": {
+    "path": "assets/items/fresh-beast-10.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-1": {
+    "path": "assets/items/fresh-poultry-1.svg",
+    "displaySize": 45.333333333333336,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-poultry-2": {
+    "path": "assets/items/fresh-poultry-2.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-3": {
+    "path": "assets/items/fresh-poultry-3.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-4": {
+    "path": "assets/items/fresh-poultry-4.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-5": {
+    "path": "assets/items/fresh-poultry-5.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-6": {
+    "path": "assets/items/fresh-poultry-6.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-7": {
+    "path": "assets/items/fresh-poultry-7.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-1": {
+    "path": "assets/items/fresh-spice-1.svg",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-spice-2": {
+    "path": "assets/items/fresh-spice-2.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-3": {
+    "path": "assets/items/fresh-spice-3.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-4": {
+    "path": "assets/items/fresh-spice-4.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-5": {
+    "path": "assets/items/fresh-spice-5.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-6": {
+    "path": "assets/items/fresh-spice-6.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-7": {
+    "path": "assets/items/fresh-spice-7.svg",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-onion-salad": {
+    "path": "assets/items/dish-fresh-home-onion-salad.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-tomato-eggs": {
+    "path": "assets/items/dish-fresh-home-tomato-eggs.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-meatball-soup": {
+    "path": "assets/items/dish-fresh-home-meatball-soup.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-garlic-broccoli": {
+    "path": "assets/items/dish-fresh-home-garlic-broccoli.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-vegetable-rice": {
+    "path": "assets/items/dish-fresh-home-vegetable-rice.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-scallion-egg-rice": {
+    "path": "assets/items/dish-fresh-home-scallion-egg-rice.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-seared-pork": {
+    "path": "assets/items/dish-fresh-home-seared-pork.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-garlic-cucumber": {
+    "path": "assets/items/dish-fresh-home-garlic-cucumber.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-chicken-roll": {
+    "path": "assets/items/dish-fresh-home-chicken-roll.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-orange-ribs": {
+    "path": "assets/items/dish-fresh-home-orange-ribs.svg",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "beast-meat-cart": {
+    "path": "assets/entities/beast-meat-cart.svg",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "poultry-cart": {
+    "path": "assets/entities/poultry-cart.svg",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "spice-box": {
+    "path": "assets/entities/spice-box.svg",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "home-cooking-pot": {
+    "path": "assets/entities/home-cooking-pot.svg",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  }
+}

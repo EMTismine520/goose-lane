@@ -1,26 +1,32 @@
-import { readFileSync, statSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { HOME_CHAINS, HOME_RECIPES } from '../src/content/catalog';
 import { HOME_DEVICES } from '../src/content/board-layouts';
-import { deviceAssetPath, itemAssetPath } from '../src/content/assets';
+import { B_ART, deviceAssetPath, devicePresentation, itemAssetPath, itemPresentation } from '../src/content/assets';
 
-describe('home kitchen published assets', () => {
-  it('ships every independent icon, preserving existing manifest entries and the runtime budget', () => {
+describe('published B kitchen artwork', () => {
+  it('ships 38 editable 96×96 icons and versioned masters with one shared presentation', () => {
     const items = [...HOME_CHAINS.flatMap(chain => chain.items), ...HOME_RECIPES.map(recipe => recipe.output)];
     const paths = [...items.map(item => [item, itemAssetPath(item)!]), ...HOME_DEVICES.map(device => [device.id, deviceAssetPath(device.id)])];
     expect(paths).toHaveLength(38);
-    const manifest = JSON.parse(readFileSync('public/assets/manifest.json', 'utf8')) as { assetId: string; frame: string }[];
-    expect(manifest.some(row => row.assetId === 'fresh-veg-1' && row.frame.endsWith('.svg'))).toBe(true);
+    expect(Object.keys(B_ART).sort()).toEqual(paths.map(([id]) => id).sort());
+    const manifest = JSON.parse(readFileSync('public/assets/manifest.json', 'utf8')) as { assetId: string; frame: string; master?: string }[];
     let bytes = 0;
     for (const [id, path] of paths) {
-      const file = readFileSync('public/' + path);
-      expect(file.subarray(8, 12).toString()).toBe('WEBP');
-      bytes += file.byteLength;
-      expect(manifest.filter(row => row.assetId === id)).toEqual([expect.objectContaining({ frame: path })]);
-      const png = readFileSync('art/home-cooking/masters/' + id + '.png');
-      expect(png.readUInt32BE(16)).toBe(512); expect(png.readUInt32BE(20)).toBe(512);
-      expect(statSync('art/home-cooking/masters/' + id + '.png').size).toBeGreaterThan(1000);
+      expect(path).toBe(`assets/${HOME_DEVICES.some(device => device.id === id) ? 'entities' : 'items'}/${id}.svg`);
+      const svg = readFileSync('public/' + path, 'utf8');
+      expect(svg).toMatch(/<svg[^>]*width="96"[^>]*height="96"/);
+      expect(svg).not.toMatch(/<image|data:|<foreignObject/i);
+      const row = manifest.filter(entry => entry.assetId === id);
+      expect(row).toHaveLength(1);
+      expect(row[0].frame).toBe(path);
+      expect(readFileSync(row[0].master!, 'utf8')).toMatch(/width="96" height="96"/);
+      const presentation = HOME_DEVICES.some(device => device.id === id) ? devicePresentation(id) : itemPresentation(id);
+      expect(presentation.path).toBe(path);
+      expect(presentation.svgSize).toBe(96);
+      bytes += Buffer.byteLength(svg);
     }
-    expect(bytes).toBeLessThanOrEqual(1024 * 1024);
+    expect(bytes).toBeLessThanOrEqual(256 * 1024);
+    expect(itemAssetPath('fresh-veg-1')).toBe('assets/items/fresh-veg-1.svg');
   });
 });

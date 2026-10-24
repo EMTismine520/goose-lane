@@ -1,5 +1,11 @@
 # Goose Lane 原创美术
 
+## 当前新增 B 组 SVG
+
+38 项新增兽肉、禽肉、调料、料理和设备已统一为暖色卡通。全部母稿与运行 SVG 声明为 96×96，母稿与复现说明见 [B 组源码](../artwork/b/README.md)。运行资源位于 `public/assets/items/`、`public/assets/entities/`；共享展示配置为 `src/content/b-art.json`，来源与内容哈希为 `public/assets/b-art.json`。
+
+使用 `npm run art:build`、`npm run art:check` 复现与验收。旧蔬果 SVG、人物和街景保留；以下位图来源记录继续适用于旧街景与旧图集。已替换的新增位图和 A 样板仅在本地归档。
+
 ## 来源与使用
 
 本项目的两张最终位图使用 Codex 内置 `image_gen` 工具生成，2026-10-23 完成。不是从网络抓取的素材，无外部品牌、现成游戏角色或第三方素材包。未使用 CLI/API fallback。下面保留完整 prompt，便于未来延续一致风格。最终图已复制到项目，不依赖 Codex 用户目录。

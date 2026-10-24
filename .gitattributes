@@ -1,0 +1,5 @@
+# Reproducible SVG bytes and content hashes across Windows and Linux checkouts.
+*.svg text eol=lf
+artwork/b/*.json text eol=lf
+public/assets/*.json text eol=lf
+src/content/b-art.json text eol=lf

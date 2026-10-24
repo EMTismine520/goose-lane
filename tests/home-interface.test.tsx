@@ -17,7 +17,7 @@ describe('home kitchen interface contracts', () => {
     expect(html).toContain('完成首段 12 份订单和 3 项建设后开放');
     expect(html).toContain('disabled');
     expect(html).not.toContain('鲜果料理台');
-    expect(html).toContain('dish-fresh-home-tomato-eggs.webp');
+    expect(html).toContain('dish-fresh-home-tomato-eggs.svg');
   });
   it('renders exact codex category denominators and masks undiscovered icons with a question mark', () => {
     const state = createInitialState(1000);
@@ -27,7 +27,7 @@ describe('home kitchen interface contracts', () => {
     expect(html).toMatch(/香料调料.*?\(0\/7\)/);
     expect(html).toMatch(/家常菜.*?\(0\/10\)/);
     expect(html).toContain('codex-question');
-    expect(html).not.toContain('fresh-beast-1.webp');
+    expect(html).not.toContain('fresh-beast-1.svg');
     expect(html).toContain('fresh-veg-1.svg');
   });
   it('explains the complete two-input prefix and longer three-input recipe in the same control', () => {

@@ -24,7 +24,7 @@
 
 旧版 worker 会拦截范围内所有页面；如果旧 `index.html` 缓存缺失，新页面的内容校验也不匹配，就会只显示“离线资源未完整保留”。这时网页代码没有加载，游戏内更新按钮无法出现。
 
-[恢复入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html) 放在独立的 `/goose-lane-art-preview/` 路径，位于旧 `/goose-lane/` worker 范围之外，因此已经卡住的设备也能打开。点击后仅注销精确匹配 `/goose-lane/` 的旧注册，不删除 IndexedDB、手动存档、Local Storage 或资源缓存，然后打开独立 A／B 预览。其他范围的 worker 不受影响。正式游戏下次进入时会按原流程注册新版离线程序。
+[恢复入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html) 放在独立的 `/goose-lane-art-preview/` 路径，位于旧 `/goose-lane/` worker 范围之外，因此已经卡住的设备也能打开。点击后仅注销精确匹配 `/goose-lane/` 的旧注册，不删除 IndexedDB、手动存档、Local Storage 或资源缓存，然后打开独立 B 组暖色卡通试玩。其他范围的 worker 不受影响。正式游戏下次进入时会按原流程注册新版离线程序。
 
 新版遇到缓存缺失且网络不可用时返回带手机 viewport、重试按钮和独立恢复链接的 HTML，而不是无法操作的小字页面。
 

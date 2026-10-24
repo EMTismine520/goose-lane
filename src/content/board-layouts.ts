@@ -27,10 +27,10 @@ export const BUILD_NODES = [
 ] as const;
 
 export const HOME_DEVICES: DeviceDefinition[] = [
-  { id: 'beast-meat-cart', kind: 'generator', index: 37, name: '兽肉推车', unlockDay: 1, chain: 'fresh-beast', assetPath: 'assets/entities/beast-meat-cart.webp' },
-  { id: 'poultry-cart', kind: 'generator', index: 38, name: '禽肉推车', unlockDay: 1, chain: 'fresh-poultry', assetPath: 'assets/entities/poultry-cart.webp' },
-  { id: 'spice-box', kind: 'generator', index: 39, name: '香料盒', unlockDay: 1, chain: 'fresh-spice', assetPath: 'assets/entities/spice-box.webp' },
-  { id: 'home-cooking-pot', kind: 'appliance', index: 47, name: '料理锅', unlockDay: 1, slot: 4, assetPath: 'assets/entities/home-cooking-pot.webp' },
+  { id: 'beast-meat-cart', kind: 'generator', index: 37, name: '兽肉推车', unlockDay: 1, chain: 'fresh-beast', assetPath: 'assets/entities/beast-meat-cart.svg' },
+  { id: 'poultry-cart', kind: 'generator', index: 38, name: '禽肉推车', unlockDay: 1, chain: 'fresh-poultry', assetPath: 'assets/entities/poultry-cart.svg' },
+  { id: 'spice-box', kind: 'generator', index: 39, name: '香料盒', unlockDay: 1, chain: 'fresh-spice', assetPath: 'assets/entities/spice-box.svg' },
+  { id: 'home-cooking-pot', kind: 'appliance', index: 47, name: '料理锅', unlockDay: 1, slot: 4, assetPath: 'assets/entities/home-cooking-pot.svg' },
 ];
 export const ALL_DEVICES: DeviceDefinition[] = [...BOARD_LAYOUT.entities, ...HOME_DEVICES];
 export type ProgressState = Pick<GameState, 'schemaVersion' | 'campaign' | 'completedOrders' | 'construction'>;

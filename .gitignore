@@ -14,6 +14,7 @@ node_modules/
 # Keep runtime images/audio in public/ and runtime code in src/ publishable.
 /art/
 /art-source/
+/artwork/b/review.png
 /audio-source/
 /sound-source/
 
