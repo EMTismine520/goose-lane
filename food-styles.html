@@ -4,33 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#9acbb1">
-  <meta name="description" content="鹅巷食光食材美术试玩：切换精细手绘与暖色卡通，在同一盘面比较。">
+  <meta name="description" content="鹅巷食光 B 组暖色卡通试玩：全套食材、料理与设备，合成一桌家常好味。">
   <link rel="icon" href="./favicon.svg">
-  <title>鹅巷食光 · 食材美术对照</title>
+  <title>鹅巷食光 · B 组暖色卡通试玩</title>
   <style>
     *{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}body{font-family:system-ui,"Microsoft YaHei",sans-serif;color:#594a32;background:#9acbb1}
     .comparison{height:100%;height:100dvh;max-width:430px;margin:auto;display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
     header{flex:none;padding:6px 10px 8px;background:#fff2d3;border-bottom:1px solid #d7b980;box-shadow:0 2px 7px #64815d25;z-index:1}
     .caption{font-size:11px;line-height:18px;margin:0 0 4px;color:#85704d;display:flex;justify-content:space-between;gap:8px}
-    .choices{display:grid;grid-template-columns:1fr 1fr 46px;gap:6px}button{font:inherit;font-size:13px;min-height:36px;border:1px solid #d3bc8d;border-radius:10px;background:#fff9e9;color:#746342;touch-action:manipulation;cursor:pointer}
+    .choices{display:flex;align-items:center;justify-content:space-between;gap:8px}.choices strong{font-size:15px;color:#536c43}.choices button{padding:0 12px}button{font:inherit;font-size:13px;min-height:36px;border:1px solid #d3bc8d;border-radius:10px;background:#fff9e9;color:#746342;touch-action:manipulation;cursor:pointer}
     button[aria-pressed=true]{background:#e0efd3;color:#335e40;border-color:#73936b;box-shadow:inset 0 0 0 1px #73936b;font-weight:700}button:focus-visible{outline:3px solid #448e96;outline-offset:1px}#reset{font-size:12px}
     iframe{display:block;flex:1;min-height:0;width:100%;border:0;background:#a4cfb0}#status{font-variant-numeric:tabular-nums}
     @media(min-width:600px){body{background:#eaeadd}.comparison{box-shadow:0 12px 60px #41644b33}}
   </style>
-  <script type="module" crossorigin src="./assets/comparison-DBNIr4rI.js"></script>
+  <script type="module" crossorigin src="./assets/comparison-BjfUK5cC.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 <body>
-  <main class="comparison" aria-label="食材美术对照试玩">
+  <main class="comparison" aria-label="B 组暖色卡通试玩">
     <header>
-      <p class="caption"><span>食材美术试玩 · 切换保留棋盘</span><span id="status" role="status">正在准备…</span></p>
-      <div class="choices" role="group" aria-label="选择美术风格">
-        <button type="button" data-style="painted" aria-pressed="true">A · 精细手绘</button>
-        <button type="button" data-style="cartoon" aria-pressed="false">B · 暖色卡通</button>
+      <p class="caption"><span>合成 · 烹饪 · 尝一口家常味</span><span id="status" role="status">正在准备…</span></p>
+      <div class="choices">
+        <strong>B 组 · 暖色卡通试玩</strong>
         <button type="button" id="reset" title="恢复初始测试棋盘" aria-label="重置测试棋盘">重置</button>
       </div>
     </header>
     <iframe title="独立存档的真实游戏试玩" id="game"></iframe>
-  </main>
+  </main>
 </body>
 </html>

@@ -14,8 +14,8 @@
     <h1>恢复游戏入口</h1>
     <p>旧版离线页面缺失时，游戏可能停在白屏。这里可以解除旧页面拦截，继续打开美术对照。</p>
     <p class="hint">只修复加载入口，保留游戏进度和手动存档。无需清空微信数据。</p>
-    <button id="repair" type="button">修复并打开美术对照</button>
-    <a href="./food-styles.html">直接进入 A／B 对照</a>
+    <button id="repair" type="button">修复并打开 B 组试玩</button>
+    <a href="./food-styles.html">直接进入 B 组暖色卡通试玩</a>
     <p id="status" role="status" aria-live="polite"></p>
   </main>
   <script>
@@ -35,7 +35,7 @@
             })
           : Promise.resolve();
         return repair.then(function () {
-          status.textContent = '入口已恢复，正在打开对照…';
+          status.textContent = '入口已恢复，正在打开 B 组试玩…';
           location.replace(new URL('./food-styles.html', location.href).href);
         }).catch(function () {
           button.disabled = false;

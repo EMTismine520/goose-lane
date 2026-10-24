@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-2.16667 -5.91667 109.33333 109.33333">
+  <title>紫洋葱 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="onion" x1=".12" y1="0" x2=".85" y2="1"><stop stop-color="#d1a7c3"/><stop offset=".48" stop-color="#b980a7"/><stop offset="1" stop-color="#946184"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="m41 28-3-15 5-4 4 11 8-10 5 3-7 17Z" fill="#a5b777"/><path d="M44 25c12-4 31 15 31 31 1 17-12 27-29 27-16 0-29-11-28-26 1-15 13-23 26-32Z" fill="url(#onion)"/><path d="M43 32c-15 17-15 30-8 41m14-42c10 17 14 30 10 43" fill="none" stroke="#986084" stroke-width="2"/><path d="M32 42q-6 7-6 15" fill="none" stroke="#ffe7bd" stroke-width="4"/><path d="M54 49q12-14 28-7l5 26q-7 18-27 18L44 69Z" fill="url(#onion)"/><path d="M54 49q13-13 28-7c3 13-5 27-19 30q-12-2-16-9Z" fill="#f4e6d9"/><path d="M58 51q9-9 20-6c1 10-5 19-15 22q-7-1-11-6Z" fill="#d0a2bd" stroke="#b783a5" stroke-width="1.7"/><path d="M62 52q6-5 12-4c-1 7-4 11-10 14l-7-3Z" fill="#f5e4dc" stroke="#b783a5" stroke-width="1.7"/><path d="m40 82-4 5m7-4-1 6m5-6 3 5" fill="none" stroke="#a38268" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-2.83333 0.60417 100.66667 100.66667">
+  <title>五花肉 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="pork" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#f7baa2"/><stop offset=".5" stop-color="#eb987e"/><stop offset="1" stop-color="#d77b68"/></linearGradient><linearGradient id="fat" x1=".1" y1="0" x2=".85" y2="1"><stop stop-color="#fff6dc"/><stop offset="1" stop-color="#eed5b1"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M16 31 66 16q5-1 9 3l9 11-5 37q-1 6-6 8L25 86q-5 1-7-4l-7-27Z" fill="url(#pork)"/><path d="m16 31 50-15q5-1 9 3l9 11-50 16Z" fill="url(#fat)"/><path d="m11 43 7 14q2 4 7 3l54-16-1 9-50 16q-5 2-8-3l-7-12Z" fill="#fff0d1" stroke="none"/><path d="m15 64 6 13q2 4 7 3l49-15-1 7-48 14q-6 1-9-4Z" fill="#fff0d1" stroke="none"/><path d="m34 46-1 31m46-45-1 34" fill="none" stroke="#bd7262" stroke-width="1.7"/><path d="m23 32 39-11" fill="none" stroke="#ffe7bd" stroke-width="3.1"/><path d="m23 49 7-2m12-2 9-3m-16 23 12-4m12-3 10-3" fill="none" stroke="#f8c7ad" stroke-width="2.5"/>
+  </g>
+</svg>

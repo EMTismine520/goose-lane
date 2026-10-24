@@ -1,0 +1,1 @@
+import{l as t,k as s}from"./home-cooking-BjVKb3P5.js";const e=t.createContext({});function x({value:r,children:o}){return s.jsx(e.Provider,{value:r,children:o})}const a=()=>t.useContext(e);export{x as I,a as u};
