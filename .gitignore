@@ -1,8 +1,51 @@
+# Dependencies, generated builds, and verification output
 node_modules/
-dist/
+/dist/
 *.tsbuildinfo
-.site-workflow/
+/coverage/
+/test-results/
+/playwright-report/
+*.log
 *.zip
-test-results/
-.openai/local*
+*.tar.gz
+
+# Private art masters, prompts, previews, and audio production files.
+# Keep runtime images/audio in public/ and runtime code in src/ publishable.
+/art/
+/art-source/
+/audio-source/
+/sound-source/
+
+# Internal plans, handoffs, validation records, screenshots, and sample saves.
+# Keep public game docs and build-required asset/license notices available.
+/docs/validation/
+/docs/internal/
+/docs/*PLAN.md
+/docs/*VALIDATION*.md
+/docs/DELIVERY.md
+/docs/HANDOFF.md
+/HANDOFF.md
+/output/
+/local-only/
+
+# Local service, assistant, and editor settings
+.site-workflow/
+.openai/
 .serena/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local credentials; only sanitized examples belong in the public repository.
+.env
+.env.*
+!.env.example
+!.env.*.example
+/.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+__pycache__/
+*.pyc

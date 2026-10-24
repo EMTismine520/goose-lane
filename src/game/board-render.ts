@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import { BOARD_LAYOUT } from '../content/board-layouts';
+import { activeDevices, BOARD_LAYOUT } from '../content/board-layouts';
 import { ITEMS } from '../content/catalog';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { GameState, ItemInstance } from '../domain/types';
@@ -55,7 +55,8 @@ export class BoardRenderer {
 
   sync(animate = true) {
     const state = this.state();
-    const signature = `${state.day}:${state.campaign}:${state.construction.completed.join(',')}`;
+    const devices = activeDevices(state);
+    const signature = `${state.day}:${state.campaign}:${state.construction.completed.join(',')}:${devices.map(device => device.id).join(',')}`;
     if (signature !== this.gridSignature) {
       this.paintTiles();
       this.gridSignature = signature;
@@ -81,7 +82,7 @@ export class BoardRenderer {
         rendered = this.createItem(instance, index);
         this.items.set(instance.uid, rendered);
         if (animate && this.previous) {
-          const producer = BOARD_LAYOUT.entities.find(device => getBoardEntity(state, device.index).chain === ITEMS[instance.item]?.chain);
+          const producer = devices.find(device => getBoardEntity(state, device.index).chain === ITEMS[instance.item]?.chain);
           this.effects.appear(rendered.container, didMerge ? 'merge' : didGenerate ? 'generate' : 'collect', producer ? cellCenter(producer.index) : undefined);
         }
       } else if (rendered.index !== index) {
@@ -93,12 +94,14 @@ export class BoardRenderer {
     }
     for (const [uid, rendered] of this.items) {
       if (liveUids.has(uid)) continue;
-      this.scene.tweens.killTweensOf(rendered.container);
-      rendered.container.destroy(true);
+      const receiver = state.appliances.find(appliance => appliance.inputSlots.some(input => input.uid === uid));
+      if (animate && receiver) { const at = cellCenter(receiver.index); this.effects.stage(rendered.container, at.x, at.y); }
+      else { this.scene.tweens.killTweensOf(rendered.container); rendered.container.destroy(true); }
       this.items.delete(uid);
     }
     for (const [id, device] of this.devices) {
-      if (BOARD_LAYOUT.entities.some(def => def.id === id && getBoardEntity(state, def.index).id === id)) continue;
+      if (devices.some(def => def.id === id && getBoardEntity(state, def.index).id === id)) continue;
+      this.scene.tweens.killTweensOf(device.container);
       device.container.destroy(true);
       this.devices.delete(id);
     }
@@ -241,7 +244,7 @@ export class BoardRenderer {
     if (!force && now - this.lastClock < 200) return;
     this.lastClock = now;
     const state = this.state();
-    for (const device of BOARD_LAYOUT.entities) {
+    for (const device of activeDevices(state)) {
       if (device.kind !== 'appliance') continue;
       const visual = this.devices.get(device.id);
       if (!visual) continue;

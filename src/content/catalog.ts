@@ -1,7 +1,7 @@
 import type { ChainDef, CustomerDef, DecorationDef, ItemDef, OrderDef, RecipeDef, Requirement, ShopDef } from '../domain/types';
 
 export const SCHEMA_VERSION = 2;
-export const CONTENT_VERSION = '2.0.0';
+export const CONTENT_VERSION = '2.1.0';
 
 const chainData: [string, string, string, number, string[]][] = [
   ['grain', '麦香篮', '#e7b568', 1, ['麦穗', '小麦粉', '柔软面团', '金黄吐司', '牛角面包', '手作面包', '丰收面包篮']],
@@ -172,3 +172,41 @@ export const FRESH_ORDERS: OrderDef[] = openingOrders.map(([item, title, coins, 
   needs: [{ item, count: 1 }], coins, reputation: 2,
 }));
 ORDERS.push(...FRESH_ORDERS);
+
+const homeChains = [
+  { id: 'fresh-beast', name: '兽肉', source: '兽肉推车', color: '#d97d65', names: ['香肠', '培根', '肉丸', '五花肉', '排骨', '猪排', '带骨肘子', '带骨牛排', '羊排', '火腿'] },
+  { id: 'fresh-poultry', name: '禽肉', source: '禽肉推车', color: '#e8a7a1', names: ['鸡蛋', '鸡胗', '鸡翅中', '鸡胸肉', '鸡腿', '鸡全翅', '整鸡'] },
+  { id: 'fresh-spice', name: '香料调料', source: '香料盒', color: '#98b65d', names: ['红椒', '香葱', '紫洋葱', '香草荚', '大蒜', '罗勒', '肉桂'] },
+];
+export const HOME_CHAINS: ChainDef[] = homeChains.map(chain => ({ id: chain.id, name: chain.name, color: chain.color, unlockDay: 1, items: chain.names.map((_, i) => `${chain.id}-${i + 1}`) }));
+CHAINS.push(...HOME_CHAINS);
+homeChains.forEach(chain => chain.names.forEach((name, i) => {
+  const id = `${chain.id}-${i + 1}`;
+  ITEMS[id] = { id, name, chain: chain.id, level: i + 1, icon: 0, assetId: id, assetPath: `assets/items/${id}.webp`, source: chain.source, kind: 'ingredient', sell: 2 ** i, description: i < chain.names.length - 1 ? `两份${name}可合成${chain.names[i + 1]}。` : '最高阶食材，留给特别期待它的顾客。' };
+}));
+const homeRecipes: [string, string, number, string[], string][] = [
+  ['onion-salad', '凉拌紫洋葱', 18, ['fresh-veg-2', 'fresh-spice-3'], '紫洋葱丝拌上清脆黄瓜，酸甜开胃。'],
+  ['tomato-eggs', '番茄炒蛋', 22, ['fresh-veg-1', 'fresh-poultry-1', 'fresh-spice-2'], '嫩黄鸡蛋裹着番茄汁，撒一把葱花。'],
+  ['meatball-soup', '肉丸蔬菜汤', 28, ['fresh-beast-3', 'fresh-veg-1', 'fresh-spice-2'], '圆滚滚的肉丸在清汤中咕嘟，热气里满是鲜香。'],
+  ['garlic-broccoli', '蒜香西兰花', 32, ['fresh-veg-5', 'fresh-spice-5'], '脆嫩西兰花翻炒蒜末，留住一盘翠绿。'],
+  ['vegetable-rice', '彩蔬拌饭', 24, ['fresh-veg-3', 'fresh-veg-4', 'fresh-spice-2'], '彩椒、胡萝卜与葱花，把家常米饭点亮。'],
+  ['scallion-egg-rice', '葱香蛋饭', 18, ['fresh-poultry-1', 'fresh-spice-2'], '蓬松米饭盖上嫩蛋，葱香暖暖地散开。'],
+  ['seared-pork', '香煎肉片', 28, ['fresh-beast-4', 'fresh-spice-3'], '肉片煎出焦香，配上清甜紫洋葱。'],
+  ['garlic-cucumber', '蒜香黄瓜', 22, ['fresh-veg-2', 'fresh-spice-5'], '蒜末爆香，黄瓜清脆，一盘简单的好味道。'],
+  ['chicken-roll', '香煎鸡肉卷', 34, ['fresh-poultry-4', 'fresh-poultry-1', 'fresh-spice-2'], '嫩鸡肉裹入蛋皮，煎成一卷金黄。'],
+  ['orange-ribs', '橙香小排', 40, ['fresh-beast-5', 'fresh-fruit-2', 'fresh-spice-1'], '甜橙与红椒调成亮亮的酱汁，包住鲜嫩小排。'],
+];
+export const HOME_RECIPES: RecipeDef[] = homeRecipes.map(([slug, name, seconds, ingredients, description]) => {
+  const id = `fresh-home-${slug}`, output = `dish-${id}`;
+  const inputs = ingredients.map(item => ({ item, count: 1 }));
+  ITEMS[output] = { id: output, name, chain: 'fresh-home', level: 1, icon: 0, assetId: output, assetPath: `assets/items/${output}.webp`, source: '料理锅', description, kind: 'dish', sell: Math.max(1, Math.floor(inputs.reduce((sum, need) => sum + ITEMS[need.item].sell, 0) * 0.8)) };
+  return { id, name, inputs, output, appliance: 4, duration: seconds * 1000, unlockDay: 1, description };
+});
+RECIPES.push(...HOME_RECIPES);
+export const MODERN_RECIPES = [...FRESH_RECIPES, ...HOME_RECIPES];
+const homeOrderSequence = [5, 1, 0, 2, 8, 6, 4, 7, 9, 3];
+export const HOME_ORDERS: OrderDef[] = homeOrderSequence.map((recipeIndex, index) => {
+  const recipe = HOME_RECIPES[recipeIndex], customer = CUSTOMERS[index % 4];
+  return { id: `home-order-${String(index + 1).padStart(2, '0')}`, day: 1, customer: customer.id, title: ['锅里第一缕香', '番茄遇见嫩蛋', '清爽小菜', '一碗暖汤', '金黄的小心意', '煎出好滋味', '把颜色拌进饭里', '蒜香正好', '橙香满小巷', '家常也认真'][index], message: `${customer.name}想尝尝你做的${recipe.name}。`, thanks: `${customer.name}：${['热乎乎的，心也暖了！', '这就是惦记的家常味。', '下次还想来吃你做的菜！'][index % 3]}`, needs: [{ item: recipe.output, count: 1 }], coins: 12 + 3 * baseUnits(recipe.output), reputation: 2 };
+});
+ORDERS.push(...HOME_ORDERS);

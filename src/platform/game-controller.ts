@@ -1,7 +1,8 @@
 import type { Command, GameEvent, GameState } from '../domain/types';
 import { createInitialState, execute } from '../domain/engine';
 import { ORDERS, RECIPES } from '../content/catalog';
-import { SaveError, SaveRepository, parseSave, serializeSave } from '../persistence/save';
+import { SaveError, SaveRepository, parseSave, serializeSave, resumeManualSlot } from '../persistence/save';
+import type { SaveSlotId } from '../persistence/save';
 import { acquireSession } from './session';
 import type { GameSession } from './session';
 import { audio } from './audio';
@@ -19,7 +20,7 @@ export interface GameView {
   pendingUids: string[];
   sessionEpoch: number;
 }
-type Repository = Pick<SaveRepository, 'open' | 'save' | 'restorePrevious' | 'replaceCorrupt' | 'exportRaw' | 'close'>;
+type Repository = Pick<SaveRepository, 'open' | 'save' | 'restorePrevious' | 'replaceCorrupt' | 'exportRaw' | 'close' | 'listManualSlots' | 'readManualSlot' | 'saveManualSlot'>;
 interface Dependencies {
   repository?: Repository;
   acquire?: typeof acquireSession;
@@ -40,6 +41,7 @@ export class GameController {
   private readonly commandSession = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
   private reservations = new Set<string>();
   private updating = false;
+  private exclusive = false;
   private updateOperation: Promise<void> | null = null;
   private idleWaiters: (() => void)[] = [];
   private writeFailures = 0;
@@ -107,7 +109,7 @@ export class GameController {
     this.sound.configure(state.settings);
   }
 
-  private message(cause: unknown): string { return cause instanceof Error ? cause.message : '本地保存暂时不可用，请导出备份后重试。'; }
+  private message(cause: unknown): string { return cause instanceof Error ? cause.message : '本地保存暂时不可用，请保留此页面并重试。'; }
 
   private failed(cause: unknown): void {
     if (cause instanceof SaveError && cause.code === 'conflict') this.conflict = true;
@@ -116,7 +118,7 @@ export class GameController {
 
   private ensureWriter(requireReady = true, drainingUpdate = false): void {
     if (!this.live) throw new Error('此页面已经关闭，请重新打开游戏。');
-    if (this.view.busy && !(drainingUpdate && this.updating)) throw new Error('正在保存或恢复存档，请稍候再操作。');
+    if (this.view.busy && !(drainingUpdate && (this.updating || this.exclusive))) throw new Error('正在保存或恢复存档，请稍候再操作。');
     if (requireReady && !this.ready) throw new Error('请先重新载入最新存档，再继续经营。');
     if (this.conflict || this.session?.readOnly !== false) throw new Error('本窗口暂时只读，请先重新取得经营权限并载入最新进度。');
   }
@@ -215,7 +217,7 @@ export class GameController {
             await this.repository.save(result.state);
             if (this.live) {
               this.publish(result.state);
-              const event = result.events.find((entry) => entry.type !== 'move');
+              const event = result.events.find(entry => entry.type === 'home-unlocked') ?? result.events.find((entry) => entry.type !== 'move');
               if (event) this.setNotice(event);
               if (result.events.some((event) => event.type === 'ready')) this.sound.play('complete');
               else if (result.state.stats.merges > original.stats.merges) this.sound.play('merge');
@@ -249,6 +251,53 @@ export class GameController {
     this.commands.splice(0).forEach((entry) => { entry.reserved.forEach((uid) => this.reservations.delete(uid)); entry.resolve(false); });
   }
 
+  /** Accept no new input; finish every already accepted write before taking a checkpoint. */
+  private async withExclusive(operation: () => Promise<void>, requireReady = true): Promise<void> {
+    this.ensureWriter(requireReady);
+    this.exclusive = true;
+    this.update({ busy: true });
+    const failures = this.writeFailures;
+    try {
+      await Promise.resolve();
+      if (this.processing) await new Promise<void>(resolve => this.idleWaiters.push(resolve));
+      if (this.writeFailures !== failures) throw new Error('此前操作尚未保存成功，本次操作已取消。请重试。');
+      this.ensureWriter(requireReady, true);
+      await operation();
+    } catch (cause) { this.failed(cause); throw cause; }
+    finally { this.exclusive = false; this.update({ busy: false }); }
+  }
+
+  canWriteSaves = (): boolean => this.live && !this.conflict && this.session?.readOnly === false;
+  listSlots = () => this.repository.listManualSlots();
+
+  saveSlot = (id: SaveSlotId): Promise<void> => this.withExclusive(async () => {
+    const now = this.now();
+    const captured = execute(this.view.state!, { type: 'recover' }, now);
+    if (!captured.ok) throw new Error(captured.events[0]?.message ?? '当前状态暂时无法保存。');
+    await this.repository.saveManualSlot(id, captured.state, now);
+    this.publish(captured.state, now);
+    this.setNotice({ type: 'saved', message: `已保存至存档 ${id}` });
+  });
+
+  loadSlot = (id: SaveSlotId): Promise<void> => this.withExclusive(async () => {
+    const slot = await this.repository.readManualSlot(id);
+    const restored = resumeManualSlot(slot, this.now(), this.view.state);
+    await this.repository.replaceCorrupt(restored);
+    this.ready = true;
+    this.publish(restored, this.now(), true);
+    this.update({ readOnly: false, recovered: false, notice: { type: 'loaded', message: `已回到存档 ${id}，继续这段时光吧。` } });
+  }, false);
+
+  restartGame = (): Promise<void> => this.withExclusive(async () => {
+    const previous = this.view.state!;
+    const next = createInitialState(this.now());
+    next.settings = { ...previous.settings };
+    next.revision = previous.revision + 1;
+    await this.repository.save(next);
+    this.publish(next, this.now(), true);
+    this.update({ recovered: false, notice: { type: 'restart', message: '新的一天，从第一份新鲜开始。原有手动存档已保留。' } });
+  });
+
   /** Freeze new gestures, drain committed commands, then hold the barrier until reload. */
   applyUpdate = (activate: () => Promise<void>): Promise<void> => {
     if (this.updateOperation) return this.updateOperation;
@@ -261,7 +310,7 @@ export class GameController {
         await Promise.resolve();
         if (this.processing) await new Promise<void>((resolve) => this.idleWaiters.push(resolve));
         if (!this.live) throw new Error('此页面已经关闭，请重新打开游戏。');
-        if (this.writeFailures !== failures) throw new Error('操作尚未保存成功，已暂停更新。请先重试或导出备份。');
+        if (this.writeFailures !== failures) throw new Error('操作尚未保存成功，已暂停更新。请保留此页面并重试。');
         this.ensureWriter(true, true);
         await activate();
         // Successful activation reloads the page. Keep controls frozen until that happens.

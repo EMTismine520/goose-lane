@@ -3,6 +3,7 @@ import type Phaser from 'phaser';
 /** Small, bounded effects. No effect is allowed to own or delay a game transaction. */
 export class BoardEffects {
   private particles = new Set<Phaser.GameObjects.Arc>();
+  private inputs = new Set<Phaser.GameObjects.Container>();
   private lastBurst = 0;
 
   constructor(private scene: Phaser.Scene, private reduced: () => boolean) {}
@@ -12,7 +13,7 @@ export class BoardEffects {
     target.setScale(1);
     if (this.reduced()) return;
     target.setScale(0.94);
-    this.scene.tweens.add({ targets: target, scale: 1, duration: 100, ease: 'Back.easeOut' });
+    this.scene.tweens.add({ targets: target, scale: 1, duration: 80, ease: 'Back.easeOut' });
   }
 
   appear(target: Phaser.GameObjects.Container, kind: 'generate' | 'merge' | 'collect', origin?: { x: number; y: number }) {
@@ -36,6 +37,16 @@ export class BoardEffects {
     else this.scene.tweens.add({ targets: target, x, y, duration: 145, ease: 'Cubic.easeOut' });
   }
 
+  /** Display only: called after committed ownership moves from the board into a utensil. */
+  stage(target: Phaser.GameObjects.Container, x: number, y: number) {
+    this.scene.tweens.killTweensOf(target);
+    if (this.reduced()) { target.destroy(true); return; }
+    this.inputs.add(target);
+    target.setDepth(25).setScale(1).setAlpha(1);
+    this.scene.tweens.add({ targets: target, x, y, scale: 0.3, alpha: 0.15, duration: 160, ease: 'Cubic.easeIn',
+      onComplete: () => { this.inputs.delete(target); target.destroy(true); } });
+  }
+
   reject(target: Phaser.GameObjects.Container) {
     if (this.reduced()) return;
     const x = target.x;
@@ -55,6 +66,8 @@ export class BoardEffects {
   }
 
   clear() {
+    for (const input of this.inputs) { this.scene.tweens.killTweensOf(input); input.destroy(true); }
+    this.inputs.clear();
     for (const particle of this.particles) {
       this.scene.tweens.killTweensOf(particle);
       particle.destroy();

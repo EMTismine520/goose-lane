@@ -4,6 +4,7 @@ export interface ProductionDefinition { energyCost: number; drops: { item: strin
 export const PRODUCTION: Record<string, ProductionDefinition> = {
   'fresh-veg': { energyCost: 1, drops: [{ item: 'fresh-veg-1', weight: 72 }, { item: 'fresh-veg-2', weight: 20 }, { item: 'fresh-veg-3', weight: 8 }] },
   'fresh-fruit': { energyCost: 1, drops: [{ item: 'fresh-fruit-1', weight: 72 }, { item: 'fresh-fruit-2', weight: 20 }, { item: 'fresh-fruit-3', weight: 8 }] },
+  ...Object.fromEntries(['fresh-beast', 'fresh-poultry', 'fresh-spice'].map(chain => [chain, { energyCost: 1, drops: [72, 20, 8].map((weight, i) => ({ item: `${chain}-${i + 1}`, weight })) }])),
 };
 
 export function nextRandom(seed: number): { seed: number; value: number } {

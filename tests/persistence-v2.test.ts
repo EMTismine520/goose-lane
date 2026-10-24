@@ -39,7 +39,7 @@ describe('schema two ownership and migration', () => {
     expect(validateSave(schemaOneSave).tutorialState.node).toBe('first-order');
     expect(validateSave(schemaOneSave).tutorialState.completed).toEqual(['produce', 'merge']);
     expect(validateSave(schemaTwoSave)).toEqual(createInitialState(now));
-    expect(parseSave(serializeSave(validateSave(schemaTwoSave)))).toEqual(schemaTwoSave);
+    expect(parseSave(serializeSave(validateSave(schemaTwoSave)))).toEqual(createInitialState(now));
   });
   it('preserves all 56 legacy cells, full storage, cooking identity, reward history and shop progress', () => {
     const source = legacy(6, 56);

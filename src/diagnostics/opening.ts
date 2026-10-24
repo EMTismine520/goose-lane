@@ -51,7 +51,7 @@ export function simulateOpening(seed = 0x6f657321) {
     }
   };
   act({ type: 'generate', chain: 'fresh-veg' });
-  while (availableOrders(state).length) {
+  while (FRESH_ORDERS.some(order => !state.completedOrders.includes(order.id))) {
     const order = availableOrders(state)[0];
     for (const need of order.needs) ensure(need.item, need.count);
     if (!canAffordRequirements(state, order.needs)) throw new Error('Order requirements not met');

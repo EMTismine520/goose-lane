@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync, copyFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, copyFileSync, readFileSync, existsSync } from 'node:fs';
 const root = new URL('../public/assets/', import.meta.url);
 const manifest = [];
 function asset(folder, id, body, scale=.82) {
@@ -57,5 +57,7 @@ asset('entities','board','<rect x="14" y="20" width="68" height="61" rx="11" fil
 asset('entities','steamer','<path d="M17 39h64v34q-31 18-64 0Z" fill="#d3a26a"/><ellipse cx="49" cy="39" rx="32" ry="13" fill="#f3d4a0"/><path d="M21 41q27-12 56 0m-50 0 6-9m6 10 7-14m6 15 9-13m4 14 7-10" stroke="#bd8e56" fill="none"/><path d="M18 53q31 17 61 0m-61 13q31 16 61 0" fill="none" stroke="#f6dab1" stroke-width="4"/>');
 copyFileSync(new URL('entities/fruit-crate.svg',root),new URL('entities/fruit-cart.svg',root));
 manifest.push({assetId:'fruit-cart',frame:'assets/entities/fruit-cart.svg',pivot:[.5,.52],scale:.82,source:'Original vector artwork · Goose Lane 2026'});
-writeFileSync(new URL('manifest.json',root),JSON.stringify(manifest,null,2));
+const manifestFile = new URL('manifest.json',root);
+const previous = existsSync(manifestFile) ? JSON.parse(readFileSync(manifestFile, 'utf8')) : [];
+writeFileSync(manifestFile,JSON.stringify([...new Map([...previous,...manifest].map(entry=>[entry.assetId,entry])).values()],null,2));
 console.log(`Created ${manifest.length} individually named original SVG assets`);

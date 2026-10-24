@@ -1,5 +1,5 @@
 export type ItemId = string;
-export interface ItemDef { id: ItemId; name: string; chain: string; level: number; icon: number; assetId?: string; description: string; source: string; sell: number; kind: 'ingredient' | 'dish'; }
+export interface ItemDef { id: ItemId; name: string; chain: string; level: number; icon: number; assetId?: string; assetPath?: string; description: string; source: string; sell: number; kind: 'ingredient' | 'dish'; }
 export interface ChainDef { id: string; name: string; color: string; unlockDay: number; items: ItemId[]; }
 export interface Requirement { item: ItemId; count: number; }
 export interface RecipeDef { id: string; name: string; inputs: Requirement[]; output: ItemId; appliance: number; duration: number; unlockDay: number; description: string; }

@@ -1,13 +1,15 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type Phaser from 'phaser';
-import { BOARD_LAYOUT } from '../content/board-layouts';
+import { ALL_DEVICES } from '../content/board-layouts';
+import { deviceAssetPath, itemAssetPath } from '../content/assets';
 import { ITEMS } from '../content/catalog';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
 import { audio } from '../platform/audio';
 import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, DRAG_THRESHOLD, cellAt, isDropCommitted, moveCommand, nextKeyboardCell, selectionAfterDrop } from './board-input';
 import type { DropSelection } from './board-input';
-import { BoardRenderer, entityAsset, itemDisplaySize, itemTexture } from './board-render';
+import { BoardRenderer, itemDisplaySize, itemTexture } from './board-render';
+import { refreshBoardViewport } from './board-viewport';
 
 export interface BoardProps {
   state: GameState;
@@ -20,8 +22,9 @@ export interface BoardProps {
   tutorialTarget?: number | null;
   active?: boolean;
   inputEnabled?: boolean;
+  sessionEpoch?: number;
 }
-interface BoardBridge { sync: () => void; activate: (index: number) => void; cancel: () => void; }
+interface BoardBridge { sync: () => void; resize: () => void; activate: (index: number) => void; cancel: () => void; }
 interface Gesture { index: number; x: number; y: number; pointerId: number; uid: string | null; selectedUid: string | null; selected: number | null; }
 
 /** One scene per mounted board. React supplies snapshots; Phaser never mutates inventory. */
@@ -34,12 +37,13 @@ export default function Board(props: BoardProps) {
   const [status, setStatus] = useState<'loading' | 'ready' | 'failed'>('loading');
   live.current = props;
 
-  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled]);
+  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled, props.sessionEpoch]);
 
   useEffect(() => {
     let disposed = false;
     let game: Phaser.Game | undefined;
     let removeListeners: (() => void) | undefined;
+    let resizeObserver: ResizeObserver | undefined;
 
     void import('phaser').then(({ default: Engine }) => {
       if (disposed || !mount.current) return;
@@ -62,9 +66,17 @@ export default function Board(props: BoardProps) {
           const base = `${import.meta.env.BASE_URL}assets/`;
           this.load.image('legacy-foods', `${base}foods.webp`);
           for (const item of Object.values(ITEMS)) {
-            if (item.assetId) this.load.svg(`item:${item.assetId}`, `${base}items/${item.assetId}.svg`, { width: 96, height: 96 });
+            if (item.assetId) {
+              const path = `${import.meta.env.BASE_URL}${itemAssetPath(item.id)}`;
+              if (path.endsWith('.svg')) this.load.svg(`item:${item.assetId}`, path, { width: 96, height: 96 });
+              else this.load.image(`item:${item.assetId}`, path);
+            }
           }
-          for (const entity of BOARD_LAYOUT.entities) this.load.svg(`entity:${entity.id}`, `${base}entities/${entityAsset(entity.id)}.svg`, { width: 96, height: 96 });
+          for (const entity of ALL_DEVICES) {
+            const path = `${import.meta.env.BASE_URL}${deviceAssetPath(entity.id)}`;
+            if (path.endsWith('.svg')) this.load.svg(`entity:${entity.id}`, path, { width: 96, height: 96 });
+            else this.load.image(`entity:${entity.id}`, path);
+          }
           this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96, height: 96 });
         }
 
@@ -95,7 +107,7 @@ export default function Board(props: BoardProps) {
             this.game.canvas.removeEventListener('pointercancel', cancel);
             this.game.canvas.removeEventListener('touchcancel', cancel);
           };
-          bridge.current = { sync: () => this.sync(), activate: index => this.activate(index), cancel: () => this.cancel() };
+          bridge.current = { sync: () => this.sync(), resize: () => this.refreshViewport(), activate: index => this.activate(index), cancel: () => this.cancel() };
           this.sync();
           if (!disposed) setStatus('ready');
         }
@@ -104,8 +116,16 @@ export default function Board(props: BoardProps) {
 
         private allowed() { return live.current.active !== false && live.current.inputEnabled !== false && !document.hidden; }
 
+        private refreshViewport() {
+          if (mount.current && live.current.active !== false && !document.hidden) refreshBoardViewport(this.scale, mount.current);
+        }
+
+        private restoredEpoch = live.current.sessionEpoch;
+
         private sync() {
           if (!this.board) return;
+          const restoring = this.restoredEpoch !== live.current.sessionEpoch;
+          if (restoring) { this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.pendingSelection = null; this.selectionIntent++; this.board.settle(); }
           const inactive = live.current.active === false || document.hidden;
           if (!this.allowed()) this.cancel();
           if (this.start?.uid && live.current.state.board[this.start.index]?.uid !== this.start.uid) this.cancel();
@@ -115,12 +135,12 @@ export default function Board(props: BoardProps) {
               this.board.settle();
               this.scene.pause();
             } else {
-              this.scale.refresh();
+              this.refreshViewport();
               this.scene.resume();
             }
           }
           this.input.enabled = this.allowed();
-          this.board.sync(!inactive);
+          this.board.sync(!inactive && !restoring);
           this.reconcileSelection();
           this.paintHighlights();
         }
@@ -249,6 +269,8 @@ export default function Board(props: BoardProps) {
         input: { activePointers: 1, touch: { capture: true }, mouse: { preventDefaultWheel: false } },
         render: { antialias: true, pixelArt: false }, audio: { noAudio: true }, banner: false,
       });
+      resizeObserver = new ResizeObserver(() => bridge.current?.resize());
+      resizeObserver.observe(mount.current);
     }).catch(error => {
       console.error('The pantry canvas could not start.', error);
       if (!disposed) setStatus('failed');
@@ -257,6 +279,7 @@ export default function Board(props: BoardProps) {
     return () => {
       disposed = true;
       bridge.current = null;
+      resizeObserver?.disconnect();
       removeListeners?.();
       game?.destroy(true);
     };

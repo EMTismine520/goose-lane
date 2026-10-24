@@ -1,7 +1,8 @@
-import { APPLIANCES, CHAINS, CONTENT_VERSION, DECORATIONS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
+import { APPLIANCES, CHAINS, CONTENT_VERSION, DECORATIONS, HOME_CHAINS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import type { GameState, ItemInstance } from '../domain/types';
-import { createInitialState, unlockedCells } from '../domain/engine';
-import { BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
+import { availableApplianceRecipes, createInitialState, unlockedCells } from '../domain/engine';
+import { activeDevices, BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
+import { reconcileHomeDevices } from '../domain/home-progression';
 import { TUTORIAL_STEPS } from '../content/tutorial';
 
 const MAX_SAVE_BYTES = 1_000_000;
@@ -119,7 +120,8 @@ function migrate(value: unknown): RecordValue {
 /** Validate every persisted field and build a detached, bounded, known-shape state. */
 export function validateSave(input: unknown): GameState {
   const value = object(migrate(input), '根对象', CURRENT_FIELDS);
-  if (value.contentVersion !== CONTENT_VERSION) throw new SaveError('存档内容版本不兼容，请使用对应版本游戏；原档未被覆盖。', 'future');
+  const oldContent = value.contentVersion === '2.0.0';
+  if (!oldContent && value.contentVersion !== CONTENT_VERSION) throw new SaveError('存档内容版本不兼容，请使用对应版本游戏；原档未被覆盖。', 'future');
   const day = integer(value.day, '经营日', 1, 6);
   const revision = integer(value.revision, '修订号');
   const nextId = integer(value.nextId, '下一个编号', 1);
@@ -143,13 +145,16 @@ export function validateSave(input: unknown): GameState {
   const rewardClaimed = boolean(constructionRaw.rewardClaimed, '建设阶段奖励');
   if (rewardClaimed && completed.length !== BUILD_NODES.length) return invalid('建设阶段奖励');
   const construction = { completed, hats: integer(constructionRaw.hats, '厨师帽'), rewardClaimed };
-  const limit = unlockedCells({ schemaVersion: SCHEMA_VERSION, day, campaign, construction } as GameState);
-  const occupied = new Set(BOARD_LAYOUT.entities.map((entry) => entry.index));
+  const completedOrders = uniqueIds(value.completedOrders, ORDERS.map((order) => order.id), '已完成订单');
+  const progressState = { schemaVersion: SCHEMA_VERSION, day, campaign, construction, completedOrders } as GameState;
+  const limit = unlockedCells(progressState);
+  const devices = oldContent ? BOARD_LAYOUT.entities : activeDevices(progressState);
+  const occupied = new Set(devices.map((entry) => entry.index));
   const board = array(value.board, '棋盘', 63).map((raw, index) => raw === null ? null : item(raw, `棋盘${index + 1}`));
   if (board.length !== 63 || board.some((entry, index) => entry && (index >= limit || occupied.has(index)))) return invalid('棋盘格数');
   const storageCapacity = integer(value.storageCapacity, '仓库容量', 8, 8);
   const storage = array(value.storage, '仓库', storageCapacity).map((raw, index) => item(raw, `仓库${index + 1}`));
-  const generatorKeys = CHAINS.map((chain) => chain.id);
+  const generatorKeys = CHAINS.filter(chain => !oldContent || !HOME_CHAINS.includes(chain)).map((chain) => chain.id);
   const generatorRaw = object(value.generators, '生产器', generatorKeys);
   const generators = Object.fromEntries(generatorKeys.map((id) => {
     const entry = object(generatorRaw[id], `生产器${id}`, ['remaining', 'readyAt']);
@@ -168,7 +173,6 @@ export function validateSave(input: unknown): GameState {
     return { id: takeUid(entry.id, '加工编号'), recipe, startedAt, endsAt, ...(output ? { output } : {}) };
   });
   if (jobs.length !== APPLIANCES.length) return invalid('加工槽数量');
-  const completedOrders = uniqueIds(value.completedOrders, ORDERS.map((order) => order.id), '已完成订单');
   if (completedOrders.some((id) => ORDERS.find((order) => order.id === id)!.day > day)) return invalid('订单经营日');
   const coins = integer(value.coins, '金币');
   const shopKeys = SHOPS.map((shop) => shop.id);
@@ -191,7 +195,8 @@ export function validateSave(input: unknown): GameState {
   const lastSeen = integer(value.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER);
   const energyRaw = object(value.energy, '体力', ['value', 'lastRecoveryAt']);
   const energy = { value: integer(energyRaw.value, '体力数值'), lastRecoveryAt: integer(energyRaw.lastRecoveryAt, '体力回复时间', 0, lastSeen) };
-  const applianceDefinitions = BOARD_LAYOUT.entities.filter((entry) => entry.kind === 'appliance');
+  const applianceDefinitions = devices.filter((entry) => entry.kind === 'appliance');
+  const allowedRecipes = availableApplianceRecipes(progressState);
   const applianceIds = new Set<string>();
   const appliances = array(value.appliances, '厨具', applianceDefinitions.length).map((raw) => {
     const entry = object(raw, '厨具', ['id', 'slot', 'index', 'inputSlots', 'job', 'outputSlot', 'version']);
@@ -203,7 +208,7 @@ export function validateSave(input: unknown): GameState {
     if (entry.job !== null) {
       const rawJob = object(entry.job, '厨具任务', ['id', 'recipe', 'startedAt', 'endsAt', 'output']);
       const recipe = RECIPES.find((recipe) => recipe.id === rawJob.recipe);
-      if (!recipe || recipe.appliance !== definition.slot || recipe.unlockDay > day || inputSlots.length) return invalid('厨具任务配方');
+      if (!recipe || !allowedRecipes.includes(recipe) || recipe.appliance !== definition.slot || inputSlots.length) return invalid('厨具任务配方');
       const startedAt = integer(rawJob.startedAt, '厨具开始时间', 0, Number.MAX_SAFE_INTEGER);
       const endsAt = integer(rawJob.endsAt, '厨具结束时间', startedAt, Number.MAX_SAFE_INTEGER);
       const output = known(rawJob.output ?? recipe.output, itemIds, '厨具产物');
@@ -212,11 +217,11 @@ export function validateSave(input: unknown): GameState {
     }
     const outputSlot = entry.outputSlot === null ? null : item(entry.outputSlot, '待取料理');
     if (outputSlot && (!job || job.output !== outputSlot.item || job.endsAt > lastSeen)) return invalid('待取料理状态');
-    if (inputSlots.length && !RECIPES.some((recipe) => recipe.appliance === definition.slot && recipe.unlockDay <= day && inputSlots.every((ingredient) => recipe.inputs.some((need) => need.item === ingredient.item)) && recipe.inputs.every((need) => inputSlots.filter((ingredient) => ingredient.item === need.item).length <= need.count))) return invalid('厨具投料');
+    if (inputSlots.length && !allowedRecipes.some((recipe) => recipe.appliance === definition.slot && inputSlots.every((ingredient) => recipe.inputs.some((need) => need.item === ingredient.item)) && recipe.inputs.every((need) => inputSlots.filter((ingredient) => ingredient.item === need.item).length <= need.count))) return invalid('厨具投料');
     return { id: definition.id, slot: definition.slot!, index: definition.index, inputSlots, job, outputSlot, version: integer(entry.version, '厨具版本') };
   });
   if (appliances.length !== applianceDefinitions.length) return invalid('厨具数量');
-  const migrationInbox = array(value.migrationInbox, '迁移待领取', 256).map((raw, index) => item(raw, `待领取${index + 1}`));
+  const migrationInbox = array(value.migrationInbox, '迁移待领取', oldContent ? 256 : 261).map((raw, index) => item(raw, `待领取${index + 1}`));
 
   const tutorialRaw = object(value.tutorialState, '教学', ['node', 'completed', 'targetUid']);
   const tutorialIds = TUTORIAL_STEPS.map((step) => step.id);
@@ -228,7 +233,7 @@ export function validateSave(input: unknown): GameState {
   if (new Set(processedCommandIds).size !== processedCommandIds.length) return invalid('重复命令编号');
   const cellVersions = array(value.cellVersions, '格子版本', 63).map((version) => integer(version, '格子版本'));
   if (cellVersions.length !== 63) return invalid('格子版本数量');
-  return {
+  const result: GameState = {
     schemaVersion: SCHEMA_VERSION, contentVersion: CONTENT_VERSION, revision,
     seed: integer(value.seed, '随机种子', 0, 0xffffffff), nextId, board, storage, storageCapacity,
     generators, jobs, completedOrders, day, coins, reputation: integer(value.reputation, '声望'), shops, decorations, discovered,
@@ -237,6 +242,13 @@ export function validateSave(input: unknown): GameState {
     settings: { music: boolean(settingsRaw.music, '音乐开关'), sound: boolean(settingsRaw.sound, '音效开关'), reducedMotion: boolean(settingsRaw.reducedMotion, '减少动态'), volume: settingsRaw.volume },
     lastSeen, undo, energy, appliances, construction, tutorialState, session, migrationInbox, processedCommandIds, cellVersions, campaign,
   };
+  if (oldContent) {
+    // Validate the complete old shape before changing layout. Never repair corrupt input.
+    for (const chain of HOME_CHAINS) result.generators[chain.id] = { remaining: 12, readyAt: 0 };
+    reconcileHomeDevices(result);
+    return validateSave(result);
+  }
+  return result;
 }
 
 export function serializeSave(state: GameState): string { return JSON.stringify(validateSave(state), null, 2); }
@@ -245,6 +257,50 @@ export function parseSave(source: string): GameState {
   let value: unknown;
   try { value = JSON.parse(source); } catch (cause) { throw new SaveError('存档不是有效的 JSON 文件，现有进度未修改。', 'invalid', { cause }); }
   return validateSave(value);
+}
+
+export type SaveSlotId = 1 | 2 | 3;
+export const SAVE_SLOT_IDS: readonly SaveSlotId[] = [1, 2, 3];
+interface ManualSaveRecord {
+  format: 1; slotId: SaveSlotId; token: string; savedAt: number; capturedAt: number; data: string;
+}
+export type ManualSlot =
+  | { id: SaveSlotId; status: 'empty' }
+  | { id: SaveSlotId; status: 'ready'; savedAt: number; capturedAt: number; state: GameState }
+  | { id: SaveSlotId; status: 'corrupt' | 'incompatible'; message: string };
+
+function checkSlotId(id: SaveSlotId): void {
+  if (!SAVE_SLOT_IDS.includes(id)) invalid('存档格编号');
+}
+function parseManualSlot(raw: unknown, id: SaveSlotId): Extract<ManualSlot, { status: 'ready' }> {
+  if (raw && typeof raw === 'object' && 'format' in raw && typeof raw.format === 'number' && raw.format > 1) throw new SaveError('此存档需要新版游戏才能读取。', 'future');
+  const record = object(raw, '手动存档', ['format', 'slotId', 'token', 'savedAt', 'capturedAt', 'data']);
+  if (record.format !== 1 || record.slotId !== id || typeof record.data !== 'string') invalid('手动存档记录');
+  text(record.token, '手动存档标记', 120);
+  const state = parseSave(record.data as string);
+  const capturedAt = integer(record.capturedAt, '存档游戏时间', 0, Number.MAX_SAFE_INTEGER);
+  if (capturedAt !== state.lastSeen) invalid('存档游戏时间');
+  return { id, status: 'ready', state, capturedAt, savedAt: integer(record.savedAt, '手动保存时间', 0, 8_640_000_000_000_000) };
+}
+
+/** Resume the saved instant, rather than granting time elapsed while a slot was on the shelf. */
+export function resumeManualSlot(slot: Extract<ManualSlot, { status: 'ready' }>, now: number, current?: GameState | null): GameState {
+  const state = structuredClone(slot.state);
+  const time = integer(now, '读取时间', 0, Number.MAX_SAFE_INTEGER - 172_800_000);
+  const delta = time - slot.capturedAt;
+  const shift = (value: number) => Math.max(0, value + delta);
+  const jobTime = (job: GameState['jobs'][number]) => {
+    if (job) { job.startedAt = shift(job.startedAt); job.endsAt = shift(job.endsAt); }
+  };
+  state.lastSeen = time;
+  state.energy.lastRecoveryAt = shift(state.energy.lastRecoveryAt);
+  Object.values(state.generators).forEach(generator => { if (generator.readyAt) generator.readyAt = shift(generator.readyAt); });
+  state.jobs.forEach(jobTime);
+  state.appliances.forEach(appliance => jobTime(appliance.job));
+  state.revision = Math.max(current?.revision ?? -1, state.revision) + 1;
+  if (state.undo) state.undo.revision = state.revision;
+  if (current) state.settings = { ...current.settings };
+  return validateSave(state);
 }
 
 function request<T>(result: IDBRequest<T>): Promise<T> {
@@ -268,7 +324,7 @@ function newToken(): string { return typeof crypto !== 'undefined' && crypto.ran
 function storageError(cause: unknown): SaveError {
   if (cause instanceof SaveError) return cause;
   const name = cause && typeof cause === 'object' && 'name' in cause ? String(cause.name) : '';
-  return new SaveError(name === 'QuotaExceededError' ? '设备存储空间不足，进度未保存。请先导出备份，再清理空间。' : '无法保存到设备。请保留此页面并导出备份，再检查浏览器存储权限。', 'storage', { cause });
+  return new SaveError(name === 'QuotaExceededError' ? '设备存储空间不足，本次未保存。请保留此页面，检查可用空间后重试。' : '无法保存到设备。请保留此页面，检查浏览器存储权限后重试。', 'storage', { cause });
 }
 
 export class SaveRepository {
@@ -334,7 +390,7 @@ export class SaveRepository {
     return operation;
   }
 
-  private async commit(data: string, revision: number, restoring: boolean, replacingCorrupt = false): Promise<void> {
+  private async commit(data: string, revision: number, restoring: boolean, replacingCorrupt = false, manual?: ManualSaveRecord): Promise<void> {
     if (!this.database || (!this.opened && !(replacingCorrupt && this.corrupt))) throw new SaveError('存档尚未成功打开，不能覆盖设备上的原档。请先导出备份。', 'storage');
     if (!restoring && revision < this.revision) throw new SaveError('这份进度已过期，未覆盖较新的存档。请重新载入。', 'conflict');
     const database = this.database;
@@ -370,6 +426,7 @@ export class SaveRepository {
             else store.put(rawCurrent, 'recovery');
           }
           store.put(candidate, 'current');
+          if (manual) store.put(manual, `manual-slot-${manual.slotId}`);
         } catch (cause) {
           failure = storageError(cause);
           transaction.abort();
@@ -383,6 +440,40 @@ export class SaveRepository {
       this.opened = true;
       this.corrupt = false;
     } catch (cause) { throw failure || storageError(cause); }
+  }
+
+  async listManualSlots(): Promise<ManualSlot[]> {
+    await this.queue;
+    if (!this.database) throw new SaveError('存档存储尚未打开，请重试。', 'storage');
+    try {
+      const transaction = this.database.transaction(STORE, 'readonly');
+      const done = completed(transaction);
+      const records = await Promise.all(SAVE_SLOT_IDS.map(id => request(transaction.objectStore(STORE).get(`manual-slot-${id}`))));
+      await done;
+      return SAVE_SLOT_IDS.map((id, index): ManualSlot => {
+        if (records[index] === undefined) return { id, status: 'empty' };
+        try { return parseManualSlot(records[index], id); }
+        catch (cause) { return { id, status: cause instanceof SaveError && cause.code === 'future' ? 'incompatible' : 'corrupt', message: cause instanceof Error ? cause.message : '此存档暂时无法读取。' }; }
+      });
+    } catch (cause) { throw storageError(cause); }
+  }
+
+  async readManualSlot(id: SaveSlotId): Promise<Extract<ManualSlot, { status: 'ready' }>> {
+    checkSlotId(id);
+    const slot = (await this.listManualSlots()).find(entry => entry.id === id)!;
+    if (slot.status === 'ready') return slot;
+    throw new SaveError(slot.status === 'empty' ? '这个位置还没有存档。' : slot.message, slot.status === 'incompatible' ? 'future' : 'invalid');
+  }
+
+  saveManualSlot(id: SaveSlotId, state: GameState, savedAt = Date.now()): Promise<void> {
+    let manual: ManualSaveRecord;
+    try {
+      checkSlotId(id);
+      manual = { format: 1, slotId: id, token: newToken(), savedAt: integer(savedAt, '手动保存时间', 0, 8_640_000_000_000_000), capturedAt: state.lastSeen, data: serializeSave(state) };
+    } catch (cause) { return Promise.reject(cause); }
+    const operation = this.queue.then(() => this.commit(manual.data, state.revision, false, false, manual));
+    this.queue = operation.catch(() => undefined);
+    return operation;
   }
 
   /** Explicit user import only: preserve both unreadable originals before replacing them. */
@@ -420,9 +511,9 @@ export class SaveRepository {
     const transaction = this.database.transaction(STORE, 'readonly');
     const done = completed(transaction);
     const store = transaction.objectStore(STORE);
-    const [current, previous, recovery, migrationV0, migrationV1] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1'].map((key) => request(store.get(key))));
+    const [current, previous, recovery, migrationV0, migrationV1, ...manualSlots] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1', ...SAVE_SLOT_IDS.map(id => `manual-slot-${id}`)].map((key) => request(store.get(key))));
     await done;
-    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1 }, null, 2);
+    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1, manualSlots }, null, 2);
   }
 
   close(): void { this.database?.close(); this.database = null; this.opened = false; this.corrupt = false; }

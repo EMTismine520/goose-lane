@@ -25,6 +25,7 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
     open: vi.fn().mockResolvedValue({ state: initial, recovered: false }), save: vi.fn().mockResolvedValue(undefined),
     restorePrevious: vi.fn().mockResolvedValue(null), replaceCorrupt: vi.fn().mockResolvedValue(undefined),
     exportRaw: vi.fn().mockResolvedValue('{"original":true}'), close: vi.fn(),
+    listManualSlots: vi.fn().mockResolvedValue([]), readManualSlot: vi.fn(), saveManualSlot: vi.fn().mockResolvedValue(undefined),
   };
   const audio = { unlock: vi.fn().mockResolvedValue(undefined), configure: vi.fn(), play: vi.fn(), dispose: vi.fn() };
   const download = vi.fn();
@@ -249,7 +250,7 @@ describe('UI persistence orchestration', () => {
     const close = vi.fn(); const open = vi.fn();
     const controller = new GameController(vi.fn(), {
       acquire: () => acquisition.promise,
-      repository: { open, close, save: vi.fn(), replaceCorrupt: vi.fn(), restorePrevious: vi.fn(), exportRaw: vi.fn() },
+      repository: { open, close, save: vi.fn(), replaceCorrupt: vi.fn(), restorePrevious: vi.fn(), exportRaw: vi.fn(), listManualSlots: vi.fn(), readManualSlot: vi.fn(), saveManualSlot: vi.fn() },
       audio: { unlock: vi.fn(), configure: vi.fn(), play: vi.fn(), dispose: vi.fn() },
     });
     controllers.push(controller);

@@ -1,5 +1,6 @@
-import { APPLIANCES, CHAINS, CONTENT_VERSION, DECORATIONS, FRESH_ORDERS, FRESH_RECIPES, ITEMS, LEGACY_ORDERS, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
-import { BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
+import { APPLIANCES, baseUnits, CHAINS, CONTENT_VERSION, DECORATIONS, FRESH_ORDERS, FRESH_RECIPES, HOME_CHAINS, HOME_ORDERS, ITEMS, LEGACY_ORDERS, LEGACY_RECIPES, MODERN_RECIPES, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
+import { activeDevices, BOARD_LAYOUT, BUILD_NODES, HOME_UNLOCK_HINT, homeCookingUnlocked } from '../content/board-layouts';
+import { reconcileHomeDevices } from './home-progression';
 import { ENERGY_CONFIG, nextRandom, PRODUCTION } from '../content/production';
 import { TUTORIAL_STEPS } from '../content/tutorial';
 import type { ApplianceState, Command, CommandResult, GameEvent, GameState, ItemInstance, OrderDef, RecipeDef, Requirement } from './types';
@@ -21,7 +22,7 @@ export function unlockedCells(state: GameState): number {
 }
 export function mergeTarget(item: string): string | null {
   const definition = ITEMS[item];
-  return definition?.kind === 'ingredient' && definition.level < 7 ? `${definition.chain}-${definition.level + 1}` : null;
+  return definition?.kind === 'ingredient' ? CHAINS.find(chain => chain.id === definition.chain)?.items[definition.level] ?? null : null;
 }
 
 export function createInitialState(now = Date.now()): GameState {
@@ -76,21 +77,22 @@ export function canAffordRequirements(state: GameState, needs: Requirement[]): b
 }
 export function availableOrders(state: GameState) {
   const completed = new Set(state.completedOrders);
-  const campaignOrders = state.campaign === 'fresh' && state.day === 1 ? FRESH_ORDERS : LEGACY_ORDERS;
+  const campaignOrders = state.campaign === 'fresh' && state.day === 1 ? homeCookingUnlocked(state) ? HOME_ORDERS : FRESH_ORDERS : LEGACY_ORDERS;
   return campaignOrders.filter(order => order.day === state.day && !completed.has(order.id)).slice(0, 3);
 }
 export function getDayProgress(state: GameState) {
-  const orders = (state.campaign === 'fresh' && state.day === 1 ? FRESH_ORDERS : LEGACY_ORDERS).filter(order => order.day === state.day);
+  const home = homeCookingUnlocked(state);
+  const orders = (state.campaign === 'fresh' && state.day === 1 ? home ? HOME_ORDERS : FRESH_ORDERS : LEGACY_ORDERS).filter(order => order.day === state.day);
   const completed = orders.filter(order => state.completedOrders.includes(order.id)).length;
   const shop = SHOPS.find(shop => shop.day === state.day)!;
   const shopReady = state.campaign === 'fresh' && state.day === 1 ? state.construction.completed.length === BUILD_NODES.length : (state.shops[shop.id] ?? 0) >= 2;
-  return { completed, total: orders.length, ratio: completed / orders.length, shopReady, canAdvance: state.campaign === 'legacy' && completed === orders.length && shopReady && state.day < 6 };
+  return { completed, total: orders.length, ratio: completed / orders.length, shopReady, phase: home ? 'home' : 'opening', canAdvance: state.campaign === 'legacy' && completed === orders.length && shopReady && state.day < 6 };
 }
 export function getGeneratorStatus(state: GameState, chain: string, now = Date.now()) {
   const generator = state.generators[chain];
   const definition = CHAINS.find(item => item.id === chain);
   const time = effectiveNow(state, now);
-  if (state.schemaVersion >= 2) return { remaining: getEnergyStatus(state, time).value, readyAt: 0, waiting: 0, unlocked: !!definition && state.day >= definition.unlockDay };
+  if (state.schemaVersion >= 2) return { remaining: getEnergyStatus(state, time).value, readyAt: 0, waiting: 0, unlocked: !!definition && state.day >= definition.unlockDay && (!HOME_CHAINS.some(value => value.id === chain) || homeCookingUnlocked(state)) };
   if (!generator || !definition) return { remaining: 0, readyAt: 0, waiting: 0, unlocked: false };
   const waiting = generator.remaining === 0 ? Math.max(0, generator.readyAt - time) : 0;
   return { remaining: generator.remaining === 0 && waiting === 0 ? GENERATOR_CAPACITY : generator.remaining, readyAt: waiting === 0 ? 0 : generator.readyAt, waiting, unlocked: state.day >= definition.unlockDay };
@@ -107,7 +109,7 @@ export function getRecipeDuration(state: GameState, recipe: RecipeDef): number {
 }
 export function canCook(state: GameState, recipeId: string, slot?: number): boolean {
   const recipe = RECIPES.find(recipe => recipe.id === recipeId);
-  if (!recipe) return false;
+  if (!recipe || state.schemaVersion >= 2 && MODERN_RECIPES.includes(recipe)) return false;
   const selectedSlot = slot ?? recipe.appliance;
   return recipe.unlockDay <= state.day && selectedSlot === recipe.appliance && APPLIANCES[selectedSlot]?.unlockDay <= state.day && state.jobs[selectedSlot] === null && canAffordRequirements(state, recipe.inputs);
 }
@@ -127,7 +129,7 @@ function instance(state: GameState, item: string): ItemInstance {
   if (!state.discovered.includes(item)) state.discovered.push(item);
   return { uid: `g${state.nextId++}`, item };
 }
-const deviceAt = (state: GameState, index: number) => state.schemaVersion >= 2 ? BOARD_LAYOUT.entities.find(entity => entity.index === index) : undefined;
+const deviceAt = (state: GameState, index: number) => activeDevices(state).find(entity => entity.index === index);
 const validCell = (state: GameState, index: number) => Number.isInteger(index) && index >= 0 && index < unlockedCells(state) && !deviceAt(state, index);
 const emptyCell = (state: GameState, origin = 0) => state.board.map((item, index) => ({ item, index })).filter(({ item, index }) => item === null && validCell(state, index)).sort((a, b) => {
   const distance = (index: number) => Math.abs(Math.floor(index / 7) - Math.floor(origin / 7)) + Math.abs(index % 7 - origin % 7);
@@ -165,20 +167,25 @@ export function getBoardEntity(state: GameState, index: number): BoardEntityView
   return item ? { ...base, kind: 'item', id: item.uid, name: ITEMS[item.item]?.name ?? '食材', item, canMove: true, canMerge: !!mergeTarget(item.item), canSell: true } : { ...base, kind: 'empty', id: `cell-${index}`, name: '空格', canAccept: true };
 }
 
+export function availableApplianceRecipes(state: GameState): RecipeDef[] {
+  return (state.campaign === 'legacy' ? [...LEGACY_RECIPES, ...FRESH_RECIPES] : homeCookingUnlocked(state) ? MODERN_RECIPES : FRESH_RECIPES).filter(recipe => recipe.unlockDay <= state.day);
+}
 function compatibleRecipes(state: GameState, appliance: ApplianceState, inputs = appliance.inputSlots) {
-  return RECIPES.filter(recipe => recipe.appliance === appliance.slot && recipe.unlockDay <= state.day && (state.campaign === 'legacy' || FRESH_RECIPES.includes(recipe)) && inputs.every(input => recipe.inputs.some(need => need.item === input.item)) && recipe.inputs.every(need => inputs.filter(input => input.item === need.item).length <= need.count));
+  const missingCost = (recipe: RecipeDef) => recipe.inputs.reduce((sum, need) => sum + Math.max(0, need.count - inputs.filter(input => input.item === need.item).length) * baseUnits(need.item), 0);
+  return availableApplianceRecipes(state).filter(recipe => recipe.appliance === appliance.slot && inputs.every(input => recipe.inputs.some(need => need.item === input.item)) && recipe.inputs.every(need => inputs.filter(input => input.item === need.item).length <= need.count)).sort((a, b) => missingCost(a) - missingCost(b));
 }
 function fullyLoaded(appliance: ApplianceState, recipe: RecipeDef) {
   return recipe.inputs.every(need => appliance.inputSlots.filter(input => input.item === need.item).length === need.count) && appliance.inputSlots.length === recipe.inputs.reduce((count, need) => count + need.count, 0);
 }
 export function getApplianceStatus(state: GameState, id: string, now = Date.now()) {
   const appliance = state.appliances.find(value => value.id === id);
-  if (!appliance) return null;
+  if (!appliance || !activeDevices(state).some(device => device.id === id)) return null;
   const remaining = appliance.job ? Math.max(0, appliance.job.endsAt - effectiveNow(state, now)) : 0;
   const recipes = compatibleRecipes(state, appliance);
   const recipe = appliance.job ? RECIPES.find(value => value.id === appliance.job!.recipe) ?? null : recipes.find(value => fullyLoaded(appliance, value)) ?? recipes[0] ?? null;
   const phase = appliance.job ? remaining > 0 ? 'cooking' : 'ready' : appliance.outputSlot ? 'ready' : appliance.inputSlots.length ? 'loaded' : 'idle';
-  return { phase: phase as 'idle' | 'loaded' | 'cooking' | 'ready', appliance, recipes, recipe, remaining, canStart: !!recipe && !appliance.job && !appliance.outputSlot && fullyLoaded(appliance, recipe) };
+  const candidates = recipes.map(value => ({ recipe: value, missing: value.inputs.map(need => ({ item: need.item, count: Math.max(0, need.count - appliance.inputSlots.filter(input => input.item === need.item).length) })).filter(need => need.count > 0) }));
+  return { phase: phase as 'idle' | 'loaded' | 'cooking' | 'ready', appliance, recipes, candidates, recipe, remaining, canStart: !!recipe && !appliance.job && !appliance.outputSlot && fullyLoaded(appliance, recipe) };
 }
 export function getConstructionProgress(state: GameState) {
   const completed = state.construction.completed.length;
@@ -264,7 +271,8 @@ export function execute(original: GameState, command: Command, now = Date.now())
     case 'generate': {
       const chain = CHAINS.find(chain => chain.id === command.chain);
       if (!chain || chain.unlockDay > state.day) return reject('这条食材链将在后续章节开放。');
-      const device = BOARD_LAYOUT.entities.find(entity => entity.kind === 'generator' && entity.chain === chain.id);
+      if (HOME_CHAINS.some(value => value.id === chain.id) && !homeCookingUnlocked(state)) return reject(HOME_UNLOCK_HINT);
+      const device = activeDevices(state).find(entity => entity.kind === 'generator' && entity.chain === chain.id);
       const index = emptyCell(state, state.schemaVersion >= 2 ? device?.index ?? 35 : 0);
       if (index < 0) return reject('棋盘满啦，试试合成、交单或移入仓库。');
       if (state.schemaVersion >= 2) {
@@ -315,7 +323,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       if (appliance.job || appliance.outputSlot) return reject('厨具正在忙，先等料理完成并领取。');
       const input = state.board[command.from];
       if (!input) return reject('这份食材已不在原来的位置。');
-      if (!compatibleRecipes(state, appliance, [...appliance.inputSlots, input]).length) return reject(`这份食材不适合${BOARD_LAYOUT.entities.find(entity => entity.id === appliance.id)?.name ?? '这台厨具'}，请查看可用食谱。`);
+      if (!compatibleRecipes(state, appliance, [...appliance.inputSlots, input]).length) return reject(`这份食材不适合${activeDevices(state).find(entity => entity.id === appliance.id)?.name ?? '这台厨具'}，请查看可用食谱。`);
       appliance.inputSlots.push(input); state.board[command.from] = null; appliance.version++;
       events.push({ type: 'stageInput', message: `${ITEMS[input.item].name}已放好，点烹饪才会开工。`, from: command.from, index: appliance.index, appliance: appliance.id, item: input.item, uid: input.uid });
       break;
@@ -391,7 +399,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       break;
     }
     case 'cook': {
-      if (state.schemaVersion >= 2 && FRESH_RECIPES.some(recipe => recipe.id === command.recipe)) return reject('请先把食材拖进厨具，再点击烹饪。');
+      if (state.schemaVersion >= 2 && MODERN_RECIPES.some(recipe => recipe.id === command.recipe)) return reject('请先把食材拖进厨具，再点击烹饪。');
       const recipe = RECIPES.find(recipe => recipe.id === command.recipe);
       if (!recipe || recipe.unlockDay > state.day) return reject('这份菜谱尚未解锁。');
       if (!Number.isInteger(command.slot) || command.slot !== recipe.appliance || APPLIANCES[command.slot]?.unlockDay > state.day) return reject('请使用菜谱指定且已解锁的厨具。');
@@ -514,16 +522,17 @@ export function execute(original: GameState, command: Command, now = Date.now())
     }
     default: return reject('操作未识别，请重试。');
   }
+  if (reconcileHomeDevices(state)) events.push({ type: 'home-unlocked', message: '家常菜厨房开放啦！两类肉车、香料盒和料理锅已经就位。', index: 47 });
   if (!Number.isSafeInteger(state.coins) || state.coins < 0 || !Number.isSafeInteger(state.reputation)) return reject('这次操作超出了可保存范围。');
   if (!Number.isSafeInteger(state.energy.value) || state.energy.value < 0) return reject('体力超出了可保存范围。');
   for (let index = 0; index < state.board.length; index++) {
     const device = deviceAt(state, index);
     const changedDevice = device?.kind === 'appliance' && state.appliances.find(value => value.id === device.id)?.version !== original.appliances.find(value => value.id === device.id)?.version;
-    if (state.board[index]?.uid !== original.board[index]?.uid || changedDevice) state.cellVersions[index] = (original.cellVersions[index] ?? 0) + 1;
+    if (state.board[index]?.uid !== original.board[index]?.uid || changedDevice || device?.id !== deviceAt(original, index)?.id) state.cellVersions[index] = (original.cellVersions[index] ?? 0) + 1;
   }
   if (command.commandId) state.processedCommandIds = [...state.processedCommandIds, command.commandId].slice(-256);
   advanceTutorial(state, events);
-  if (state.session.selectedUid && ![...state.board.filter(Boolean), ...state.appliances].some(value => value && ('uid' in value ? value.uid : value.id) === state.session.selectedUid) && !BOARD_LAYOUT.entities.some(value => value.id === state.session.selectedUid)) state.session.selectedUid = null;
+  if (state.session.selectedUid && ![...state.board.filter(Boolean), ...state.appliances].some(value => value && ('uid' in value ? value.uid : value.id) === state.session.selectedUid) && !activeDevices(state).some(value => value.id === state.session.selectedUid)) state.session.selectedUid = null;
   state.revision++;
   if (preserveUndo && state.undo) state.undo.revision = state.revision;
   state.lastSeen = time;
@@ -536,7 +545,11 @@ export function stateInvariantErrors(state: GameState): string[] {
   if (state.storage.length > state.storageCapacity) errors.push('storage overflow');
   if (!Number.isSafeInteger(state.coins) || state.coins < 0) errors.push('coins');
   if (state.board.slice(unlockedCells(state)).some(Boolean)) errors.push('locked cell occupied');
-  if (state.schemaVersion >= 2 && BOARD_LAYOUT.entities.some(entity => state.board[entity.index])) errors.push('device cell occupied');
+  if (activeDevices(state).some(entity => state.board[entity.index])) errors.push('device cell occupied');
+  if (state.schemaVersion >= 2) {
+    const definitions = activeDevices(state).filter(device => device.kind === 'appliance');
+    if (state.appliances.length !== definitions.length || definitions.some(device => state.appliances.filter(appliance => appliance.id === device.id && appliance.slot === device.slot && appliance.index === device.index).length !== 1)) errors.push('appliance layout');
+  }
   if (!Number.isSafeInteger(state.energy.value) || state.energy.value < 0) errors.push('energy');
   if (state.cellVersions.length !== state.board.length || state.cellVersions.some(version => !Number.isSafeInteger(version) || version < 0)) errors.push('cell versions');
   const allItems = [...state.board.filter((item): item is ItemInstance => item !== null), ...state.storage, ...state.migrationInbox, ...state.appliances.flatMap(appliance => [...appliance.inputSlots, ...(appliance.outputSlot ? [appliance.outputSlot] : [])])];

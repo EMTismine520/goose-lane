@@ -398,5 +398,385 @@
     ],
     "scale": 0.82,
     "source": "Original vector artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "beast-meat-cart",
+    "frame": "assets/entities/beast-meat-cart.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-4",
+    "frame": "assets/items/fresh-beast-4.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-poultry-7",
+    "frame": "assets/items/fresh-poultry-7.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-spice-5",
+    "frame": "assets/items/fresh-spice-5.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "home-cooking-pot",
+    "frame": "assets/entities/home-cooking-pot.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-orange-ribs",
+    "frame": "assets/items/dish-fresh-home-orange-ribs.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-1",
+    "frame": "assets/items/fresh-beast-1.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-2",
+    "frame": "assets/items/fresh-beast-2.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-3",
+    "frame": "assets/items/fresh-beast-3.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-5",
+    "frame": "assets/items/fresh-beast-5.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-6",
+    "frame": "assets/items/fresh-beast-6.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-7",
+    "frame": "assets/items/fresh-beast-7.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-8",
+    "frame": "assets/items/fresh-beast-8.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-9",
+    "frame": "assets/items/fresh-beast-9.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-beast-10",
+    "frame": "assets/items/fresh-beast-10.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-poultry-1",
+    "frame": "assets/items/fresh-poultry-1.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-poultry-2",
+    "frame": "assets/items/fresh-poultry-2.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-poultry-3",
+    "frame": "assets/items/fresh-poultry-3.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-poultry-4",
+    "frame": "assets/items/fresh-poultry-4.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-poultry-5",
+    "frame": "assets/items/fresh-poultry-5.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-poultry-6",
+    "frame": "assets/items/fresh-poultry-6.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-spice-1",
+    "frame": "assets/items/fresh-spice-1.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-spice-2",
+    "frame": "assets/items/fresh-spice-2.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-spice-3",
+    "frame": "assets/items/fresh-spice-3.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-spice-4",
+    "frame": "assets/items/fresh-spice-4.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-spice-6",
+    "frame": "assets/items/fresh-spice-6.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "fresh-spice-7",
+    "frame": "assets/items/fresh-spice-7.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-onion-salad",
+    "frame": "assets/items/dish-fresh-home-onion-salad.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-tomato-eggs",
+    "frame": "assets/items/dish-fresh-home-tomato-eggs.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-meatball-soup",
+    "frame": "assets/items/dish-fresh-home-meatball-soup.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-garlic-broccoli",
+    "frame": "assets/items/dish-fresh-home-garlic-broccoli.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-vegetable-rice",
+    "frame": "assets/items/dish-fresh-home-vegetable-rice.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-scallion-egg-rice",
+    "frame": "assets/items/dish-fresh-home-scallion-egg-rice.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-seared-pork",
+    "frame": "assets/items/dish-fresh-home-seared-pork.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-garlic-cucumber",
+    "frame": "assets/items/dish-fresh-home-garlic-cucumber.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "dish-fresh-home-chicken-roll",
+    "frame": "assets/items/dish-fresh-home-chicken-roll.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "poultry-cart",
+    "frame": "assets/entities/poultry-cart.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
+  },
+  {
+    "assetId": "spice-box",
+    "frame": "assets/entities/spice-box.webp",
+    "pivot": [
+      0.5,
+      0.5
+    ],
+    "scale": 0.9,
+    "source": "Original ImageGen hand-painted artwork · Goose Lane 2026"
   }
 ]
