@@ -1,5 +1,9 @@
 # Goose Lane 原创美术
 
+## 完整图鉴 3.0.0
+
+正式美术统一采用此前确认的B类暖色卡通风格，延展既有可编辑SVG体系。完整图鉴共311项；B类母稿与32/96像素总览位于 `artwork/v3-b/`，运行映射见 `src/content/v3-art.json`，资产清单见 `public/assets/v3-manifest.json`。SVG另导出512×512透明PNG与256×256透明WebP。研究截图不进入正式运行资源。下方原B组源码和早期图集继续保留，作为风格基准及历史来源记录。
+
 ## 当前新增 B 组 SVG
 
 38 项新增兽肉、禽肉、调料、料理和设备已统一为暖色卡通。全部母稿与运行 SVG 声明为 96×96，母稿与复现说明见 [B 组源码](../artwork/b/README.md)。运行资源位于 `public/assets/items/`、`public/assets/entities/`；共享展示配置为 `src/content/b-art.json`，来源与内容哈希为 `public/assets/b-art.json`。

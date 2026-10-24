@@ -1,7 +1,13 @@
 {
-  "sourceCommit": "ac2b189d846a00a8a78c2aa9f069d706ea7b2ca1",
-  "artwork": "B",
-  "svgWidth": 96,
-  "svgHeight": 96,
-  "assets": 38
+  "sourceCommit": "9d04757b71e17f52d2b272a9f0a4d37ce5d34706",
+  "contentVersion": "3.0.0",
+  "schemaVersion": 3,
+  "artwork": "B-warm-cartoon",
+  "vectorSize": 96,
+  "sourceSize": 512,
+  "runtimeSize": 256,
+  "assets": 311,
+  "finished": 139,
+  "recipes": 123,
+  "orders": 145
 }
