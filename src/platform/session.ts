@@ -1,4 +1,4 @@
-/** A live Web Lock is the write authority. It is never stolen from a running tab. */
+/** Prefer a live Web Lock; older browsers rely on SaveRepository's atomic token comparison. */
 export interface GameSession {
   readonly readOnly: boolean;
   readonly supported: boolean;
@@ -7,7 +7,8 @@ export interface GameSession {
 }
 
 export async function acquireSession(onReadOnlyChange: (readOnly: boolean) => void): Promise<GameSession> {
-  const supported = typeof navigator !== 'undefined' && !!navigator.locks;
+  const hasLocks = typeof navigator !== 'undefined' && typeof navigator.locks?.request === 'function';
+  const supported = globalThis.isSecureContext !== false && (hasLocks || typeof indexedDB !== 'undefined');
   let channel: BroadcastChannel | null = null;
   try { if (typeof BroadcastChannel !== 'undefined') channel = new BroadcastChannel('goose-lane-session-v1'); } catch { /* The Web Lock remains authoritative if messaging is restricted. */ }
   let readOnly = true;
@@ -21,6 +22,13 @@ export async function acquireSession(onReadOnlyChange: (readOnly: boolean) => vo
     async takeover() {
       if (released || !supported) return false;
       if (!readOnly) return true;
+      if (!hasLocks) {
+        // This grants permission to attempt a transaction, not exclusive tab ownership.
+        // SaveRepository compares the saved token and writes in ONE readwrite transaction;
+        // GameController stops stale writers before publishing their uncommitted state.
+        change(false);
+        return true;
+      }
       if (acquiring) return acquiring;
       acquiring = new Promise<boolean>((resolve) => {
         void navigator.locks.request('goose-lane-writer-v1', { mode: 'exclusive', ifAvailable: true }, async (lock) => {
@@ -59,8 +67,7 @@ export async function acquireSession(onReadOnlyChange: (readOnly: boolean) => vo
     session.release();
   };
   if (typeof window !== 'undefined') window.addEventListener('pagehide', onPageHide, { once: true });
-  // No time-based lease: a suspended/background tab must never silently lose its authority.
-  // Browsers without Web Locks stay read-only; IndexedDB revision checks are a second guard.
+  // Native locks are never stolen. No expiring lease is used in either mode.
   change(true);
   if (!await session.takeover() && supported && !released) {
     // React remount/HMR may request a lock in the same turn its old owner releases it.

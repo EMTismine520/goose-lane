@@ -10,6 +10,7 @@ import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, DRAG_THRESHOLD, c
 import type { DropSelection } from './board-input';
 import { BoardRenderer, itemDisplaySize, itemTexture } from './board-render';
 import { refreshBoardViewport } from './board-viewport';
+import { boardRendererMode } from './board-renderer-mode';
 
 export interface BoardProps {
   state: GameState;
@@ -35,6 +36,7 @@ export default function Board(props: BoardProps) {
   const buttons = useRef(new Map<number, HTMLButtonElement>());
   const [focused, setFocused] = useState<number | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'failed'>('loading');
+  const rendererMode = boardRendererMode(typeof navigator === 'undefined' ? '' : navigator.userAgent);
   live.current = props;
 
   useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled, props.sessionEpoch]);
@@ -109,6 +111,7 @@ export default function Board(props: BoardProps) {
           };
           bridge.current = { sync: () => this.sync(), resize: () => this.refreshViewport(), activate: index => this.activate(index), cancel: () => this.cancel() };
           this.sync();
+          this.refreshViewport();
           if (!disposed) setStatus('ready');
         }
 
@@ -263,7 +266,7 @@ export default function Board(props: BoardProps) {
       }
 
       game = new Engine.Game({
-        type: Engine.AUTO, parent: mount.current, width: BOARD_WIDTH, height: BOARD_HEIGHT,
+        type: rendererMode === 'canvas' ? Engine.CANVAS : Engine.AUTO, parent: mount.current, width: BOARD_WIDTH, height: BOARD_HEIGHT,
         transparent: true, antialias: true, roundPixels: false, scene: PantryScene,
         scale: { mode: Engine.Scale.FIT, autoCenter: Engine.Scale.CENTER_BOTH, width: BOARD_WIDTH, height: BOARD_HEIGHT },
         input: { activePointers: 1, touch: { capture: true }, mouse: { preventDefaultWheel: false } },
@@ -283,11 +286,11 @@ export default function Board(props: BoardProps) {
       removeListeners?.();
       game?.destroy(true);
     };
-  }, []);
+  }, [rendererMode]);
 
   const interactive = props.active !== false && props.inputEnabled !== false;
-  return <div className="board-shell" data-board-status={status} style={{ position: 'relative' }}>
-    <div ref={mount} className="phaser-board" style={{ width: '100%', aspectRatio: '7 / 9', touchAction: 'none', overflow: 'hidden', borderRadius: 9 }} />
+  return <div className="board-shell" data-board-status={status} data-board-renderer={rendererMode} style={{ position: 'relative' }}>
+    <div ref={mount} className="phaser-board" style={{ width: '100%', height: '100%', touchAction: 'none', overflow: 'hidden', borderRadius: 9 }} />
     <div className="board-keyboard-grid" role="grid" aria-label="料理棋盘，方向键换格，回车选择和操作，Escape取消选择" aria-rowcount={BOARD_ROWS} aria-colcount={BOARD_COLUMNS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateRows: 'repeat(9, 1fr)', pointerEvents: 'none' }}>
       {Array.from({ length: BOARD_ROWS }, (_, row) => <div key={row} role="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
         {Array.from({ length: BOARD_COLUMNS }, (_, column) => {
@@ -312,7 +315,7 @@ export default function Board(props: BoardProps) {
         })}
       </div>)}
     </div>
-    {status === 'loading' && <div className="board-loading" role="status">正在铺好料理台…</div>}
-    {status === 'failed' && <p className="board-error" role="status">料理台暂时未能加载，请刷新重试。</p>}
+    {status === 'loading' && <div className="board-loading" role="status" style={{ position: 'absolute', inset: 0 }}>正在铺好料理台…</div>}
+    {status === 'failed' && <p className="board-error" role="alert" style={{ position: 'absolute', inset: 12 }}>料理台暂时未能加载，请刷新重试，或用最新版 Chrome、Edge 打开。</p>}
   </div>;
 }

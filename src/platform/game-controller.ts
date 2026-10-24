@@ -99,7 +99,7 @@ export class GameController {
     this.publish(state, loaded.state || canWrite ? this.now() : 0, true);
     this.update({
       readOnly: !canWrite, recovered: loaded.recovered,
-      error: this.session?.supported === false ? '当前浏览器无法安全协调存档写入，请使用 HTTPS 或本机地址，在支持 Web Locks 的浏览器中打开。' : '',
+      error: this.session?.supported === false ? '当前浏览器未开放安全本地存储，请用最新版 Chrome 或 Edge 打开 HTTPS 游戏地址。' : '',
     });
   }
 
@@ -370,7 +370,7 @@ export class GameController {
     if (!this.live || this.view.busy || this.processing) return;
     this.update({ busy: true });
     try {
-      if (!this.session?.supported) throw new Error('此浏览器暂不支持安全写入，请使用 HTTPS 或本机地址，在支持 Web Locks 的浏览器中打开。');
+      if (!this.session?.supported) throw new Error('当前浏览器未开放安全本地存储，请用最新版 Chrome 或 Edge 打开 HTTPS 游戏地址。');
       if (!await this.session.takeover()) throw new Error('另一窗口仍在经营，关闭它后再试。');
       // Taking the lock must also refresh the state and optimistic revision token.
       await this.loadLatest();

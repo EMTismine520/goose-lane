@@ -38,11 +38,24 @@ describe('exclusive browser writer', () => {
     expect(secondChange).toHaveBeenLastCalledWith(false);
     expect(await first.takeover()).toBe(false);
   });
-  it('stays read-only if the browser cannot guarantee mutual exclusion', async () => {
-    vi.stubGlobal('navigator', {}); vi.stubGlobal('BroadcastChannel', undefined);
+  it('stays read-only without either transactional storage or native locks', async () => {
+    vi.stubGlobal('navigator', {}); vi.stubGlobal('BroadcastChannel', undefined); vi.stubGlobal('indexedDB', undefined);
     const session = await acquireSession(vi.fn()); sessions.push(session);
     expect(session.supported).toBe(false); expect(session.readOnly).toBe(true);
     expect(await session.takeover()).toBe(false);
+  });
+  it('allows transactional saves without Web Locks and cannot revive a released session', async () => {
+    vi.stubGlobal('navigator', {}); vi.stubGlobal('BroadcastChannel', undefined); vi.stubGlobal('indexedDB', {});
+    const session = await acquireSession(vi.fn()); sessions.push(session);
+    expect(session.supported).toBe(true); expect(session.readOnly).toBe(false);
+    session.release();
+    expect(session.readOnly).toBe(true); expect(await session.takeover()).toBe(false);
+  });
+  it('does not enable saving on an insecure origin', async () => {
+    vi.stubGlobal('navigator', {}); vi.stubGlobal('indexedDB', {}); vi.stubGlobal('isSecureContext', false);
+    vi.stubGlobal('BroadcastChannel', undefined);
+    const session = await acquireSession(vi.fn()); sessions.push(session);
+    expect(session.supported).toBe(false); expect(session.readOnly).toBe(true);
   });
   it('deduplicates simultaneous takeover attempts', async () => {
     locks();
