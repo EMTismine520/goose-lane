@@ -4,7 +4,7 @@
 
 移动优先的合成烹饪游戏，保留两个主页面，通过左下角切换美食合成与店铺建设。首段蔬果进度完成后，解锁兽肉、禽肉、调料与家常菜。当前新增的 38 项美术统一为 B 组暖色卡通，SVG 源码和运行文件均声明为 96×96；旧蔬果、人物、界面与街景保留，物品 ID、配方和存档格式延续。
 
-[正式游戏](https://emtismine520.github.io/goose-lane/) · [B 组独立试玩](https://emtismine520.github.io/goose-lane-art-preview/) · [保留存档的恢复入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html)
+[正式游戏](https://emtismine520.github.io/goose-lane/) · [B 组独立试玩](https://emtismine520.github.io/goose-lane-art-preview/) · [B 组直达入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html)
 
 ![B 组完整美术](docs/images/b-overview.png)
 
@@ -54,12 +54,12 @@ A 样板和已替换的新增位图仅保留在本地归档，当前运行包不
 - 当前与上一份快照、旧存档迁移、损坏恢复、JSON 导入导出和三个手动存档位继续保留。
 - Web Locks 保证单窗口写入；不支持时，通过同一 IndexedDB 事务内的存档令牌拒绝过期窗口写入。
 - 正式游戏首次完整联网加载后可离线使用。新版本等待玩家接受更新，未接受前保持原版本资源一致。
-- 恢复页只注销旧游戏范围的 worker，不删除进度、手动存档、Local Storage 或缓存。详见 [PWA 说明](docs/PWA.md)。
+- 旧恢复链接自动进入 B 组独立试玩，无需点击修复，也不等待旧存档或旧离线程序。详见 [PWA 说明](docs/PWA.md)。
 
 ## 工程与验证
 
 React 19.2.0、Phaser 4.2.1、TypeScript 5.9.3、Vite 7.1.12；领域命令负责资产结算，React 与 Phaser 共用资源和展示配置。第三方许可见 [声明](docs/THIRD_PARTY_NOTICES.md)，构建会复制到 `dist/notices/`。
 
-本轮 20 个测试文件、211 项自动测试通过；美术检查覆盖 38 项，生产构建遵守 5 MiB 预缓存上限。浏览器尺寸、Canvas/WebGL、DPR 与交互的验收记录见 [B 组交付记录](docs/B_ART_RELEASE.md)。
+本轮 20 个测试文件、209 项自动测试通过；美术检查覆盖 38 项，生产构建遵守 5 MiB 预缓存上限。浏览器尺寸、Canvas/WebGL、DPR 与交互的验收记录见 [B 组交付记录](docs/B_ART_RELEASE.md)。
 
 桌面浏览器、模拟手机尺寸和 HTTP 校验与微信真机分别记录；前者不能标记为微信真机通过。真人上手与长期游玩体验也不能由自动模拟替代。

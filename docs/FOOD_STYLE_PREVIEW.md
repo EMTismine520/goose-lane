@@ -4,7 +4,7 @@
 
 “重置”与刷新会恢复试玩盘面。每个标签页使用独立测试数据库与写锁，正式游戏和手动存档不受影响。旧的 `style=painted`、`style=cartoon` 链接与风格消息均显示 B；页面没有 A 切换入口。
 
-旧游戏白屏时打开[保留存档的恢复入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html)，点击“修复并打开 B 组试玩”。仅注销精确匹配旧游戏范围的 worker，不清除 IndexedDB、手动存档、Local Storage 或缓存。
+旧游戏白屏时打开[B 组直达入口](https://emtismine520.github.io/goose-lane-art-preview/recover.html)，页面会自动进入 B 组独立试玩，无需点击修复。该入口不读取旧存档，也不等待旧离线程序；试玩直接使用独立测试盘面。
 
 ## 美术与尺寸
 
