@@ -3,46 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff2d3">
-  <title>鹅巷食光 · 恢复游戏入口</title>
-  <style>
-    *{box-sizing:border-box}body{margin:0;padding:48px 22px;background:#f6f2e6;color:#594a32;font:15px/1.8 system-ui,"Microsoft YaHei",sans-serif}main{max-width:420px;margin:auto;padding:26px 22px;border:1px solid #dfcba2;border-radius:22px;background:#fff8e7;box-shadow:0 12px 40px #667b5520}h1{margin:0 0 14px;font-size:23px}p{margin:12px 0}.hint{color:#7d6b50;font-size:13px}button,a{display:block;width:100%;padding:12px;border:1px solid #819b70;border-radius:12px;font:inherit;text-align:center;text-decoration:none;touch-action:manipulation}button{margin-top:22px;color:#365c40;background:#e1efd7;font-weight:650;cursor:pointer}button:disabled{opacity:.65}a{margin-top:12px;border-color:#dbc8a1;color:#7d6844;background:#fffcf4}#status{min-height:24px;font-size:13px;color:#5e7658}
-  </style>
+  <meta http-equiv="refresh" content="0; url=./food-styles.html">
+  <meta name="theme-color" content="#9acbb1">
+  <title>鹅巷食光 · B 组暖色卡通试玩</title>
+  <script>
+    location.replace(new URL('./food-styles.html', location.href).href);
+  </script>
 </head>
 <body>
-  <main>
-    <h1>恢复游戏入口</h1>
-    <p>旧版离线页面缺失时，游戏可能停在白屏。这里可以解除旧页面拦截，继续打开美术对照。</p>
-    <p class="hint">只修复加载入口，保留游戏进度和手动存档。无需清空微信数据。</p>
-    <button id="repair" type="button">修复并打开 B 组试玩</button>
-    <a href="./food-styles.html">直接进入 B 组暖色卡通试玩</a>
-    <p id="status" role="status" aria-live="polite"></p>
-  </main>
-  <script>
-    (function () {
-      var button = document.getElementById('repair');
-      var status = document.getElementById('status');
-      button.addEventListener('click', function () {
-        button.disabled = true;
-        status.textContent = '正在恢复入口，游戏存档会保留…';
-        var scope = new URL('/goose-lane/', location.href).href;
-        var worker = navigator.serviceWorker;
-        var repair = worker && typeof worker.getRegistration === 'function'
-          ? worker.getRegistration(scope).then(function (registration) {
-              // getRegistration can also return a broader worker on the same host.
-              // Only this game's exact scope may be unregistered; storage is untouched.
-              if (registration && registration.scope === scope) return registration.unregister();
-            })
-          : Promise.resolve();
-        return repair.then(function () {
-          status.textContent = '入口已恢复，正在打开 B 组试玩…';
-          location.replace(new URL('./food-styles.html', location.href).href);
-        }).catch(function () {
-          button.disabled = false;
-          status.textContent = '暂未完成修复，请重试；也可直接进入下方对照页。';
-        });
-      });
-    })();
-  </script>
+  <p>正在打开 B 组暖色卡通试玩…</p>
+  <a href="./food-styles.html">立即进入 B 组试玩</a>
 </body>
 </html>
