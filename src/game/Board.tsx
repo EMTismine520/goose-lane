@@ -36,6 +36,7 @@ export default function Board(props: BoardProps) {
   const buttons = useRef(new Map<number, HTMLButtonElement>());
   const [focused, setFocused] = useState<number | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'failed'>('loading');
+  const [loadingMessage, setLoadingMessage] = useState('正在加载绘图引擎…');
   const rendererMode = boardRendererMode(typeof navigator === 'undefined' ? '' : navigator.userAgent);
   live.current = props;
 
@@ -46,9 +47,28 @@ export default function Board(props: BoardProps) {
     let game: Phaser.Game | undefined;
     let removeListeners: (() => void) | undefined;
     let resizeObserver: ResizeObserver | undefined;
+    let failed = false;
+    let loadTimer: ReturnType<typeof setTimeout>;
+    const fail = (message: string, cause?: unknown) => {
+      if (disposed || failed) return;
+      failed = true;
+      clearTimeout(loadTimer);
+      setLoadingMessage(message);
+      setStatus('failed');
+      if (cause) console.error('The pantry canvas could not start.', cause);
+    };
+    const progress = (message: string) => {
+      if (disposed || failed) return;
+      setLoadingMessage(message);
+      clearTimeout(loadTimer);
+      loadTimer = setTimeout(() => fail('加载已超过 30 秒没有进展，请检查网络后重试。'), 30000);
+    };
+    progress('正在加载绘图引擎…');
 
     void import('phaser').then(({ default: Engine }) => {
-      if (disposed || !mount.current) return;
+      if (disposed || failed || !mount.current) return;
+      progress('正在初始化料理台…');
+      const directImages = rendererMode === 'canvas';
 
       class PantryScene extends Engine.Scene {
         private board!: BoardRenderer;
@@ -65,24 +85,34 @@ export default function Board(props: BoardProps) {
         constructor() { super('pantry'); }
 
         preload() {
+          progress('正在加载棋盘素材… 0%');
+          this.load.on('progress', (value: number) => progress(`正在加载棋盘素材… ${Math.round(value * 100)}%`));
+          this.load.on('loaderror', () => fail('棋盘素材未能加载，请检查网络后重试。'));
           const base = `${import.meta.env.BASE_URL}assets/`;
           this.load.image('legacy-foods', `${base}foods.webp`);
           for (const item of Object.values(ITEMS)) {
             if (item.assetId) {
               const path = `${import.meta.env.BASE_URL}${itemAssetPath(item.id)}`;
-              if (path.endsWith('.svg')) this.load.svg(`item:${item.assetId}`, path, { width: 96, height: 96 });
+              if (path.endsWith('.svg') && !directImages) this.load.svg(`item:${item.assetId}`, path, { width: 96, height: 96 });
               else this.load.image(`item:${item.assetId}`, path);
             }
           }
           for (const entity of ALL_DEVICES) {
             const path = `${import.meta.env.BASE_URL}${deviceAssetPath(entity.id)}`;
-            if (path.endsWith('.svg')) this.load.svg(`entity:${entity.id}`, path, { width: 96, height: 96 });
+            if (path.endsWith('.svg') && !directImages) this.load.svg(`entity:${entity.id}`, path, { width: 96, height: 96 });
             else this.load.image(`entity:${entity.id}`, path);
           }
-          this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96, height: 96 });
+          if (directImages) this.load.image('entity:crate', `${base}entities/crate.svg`);
+          else this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96, height: 96 });
         }
 
         create() {
+          if (disposed || failed) return;
+          try { this.createBoard(); }
+          catch (cause) { fail('料理台绘制未能完成，请重试或使用最新版 Chrome、Edge 打开。', cause); }
+        }
+
+        private createBoard() {
           if (this.textures.exists('legacy-foods')) {
             const texture = this.textures.get('legacy-foods');
             const source = texture.getSourceImage() as HTMLImageElement;
@@ -112,6 +142,7 @@ export default function Board(props: BoardProps) {
           bridge.current = { sync: () => this.sync(), resize: () => this.refreshViewport(), activate: index => this.activate(index), cancel: () => this.cancel() };
           this.sync();
           this.refreshViewport();
+          clearTimeout(loadTimer);
           if (!disposed) setStatus('ready');
         }
 
@@ -271,16 +302,17 @@ export default function Board(props: BoardProps) {
         scale: { mode: Engine.Scale.FIT, autoCenter: Engine.Scale.CENTER_BOTH, width: BOARD_WIDTH, height: BOARD_HEIGHT },
         input: { activePointers: 1, touch: { capture: true }, mouse: { preventDefaultWheel: false } },
         render: { antialias: true, pixelArt: false }, audio: { noAudio: true }, banner: false,
+        loader: { imageLoadType: directImages ? 'HTMLImageElement' : 'XHR' },
       });
       resizeObserver = new ResizeObserver(() => bridge.current?.resize());
       resizeObserver.observe(mount.current);
     }).catch(error => {
-      console.error('The pantry canvas could not start.', error);
-      if (!disposed) setStatus('failed');
+      fail('绘图引擎未能加载，请检查网络后重试。', error);
     });
 
     return () => {
       disposed = true;
+      clearTimeout(loadTimer);
       bridge.current = null;
       resizeObserver?.disconnect();
       removeListeners?.();
@@ -315,7 +347,7 @@ export default function Board(props: BoardProps) {
         })}
       </div>)}
     </div>
-    {status === 'loading' && <div className="board-loading" role="status" style={{ position: 'absolute', inset: 0 }}>正在铺好料理台…</div>}
-    {status === 'failed' && <p className="board-error" role="alert" style={{ position: 'absolute', inset: 12 }}>料理台暂时未能加载，请刷新重试，或用最新版 Chrome、Edge 打开。</p>}
+    {status === 'loading' && <div className="board-loading" role="status" style={{ position: 'absolute', inset: 0 }}>{loadingMessage}</div>}
+    {status === 'failed' && <div className="board-error" role="alert" style={{ position: 'absolute', inset: 12, display: 'grid', placeContent: 'center', textAlign: 'center', background: '#eef2d5' }}><p>{loadingMessage}</p><button className="primary" onClick={() => window.location.reload()}>重新加载料理台</button><small>已保存的进度会保留</small></div>}
   </div>;
 }

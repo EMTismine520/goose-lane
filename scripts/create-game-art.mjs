@@ -3,7 +3,7 @@ const root = new URL('../public/assets/', import.meta.url);
 const manifest = [];
 function asset(folder, id, body, scale=.82) {
   mkdirSync(new URL(folder+'/',root),{recursive:true});
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><defs><linearGradient id="shine" x2=".7" y2="1"><stop stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="1" flood-color="#715739" flood-opacity=".2"/></filter></defs><ellipse cx="48" cy="82" rx="28" ry="5" fill="#786546" opacity=".13"/><g stroke="#795438" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#s)">${body}</g></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><defs><linearGradient id="shine" x2=".7" y2="1"><stop stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="1" flood-color="#715739" flood-opacity=".2"/></filter></defs><ellipse cx="48" cy="82" rx="28" ry="5" fill="#786546" opacity=".13"/><g stroke="#795438" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#s)">${body}</g></svg>`;
   writeFileSync(new URL(`${folder}/${id}.svg`,root),svg);
   manifest.push({assetId:id,frame:`assets/${folder}/${id}.svg`,pivot:[.5,.52],scale,source:'Original vector artwork · Goose Lane 2026'});
 }
