@@ -1,0 +1,33 @@
+{
+  "origin": "http://127.0.0.1:59432/",
+  "httpServerStopped": true,
+  "offlineReloadSucceeded": true,
+  "board": "ready",
+  "allThemesStatusRestored": true,
+  "lateImages": [
+    {
+      "alt": "帝王蟹",
+      "loaded": true,
+      "path": "./assets/v3-b/fresh-sea-11.webp",
+      "width": 256
+    },
+    {
+      "alt": "海鲜冰箱 3级",
+      "loaded": true,
+      "path": "./assets/v3-b/seafood-fridge-l3.webp",
+      "width": 256
+    },
+    {
+      "alt": "帝王蟹",
+      "loaded": true,
+      "path": "./assets/v3-b/fresh-sea-11.webp",
+      "width": 256
+    },
+    {
+      "alt": "蒜香黄油帝王蟹",
+      "loaded": true,
+      "path": "./assets/v3-b/dish-fresh-ico-0157.webp",
+      "width": 256
+    }
+  ]
+}

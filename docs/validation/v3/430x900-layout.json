@@ -1,0 +1,49 @@
+{
+  "type": "v3-layout",
+  "width": 430,
+  "height": 900,
+  "board": "ready",
+  "overflow": false,
+  "parts": [
+    {
+      "selector": ".resource-bar",
+      "x": 0,
+      "y": 0,
+      "width": 430,
+      "height": 54,
+      "inside": true
+    },
+    {
+      "selector": ".customer-section",
+      "x": 0,
+      "y": 54,
+      "width": 430,
+      "height": 126,
+      "inside": true
+    },
+    {
+      "selector": ".board-frame",
+      "x": 34,
+      "y": 282,
+      "width": 362,
+      "height": 462,
+      "inside": true
+    },
+    {
+      "selector": ".game-footer",
+      "x": 0,
+      "y": 816,
+      "width": 430,
+      "height": 84,
+      "inside": true
+    },
+    {
+      "selector": ".page-switch",
+      "x": 12,
+      "y": 827,
+      "width": 60,
+      "height": 62,
+      "inside": true
+    }
+  ]
+}

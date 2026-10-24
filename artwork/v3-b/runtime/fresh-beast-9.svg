@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-3.20833 -3.20833 102.66667 102.66667">
+  <title>羊排 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="bone" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#fff9e4"/><stop offset="1" stop-color="#e3caa3"/></linearGradient><linearGradient id="fat" x1=".1" y1="0" x2=".85" y2="1"><stop stop-color="#fff6dc"/><stop offset="1" stop-color="#eed5b1"/></linearGradient><linearGradient id="red" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#ed9d85"/><stop offset=".52" stop-color="#d77c69"/><stop offset="1" stop-color="#bd5f53"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(3.6 5.4) scale(.92)">
+    <path d="m32 45-5-24q-5 0-6-4-1-5 4-6 4-1 6 3 5-1 6 4 1 4-4 5l6 23Z" fill="url(#bone)"/><path d="m48 40 1-25q-5-2-4-6 1-4 6-3 3 0 4 4 5 1 5 5-1 4-6 4l1 24Z" fill="url(#bone)"/><path d="m65 47 6-23q-4-3-2-7 3-4 7-1 3 2 2 5 5 2 3 6-2 5-7 3l-5 23Z" fill="url(#bone)"/><path d="M23 44q6-9 16-5 7-9 17-2 10-2 17 8l9 20q3 8-4 12-13 10-28 10-20-1-33-11-5-4-2-12Z" fill="url(#fat)"/><path d="M25 49q5-8 14-3 8-9 16-2 10-3 15 6l7 15q2 6-5 10-12 6-23 6-15-2-25-8-5-3-3-9Z" fill="url(#red)"/><path d="M39 47q-5 11 1 30m15-32q-4 14 4 32" fill="none" stroke="#edb29b" stroke-width="3.1"/><path d="M25 57q1-6 6-8m15-1 4-1m13 5 4 4" fill="none" stroke="#ffe7bd" stroke-width="3.4"/><path d="M27 70q4 4 10 4m9 1 5 1m11-4 5-2" fill="none" stroke="#b76a58" stroke-width="1.7"/>
+  </g>
+</svg>

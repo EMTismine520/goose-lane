@@ -1,8 +1,10 @@
 import { activeDevices, HOME_DEVICES, homeCookingUnlocked } from '../content/board-layouts';
 import type { GameState } from './types';
+import { reconcileDeviceGrants } from './devices';
 
 /** Called on a detached state inside the command/save transaction. Preserves every UID. */
 export function reconcileHomeDevices(state: GameState): boolean {
+  if(state.schemaVersion>=3&&state.campaign==='fresh')return reconcileDeviceGrants(state);
   if (!homeCookingUnlocked(state)) return false;
   const occupied = new Set(activeDevices(state).map(device => device.index));
   const displaced = HOME_DEVICES.flatMap(device => {

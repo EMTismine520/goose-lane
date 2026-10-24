@@ -1,0 +1,8120 @@
+{
+  "version": "3.0.0",
+  "chains": [
+    {
+      "id": "fresh-veg",
+      "name": "蔬菜",
+      "stage": 1,
+      "producer": "vegetable-cart",
+      "names": [
+        "番茄",
+        "黄瓜",
+        "彩椒",
+        "胡萝卜",
+        "西兰花",
+        "南瓜",
+        "田园菜篮"
+      ]
+    },
+    {
+      "id": "fresh-fruit",
+      "name": "鲜果",
+      "stage": 1,
+      "producer": "fruit-cart",
+      "names": [
+        "草莓",
+        "甜橙",
+        "苹果",
+        "葡萄",
+        "菠萝",
+        "西瓜",
+        "缤纷果篮"
+      ]
+    },
+    {
+      "id": "fresh-beast",
+      "name": "兽肉",
+      "stage": 2,
+      "producer": "beast-meat-cart",
+      "names": [
+        "香肠",
+        "培根",
+        "肉丸",
+        "五花肉",
+        "排骨",
+        "猪排",
+        "带骨肘子",
+        "带骨牛排",
+        "羊排",
+        "火腿"
+      ]
+    },
+    {
+      "id": "fresh-poultry",
+      "name": "禽肉",
+      "stage": 2,
+      "producer": "poultry-cart",
+      "names": [
+        "鸡蛋",
+        "鸡胗",
+        "鸡翅中",
+        "鸡胸肉",
+        "鸡腿",
+        "鸡全翅",
+        "整鸡",
+        "皮蛋"
+      ]
+    },
+    {
+      "id": "fresh-spice",
+      "name": "香料",
+      "stage": 2,
+      "producer": "spice-box",
+      "names": [
+        "红椒",
+        "香葱",
+        "紫洋葱",
+        "香草荚",
+        "大蒜",
+        "罗勒",
+        "肉桂",
+        "香草籽",
+        "香草精",
+        "混合香叶"
+      ]
+    },
+    {
+      "id": "fresh-seasonal",
+      "name": "时蔬",
+      "stage": 3,
+      "producer": "vegetable-cart",
+      "names": [
+        "蘑菇",
+        "玉米",
+        "紫甘蓝",
+        "土豆",
+        "生菜",
+        "四季豆",
+        "茄子",
+        "白萝卜"
+      ]
+    },
+    {
+      "id": "fresh-exotic",
+      "name": "风味鲜果",
+      "stage": 3,
+      "producer": "fruit-cart",
+      "names": [
+        "蓝莓",
+        "香蕉",
+        "柠檬",
+        "芒果",
+        "水蜜桃",
+        "椰子",
+        "梨",
+        "桑葚"
+      ]
+    },
+    {
+      "id": "fresh-sea",
+      "name": "海鲜",
+      "stage": 6,
+      "producer": "seafood-fridge",
+      "names": [
+        "鲜虾",
+        "鱿鱼",
+        "鳕鱼",
+        "鲶鱼",
+        "金枪鱼",
+        "三文鱼",
+        "生蚝",
+        "海螺",
+        "肥蟹",
+        "龙虾",
+        "帝王蟹"
+      ]
+    },
+    {
+      "id": "fresh-milk",
+      "name": "乳品",
+      "stage": 3,
+      "producer": "dairy-fridge",
+      "names": [
+        "纯牛奶",
+        "黄油",
+        "芝士片",
+        "奶油",
+        "酸奶",
+        "奶酪",
+        "炼乳"
+      ]
+    },
+    {
+      "id": "fresh-grain",
+      "name": "谷物面点",
+      "stage": 3,
+      "producer": "grain-box",
+      "names": [
+        "大米",
+        "燕麦",
+        "面粉",
+        "软面团",
+        "吐司",
+        "面包胚",
+        "米粉浆",
+        "糯米团",
+        "酥皮"
+      ]
+    },
+    {
+      "id": "fresh-sweet",
+      "name": "糖果甜料",
+      "stage": 3,
+      "producer": "sweet-cabinet",
+      "names": [
+        "砂糖",
+        "冰糖",
+        "糖浆",
+        "蜂蜜",
+        "焦糖",
+        "糖豆",
+        "巧克力",
+        "棉花软糖",
+        "黑糖珍珠"
+      ]
+    },
+    {
+      "id": "fresh-coffee",
+      "name": "咖啡",
+      "stage": 3,
+      "producer": "drink-fridge",
+      "names": [
+        "咖啡豆",
+        "浓缩咖啡",
+        "原味咖啡",
+        "便携咖啡",
+        "冰咖啡",
+        "深烘咖啡",
+        "美式咖啡",
+        "大杯美式",
+        "摩卡咖啡"
+      ]
+    },
+    {
+      "id": "fresh-tea",
+      "name": "茶",
+      "stage": 3,
+      "producer": "drink-fridge",
+      "names": [
+        "茶叶",
+        "绿茶",
+        "红茶",
+        "乌龙茶",
+        "花茶",
+        "香草绿茶"
+      ]
+    },
+    {
+      "id": "fresh-mixer",
+      "name": "特调基底",
+      "stage": 8,
+      "producer": "drink-fridge",
+      "names": [
+        "冰块",
+        "矿泉水",
+        "苏打水",
+        "姜汁水",
+        "汤力水",
+        "可乐",
+        "能量汽水",
+        "朗姆酒",
+        "威士忌",
+        "伏特加",
+        "龙舌兰",
+        "金酒",
+        "红葡萄酒"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "fresh-veg-1",
+      "name": "番茄",
+      "chain": "fresh-veg",
+      "level": 1,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-veg-2",
+      "name": "黄瓜",
+      "chain": "fresh-veg",
+      "level": 2,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-veg-3",
+      "name": "彩椒",
+      "chain": "fresh-veg",
+      "level": 3,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": "ico-0023",
+      "referenceName": "彩椒",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-veg-4",
+      "name": "胡萝卜",
+      "chain": "fresh-veg",
+      "level": 4,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": "ico-0006",
+      "referenceName": "胡萝卜",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-veg-5",
+      "name": "西兰花",
+      "chain": "fresh-veg",
+      "level": 5,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-veg-6",
+      "name": "南瓜",
+      "chain": "fresh-veg",
+      "level": 6,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-veg-7",
+      "name": "田园菜篮",
+      "chain": "fresh-veg",
+      "level": 7,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-fruit-1",
+      "name": "草莓",
+      "chain": "fresh-fruit",
+      "level": 1,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-fruit-2",
+      "name": "甜橙",
+      "chain": "fresh-fruit",
+      "level": 2,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-fruit-3",
+      "name": "苹果",
+      "chain": "fresh-fruit",
+      "level": 3,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-fruit-4",
+      "name": "葡萄",
+      "chain": "fresh-fruit",
+      "level": 4,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-fruit-5",
+      "name": "菠萝",
+      "chain": "fresh-fruit",
+      "level": 5,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-fruit-6",
+      "name": "西瓜",
+      "chain": "fresh-fruit",
+      "level": 6,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-fruit-7",
+      "name": "缤纷果篮",
+      "chain": "fresh-fruit",
+      "level": 7,
+      "stage": 1,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-1",
+      "name": "香肠",
+      "chain": "fresh-beast",
+      "level": 1,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-2",
+      "name": "培根",
+      "chain": "fresh-beast",
+      "level": 2,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-3",
+      "name": "肉丸",
+      "chain": "fresh-beast",
+      "level": 3,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-4",
+      "name": "五花肉",
+      "chain": "fresh-beast",
+      "level": 4,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-5",
+      "name": "排骨",
+      "chain": "fresh-beast",
+      "level": 5,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-6",
+      "name": "猪排",
+      "chain": "fresh-beast",
+      "level": 6,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-7",
+      "name": "带骨肘子",
+      "chain": "fresh-beast",
+      "level": 7,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-8",
+      "name": "带骨牛排",
+      "chain": "fresh-beast",
+      "level": 8,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-9",
+      "name": "羊排",
+      "chain": "fresh-beast",
+      "level": 9,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-beast-10",
+      "name": "火腿",
+      "chain": "fresh-beast",
+      "level": 10,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-1",
+      "name": "鸡蛋",
+      "chain": "fresh-poultry",
+      "level": 1,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-2",
+      "name": "鸡胗",
+      "chain": "fresh-poultry",
+      "level": 2,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-3",
+      "name": "鸡翅中",
+      "chain": "fresh-poultry",
+      "level": 3,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-4",
+      "name": "鸡胸肉",
+      "chain": "fresh-poultry",
+      "level": 4,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-5",
+      "name": "鸡腿",
+      "chain": "fresh-poultry",
+      "level": 5,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-6",
+      "name": "鸡全翅",
+      "chain": "fresh-poultry",
+      "level": 6,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-7",
+      "name": "整鸡",
+      "chain": "fresh-poultry",
+      "level": 7,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-poultry-8",
+      "name": "皮蛋",
+      "chain": "fresh-poultry",
+      "level": 8,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-spice-1",
+      "name": "红椒",
+      "chain": "fresh-spice",
+      "level": 1,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-spice-2",
+      "name": "香葱",
+      "chain": "fresh-spice",
+      "level": 2,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-spice-3",
+      "name": "紫洋葱",
+      "chain": "fresh-spice",
+      "level": 3,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-spice-4",
+      "name": "香草荚",
+      "chain": "fresh-spice",
+      "level": 4,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": "ico-0056",
+      "referenceName": "香草荚",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-spice-5",
+      "name": "大蒜",
+      "chain": "fresh-spice",
+      "level": 5,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-spice-6",
+      "name": "罗勒",
+      "chain": "fresh-spice",
+      "level": 6,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-spice-7",
+      "name": "肉桂",
+      "chain": "fresh-spice",
+      "level": 7,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-spice-8",
+      "name": "香草籽",
+      "chain": "fresh-spice",
+      "level": 8,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": "ico-0024",
+      "referenceName": "香草籽",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-spice-9",
+      "name": "香草精",
+      "chain": "fresh-spice",
+      "level": 9,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": "ico-0010",
+      "referenceName": "香草精",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-spice-10",
+      "name": "混合香叶",
+      "chain": "fresh-spice",
+      "level": 10,
+      "stage": 2,
+      "kind": "ingredient",
+      "referenceId": "ico-0110",
+      "referenceName": "混合香叶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-seasonal-1",
+      "name": "蘑菇",
+      "chain": "fresh-seasonal",
+      "level": 1,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0018",
+      "referenceName": "蘑菇",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-seasonal-2",
+      "name": "玉米",
+      "chain": "fresh-seasonal",
+      "level": 2,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0012",
+      "referenceName": "玉米",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-seasonal-3",
+      "name": "紫甘蓝",
+      "chain": "fresh-seasonal",
+      "level": 3,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0032",
+      "referenceName": "紫甘蓝",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-seasonal-4",
+      "name": "土豆",
+      "chain": "fresh-seasonal",
+      "level": 4,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0038",
+      "referenceName": "土豆",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314"
+    },
+    {
+      "id": "fresh-seasonal-5",
+      "name": "生菜",
+      "chain": "fresh-seasonal",
+      "level": 5,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-seasonal-6",
+      "name": "四季豆",
+      "chain": "fresh-seasonal",
+      "level": 6,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-seasonal-7",
+      "name": "茄子",
+      "chain": "fresh-seasonal",
+      "level": 7,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-seasonal-8",
+      "name": "白萝卜",
+      "chain": "fresh-seasonal",
+      "level": 8,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-exotic-1",
+      "name": "蓝莓",
+      "chain": "fresh-exotic",
+      "level": 1,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-exotic-2",
+      "name": "香蕉",
+      "chain": "fresh-exotic",
+      "level": 2,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0025",
+      "referenceName": "香蕉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-exotic-3",
+      "name": "柠檬",
+      "chain": "fresh-exotic",
+      "level": 3,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0040",
+      "referenceName": "柠檬",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314"
+    },
+    {
+      "id": "fresh-exotic-4",
+      "name": "芒果",
+      "chain": "fresh-exotic",
+      "level": 4,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0138",
+      "referenceName": "芒果",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207"
+    },
+    {
+      "id": "fresh-exotic-5",
+      "name": "水蜜桃",
+      "chain": "fresh-exotic",
+      "level": 5,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0165",
+      "referenceName": "水蜜桃",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811355157534084920"
+    },
+    {
+      "id": "fresh-exotic-6",
+      "name": "椰子",
+      "chain": "fresh-exotic",
+      "level": 6,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-exotic-7",
+      "name": "梨",
+      "chain": "fresh-exotic",
+      "level": 7,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-exotic-8",
+      "name": "桑葚",
+      "chain": "fresh-exotic",
+      "level": 8,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-1",
+      "name": "鲜虾",
+      "chain": "fresh-sea",
+      "level": 1,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-2",
+      "name": "鱿鱼",
+      "chain": "fresh-sea",
+      "level": 2,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-3",
+      "name": "鳕鱼",
+      "chain": "fresh-sea",
+      "level": 3,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-4",
+      "name": "鲶鱼",
+      "chain": "fresh-sea",
+      "level": 4,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-5",
+      "name": "金枪鱼",
+      "chain": "fresh-sea",
+      "level": 5,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-6",
+      "name": "三文鱼",
+      "chain": "fresh-sea",
+      "level": 6,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-7",
+      "name": "生蚝",
+      "chain": "fresh-sea",
+      "level": 7,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-8",
+      "name": "海螺",
+      "chain": "fresh-sea",
+      "level": 8,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": "ico-0108",
+      "referenceName": "海螺",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413"
+    },
+    {
+      "id": "fresh-sea-9",
+      "name": "肥蟹",
+      "chain": "fresh-sea",
+      "level": 9,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-10",
+      "name": "龙虾",
+      "chain": "fresh-sea",
+      "level": 10,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sea-11",
+      "name": "帝王蟹",
+      "chain": "fresh-sea",
+      "level": 11,
+      "stage": 6,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-milk-1",
+      "name": "纯牛奶",
+      "chain": "fresh-milk",
+      "level": 1,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0148",
+      "referenceName": "纯牛奶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824"
+    },
+    {
+      "id": "fresh-milk-2",
+      "name": "黄油",
+      "chain": "fresh-milk",
+      "level": 2,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0005",
+      "referenceName": "黄油",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824"
+    },
+    {
+      "id": "fresh-milk-3",
+      "name": "芝士片",
+      "chain": "fresh-milk",
+      "level": 3,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0008",
+      "referenceName": "芝士片",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-milk-4",
+      "name": "奶油",
+      "chain": "fresh-milk",
+      "level": 4,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0060",
+      "referenceName": "奶油",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824"
+    },
+    {
+      "id": "fresh-milk-5",
+      "name": "酸奶",
+      "chain": "fresh-milk",
+      "level": 5,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-milk-6",
+      "name": "奶酪",
+      "chain": "fresh-milk",
+      "level": 6,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-milk-7",
+      "name": "炼乳",
+      "chain": "fresh-milk",
+      "level": 7,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-1",
+      "name": "大米",
+      "chain": "fresh-grain",
+      "level": 1,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-2",
+      "name": "燕麦",
+      "chain": "fresh-grain",
+      "level": 2,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0084",
+      "referenceName": "燕麦",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347"
+    },
+    {
+      "id": "fresh-grain-3",
+      "name": "面粉",
+      "chain": "fresh-grain",
+      "level": 3,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-4",
+      "name": "软面团",
+      "chain": "fresh-grain",
+      "level": 4,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-5",
+      "name": "吐司",
+      "chain": "fresh-grain",
+      "level": 5,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-6",
+      "name": "面包胚",
+      "chain": "fresh-grain",
+      "level": 6,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-7",
+      "name": "米粉浆",
+      "chain": "fresh-grain",
+      "level": 7,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-8",
+      "name": "糯米团",
+      "chain": "fresh-grain",
+      "level": 8,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-grain-9",
+      "name": "酥皮",
+      "chain": "fresh-grain",
+      "level": 9,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0137",
+      "referenceName": "酥皮",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207"
+    },
+    {
+      "id": "fresh-sweet-1",
+      "name": "砂糖",
+      "chain": "fresh-sweet",
+      "level": 1,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-sweet-2",
+      "name": "冰糖",
+      "chain": "fresh-sweet",
+      "level": 2,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0003",
+      "referenceName": "冰糖",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-sweet-3",
+      "name": "糖浆",
+      "chain": "fresh-sweet",
+      "level": 3,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0033",
+      "referenceName": "糖浆",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-sweet-4",
+      "name": "蜂蜜",
+      "chain": "fresh-sweet",
+      "level": 4,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0013",
+      "referenceName": "蜂蜜",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-sweet-5",
+      "name": "焦糖",
+      "chain": "fresh-sweet",
+      "level": 5,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0026",
+      "referenceName": "焦糖",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679"
+    },
+    {
+      "id": "fresh-sweet-6",
+      "name": "糖豆",
+      "chain": "fresh-sweet",
+      "level": 6,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0066",
+      "referenceName": "糖豆",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-sweet-7",
+      "name": "巧克力",
+      "chain": "fresh-sweet",
+      "level": 7,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0044",
+      "referenceName": "巧克力",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-sweet-8",
+      "name": "棉花软糖",
+      "chain": "fresh-sweet",
+      "level": 8,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0170",
+      "referenceName": "棉花软糖",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-sweet-9",
+      "name": "黑糖珍珠",
+      "chain": "fresh-sweet",
+      "level": 9,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-coffee-1",
+      "name": "咖啡豆",
+      "chain": "fresh-coffee",
+      "level": 1,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0166",
+      "referenceName": "咖啡豆",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-coffee-2",
+      "name": "浓缩咖啡",
+      "chain": "fresh-coffee",
+      "level": 2,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0167",
+      "referenceName": "纸杯咖啡与豆（阶段外观）",
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-coffee-3",
+      "name": "原味咖啡",
+      "chain": "fresh-coffee",
+      "level": 3,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0168",
+      "referenceName": "橙色纸杯咖啡（阶段外观）",
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-coffee-4",
+      "name": "便携咖啡",
+      "chain": "fresh-coffee",
+      "level": 4,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0017",
+      "referenceName": "便携咖啡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-coffee-5",
+      "name": "冰咖啡",
+      "chain": "fresh-coffee",
+      "level": 5,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0022",
+      "referenceName": "冰咖啡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-coffee-6",
+      "name": "深烘咖啡",
+      "chain": "fresh-coffee",
+      "level": 6,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0004",
+      "referenceName": "深烘咖啡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-coffee-7",
+      "name": "美式咖啡",
+      "chain": "fresh-coffee",
+      "level": 7,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0002",
+      "referenceName": "美式咖啡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-coffee-8",
+      "name": "大杯美式",
+      "chain": "fresh-coffee",
+      "level": 8,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0078",
+      "referenceName": "大杯美式",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790641292114657994"
+    },
+    {
+      "id": "fresh-coffee-9",
+      "name": "摩卡咖啡",
+      "chain": "fresh-coffee",
+      "level": 9,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0094",
+      "referenceName": "摩卡咖啡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-tea-1",
+      "name": "茶叶",
+      "chain": "fresh-tea",
+      "level": 1,
+      "stage": 3,
+      "kind": "ingredient",
+      "referenceId": "ico-0171",
+      "referenceName": "茶叶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-tea-2",
+      "name": "绿茶",
+      "chain": "fresh-tea",
+      "level": 2,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0007",
+      "referenceName": "绿茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-tea-3",
+      "name": "红茶",
+      "chain": "fresh-tea",
+      "level": 3,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0051",
+      "referenceName": "红茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-tea-4",
+      "name": "乌龙茶",
+      "chain": "fresh-tea",
+      "level": 4,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0062",
+      "referenceName": "乌龙茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207"
+    },
+    {
+      "id": "fresh-tea-5",
+      "name": "花茶",
+      "chain": "fresh-tea",
+      "level": 5,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0124",
+      "referenceName": "花茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
+    },
+    {
+      "id": "fresh-tea-6",
+      "name": "香草绿茶",
+      "chain": "fresh-tea",
+      "level": 6,
+      "stage": 3,
+      "kind": "drink",
+      "referenceId": "ico-0041",
+      "referenceName": "香草绿茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314"
+    },
+    {
+      "id": "fresh-mixer-1",
+      "name": "冰块",
+      "chain": "fresh-mixer",
+      "level": 1,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-2",
+      "name": "矿泉水",
+      "chain": "fresh-mixer",
+      "level": 2,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": "ico-0147",
+      "referenceName": "矿泉水",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824"
+    },
+    {
+      "id": "fresh-mixer-3",
+      "name": "苏打水",
+      "chain": "fresh-mixer",
+      "level": 3,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-4",
+      "name": "姜汁水",
+      "chain": "fresh-mixer",
+      "level": 4,
+      "stage": 8,
+      "kind": "drink",
+      "referenceId": "ico-0076",
+      "referenceName": "姜汁水",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207"
+    },
+    {
+      "id": "fresh-mixer-5",
+      "name": "汤力水",
+      "chain": "fresh-mixer",
+      "level": 5,
+      "stage": 8,
+      "kind": "drink",
+      "referenceId": "ico-0064",
+      "referenceName": "汤力水",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347"
+    },
+    {
+      "id": "fresh-mixer-6",
+      "name": "可乐",
+      "chain": "fresh-mixer",
+      "level": 6,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-7",
+      "name": "能量汽水",
+      "chain": "fresh-mixer",
+      "level": 7,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-8",
+      "name": "朗姆酒",
+      "chain": "fresh-mixer",
+      "level": 8,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-9",
+      "name": "威士忌",
+      "chain": "fresh-mixer",
+      "level": 9,
+      "stage": 8,
+      "kind": "drink",
+      "referenceId": "ico-0103",
+      "referenceName": "威士忌",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413"
+    },
+    {
+      "id": "fresh-mixer-10",
+      "name": "伏特加",
+      "chain": "fresh-mixer",
+      "level": 10,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-11",
+      "name": "龙舌兰",
+      "chain": "fresh-mixer",
+      "level": 11,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-12",
+      "name": "金酒",
+      "chain": "fresh-mixer",
+      "level": 12,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    },
+    {
+      "id": "fresh-mixer-13",
+      "name": "红葡萄酒",
+      "chain": "fresh-mixer",
+      "level": 13,
+      "stage": 8,
+      "kind": "ingredient",
+      "referenceId": null,
+      "referenceName": null,
+      "naming": "project",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": null
+    }
+  ],
+  "devices": [
+    {
+      "id": "vegetable-cart",
+      "name": "蔬菜推车",
+      "kind": "generator",
+      "stage": 1,
+      "chains": [
+        "fresh-veg",
+        "fresh-seasonal"
+      ],
+      "price": 40
+    },
+    {
+      "id": "fruit-cart",
+      "name": "鲜果木箱",
+      "kind": "generator",
+      "stage": 1,
+      "chains": [
+        "fresh-fruit",
+        "fresh-exotic"
+      ],
+      "price": 40
+    },
+    {
+      "id": "beast-meat-cart",
+      "name": "兽肉推车",
+      "kind": "generator",
+      "stage": 2,
+      "chains": [
+        "fresh-beast"
+      ],
+      "price": 40
+    },
+    {
+      "id": "poultry-cart",
+      "name": "禽肉推车",
+      "kind": "generator",
+      "stage": 2,
+      "chains": [
+        "fresh-poultry"
+      ],
+      "price": 40
+    },
+    {
+      "id": "spice-box",
+      "name": "香料盒",
+      "kind": "generator",
+      "stage": 2,
+      "chains": [
+        "fresh-spice"
+      ],
+      "price": 40
+    },
+    {
+      "id": "seafood-fridge",
+      "name": "海鲜冰箱",
+      "kind": "generator",
+      "stage": 6,
+      "chains": [
+        "fresh-sea"
+      ],
+      "price": 40
+    },
+    {
+      "id": "dairy-fridge",
+      "name": "乳品冷柜",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-milk"
+      ],
+      "price": 40
+    },
+    {
+      "id": "grain-box",
+      "name": "谷物面点箱",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-grain"
+      ],
+      "price": 40
+    },
+    {
+      "id": "sweet-cabinet",
+      "name": "甜料柜",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-sweet"
+      ],
+      "price": 40
+    },
+    {
+      "id": "drink-fridge",
+      "name": "饮品冰柜",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-coffee",
+        "fresh-tea",
+        "fresh-mixer"
+      ],
+      "price": 40
+    },
+    {
+      "id": "chopping-board",
+      "name": "小鹅砧板",
+      "kind": "appliance",
+      "stage": 1,
+      "chains": [],
+      "price": 30,
+      "slot": 0,
+      "baseSeconds": 6
+    },
+    {
+      "id": "fruit-press",
+      "name": "鲜果料理台",
+      "kind": "appliance",
+      "stage": 1,
+      "chains": [],
+      "price": 30,
+      "slot": 1,
+      "baseSeconds": 10
+    },
+    {
+      "id": "home-cooking-pot",
+      "name": "料理锅",
+      "kind": "appliance",
+      "stage": 2,
+      "chains": [],
+      "price": 30,
+      "slot": 4,
+      "baseSeconds": 20
+    },
+    {
+      "id": "frying-station",
+      "name": "煎台",
+      "kind": "appliance",
+      "stage": 4,
+      "chains": [],
+      "price": 30,
+      "slot": 5,
+      "baseSeconds": 22
+    },
+    {
+      "id": "charcoal-grill",
+      "name": "炭烤炉",
+      "kind": "appliance",
+      "stage": 5,
+      "chains": [],
+      "price": 30,
+      "slot": 6,
+      "baseSeconds": 32
+    },
+    {
+      "id": "oven",
+      "name": "烤箱",
+      "kind": "appliance",
+      "stage": 4,
+      "chains": [],
+      "price": 30,
+      "slot": 7,
+      "baseSeconds": 40
+    },
+    {
+      "id": "steamer",
+      "name": "蒸笼",
+      "kind": "appliance",
+      "stage": 6,
+      "chains": [],
+      "price": 30,
+      "slot": 8,
+      "baseSeconds": 30
+    },
+    {
+      "id": "wok",
+      "name": "炒锅",
+      "kind": "appliance",
+      "stage": 5,
+      "chains": [],
+      "price": 30,
+      "slot": 9,
+      "baseSeconds": 20
+    },
+    {
+      "id": "microwave",
+      "name": "微波炉",
+      "kind": "appliance",
+      "stage": 4,
+      "chains": [],
+      "price": 30,
+      "slot": 10,
+      "baseSeconds": 10
+    },
+    {
+      "id": "blender",
+      "name": "搅拌机",
+      "kind": "appliance",
+      "stage": 7,
+      "chains": [],
+      "price": 30,
+      "slot": 11,
+      "baseSeconds": 16
+    },
+    {
+      "id": "ice-cream-machine",
+      "name": "冰淇淋机",
+      "kind": "appliance",
+      "stage": 7,
+      "chains": [],
+      "price": 30,
+      "slot": 12,
+      "baseSeconds": 35
+    },
+    {
+      "id": "bar",
+      "name": "调饮台",
+      "kind": "appliance",
+      "stage": 8,
+      "chains": [],
+      "price": 30,
+      "slot": 13,
+      "baseSeconds": 14
+    }
+  ],
+  "recipes": [
+    {
+      "id": "fresh-ico-0030",
+      "name": "凉拌鸡肉卷",
+      "output": "dish-fresh-ico-0030",
+      "family": "chopping-board",
+      "inputNames": [
+        "炭烤鸡胸肉",
+        "黄瓜",
+        "罗勒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0030",
+      "referenceName": "凉拌鸡肉卷",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "dish-fresh-ico-0042",
+          "count": 1
+        },
+        {
+          "item": "fresh-veg-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 3,
+      "stage": 5,
+      "duration": 24000,
+      "effort": 18.68888888888889
+    },
+    {
+      "id": "fresh-ico-0058",
+      "name": "手撕紫甘蓝",
+      "output": "dish-fresh-ico-0058",
+      "family": "chopping-board",
+      "inputNames": [
+        "紫甘蓝",
+        "大蒜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0058",
+      "referenceName": "手撕紫甘蓝",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 3,
+      "duration": 20000,
+      "effort": 6.888888888888888
+    },
+    {
+      "id": "fresh-ico-0074",
+      "name": "新鲜生蚝",
+      "output": "dish-fresh-ico-0074",
+      "family": "chopping-board",
+      "inputNames": [
+        "生蚝",
+        "柠檬"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0074",
+      "referenceName": "新鲜生蚝",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "inputs": [
+        {
+          "item": "fresh-sea-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 24000,
+      "effort": 7.155555555555555
+    },
+    {
+      "id": "fresh-ico-0141",
+      "name": "田园沙拉",
+      "output": "dish-fresh-ico-0141",
+      "family": "chopping-board",
+      "inputNames": [
+        "生菜",
+        "番茄",
+        "混合香叶"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0141",
+      "referenceName": "田园沙拉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-veg-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-10",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 3,
+      "duration": 28000,
+      "effort": 10.894444444444446
+    },
+    {
+      "id": "fresh-ico-0146",
+      "name": "凉拌皮蛋",
+      "output": "dish-fresh-ico-0146",
+      "family": "chopping-board",
+      "inputNames": [
+        "皮蛋",
+        "紫洋葱",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0146",
+      "referenceName": "凉拌皮蛋",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "inputs": [
+        {
+          "item": "fresh-poultry-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 3,
+      "duration": 28000,
+      "effort": 10.894444444444444
+    },
+    {
+      "id": "fresh-ico-0031",
+      "name": "葡萄果肉饮",
+      "output": "dish-fresh-ico-0031",
+      "family": "fruit-press",
+      "inputNames": [
+        "葡萄",
+        "桑葚"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0031",
+      "referenceName": "葡萄果肉饮",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-fruit-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-8",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 3,
+      "duration": 30000,
+      "effort": 8.944444444444445
+    },
+    {
+      "id": "fresh-ico-0047",
+      "name": "热带芒果汁",
+      "output": "dish-fresh-ico-0047",
+      "family": "fruit-press",
+      "inputNames": [
+        "芒果",
+        "椰子"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0047",
+      "referenceName": "热带芒果汁",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-exotic-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 3,
+      "duration": 26000,
+      "effort": 8.677777777777777
+    },
+    {
+      "id": "fresh-ico-0091",
+      "name": "鹅鹅手打柠檬茶",
+      "output": "dish-fresh-ico-0091",
+      "family": "fruit-press",
+      "inputNames": [
+        "柠檬",
+        "红茶",
+        "糖浆"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0091",
+      "referenceName": "鹅鹅手打柠檬茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-tea-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
+      "stage": 3,
+      "duration": 22000,
+      "effort": 9.799999999999999
+    },
+    {
+      "id": "fresh-ico-0164",
+      "name": "冰镇水蜜桃露",
+      "output": "dish-fresh-ico-0164",
+      "family": "fruit-press",
+      "inputNames": [
+        "水蜜桃",
+        "矿泉水"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0164",
+      "referenceName": "冰镇水蜜桃露",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811355157534084920",
+      "inputs": [
+        {
+          "item": "fresh-exotic-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 8,
+      "duration": 24000,
+      "effort": 5.766666666666666
+    },
+    {
+      "id": "fresh-ico-0009",
+      "name": "珍珠奶茶",
+      "output": "dish-fresh-ico-0009",
+      "family": "fruit-press",
+      "inputNames": [
+        "红茶",
+        "纯牛奶",
+        "黑糖珍珠"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0009",
+      "referenceName": "珍珠奶茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-tea-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-9",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 3,
+      "duration": 32000,
+      "effort": 16.716666666666665
+    },
+    {
+      "id": "fresh-ico-0020",
+      "name": "清新奶绿",
+      "output": "dish-fresh-ico-0020",
+      "family": "fruit-press",
+      "inputNames": [
+        "绿茶",
+        "纯牛奶"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0020",
+      "referenceName": "清新奶绿",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-tea-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 2,
+      "minDeviceLevel": 1,
+      "stage": 3,
+      "duration": 18000,
+      "effort": 3.283333333333333
+    },
+    {
+      "id": "fresh-ico-0055",
+      "name": "香草慕斯奶绿",
+      "output": "dish-fresh-ico-0055",
+      "family": "fruit-press",
+      "inputNames": [
+        "绿茶",
+        "奶油",
+        "香草精"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0055",
+      "referenceName": "香草慕斯奶绿",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-tea-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-9",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 3,
+      "duration": 32000,
+      "effort": 16.022222222222222
+    },
+    {
+      "id": "fresh-ico-0087",
+      "name": "厚顶鸳鸯奶茶",
+      "output": "dish-fresh-ico-0087",
+      "family": "fruit-press",
+      "inputNames": [
+        "红茶",
+        "原味咖啡",
+        "奶油"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0087",
+      "referenceName": "厚顶鸳鸯奶茶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-tea-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-coffee-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 3,
+      "duration": 24000,
+      "effort": 8.544444444444444
+    },
+    {
+      "id": "fresh-ico-0093",
+      "name": "优酪乳",
+      "output": "dish-fresh-ico-0093",
+      "family": "fruit-press",
+      "inputNames": [
+        "酸奶",
+        "梨"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0093",
+      "referenceName": "优酪乳",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-milk-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-7",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 3,
+      "duration": 28000,
+      "effort": 7.4222222222222225
+    },
+    {
+      "id": "fresh-ico-0121",
+      "name": "益生菌饮品",
+      "output": "dish-fresh-ico-0121",
+      "family": "fruit-press",
+      "inputNames": [
+        "酸奶",
+        "蜂蜜"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0121",
+      "referenceName": "益生菌饮品",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-milk-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 3,
+      "duration": 24000,
+      "effort": 5.766666666666666
+    },
+    {
+      "id": "fresh-ico-0089",
+      "name": "什锦海鲜汤",
+      "output": "dish-fresh-ico-0089",
+      "family": "home-cooking-pot",
+      "inputNames": [
+        "鲜虾",
+        "鱿鱼",
+        "海螺"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0089",
+      "referenceName": "什锦海鲜汤",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-sea-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sea-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sea-8",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 42000,
+      "effort": 10.438888888888888
+    },
+    {
+      "id": "fresh-ico-0104",
+      "name": "特色白粥",
+      "output": "dish-fresh-ico-0104",
+      "family": "home-cooking-pot",
+      "inputNames": [
+        "大米"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0104",
+      "referenceName": "特色白粥",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "inputs": [
+        {
+          "item": "fresh-grain-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 1,
+      "minDeviceLevel": 1,
+      "stage": 3,
+      "duration": 24000,
+      "effort": 2.2944444444444443
+    },
+    {
+      "id": "fresh-ico-0139",
+      "name": "焦香洋葱饭",
+      "output": "dish-fresh-ico-0139",
+      "family": "home-cooking-pot",
+      "inputNames": [
+        "大米",
+        "紫洋葱",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0139",
+      "referenceName": "焦香洋葱饭",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-grain-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
+      "stage": 3,
+      "duration": 32000,
+      "effort": 6.994444444444444
+    },
+    {
+      "id": "fresh-ico-0140",
+      "name": "黄油拌饭",
+      "output": "dish-fresh-ico-0140",
+      "family": "home-cooking-pot",
+      "inputNames": [
+        "大米",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0140",
+      "referenceName": "黄油拌饭",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "inputs": [
+        {
+          "item": "fresh-grain-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 2,
+      "minDeviceLevel": 1,
+      "stage": 3,
+      "duration": 28000,
+      "effort": 3.9499999999999997
+    },
+    {
+      "id": "fresh-ico-0029",
+      "name": "脆皮翅根",
+      "output": "dish-fresh-ico-0029",
+      "family": "frying-station",
+      "inputNames": [
+        "鸡翅中",
+        "面粉",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0029",
+      "referenceName": "脆皮翅根",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-poultry-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
+      "stage": 4,
+      "duration": 34000,
+      "effort": 8.516666666666666
+    },
+    {
+      "id": "fresh-ico-0048",
+      "name": "煎炸培根",
+      "output": "dish-fresh-ico-0048",
+      "family": "frying-station",
+      "inputNames": [
+        "培根",
+        "紫洋葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0048",
+      "referenceName": "煎炸培根",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-beast-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
+      "stage": 4,
+      "duration": 32000,
+      "effort": 6.299999999999999
+    },
+    {
+      "id": "fresh-ico-0050",
+      "name": "油炸太阳蛋",
+      "output": "dish-fresh-ico-0050",
+      "family": "frying-station",
+      "inputNames": [
+        "鸡蛋"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0050",
+      "referenceName": "油炸太阳蛋",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-poultry-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 1,
+      "minDeviceLevel": 1,
+      "stage": 4,
+      "duration": 26000,
+      "effort": 2.427777777777778
+    },
+    {
+      "id": "fresh-ico-0057",
+      "name": "香煎肉丸",
+      "output": "dish-fresh-ico-0057",
+      "family": "frying-station",
+      "inputNames": [
+        "肉丸",
+        "罗勒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0057",
+      "referenceName": "香煎肉丸",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-beast-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 38000,
+      "effort": 10.866666666666665
+    },
+    {
+      "id": "fresh-ico-0068",
+      "name": "酥香鳕鱼",
+      "output": "dish-fresh-ico-0068",
+      "family": "frying-station",
+      "inputNames": [
+        "鳕鱼",
+        "面粉",
+        "柠檬"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0068",
+      "referenceName": "酥香鳕鱼",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-sea-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
+      "stage": 6,
+      "duration": 34000,
+      "effort": 10.599999999999998
+    },
+    {
+      "id": "fresh-ico-0071",
+      "name": "香煎胡萝卜",
+      "output": "dish-fresh-ico-0071",
+      "family": "frying-station",
+      "inputNames": [
+        "胡萝卜",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0071",
+      "referenceName": "香煎胡萝卜",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-veg-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 34000,
+      "effort": 5.044444444444444
+    },
+    {
+      "id": "fresh-ico-0097",
+      "name": "酥炸大鸡腿",
+      "output": "dish-fresh-ico-0097",
+      "family": "frying-station",
+      "inputNames": [
+        "鸡腿",
+        "面粉",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0097",
+      "referenceName": "酥炸大鸡腿",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 38000,
+      "effort": 8.783333333333333
+    },
+    {
+      "id": "fresh-ico-0085",
+      "name": "红酒酱牛排",
+      "output": "dish-fresh-ico-0085",
+      "family": "frying-station",
+      "inputNames": [
+        "带骨牛排",
+        "红葡萄酒",
+        "紫洋葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0085",
+      "referenceName": "红酒酱牛排",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-beast-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-13",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 13,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 44000,
+      "effort": 22.377777777777776
+    },
+    {
+      "id": "fresh-ico-0136",
+      "name": "醇香鲶鱼块",
+      "output": "dish-fresh-ico-0136",
+      "family": "frying-station",
+      "inputNames": [
+        "鲶鱼",
+        "黄油",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0136",
+      "referenceName": "醇香鲶鱼块",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-sea-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 36000,
+      "effort": 6.566666666666666
+    },
+    {
+      "id": "fresh-ico-0107",
+      "name": "酥脆萝卜糕",
+      "output": "dish-fresh-ico-0107",
+      "family": "frying-station",
+      "inputNames": [
+        "白萝卜",
+        "米粉浆",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0107",
+      "referenceName": "酥脆萝卜糕",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 4,
+      "duration": 44000,
+      "effort": 12.655555555555555
+    },
+    {
+      "id": "fresh-ico-0027",
+      "name": "孜然烤肉肠",
+      "output": "dish-fresh-ico-0027",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "香肠",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0027",
+      "referenceName": "孜然烤肉肠",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-beast-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 1,
+      "minDeviceLevel": 1,
+      "stage": 5,
+      "duration": 38000,
+      "effort": 3.922222222222222
+    },
+    {
+      "id": "fresh-ico-0028",
+      "name": "风味蔬菜烤串",
+      "output": "dish-fresh-ico-0028",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "彩椒",
+        "蘑菇",
+        "茄子"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0028",
+      "referenceName": "风味蔬菜烤串",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-veg-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-7",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 52000,
+      "effort": 9.716666666666667
+    },
+    {
+      "id": "fresh-ico-0035",
+      "name": "孜然椒盐排骨",
+      "output": "dish-fresh-ico-0035",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "排骨",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0035",
+      "referenceName": "孜然椒盐排骨",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-beast-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 46000,
+      "effort": 6.53888888888889
+    },
+    {
+      "id": "fresh-ico-0036",
+      "name": "炭烧熏肉",
+      "output": "dish-fresh-ico-0036",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "五花肉",
+        "混合香叶"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0036",
+      "referenceName": "炭烧熏肉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-10",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 5,
+      "duration": 52000,
+      "effort": 10.411111111111111
+    },
+    {
+      "id": "fresh-ico-0039",
+      "name": "炭烧鲜菇",
+      "output": "dish-fresh-ico-0039",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "蘑菇",
+        "罗勒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0039",
+      "referenceName": "炭烧鲜菇",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 48000,
+      "effort": 9.45
+    },
+    {
+      "id": "fresh-ico-0042",
+      "name": "炭烤鸡胸肉",
+      "output": "dish-fresh-ico-0042",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "鸡胸肉",
+        "罗勒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0042",
+      "referenceName": "炭烤鸡胸肉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "inputs": [
+        {
+          "item": "fresh-poultry-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 48000,
+      "effort": 10.144444444444446
+    },
+    {
+      "id": "fresh-ico-0045",
+      "name": "黄金烤肘子",
+      "output": "dish-fresh-ico-0045",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "带骨肘子",
+        "蜂蜜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0045",
+      "referenceName": "黄金烤肘子",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-beast-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 50000,
+      "effort": 7.5
+    },
+    {
+      "id": "fresh-ico-0049",
+      "name": "烟熏牛胸肉",
+      "output": "dish-fresh-ico-0049",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "带骨牛排",
+        "紫洋葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0049",
+      "referenceName": "烟熏牛胸肉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-beast-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 5,
+      "duration": 52000,
+      "effort": 11.799999999999999
+    },
+    {
+      "id": "fresh-ico-0053",
+      "name": "炭烤琵琶腿",
+      "output": "dish-fresh-ico-0053",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "鸡腿",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0053",
+      "referenceName": "炭烤琵琶腿",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 46000,
+      "effort": 6.53888888888889
+    },
+    {
+      "id": "fresh-ico-0059",
+      "name": "烟熏黄油五花",
+      "output": "dish-fresh-ico-0059",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "五花肉",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0059",
+      "referenceName": "烟熏黄油五花",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 44000,
+      "effort": 5.71111111111111
+    },
+    {
+      "id": "fresh-ico-0061",
+      "name": "熟烤肥蟹",
+      "output": "dish-fresh-ico-0061",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "肥蟹",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0061",
+      "referenceName": "熟烤肥蟹",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-sea-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 52000,
+      "effort": 15.966666666666667
+    },
+    {
+      "id": "fresh-ico-0079",
+      "name": "炭烧金枪鱼排",
+      "output": "dish-fresh-ico-0079",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "金枪鱼",
+        "柠檬"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0079",
+      "referenceName": "炭烧金枪鱼排",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-sea-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 46000,
+      "effort": 8.622222222222222
+    },
+    {
+      "id": "fresh-ico-0081",
+      "name": "威士忌三文鱼",
+      "output": "dish-fresh-ico-0081",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "三文鱼",
+        "威士忌"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0081",
+      "referenceName": "威士忌三文鱼",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "inputs": [
+        {
+          "item": "fresh-sea-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 52000,
+      "effort": 20.133333333333333
+    },
+    {
+      "id": "fresh-ico-0082",
+      "name": "炭烤海螺",
+      "output": "dish-fresh-ico-0082",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "海螺",
+        "大蒜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0082",
+      "referenceName": "炭烤海螺",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-sea-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 52000,
+      "effort": 11.799999999999999
+    },
+    {
+      "id": "fresh-ico-0095",
+      "name": "炭烤牛排",
+      "output": "dish-fresh-ico-0095",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "带骨牛排",
+        "罗勒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0095",
+      "referenceName": "炭烤牛排",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-beast-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 5,
+      "duration": 52000,
+      "effort": 14.577777777777778
+    },
+    {
+      "id": "fresh-ico-0109",
+      "name": "烟熏三文鱼",
+      "output": "dish-fresh-ico-0109",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "三文鱼",
+        "柠檬"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0109",
+      "referenceName": "烟熏三文鱼",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-sea-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 48000,
+      "effort": 11.533333333333331
+    },
+    {
+      "id": "fresh-ico-0133",
+      "name": "热烤大羊排",
+      "output": "dish-fresh-ico-0133",
+      "family": "charcoal-grill",
+      "inputNames": [
+        "羊排",
+        "混合香叶"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0133",
+      "referenceName": "热烤大羊排",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "inputs": [
+        {
+          "item": "fresh-beast-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-10",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 5,
+      "duration": 52000,
+      "effort": 20.133333333333333
+    },
+    {
+      "id": "fresh-ico-0034",
+      "name": "锡纸彩椒酿",
+      "output": "dish-fresh-ico-0034",
+      "family": "oven",
+      "inputNames": [
+        "彩椒",
+        "肉丸",
+        "芝士片"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0034",
+      "referenceName": "锡纸彩椒酿",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "inputs": [
+        {
+          "item": "fresh-veg-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
+      "stage": 4,
+      "duration": 52000,
+      "effort": 11.799999999999999
+    },
+    {
+      "id": "fresh-ico-0063",
+      "name": "早餐三明治",
+      "output": "dish-fresh-ico-0063",
+      "family": "oven",
+      "inputNames": [
+        "吐司",
+        "培根",
+        "鸡蛋"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0063",
+      "referenceName": "早餐三明治",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-grain-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-poultry-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 56000,
+      "effort": 8.594444444444445
+    },
+    {
+      "id": "fresh-ico-0052",
+      "name": "烤土豆片",
+      "output": "dish-fresh-ico-0052",
+      "family": "oven",
+      "inputNames": [
+        "土豆",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0052",
+      "referenceName": "烤土豆片",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 52000,
+      "effort": 6.2444444444444445
+    },
+    {
+      "id": "fresh-ico-0080",
+      "name": "蒜香面包",
+      "output": "dish-fresh-ico-0080",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "大蒜",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0080",
+      "referenceName": "蒜香面包",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 58000,
+      "effort": 13.588888888888889
+    },
+    {
+      "id": "fresh-ico-0092",
+      "name": "蜜汁烤鸡",
+      "output": "dish-fresh-ico-0092",
+      "family": "oven",
+      "inputNames": [
+        "整鸡",
+        "蜂蜜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0092",
+      "referenceName": "蜜汁烤鸡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "inputs": [
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 58000,
+      "effort": 8.033333333333333
+    },
+    {
+      "id": "fresh-ico-0100",
+      "name": "三文鱼贝果",
+      "output": "dish-fresh-ico-0100",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "烟熏三文鱼",
+        "奶酪"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0100",
+      "referenceName": "三文鱼贝果",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "dish-fresh-ico-0109",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 58000,
+      "effort": 26.511111111111113
+    },
+    {
+      "id": "fresh-ico-0102",
+      "name": "芝士热狗",
+      "output": "dish-fresh-ico-0102",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "香肠",
+        "芝士片"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0102",
+      "referenceName": "芝士热狗",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 58000,
+      "effort": 12.894444444444446
+    },
+    {
+      "id": "fresh-ico-0112",
+      "name": "蜜汁叉烧",
+      "output": "dish-fresh-ico-0112",
+      "family": "oven",
+      "inputNames": [
+        "五花肉",
+        "蜂蜜",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0112",
+      "referenceName": "蜜汁叉烧",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 54000,
+      "effort": 7.072222222222223
+    },
+    {
+      "id": "fresh-ico-0129",
+      "name": "烤热狗面包",
+      "output": "dish-fresh-ico-0129",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "香肠"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0129",
+      "referenceName": "烤热狗面包",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 56000,
+      "effort": 9.983333333333334
+    },
+    {
+      "id": "fresh-ico-0132",
+      "name": "甜苹果派",
+      "output": "dish-fresh-ico-0132",
+      "family": "oven",
+      "inputNames": [
+        "苹果",
+        "酥皮",
+        "焦糖"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0132",
+      "referenceName": "甜苹果派",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "inputs": [
+        {
+          "item": "fresh-fruit-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 4,
+      "duration": 62000,
+      "effort": 20.8
+    },
+    {
+      "id": "fresh-ico-0134",
+      "name": "焦香洋葱贝果",
+      "output": "dish-fresh-ico-0134",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "紫洋葱",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0134",
+      "referenceName": "焦香洋葱贝果",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 58000,
+      "effort": 13.588888888888889
+    },
+    {
+      "id": "fresh-ico-0143",
+      "name": "汉堡包",
+      "output": "dish-fresh-ico-0143",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "肉丸",
+        "生菜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0143",
+      "referenceName": "汉堡包",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 58000,
+      "effort": 14.977777777777778
+    },
+    {
+      "id": "fresh-ico-0157",
+      "name": "蒜香黄油帝王蟹",
+      "output": "dish-fresh-ico-0157",
+      "family": "oven",
+      "inputNames": [
+        "帝王蟹",
+        "大蒜",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0157",
+      "referenceName": "蒜香黄油帝王蟹",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-sea-11",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 11,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 62000,
+      "effort": 19.41111111111111
+    },
+    {
+      "id": "fresh-ico-0158",
+      "name": "培根汉堡",
+      "output": "dish-fresh-ico-0158",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "培根",
+        "生菜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0158",
+      "referenceName": "培根汉堡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 58000,
+      "effort": 13.588888888888889
+    },
+    {
+      "id": "fresh-ico-0161",
+      "name": "蓝莓果派",
+      "output": "dish-fresh-ico-0161",
+      "family": "oven",
+      "inputNames": [
+        "蓝莓",
+        "酥皮",
+        "砂糖"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0161",
+      "referenceName": "蓝莓果派",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "inputs": [
+        {
+          "item": "fresh-exotic-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 4,
+      "duration": 62000,
+      "effort": 16.633333333333333
+    },
+    {
+      "id": "fresh-ico-0162",
+      "name": "烤肠热狗",
+      "output": "dish-fresh-ico-0162",
+      "family": "oven",
+      "inputNames": [
+        "面包胚",
+        "香肠",
+        "番茄"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0162",
+      "referenceName": "烤肠热狗",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-veg-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 58000,
+      "effort": 10.811111111111112
+    },
+    {
+      "id": "fresh-ico-0065",
+      "name": "晶莹鲜虾饺",
+      "output": "dish-fresh-ico-0065",
+      "family": "steamer",
+      "inputNames": [
+        "鲜虾",
+        "软面团"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0065",
+      "referenceName": "晶莹鲜虾饺",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-sea-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 42000,
+      "effort": 4.883333333333333
+    },
+    {
+      "id": "fresh-ico-0070",
+      "name": "牛肉肠粉",
+      "output": "dish-fresh-ico-0070",
+      "family": "steamer",
+      "inputNames": [
+        "带骨牛排",
+        "米粉浆",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0070",
+      "referenceName": "牛肉肠粉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-beast-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 52000,
+      "effort": 13.188888888888888
+    },
+    {
+      "id": "fresh-ico-0072",
+      "name": "香菇肠粉",
+      "output": "dish-fresh-ico-0072",
+      "family": "steamer",
+      "inputNames": [
+        "蘑菇",
+        "米粉浆",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0072",
+      "referenceName": "香菇肠粉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 50000,
+      "effort": 8.194444444444445
+    },
+    {
+      "id": "fresh-ico-0073",
+      "name": "椰汁奶白小丸",
+      "output": "dish-fresh-ico-0073",
+      "family": "steamer",
+      "inputNames": [
+        "椰子",
+        "糯米团",
+        "炼乳"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0073",
+      "referenceName": "椰汁奶白小丸",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-exotic-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-7",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 52000,
+      "effort": 17.355555555555554
+    },
+    {
+      "id": "fresh-ico-0077",
+      "name": "流沙奶黄包",
+      "output": "dish-fresh-ico-0077",
+      "family": "steamer",
+      "inputNames": [
+        "软面团",
+        "鸡蛋",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0077",
+      "referenceName": "流沙奶黄包",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "inputs": [
+        {
+          "item": "fresh-grain-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-poultry-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 44000,
+      "effort": 6.405555555555555
+    },
+    {
+      "id": "fresh-ico-0083",
+      "name": "焦糖马拉糕",
+      "output": "dish-fresh-ico-0083",
+      "family": "steamer",
+      "inputNames": [
+        "面粉",
+        "鸡蛋",
+        "焦糖"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0083",
+      "referenceName": "焦糖马拉糕",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-poultry-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 46000,
+      "effort": 9.316666666666666
+    },
+    {
+      "id": "fresh-ico-0088",
+      "name": "古法糯米鸡",
+      "output": "dish-fresh-ico-0088",
+      "family": "steamer",
+      "inputNames": [
+        "糯米团",
+        "鸡腿",
+        "蘑菇"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0088",
+      "referenceName": "古法糯米鸡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-grain-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 52000,
+      "effort": 12.494444444444444
+    },
+    {
+      "id": "fresh-ico-0115",
+      "name": "鲜肉肠粉",
+      "output": "dish-fresh-ico-0115",
+      "family": "steamer",
+      "inputNames": [
+        "五花肉",
+        "米粉浆",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0115",
+      "referenceName": "鲜肉肠粉",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 50000,
+      "effort": 8.88888888888889
+    },
+    {
+      "id": "fresh-ico-0116",
+      "name": "三鲜虾肉饺子",
+      "output": "dish-fresh-ico-0116",
+      "family": "steamer",
+      "inputNames": [
+        "鲜虾",
+        "五花肉",
+        "软面团"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0116",
+      "referenceName": "三鲜虾肉饺子",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-sea-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 44000,
+      "effort": 6.405555555555555
+    },
+    {
+      "id": "fresh-ico-0123",
+      "name": "爆汁灌汤小笼包",
+      "output": "dish-fresh-ico-0123",
+      "family": "steamer",
+      "inputNames": [
+        "五花肉",
+        "软面团",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0123",
+      "referenceName": "爆汁灌汤小笼包",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "inputs": [
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 44000,
+      "effort": 7.1
+    },
+    {
+      "id": "fresh-ico-0144",
+      "name": "蒜蓉蒸鱿鱼",
+      "output": "dish-fresh-ico-0144",
+      "family": "steamer",
+      "inputNames": [
+        "鱿鱼",
+        "大蒜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0144",
+      "referenceName": "蒜蓉蒸鱿鱼",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "inputs": [
+        {
+          "item": "fresh-sea-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 44000,
+      "effort": 7.1
+    },
+    {
+      "id": "fresh-ico-0145",
+      "name": "蒸龙虾",
+      "output": "dish-fresh-ico-0145",
+      "family": "steamer",
+      "inputNames": [
+        "龙虾",
+        "香葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0145",
+      "referenceName": "蒸龙虾",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "inputs": [
+        {
+          "item": "fresh-sea-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 6,
+      "duration": 50000,
+      "effort": 10.277777777777779
+    },
+    {
+      "id": "fresh-ico-0086",
+      "name": "蒜香炒虾",
+      "output": "dish-fresh-ico-0086",
+      "family": "wok",
+      "inputNames": [
+        "鲜虾",
+        "大蒜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0086",
+      "referenceName": "蒜香炒虾",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-sea-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 34000,
+      "effort": 5.738888888888889
+    },
+    {
+      "id": "fresh-ico-0099",
+      "name": "彩椒土豆丝",
+      "output": "dish-fresh-ico-0099",
+      "family": "wok",
+      "inputNames": [
+        "彩椒",
+        "土豆"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0099",
+      "referenceName": "彩椒土豆丝",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-veg-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 32000,
+      "effort": 6.299999999999999
+    },
+    {
+      "id": "fresh-ico-0101",
+      "name": "红酒烧排骨",
+      "output": "dish-fresh-ico-0101",
+      "family": "wok",
+      "inputNames": [
+        "排骨",
+        "红葡萄酒",
+        "紫洋葱"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0101",
+      "referenceName": "红酒烧排骨",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "inputs": [
+        {
+          "item": "fresh-beast-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-13",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 13,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 42000,
+      "effort": 19.46666666666667
+    },
+    {
+      "id": "fresh-ico-0113",
+      "name": "爆炒西兰花",
+      "output": "dish-fresh-ico-0113",
+      "family": "wok",
+      "inputNames": [
+        "西兰花",
+        "红椒"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0113",
+      "referenceName": "爆炒西兰花",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-veg-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 34000,
+      "effort": 5.738888888888889
+    },
+    {
+      "id": "fresh-ico-0117",
+      "name": "脆皮炸鲜奶",
+      "output": "dish-fresh-ico-0117",
+      "family": "wok",
+      "inputNames": [
+        "纯牛奶",
+        "面粉",
+        "砂糖"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0117",
+      "referenceName": "脆皮炸鲜奶",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
+      "stage": 5,
+      "duration": 32000,
+      "effort": 6.300000000000001
+    },
+    {
+      "id": "fresh-ico-0128",
+      "name": "清炒四季豆",
+      "output": "dish-fresh-ico-0128",
+      "family": "wok",
+      "inputNames": [
+        "四季豆",
+        "大蒜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0128",
+      "referenceName": "清炒四季豆",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 5,
+      "duration": 36000,
+      "effort": 10.733333333333333
+    },
+    {
+      "id": "fresh-ico-0096",
+      "name": "咸水角",
+      "output": "dish-fresh-ico-0096",
+      "family": "wok",
+      "inputNames": [
+        "糯米团",
+        "五花肉",
+        "蘑菇"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0096",
+      "referenceName": "咸水角",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "inputs": [
+        {
+          "item": "fresh-grain-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 5,
+      "duration": 42000,
+      "effort": 10.43888888888889
+    },
+    {
+      "id": "fresh-ico-0014",
+      "name": "香蕉泥",
+      "output": "dish-fresh-ico-0014",
+      "family": "microwave",
+      "inputNames": [
+        "香蕉"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0014",
+      "referenceName": "香蕉泥",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-exotic-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 2,
+      "minDeviceLevel": 1,
+      "stage": 4,
+      "duration": 16000,
+      "effort": 2.4555555555555557
+    },
+    {
+      "id": "fresh-ico-0015",
+      "name": "爆米花",
+      "output": "dish-fresh-ico-0015",
+      "family": "microwave",
+      "inputNames": [
+        "玉米",
+        "黄油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0015",
+      "referenceName": "爆米花",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 2,
+      "minDeviceLevel": 1,
+      "stage": 4,
+      "duration": 18000,
+      "effort": 3.977777777777778
+    },
+    {
+      "id": "fresh-ico-0019",
+      "name": "巧克力脆皮蓝莓",
+      "output": "dish-fresh-ico-0019",
+      "family": "microwave",
+      "inputNames": [
+        "蓝莓",
+        "巧克力"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0019",
+      "referenceName": "巧克力脆皮蓝莓",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "inputs": [
+        {
+          "item": "fresh-exotic-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-7",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 28000,
+      "effort": 5.338888888888889
+    },
+    {
+      "id": "fresh-ico-0054",
+      "name": "玉米花",
+      "output": "dish-fresh-ico-0054",
+      "family": "microwave",
+      "inputNames": [
+        "玉米",
+        "焦糖"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0054",
+      "referenceName": "玉米花",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 5,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 24000,
+      "effort": 5.766666666666666
+    },
+    {
+      "id": "fresh-ico-0069",
+      "name": "酸甜芒果丁",
+      "output": "dish-fresh-ico-0069",
+      "family": "microwave",
+      "inputNames": [
+        "芒果",
+        "柠檬"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0069",
+      "referenceName": "酸甜芒果丁",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-exotic-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 22000,
+      "effort": 5.633333333333333
+    },
+    {
+      "id": "fresh-ico-0105",
+      "name": "热可可",
+      "output": "dish-fresh-ico-0105",
+      "family": "microwave",
+      "inputNames": [
+        "纯牛奶",
+        "巧克力"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0105",
+      "referenceName": "热可可",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "inputs": [
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-7",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 4,
+      "duration": 28000,
+      "effort": 5.338888888888889
+    },
+    {
+      "id": "fresh-ico-0163",
+      "name": "棉花软糖热巧克力",
+      "output": "dish-fresh-ico-0163",
+      "family": "microwave",
+      "inputNames": [
+        "纯牛奶",
+        "巧克力",
+        "棉花软糖"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0163",
+      "referenceName": "棉花软糖热巧克力",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "inputs": [
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-8",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 4,
+      "duration": 32000,
+      "effort": 11.161111111111111
+    },
+    {
+      "id": "fresh-ico-0106",
+      "name": "QQ芒果布丁",
+      "output": "dish-fresh-ico-0106",
+      "family": "blender",
+      "inputNames": [
+        "芒果",
+        "纯牛奶",
+        "砂糖"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0106",
+      "referenceName": "QQ芒果布丁",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "inputs": [
+        {
+          "item": "fresh-exotic-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 7,
+      "duration": 30000,
+      "effort": 4.777777777777778
+    },
+    {
+      "id": "fresh-ico-0114",
+      "name": "芒果慕斯",
+      "output": "dish-fresh-ico-0114",
+      "family": "blender",
+      "inputNames": [
+        "芒果",
+        "奶油",
+        "砂糖"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0114",
+      "referenceName": "芒果慕斯",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "inputs": [
+        {
+          "item": "fresh-exotic-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 7,
+      "duration": 30000,
+      "effort": 5.472222222222222
+    },
+    {
+      "id": "fresh-ico-0125",
+      "name": "浆果蜂蜜燕麦碗",
+      "output": "dish-fresh-ico-0125",
+      "family": "blender",
+      "inputNames": [
+        "蓝莓",
+        "燕麦",
+        "蜂蜜"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0125",
+      "referenceName": "浆果蜂蜜燕麦碗",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "inputs": [
+        {
+          "item": "fresh-exotic-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 7,
+      "duration": 30000,
+      "effort": 5.472222222222221
+    },
+    {
+      "id": "fresh-ico-0127",
+      "name": "肉桂苹果奶冻",
+      "output": "dish-fresh-ico-0127",
+      "family": "blender",
+      "inputNames": [
+        "苹果",
+        "纯牛奶",
+        "肉桂"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0127",
+      "referenceName": "肉桂苹果奶冻",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "inputs": [
+        {
+          "item": "fresh-fruit-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-7",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 7,
+      "duration": 36000,
+      "effort": 8.65
+    },
+    {
+      "id": "fresh-ico-0120",
+      "name": "巧克力冰淇淋",
+      "output": "dish-fresh-ico-0120",
+      "family": "ice-cream-machine",
+      "inputNames": [
+        "巧克力",
+        "奶油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0120",
+      "referenceName": "巧克力冰淇淋",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+      "inputs": [
+        {
+          "item": "fresh-sweet-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 7,
+      "minDeviceLevel": 2,
+      "stage": 7,
+      "duration": 53000,
+      "effort": 7.699999999999999
+    },
+    {
+      "id": "fresh-ico-0130",
+      "name": "黄油冰淇淋",
+      "output": "dish-fresh-ico-0130",
+      "family": "ice-cream-machine",
+      "inputNames": [
+        "黄油",
+        "奶油"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0130",
+      "referenceName": "黄油冰淇淋",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "inputs": [
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-4",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 2,
+      "stage": 7,
+      "duration": 47000,
+      "effort": 5.911111111111111
+    },
+    {
+      "id": "fresh-ico-0126",
+      "name": "阿芙佳朵",
+      "output": "dish-fresh-ico-0126",
+      "family": "ice-cream-machine",
+      "inputNames": [
+        "黄油冰淇淋",
+        "浓缩咖啡"
+      ],
+      "kind": "dish",
+      "referenceId": "ico-0126",
+      "referenceName": "阿芙佳朵",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "inputs": [
+        {
+          "item": "dish-fresh-ico-0130",
+          "count": 1
+        },
+        {
+          "item": "fresh-coffee-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 4,
+      "minDeviceLevel": 3,
+      "stage": 7,
+      "duration": 47000,
+      "effort": 10.433333333333334
+    },
+    {
+      "id": "fresh-ico-0067",
+      "name": "朗姆可乐",
+      "output": "dish-fresh-ico-0067",
+      "family": "bar",
+      "inputNames": [
+        "朗姆酒",
+        "可乐"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0067",
+      "referenceName": "朗姆可乐",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "inputs": [
+        {
+          "item": "fresh-mixer-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-6",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 34000,
+      "effort": 13.377777777777776
+    },
+    {
+      "id": "fresh-ico-0075",
+      "name": "威士忌苏打",
+      "output": "dish-fresh-ico-0075",
+      "family": "bar",
+      "inputNames": [
+        "威士忌",
+        "苏打水"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0075",
+      "referenceName": "威士忌苏打",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "inputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 34000,
+      "effort": 16.155555555555555
+    },
+    {
+      "id": "fresh-ico-0090",
+      "name": "甜蛋酒",
+      "output": "dish-fresh-ico-0090",
+      "family": "bar",
+      "inputNames": [
+        "鸡蛋",
+        "朗姆酒",
+        "纯牛奶"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0090",
+      "referenceName": "甜蛋酒",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "inputs": [
+        {
+          "item": "fresh-poultry-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 8,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 36000,
+      "effort": 9.344444444444445
+    },
+    {
+      "id": "fresh-ico-0098",
+      "name": "威士忌酸酒",
+      "output": "dish-fresh-ico-0098",
+      "family": "bar",
+      "inputNames": [
+        "威士忌",
+        "柠檬",
+        "糖浆"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0098",
+      "referenceName": "威士忌酸酒",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "inputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 36000,
+      "effort": 19.066666666666666
+    },
+    {
+      "id": "fresh-ico-0111",
+      "name": "莫斯科之骡",
+      "output": "dish-fresh-ico-0111",
+      "family": "bar",
+      "inputNames": [
+        "伏特加",
+        "姜汁水",
+        "柠檬"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0111",
+      "referenceName": "莫斯科之骡",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 36000,
+      "effort": 12.122222222222222
+    },
+    {
+      "id": "fresh-ico-0118",
+      "name": "龙舌兰螺丝刀",
+      "output": "dish-fresh-ico-0118",
+      "family": "bar",
+      "inputNames": [
+        "龙舌兰",
+        "甜橙"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0118",
+      "referenceName": "龙舌兰螺丝刀",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "inputs": [
+        {
+          "item": "fresh-mixer-11",
+          "count": 1
+        },
+        {
+          "item": "fresh-fruit-2",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 11,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 34000,
+      "effort": 14.766666666666666
+    },
+    {
+      "id": "fresh-ico-0122",
+      "name": "金汤力",
+      "output": "dish-fresh-ico-0122",
+      "family": "bar",
+      "inputNames": [
+        "金酒",
+        "汤力水"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0122",
+      "referenceName": "金汤力",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "inputs": [
+        {
+          "item": "fresh-mixer-12",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 12,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 34000,
+      "effort": 27.266666666666666
+    },
+    {
+      "id": "fresh-ico-0131",
+      "name": "热托迪",
+      "output": "dish-fresh-ico-0131",
+      "family": "bar",
+      "inputNames": [
+        "威士忌",
+        "蜂蜜",
+        "柠檬"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0131",
+      "referenceName": "热托迪",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+      "inputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 9,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 36000,
+      "effort": 17.677777777777777
+    },
+    {
+      "id": "fresh-ico-0135",
+      "name": "伏特加汤力",
+      "output": "dish-fresh-ico-0135",
+      "family": "bar",
+      "inputNames": [
+        "伏特加",
+        "汤力水"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0135",
+      "referenceName": "伏特加汤力",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-5",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 34000,
+      "effort": 10.599999999999998
+    },
+    {
+      "id": "fresh-ico-0142",
+      "name": "椰香帕洛玛",
+      "output": "dish-fresh-ico-0142",
+      "family": "bar",
+      "inputNames": [
+        "龙舌兰",
+        "椰子",
+        "苏打水"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0142",
+      "referenceName": "椰香帕洛玛",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "inputs": [
+        {
+          "item": "fresh-mixer-11",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 11,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 36000,
+      "effort": 21.84444444444444
+    },
+    {
+      "id": "fresh-ico-0159",
+      "name": "能量伏特加",
+      "output": "dish-fresh-ico-0159",
+      "family": "bar",
+      "inputNames": [
+        "伏特加",
+        "能量汽水"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0159",
+      "referenceName": "能量伏特加",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-7",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 34000,
+      "effort": 10.599999999999998
+    },
+    {
+      "id": "fresh-ico-0160",
+      "name": "浓缩马提尼",
+      "output": "dish-fresh-ico-0160",
+      "family": "bar",
+      "inputNames": [
+        "伏特加",
+        "浓缩咖啡",
+        "糖浆"
+      ],
+      "kind": "drink",
+      "referenceId": "ico-0160",
+      "referenceName": "浓缩马提尼",
+      "naming": "reference",
+      "design": "本项目配方与成长规则",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-coffee-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        }
+      ],
+      "ancestorRank": 10,
+      "minDeviceLevel": 3,
+      "stage": 8,
+      "duration": 36000,
+      "effort": 12.122222222222222
+    }
+  ],
+  "orders": [
+    {
+      "output": "dish-fresh-ico-0104",
+      "stage": 3,
+      "minDeviceLevel": 1,
+      "effort": 2.2944444444444443,
+      "index": 16,
+      "id": "v3-order-001",
+      "coins": 38
+    },
+    {
+      "output": "dish-fresh-ico-0020",
+      "stage": 3,
+      "minDeviceLevel": 1,
+      "effort": 3.283333333333333,
+      "index": 10,
+      "id": "v3-order-002",
+      "coins": 44
+    },
+    {
+      "output": "dish-fresh-ico-0140",
+      "stage": 3,
+      "minDeviceLevel": 1,
+      "effort": 3.9499999999999997,
+      "index": 18,
+      "id": "v3-order-003",
+      "coins": 48
+    },
+    {
+      "output": "dish-fresh-ico-0139",
+      "stage": 3,
+      "minDeviceLevel": 1,
+      "effort": 6.994444444444444,
+      "index": 17,
+      "id": "v3-order-004",
+      "coins": 66
+    },
+    {
+      "output": "dish-fresh-ico-0091",
+      "stage": 3,
+      "minDeviceLevel": 1,
+      "effort": 9.799999999999999,
+      "index": 7,
+      "id": "v3-order-005",
+      "coins": 83
+    },
+    {
+      "output": "dish-fresh-ico-0121",
+      "stage": 3,
+      "minDeviceLevel": 2,
+      "effort": 5.766666666666666,
+      "index": 14,
+      "id": "v3-order-006",
+      "coins": 59
+    },
+    {
+      "output": "dish-fresh-ico-0058",
+      "stage": 3,
+      "minDeviceLevel": 2,
+      "effort": 6.888888888888888,
+      "index": 1,
+      "id": "v3-order-007",
+      "coins": 66
+    },
+    {
+      "output": "dish-fresh-ico-0093",
+      "stage": 3,
+      "minDeviceLevel": 2,
+      "effort": 7.4222222222222225,
+      "index": 13,
+      "id": "v3-order-008",
+      "coins": 69
+    },
+    {
+      "output": "dish-fresh-ico-0087",
+      "stage": 3,
+      "minDeviceLevel": 2,
+      "effort": 8.544444444444444,
+      "index": 12,
+      "id": "v3-order-009",
+      "coins": 76
+    },
+    {
+      "output": "dish-fresh-ico-0047",
+      "stage": 3,
+      "minDeviceLevel": 2,
+      "effort": 8.677777777777777,
+      "index": 6,
+      "id": "v3-order-010",
+      "coins": 77
+    },
+    {
+      "output": "dish-fresh-ico-0031",
+      "stage": 3,
+      "minDeviceLevel": 3,
+      "effort": 8.944444444444445,
+      "index": 5,
+      "id": "v3-order-011",
+      "coins": 78
+    },
+    {
+      "output": "dish-fresh-ico-0146",
+      "stage": 3,
+      "minDeviceLevel": 3,
+      "effort": 10.894444444444444,
+      "index": 4,
+      "id": "v3-order-012",
+      "coins": 90
+    },
+    {
+      "output": "dish-fresh-ico-0141",
+      "stage": 3,
+      "minDeviceLevel": 3,
+      "effort": 10.894444444444446,
+      "index": 3,
+      "id": "v3-order-013",
+      "coins": 90
+    },
+    {
+      "output": "dish-fresh-ico-0055",
+      "stage": 3,
+      "minDeviceLevel": 3,
+      "effort": 16.022222222222222,
+      "index": 11,
+      "id": "v3-order-014",
+      "coins": 121
+    },
+    {
+      "output": "dish-fresh-ico-0009",
+      "stage": 3,
+      "minDeviceLevel": 3,
+      "effort": 16.716666666666665,
+      "index": 9,
+      "id": "v3-order-015",
+      "coins": 125
+    },
+    {
+      "output": "dish-fresh-ico-0050",
+      "stage": 4,
+      "minDeviceLevel": 1,
+      "effort": 2.427777777777778,
+      "index": 21,
+      "id": "v3-order-016",
+      "coins": 39
+    },
+    {
+      "output": "dish-fresh-ico-0014",
+      "stage": 4,
+      "minDeviceLevel": 1,
+      "effort": 2.4555555555555557,
+      "index": 81,
+      "id": "v3-order-017",
+      "coins": 39
+    },
+    {
+      "output": "dish-fresh-ico-0015",
+      "stage": 4,
+      "minDeviceLevel": 1,
+      "effort": 3.977777777777778,
+      "index": 82,
+      "id": "v3-order-018",
+      "coins": 48
+    },
+    {
+      "output": "dish-fresh-ico-0048",
+      "stage": 4,
+      "minDeviceLevel": 1,
+      "effort": 6.299999999999999,
+      "index": 20,
+      "id": "v3-order-019",
+      "coins": 62
+    },
+    {
+      "output": "dish-fresh-ico-0029",
+      "stage": 4,
+      "minDeviceLevel": 1,
+      "effort": 8.516666666666666,
+      "index": 19,
+      "id": "v3-order-020",
+      "coins": 76
+    },
+    {
+      "output": "dish-fresh-ico-0034",
+      "stage": 4,
+      "minDeviceLevel": 1,
+      "effort": 11.799999999999999,
+      "index": 46,
+      "id": "v3-order-021",
+      "coins": 95
+    },
+    {
+      "output": "dish-fresh-ico-0071",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 5.044444444444444,
+      "index": 24,
+      "id": "v3-order-022",
+      "coins": 55
+    },
+    {
+      "output": "dish-fresh-ico-0019",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 5.338888888888889,
+      "index": 83,
+      "id": "v3-order-023",
+      "coins": 57
+    },
+    {
+      "output": "dish-fresh-ico-0105",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 5.338888888888889,
+      "index": 86,
+      "id": "v3-order-024",
+      "coins": 57
+    },
+    {
+      "output": "dish-fresh-ico-0069",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 5.633333333333333,
+      "index": 85,
+      "id": "v3-order-025",
+      "coins": 58
+    },
+    {
+      "output": "dish-fresh-ico-0054",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 5.766666666666666,
+      "index": 84,
+      "id": "v3-order-026",
+      "coins": 59
+    },
+    {
+      "output": "dish-fresh-ico-0052",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 6.2444444444444445,
+      "index": 48,
+      "id": "v3-order-027",
+      "coins": 62
+    },
+    {
+      "output": "dish-fresh-ico-0112",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 7.072222222222223,
+      "index": 53,
+      "id": "v3-order-028",
+      "coins": 67
+    },
+    {
+      "output": "dish-fresh-ico-0092",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 8.033333333333333,
+      "index": 50,
+      "id": "v3-order-029",
+      "coins": 73
+    },
+    {
+      "output": "dish-fresh-ico-0063",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 8.594444444444445,
+      "index": 47,
+      "id": "v3-order-030",
+      "coins": 76
+    },
+    {
+      "output": "dish-fresh-ico-0097",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 8.783333333333333,
+      "index": 25,
+      "id": "v3-order-031",
+      "coins": 77
+    },
+    {
+      "output": "dish-fresh-ico-0129",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 9.983333333333334,
+      "index": 54,
+      "id": "v3-order-032",
+      "coins": 84
+    },
+    {
+      "output": "dish-fresh-ico-0162",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 10.811111111111112,
+      "index": 61,
+      "id": "v3-order-033",
+      "coins": 89
+    },
+    {
+      "output": "dish-fresh-ico-0057",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 10.866666666666665,
+      "index": 22,
+      "id": "v3-order-034",
+      "coins": 90
+    },
+    {
+      "output": "dish-fresh-ico-0102",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 12.894444444444446,
+      "index": 52,
+      "id": "v3-order-035",
+      "coins": 102
+    },
+    {
+      "output": "dish-fresh-ico-0080",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 13.588888888888889,
+      "index": 49,
+      "id": "v3-order-036",
+      "coins": 106
+    },
+    {
+      "output": "dish-fresh-ico-0134",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 13.588888888888889,
+      "index": 56,
+      "id": "v3-order-037",
+      "coins": 106
+    },
+    {
+      "output": "dish-fresh-ico-0158",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 13.588888888888889,
+      "index": 59,
+      "id": "v3-order-038",
+      "coins": 106
+    },
+    {
+      "output": "dish-fresh-ico-0143",
+      "stage": 4,
+      "minDeviceLevel": 2,
+      "effort": 14.977777777777778,
+      "index": 57,
+      "id": "v3-order-039",
+      "coins": 114
+    },
+    {
+      "output": "dish-fresh-ico-0163",
+      "stage": 4,
+      "minDeviceLevel": 3,
+      "effort": 11.161111111111111,
+      "index": 87,
+      "id": "v3-order-040",
+      "coins": 91
+    },
+    {
+      "output": "dish-fresh-ico-0107",
+      "stage": 4,
+      "minDeviceLevel": 3,
+      "effort": 12.655555555555555,
+      "index": 28,
+      "id": "v3-order-041",
+      "coins": 100
+    },
+    {
+      "output": "dish-fresh-ico-0161",
+      "stage": 4,
+      "minDeviceLevel": 3,
+      "effort": 16.633333333333333,
+      "index": 60,
+      "id": "v3-order-042",
+      "coins": 124
+    },
+    {
+      "output": "dish-fresh-ico-0132",
+      "stage": 4,
+      "minDeviceLevel": 3,
+      "effort": 20.8,
+      "index": 55,
+      "id": "v3-order-043",
+      "coins": 149
+    },
+    {
+      "output": "dish-fresh-ico-0027",
+      "stage": 5,
+      "minDeviceLevel": 1,
+      "effort": 3.922222222222222,
+      "index": 29,
+      "id": "v3-order-044",
+      "coins": 48
+    },
+    {
+      "output": "dish-fresh-ico-0117",
+      "stage": 5,
+      "minDeviceLevel": 1,
+      "effort": 6.300000000000001,
+      "index": 78,
+      "id": "v3-order-045",
+      "coins": 62
+    },
+    {
+      "output": "dish-fresh-ico-0059",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 5.71111111111111,
+      "index": 38,
+      "id": "v3-order-046",
+      "coins": 59
+    },
+    {
+      "output": "dish-fresh-ico-0113",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 5.738888888888889,
+      "index": 77,
+      "id": "v3-order-047",
+      "coins": 59
+    },
+    {
+      "output": "dish-fresh-ico-0099",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 6.299999999999999,
+      "index": 75,
+      "id": "v3-order-048",
+      "coins": 62
+    },
+    {
+      "output": "dish-fresh-ico-0035",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 6.53888888888889,
+      "index": 31,
+      "id": "v3-order-049",
+      "coins": 64
+    },
+    {
+      "output": "dish-fresh-ico-0053",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 6.53888888888889,
+      "index": 37,
+      "id": "v3-order-050",
+      "coins": 64
+    },
+    {
+      "output": "dish-fresh-ico-0045",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 7.5,
+      "index": 35,
+      "id": "v3-order-051",
+      "coins": 69
+    },
+    {
+      "output": "dish-fresh-ico-0039",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 9.45,
+      "index": 33,
+      "id": "v3-order-052",
+      "coins": 81
+    },
+    {
+      "output": "dish-fresh-ico-0028",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 9.716666666666667,
+      "index": 30,
+      "id": "v3-order-053",
+      "coins": 83
+    },
+    {
+      "output": "dish-fresh-ico-0042",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 10.144444444444446,
+      "index": 34,
+      "id": "v3-order-054",
+      "coins": 85
+    },
+    {
+      "output": "dish-fresh-ico-0128",
+      "stage": 5,
+      "minDeviceLevel": 2,
+      "effort": 10.733333333333333,
+      "index": 79,
+      "id": "v3-order-055",
+      "coins": 89
+    },
+    {
+      "output": "dish-fresh-ico-0036",
+      "stage": 5,
+      "minDeviceLevel": 3,
+      "effort": 10.411111111111111,
+      "index": 32,
+      "id": "v3-order-056",
+      "coins": 87
+    },
+    {
+      "output": "dish-fresh-ico-0096",
+      "stage": 5,
+      "minDeviceLevel": 3,
+      "effort": 10.43888888888889,
+      "index": 80,
+      "id": "v3-order-057",
+      "coins": 87
+    },
+    {
+      "output": "dish-fresh-ico-0049",
+      "stage": 5,
+      "minDeviceLevel": 3,
+      "effort": 11.799999999999999,
+      "index": 36,
+      "id": "v3-order-058",
+      "coins": 95
+    },
+    {
+      "output": "dish-fresh-ico-0095",
+      "stage": 5,
+      "minDeviceLevel": 3,
+      "effort": 14.577777777777778,
+      "index": 43,
+      "id": "v3-order-059",
+      "coins": 112
+    },
+    {
+      "output": "dish-fresh-ico-0030",
+      "stage": 5,
+      "minDeviceLevel": 3,
+      "effort": 18.68888888888889,
+      "index": 0,
+      "id": "v3-order-060",
+      "coins": 137
+    },
+    {
+      "output": "dish-fresh-ico-0133",
+      "stage": 5,
+      "minDeviceLevel": 3,
+      "effort": 20.133333333333333,
+      "index": 45,
+      "id": "v3-order-061",
+      "coins": 145
+    },
+    {
+      "output": "dish-fresh-ico-0068",
+      "stage": 6,
+      "minDeviceLevel": 1,
+      "effort": 10.599999999999998,
+      "index": 23,
+      "id": "v3-order-062",
+      "coins": 88
+    },
+    {
+      "output": "dish-fresh-ico-0065",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 4.883333333333333,
+      "index": 62,
+      "id": "v3-order-063",
+      "coins": 54
+    },
+    {
+      "output": "dish-fresh-ico-0086",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 5.738888888888889,
+      "index": 74,
+      "id": "v3-order-064",
+      "coins": 59
+    },
+    {
+      "output": "dish-fresh-ico-0077",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 6.405555555555555,
+      "index": 66,
+      "id": "v3-order-065",
+      "coins": 63
+    },
+    {
+      "output": "dish-fresh-ico-0116",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 6.405555555555555,
+      "index": 70,
+      "id": "v3-order-066",
+      "coins": 63
+    },
+    {
+      "output": "dish-fresh-ico-0136",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 6.566666666666666,
+      "index": 27,
+      "id": "v3-order-067",
+      "coins": 64
+    },
+    {
+      "output": "dish-fresh-ico-0123",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 7.1,
+      "index": 71,
+      "id": "v3-order-068",
+      "coins": 67
+    },
+    {
+      "output": "dish-fresh-ico-0144",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 7.1,
+      "index": 72,
+      "id": "v3-order-069",
+      "coins": 67
+    },
+    {
+      "output": "dish-fresh-ico-0074",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 7.155555555555555,
+      "index": 2,
+      "id": "v3-order-070",
+      "coins": 67
+    },
+    {
+      "output": "dish-fresh-ico-0072",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 8.194444444444445,
+      "index": 64,
+      "id": "v3-order-071",
+      "coins": 74
+    },
+    {
+      "output": "dish-fresh-ico-0079",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 8.622222222222222,
+      "index": 40,
+      "id": "v3-order-072",
+      "coins": 76
+    },
+    {
+      "output": "dish-fresh-ico-0115",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 8.88888888888889,
+      "index": 69,
+      "id": "v3-order-073",
+      "coins": 78
+    },
+    {
+      "output": "dish-fresh-ico-0083",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 9.316666666666666,
+      "index": 67,
+      "id": "v3-order-074",
+      "coins": 80
+    },
+    {
+      "output": "dish-fresh-ico-0109",
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 11.533333333333331,
+      "index": 44,
+      "id": "v3-order-075",
+      "coins": 94
+    },
+    {
+      "output": "dish-fresh-ico-0145",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 10.277777777777779,
+      "index": 73,
+      "id": "v3-order-076",
+      "coins": 86
+    },
+    {
+      "output": "dish-fresh-ico-0089",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 10.438888888888888,
+      "index": 15,
+      "id": "v3-order-077",
+      "coins": 87
+    },
+    {
+      "output": "dish-fresh-ico-0082",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 11.799999999999999,
+      "index": 42,
+      "id": "v3-order-078",
+      "coins": 95
+    },
+    {
+      "output": "dish-fresh-ico-0088",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 12.494444444444444,
+      "index": 68,
+      "id": "v3-order-079",
+      "coins": 99
+    },
+    {
+      "output": "dish-fresh-ico-0070",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 13.188888888888888,
+      "index": 63,
+      "id": "v3-order-080",
+      "coins": 104
+    },
+    {
+      "output": "dish-fresh-ico-0061",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 15.966666666666667,
+      "index": 39,
+      "id": "v3-order-081",
+      "coins": 120
+    },
+    {
+      "output": "dish-fresh-ico-0073",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 17.355555555555554,
+      "index": 65,
+      "id": "v3-order-082",
+      "coins": 129
+    },
+    {
+      "output": "dish-fresh-ico-0157",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 19.41111111111111,
+      "index": 58,
+      "id": "v3-order-083",
+      "coins": 141
+    },
+    {
+      "output": "dish-fresh-ico-0100",
+      "stage": 6,
+      "minDeviceLevel": 3,
+      "effort": 26.511111111111113,
+      "index": 51,
+      "id": "v3-order-084",
+      "coins": 184
+    },
+    {
+      "output": "dish-fresh-ico-0106",
+      "stage": 7,
+      "minDeviceLevel": 2,
+      "effort": 4.777777777777778,
+      "index": 88,
+      "id": "v3-order-085",
+      "coins": 53
+    },
+    {
+      "output": "dish-fresh-ico-0125",
+      "stage": 7,
+      "minDeviceLevel": 2,
+      "effort": 5.472222222222221,
+      "index": 90,
+      "id": "v3-order-086",
+      "coins": 57
+    },
+    {
+      "output": "dish-fresh-ico-0114",
+      "stage": 7,
+      "minDeviceLevel": 2,
+      "effort": 5.472222222222222,
+      "index": 89,
+      "id": "v3-order-087",
+      "coins": 57
+    },
+    {
+      "output": "dish-fresh-ico-0130",
+      "stage": 7,
+      "minDeviceLevel": 2,
+      "effort": 5.911111111111111,
+      "index": 93,
+      "id": "v3-order-088",
+      "coins": 60
+    },
+    {
+      "output": "dish-fresh-ico-0120",
+      "stage": 7,
+      "minDeviceLevel": 2,
+      "effort": 7.699999999999999,
+      "index": 92,
+      "id": "v3-order-089",
+      "coins": 71
+    },
+    {
+      "output": "dish-fresh-ico-0127",
+      "stage": 7,
+      "minDeviceLevel": 2,
+      "effort": 8.65,
+      "index": 91,
+      "id": "v3-order-090",
+      "coins": 76
+    },
+    {
+      "output": "dish-fresh-ico-0126",
+      "stage": 7,
+      "minDeviceLevel": 3,
+      "effort": 10.433333333333334,
+      "index": 94,
+      "id": "v3-order-091",
+      "coins": 87
+    },
+    {
+      "output": "fresh-coffee-2",
+      "stage": 8,
+      "minDeviceLevel": 1,
+      "effort": 1.3888888888888888,
+      "index": 107,
+      "id": "v3-order-092",
+      "coins": 33
+    },
+    {
+      "output": "fresh-tea-2",
+      "stage": 8,
+      "minDeviceLevel": 1,
+      "effort": 1.3888888888888888,
+      "index": 115,
+      "id": "v3-order-093",
+      "coins": 33
+    },
+    {
+      "output": "fresh-coffee-3",
+      "stage": 8,
+      "minDeviceLevel": 1,
+      "effort": 2.7777777777777777,
+      "index": 108,
+      "id": "v3-order-094",
+      "coins": 41
+    },
+    {
+      "output": "fresh-tea-3",
+      "stage": 8,
+      "minDeviceLevel": 1,
+      "effort": 2.7777777777777777,
+      "index": 116,
+      "id": "v3-order-095",
+      "coins": 41
+    },
+    {
+      "output": "fresh-coffee-4",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 1.3888888888888888,
+      "index": 109,
+      "id": "v3-order-096",
+      "coins": 33
+    },
+    {
+      "output": "fresh-tea-4",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 1.3888888888888888,
+      "index": 117,
+      "id": "v3-order-097",
+      "coins": 33
+    },
+    {
+      "output": "fresh-mixer-4",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 1.3888888888888888,
+      "index": 120,
+      "id": "v3-order-098",
+      "coins": 33
+    },
+    {
+      "output": "fresh-coffee-5",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 2.7777777777777777,
+      "index": 110,
+      "id": "v3-order-099",
+      "coins": 41
+    },
+    {
+      "output": "fresh-tea-5",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 2.7777777777777777,
+      "index": 118,
+      "id": "v3-order-100",
+      "coins": 41
+    },
+    {
+      "output": "fresh-mixer-5",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 2.7777777777777777,
+      "index": 121,
+      "id": "v3-order-101",
+      "coins": 41
+    },
+    {
+      "output": "fresh-coffee-6",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 5.555555555555555,
+      "index": 111,
+      "id": "v3-order-102",
+      "coins": 58
+    },
+    {
+      "output": "fresh-tea-6",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 5.555555555555555,
+      "index": 119,
+      "id": "v3-order-103",
+      "coins": 58
+    },
+    {
+      "output": "dish-fresh-ico-0164",
+      "stage": 8,
+      "minDeviceLevel": 2,
+      "effort": 5.766666666666666,
+      "index": 8,
+      "id": "v3-order-104",
+      "coins": 59
+    },
+    {
+      "output": "fresh-coffee-7",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 2.7777777777777777,
+      "index": 112,
+      "id": "v3-order-105",
+      "coins": 41
+    },
+    {
+      "output": "fresh-coffee-8",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 5.555555555555555,
+      "index": 113,
+      "id": "v3-order-106",
+      "coins": 58
+    },
+    {
+      "output": "dish-fresh-ico-0090",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 9.344444444444445,
+      "index": 97,
+      "id": "v3-order-107",
+      "coins": 81
+    },
+    {
+      "output": "dish-fresh-ico-0135",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 10.599999999999998,
+      "index": 103,
+      "id": "v3-order-108",
+      "coins": 88
+    },
+    {
+      "output": "dish-fresh-ico-0159",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 10.599999999999998,
+      "index": 105,
+      "id": "v3-order-109",
+      "coins": 88
+    },
+    {
+      "output": "fresh-coffee-9",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 11.11111111111111,
+      "index": 114,
+      "id": "v3-order-110",
+      "coins": 91
+    },
+    {
+      "output": "fresh-mixer-9",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 11.11111111111111,
+      "index": 122,
+      "id": "v3-order-111",
+      "coins": 91
+    },
+    {
+      "output": "dish-fresh-ico-0111",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 12.122222222222222,
+      "index": 99,
+      "id": "v3-order-112",
+      "coins": 97
+    },
+    {
+      "output": "dish-fresh-ico-0160",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 12.122222222222222,
+      "index": 106,
+      "id": "v3-order-113",
+      "coins": 97
+    },
+    {
+      "output": "dish-fresh-ico-0067",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 13.377777777777776,
+      "index": 95,
+      "id": "v3-order-114",
+      "coins": 105
+    },
+    {
+      "output": "dish-fresh-ico-0118",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 14.766666666666666,
+      "index": 100,
+      "id": "v3-order-115",
+      "coins": 113
+    },
+    {
+      "output": "dish-fresh-ico-0075",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 16.155555555555555,
+      "index": 96,
+      "id": "v3-order-116",
+      "coins": 121
+    },
+    {
+      "output": "dish-fresh-ico-0131",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 17.677777777777777,
+      "index": 102,
+      "id": "v3-order-117",
+      "coins": 131
+    },
+    {
+      "output": "dish-fresh-ico-0098",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 19.066666666666666,
+      "index": 98,
+      "id": "v3-order-118",
+      "coins": 139
+    },
+    {
+      "output": "dish-fresh-ico-0101",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 19.46666666666667,
+      "index": 76,
+      "id": "v3-order-119",
+      "coins": 141
+    },
+    {
+      "output": "dish-fresh-ico-0081",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 20.133333333333333,
+      "index": 41,
+      "id": "v3-order-120",
+      "coins": 145
+    },
+    {
+      "output": "dish-fresh-ico-0142",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 21.84444444444444,
+      "index": 104,
+      "id": "v3-order-121",
+      "coins": 156
+    },
+    {
+      "output": "dish-fresh-ico-0085",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 22.377777777777776,
+      "index": 26,
+      "id": "v3-order-122",
+      "coins": 159
+    },
+    {
+      "output": "dish-fresh-ico-0122",
+      "stage": 8,
+      "minDeviceLevel": 3,
+      "effort": 27.266666666666666,
+      "index": 101,
+      "id": "v3-order-123",
+      "coins": 188
+    }
+  ],
+  "references": [
+    {
+      "id": "ico-0001",
+      "name": "鲜榨橙汁",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "alias",
+      "target": "dish-fresh-orange-juice"
+    },
+    {
+      "id": "ico-0002",
+      "name": "美式咖啡",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-coffee-7"
+    },
+    {
+      "id": "ico-0003",
+      "name": "冰糖",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-sweet-2"
+    },
+    {
+      "id": "ico-0004",
+      "name": "深烘咖啡",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-coffee-6"
+    },
+    {
+      "id": "ico-0005",
+      "name": "黄油",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "status": "adopted",
+      "target": "fresh-milk-2"
+    },
+    {
+      "id": "ico-0006",
+      "name": "胡萝卜",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-veg-4"
+    },
+    {
+      "id": "ico-0007",
+      "name": "绿茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-tea-2"
+    },
+    {
+      "id": "ico-0008",
+      "name": "芝士片",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-milk-3"
+    },
+    {
+      "id": "ico-0009",
+      "name": "珍珠奶茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0009"
+    },
+    {
+      "id": "ico-0010",
+      "name": "香草精",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-spice-9"
+    },
+    {
+      "id": "ico-0011",
+      "name": "玻璃碗",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0012",
+      "name": "玉米",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-seasonal-2"
+    },
+    {
+      "id": "ico-0013",
+      "name": "蜂蜜",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-sweet-4"
+    },
+    {
+      "id": "ico-0014",
+      "name": "香蕉泥",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0014"
+    },
+    {
+      "id": "ico-0015",
+      "name": "爆米花",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0015"
+    },
+    {
+      "id": "ico-0016",
+      "name": "蒜",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "stage-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0017",
+      "name": "便携咖啡",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-coffee-4"
+    },
+    {
+      "id": "ico-0018",
+      "name": "蘑菇",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-seasonal-1"
+    },
+    {
+      "id": "ico-0019",
+      "name": "巧克力脆皮蓝莓",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0019"
+    },
+    {
+      "id": "ico-0020",
+      "name": "清新奶绿",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0020"
+    },
+    {
+      "id": "ico-0021",
+      "name": "辣椒",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "stage-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0022",
+      "name": "冰咖啡",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-coffee-5"
+    },
+    {
+      "id": "ico-0023",
+      "name": "彩椒",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-veg-3"
+    },
+    {
+      "id": "ico-0024",
+      "name": "香草籽",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-spice-8"
+    },
+    {
+      "id": "ico-0025",
+      "name": "香蕉",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-exotic-2"
+    },
+    {
+      "id": "ico-0026",
+      "name": "焦糖",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-sweet-5"
+    },
+    {
+      "id": "ico-0027",
+      "name": "孜然烤肉肠",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0027"
+    },
+    {
+      "id": "ico-0028",
+      "name": "风味蔬菜烤串",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0028"
+    },
+    {
+      "id": "ico-0029",
+      "name": "脆皮翅根",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0029"
+    },
+    {
+      "id": "ico-0030",
+      "name": "凉拌鸡肉卷",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0030"
+    },
+    {
+      "id": "ico-0031",
+      "name": "葡萄果肉饮",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0031"
+    },
+    {
+      "id": "ico-0032",
+      "name": "紫甘蓝",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+      "status": "adopted",
+      "target": "fresh-seasonal-3"
+    },
+    {
+      "id": "ico-0033",
+      "name": "糖浆",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-sweet-3"
+    },
+    {
+      "id": "ico-0034",
+      "name": "锡纸彩椒酿",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0034"
+    },
+    {
+      "id": "ico-0035",
+      "name": "孜然椒盐排骨",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0035"
+    },
+    {
+      "id": "ico-0036",
+      "name": "炭烧熏肉",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0036"
+    },
+    {
+      "id": "ico-0037",
+      "name": "橙子",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "stage-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0038",
+      "name": "土豆",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "fresh-seasonal-4"
+    },
+    {
+      "id": "ico-0039",
+      "name": "炭烧鲜菇",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0039"
+    },
+    {
+      "id": "ico-0040",
+      "name": "柠檬",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "fresh-exotic-3"
+    },
+    {
+      "id": "ico-0041",
+      "name": "香草绿茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "fresh-tea-6"
+    },
+    {
+      "id": "ico-0042",
+      "name": "炭烤鸡胸肉",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0042"
+    },
+    {
+      "id": "ico-0043",
+      "name": "葱段",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "stage-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0044",
+      "name": "巧克力",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-sweet-7"
+    },
+    {
+      "id": "ico-0045",
+      "name": "黄金烤肘子",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0045"
+    },
+    {
+      "id": "ico-0046",
+      "name": "洋葱",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "stage-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0047",
+      "name": "热带芒果汁",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0047"
+    },
+    {
+      "id": "ico-0048",
+      "name": "煎炸培根",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0048"
+    },
+    {
+      "id": "ico-0049",
+      "name": "烟熏牛胸肉",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0049"
+    },
+    {
+      "id": "ico-0050",
+      "name": "油炸太阳蛋",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0050"
+    },
+    {
+      "id": "ico-0051",
+      "name": "红茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-tea-3"
+    },
+    {
+      "id": "ico-0052",
+      "name": "烤土豆片",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0052"
+    },
+    {
+      "id": "ico-0053",
+      "name": "炭烤琵琶腿",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0053"
+    },
+    {
+      "id": "ico-0054",
+      "name": "玉米花",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0054"
+    },
+    {
+      "id": "ico-0055",
+      "name": "香草慕斯奶绿",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0055"
+    },
+    {
+      "id": "ico-0056",
+      "name": "香草荚",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-spice-4"
+    },
+    {
+      "id": "ico-0057",
+      "name": "香煎肉丸",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0057"
+    },
+    {
+      "id": "ico-0058",
+      "name": "手撕紫甘蓝",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0058"
+    },
+    {
+      "id": "ico-0059",
+      "name": "烟熏黄油五花",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0059"
+    },
+    {
+      "id": "ico-0060",
+      "name": "奶油",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "status": "adopted",
+      "target": "fresh-milk-4"
+    },
+    {
+      "id": "ico-0061",
+      "name": "熟烤肥蟹",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0061"
+    },
+    {
+      "id": "ico-0062",
+      "name": "乌龙茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "fresh-tea-4"
+    },
+    {
+      "id": "ico-0063",
+      "name": "早餐三明治",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0063"
+    },
+    {
+      "id": "ico-0064",
+      "name": "汤力水",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "fresh-mixer-5"
+    },
+    {
+      "id": "ico-0065",
+      "name": "晶莹鲜虾饺",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0065"
+    },
+    {
+      "id": "ico-0066",
+      "name": "糖豆",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-sweet-6"
+    },
+    {
+      "id": "ico-0067",
+      "name": "朗姆可乐",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0067"
+    },
+    {
+      "id": "ico-0068",
+      "name": "酥香鳕鱼",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0068"
+    },
+    {
+      "id": "ico-0069",
+      "name": "酸甜芒果丁",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0069"
+    },
+    {
+      "id": "ico-0070",
+      "name": "牛肉肠粉",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0070"
+    },
+    {
+      "id": "ico-0071",
+      "name": "香煎胡萝卜",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0071"
+    },
+    {
+      "id": "ico-0072",
+      "name": "香菇肠粉",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0072"
+    },
+    {
+      "id": "ico-0073",
+      "name": "椰汁奶白小丸",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0073"
+    },
+    {
+      "id": "ico-0074",
+      "name": "新鲜生蚝",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0074"
+    },
+    {
+      "id": "ico-0075",
+      "name": "威士忌苏打",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0075"
+    },
+    {
+      "id": "ico-0076",
+      "name": "姜汁水",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "fresh-mixer-4"
+    },
+    {
+      "id": "ico-0077",
+      "name": "流沙奶黄包",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0077"
+    },
+    {
+      "id": "ico-0078",
+      "name": "大杯美式",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+      "status": "adopted",
+      "target": "fresh-coffee-8"
+    },
+    {
+      "id": "ico-0079",
+      "name": "炭烧金枪鱼排",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0079"
+    },
+    {
+      "id": "ico-0080",
+      "name": "蒜香面包",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0080"
+    },
+    {
+      "id": "ico-0081",
+      "name": "威士忌三文鱼",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0081"
+    },
+    {
+      "id": "ico-0082",
+      "name": "炭烤海螺",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0082"
+    },
+    {
+      "id": "ico-0083",
+      "name": "焦糖马拉糕",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0083"
+    },
+    {
+      "id": "ico-0084",
+      "name": "燕麦",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "fresh-grain-2"
+    },
+    {
+      "id": "ico-0085",
+      "name": "红酒酱牛排",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0085"
+    },
+    {
+      "id": "ico-0086",
+      "name": "蒜香炒虾",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0086"
+    },
+    {
+      "id": "ico-0087",
+      "name": "厚顶鸳鸯奶茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0087"
+    },
+    {
+      "id": "ico-0088",
+      "name": "古法糯米鸡",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0088"
+    },
+    {
+      "id": "ico-0089",
+      "name": "什锦海鲜汤",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0089"
+    },
+    {
+      "id": "ico-0090",
+      "name": "甜蛋酒",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0090"
+    },
+    {
+      "id": "ico-0091",
+      "name": "鹅鹅手打柠檬茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0091"
+    },
+    {
+      "id": "ico-0092",
+      "name": "蜜汁烤鸡",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0092"
+    },
+    {
+      "id": "ico-0093",
+      "name": "优酪乳",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0093"
+    },
+    {
+      "id": "ico-0094",
+      "name": "摩卡咖啡",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-coffee-9"
+    },
+    {
+      "id": "ico-0095",
+      "name": "炭烤牛排",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0095"
+    },
+    {
+      "id": "ico-0096",
+      "name": "咸水角",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0096"
+    },
+    {
+      "id": "ico-0097",
+      "name": "酥炸大鸡腿",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0097"
+    },
+    {
+      "id": "ico-0098",
+      "name": "威士忌酸酒",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0098"
+    },
+    {
+      "id": "ico-0099",
+      "name": "彩椒土豆丝",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0099"
+    },
+    {
+      "id": "ico-0100",
+      "name": "三文鱼贝果",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0100"
+    },
+    {
+      "id": "ico-0101",
+      "name": "红酒烧排骨",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0101"
+    },
+    {
+      "id": "ico-0102",
+      "name": "芝士热狗",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0102"
+    },
+    {
+      "id": "ico-0103",
+      "name": "威士忌",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "fresh-mixer-9"
+    },
+    {
+      "id": "ico-0104",
+      "name": "特色白粥",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0104"
+    },
+    {
+      "id": "ico-0105",
+      "name": "热可可",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0105"
+    },
+    {
+      "id": "ico-0106",
+      "name": "QQ芒果布丁",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0106"
+    },
+    {
+      "id": "ico-0107",
+      "name": "酥脆萝卜糕",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0107"
+    },
+    {
+      "id": "ico-0108",
+      "name": "海螺",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "fresh-sea-8"
+    },
+    {
+      "id": "ico-0109",
+      "name": "烟熏三文鱼",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0109"
+    },
+    {
+      "id": "ico-0110",
+      "name": "混合香叶",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-spice-10"
+    },
+    {
+      "id": "ico-0111",
+      "name": "莫斯科之骡",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0111"
+    },
+    {
+      "id": "ico-0112",
+      "name": "蜜汁叉烧",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0112"
+    },
+    {
+      "id": "ico-0113",
+      "name": "爆炒西兰花",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0113"
+    },
+    {
+      "id": "ico-0114",
+      "name": "芒果慕斯",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0114"
+    },
+    {
+      "id": "ico-0115",
+      "name": "鲜肉肠粉",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0115"
+    },
+    {
+      "id": "ico-0116",
+      "name": "三鲜虾肉饺子",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0116"
+    },
+    {
+      "id": "ico-0117",
+      "name": "脆皮炸鲜奶",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0117"
+    },
+    {
+      "id": "ico-0118",
+      "name": "龙舌兰螺丝刀",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0118"
+    },
+    {
+      "id": "ico-0119",
+      "name": "茶楼秘制配方8",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "stage-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0120",
+      "name": "巧克力冰淇淋",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0120"
+    },
+    {
+      "id": "ico-0121",
+      "name": "益生菌饮品",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0121"
+    },
+    {
+      "id": "ico-0122",
+      "name": "金汤力",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0122"
+    },
+    {
+      "id": "ico-0123",
+      "name": "爆汁灌汤小笼包",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0123"
+    },
+    {
+      "id": "ico-0124",
+      "name": "花茶",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-tea-5"
+    },
+    {
+      "id": "ico-0125",
+      "name": "浆果蜂蜜燕麦碗",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0125"
+    },
+    {
+      "id": "ico-0126",
+      "name": "阿芙佳朵",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0126"
+    },
+    {
+      "id": "ico-0127",
+      "name": "肉桂苹果奶冻",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0127"
+    },
+    {
+      "id": "ico-0128",
+      "name": "清炒四季豆",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0128"
+    },
+    {
+      "id": "ico-0129",
+      "name": "烤热狗面包",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0129"
+    },
+    {
+      "id": "ico-0130",
+      "name": "黄油冰淇淋",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0130"
+    },
+    {
+      "id": "ico-0131",
+      "name": "热托迪",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0131"
+    },
+    {
+      "id": "ico-0132",
+      "name": "甜苹果派",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0132"
+    },
+    {
+      "id": "ico-0133",
+      "name": "热烤大羊排",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0133"
+    },
+    {
+      "id": "ico-0134",
+      "name": "焦香洋葱贝果",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0134"
+    },
+    {
+      "id": "ico-0135",
+      "name": "伏特加汤力",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0135"
+    },
+    {
+      "id": "ico-0136",
+      "name": "醇香鲶鱼块",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0136"
+    },
+    {
+      "id": "ico-0137",
+      "name": "酥皮",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "fresh-grain-9"
+    },
+    {
+      "id": "ico-0138",
+      "name": "芒果",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "fresh-exotic-4"
+    },
+    {
+      "id": "ico-0139",
+      "name": "焦香洋葱饭",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0139"
+    },
+    {
+      "id": "ico-0140",
+      "name": "黄油拌饭",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0140"
+    },
+    {
+      "id": "ico-0141",
+      "name": "田园沙拉",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0141"
+    },
+    {
+      "id": "ico-0142",
+      "name": "椰香帕洛玛",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0142"
+    },
+    {
+      "id": "ico-0143",
+      "name": "汉堡包",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0143"
+    },
+    {
+      "id": "ico-0144",
+      "name": "蒜蓉蒸鱿鱼",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0144"
+    },
+    {
+      "id": "ico-0145",
+      "name": "蒸龙虾",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0145"
+    },
+    {
+      "id": "ico-0146",
+      "name": "凉拌皮蛋",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0146"
+    },
+    {
+      "id": "ico-0147",
+      "name": "矿泉水",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "status": "adopted",
+      "target": "fresh-mixer-2"
+    },
+    {
+      "id": "ico-0148",
+      "name": "纯牛奶",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+      "status": "adopted",
+      "target": "fresh-milk-1"
+    },
+    {
+      "id": "ico-0149",
+      "name": "双层橙色案台",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0150",
+      "name": "紫色烤箱",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0151",
+      "name": "绿色深平锅",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0152",
+      "name": "竹制蒸笼",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0153",
+      "name": "红色大灶台",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0154",
+      "name": "粉色微波炉",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0155",
+      "name": "绿色双灶煎台（外观）",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0156",
+      "name": "黄色搅拌机",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0157",
+      "name": "蒜香黄油帝王蟹",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0157"
+    },
+    {
+      "id": "ico-0158",
+      "name": "培根汉堡",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0158"
+    },
+    {
+      "id": "ico-0159",
+      "name": "能量伏特加",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0159"
+    },
+    {
+      "id": "ico-0160",
+      "name": "浓缩马提尼",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0160"
+    },
+    {
+      "id": "ico-0161",
+      "name": "蓝莓果派",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0161"
+    },
+    {
+      "id": "ico-0162",
+      "name": "烤肠热狗",
+      "category": "dish",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0162"
+    },
+    {
+      "id": "ico-0163",
+      "name": "棉花软糖热巧克力",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0163"
+    },
+    {
+      "id": "ico-0164",
+      "name": "冰镇水蜜桃露",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/811355157534084920",
+      "status": "adopted",
+      "target": "dish-fresh-ico-0164"
+    },
+    {
+      "id": "ico-0165",
+      "name": "水蜜桃",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/811355157534084920",
+      "status": "adopted",
+      "target": "fresh-exotic-5"
+    },
+    {
+      "id": "ico-0166",
+      "name": "咖啡豆",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-coffee-1"
+    },
+    {
+      "id": "ico-0167",
+      "name": "纸杯咖啡与豆（阶段外观）",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "project-stage-name",
+      "target": "fresh-coffee-2"
+    },
+    {
+      "id": "ico-0168",
+      "name": "橙色纸杯咖啡（阶段外观）",
+      "category": "drink",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "project-stage-name",
+      "target": "fresh-coffee-3"
+    },
+    {
+      "id": "ico-0169",
+      "name": "彩色长条糖（视觉描述）",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "stage-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0170",
+      "name": "棉花软糖",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-sweet-8"
+    },
+    {
+      "id": "ico-0171",
+      "name": "茶叶",
+      "category": "ingredient",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "adopted",
+      "target": "fresh-tea-1"
+    },
+    {
+      "id": "ico-0172",
+      "name": "蓝色饮品冰柜",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0173",
+      "name": "综合水果篮",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    },
+    {
+      "id": "ico-0174",
+      "name": "蔬菜木箱",
+      "category": "equipment",
+      "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+      "status": "appearance-reference",
+      "target": null
+    }
+  ]
+}

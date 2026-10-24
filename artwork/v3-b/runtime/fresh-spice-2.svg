@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-5.91667 -7.41667 109.33333 109.33333">
+  <title>香葱 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="darkGreen" x1=".1" y1="0" x2=".9" y2="1"><stop stop-color="#8eb96a"/><stop offset="1" stop-color="#557e44"/></linearGradient><linearGradient id="green" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#b3cc74"/><stop offset=".5" stop-color="#89ad58"/><stop offset="1" stop-color="#628c47"/></linearGradient><linearGradient id="garlic" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#fff9df"/><stop offset=".6" stop-color="#f5e5bd"/><stop offset="1" stop-color="#dbc99f"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M50 62C27 48 15 30 13 11c13 14 20 25 44 44Z" fill="url(#darkGreen)"/><path d="M55 60C39 44 32 23 35 9c8 17 13 27 27 46Z" fill="url(#green)"/><path d="M61 60C53 41 54 25 64 12c-2 17-1 25 5 42Z" fill="url(#darkGreen)"/><path d="M52 61C31 56 14 47 9 33c15 6 28 12 48 20Z" fill="url(#green)"/><path d="m47 53 9-7q10 11 16 16l-1 8-7 3q-9-8-17-20Z" fill="url(#garlic)"/><path d="m56 52 9-6q8 15 17 22l-1 9-8 1Q62 69 56 52Z" fill="url(#garlic)"/><path d="m46 56 8-7q5 10 14 18l-1 10-7 1Q48 69 46 56Z" fill="url(#garlic)"/><path d="m62 77 3 8m2-7 6 6m4-5 3 7m1-8 8 5m-21-5 1 7" fill="none" stroke="#b49770" stroke-width="1.5"/><path d="m43 51 17-11 4 7-16 11Z" fill="#dbba78"/><path d="M20 23q10 17 24 27m-7-27q4 15 11 23" fill="none" stroke="#ffe7bd" stroke-width="2.5"/>
+  </g>
+</svg>

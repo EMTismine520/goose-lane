@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-0.93750 -5.00000 102.00000 102.00000">
+  <title>鸡全翅 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="chicken" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#ffdfba"/><stop offset=".55" stop-color="#f3bb94"/><stop offset="1" stop-color="#df9c77"/></linearGradient><linearGradient id="fat" x1=".1" y1="0" x2=".85" y2="1"><stop stop-color="#fff6dc"/><stop offset="1" stop-color="#eed5b1"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M17 58c-7-8-4-19 6-22 11-4 16 3 18 10l7 14 12-24q6-12 17-10 11 2 9 10-2 7-11 9L62 72q-5 11-15 11-8-1-14-9Z" fill="url(#chicken)"/><path d="M68 30q2-9 9-13l10-8-4 14-6 8Z" fill="url(#fat)"/><path d="M21 40q8-3 13 7l13 23 7-3q-3 12-11 9-5-2-11-13L20 52Z" fill="#fbd1aa" stroke="none"/><path d="M25 45q4 0 7 8l10 18m12-3 12-26q4-9 10-9" fill="none" stroke="#d49571" stroke-width="2.1"/><path d="M18 46q0-5 6-6m34 16 9-17" fill="none" stroke="#ffe7bd" stroke-width="3.6"/><path d="M43.3 72a4.7 4.1 0 1 0 9.4 0a4.7 4.1 0 1 0 -9.4 0Z" fill="#e7ac84" stroke="#cf906b" stroke-width="1.4"/>
+  </g>
+</svg>

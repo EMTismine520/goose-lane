@@ -217,7 +217,7 @@ export class GameController {
             await this.repository.save(result.state);
             if (this.live) {
               this.publish(result.state);
-              const event = result.events.find(entry => entry.type === 'home-unlocked') ?? result.events.find((entry) => entry.type !== 'move');
+              const event = result.events.find(entry => entry.type === 'home-unlocked'||entry.type==='theme-unlocked') ?? result.events.find((entry) => entry.type !== 'move');
               if (event) this.setNotice(event);
               if (result.events.some((event) => event.type === 'ready')) this.sound.play('complete');
               else if (result.state.stats.merges > original.stats.merges) this.sound.play('merge');

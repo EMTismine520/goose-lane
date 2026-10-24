@@ -1,0 +1,198 @@
+{
+  "assets": 38,
+  "runtimeBytes": 63898,
+  "maxSizeError": 0.1869999999999976,
+  "dimensions": "96×96",
+  "results": [
+    {
+      "id": "fresh-beast-1",
+      "visibleSize": 35.813,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-2",
+      "visibleSize": 35.813,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-3",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-4",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-5",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-6",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-7",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-8",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-9",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-beast-10",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-poultry-1",
+      "visibleSize": 33.882,
+      "target": 34
+    },
+    {
+      "id": "fresh-poultry-2",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-poultry-3",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-poultry-4",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-poultry-5",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-poultry-6",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-poultry-7",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-spice-1",
+      "visibleSize": 36.125,
+      "target": 36
+    },
+    {
+      "id": "fresh-spice-2",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-spice-3",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-spice-4",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-spice-5",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-spice-6",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "fresh-spice-7",
+      "visibleSize": 36,
+      "target": 36
+    },
+    {
+      "id": "dish-fresh-home-onion-salad",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-tomato-eggs",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-meatball-soup",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-garlic-broccoli",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-vegetable-rice",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-scallion-egg-rice",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-seared-pork",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-garlic-cucumber",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-chicken-roll",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "dish-fresh-home-orange-ribs",
+      "visibleSize": 38,
+      "target": 38
+    },
+    {
+      "id": "beast-meat-cart",
+      "visibleSize": 42,
+      "target": 42
+    },
+    {
+      "id": "poultry-cart",
+      "visibleSize": 42,
+      "target": 42
+    },
+    {
+      "id": "spice-box",
+      "visibleSize": 42,
+      "target": 42
+    },
+    {
+      "id": "home-cooking-pot",
+      "visibleSize": 42,
+      "target": 42
+    }
+  ]
+}

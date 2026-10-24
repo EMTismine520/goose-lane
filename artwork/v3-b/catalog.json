@@ -1,0 +1,7200 @@
+[
+  {
+    "id": "fresh-veg-1",
+    "name": "番茄",
+    "chain": "fresh-veg",
+    "level": 1,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-veg-1.svg",
+    "svg": "artwork/v3-b/masters/fresh-veg-1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "01dac6a631ffc6e3ac5d5f5756b4bf0c80b073dff160d62b0626036ab3e238b0"
+  },
+  {
+    "id": "fresh-veg-2",
+    "name": "黄瓜",
+    "chain": "fresh-veg",
+    "level": 2,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-veg-2.svg",
+    "svg": "artwork/v3-b/masters/fresh-veg-2.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "aba1e43bcf7438c6fe9a99421809e2d7a1d6a92a7ebeb7573ee6a67bc53faa73"
+  },
+  {
+    "id": "fresh-veg-3",
+    "name": "彩椒",
+    "chain": "fresh-veg",
+    "level": 3,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": "ico-0023",
+    "referenceName": "彩椒",
+    "naming": "reference",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "origin": "public/assets/items/fresh-veg-3.svg",
+    "svg": "artwork/v3-b/masters/fresh-veg-3.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "b0771300ffe72ed8c3956bf76cfb6d42407e2aeef891439ed62a013b17c6e847"
+  },
+  {
+    "id": "fresh-veg-4",
+    "name": "胡萝卜",
+    "chain": "fresh-veg",
+    "level": 4,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": "ico-0006",
+    "referenceName": "胡萝卜",
+    "naming": "reference",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "origin": "public/assets/items/fresh-veg-4.svg",
+    "svg": "artwork/v3-b/masters/fresh-veg-4.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "d2f96090ac9756ef897cbb2c38bf881827090f790aa8377e29a3d8be23ade471"
+  },
+  {
+    "id": "fresh-veg-5",
+    "name": "西兰花",
+    "chain": "fresh-veg",
+    "level": 5,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-veg-5.svg",
+    "svg": "artwork/v3-b/masters/fresh-veg-5.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "76374e7f2364df8aa74130e0f87a689cdcfbf61fb7c4a755cbe25641c5b6b356"
+  },
+  {
+    "id": "fresh-veg-6",
+    "name": "南瓜",
+    "chain": "fresh-veg",
+    "level": 6,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-veg-6.svg",
+    "svg": "artwork/v3-b/masters/fresh-veg-6.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "328bb8f9cb6e6b79bb0112ff7a299a29b697f642672e0f9f0b8cf2ee9ee505da"
+  },
+  {
+    "id": "fresh-veg-7",
+    "name": "田园菜篮",
+    "chain": "fresh-veg",
+    "level": 7,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-veg-7.svg",
+    "svg": "artwork/v3-b/masters/fresh-veg-7.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "1b5d5fa78d740a67a77aa30d0b3be06bd235e10d4be87e3c22f020493cf8e6f5"
+  },
+  {
+    "id": "fresh-fruit-1",
+    "name": "草莓",
+    "chain": "fresh-fruit",
+    "level": 1,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-fruit-1.svg",
+    "svg": "artwork/v3-b/masters/fresh-fruit-1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "54adb409dcbec8ccdc90238f1e696756bf97c4ac6bbfc38e171b214e81597da6"
+  },
+  {
+    "id": "fresh-fruit-2",
+    "name": "甜橙",
+    "chain": "fresh-fruit",
+    "level": 2,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-fruit-2.svg",
+    "svg": "artwork/v3-b/masters/fresh-fruit-2.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "15bda2bcf6c0c435b8d92f7def73e9d3e470d06e988b3b8198e7b3c4ff8b0bc8"
+  },
+  {
+    "id": "fresh-fruit-3",
+    "name": "苹果",
+    "chain": "fresh-fruit",
+    "level": 3,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-fruit-3.svg",
+    "svg": "artwork/v3-b/masters/fresh-fruit-3.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "18dac23e883889b779d5bc443267f6bf7e9be2323b1b55f7fca364f9e366c4d3"
+  },
+  {
+    "id": "fresh-fruit-4",
+    "name": "葡萄",
+    "chain": "fresh-fruit",
+    "level": 4,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-fruit-4.svg",
+    "svg": "artwork/v3-b/masters/fresh-fruit-4.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "2224ad293124c141de819a1ce8318690aaa1372655b803432b875a65830b5664"
+  },
+  {
+    "id": "fresh-fruit-5",
+    "name": "菠萝",
+    "chain": "fresh-fruit",
+    "level": 5,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-fruit-5.svg",
+    "svg": "artwork/v3-b/masters/fresh-fruit-5.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "833626c1ed2bf5383dda06d50daa85c51078d5ca8361c23e429b2d7c126a5f10"
+  },
+  {
+    "id": "fresh-fruit-6",
+    "name": "西瓜",
+    "chain": "fresh-fruit",
+    "level": 6,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-fruit-6.svg",
+    "svg": "artwork/v3-b/masters/fresh-fruit-6.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "6de2afcd036e0ff19d67dbd98b5e71e301a1301d25370e6f261cd02abd56268b"
+  },
+  {
+    "id": "fresh-fruit-7",
+    "name": "缤纷果篮",
+    "chain": "fresh-fruit",
+    "level": 7,
+    "stage": 1,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-fruit-7.svg",
+    "svg": "artwork/v3-b/masters/fresh-fruit-7.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "9eaa19f098ed0b8b11f98cb776269db4c38e289689cc3d42861b3210699073ed"
+  },
+  {
+    "id": "fresh-beast-1",
+    "name": "香肠",
+    "chain": "fresh-beast",
+    "level": 1,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-1.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "459c63f99e40e9eaf620c52389fd025fab555e3136e07770f92753a48957350b",
+    "presentation": {
+      "path": "assets/items/fresh-beast-1.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-2",
+    "name": "培根",
+    "chain": "fresh-beast",
+    "level": 2,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-2.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-2.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "f3c89560be95bce4e10492b422676e0b7f6cdcd634438a9e356969703f1eec0f",
+    "presentation": {
+      "path": "assets/items/fresh-beast-2.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-3",
+    "name": "肉丸",
+    "chain": "fresh-beast",
+    "level": 3,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-3.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-3.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "69f79afe34baefa95323066d13408ae570c3cd2b0deee7903f133081fdb68e20",
+    "presentation": {
+      "path": "assets/items/fresh-beast-3.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-4",
+    "name": "五花肉",
+    "chain": "fresh-beast",
+    "level": 4,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-4.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-4.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "d6a995014a4aa17e07746abf733c8c5ff64dc8369e968c2de5e44238e36afab5",
+    "presentation": {
+      "path": "assets/items/fresh-beast-4.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-5",
+    "name": "排骨",
+    "chain": "fresh-beast",
+    "level": 5,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-5.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-5.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "e9ed0bd0aa1469dbe76e242ac9ccad3d5dbdd2ebe62f121d80881a21e1ff3a30",
+    "presentation": {
+      "path": "assets/items/fresh-beast-5.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-6",
+    "name": "猪排",
+    "chain": "fresh-beast",
+    "level": 6,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-6.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-6.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "a060f6601fb0aaf20a8cdb228e4fb79669d87f290d99bc204c9532ce8a6a9876",
+    "presentation": {
+      "path": "assets/items/fresh-beast-6.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-7",
+    "name": "带骨肘子",
+    "chain": "fresh-beast",
+    "level": 7,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-7.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-7.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "e99a3286a6b8f27ce122a16c1b87a217774777a733e49968924fec8880271642",
+    "presentation": {
+      "path": "assets/items/fresh-beast-7.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-8",
+    "name": "带骨牛排",
+    "chain": "fresh-beast",
+    "level": 8,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-8.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-8.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "d48d042b264c557e430f210c9ff16bd42d6a07ec2af70dff434eca5040268cd8",
+    "presentation": {
+      "path": "assets/items/fresh-beast-8.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-9",
+    "name": "羊排",
+    "chain": "fresh-beast",
+    "level": 9,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-9.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-9.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "bf3473dc3901084bf35a56742f5df731144a80282890ba78688c5d04f8aaadef",
+    "presentation": {
+      "path": "assets/items/fresh-beast-9.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-beast-10",
+    "name": "火腿",
+    "chain": "fresh-beast",
+    "level": 10,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-beast-10.svg",
+    "svg": "artwork/v3-b/masters/fresh-beast-10.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "ff222b6f23e8a8bb7548a703a9743c256d2d9670a68813b319d97743632a14ae",
+    "presentation": {
+      "path": "assets/items/fresh-beast-10.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-1",
+    "name": "鸡蛋",
+    "chain": "fresh-poultry",
+    "level": 1,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-poultry-1.svg",
+    "svg": "artwork/v3-b/masters/fresh-poultry-1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "7eb668c1d1b7d0d2b268c4baa366e2fe6b2c89c07dd49d4bcc1325e859d57917",
+    "presentation": {
+      "path": "assets/items/fresh-poultry-1.svg",
+      "displaySize": 45.333333333333336,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-2",
+    "name": "鸡胗",
+    "chain": "fresh-poultry",
+    "level": 2,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-poultry-2.svg",
+    "svg": "artwork/v3-b/masters/fresh-poultry-2.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "4aa4d33752d9aeb04274c49b923943ff91044d57b79c21527b266fa744e028eb",
+    "presentation": {
+      "path": "assets/items/fresh-poultry-2.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-3",
+    "name": "鸡翅中",
+    "chain": "fresh-poultry",
+    "level": 3,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-poultry-3.svg",
+    "svg": "artwork/v3-b/masters/fresh-poultry-3.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "d8fa7597b6db832146d8ac23289fb41dd38bdf22381b7ddb8678caf3525d6493",
+    "presentation": {
+      "path": "assets/items/fresh-poultry-3.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-4",
+    "name": "鸡胸肉",
+    "chain": "fresh-poultry",
+    "level": 4,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-poultry-4.svg",
+    "svg": "artwork/v3-b/masters/fresh-poultry-4.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "c2f22ac2c1209bf0563788e44176d87bfc81eb70e06af2e2fafa6f7436075120",
+    "presentation": {
+      "path": "assets/items/fresh-poultry-4.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-5",
+    "name": "鸡腿",
+    "chain": "fresh-poultry",
+    "level": 5,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-poultry-5.svg",
+    "svg": "artwork/v3-b/masters/fresh-poultry-5.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "f53df467ccd53414ac5a49077e30202f3ec341a74ca84a17710f9d627aae0f50",
+    "presentation": {
+      "path": "assets/items/fresh-poultry-5.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-6",
+    "name": "鸡全翅",
+    "chain": "fresh-poultry",
+    "level": 6,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-poultry-6.svg",
+    "svg": "artwork/v3-b/masters/fresh-poultry-6.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "f7fde16769b05790ba75a750a670339b9c9ccd1d027aa12864eebba3c6e59b93",
+    "presentation": {
+      "path": "assets/items/fresh-poultry-6.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-7",
+    "name": "整鸡",
+    "chain": "fresh-poultry",
+    "level": 7,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-poultry-7.svg",
+    "svg": "artwork/v3-b/masters/fresh-poultry-7.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "9aa6807d1967406f240173d92a22955646d05d22f11d5307e8a1e57701a09cd7",
+    "presentation": {
+      "path": "assets/items/fresh-poultry-7.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-spice-1",
+    "name": "红椒",
+    "chain": "fresh-spice",
+    "level": 1,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-spice-1.svg",
+    "svg": "artwork/v3-b/masters/fresh-spice-1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "7d44776b6d0f8d4b267e04964986f4b71633ddc7e1b2dd7ebcdfe2a62e6debff",
+    "presentation": {
+      "path": "assets/items/fresh-spice-1.svg",
+      "displaySize": 48,
+      "offsetX": -1,
+      "offsetY": -3,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-spice-2",
+    "name": "香葱",
+    "chain": "fresh-spice",
+    "level": 2,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-spice-2.svg",
+    "svg": "artwork/v3-b/masters/fresh-spice-2.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "786e173f66e409ee9c6e60953779ab2aaef6e80c86b55d01a138c444d8a6f3cf",
+    "presentation": {
+      "path": "assets/items/fresh-spice-2.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-spice-3",
+    "name": "紫洋葱",
+    "chain": "fresh-spice",
+    "level": 3,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-spice-3.svg",
+    "svg": "artwork/v3-b/masters/fresh-spice-3.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "cd7e79a31e29faee9590caebd0b22aa33ddf4968f17d2d79e77995aae16ad47b",
+    "presentation": {
+      "path": "assets/items/fresh-spice-3.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-spice-4",
+    "name": "香草荚",
+    "chain": "fresh-spice",
+    "level": 4,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": "ico-0056",
+    "referenceName": "香草荚",
+    "naming": "reference",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "origin": "public/assets/items/fresh-spice-4.svg",
+    "svg": "artwork/v3-b/masters/fresh-spice-4.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "cff3272edc1f3e35e44042d6731285a4c41f1b0be1507667474314c4f6b5bbb1",
+    "presentation": {
+      "path": "assets/items/fresh-spice-4.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-spice-5",
+    "name": "大蒜",
+    "chain": "fresh-spice",
+    "level": 5,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-spice-5.svg",
+    "svg": "artwork/v3-b/masters/fresh-spice-5.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "3afb9ed5ac3895782d1a3eec84883b2de347b81577ea522ec797847e3fdf7a5d",
+    "presentation": {
+      "path": "assets/items/fresh-spice-5.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-spice-6",
+    "name": "罗勒",
+    "chain": "fresh-spice",
+    "level": 6,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-spice-6.svg",
+    "svg": "artwork/v3-b/masters/fresh-spice-6.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "f7e4a9a0ef92cd701e21a295014a39ea6929ddb7bbe48e07215e8a12ae1c438e",
+    "presentation": {
+      "path": "assets/items/fresh-spice-6.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-spice-7",
+    "name": "肉桂",
+    "chain": "fresh-spice",
+    "level": 7,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "本项目配方与成长规则",
+    "sourceUrl": null,
+    "origin": "public/assets/items/fresh-spice-7.svg",
+    "svg": "artwork/v3-b/masters/fresh-spice-7.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "f589e0089c0932fae927df44277573d9d2d4f3302d3724920ecb651f0e97cc9f",
+    "presentation": {
+      "path": "assets/items/fresh-spice-7.svg",
+      "displaySize": 48,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-tomato-salad",
+    "name": "番茄小沙拉",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 1,
+    "ingredients": [
+      "番茄"
+    ],
+    "origin": "public/assets/items/dish-fresh-tomato-salad.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-tomato-salad.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "07b108b82c7638e4996b64bff9f380b5a00d30e58e30ef9e89792bd626737952"
+  },
+  {
+    "id": "dish-fresh-carrot-salad",
+    "name": "胡萝卜花园",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 1,
+    "ingredients": [
+      "胡萝卜"
+    ],
+    "origin": "public/assets/items/dish-fresh-carrot-salad.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-carrot-salad.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "fc5db1704b1ba527f8d690093c3ef97582bccf1429a2712541c9edac4cc48320"
+  },
+  {
+    "id": "dish-fresh-garden-bowl",
+    "name": "田园丰收碗",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 1,
+    "ingredients": [
+      "西兰花",
+      "甜橙"
+    ],
+    "origin": "public/assets/items/dish-fresh-garden-bowl.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-garden-bowl.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "caec6a6d365c56117d2245cd4e52a633f69b5a6ee20f88330e1f98fcd81a38a7"
+  },
+  {
+    "id": "dish-fresh-berry-cup",
+    "name": "草莓甜心杯",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 1,
+    "ingredients": [
+      "草莓"
+    ],
+    "origin": "public/assets/items/dish-fresh-berry-cup.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-berry-cup.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "3c43eeaecbd4f5aa5152f6114b4debb430206b711afa8ca4697bd1fefb29ae63"
+  },
+  {
+    "id": "dish-fresh-orange-juice",
+    "name": "阳光鲜橙汁",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 1,
+    "ingredients": [
+      "甜橙"
+    ],
+    "origin": "public/assets/items/dish-fresh-orange-juice.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-orange-juice.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "a60537a29408a81aabc856741937954f40502f7342d01442ea87b7bcf1e635c1"
+  },
+  {
+    "id": "dish-fresh-fruit-platter",
+    "name": "缤纷水果盘",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 1,
+    "ingredients": [
+      "葡萄"
+    ],
+    "origin": "public/assets/items/dish-fresh-fruit-platter.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-fruit-platter.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "b405dc08846f7cbd20d8ae92b81ba1181965b5c6568a40b327680f1bce085898"
+  },
+  {
+    "id": "dish-fresh-home-onion-salad",
+    "name": "凉拌紫洋葱",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "黄瓜",
+      "紫洋葱"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-onion-salad.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-onion-salad.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "a06cf0276dde4b8fcf04b339519a0e7d8385d49a64fb7fb410dae74e1c3c52dd",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-onion-salad.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-tomato-eggs",
+    "name": "番茄炒蛋",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "番茄",
+      "鸡蛋",
+      "香葱"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-tomato-eggs.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-tomato-eggs.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "be7b0a96b559688ffdfa0e6210ff46ab50760679375b9bb28647f0a04c54e63f",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-tomato-eggs.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-meatball-soup",
+    "name": "肉丸蔬菜汤",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "肉丸",
+      "番茄",
+      "香葱"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-meatball-soup.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-meatball-soup.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "66c1e975091da7110174c8a236d2d1babd30784d909782a9b28ea2ee0369d2e7",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-meatball-soup.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-garlic-broccoli",
+    "name": "蒜香西兰花",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "西兰花",
+      "大蒜"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-garlic-broccoli.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-garlic-broccoli.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "ac23e2e9e59a173c8c99e63f253a136c47cf531fa932c87024765165881bb87c",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-garlic-broccoli.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-vegetable-rice",
+    "name": "彩蔬拌饭",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "彩椒",
+      "胡萝卜",
+      "香葱"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-vegetable-rice.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-vegetable-rice.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "d83df26012b7f4ca851a7d2d99a5dcfe97e0c1ee3fc5cd94c04e7e980cc8d615",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-vegetable-rice.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-scallion-egg-rice",
+    "name": "葱香蛋饭",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "鸡蛋",
+      "香葱"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-scallion-egg-rice.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-scallion-egg-rice.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "ce18f4b0d65310d781d84dca1f83061b6f2b82749e732d29037cf2beea22f852",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-scallion-egg-rice.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-seared-pork",
+    "name": "香煎肉片",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "五花肉",
+      "紫洋葱"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-seared-pork.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-seared-pork.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "305eded05478c95022c9ad1a238f9613e5715c97efc9f4df2e9d4872bdf53a12",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-seared-pork.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-garlic-cucumber",
+    "name": "蒜香黄瓜",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "黄瓜",
+      "大蒜"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-garlic-cucumber.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-garlic-cucumber.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "b8483fdd05aa19f1d540c32ff91085964b630a576a34c8e5e821616646d10f4e",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-garlic-cucumber.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-chicken-roll",
+    "name": "香煎鸡肉卷",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "鸡胸肉",
+      "鸡蛋",
+      "香葱"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-chicken-roll.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-chicken-roll.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "4abd75b572dbc9e8d90802f042e90480feb52ba676c0c559c6962da956c85b20",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-chicken-roll.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "dish-fresh-home-orange-ribs",
+    "name": "橙香小排",
+    "kind": "recipe",
+    "type": "recipe",
+    "stage": 2,
+    "ingredients": [
+      "排骨",
+      "甜橙",
+      "红椒"
+    ],
+    "origin": "public/assets/items/dish-fresh-home-orange-ribs.svg",
+    "svg": "artwork/v3-b/masters/dish-fresh-home-orange-ribs.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "558ee7235f85c448b5e4654d1fd19372e19c601bc5340af8f5899ceef31c3606",
+    "presentation": {
+      "path": "assets/items/dish-fresh-home-orange-ribs.svg",
+      "displaySize": 50.666666666666664,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "vegetable-cart-l1",
+    "name": "蔬菜推车",
+    "kind": "device",
+    "stage": 1,
+    "chains": [
+      "fresh-veg",
+      "fresh-seasonal"
+    ],
+    "price": 40,
+    "base": "vegetable-cart",
+    "level": 1,
+    "origin": "public/assets/entities/vegetable-cart.svg",
+    "svg": "artwork/v3-b/masters/vegetable-cart-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "e96ac3067d94daa1cc1d4e980d596a4fb87f03f366e46a5a3d2193300e23bd65"
+  },
+  {
+    "id": "fruit-cart-l1",
+    "name": "鲜果木箱",
+    "kind": "device",
+    "stage": 1,
+    "chains": [
+      "fresh-fruit",
+      "fresh-exotic"
+    ],
+    "price": 40,
+    "base": "fruit-cart",
+    "level": 1,
+    "origin": "public/assets/entities/fruit-cart.svg",
+    "svg": "artwork/v3-b/masters/fruit-cart-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "31c18f4a2cfce74993df816624de59a3be1f35692e25fbdda18caae38b27c771"
+  },
+  {
+    "id": "beast-meat-cart-l1",
+    "name": "兽肉推车",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-beast"
+    ],
+    "price": 40,
+    "base": "beast-meat-cart",
+    "level": 1,
+    "origin": "public/assets/entities/beast-meat-cart.svg",
+    "svg": "artwork/v3-b/masters/beast-meat-cart-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "f08702fe7bb4418f3539b3cf3af1bd4840bd029f6d760af39a9aafef7cf3d086",
+    "presentation": {
+      "path": "assets/entities/beast-meat-cart.svg",
+      "displaySize": 56,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "poultry-cart-l1",
+    "name": "禽肉推车",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-poultry"
+    ],
+    "price": 40,
+    "base": "poultry-cart",
+    "level": 1,
+    "origin": "public/assets/entities/poultry-cart.svg",
+    "svg": "artwork/v3-b/masters/poultry-cart-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "3280c0ed17fb4b73de74a9994326c682dec69548e9db290e793e7bad43cb1a51",
+    "presentation": {
+      "path": "assets/entities/poultry-cart.svg",
+      "displaySize": 56,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "spice-box-l1",
+    "name": "香料盒",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-spice"
+    ],
+    "price": 40,
+    "base": "spice-box",
+    "level": 1,
+    "origin": "public/assets/entities/spice-box.svg",
+    "svg": "artwork/v3-b/masters/spice-box-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "bb9434755efa166041c70b6500ba1b957f954608d0265daa79349bc4157d32fc",
+    "presentation": {
+      "path": "assets/entities/spice-box.svg",
+      "displaySize": 56,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "chopping-board-l1",
+    "name": "小鹅砧板",
+    "kind": "device",
+    "stage": 1,
+    "chains": [],
+    "price": 30,
+    "slot": 0,
+    "baseSeconds": 6,
+    "base": "chopping-board",
+    "level": 1,
+    "origin": "public/assets/entities/chopping-board.svg",
+    "svg": "artwork/v3-b/masters/chopping-board-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "42742d858db9b0ffb7310361309118d89b1fea4c3eb1cbcbe0a18d0c8a8e60c2"
+  },
+  {
+    "id": "fruit-press-l1",
+    "name": "鲜果料理台",
+    "kind": "device",
+    "stage": 1,
+    "chains": [],
+    "price": 30,
+    "slot": 1,
+    "baseSeconds": 10,
+    "base": "fruit-press",
+    "level": 1,
+    "origin": "public/assets/entities/fruit-press.svg",
+    "svg": "artwork/v3-b/masters/fruit-press-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "c05bc2f79a6e700606c29c3e0b5d4bb8d96bd677fb7c0c265275114208181a11"
+  },
+  {
+    "id": "home-cooking-pot-l1",
+    "name": "料理锅",
+    "kind": "device",
+    "stage": 2,
+    "chains": [],
+    "price": 30,
+    "slot": 4,
+    "baseSeconds": 20,
+    "base": "home-cooking-pot",
+    "level": 1,
+    "origin": "public/assets/entities/home-cooking-pot.svg",
+    "svg": "artwork/v3-b/masters/home-cooking-pot-l1.svg",
+    "mode": "approved-svg-reuse",
+    "originSha256": "f32f08561fc177b42a2b936fba588f6671febe2adb1e642be69750cc5fc76ede",
+    "presentation": {
+      "path": "assets/entities/home-cooking-pot.svg",
+      "displaySize": 56,
+      "offsetX": 0,
+      "offsetY": -2,
+      "svgSize": 96
+    }
+  },
+  {
+    "id": "fresh-poultry-8",
+    "name": "皮蛋",
+    "chain": "fresh-poultry",
+    "level": 8,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-poultry-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-spice-8",
+    "name": "香草籽",
+    "chain": "fresh-spice",
+    "level": 8,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": "ico-0024",
+    "referenceName": "香草籽",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-spice-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-spice-9",
+    "name": "香草精",
+    "chain": "fresh-spice",
+    "level": 9,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": "ico-0010",
+    "referenceName": "香草精",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-spice-9.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-spice-10",
+    "name": "混合香叶",
+    "chain": "fresh-spice",
+    "level": 10,
+    "stage": 2,
+    "kind": "material",
+    "referenceId": "ico-0110",
+    "referenceName": "混合香叶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-spice-10.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-1",
+    "name": "蘑菇",
+    "chain": "fresh-seasonal",
+    "level": 1,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0018",
+    "referenceName": "蘑菇",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-seasonal-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-2",
+    "name": "玉米",
+    "chain": "fresh-seasonal",
+    "level": 2,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0012",
+    "referenceName": "玉米",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-seasonal-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-3",
+    "name": "紫甘蓝",
+    "chain": "fresh-seasonal",
+    "level": 3,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0032",
+    "referenceName": "紫甘蓝",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-seasonal-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-4",
+    "name": "土豆",
+    "chain": "fresh-seasonal",
+    "level": 4,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0038",
+    "referenceName": "土豆",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "svg": "artwork/v3-b/masters/fresh-seasonal-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-5",
+    "name": "生菜",
+    "chain": "fresh-seasonal",
+    "level": 5,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-seasonal-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-6",
+    "name": "四季豆",
+    "chain": "fresh-seasonal",
+    "level": 6,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-seasonal-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-7",
+    "name": "茄子",
+    "chain": "fresh-seasonal",
+    "level": 7,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-seasonal-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-seasonal-8",
+    "name": "白萝卜",
+    "chain": "fresh-seasonal",
+    "level": 8,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-seasonal-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-1",
+    "name": "蓝莓",
+    "chain": "fresh-exotic",
+    "level": 1,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-exotic-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-2",
+    "name": "香蕉",
+    "chain": "fresh-exotic",
+    "level": 2,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0025",
+    "referenceName": "香蕉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-exotic-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-3",
+    "name": "柠檬",
+    "chain": "fresh-exotic",
+    "level": 3,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0040",
+    "referenceName": "柠檬",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "svg": "artwork/v3-b/masters/fresh-exotic-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-4",
+    "name": "芒果",
+    "chain": "fresh-exotic",
+    "level": 4,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0138",
+    "referenceName": "芒果",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "svg": "artwork/v3-b/masters/fresh-exotic-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-5",
+    "name": "水蜜桃",
+    "chain": "fresh-exotic",
+    "level": 5,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0165",
+    "referenceName": "水蜜桃",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811355157534084920",
+    "svg": "artwork/v3-b/masters/fresh-exotic-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-6",
+    "name": "椰子",
+    "chain": "fresh-exotic",
+    "level": 6,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-exotic-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-7",
+    "name": "梨",
+    "chain": "fresh-exotic",
+    "level": 7,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-exotic-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-exotic-8",
+    "name": "桑葚",
+    "chain": "fresh-exotic",
+    "level": 8,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-exotic-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-1",
+    "name": "鲜虾",
+    "chain": "fresh-sea",
+    "level": 1,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-2",
+    "name": "鱿鱼",
+    "chain": "fresh-sea",
+    "level": 2,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-3",
+    "name": "鳕鱼",
+    "chain": "fresh-sea",
+    "level": 3,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-4",
+    "name": "鲶鱼",
+    "chain": "fresh-sea",
+    "level": 4,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-5",
+    "name": "金枪鱼",
+    "chain": "fresh-sea",
+    "level": 5,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-6",
+    "name": "三文鱼",
+    "chain": "fresh-sea",
+    "level": 6,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-7",
+    "name": "生蚝",
+    "chain": "fresh-sea",
+    "level": 7,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-8",
+    "name": "海螺",
+    "chain": "fresh-sea",
+    "level": 8,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": "ico-0108",
+    "referenceName": "海螺",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "svg": "artwork/v3-b/masters/fresh-sea-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-9",
+    "name": "肥蟹",
+    "chain": "fresh-sea",
+    "level": 9,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-9.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-10",
+    "name": "龙虾",
+    "chain": "fresh-sea",
+    "level": 10,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-10.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sea-11",
+    "name": "帝王蟹",
+    "chain": "fresh-sea",
+    "level": 11,
+    "stage": 6,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sea-11.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-milk-1",
+    "name": "纯牛奶",
+    "chain": "fresh-milk",
+    "level": 1,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0148",
+    "referenceName": "纯牛奶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+    "svg": "artwork/v3-b/masters/fresh-milk-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-milk-2",
+    "name": "黄油",
+    "chain": "fresh-milk",
+    "level": 2,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0005",
+    "referenceName": "黄油",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+    "svg": "artwork/v3-b/masters/fresh-milk-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-milk-3",
+    "name": "芝士片",
+    "chain": "fresh-milk",
+    "level": 3,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0008",
+    "referenceName": "芝士片",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-milk-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-milk-4",
+    "name": "奶油",
+    "chain": "fresh-milk",
+    "level": 4,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0060",
+    "referenceName": "奶油",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+    "svg": "artwork/v3-b/masters/fresh-milk-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-milk-5",
+    "name": "酸奶",
+    "chain": "fresh-milk",
+    "level": 5,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-milk-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-milk-6",
+    "name": "奶酪",
+    "chain": "fresh-milk",
+    "level": 6,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-milk-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-milk-7",
+    "name": "炼乳",
+    "chain": "fresh-milk",
+    "level": 7,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-milk-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-1",
+    "name": "大米",
+    "chain": "fresh-grain",
+    "level": 1,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-grain-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-2",
+    "name": "燕麦",
+    "chain": "fresh-grain",
+    "level": 2,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0084",
+    "referenceName": "燕麦",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "svg": "artwork/v3-b/masters/fresh-grain-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-3",
+    "name": "面粉",
+    "chain": "fresh-grain",
+    "level": 3,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-grain-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-4",
+    "name": "软面团",
+    "chain": "fresh-grain",
+    "level": 4,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-grain-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-5",
+    "name": "吐司",
+    "chain": "fresh-grain",
+    "level": 5,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-grain-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-6",
+    "name": "面包胚",
+    "chain": "fresh-grain",
+    "level": 6,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-grain-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-7",
+    "name": "米粉浆",
+    "chain": "fresh-grain",
+    "level": 7,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-grain-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-8",
+    "name": "糯米团",
+    "chain": "fresh-grain",
+    "level": 8,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-grain-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-grain-9",
+    "name": "酥皮",
+    "chain": "fresh-grain",
+    "level": 9,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0137",
+    "referenceName": "酥皮",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "svg": "artwork/v3-b/masters/fresh-grain-9.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-1",
+    "name": "砂糖",
+    "chain": "fresh-sweet",
+    "level": 1,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sweet-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-2",
+    "name": "冰糖",
+    "chain": "fresh-sweet",
+    "level": 2,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0003",
+    "referenceName": "冰糖",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-sweet-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-3",
+    "name": "糖浆",
+    "chain": "fresh-sweet",
+    "level": 3,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0033",
+    "referenceName": "糖浆",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-sweet-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-4",
+    "name": "蜂蜜",
+    "chain": "fresh-sweet",
+    "level": 4,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0013",
+    "referenceName": "蜂蜜",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-sweet-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-5",
+    "name": "焦糖",
+    "chain": "fresh-sweet",
+    "level": 5,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0026",
+    "referenceName": "焦糖",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "svg": "artwork/v3-b/masters/fresh-sweet-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-6",
+    "name": "糖豆",
+    "chain": "fresh-sweet",
+    "level": 6,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0066",
+    "referenceName": "糖豆",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-sweet-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-7",
+    "name": "巧克力",
+    "chain": "fresh-sweet",
+    "level": 7,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0044",
+    "referenceName": "巧克力",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-sweet-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-8",
+    "name": "棉花软糖",
+    "chain": "fresh-sweet",
+    "level": 8,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0170",
+    "referenceName": "棉花软糖",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-sweet-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-sweet-9",
+    "name": "黑糖珍珠",
+    "chain": "fresh-sweet",
+    "level": 9,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-sweet-9.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-1",
+    "name": "咖啡豆",
+    "chain": "fresh-coffee",
+    "level": 1,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0166",
+    "referenceName": "咖啡豆",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-2",
+    "name": "浓缩咖啡",
+    "chain": "fresh-coffee",
+    "level": 2,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0167",
+    "referenceName": "纸杯咖啡与豆（阶段外观）",
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-3",
+    "name": "原味咖啡",
+    "chain": "fresh-coffee",
+    "level": 3,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0168",
+    "referenceName": "橙色纸杯咖啡（阶段外观）",
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-4",
+    "name": "便携咖啡",
+    "chain": "fresh-coffee",
+    "level": 4,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0017",
+    "referenceName": "便携咖啡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-5",
+    "name": "冰咖啡",
+    "chain": "fresh-coffee",
+    "level": 5,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0022",
+    "referenceName": "冰咖啡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-6",
+    "name": "深烘咖啡",
+    "chain": "fresh-coffee",
+    "level": 6,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0004",
+    "referenceName": "深烘咖啡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-7",
+    "name": "美式咖啡",
+    "chain": "fresh-coffee",
+    "level": 7,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0002",
+    "referenceName": "美式咖啡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-8",
+    "name": "大杯美式",
+    "chain": "fresh-coffee",
+    "level": 8,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0078",
+    "referenceName": "大杯美式",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+    "svg": "artwork/v3-b/masters/fresh-coffee-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-coffee-9",
+    "name": "摩卡咖啡",
+    "chain": "fresh-coffee",
+    "level": 9,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0094",
+    "referenceName": "摩卡咖啡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-coffee-9.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-tea-1",
+    "name": "茶叶",
+    "chain": "fresh-tea",
+    "level": 1,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0171",
+    "referenceName": "茶叶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-tea-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-tea-2",
+    "name": "绿茶",
+    "chain": "fresh-tea",
+    "level": 2,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0007",
+    "referenceName": "绿茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-tea-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-tea-3",
+    "name": "红茶",
+    "chain": "fresh-tea",
+    "level": 3,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0051",
+    "referenceName": "红茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-tea-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-tea-4",
+    "name": "乌龙茶",
+    "chain": "fresh-tea",
+    "level": 4,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0062",
+    "referenceName": "乌龙茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "svg": "artwork/v3-b/masters/fresh-tea-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-tea-5",
+    "name": "花茶",
+    "chain": "fresh-tea",
+    "level": 5,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0124",
+    "referenceName": "花茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "svg": "artwork/v3-b/masters/fresh-tea-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-tea-6",
+    "name": "香草绿茶",
+    "chain": "fresh-tea",
+    "level": 6,
+    "stage": 3,
+    "kind": "material",
+    "referenceId": "ico-0041",
+    "referenceName": "香草绿茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "svg": "artwork/v3-b/masters/fresh-tea-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-1",
+    "name": "冰块",
+    "chain": "fresh-mixer",
+    "level": 1,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-1.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-2",
+    "name": "矿泉水",
+    "chain": "fresh-mixer",
+    "level": 2,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": "ico-0147",
+    "referenceName": "矿泉水",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+    "svg": "artwork/v3-b/masters/fresh-mixer-2.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-3",
+    "name": "苏打水",
+    "chain": "fresh-mixer",
+    "level": 3,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-3.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-4",
+    "name": "姜汁水",
+    "chain": "fresh-mixer",
+    "level": 4,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": "ico-0076",
+    "referenceName": "姜汁水",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "svg": "artwork/v3-b/masters/fresh-mixer-4.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-5",
+    "name": "汤力水",
+    "chain": "fresh-mixer",
+    "level": 5,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": "ico-0064",
+    "referenceName": "汤力水",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "svg": "artwork/v3-b/masters/fresh-mixer-5.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-6",
+    "name": "可乐",
+    "chain": "fresh-mixer",
+    "level": 6,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-6.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-7",
+    "name": "能量汽水",
+    "chain": "fresh-mixer",
+    "level": 7,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-7.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-8",
+    "name": "朗姆酒",
+    "chain": "fresh-mixer",
+    "level": 8,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-8.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-9",
+    "name": "威士忌",
+    "chain": "fresh-mixer",
+    "level": 9,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": "ico-0103",
+    "referenceName": "威士忌",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "svg": "artwork/v3-b/masters/fresh-mixer-9.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-10",
+    "name": "伏特加",
+    "chain": "fresh-mixer",
+    "level": 10,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-10.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-11",
+    "name": "龙舌兰",
+    "chain": "fresh-mixer",
+    "level": 11,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-11.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-12",
+    "name": "金酒",
+    "chain": "fresh-mixer",
+    "level": 12,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-12.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "fresh-mixer-13",
+    "name": "红葡萄酒",
+    "chain": "fresh-mixer",
+    "level": 13,
+    "stage": 8,
+    "kind": "material",
+    "referenceId": null,
+    "referenceName": null,
+    "naming": "project",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": null,
+    "svg": "artwork/v3-b/masters/fresh-mixer-13.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0030",
+    "name": "凉拌鸡肉卷",
+    "output": "dish-fresh-ico-0030",
+    "family": "chopping-board",
+    "inputNames": [
+      "炭烤鸡胸肉",
+      "黄瓜",
+      "罗勒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0030",
+    "referenceName": "凉拌鸡肉卷",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "dish-fresh-ico-0042",
+        "count": 1
+      },
+      {
+        "item": "fresh-veg-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 3,
+    "stage": 5,
+    "duration": 24000,
+    "effort": 18.68888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0030.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0058",
+    "name": "手撕紫甘蓝",
+    "output": "dish-fresh-ico-0058",
+    "family": "chopping-board",
+    "inputNames": [
+      "紫甘蓝",
+      "大蒜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0058",
+    "referenceName": "手撕紫甘蓝",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 3,
+    "duration": 20000,
+    "effort": 6.888888888888888,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0058.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0074",
+    "name": "新鲜生蚝",
+    "output": "dish-fresh-ico-0074",
+    "family": "chopping-board",
+    "inputNames": [
+      "生蚝",
+      "柠檬"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0074",
+    "referenceName": "新鲜生蚝",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+    "inputs": [
+      {
+        "item": "fresh-sea-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 24000,
+    "effort": 7.155555555555555,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0074.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0141",
+    "name": "田园沙拉",
+    "output": "dish-fresh-ico-0141",
+    "family": "chopping-board",
+    "inputNames": [
+      "生菜",
+      "番茄",
+      "混合香叶"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0141",
+    "referenceName": "田园沙拉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-veg-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-10",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 3,
+    "duration": 28000,
+    "effort": 10.894444444444446,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0141.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0146",
+    "name": "凉拌皮蛋",
+    "output": "dish-fresh-ico-0146",
+    "family": "chopping-board",
+    "inputNames": [
+      "皮蛋",
+      "紫洋葱",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0146",
+    "referenceName": "凉拌皮蛋",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+    "inputs": [
+      {
+        "item": "fresh-poultry-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 3,
+    "duration": 28000,
+    "effort": 10.894444444444444,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0146.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0031",
+    "name": "葡萄果肉饮",
+    "output": "dish-fresh-ico-0031",
+    "family": "fruit-press",
+    "inputNames": [
+      "葡萄",
+      "桑葚"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0031",
+    "referenceName": "葡萄果肉饮",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-fruit-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-8",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 3,
+    "duration": 30000,
+    "effort": 8.944444444444445,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0031.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0047",
+    "name": "热带芒果汁",
+    "output": "dish-fresh-ico-0047",
+    "family": "fruit-press",
+    "inputNames": [
+      "芒果",
+      "椰子"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0047",
+    "referenceName": "热带芒果汁",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-exotic-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 3,
+    "duration": 26000,
+    "effort": 8.677777777777777,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0047.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0091",
+    "name": "鹅鹅手打柠檬茶",
+    "output": "dish-fresh-ico-0091",
+    "family": "fruit-press",
+    "inputNames": [
+      "柠檬",
+      "红茶",
+      "糖浆"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0091",
+    "referenceName": "鹅鹅手打柠檬茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-tea-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 3,
+    "minDeviceLevel": 1,
+    "stage": 3,
+    "duration": 22000,
+    "effort": 9.799999999999999,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0091.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0164",
+    "name": "冰镇水蜜桃露",
+    "output": "dish-fresh-ico-0164",
+    "family": "fruit-press",
+    "inputNames": [
+      "水蜜桃",
+      "矿泉水"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0164",
+    "referenceName": "冰镇水蜜桃露",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811355157534084920",
+    "inputs": [
+      {
+        "item": "fresh-exotic-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 8,
+    "duration": 24000,
+    "effort": 5.766666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0164.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0009",
+    "name": "珍珠奶茶",
+    "output": "dish-fresh-ico-0009",
+    "family": "fruit-press",
+    "inputNames": [
+      "红茶",
+      "纯牛奶",
+      "黑糖珍珠"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0009",
+    "referenceName": "珍珠奶茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-tea-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-9",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 3,
+    "duration": 32000,
+    "effort": 16.716666666666665,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0009.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0020",
+    "name": "清新奶绿",
+    "output": "dish-fresh-ico-0020",
+    "family": "fruit-press",
+    "inputNames": [
+      "绿茶",
+      "纯牛奶"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0020",
+    "referenceName": "清新奶绿",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-tea-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 2,
+    "minDeviceLevel": 1,
+    "stage": 3,
+    "duration": 18000,
+    "effort": 3.283333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0020.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0055",
+    "name": "香草慕斯奶绿",
+    "output": "dish-fresh-ico-0055",
+    "family": "fruit-press",
+    "inputNames": [
+      "绿茶",
+      "奶油",
+      "香草精"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0055",
+    "referenceName": "香草慕斯奶绿",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-tea-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-9",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 3,
+    "duration": 32000,
+    "effort": 16.022222222222222,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0055.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0087",
+    "name": "厚顶鸳鸯奶茶",
+    "output": "dish-fresh-ico-0087",
+    "family": "fruit-press",
+    "inputNames": [
+      "红茶",
+      "原味咖啡",
+      "奶油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0087",
+    "referenceName": "厚顶鸳鸯奶茶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-tea-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-coffee-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 3,
+    "duration": 24000,
+    "effort": 8.544444444444444,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0087.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0093",
+    "name": "优酪乳",
+    "output": "dish-fresh-ico-0093",
+    "family": "fruit-press",
+    "inputNames": [
+      "酸奶",
+      "梨"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0093",
+    "referenceName": "优酪乳",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-milk-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-7",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 3,
+    "duration": 28000,
+    "effort": 7.4222222222222225,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0093.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0121",
+    "name": "益生菌饮品",
+    "output": "dish-fresh-ico-0121",
+    "family": "fruit-press",
+    "inputNames": [
+      "酸奶",
+      "蜂蜜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0121",
+    "referenceName": "益生菌饮品",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-milk-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 3,
+    "duration": 24000,
+    "effort": 5.766666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0121.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0089",
+    "name": "什锦海鲜汤",
+    "output": "dish-fresh-ico-0089",
+    "family": "home-cooking-pot",
+    "inputNames": [
+      "鲜虾",
+      "鱿鱼",
+      "海螺"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0089",
+    "referenceName": "什锦海鲜汤",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-sea-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-sea-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-sea-8",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 42000,
+    "effort": 10.438888888888888,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0089.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0104",
+    "name": "特色白粥",
+    "output": "dish-fresh-ico-0104",
+    "family": "home-cooking-pot",
+    "inputNames": [
+      "大米"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0104",
+    "referenceName": "特色白粥",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+    "inputs": [
+      {
+        "item": "fresh-grain-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 1,
+    "minDeviceLevel": 1,
+    "stage": 3,
+    "duration": 24000,
+    "effort": 2.2944444444444443,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0104.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0139",
+    "name": "焦香洋葱饭",
+    "output": "dish-fresh-ico-0139",
+    "family": "home-cooking-pot",
+    "inputNames": [
+      "大米",
+      "紫洋葱",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0139",
+    "referenceName": "焦香洋葱饭",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-grain-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 3,
+    "minDeviceLevel": 1,
+    "stage": 3,
+    "duration": 32000,
+    "effort": 6.994444444444444,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0139.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0140",
+    "name": "黄油拌饭",
+    "output": "dish-fresh-ico-0140",
+    "family": "home-cooking-pot",
+    "inputNames": [
+      "大米",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0140",
+    "referenceName": "黄油拌饭",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+    "inputs": [
+      {
+        "item": "fresh-grain-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 2,
+    "minDeviceLevel": 1,
+    "stage": 3,
+    "duration": 28000,
+    "effort": 3.9499999999999997,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0140.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0029",
+    "name": "脆皮翅根",
+    "output": "dish-fresh-ico-0029",
+    "family": "frying-station",
+    "inputNames": [
+      "鸡翅中",
+      "面粉",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0029",
+    "referenceName": "脆皮翅根",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-poultry-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 3,
+    "minDeviceLevel": 1,
+    "stage": 4,
+    "duration": 34000,
+    "effort": 8.516666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0029.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0048",
+    "name": "煎炸培根",
+    "output": "dish-fresh-ico-0048",
+    "family": "frying-station",
+    "inputNames": [
+      "培根",
+      "紫洋葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0048",
+    "referenceName": "煎炸培根",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-beast-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 3,
+    "minDeviceLevel": 1,
+    "stage": 4,
+    "duration": 32000,
+    "effort": 6.299999999999999,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0048.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0050",
+    "name": "油炸太阳蛋",
+    "output": "dish-fresh-ico-0050",
+    "family": "frying-station",
+    "inputNames": [
+      "鸡蛋"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0050",
+    "referenceName": "油炸太阳蛋",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-poultry-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 1,
+    "minDeviceLevel": 1,
+    "stage": 4,
+    "duration": 26000,
+    "effort": 2.427777777777778,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0050.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0057",
+    "name": "香煎肉丸",
+    "output": "dish-fresh-ico-0057",
+    "family": "frying-station",
+    "inputNames": [
+      "肉丸",
+      "罗勒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0057",
+    "referenceName": "香煎肉丸",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-beast-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 38000,
+    "effort": 10.866666666666665,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0057.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0068",
+    "name": "酥香鳕鱼",
+    "output": "dish-fresh-ico-0068",
+    "family": "frying-station",
+    "inputNames": [
+      "鳕鱼",
+      "面粉",
+      "柠檬"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0068",
+    "referenceName": "酥香鳕鱼",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-sea-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 3,
+    "minDeviceLevel": 1,
+    "stage": 6,
+    "duration": 34000,
+    "effort": 10.599999999999998,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0068.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0071",
+    "name": "香煎胡萝卜",
+    "output": "dish-fresh-ico-0071",
+    "family": "frying-station",
+    "inputNames": [
+      "胡萝卜",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0071",
+    "referenceName": "香煎胡萝卜",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-veg-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 34000,
+    "effort": 5.044444444444444,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0071.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0097",
+    "name": "酥炸大鸡腿",
+    "output": "dish-fresh-ico-0097",
+    "family": "frying-station",
+    "inputNames": [
+      "鸡腿",
+      "面粉",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0097",
+    "referenceName": "酥炸大鸡腿",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-poultry-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 38000,
+    "effort": 8.783333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0097.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0085",
+    "name": "红酒酱牛排",
+    "output": "dish-fresh-ico-0085",
+    "family": "frying-station",
+    "inputNames": [
+      "带骨牛排",
+      "红葡萄酒",
+      "紫洋葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0085",
+    "referenceName": "红酒酱牛排",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-beast-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-13",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 13,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 44000,
+    "effort": 22.377777777777776,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0085.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0136",
+    "name": "醇香鲶鱼块",
+    "output": "dish-fresh-ico-0136",
+    "family": "frying-station",
+    "inputNames": [
+      "鲶鱼",
+      "黄油",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0136",
+    "referenceName": "醇香鲶鱼块",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-sea-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 36000,
+    "effort": 6.566666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0136.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0107",
+    "name": "酥脆萝卜糕",
+    "output": "dish-fresh-ico-0107",
+    "family": "frying-station",
+    "inputNames": [
+      "白萝卜",
+      "米粉浆",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0107",
+    "referenceName": "酥脆萝卜糕",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 4,
+    "duration": 44000,
+    "effort": 12.655555555555555,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0107.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0027",
+    "name": "孜然烤肉肠",
+    "output": "dish-fresh-ico-0027",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "香肠",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0027",
+    "referenceName": "孜然烤肉肠",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-beast-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 1,
+    "minDeviceLevel": 1,
+    "stage": 5,
+    "duration": 38000,
+    "effort": 3.922222222222222,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0027.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0028",
+    "name": "风味蔬菜烤串",
+    "output": "dish-fresh-ico-0028",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "彩椒",
+      "蘑菇",
+      "茄子"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0028",
+    "referenceName": "风味蔬菜烤串",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-veg-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-seasonal-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-seasonal-7",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 52000,
+    "effort": 9.716666666666667,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0028.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0035",
+    "name": "孜然椒盐排骨",
+    "output": "dish-fresh-ico-0035",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "排骨",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0035",
+    "referenceName": "孜然椒盐排骨",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-beast-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 46000,
+    "effort": 6.53888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0035.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0036",
+    "name": "炭烧熏肉",
+    "output": "dish-fresh-ico-0036",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "五花肉",
+      "混合香叶"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0036",
+    "referenceName": "炭烧熏肉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-beast-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-10",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 5,
+    "duration": 52000,
+    "effort": 10.411111111111111,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0036.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0039",
+    "name": "炭烧鲜菇",
+    "output": "dish-fresh-ico-0039",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "蘑菇",
+      "罗勒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0039",
+    "referenceName": "炭烧鲜菇",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 48000,
+    "effort": 9.45,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0039.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0042",
+    "name": "炭烤鸡胸肉",
+    "output": "dish-fresh-ico-0042",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "鸡胸肉",
+      "罗勒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0042",
+    "referenceName": "炭烤鸡胸肉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "inputs": [
+      {
+        "item": "fresh-poultry-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 48000,
+    "effort": 10.144444444444446,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0042.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0045",
+    "name": "黄金烤肘子",
+    "output": "dish-fresh-ico-0045",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "带骨肘子",
+      "蜂蜜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0045",
+    "referenceName": "黄金烤肘子",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-beast-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 50000,
+    "effort": 7.5,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0045.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0049",
+    "name": "烟熏牛胸肉",
+    "output": "dish-fresh-ico-0049",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "带骨牛排",
+      "紫洋葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0049",
+    "referenceName": "烟熏牛胸肉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-beast-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 5,
+    "duration": 52000,
+    "effort": 11.799999999999999,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0049.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0053",
+    "name": "炭烤琵琶腿",
+    "output": "dish-fresh-ico-0053",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "鸡腿",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0053",
+    "referenceName": "炭烤琵琶腿",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-poultry-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 46000,
+    "effort": 6.53888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0053.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0059",
+    "name": "烟熏黄油五花",
+    "output": "dish-fresh-ico-0059",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "五花肉",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0059",
+    "referenceName": "烟熏黄油五花",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-beast-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 44000,
+    "effort": 5.71111111111111,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0059.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0061",
+    "name": "熟烤肥蟹",
+    "output": "dish-fresh-ico-0061",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "肥蟹",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0061",
+    "referenceName": "熟烤肥蟹",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-sea-9",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 52000,
+    "effort": 15.966666666666667,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0061.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0079",
+    "name": "炭烧金枪鱼排",
+    "output": "dish-fresh-ico-0079",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "金枪鱼",
+      "柠檬"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0079",
+    "referenceName": "炭烧金枪鱼排",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-sea-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 46000,
+    "effort": 8.622222222222222,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0079.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0081",
+    "name": "威士忌三文鱼",
+    "output": "dish-fresh-ico-0081",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "三文鱼",
+      "威士忌"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0081",
+    "referenceName": "威士忌三文鱼",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+    "inputs": [
+      {
+        "item": "fresh-sea-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-9",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 52000,
+    "effort": 20.133333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0081.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0082",
+    "name": "炭烤海螺",
+    "output": "dish-fresh-ico-0082",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "海螺",
+      "大蒜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0082",
+    "referenceName": "炭烤海螺",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-sea-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 52000,
+    "effort": 11.799999999999999,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0082.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0095",
+    "name": "炭烤牛排",
+    "output": "dish-fresh-ico-0095",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "带骨牛排",
+      "罗勒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0095",
+    "referenceName": "炭烤牛排",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-beast-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 5,
+    "duration": 52000,
+    "effort": 14.577777777777778,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0095.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0109",
+    "name": "烟熏三文鱼",
+    "output": "dish-fresh-ico-0109",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "三文鱼",
+      "柠檬"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0109",
+    "referenceName": "烟熏三文鱼",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-sea-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 48000,
+    "effort": 11.533333333333331,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0109.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0133",
+    "name": "热烤大羊排",
+    "output": "dish-fresh-ico-0133",
+    "family": "charcoal-grill",
+    "inputNames": [
+      "羊排",
+      "混合香叶"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0133",
+    "referenceName": "热烤大羊排",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "inputs": [
+      {
+        "item": "fresh-beast-9",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-10",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 5,
+    "duration": 52000,
+    "effort": 20.133333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0133.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0034",
+    "name": "锡纸彩椒酿",
+    "output": "dish-fresh-ico-0034",
+    "family": "oven",
+    "inputNames": [
+      "彩椒",
+      "肉丸",
+      "芝士片"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0034",
+    "referenceName": "锡纸彩椒酿",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+    "inputs": [
+      {
+        "item": "fresh-veg-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 3,
+    "minDeviceLevel": 1,
+    "stage": 4,
+    "duration": 52000,
+    "effort": 11.799999999999999,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0034.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0063",
+    "name": "早餐三明治",
+    "output": "dish-fresh-ico-0063",
+    "family": "oven",
+    "inputNames": [
+      "吐司",
+      "培根",
+      "鸡蛋"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0063",
+    "referenceName": "早餐三明治",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-grain-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-poultry-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 56000,
+    "effort": 8.594444444444445,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0063.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0052",
+    "name": "烤土豆片",
+    "output": "dish-fresh-ico-0052",
+    "family": "oven",
+    "inputNames": [
+      "土豆",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0052",
+    "referenceName": "烤土豆片",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 52000,
+    "effort": 6.2444444444444445,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0052.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0080",
+    "name": "蒜香面包",
+    "output": "dish-fresh-ico-0080",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "大蒜",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0080",
+    "referenceName": "蒜香面包",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 58000,
+    "effort": 13.588888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0080.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0092",
+    "name": "蜜汁烤鸡",
+    "output": "dish-fresh-ico-0092",
+    "family": "oven",
+    "inputNames": [
+      "整鸡",
+      "蜂蜜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0092",
+    "referenceName": "蜜汁烤鸡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "inputs": [
+      {
+        "item": "fresh-poultry-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 58000,
+    "effort": 8.033333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0092.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0100",
+    "name": "三文鱼贝果",
+    "output": "dish-fresh-ico-0100",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "烟熏三文鱼",
+      "奶酪"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0100",
+    "referenceName": "三文鱼贝果",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "dish-fresh-ico-0109",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 58000,
+    "effort": 26.511111111111113,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0100.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0102",
+    "name": "芝士热狗",
+    "output": "dish-fresh-ico-0102",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "香肠",
+      "芝士片"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0102",
+    "referenceName": "芝士热狗",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 58000,
+    "effort": 12.894444444444446,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0102.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0112",
+    "name": "蜜汁叉烧",
+    "output": "dish-fresh-ico-0112",
+    "family": "oven",
+    "inputNames": [
+      "五花肉",
+      "蜂蜜",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0112",
+    "referenceName": "蜜汁叉烧",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-beast-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 54000,
+    "effort": 7.072222222222223,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0112.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0129",
+    "name": "烤热狗面包",
+    "output": "dish-fresh-ico-0129",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "香肠"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0129",
+    "referenceName": "烤热狗面包",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 56000,
+    "effort": 9.983333333333334,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0129.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0132",
+    "name": "甜苹果派",
+    "output": "dish-fresh-ico-0132",
+    "family": "oven",
+    "inputNames": [
+      "苹果",
+      "酥皮",
+      "焦糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0132",
+    "referenceName": "甜苹果派",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+    "inputs": [
+      {
+        "item": "fresh-fruit-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-9",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 4,
+    "duration": 62000,
+    "effort": 20.8,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0132.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0134",
+    "name": "焦香洋葱贝果",
+    "output": "dish-fresh-ico-0134",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "紫洋葱",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0134",
+    "referenceName": "焦香洋葱贝果",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 58000,
+    "effort": 13.588888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0134.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0143",
+    "name": "汉堡包",
+    "output": "dish-fresh-ico-0143",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "肉丸",
+      "生菜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0143",
+    "referenceName": "汉堡包",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-seasonal-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 58000,
+    "effort": 14.977777777777778,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0143.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0157",
+    "name": "蒜香黄油帝王蟹",
+    "output": "dish-fresh-ico-0157",
+    "family": "oven",
+    "inputNames": [
+      "帝王蟹",
+      "大蒜",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0157",
+    "referenceName": "蒜香黄油帝王蟹",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-sea-11",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 11,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 62000,
+    "effort": 19.41111111111111,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0157.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0158",
+    "name": "培根汉堡",
+    "output": "dish-fresh-ico-0158",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "培根",
+      "生菜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0158",
+    "referenceName": "培根汉堡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-seasonal-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 58000,
+    "effort": 13.588888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0158.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0161",
+    "name": "蓝莓果派",
+    "output": "dish-fresh-ico-0161",
+    "family": "oven",
+    "inputNames": [
+      "蓝莓",
+      "酥皮",
+      "砂糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0161",
+    "referenceName": "蓝莓果派",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+    "inputs": [
+      {
+        "item": "fresh-exotic-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-9",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 4,
+    "duration": 62000,
+    "effort": 16.633333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0161.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0162",
+    "name": "烤肠热狗",
+    "output": "dish-fresh-ico-0162",
+    "family": "oven",
+    "inputNames": [
+      "面包胚",
+      "香肠",
+      "番茄"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0162",
+    "referenceName": "烤肠热狗",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-grain-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-veg-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 58000,
+    "effort": 10.811111111111112,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0162.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0065",
+    "name": "晶莹鲜虾饺",
+    "output": "dish-fresh-ico-0065",
+    "family": "steamer",
+    "inputNames": [
+      "鲜虾",
+      "软面团"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0065",
+    "referenceName": "晶莹鲜虾饺",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-sea-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 42000,
+    "effort": 4.883333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0065.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0070",
+    "name": "牛肉肠粉",
+    "output": "dish-fresh-ico-0070",
+    "family": "steamer",
+    "inputNames": [
+      "带骨牛排",
+      "米粉浆",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0070",
+    "referenceName": "牛肉肠粉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-beast-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 52000,
+    "effort": 13.188888888888888,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0070.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0072",
+    "name": "香菇肠粉",
+    "output": "dish-fresh-ico-0072",
+    "family": "steamer",
+    "inputNames": [
+      "蘑菇",
+      "米粉浆",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0072",
+    "referenceName": "香菇肠粉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 50000,
+    "effort": 8.194444444444445,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0072.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0073",
+    "name": "椰汁奶白小丸",
+    "output": "dish-fresh-ico-0073",
+    "family": "steamer",
+    "inputNames": [
+      "椰子",
+      "糯米团",
+      "炼乳"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0073",
+    "referenceName": "椰汁奶白小丸",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-exotic-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-7",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 52000,
+    "effort": 17.355555555555554,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0073.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0077",
+    "name": "流沙奶黄包",
+    "output": "dish-fresh-ico-0077",
+    "family": "steamer",
+    "inputNames": [
+      "软面团",
+      "鸡蛋",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0077",
+    "referenceName": "流沙奶黄包",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
+    "inputs": [
+      {
+        "item": "fresh-grain-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-poultry-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 44000,
+    "effort": 6.405555555555555,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0077.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0083",
+    "name": "焦糖马拉糕",
+    "output": "dish-fresh-ico-0083",
+    "family": "steamer",
+    "inputNames": [
+      "面粉",
+      "鸡蛋",
+      "焦糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0083",
+    "referenceName": "焦糖马拉糕",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-grain-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-poultry-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 46000,
+    "effort": 9.316666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0083.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0088",
+    "name": "古法糯米鸡",
+    "output": "dish-fresh-ico-0088",
+    "family": "steamer",
+    "inputNames": [
+      "糯米团",
+      "鸡腿",
+      "蘑菇"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0088",
+    "referenceName": "古法糯米鸡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-grain-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-poultry-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-seasonal-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 52000,
+    "effort": 12.494444444444444,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0088.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0115",
+    "name": "鲜肉肠粉",
+    "output": "dish-fresh-ico-0115",
+    "family": "steamer",
+    "inputNames": [
+      "五花肉",
+      "米粉浆",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0115",
+    "referenceName": "鲜肉肠粉",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-beast-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 50000,
+    "effort": 8.88888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0115.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0116",
+    "name": "三鲜虾肉饺子",
+    "output": "dish-fresh-ico-0116",
+    "family": "steamer",
+    "inputNames": [
+      "鲜虾",
+      "五花肉",
+      "软面团"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0116",
+    "referenceName": "三鲜虾肉饺子",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-sea-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 44000,
+    "effort": 6.405555555555555,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0116.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0123",
+    "name": "爆汁灌汤小笼包",
+    "output": "dish-fresh-ico-0123",
+    "family": "steamer",
+    "inputNames": [
+      "五花肉",
+      "软面团",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0123",
+    "referenceName": "爆汁灌汤小笼包",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+    "inputs": [
+      {
+        "item": "fresh-beast-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 44000,
+    "effort": 7.1,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0123.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0144",
+    "name": "蒜蓉蒸鱿鱼",
+    "output": "dish-fresh-ico-0144",
+    "family": "steamer",
+    "inputNames": [
+      "鱿鱼",
+      "大蒜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0144",
+    "referenceName": "蒜蓉蒸鱿鱼",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+    "inputs": [
+      {
+        "item": "fresh-sea-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 44000,
+    "effort": 7.1,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0144.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0145",
+    "name": "蒸龙虾",
+    "output": "dish-fresh-ico-0145",
+    "family": "steamer",
+    "inputNames": [
+      "龙虾",
+      "香葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0145",
+    "referenceName": "蒸龙虾",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+    "inputs": [
+      {
+        "item": "fresh-sea-10",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 6,
+    "duration": 50000,
+    "effort": 10.277777777777779,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0145.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0086",
+    "name": "蒜香炒虾",
+    "output": "dish-fresh-ico-0086",
+    "family": "wok",
+    "inputNames": [
+      "鲜虾",
+      "大蒜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0086",
+    "referenceName": "蒜香炒虾",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-sea-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 6,
+    "duration": 34000,
+    "effort": 5.738888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0086.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0099",
+    "name": "彩椒土豆丝",
+    "output": "dish-fresh-ico-0099",
+    "family": "wok",
+    "inputNames": [
+      "彩椒",
+      "土豆"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0099",
+    "referenceName": "彩椒土豆丝",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-veg-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-seasonal-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 32000,
+    "effort": 6.299999999999999,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0099.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0101",
+    "name": "红酒烧排骨",
+    "output": "dish-fresh-ico-0101",
+    "family": "wok",
+    "inputNames": [
+      "排骨",
+      "红葡萄酒",
+      "紫洋葱"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0101",
+    "referenceName": "红酒烧排骨",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+    "inputs": [
+      {
+        "item": "fresh-beast-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-13",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 13,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 42000,
+    "effort": 19.46666666666667,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0101.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0113",
+    "name": "爆炒西兰花",
+    "output": "dish-fresh-ico-0113",
+    "family": "wok",
+    "inputNames": [
+      "西兰花",
+      "红椒"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0113",
+    "referenceName": "爆炒西兰花",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-veg-5",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 34000,
+    "effort": 5.738888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0113.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0117",
+    "name": "脆皮炸鲜奶",
+    "output": "dish-fresh-ico-0117",
+    "family": "wok",
+    "inputNames": [
+      "纯牛奶",
+      "面粉",
+      "砂糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0117",
+    "referenceName": "脆皮炸鲜奶",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 3,
+    "minDeviceLevel": 1,
+    "stage": 5,
+    "duration": 32000,
+    "effort": 6.300000000000001,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0117.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0128",
+    "name": "清炒四季豆",
+    "output": "dish-fresh-ico-0128",
+    "family": "wok",
+    "inputNames": [
+      "四季豆",
+      "大蒜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0128",
+    "referenceName": "清炒四季豆",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 6,
+    "minDeviceLevel": 2,
+    "stage": 5,
+    "duration": 36000,
+    "effort": 10.733333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0128.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0096",
+    "name": "咸水角",
+    "output": "dish-fresh-ico-0096",
+    "family": "wok",
+    "inputNames": [
+      "糯米团",
+      "五花肉",
+      "蘑菇"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0096",
+    "referenceName": "咸水角",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
+    "inputs": [
+      {
+        "item": "fresh-grain-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-beast-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-seasonal-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 5,
+    "duration": 42000,
+    "effort": 10.43888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0096.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0014",
+    "name": "香蕉泥",
+    "output": "dish-fresh-ico-0014",
+    "family": "microwave",
+    "inputNames": [
+      "香蕉"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0014",
+    "referenceName": "香蕉泥",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-exotic-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 2,
+    "minDeviceLevel": 1,
+    "stage": 4,
+    "duration": 16000,
+    "effort": 2.4555555555555557,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0014.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0015",
+    "name": "爆米花",
+    "output": "dish-fresh-ico-0015",
+    "family": "microwave",
+    "inputNames": [
+      "玉米",
+      "黄油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0015",
+    "referenceName": "爆米花",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 2,
+    "minDeviceLevel": 1,
+    "stage": 4,
+    "duration": 18000,
+    "effort": 3.977777777777778,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0015.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0019",
+    "name": "巧克力脆皮蓝莓",
+    "output": "dish-fresh-ico-0019",
+    "family": "microwave",
+    "inputNames": [
+      "蓝莓",
+      "巧克力"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0019",
+    "referenceName": "巧克力脆皮蓝莓",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
+    "inputs": [
+      {
+        "item": "fresh-exotic-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-7",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 28000,
+    "effort": 5.338888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0019.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0054",
+    "name": "玉米花",
+    "output": "dish-fresh-ico-0054",
+    "family": "microwave",
+    "inputNames": [
+      "玉米",
+      "焦糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0054",
+    "referenceName": "玉米花",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
+    "inputs": [
+      {
+        "item": "fresh-seasonal-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 5,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 24000,
+    "effort": 5.766666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0054.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0069",
+    "name": "酸甜芒果丁",
+    "output": "dish-fresh-ico-0069",
+    "family": "microwave",
+    "inputNames": [
+      "芒果",
+      "柠檬"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0069",
+    "referenceName": "酸甜芒果丁",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-exotic-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 22000,
+    "effort": 5.633333333333333,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0069.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0105",
+    "name": "热可可",
+    "output": "dish-fresh-ico-0105",
+    "family": "microwave",
+    "inputNames": [
+      "纯牛奶",
+      "巧克力"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0105",
+    "referenceName": "热可可",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+    "inputs": [
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-7",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 4,
+    "duration": 28000,
+    "effort": 5.338888888888889,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0105.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0163",
+    "name": "棉花软糖热巧克力",
+    "output": "dish-fresh-ico-0163",
+    "family": "microwave",
+    "inputNames": [
+      "纯牛奶",
+      "巧克力",
+      "棉花软糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0163",
+    "referenceName": "棉花软糖热巧克力",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
+    "inputs": [
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-8",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 4,
+    "duration": 32000,
+    "effort": 11.161111111111111,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0163.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0106",
+    "name": "QQ芒果布丁",
+    "output": "dish-fresh-ico-0106",
+    "family": "blender",
+    "inputNames": [
+      "芒果",
+      "纯牛奶",
+      "砂糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0106",
+    "referenceName": "QQ芒果布丁",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
+    "inputs": [
+      {
+        "item": "fresh-exotic-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 7,
+    "duration": 30000,
+    "effort": 4.777777777777778,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0106.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0114",
+    "name": "芒果慕斯",
+    "output": "dish-fresh-ico-0114",
+    "family": "blender",
+    "inputNames": [
+      "芒果",
+      "奶油",
+      "砂糖"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0114",
+    "referenceName": "芒果慕斯",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "inputs": [
+      {
+        "item": "fresh-exotic-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 7,
+    "duration": 30000,
+    "effort": 5.472222222222222,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0114.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0125",
+    "name": "浆果蜂蜜燕麦碗",
+    "output": "dish-fresh-ico-0125",
+    "family": "blender",
+    "inputNames": [
+      "蓝莓",
+      "燕麦",
+      "蜂蜜"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0125",
+    "referenceName": "浆果蜂蜜燕麦碗",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+    "inputs": [
+      {
+        "item": "fresh-exotic-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-grain-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 7,
+    "duration": 30000,
+    "effort": 5.472222222222221,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0125.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0127",
+    "name": "肉桂苹果奶冻",
+    "output": "dish-fresh-ico-0127",
+    "family": "blender",
+    "inputNames": [
+      "苹果",
+      "纯牛奶",
+      "肉桂"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0127",
+    "referenceName": "肉桂苹果奶冻",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+    "inputs": [
+      {
+        "item": "fresh-fruit-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-spice-7",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 7,
+    "duration": 36000,
+    "effort": 8.65,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0127.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0120",
+    "name": "巧克力冰淇淋",
+    "output": "dish-fresh-ico-0120",
+    "family": "ice-cream-machine",
+    "inputNames": [
+      "巧克力",
+      "奶油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0120",
+    "referenceName": "巧克力冰淇淋",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+    "inputs": [
+      {
+        "item": "fresh-sweet-7",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 7,
+    "minDeviceLevel": 2,
+    "stage": 7,
+    "duration": 53000,
+    "effort": 7.699999999999999,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0120.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0130",
+    "name": "黄油冰淇淋",
+    "output": "dish-fresh-ico-0130",
+    "family": "ice-cream-machine",
+    "inputNames": [
+      "黄油",
+      "奶油"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0130",
+    "referenceName": "黄油冰淇淋",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+    "inputs": [
+      {
+        "item": "fresh-milk-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-4",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 2,
+    "stage": 7,
+    "duration": 47000,
+    "effort": 5.911111111111111,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0130.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0126",
+    "name": "阿芙佳朵",
+    "output": "dish-fresh-ico-0126",
+    "family": "ice-cream-machine",
+    "inputNames": [
+      "黄油冰淇淋",
+      "浓缩咖啡"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0126",
+    "referenceName": "阿芙佳朵",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
+    "inputs": [
+      {
+        "item": "dish-fresh-ico-0130",
+        "count": 1
+      },
+      {
+        "item": "fresh-coffee-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 4,
+    "minDeviceLevel": 3,
+    "stage": 7,
+    "duration": 47000,
+    "effort": 10.433333333333334,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0126.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0067",
+    "name": "朗姆可乐",
+    "output": "dish-fresh-ico-0067",
+    "family": "bar",
+    "inputNames": [
+      "朗姆酒",
+      "可乐"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0067",
+    "referenceName": "朗姆可乐",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+    "inputs": [
+      {
+        "item": "fresh-mixer-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-6",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 34000,
+    "effort": 13.377777777777776,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0067.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0075",
+    "name": "威士忌苏打",
+    "output": "dish-fresh-ico-0075",
+    "family": "bar",
+    "inputNames": [
+      "威士忌",
+      "苏打水"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0075",
+    "referenceName": "威士忌苏打",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
+    "inputs": [
+      {
+        "item": "fresh-mixer-9",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 34000,
+    "effort": 16.155555555555555,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0075.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0090",
+    "name": "甜蛋酒",
+    "output": "dish-fresh-ico-0090",
+    "family": "bar",
+    "inputNames": [
+      "鸡蛋",
+      "朗姆酒",
+      "纯牛奶"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0090",
+    "referenceName": "甜蛋酒",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
+    "inputs": [
+      {
+        "item": "fresh-poultry-1",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-8",
+        "count": 1
+      },
+      {
+        "item": "fresh-milk-1",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 8,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 36000,
+    "effort": 9.344444444444445,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0090.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0098",
+    "name": "威士忌酸酒",
+    "output": "dish-fresh-ico-0098",
+    "family": "bar",
+    "inputNames": [
+      "威士忌",
+      "柠檬",
+      "糖浆"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0098",
+    "referenceName": "威士忌酸酒",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+    "inputs": [
+      {
+        "item": "fresh-mixer-9",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 36000,
+    "effort": 19.066666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0098.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0111",
+    "name": "莫斯科之骡",
+    "output": "dish-fresh-ico-0111",
+    "family": "bar",
+    "inputNames": [
+      "伏特加",
+      "姜汁水",
+      "柠檬"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0111",
+    "referenceName": "莫斯科之骡",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "inputs": [
+      {
+        "item": "fresh-mixer-10",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 36000,
+    "effort": 12.122222222222222,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0111.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0118",
+    "name": "龙舌兰螺丝刀",
+    "output": "dish-fresh-ico-0118",
+    "family": "bar",
+    "inputNames": [
+      "龙舌兰",
+      "甜橙"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0118",
+    "referenceName": "龙舌兰螺丝刀",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
+    "inputs": [
+      {
+        "item": "fresh-mixer-11",
+        "count": 1
+      },
+      {
+        "item": "fresh-fruit-2",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 11,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 34000,
+    "effort": 14.766666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0118.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0122",
+    "name": "金汤力",
+    "output": "dish-fresh-ico-0122",
+    "family": "bar",
+    "inputNames": [
+      "金酒",
+      "汤力水"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0122",
+    "referenceName": "金汤力",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+    "inputs": [
+      {
+        "item": "fresh-mixer-12",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 12,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 34000,
+    "effort": 27.266666666666666,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0122.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0131",
+    "name": "热托迪",
+    "output": "dish-fresh-ico-0131",
+    "family": "bar",
+    "inputNames": [
+      "威士忌",
+      "蜂蜜",
+      "柠檬"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0131",
+    "referenceName": "热托迪",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
+    "inputs": [
+      {
+        "item": "fresh-mixer-9",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-4",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 9,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 36000,
+    "effort": 17.677777777777777,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0131.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0135",
+    "name": "伏特加汤力",
+    "output": "dish-fresh-ico-0135",
+    "family": "bar",
+    "inputNames": [
+      "伏特加",
+      "汤力水"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0135",
+    "referenceName": "伏特加汤力",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
+    "inputs": [
+      {
+        "item": "fresh-mixer-10",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-5",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 34000,
+    "effort": 10.599999999999998,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0135.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0142",
+    "name": "椰香帕洛玛",
+    "output": "dish-fresh-ico-0142",
+    "family": "bar",
+    "inputNames": [
+      "龙舌兰",
+      "椰子",
+      "苏打水"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0142",
+    "referenceName": "椰香帕洛玛",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
+    "inputs": [
+      {
+        "item": "fresh-mixer-11",
+        "count": 1
+      },
+      {
+        "item": "fresh-exotic-6",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 11,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 36000,
+    "effort": 21.84444444444444,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0142.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0159",
+    "name": "能量伏特加",
+    "output": "dish-fresh-ico-0159",
+    "family": "bar",
+    "inputNames": [
+      "伏特加",
+      "能量汽水"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0159",
+    "referenceName": "能量伏特加",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
+    "inputs": [
+      {
+        "item": "fresh-mixer-10",
+        "count": 1
+      },
+      {
+        "item": "fresh-mixer-7",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 34000,
+    "effort": 10.599999999999998,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0159.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "dish-fresh-ico-0160",
+    "name": "浓缩马提尼",
+    "output": "dish-fresh-ico-0160",
+    "family": "bar",
+    "inputNames": [
+      "伏特加",
+      "浓缩咖啡",
+      "糖浆"
+    ],
+    "kind": "recipe",
+    "referenceId": "ico-0160",
+    "referenceName": "浓缩马提尼",
+    "naming": "reference",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights",
+    "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
+    "inputs": [
+      {
+        "item": "fresh-mixer-10",
+        "count": 1
+      },
+      {
+        "item": "fresh-coffee-2",
+        "count": 1
+      },
+      {
+        "item": "fresh-sweet-3",
+        "count": 1
+      }
+    ],
+    "ancestorRank": 10,
+    "minDeviceLevel": 3,
+    "stage": 8,
+    "duration": 36000,
+    "effort": 12.122222222222222,
+    "svg": "artwork/v3-b/masters/dish-fresh-ico-0160.svg",
+    "mode": "native-b-svg"
+  },
+  {
+    "id": "vegetable-cart-l2",
+    "name": "蔬菜推车",
+    "kind": "device",
+    "stage": 1,
+    "chains": [
+      "fresh-veg",
+      "fresh-seasonal"
+    ],
+    "price": 40,
+    "base": "vegetable-cart",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/vegetable-cart-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "vegetable-cart-l3",
+    "name": "蔬菜推车",
+    "kind": "device",
+    "stage": 1,
+    "chains": [
+      "fresh-veg",
+      "fresh-seasonal"
+    ],
+    "price": 40,
+    "base": "vegetable-cart",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/vegetable-cart-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "fruit-cart-l2",
+    "name": "鲜果木箱",
+    "kind": "device",
+    "stage": 1,
+    "chains": [
+      "fresh-fruit",
+      "fresh-exotic"
+    ],
+    "price": 40,
+    "base": "fruit-cart",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/fruit-cart-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "fruit-cart-l3",
+    "name": "鲜果木箱",
+    "kind": "device",
+    "stage": 1,
+    "chains": [
+      "fresh-fruit",
+      "fresh-exotic"
+    ],
+    "price": 40,
+    "base": "fruit-cart",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/fruit-cart-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "beast-meat-cart-l2",
+    "name": "兽肉推车",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-beast"
+    ],
+    "price": 40,
+    "base": "beast-meat-cart",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/beast-meat-cart-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "beast-meat-cart-l3",
+    "name": "兽肉推车",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-beast"
+    ],
+    "price": 40,
+    "base": "beast-meat-cart",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/beast-meat-cart-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "poultry-cart-l2",
+    "name": "禽肉推车",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-poultry"
+    ],
+    "price": 40,
+    "base": "poultry-cart",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/poultry-cart-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "poultry-cart-l3",
+    "name": "禽肉推车",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-poultry"
+    ],
+    "price": 40,
+    "base": "poultry-cart",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/poultry-cart-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "spice-box-l2",
+    "name": "香料盒",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-spice"
+    ],
+    "price": 40,
+    "base": "spice-box",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/spice-box-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "spice-box-l3",
+    "name": "香料盒",
+    "kind": "device",
+    "stage": 2,
+    "chains": [
+      "fresh-spice"
+    ],
+    "price": 40,
+    "base": "spice-box",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/spice-box-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "seafood-fridge-l1",
+    "name": "海鲜冰箱",
+    "kind": "device",
+    "stage": 6,
+    "chains": [
+      "fresh-sea"
+    ],
+    "price": 40,
+    "base": "seafood-fridge",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/seafood-fridge-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "seafood-fridge-l2",
+    "name": "海鲜冰箱",
+    "kind": "device",
+    "stage": 6,
+    "chains": [
+      "fresh-sea"
+    ],
+    "price": 40,
+    "base": "seafood-fridge",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/seafood-fridge-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "seafood-fridge-l3",
+    "name": "海鲜冰箱",
+    "kind": "device",
+    "stage": 6,
+    "chains": [
+      "fresh-sea"
+    ],
+    "price": 40,
+    "base": "seafood-fridge",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/seafood-fridge-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "dairy-fridge-l1",
+    "name": "乳品冷柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-milk"
+    ],
+    "price": 40,
+    "base": "dairy-fridge",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/dairy-fridge-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "dairy-fridge-l2",
+    "name": "乳品冷柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-milk"
+    ],
+    "price": 40,
+    "base": "dairy-fridge",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/dairy-fridge-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "dairy-fridge-l3",
+    "name": "乳品冷柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-milk"
+    ],
+    "price": 40,
+    "base": "dairy-fridge",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/dairy-fridge-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "grain-box-l1",
+    "name": "谷物面点箱",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-grain"
+    ],
+    "price": 40,
+    "base": "grain-box",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/grain-box-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "grain-box-l2",
+    "name": "谷物面点箱",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-grain"
+    ],
+    "price": 40,
+    "base": "grain-box",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/grain-box-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "grain-box-l3",
+    "name": "谷物面点箱",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-grain"
+    ],
+    "price": 40,
+    "base": "grain-box",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/grain-box-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "sweet-cabinet-l1",
+    "name": "甜料柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-sweet"
+    ],
+    "price": 40,
+    "base": "sweet-cabinet",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/sweet-cabinet-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "sweet-cabinet-l2",
+    "name": "甜料柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-sweet"
+    ],
+    "price": 40,
+    "base": "sweet-cabinet",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/sweet-cabinet-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "sweet-cabinet-l3",
+    "name": "甜料柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-sweet"
+    ],
+    "price": 40,
+    "base": "sweet-cabinet",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/sweet-cabinet-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "drink-fridge-l1",
+    "name": "饮品冰柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-coffee",
+      "fresh-tea",
+      "fresh-mixer"
+    ],
+    "price": 40,
+    "base": "drink-fridge",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/drink-fridge-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "drink-fridge-l2",
+    "name": "饮品冰柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-coffee",
+      "fresh-tea",
+      "fresh-mixer"
+    ],
+    "price": 40,
+    "base": "drink-fridge",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/drink-fridge-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "drink-fridge-l3",
+    "name": "饮品冰柜",
+    "kind": "device",
+    "stage": 3,
+    "chains": [
+      "fresh-coffee",
+      "fresh-tea",
+      "fresh-mixer"
+    ],
+    "price": 40,
+    "base": "drink-fridge",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/drink-fridge-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "chopping-board-l2",
+    "name": "小鹅砧板",
+    "kind": "device",
+    "stage": 1,
+    "chains": [],
+    "price": 30,
+    "slot": 0,
+    "baseSeconds": 6,
+    "base": "chopping-board",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/chopping-board-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "chopping-board-l3",
+    "name": "小鹅砧板",
+    "kind": "device",
+    "stage": 1,
+    "chains": [],
+    "price": 30,
+    "slot": 0,
+    "baseSeconds": 6,
+    "base": "chopping-board",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/chopping-board-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "fruit-press-l2",
+    "name": "鲜果料理台",
+    "kind": "device",
+    "stage": 1,
+    "chains": [],
+    "price": 30,
+    "slot": 1,
+    "baseSeconds": 10,
+    "base": "fruit-press",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/fruit-press-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "fruit-press-l3",
+    "name": "鲜果料理台",
+    "kind": "device",
+    "stage": 1,
+    "chains": [],
+    "price": 30,
+    "slot": 1,
+    "baseSeconds": 10,
+    "base": "fruit-press",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/fruit-press-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "home-cooking-pot-l2",
+    "name": "料理锅",
+    "kind": "device",
+    "stage": 2,
+    "chains": [],
+    "price": 30,
+    "slot": 4,
+    "baseSeconds": 20,
+    "base": "home-cooking-pot",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/home-cooking-pot-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "home-cooking-pot-l3",
+    "name": "料理锅",
+    "kind": "device",
+    "stage": 2,
+    "chains": [],
+    "price": 30,
+    "slot": 4,
+    "baseSeconds": 20,
+    "base": "home-cooking-pot",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/home-cooking-pot-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "frying-station-l1",
+    "name": "煎台",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 5,
+    "baseSeconds": 22,
+    "base": "frying-station",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/frying-station-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "frying-station-l2",
+    "name": "煎台",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 5,
+    "baseSeconds": 22,
+    "base": "frying-station",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/frying-station-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "frying-station-l3",
+    "name": "煎台",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 5,
+    "baseSeconds": 22,
+    "base": "frying-station",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/frying-station-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "charcoal-grill-l1",
+    "name": "炭烤炉",
+    "kind": "device",
+    "stage": 5,
+    "chains": [],
+    "price": 30,
+    "slot": 6,
+    "baseSeconds": 32,
+    "base": "charcoal-grill",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/charcoal-grill-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "charcoal-grill-l2",
+    "name": "炭烤炉",
+    "kind": "device",
+    "stage": 5,
+    "chains": [],
+    "price": 30,
+    "slot": 6,
+    "baseSeconds": 32,
+    "base": "charcoal-grill",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/charcoal-grill-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "charcoal-grill-l3",
+    "name": "炭烤炉",
+    "kind": "device",
+    "stage": 5,
+    "chains": [],
+    "price": 30,
+    "slot": 6,
+    "baseSeconds": 32,
+    "base": "charcoal-grill",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/charcoal-grill-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "oven-l1",
+    "name": "烤箱",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 7,
+    "baseSeconds": 40,
+    "base": "oven",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/oven-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "oven-l2",
+    "name": "烤箱",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 7,
+    "baseSeconds": 40,
+    "base": "oven",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/oven-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "oven-l3",
+    "name": "烤箱",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 7,
+    "baseSeconds": 40,
+    "base": "oven",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/oven-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "steamer-l1",
+    "name": "蒸笼",
+    "kind": "device",
+    "stage": 6,
+    "chains": [],
+    "price": 30,
+    "slot": 8,
+    "baseSeconds": 30,
+    "base": "steamer",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/steamer-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "steamer-l2",
+    "name": "蒸笼",
+    "kind": "device",
+    "stage": 6,
+    "chains": [],
+    "price": 30,
+    "slot": 8,
+    "baseSeconds": 30,
+    "base": "steamer",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/steamer-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "steamer-l3",
+    "name": "蒸笼",
+    "kind": "device",
+    "stage": 6,
+    "chains": [],
+    "price": 30,
+    "slot": 8,
+    "baseSeconds": 30,
+    "base": "steamer",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/steamer-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "wok-l1",
+    "name": "炒锅",
+    "kind": "device",
+    "stage": 5,
+    "chains": [],
+    "price": 30,
+    "slot": 9,
+    "baseSeconds": 20,
+    "base": "wok",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/wok-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "wok-l2",
+    "name": "炒锅",
+    "kind": "device",
+    "stage": 5,
+    "chains": [],
+    "price": 30,
+    "slot": 9,
+    "baseSeconds": 20,
+    "base": "wok",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/wok-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "wok-l3",
+    "name": "炒锅",
+    "kind": "device",
+    "stage": 5,
+    "chains": [],
+    "price": 30,
+    "slot": 9,
+    "baseSeconds": 20,
+    "base": "wok",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/wok-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "microwave-l1",
+    "name": "微波炉",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 10,
+    "baseSeconds": 10,
+    "base": "microwave",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/microwave-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "microwave-l2",
+    "name": "微波炉",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 10,
+    "baseSeconds": 10,
+    "base": "microwave",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/microwave-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "microwave-l3",
+    "name": "微波炉",
+    "kind": "device",
+    "stage": 4,
+    "chains": [],
+    "price": 30,
+    "slot": 10,
+    "baseSeconds": 10,
+    "base": "microwave",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/microwave-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "blender-l1",
+    "name": "搅拌机",
+    "kind": "device",
+    "stage": 7,
+    "chains": [],
+    "price": 30,
+    "slot": 11,
+    "baseSeconds": 16,
+    "base": "blender",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/blender-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "blender-l2",
+    "name": "搅拌机",
+    "kind": "device",
+    "stage": 7,
+    "chains": [],
+    "price": 30,
+    "slot": 11,
+    "baseSeconds": 16,
+    "base": "blender",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/blender-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "blender-l3",
+    "name": "搅拌机",
+    "kind": "device",
+    "stage": 7,
+    "chains": [],
+    "price": 30,
+    "slot": 11,
+    "baseSeconds": 16,
+    "base": "blender",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/blender-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "ice-cream-machine-l1",
+    "name": "冰淇淋机",
+    "kind": "device",
+    "stage": 7,
+    "chains": [],
+    "price": 30,
+    "slot": 12,
+    "baseSeconds": 35,
+    "base": "ice-cream-machine",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/ice-cream-machine-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "ice-cream-machine-l2",
+    "name": "冰淇淋机",
+    "kind": "device",
+    "stage": 7,
+    "chains": [],
+    "price": 30,
+    "slot": 12,
+    "baseSeconds": 35,
+    "base": "ice-cream-machine",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/ice-cream-machine-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "ice-cream-machine-l3",
+    "name": "冰淇淋机",
+    "kind": "device",
+    "stage": 7,
+    "chains": [],
+    "price": 30,
+    "slot": 12,
+    "baseSeconds": 35,
+    "base": "ice-cream-machine",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/ice-cream-machine-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "bar-l1",
+    "name": "调饮台",
+    "kind": "device",
+    "stage": 8,
+    "chains": [],
+    "price": 30,
+    "slot": 13,
+    "baseSeconds": 14,
+    "base": "bar",
+    "level": 1,
+    "svg": "artwork/v3-b/masters/bar-l1.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "bar-l2",
+    "name": "调饮台",
+    "kind": "device",
+    "stage": 8,
+    "chains": [],
+    "price": 30,
+    "slot": 13,
+    "baseSeconds": 14,
+    "base": "bar",
+    "level": 2,
+    "svg": "artwork/v3-b/masters/bar-l2.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  },
+  {
+    "id": "bar-l3",
+    "name": "调饮台",
+    "kind": "device",
+    "stage": 8,
+    "chains": [],
+    "price": 30,
+    "slot": 13,
+    "baseSeconds": 14,
+    "base": "bar",
+    "level": 3,
+    "svg": "artwork/v3-b/masters/bar-l3.svg",
+    "mode": "native-b-svg",
+    "design": "96-unit editable geometry; approved B palette, 2.4-unit outline and soft highlights"
+  }
+]

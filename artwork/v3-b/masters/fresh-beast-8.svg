@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-4.93750 -5.56250 107.50000 107.50000">
+  <title>带骨牛排 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="fat" x1=".1" y1="0" x2=".85" y2="1"><stop stop-color="#fff6dc"/><stop offset="1" stop-color="#eed5b1"/></linearGradient><linearGradient id="red" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#ed9d85"/><stop offset=".52" stop-color="#d77c69"/><stop offset="1" stop-color="#bd5f53"/></linearGradient><linearGradient id="bone" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#fff9e4"/><stop offset="1" stop-color="#e3caa3"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M34 12q12-5 25 2 9-2 18 7 11 12 8 29 7 13-3 23-12 14-30 11-15 7-30-6C9 67 7 54 13 42c1-14 8-25 21-30Z" fill="url(#fat)"/><path d="M34 19q13-4 24 2 10-2 16 7 8 11 4 23 7 12-2 19-10 10-25 7-14 6-25-4-13-10-8-27 0-17 16-27Z" fill="url(#red)"/><path d="m30 30 11-4 12 16 15-7 4 7-15 8 12 20-8 5-13-21-20 8-3-8 18-9Z" fill="url(#bone)"/><path d="M28 39q-8 7-6 16m13 15q-9-3-10-9m35-34 6 3m3 30 4 6" fill="none" stroke="#f4b7a0" stroke-width="2"/><path d="m33 22 5 3m31 20 5-2m-38 18-7 4" fill="none" stroke="#b96b5b" stroke-width="1.7"/><path d="M24 34q2-9 10-10m22-1 7 2" fill="none" stroke="#ffe7bd" stroke-width="3.6"/>
+  </g>
+</svg>

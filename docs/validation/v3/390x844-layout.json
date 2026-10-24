@@ -1,0 +1,73 @@
+{
+  "type": "v3-layout",
+  "width": 390,
+  "height": 844,
+  "board": "ready",
+  "overflow": false,
+  "parts": [
+    {
+      "selector": ".resource-bar",
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 54,
+      "inside": true
+    },
+    {
+      "selector": ".customer-section",
+      "x": 0,
+      "y": 54,
+      "width": 390,
+      "height": 126,
+      "inside": true
+    },
+    {
+      "selector": ".board-frame",
+      "x": 14,
+      "y": 254,
+      "width": 362,
+      "height": 462,
+      "inside": true
+    },
+    {
+      "selector": ".game-footer",
+      "x": 0,
+      "y": 760,
+      "width": 390,
+      "height": 84,
+      "inside": true
+    },
+    {
+      "selector": ".page-switch",
+      "x": 12,
+      "y": 771,
+      "width": 60,
+      "height": 62,
+      "inside": true
+    },
+    {
+      "selector": ".customer-card-0",
+      "x": 10,
+      "y": 84,
+      "width": 119,
+      "height": 87,
+      "inside": true
+    },
+    {
+      "selector": ".customer-card-1",
+      "x": 135,
+      "y": 84,
+      "width": 119,
+      "height": 87,
+      "inside": true
+    },
+    {
+      "selector": ".customer-card-2",
+      "x": 261,
+      "y": 84,
+      "width": 119,
+      "height": 87,
+      "inside": true
+    }
+  ]
+}

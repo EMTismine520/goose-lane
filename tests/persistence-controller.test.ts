@@ -168,29 +168,29 @@ describe('UI persistence orchestration', () => {
     const { controller, repository } = setup(null, true); await controller.start();
     expect(controller.view.state?.revision).toBe(0);
     expect(controller.view.readOnly).toBe(true); expect(controller.view.savedAt).toBe(0);
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(false);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
     expect(repository.save).not.toHaveBeenCalled();
   });
   it('keeps UI state unchanged on an aborted command and allows a successful retry', async () => {
     const { controller, repository } = setup(); await controller.start(); const original = controller.view.state;
     repository.save.mockRejectedValueOnce(new SaveError('事务未提交', 'storage'));
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(false);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
     expect(controller.view.state).toBe(original); expect(controller.view.error).toBe('事务未提交');
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(true);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(true);
     expect(controller.view.state?.revision).toBe(1); expect(controller.view.state?.stats.generated).toBe(1);
   });
   it('blocks all future gameplay after a conflict until latest state is reloaded', async () => {
     const { controller, repository } = setup(); await controller.start();
     repository.save.mockRejectedValueOnce(new SaveError('新进度已在另一页保存', 'conflict'));
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(false);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
     expect(controller.view.readOnly).toBe(true);
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(false);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
     expect(repository.save).toHaveBeenCalledTimes(1);
     const newer = { ...createInitialState(now), revision: 7, coins: 123 };
     repository.open.mockResolvedValue({ state: newer, recovered: false });
     await controller.retry();
     expect(controller.view.state).toEqual(newer); expect(controller.view.readOnly).toBe(false);
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(true);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(true);
     expect(controller.view.state?.revision).toBe(8);
   });
   it('reloads the old writer progress after takeover and never saves its stale preview', async () => {
@@ -206,7 +206,7 @@ describe('UI persistence orchestration', () => {
     repository.open.mockRejectedValueOnce(new SaveError('暂时无法读取', 'storage'));
     await controller.retry();
     expect(controller.view.readOnly).toBe(true);
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(false);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
     expect(repository.save).not.toHaveBeenCalled();
   });
   it('exports first, rebases import to current revision and invalidates imported sell undo', async () => {
@@ -231,7 +231,7 @@ describe('UI persistence orchestration', () => {
     const wait = deferred<GameState>(); repository.restorePrevious.mockReturnValue(wait.promise);
     const operation = controller.recoverPrevious(); await Promise.resolve();
     expect(controller.view.busy).toBe(true);
-    expect(await controller.dispatch({ type: 'generate', chain: 'grain' })).toBe(false);
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
     await expect(controller.importSave(serializeSave(createInitialState(now)))).rejects.toThrow(/正在保存/);
     expect(download.mock.invocationCallOrder[0]).toBeLessThan(repository.restorePrevious.mock.invocationCallOrder[0]);
     const restored = { ...createInitialState(now), revision: 3, coins: 30 }; wait.resolve(restored); await operation;

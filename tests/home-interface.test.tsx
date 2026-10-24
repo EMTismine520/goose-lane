@@ -4,7 +4,7 @@ import { createInitialState, execute } from '../src/domain/engine';
 import { FRESH_ORDERS } from '../src/content/catalog';
 import { BUILD_NODES } from '../src/content/board-layouts';
 import { reconcileHomeDevices } from '../src/domain/home-progression';
-import { Codex } from '../src/ui/Codex';
+import { V3Codex } from '../src/ui/V3Codex';
 import { ItemDetails } from '../src/ui/panels';
 import { ItemActionBar } from '../src/ui/ItemActionBar';
 
@@ -17,18 +17,20 @@ describe('home kitchen interface contracts', () => {
     expect(html).toContain('完成首段 12 份订单和 3 项建设后开放');
     expect(html).toContain('disabled');
     expect(html).not.toContain('鲜果料理台');
-    expect(html).toContain('dish-fresh-home-tomato-eggs.svg');
+    expect(html).toContain('dish-fresh-home-tomato-eggs.');
   });
   it('renders exact codex category denominators and masks undiscovered icons with a question mark', () => {
     const state = createInitialState(1000);
-    const html = renderToStaticMarkup(<Codex state={state} onItem={noop}/>);
-    expect(html).toMatch(/兽肉.*?\(0\/10\)/);
-    expect(html).toMatch(/禽肉.*?\(0\/7\)/);
-    expect(html).toMatch(/香料调料.*?\(0\/7\)/);
-    expect(html).toMatch(/家常菜.*?\(0\/10\)/);
+    const html = renderToStaticMarkup(<V3Codex state={state} onItem={noop} onDevice={noop}/>);
+    expect(html).toMatch(/料理.*?\(0\/98\)/);
+    expect(html).toMatch(/饮品.*?\(0\/41\)/);
+    expect(html).toMatch(/食材.*?\(2\/106\)/);
+    expect(html).toMatch(/生产器.*?\(2\/30\)/);
+    expect(html).toMatch(/厨具.*?\(2\/36\)/);
+    expect(html).toContain('/ 311');
     expect(html).toContain('codex-question');
     expect(html).not.toContain('fresh-beast-1.svg');
-    expect(html).toContain('fresh-veg-1.svg');
+    expect(html).toContain('fresh-veg-1.');
   });
   it('explains the complete two-input prefix and longer three-input recipe in the same control', () => {
     let state = createInitialState(1000);

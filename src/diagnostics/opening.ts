@@ -26,7 +26,7 @@ export function simulateOpening(seed = 0x6f657321) {
   const ensure = (item: string, count: number): void => {
     while (inventoryCount(state, item) < count) {
       const definition = ITEMS[item];
-      if (definition.kind === 'dish') {
+      if (RECIPES.some(r=>r.output===item)) {
         const recipe = RECIPES.find(value => value.output === item)!;
         for (const need of recipe.inputs) ensure(need.item, need.count);
         const appliance = BOARD_LAYOUT.entities.find(value => value.kind === 'appliance' && value.slot === recipe.appliance)!;

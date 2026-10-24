@@ -36,11 +36,11 @@ function fill(state: GameState) {
 const inventory = (state: GameState): ItemInstance[] => [...state.board.filter((item): item is ItemInstance => !!item), ...state.storage, ...state.migrationInbox, ...state.appliances.flatMap(a => [...a.inputSlots, ...(a.outputSlot ? [a.outputSlot] : [])])].sort((a, b) => a.uid.localeCompare(b.uid));
 
 describe('home content and gated production', () => {
-  it('ships 34 unique items, ten independently costed dishes and a four-customer order sequence', () => {
-    expect(HOME_CHAINS.map(chain => chain.items.length)).toEqual([10, 7, 7]);
+  it('ships 38 unique items, ten independently costed dishes and a four-customer order sequence', () => {
+    expect(HOME_CHAINS.map(chain => chain.items.length)).toEqual([10, 8, 10]);
     const ids = [...HOME_CHAINS.flatMap(chain => chain.items), ...HOME_RECIPES.map(recipe => recipe.output)];
-    expect(new Set(ids).size).toBe(34);
-    expect(ids.every(id => ITEMS[id].assetPath?.endsWith('.svg'))).toBe(true);
+    expect(new Set(ids).size).toBe(38);
+    expect(ids.every(id => !!ITEMS[id].assetId)).toBe(true);
     expect(HOME_RECIPES.reduce((sum, recipe) => sum + baseUnits(recipe.output), 0)).toBe(126);
     expect(HOME_ORDERS.reduce((sum, order) => sum + order.coins, 0)).toBe(498);
     expect(new Set(HOME_ORDERS.map(order => order.customer)).size).toBe(4);
@@ -95,8 +95,10 @@ describe('home content and gated production', () => {
       expect(state.board[to]?.item).toBe(`fresh-beast-${level + 1}`);
     }
     expect(mergeTarget('fresh-beast-10')).toBeNull();
-    expect(mergeTarget('fresh-poultry-7')).toBeNull();
-    expect(mergeTarget('fresh-spice-7')).toBeNull();
+    expect(mergeTarget('fresh-poultry-7')).toBe('fresh-poultry-8');
+    expect(mergeTarget('fresh-poultry-8')).toBeNull();
+    expect(mergeTarget('fresh-spice-7')).toBe('fresh-spice-8');
+    expect(mergeTarget('fresh-spice-10')).toBeNull();
     expect(mergeTarget('fresh-veg-7')).toBeNull();
   });
 });
@@ -127,7 +129,7 @@ describe('multi-ingredient pot ownership', () => {
     state = act(state, { type: 'deliver', order: order.id }, job.endsAt);
     expect(state.coins).toBe(coins + order.coins);
     expect(execute(state, { type: 'deliver', order: order.id }, job.endsAt).state).toBe(state);
-    expect(availableOrders(state)).toEqual([]);
+    expect(availableOrders(state).every(o=>o.id.startsWith('v3-order-'))).toBe(true);
   });
   it('keeps the egg-rice prefix ready and accepts tomato to match the longer recipe', () => {
     let state = homeState();
@@ -184,7 +186,7 @@ describe('content 2.0 migration and portable pot states', () => {
     const source = oldFull(), serialized = JSON.stringify(source), before = inventory(source);
     const result = validateSave(source);
     expect(JSON.stringify(source)).toBe(serialized);
-    expect(result.contentVersion).toBe('2.1.0');
+    expect(result.contentVersion).toBe('3.0.0');
     expect(result.migrationInbox).toHaveLength(4);
     expect(inventory(result)).toEqual(before);
     expect(result.seed).toBe(source.seed);

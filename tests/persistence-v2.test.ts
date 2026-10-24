@@ -121,6 +121,6 @@ describe('schema two ownership and migration', () => {
     await repository.save({ ...opened, revision: opened.revision + 2 });
     const raw = JSON.parse(await repository.exportRaw());
     expect(raw.migrationV1.data).toBe(source);
-    expect(JSON.parse(raw.previous.data).schemaVersion).toBe(2);
+    expect(JSON.parse(raw.previous.data).schemaVersion).toBe(3);
   });
 });

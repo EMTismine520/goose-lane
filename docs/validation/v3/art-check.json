@@ -1,0 +1,15 @@
+{
+  "assets": 311,
+  "chainNodes": 122,
+  "recipeOutputs": 123,
+  "equipmentForms": 66,
+  "approvedSvgReuse": 62,
+  "approvedBPresentationUnchanged": 38,
+  "newNativeSvg": 249,
+  "runtimeBytes": 6246226,
+  "maxVisibleSizeError": 0.1875,
+  "source": "editable native 96-unit SVG + 512x512 PNG",
+  "runtime": "256x256 lossless transparent WebP",
+  "uniqueHashes": 311,
+  "stageOnly": false
+}

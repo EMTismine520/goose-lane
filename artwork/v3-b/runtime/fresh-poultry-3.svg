@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0.47917 -0.77083 104.16667 104.16667">
+  <title>鸡翅中 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="bone" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#fff9e4"/><stop offset="1" stop-color="#e3caa3"/></linearGradient><linearGradient id="chicken" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#ffdfba"/><stop offset=".55" stop-color="#f3bb94"/><stop offset="1" stop-color="#df9c77"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M52 19q2-7 8-5 3 1 4 4 4-2 7 1 4 4 0 8l-8 7-14-5Z" fill="url(#bone)"/><path d="M52 25q13-1 17 11 3 10-6 18L42 72q-11 8-18 1-7-6 0-15l19-23q3-7 9-10Z" fill="url(#chicken)"/><path d="M66 40q3-7 8-5 3 1 4 4 4-1 6 2 2 5-2 7l-7 6-12-5Z" fill="url(#bone)"/><path d="M65 47q12 0 14 11 1 8-7 14L47 87q-9 5-14-2-6-8 2-15l22-17q3-5 8-6Z" fill="url(#chicken)"/><path d="M51 34 31 64m36-8L43 77" fill="none" stroke="#d79370" stroke-width="2.2"/><path d="M48 34 30 57m31-1L40 72" fill="none" stroke="#ffe7bd" stroke-width="3.6"/><path d="M35 68q3-5 7-4m8 14 7-5" fill="none" stroke="#ffe4be" stroke-width="2.1"/>
+  </g>
+</svg>

@@ -1,8 +1,10 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type Phaser from 'phaser';
 import { ALL_DEVICES } from '../content/board-layouts';
+import { DEVICE_FAMILIES } from '../content/expansion';
+import { themeStage } from '../domain/devices';
 import { deviceAssetPath, devicePresentation, itemImageUrl, itemPresentation, svgRasterSize } from '../content/assets';
-import { ITEMS } from '../content/catalog';
+import { CHAINS, ITEMS } from '../content/catalog';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
 import { audio } from '../platform/audio';
@@ -85,31 +87,28 @@ export default function Board(props: BoardProps) {
         private selectionIntent = 0;
         private paused = false;
         private lastPressed = -Infinity;
+        private queuedArt = new Set<string>();
 
         constructor() { super('pantry'); }
 
         preload() {
           progress('正在加载棋盘素材… 0%');
-          this.load.on('progress', (value: number) => progress(`正在加载棋盘素材… ${Math.round(value * 100)}%`));
+          this.load.on('progress', (value: number) => {if(!this.board)progress(`正在加载棋盘素材… ${Math.round(value * 100)}%`);});
           this.load.on('loaderror', () => fail('棋盘素材未能加载，请检查网络后重试。'));
           const base = `${import.meta.env.BASE_URL}assets/`;
           this.load.image('legacy-foods', `${base}foods.webp`);
-          for (const item of Object.values(ITEMS)) {
-            if (item.assetId) {
-              const path = itemImageUrl(item.id);
-              const size = svgRasterSize(itemPresentation(item.id), pixelRatio);
-              if (path.endsWith('.svg') && !directImages) this.load.svg(`item:${item.assetId}`, path, { width: size, height: size });
-              else this.load.image(`item:${item.assetId}`, path);
-            }
-          }
-          for (const entity of ALL_DEVICES) {
-            const path = `${import.meta.env.BASE_URL}${deviceAssetPath(entity.id)}`;
-            const size = svgRasterSize(devicePresentation(entity.id), pixelRatio);
-            if (path.endsWith('.svg') && !directImages) this.load.svg(`entity:${entity.id}`, path, { width: size, height: size });
-            else this.load.image(`entity:${entity.id}`, path);
-          }
+          this.queueArt();
           if (directImages) this.load.image('entity:crate', `${base}entities/crate.svg`);
           else this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96 * pixelRatio, height: 96 * pixelRatio });
+        }
+
+        private queueArt() {
+          const state=live.current.state,stage=themeStage(state);let added=false;
+          const add=(key:string,path:string,size:number)=>{if(this.queuedArt.has(key)||this.textures.exists(key))return;this.queuedArt.add(key);added=true;if(path.endsWith('.svg')&&!directImages)this.load.svg(key,path,{width:size,height:size});else this.load.image(key,path);};
+          for(const item of Object.values(ITEMS))if(item.assetId&&((item.stage??1)<=stage||state.discovered.includes(item.id)))add(`item:${item.assetId}`,itemImageUrl(item.id),svgRasterSize(itemPresentation(item.id),pixelRatio));
+          const ids=state.campaign==='fresh'&&state.schemaVersion>=3?DEVICE_FAMILIES.filter(f=>f.stage<=stage).flatMap(f=>(stage>=3?[1,2,3]:[1]).map(l=>`${f.id}-l${l}`)):ALL_DEVICES.map(f=>f.id);
+          for(const id of ids)add(`entity:${id}`,`${import.meta.env.BASE_URL}${deviceAssetPath(id)}`,svgRasterSize(devicePresentation(id),pixelRatio));
+          return added;
         }
 
         create() {
@@ -170,11 +169,12 @@ export default function Board(props: BoardProps) {
 
         private sync() {
           if (!this.board) return;
+          if(this.queueArt()&&!this.load.isLoading()){this.load.once('complete',()=>{this.board.rebuildArt();this.sync();});this.load.start();}
           const restoring = this.restoredEpoch !== live.current.sessionEpoch;
           if (restoring) { this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.pendingSelection = null; this.selectionIntent++; this.board.settle(); }
           const inactive = live.current.active === false || document.hidden;
           if (!this.allowed()) this.cancel();
-          if (this.start?.uid && live.current.state.board[this.start.index]?.uid !== this.start.uid) this.cancel();
+          if (this.start?.uid && getBoardEntity(live.current.state,this.start.index).id !== this.start.uid) this.cancel();
           if (inactive !== this.paused) {
             this.paused = inactive;
             if (inactive) {
@@ -201,7 +201,7 @@ export default function Board(props: BoardProps) {
           this.selectionIntent++;
           this.pendingSelection = null;
           const selected = live.current.selected;
-          this.start = { index, x: point.x, y: point.y, pointerId: pointer.id, uid: entity.item?.uid ?? null, selected, selectedUid: selected === null ? null : live.current.state.board[selected]?.uid ?? null };
+          this.start = { index, x: point.x, y: point.y, pointerId: pointer.id, uid: entity.item?.uid ?? (entity.canMove?entity.id:null), selected, selectedUid: selected === null ? null : getBoardEntity(live.current.state,selected).canMove?getBoardEntity(live.current.state,selected).id:null };
           this.board.press(index);
           void audio.unlock();
           if (this.time.now - this.lastPressed > 70) { audio.play('click'); this.lastPressed = this.time.now; }
@@ -210,19 +210,20 @@ export default function Board(props: BoardProps) {
         private drag(pointer: Phaser.Input.Pointer) {
           if (!this.allowed() || !this.start || pointer.id !== this.start.pointerId || !pointer.isDown || !this.start.uid) return;
           const entity = getBoardEntity(live.current.state, this.start.index);
-          if (!entity.canMove || entity.item?.uid !== this.start.uid) { this.cancel(); return; }
+          if (!entity.canMove || entity.id !== this.start.uid) { this.cancel(); return; }
           const canvasScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH;
           const point = boardPoint(pointer, pixelRatio);
           if (this.dragged === null && Math.hypot(point.x - this.start.x, point.y - this.start.y) * canvasScale >= DRAG_THRESHOLD) {
             this.dragged = this.start.index;
             live.current.onSelect(this.dragged);
-            const texture = itemTexture(this, entity.item.item);
-            const size = itemDisplaySize(entity.item.item) * 1.1;
+            const d=live.current.state.devices.find(d=>d.id===entity.id);
+            const texture = entity.item?itemTexture(this, entity.item.item):{key:`entity:${d?`${d.familyId}-l${d.level}`:entity.id}`,frame:undefined};
+            const size = (entity.item?itemDisplaySize(entity.item.item):47) * 1.1;
             this.ghost = this.add.image(point.x, point.y, texture.key, texture.frame).setDisplaySize(size, size).setDepth(40);
             this.board.setDragging(this.start.uid);
           }
           if (this.dragged !== null) {
-            const presentation = itemPresentation(entity.item.item);
+            const presentation = entity.item?itemPresentation(entity.item.item):{offsetX:0,offsetY:-2};
             this.ghost?.setPosition(point.x + presentation.offsetX, point.y + presentation.offsetY - (pointer.wasTouch ? 18 : 4));
             this.hovered = cellAt(point.x, point.y);
             this.paintHighlights();
@@ -250,10 +251,11 @@ export default function Board(props: BoardProps) {
           const state = live.current.state;
           const entity = getBoardEntity(state, index);
           const selected = gesture ? gesture.selected : live.current.selected;
-          const selectedUid = gesture ? gesture.selectedUid : selected === null ? null : state.board[selected]?.uid ?? null;
-          if (entity.kind === 'generator' && entity.chain) {
+          const selectedUid = gesture ? gesture.selectedUid : selected === null ? null : getBoardEntity(state,selected).canMove?getBoardEntity(state,selected).id:null;
+          if(selected!==null&&selected!==index&&selectedUid&&state.devices.some(d=>d.id===selectedUid)){void this.drop(selected,index,selectedUid);}
+          else if (entity.kind === 'generator' && entity.chain) {
             live.current.onSelect(index);
-            void this.submit({ type: 'generate', chain: entity.chain });
+            void this.submit({ type: 'generate', chain: entity.chain, ...(state.campaign==='fresh'?{device:entity.id}:{}) });
           } else if (selected !== null && selected !== index && selectedUid) {
             void this.drop(selected, index, selectedUid);
           } else if (entity.kind === 'appliance') {
@@ -345,7 +347,7 @@ export default function Board(props: BoardProps) {
           const index = row * BOARD_COLUMNS + column;
           const entity = getBoardEntity(props.state, index);
           const appliance = entity.kind === 'appliance' ? getApplianceStatus(props.state, entity.id) : null;
-          const details = entity.item ? `${ITEMS[entity.item.item].level}级` : appliance ? { idle: '等待投料', loaded: '已投料', cooking: '烹饪中', ready: '点击领取' }[appliance.phase] : '';
+          const details = entity.item ? CHAINS.some(c=>c.items.includes(entity.item!.item))?`${ITEMS[entity.item.item].level}级`:`成品${ITEMS[entity.item.item].kind==='drink'?'饮品':'料理'}` : appliance ? { idle: '等待投料', loaded: '已投料', cooking: '烹饪中', ready: '点击领取' }[appliance.phase] : '';
           return <div key={index} role="gridcell" aria-selected={props.selected === index} aria-rowindex={row + 1} aria-colindex={column + 1}>
             <button ref={node => { if (node) buttons.current.set(index, node); else buttons.current.delete(index); }} type="button" disabled={!interactive} tabIndex={interactive && index === (focused ?? 0) ? 0 : -1}
               aria-label={`第${row + 1}行第${column + 1}列，${entity.name}${details ? `，${details}` : ''}`}

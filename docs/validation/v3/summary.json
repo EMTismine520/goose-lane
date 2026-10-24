@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-25",
+  "contentVersion": "3.0.0",
+  "artwork": "B-warm-cartoon",
+  "tests": {
+    "files": 22,
+    "total": 266,
+    "passed": 266,
+    "failed": 0,
+    "success": true
+  },
+  "simulation": [
+    {
+      "seed": 42,
+      "orders": 145,
+      "recipesCooked": 123,
+      "finishedDiscovered": 139,
+      "foodDiscovered": 245,
+      "equipmentDiscovered": 66,
+      "commands": 3251,
+      "generated": 670,
+      "merges": 315,
+      "peakOccupancy": 49,
+      "deviceSwitches": 332,
+      "goldFarmed": 0,
+      "coins": 8342,
+      "recoveryWaitMs": 121828100,
+      "cookingWaitMs": 3909400,
+      "virtualElapsedMs": 133865000,
+      "inventoryOrGoldInjected": false,
+      "humanPlaytest": false
+    },
+    {
+      "seed": 1868919585,
+      "orders": 145,
+      "recipesCooked": 123,
+      "finishedDiscovered": 139,
+      "foodDiscovered": 245,
+      "equipmentDiscovered": 66,
+      "commands": 3235,
+      "generated": 668,
+      "merges": 301,
+      "peakOccupancy": 62,
+      "deviceSwitches": 344,
+      "goldFarmed": 0,
+      "coins": 8342,
+      "recoveryWaitMs": 120313100,
+      "cookingWaitMs": 3909400,
+      "virtualElapsedMs": 132310000,
+      "inventoryOrGoldInjected": false,
+      "humanPlaytest": false
+    },
+    {
+      "seed": 123456789,
+      "orders": 145,
+      "recipesCooked": 123,
+      "finishedDiscovered": 139,
+      "foodDiscovered": 245,
+      "equipmentDiscovered": 66,
+      "commands": 3289,
+      "generated": 683,
+      "merges": 313,
+      "peakOccupancy": 63,
+      "deviceSwitches": 346,
+      "goldFarmed": 0,
+      "coins": 8358,
+      "recoveryWaitMs": 123122600,
+      "cookingWaitMs": 3909400,
+      "virtualElapsedMs": 135254500,
+      "inventoryOrGoldInjected": false,
+      "humanPlaytest": false
+    }
+  ],
+  "art": {
+    "assets": 311,
+    "chainNodes": 122,
+    "recipeOutputs": 123,
+    "equipmentForms": 66,
+    "approvedSvgReuse": 62,
+    "approvedBPresentationUnchanged": 38,
+    "newNativeSvg": 249,
+    "runtimeBytes": 6246226,
+    "maxVisibleSizeError": 0.1875,
+    "source": "editable native 96-unit SVG + 512x512 PNG",
+    "runtime": "256x256 lossless transparent WebP",
+    "uniqueHashes": 311,
+    "stageOnly": false
+  },
+  "browser": {
+    "sizes": [
+      "360x640",
+      "390x844",
+      "430x900"
+    ],
+    "threeInputCookCollectDeliver": {
+      "coinsBefore": 91,
+      "coinsAfter": 115,
+      "evidence": "360x640-cooked-and-delivered-b.png"
+    },
+    "offline": {
+      "origin": "http://127.0.0.1:59432/",
+      "httpServerStopped": true,
+      "offlineReloadSucceeded": true,
+      "board": "ready",
+      "allThemesStatusRestored": true,
+      "lateImages": [
+        {
+          "alt": "帝王蟹",
+          "loaded": true,
+          "path": "./assets/v3-b/fresh-sea-11.webp",
+          "width": 256
+        },
+        {
+          "alt": "海鲜冰箱 3级",
+          "loaded": true,
+          "path": "./assets/v3-b/seafood-fridge-l3.webp",
+          "width": 256
+        },
+        {
+          "alt": "帝王蟹",
+          "loaded": true,
+          "path": "./assets/v3-b/fresh-sea-11.webp",
+          "width": 256
+        },
+        {
+          "alt": "蒜香黄油帝王蟹",
+          "loaded": true,
+          "path": "./assets/v3-b/dish-fresh-ico-0157.webp",
+          "width": 256
+        }
+      ]
+    }
+  },
+  "build": {
+    "passed": true,
+    "coreFiles": 135,
+    "coreMiB": 4.37,
+    "lazyAssets": 287,
+    "completeMiB": 9.88
+  },
+  "unperformed": [
+    "physical-phone acceptance",
+    "first-time human player acceptance"
+  ]
+}

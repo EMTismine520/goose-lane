@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-6.37500 -7.00000 110.00000 110.00000">
+  <title>排骨 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="bone" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#fff9e4"/><stop offset="1" stop-color="#e3caa3"/></linearGradient><linearGradient id="pork" x1=".12" y1="0" x2=".8" y2="1"><stop stop-color="#f7baa2"/><stop offset=".5" stop-color="#eb987e"/><stop offset="1" stop-color="#d77b68"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M29 44 20 23q-7 1-8-5-1-6 5-7 4-1 6 4 5-4 9 0 4 5-2 9l9 20Z" fill="url(#bone)"/><path d="m45 37-4-17q-6-1-6-6 0-6 5-6 4 0 5 4 5-2 8 2 2 5-3 8l5 18Z" fill="url(#bone)"/><path d="m63 38 1-15q-6-2-4-7 2-6 7-3 3 1 3 5 6 0 7 5 0 5-5 6l-1 15Z" fill="url(#bone)"/><path d="M22 41q9-12 22-9 9-6 18 2 9-2 14 6l9 27q2 9-7 12L40 88q-8 0-12-8L16 57q-3-9 6-16Z" fill="url(#pork)"/><path d="M24 45q7-10 18-6 9-6 18 1 8-1 12 6l6 19q-10-6-16 0-8-7-16 0-8-3-15 1Z" fill="#f5c6a8" stroke="none"/><path d="m30 45 12 27m6-32 11 29m7-25 9 24" fill="none" stroke="#bf7865" stroke-width="2.5"/><path d="m26 72 13 8 39-10 2 6-40 11Z" fill="#fff0cd" stroke="none"/><path d="m25 48 5 12m17-19 3 8m15-1 3 8" fill="none" stroke="#ffe7bd" stroke-width="3.4"/>
+  </g>
+</svg>

@@ -1,7 +1,7 @@
 {
   "name": "goose-lane",
   "private": true,
-  "version": "1.0.0",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
@@ -11,7 +11,11 @@
     "test": "vitest run",
     "simulate": "tsx src/diagnostics/simulate.ts",
     "art:build": "node scripts/build-b-art.mjs",
-    "art:check": "node scripts/check-b-art.mjs"
+    "art:check": "node scripts/check-b-art.mjs",
+    "simulate:v3": "tsx src/diagnostics/complete-v3.ts",
+    "content:export": "tsx scripts/export-v3-catalog.ts",
+    "art:check:v3": "node scripts/check-v3-art.mjs",
+    "art:build:v3": "node artwork/v3-b/draw-masters.mjs && node scripts/package-v3-b-art.mjs"
   },
   "dependencies": {
     "lucide-react": "0.468.0",

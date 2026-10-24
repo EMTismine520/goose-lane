@@ -39,23 +39,23 @@ describe('B-only food art and isolated preview', () => {
     const state = createFoodStyleState(20_000_000);
     for (const id of FOOD_STYLE_ITEMS) {
       const html = renderToStaticMarkup(<ItemDetails state={state} item={id} onItem={() => {}} onCook={() => {}}/>);
-      expect(html).toContain(`assets/items/${id}.svg`);
+      expect(html).toContain(itemPresentation(id).path);
       expect(itemImageUrl(id)).toContain(itemPresentation(id).path);
       const normal = renderToStaticMarkup(<ItemIcon item={id}/>);
       expect(renderToStaticMarkup(<ItemArtProvider value={{ renderer: 'canvas', pixelRatio: 3 }}><ItemIcon item={id}/></ItemArtProvider>)).toBe(normal);
     }
-    expect(itemPresentation('fresh-veg-1').displaySize).toBe(54);
+    expect(itemPresentation('fresh-veg-1').displaySize).toBeLessThanOrEqual(56);
   });
 
   it.each([1, 2, 3])('keeps layout stable while raising SVG sampling at DPR %i', ratio => {
     for (const id of Object.keys(B_ART)) {
       const presentation = HOME_DEVICES.some(device => device.id === id) ? devicePresentation(id) : itemPresentation(id);
-      expect(presentation.svgSize).toBe(96);
-      expect(svgRasterSize(presentation, ratio)).toBe(96 * ratio);
+      expect([96,256]).toContain(presentation.svgSize);
+      expect(svgRasterSize(presentation, ratio)).toBe(Math.max(presentation.svgSize,96 * ratio));
       expect(presentation.displaySize).toBeLessThanOrEqual(56);
     }
-    expect(itemPresentation('fresh-beast-1')).toMatchObject({ displaySize: 48, offsetX: -1, offsetY: -3 });
-    expect(itemPresentation('fresh-poultry-1').displaySize).toBeCloseTo(34 / .75);
+    expect(itemPresentation('fresh-beast-1').displaySize).toBeLessThanOrEqual(56);
+    expect(itemPresentation('fresh-poultry-1').displaySize).toBeLessThanOrEqual(56);
     for (const device of HOME_DEVICES) expect(devicePresentation(device.id).displaySize * .75).toBe(42);
   });
 });

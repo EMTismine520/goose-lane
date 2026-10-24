@@ -1,7 +1,8 @@
 import { FRESH_ORDERS } from './catalog';
 import type { GameState } from '../domain/types';
+import { DEVICE_FAMILIES } from './expansion';
 
-export interface DeviceDefinition { id: string; kind: 'generator' | 'appliance'; index: number; name: string; unlockDay: number; chain?: string; slot?: number; assetPath?: string; }
+export interface DeviceDefinition { id: string; kind: 'generator' | 'appliance'; index: number; name: string; unlockDay: number; chain?: string; slot?: number; assetPath?: string; familyId?: string; level?: number; artId?: string; }
 export interface BlockerDefinition { id: string; index: number; footprint: number[]; unlockDay: number; name: string; buildNode: string; buildLabel: string; }
 
 /** Project-designed layout; lower boxes are not claimed to reproduce the original game's hidden rules. */
@@ -33,11 +34,12 @@ export const HOME_DEVICES: DeviceDefinition[] = [
   { id: 'home-cooking-pot', kind: 'appliance', index: 47, name: '料理锅', unlockDay: 1, slot: 4, assetPath: 'assets/entities/home-cooking-pot.svg' },
 ];
 export const ALL_DEVICES: DeviceDefinition[] = [...BOARD_LAYOUT.entities, ...HOME_DEVICES];
-export type ProgressState = Pick<GameState, 'schemaVersion' | 'campaign' | 'completedOrders' | 'construction'>;
+export type ProgressState = Pick<GameState, 'schemaVersion' | 'campaign' | 'completedOrders' | 'construction'> & Partial<Pick<GameState,'devices'>>;
 export function homeCookingUnlocked(state: ProgressState): boolean {
   return state.schemaVersion >= 2 && state.campaign === 'fresh' && FRESH_ORDERS.every(order => state.completedOrders.includes(order.id)) && BUILD_NODES.every(node => state.construction.completed.includes(node.id));
 }
 export function activeDevices(state: ProgressState): DeviceDefinition[] {
+  if(state.schemaVersion>=3&&state.campaign==='fresh'&&state.devices)return state.devices.filter(d=>d.index!==null).map(d=>{const f=DEVICE_FAMILIES.find(f=>f.id===d.familyId)!;return {id:d.id,familyId:d.familyId,level:d.level,artId:`${d.familyId}-l${d.level}`,kind:f.kind,index:d.index!,name:f.name,unlockDay:1,chain:d.selectedChain??undefined,slot:f.slot};});
   return state.schemaVersion < 2 ? [] : homeCookingUnlocked(state) ? ALL_DEVICES : BOARD_LAYOUT.entities;
 }
 export const HOME_UNLOCK_HINT = '完成首段 12 份订单和 3 项建设后开放';

@@ -2,8 +2,9 @@ import { HOME_CHAINS, HOME_RECIPES } from '../content/catalog';
 import { getBoardEntity } from '../domain/engine';
 import { resumeManualSlot } from '../persistence/save';
 import { simulateOpening } from './opening';
+import { B_ART } from '../content/assets';
 
-export const FOOD_STYLE_ITEMS = [...HOME_CHAINS.flatMap(chain => chain.items), ...HOME_RECIPES.map(recipe => recipe.output)];
+export const FOOD_STYLE_ITEMS = [...HOME_CHAINS.flatMap(chain => chain.items), ...HOME_RECIPES.map(recipe => recipe.output)].filter(id=>id in B_ART);
 
 /** All 34 B foods, eight intact devices, old produce, and room for real play. */
 export function createFoodStyleState(now = Date.now(), layout: 'showcase' | 'sausages' = 'showcase') {

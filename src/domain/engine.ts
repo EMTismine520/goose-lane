@@ -4,6 +4,8 @@ import { reconcileHomeDevices } from './home-progression';
 import { ENERGY_CONFIG, nextRandom, PRODUCTION } from '../content/production';
 import { TUTORIAL_STEPS } from '../content/tutorial';
 import type { ApplianceState, Command, CommandResult, GameEvent, GameState, ItemInstance, OrderDef, RecipeDef, Requirement } from './types';
+import { DEVICE_FAMILIES } from '../content/expansion';
+import { deviceArtId, deviceIdle, makeDevice, productionFor, recipeMatchesDevice, reconcileDeviceGrants, themeStage } from './devices';
 
 export const BOARD_SIZE = 63;
 export const GENERATOR_CAPACITY = 12;
@@ -22,7 +24,8 @@ export function unlockedCells(state: GameState): number {
 }
 export function mergeTarget(item: string): string | null {
   const definition = ITEMS[item];
-  return definition?.kind === 'ingredient' ? CHAINS.find(chain => chain.id === definition.chain)?.items[definition.level] ?? null : null;
+  const chain=definition?CHAINS.find(chain=>chain.id===definition.chain):undefined;
+  return chain?.items.includes(item)?chain.items[definition.level]??null:null;
 }
 
 export function createInitialState(now = Date.now()): GameState {
@@ -31,7 +34,7 @@ export function createInitialState(now = Date.now()): GameState {
   board[17] = { uid: 'g2', item: 'fresh-veg-1' };
   board[23] = { uid: 'g3', item: 'fresh-fruit-1' };
   board[24] = { uid: 'g4', item: 'fresh-fruit-1' };
-  return {
+  const state: GameState = {
     schemaVersion: SCHEMA_VERSION, contentVersion: CONTENT_VERSION, revision: 0, seed: 0x6f657321, nextId: 5,
     board, storage: [], storageCapacity: STORAGE_CAPACITY,
     generators: Object.fromEntries(CHAINS.map(chain => [chain.id, { remaining: GENERATOR_CAPACITY, readyAt: 0 }])),
@@ -40,11 +43,13 @@ export function createInitialState(now = Date.now()): GameState {
     stats: { merges: 0, generated: 0, cooked: 0, earned: 0 }, tutorial: 0,
     settings: { music: false, sound: true, reducedMotion: false, volume: 0.55 }, lastSeen: boundedTimestamp(now), undo: null,
     campaign: 'fresh', energy: { value: ENERGY_CONFIG.initial, lastRecoveryAt: boundedTimestamp(now) },
-    appliances: BOARD_LAYOUT.entities.filter(entity => entity.kind === 'appliance').map(entity => ({ id: entity.id, slot: entity.slot!, index: entity.index, inputSlots: [], job: null, outputSlot: null, version: 0 })),
+    appliances: [], devices: [], deviceGrants: [], deviceDiscovered: [],
     construction: { completed: [], hats: 0, rewardClaimed: false },
     tutorialState: { node: 'produce', completed: [], targetUid: 'vegetable-cart' },
     session: { page: 'merge', selectedUid: null, orderScroll: 0 }, migrationInbox: [], processedCommandIds: [], cellVersions: Array(BOARD_SIZE).fill(0),
   };
+  reconcileDeviceGrants(state);
+  return state;
 }
 
 /** Schema-one fixture for historical simulation and regression, never written as a new save. */
@@ -77,6 +82,10 @@ export function canAffordRequirements(state: GameState, needs: Requirement[]): b
 }
 export function availableOrders(state: GameState) {
   const completed = new Set(state.completedOrders);
+  if(state.schemaVersion>=3&&state.campaign==='fresh') {
+    const stage=themeStage(state);
+    return ORDERS.filter(o=>!completed.has(o.id)&&(stage===1?FRESH_ORDERS.includes(o):stage===2?HOME_ORDERS.includes(o):o.id.startsWith('v3-order-')&&(o.stage??8)<=stage)).slice(0,3);
+  }
   const campaignOrders = state.campaign === 'fresh' && state.day === 1 ? homeCookingUnlocked(state) ? HOME_ORDERS : FRESH_ORDERS : LEGACY_ORDERS;
   return campaignOrders.filter(order => order.day === state.day && !completed.has(order.id)).slice(0, 3);
 }
@@ -92,7 +101,7 @@ export function getGeneratorStatus(state: GameState, chain: string, now = Date.n
   const generator = state.generators[chain];
   const definition = CHAINS.find(item => item.id === chain);
   const time = effectiveNow(state, now);
-  if (state.schemaVersion >= 2) return { remaining: getEnergyStatus(state, time).value, readyAt: 0, waiting: 0, unlocked: !!definition && state.day >= definition.unlockDay && (!HOME_CHAINS.some(value => value.id === chain) || homeCookingUnlocked(state)) };
+  if (state.schemaVersion >= 2) return { remaining: getEnergyStatus(state, time).value, readyAt: 0, waiting: 0, unlocked: !!definition && state.day >= definition.unlockDay && (state.campaign==='fresh'?(definition.stage??1)<=themeStage(state):!HOME_CHAINS.some(value => value.id === chain)) };
   if (!generator || !definition) return { remaining: 0, readyAt: 0, waiting: 0, unlocked: false };
   const waiting = generator.remaining === 0 ? Math.max(0, generator.readyAt - time) : 0;
   return { remaining: generator.remaining === 0 && waiting === 0 ? GENERATOR_CAPACITY : generator.remaining, readyAt: waiting === 0 ? 0 : generator.readyAt, waiting, unlocked: state.day >= definition.unlockDay };
@@ -104,8 +113,12 @@ export function getBonuses(state: GameState) {
 export function getOrderReward(state: GameState, order: OrderDef): number {
   return Math.floor(order.coins * (1 + getBonuses(state).tips));
 }
-export function getRecipeDuration(state: GameState, recipe: RecipeDef): number {
-  return Math.max(1000, Math.round(recipe.duration * (1 - getBonuses(state).speed)));
+export function getRecipeDuration(state: GameState, recipe: RecipeDef, deviceId?: string): number {
+  const level=state.devices?.find(d=>d.id===deviceId)?.level??1;
+  return getRecipeDurationAtLevel(state,recipe,level);
+}
+export function getRecipeDurationAtLevel(state: GameState, recipe: RecipeDef, level:number): number {
+  return Math.max(1000, Math.round(recipe.duration * (1 - getBonuses(state).speed)*[1,0.85,0.70][level-1]));
 }
 export function canCook(state: GameState, recipeId: string, slot?: number): boolean {
   const recipe = RECIPES.find(recipe => recipe.id === recipeId);
@@ -161,18 +174,19 @@ export function getBoardEntity(state: GameState, index: number): BoardEntityView
     if (state.campaign === 'legacy' && chain) chain = device.index === 35 ? 'grain' : 'coffee';
     const appliance = state.appliances.find(value => value.id === device.id);
     const name = state.campaign === 'legacy' && chain ? CHAINS.find(value => value.id === chain)?.name ?? device.name : device.name;
-    return { ...base, ...device, name, chain, appliance, kind: device.kind, canAccept: device.kind === 'appliance' && !!appliance && !appliance.job && !appliance.outputSlot };
+    return { ...base, ...device, name, chain, appliance, kind: device.kind, canMove:state.schemaVersion>=3&&state.campaign==='fresh',canMerge:(device.level??3)<3&&deviceIdle(state,device.id),canAccept: device.kind === 'appliance' && !!appliance && !appliance.job && !appliance.outputSlot };
   }
   const item = state.board[index];
   return item ? { ...base, kind: 'item', id: item.uid, name: ITEMS[item.item]?.name ?? '食材', item, canMove: true, canMerge: !!mergeTarget(item.item), canSell: true } : { ...base, kind: 'empty', id: `cell-${index}`, name: '空格', canAccept: true };
 }
 
 export function availableApplianceRecipes(state: GameState): RecipeDef[] {
+  if(state.schemaVersion>=3&&state.campaign==='fresh')return MODERN_RECIPES.filter(r=>(r.stage??1)<=themeStage(state));
   return (state.campaign === 'legacy' ? [...LEGACY_RECIPES, ...FRESH_RECIPES] : homeCookingUnlocked(state) ? MODERN_RECIPES : FRESH_RECIPES).filter(recipe => recipe.unlockDay <= state.day);
 }
 function compatibleRecipes(state: GameState, appliance: ApplianceState, inputs = appliance.inputSlots) {
   const missingCost = (recipe: RecipeDef) => recipe.inputs.reduce((sum, need) => sum + Math.max(0, need.count - inputs.filter(input => input.item === need.item).length) * baseUnits(need.item), 0);
-  return availableApplianceRecipes(state).filter(recipe => recipe.appliance === appliance.slot && inputs.every(input => recipe.inputs.some(need => need.item === input.item)) && recipe.inputs.every(need => inputs.filter(input => input.item === need.item).length <= need.count)).sort((a, b) => missingCost(a) - missingCost(b));
+  return availableApplianceRecipes(state).filter(recipe => recipeMatchesDevice(state,appliance,recipe) && inputs.every(input => recipe.inputs.some(need => need.item === input.item)) && recipe.inputs.every(need => inputs.filter(input => input.item === need.item).length <= need.count)).sort((a, b) => missingCost(a) - missingCost(b));
 }
 function fullyLoaded(appliance: ApplianceState, recipe: RecipeDef) {
   return recipe.inputs.every(need => appliance.inputSlots.filter(input => input.item === need.item).length === need.count) && appliance.inputSlots.length === recipe.inputs.reduce((count, need) => count + need.count, 0);
@@ -192,6 +206,7 @@ export function getConstructionProgress(state: GameState) {
   return { completed, total: BUILD_NODES.length, ratio: completed / BUILD_NODES.length, percent: completed === 0 ? 0 : BUILD_NODES[completed - 1].progress, next: BUILD_NODES[completed] ?? null, canClaimReward: completed === BUILD_NODES.length && !state.construction.rewardClaimed };
 }
 export function getTutorialStep(state: GameState) {
+  if(homeCookingUnlocked(state))return null;
   const step = TUTORIAL_STEPS.find(value => value.id === state.tutorialState.node);
   if (!step) return null;
   let target: string = step.target;
@@ -249,6 +264,7 @@ function reconcileTime(state: GameState, time: number, events: GameEvent[]) {
 export function execute(original: GameState, command: Command, now = Date.now()): CommandResult {
   const reject = (message: string): CommandResult => ({ state: original, ok: false, events: [{ type: 'error', message }] });
   if (!command || typeof command !== 'object') return reject('操作未识别，请重试。');
+  if(['configureDevice','storeDevice','retrieveDevice','moveDevice','mergeDevices'].includes(command.type)&&(original.campaign!=='fresh'||original.schemaVersion<3))return reject('设备成长与设备架在当前图鉴主线中使用。');
   if (command.commandId && original.processedCommandIds.includes(command.commandId)) return reject('这次操作已经完成，无需重复。');
   const sourceIndex = 'from' in command ? command.from : 'index' in command ? command.index : undefined;
   if (command.expectedUid !== undefined && (sourceIndex === undefined || original.board[sourceIndex]?.uid !== command.expectedUid)) return reject('这份食材的位置已改变，请重新选择。');
@@ -268,15 +284,58 @@ export function execute(original: GameState, command: Command, now = Date.now())
   const preserveUndo = ['session', 'recover', 'settings'].includes(command.type);
   state.undo = preserveUndo ? state.undo : null;
   switch (command.type) {
+    case 'configureDevice': {
+      const device=state.devices.find(d=>d.id===command.device), chain=CHAINS.find(c=>c.id===command.chain), production=productionFor(command.chain,command.band);
+      if(!device||!chain||!DEVICE_FAMILIES.find(f=>f.id===device.familyId)?.chains.includes(command.chain)||!production||production.minLevel>device.level||(chain.stage??1)>themeStage(state)||command.band>0&&themeStage(state)<3)return reject('系列或产出段尚未开放。');
+      device.selectedChain=chain.id;device.band=command.band;device.version++;break;
+    }
+    case 'buyDevice': {
+      const family=DEVICE_FAMILIES.find(f=>f.id===command.family);
+      if(state.campaign!=='fresh'||themeStage(state)<3||!family||family.stage>themeStage(state))return reject('完成家常烟火后，可购买已开放设备的副本。');
+      if(state.devices.length>=256)return reject('设备架已满，先合成闲置副本。');
+      if(state.coins<family.price)return reject(`还差 ${family.price-state.coins} 金币，完成订单或出售多余食材可获得。`);
+      state.coins-=family.price;makeDevice(state,family.id,`d${state.nextId++}`);
+      events.push({type:'device',message:`${family.name}已放入设备架，可与同类同级设备合成。`});break;
+    }
+    case 'storeDevice': {
+      const device=state.devices.find(d=>d.id===command.device);
+      if(!device||device.index===null||!deviceIdle(state,device.id))return reject('只有完全空闲的设备可以收纳。');
+      device.index=null;device.version++;const appliance=state.appliances.find(a=>a.id===device.id);if(appliance){appliance.index=-1;appliance.version++;}
+      events.push({type:'device',message:'设备已收好，随时可以从设备架取出。'});break;
+    }
+    case 'retrieveDevice':
+    case 'moveDevice': {
+      const device=state.devices.find(d=>d.id===command.device);
+      if(!device||command.type==='retrieveDevice'&&device.index!==null||command.type==='moveDevice'&&device.index===null)return reject('设备位置已经改变，请重新选择。');
+      const index=command.type==='moveDevice'?command.to:command.index??emptyCell(state);
+      if(!validCell(state,index)||state.board[index])return reject('请先腾出一个已开放的棋盘格，设备会保留在原处。');
+      device.index=index;device.version++;const appliance=state.appliances.find(a=>a.id===device.id);if(appliance){appliance.index=index;appliance.version++;}
+      events.push({type:'device',message:command.type==='moveDevice'?'设备已移动，料理进度继续保留。':'设备已摆上棋盘。',index});break;
+    }
+    case 'mergeDevices': {
+      const source=state.devices.find(d=>d.id===command.device), target=state.devices.find(d=>d.id===command.target);
+      if(themeStage(state)<3)return reject('设备成长将在晨间茶饮主题开放。');
+      if(!source||!target||source.id===target.id||source.familyId!==target.familyId||source.level!==target.level||target.level>=3)return reject('需要两台同类同级设备，最高可升至三级。');
+      if(!deviceIdle(state,source.id)||!deviceIdle(state,target.id))return reject('请先撤回投料或领取料理，再合成空闲设备。');
+      target.level++;target.band=0;target.version++;
+      state.devices=state.devices.filter(d=>d.id!==source.id);state.appliances=state.appliances.filter(a=>a.id!==source.id);
+      const art=deviceArtId(target);if(!state.deviceDiscovered.includes(art))state.deviceDiscovered.push(art);
+      events.push({type:'device-upgrade',message:`${DEVICE_FAMILIES.find(f=>f.id===target.familyId)!.name}升至${target.level}级！`,index:target.index??undefined});break;
+    }
     case 'generate': {
       const chain = CHAINS.find(chain => chain.id === command.chain);
-      if (!chain || chain.unlockDay > state.day) return reject('这条食材链将在后续章节开放。');
+      if (!chain || chain.unlockDay > state.day || state.campaign==='fresh'&&(chain.stage??1)>themeStage(state)) return reject('这条食材链将在后续主题开放。');
       if (HOME_CHAINS.some(value => value.id === chain.id) && !homeCookingUnlocked(state)) return reject(HOME_UNLOCK_HINT);
-      const device = activeDevices(state).find(entity => entity.kind === 'generator' && entity.chain === chain.id);
+      const family=DEVICE_FAMILIES.find(f=>f.chains.includes(chain.id));
+      const device = activeDevices(state).find(entity => entity.kind === 'generator' && (state.schemaVersion>=3&&state.campaign==='fresh'?entity.familyId===family?.id&&(!command.device||entity.id===command.device):entity.chain===chain.id));
+      if(state.schemaVersion>=3&&state.campaign==='fresh'&&!device)return reject('先从设备架取出对应生产器。');
       const index = emptyCell(state, state.schemaVersion >= 2 ? device?.index ?? 35 : 0);
       if (index < 0) return reject('棋盘满啦，试试合成、交单或移入仓库。');
       if (state.schemaVersion >= 2) {
-        const production = PRODUCTION[chain.id] ?? { energyCost: 1, drops: [{ item: chain.items[0], weight: 1 }] };
+        const producer=state.devices?.find(d=>d.id===device?.id);
+        const band=command.band??(command.device?producer?.band??0:0);
+        const production = state.campaign==='fresh'&&state.schemaVersion>=3 ? productionFor(chain.id,band) : PRODUCTION[chain.id] ?? { energyCost: 1, drops: [{ item: chain.items[0], weight: 1 }] };
+        if(!production||'minLevel' in production&&((producer?.level??1)<Number(production.minLevel)||band>0&&themeStage(state)<3))return reject('此产出段需要升级生产器。');
         if (state.energy.value < production.energyCost) return reject(`体力不足，${Math.ceil(getEnergyStatus(state, time).nextRecoveryIn / 1000)} 秒后恢复，也可建设领取体力。`);
         const random = nextRandom(state.seed);
         const total = production.drops.reduce((sum, drop) => sum + drop.weight, 0);
@@ -346,7 +405,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       const recipe = recipes.find(value => (!command.recipe || command.recipe === value.id) && fullyLoaded(appliance, value));
       if (!recipe) return reject('材料还没备齐，投齐配方所需食材再开工。');
       appliance.inputSlots = [];
-      appliance.job = { id: `g${state.nextId++}`, recipe: recipe.id, output: recipe.output, startedAt: time, endsAt: time + getRecipeDuration(state, recipe) };
+      appliance.job = { id: `g${state.nextId++}`, recipe: recipe.id, output: recipe.output, startedAt: time, endsAt: time + getRecipeDuration(state, recipe,appliance.id) };
       appliance.version++;
       events.push({ type: 'cook', message: `${recipe.name}开始制作，可以继续合成。`, appliance: appliance.id, index: appliance.index, item: recipe.output });
       break;
@@ -437,7 +496,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       state.completedOrders.push(order.id);
       state.stats.earned += coins;
       events.push({ type: 'deliver', message: order.thanks, amount: coins, order: order.id });
-      if (order.needs.some(need => ITEMS[need.item].kind === 'dish')) events.push({ type: 'deliver-dish', message: '', order: order.id });
+      if (order.needs.some(need => ITEMS[need.item].kind !== 'ingredient')) events.push({ type: 'deliver-dish', message: '', order: order.id });
       break;
     }
     case 'build': {
@@ -522,7 +581,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
     }
     default: return reject('操作未识别，请重试。');
   }
-  if (reconcileHomeDevices(state)) events.push({ type: 'home-unlocked', message: '家常菜厨房开放啦！两类肉车、香料盒和料理锅已经就位。', index: 47 });
+  if (reconcileHomeDevices(state)) events.push(themeStage(state)===2?{ type: 'home-unlocked', message: '家常菜厨房开放啦！两类肉车、香料盒和料理锅已经就位。', index: 47 }:{type:'theme-unlocked',message:'新主题开放啦！赠送设备已收入设备架，继续探索下一街区。'});
   if (!Number.isSafeInteger(state.coins) || state.coins < 0 || !Number.isSafeInteger(state.reputation)) return reject('这次操作超出了可保存范围。');
   if (!Number.isSafeInteger(state.energy.value) || state.energy.value < 0) return reject('体力超出了可保存范围。');
   for (let index = 0; index < state.board.length; index++) {
@@ -546,7 +605,14 @@ export function stateInvariantErrors(state: GameState): string[] {
   if (!Number.isSafeInteger(state.coins) || state.coins < 0) errors.push('coins');
   if (state.board.slice(unlockedCells(state)).some(Boolean)) errors.push('locked cell occupied');
   if (activeDevices(state).some(entity => state.board[entity.index])) errors.push('device cell occupied');
-  if (state.schemaVersion >= 2) {
+  if (state.schemaVersion >= 3 && state.campaign==='fresh') {
+    const onBoard=state.devices.filter(d=>d.index!==null);
+    if(new Set(state.devices.map(d=>d.id)).size!==state.devices.length||new Set(onBoard.map(d=>d.index)).size!==onBoard.length)errors.push('duplicate device');
+    if(onBoard.some(d=>d.index!<0||d.index!>=unlockedCells(state)))errors.push('device location');
+    if(state.devices.some(d=>!DEVICE_FAMILIES.some(f=>f.id===d.familyId)||!Number.isInteger(d.level)||d.level<1||d.level>3))errors.push('device definition');
+    const chefs=state.devices.filter(d=>DEVICE_FAMILIES.find(f=>f.id===d.familyId)?.kind==='appliance');
+    if(chefs.length!==state.appliances.length||chefs.some(d=>!state.appliances.some(a=>a.id===d.id&&a.index===(d.index??-1))))errors.push('appliance instances');
+  } else if (state.schemaVersion >= 2) {
     const definitions = activeDevices(state).filter(device => device.kind === 'appliance');
     if (state.appliances.length !== definitions.length || definitions.some(device => state.appliances.filter(appliance => appliance.id === device.id && appliance.slot === device.slot && appliance.index === device.index).length !== 1)) errors.push('appliance layout');
   }
@@ -565,7 +631,7 @@ export function stateInvariantErrors(state: GameState): string[] {
   for (const appliance of state.appliances) {
     if (appliance.job && (appliance.inputSlots.length > 0 || appliance.job.endsAt < appliance.job.startedAt)) errors.push('appliance ownership');
     if (appliance.outputSlot && !appliance.job) errors.push('orphan output');
-    if (appliance.job && !RECIPES.some(recipe => recipe.id === appliance.job!.recipe && recipe.appliance === appliance.slot)) errors.push('appliance job');
+    if (appliance.job && !RECIPES.some(recipe => recipe.id === appliance.job!.recipe && recipeMatchesDevice(state,appliance,recipe))) errors.push('appliance job');
     if (appliance.inputSlots.length && !compatibleRecipes(state, appliance).length) errors.push('incompatible inputs');
   }
   return errors;

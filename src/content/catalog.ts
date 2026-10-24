@@ -1,7 +1,8 @@
 import type { ChainDef, CustomerDef, DecorationDef, ItemDef, OrderDef, RecipeDef, Requirement, ShopDef } from '../domain/types';
+import { installExpansion } from './expansion';
 
-export const SCHEMA_VERSION = 2;
-export const CONTENT_VERSION = '2.1.0';
+export const SCHEMA_VERSION = 3;
+export const CONTENT_VERSION = '3.0.0';
 
 const chainData: [string, string, string, number, string[]][] = [
   ['grain', '麦香篮', '#e7b568', 1, ['麦穗', '小麦粉', '柔软面团', '金黄吐司', '牛角面包', '手作面包', '丰收面包篮']],
@@ -210,3 +211,6 @@ export const HOME_ORDERS: OrderDef[] = homeOrderSequence.map((recipeIndex, index
   return { id: `home-order-${String(index + 1).padStart(2, '0')}`, day: 1, customer: customer.id, title: ['锅里第一缕香', '番茄遇见嫩蛋', '清爽小菜', '一碗暖汤', '金黄的小心意', '煎出好滋味', '把颜色拌进饭里', '蒜香正好', '橙香满小巷', '家常也认真'][index], message: `${customer.name}想尝尝你做的${recipe.name}。`, thanks: `${customer.name}：${['热乎乎的，心也暖了！', '这就是惦记的家常味。', '下次还想来吃你做的菜！'][index % 3]}`, needs: [{ item: recipe.output, count: 1 }], coins: 12 + 3 * baseUnits(recipe.output), reputation: 2 };
 });
 ORDERS.push(...HOME_ORDERS);
+installExpansion(ITEMS, CHAINS, RECIPES, MODERN_RECIPES, ORDERS, FRESH_RECIPES, HOME_RECIPES);
+export const MODERN_ITEMS = Object.values(ITEMS).filter(item => item.id.startsWith('fresh-') || MODERN_RECIPES.some(recipe => recipe.output === item.id));
+export const MODERN_ORDERS = [...FRESH_ORDERS, ...HOME_ORDERS, ...ORDERS.filter(order => order.id.startsWith('v3-order-'))];

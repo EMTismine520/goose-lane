@@ -26,6 +26,11 @@ export function dropKind(state: GameState, from: number, to: number): DropKind {
   if (from === to) return 'same';
   const source = getBoardEntity(state, from);
   const target = getBoardEntity(state, to);
+  if(source.canMove&&(source.kind==='generator'||source.kind==='appliance')) {
+    if(target.kind==='empty')return 'move';
+    const a=state.devices.find(d=>d.id===source.id),b=state.devices.find(d=>d.id===target.id);
+    return a&&b&&a.familyId===b.familyId&&a.level===b.level&&a.level<3&&source.canMerge&&target.canMerge?'merge':'blocked';
+  }
   if (!source.canMove || !source.item) return 'blocked';
   if (target.kind === 'empty') return 'move';
   if (target.kind === 'appliance') {
@@ -41,21 +46,24 @@ export function dropKind(state: GameState, from: number, to: number): DropKind {
 /** Capture object identity at gesture start and target version at release. */
 export function moveCommand(state: GameState, from: number, to: number, expectedUid: string): Command | null {
   const source = getBoardEntity(state, from);
+  if(source.canMove&&(source.kind==='generator'||source.kind==='appliance')&&source.id===expectedUid&&from!==to){const target=getBoardEntity(state,to);return dropKind(state,from,to)==='merge'?{type:'mergeDevices',device:source.id,target:target.id}:target.kind==='empty'?{type:'moveDevice',device:source.id,to}:null;}
   if (source.item?.uid !== expectedUid || !source.canMove || from === to) return null;
   const target = getBoardEntity(state, to);
   return { type: 'move', from, to, expectedUid, expectedTargetUid: target.item?.uid ?? null, expectedTargetVersion: target.version };
 }
 
-export interface DropSelection { index: number; sourceUid: string; mergedItem: string | null; priorTargetUid: string | null; }
+export interface DropSelection { index: number; sourceUid: string; mergedItem: string | null; priorTargetUid: string | null; deviceLevel?:number; }
 
 export function selectionAfterDrop(state: GameState, from: number, to: number, sourceUid: string): DropSelection {
   const item = state.board[from];
+  const device=state.devices?.find(d=>d.id===sourceUid);if(device)return {index:to,sourceUid,mergedItem:null,priorTargetUid:getBoardEntity(state,to).id,deviceLevel:device.level};
   return { index: to, sourceUid, mergedItem: dropKind(state, from, to) === 'merge' && item ? mergeTarget(item.item) : null, priorTargetUid: state.board[to]?.uid ?? null };
 }
 
 /** A dispatch promise may resolve before React commits its snapshot. Never select an old occupant. */
 export function isDropCommitted(state: GameState, selection: DropSelection): boolean {
   const target = getBoardEntity(state, selection.index);
+  if(selection.deviceLevel)return target.id===selection.sourceUid||target.id===selection.priorTargetUid&&(state.devices.find(d=>d.id===target.id)?.level??0)>selection.deviceLevel;
   if (target.kind === 'appliance') return !!target.appliance?.inputSlots.some(input => input.uid === selection.sourceUid);
   if (target.item?.uid === selection.sourceUid) return true;
   return !!selection.mergedItem && target.item?.item === selection.mergedItem && target.item.uid !== selection.priorTargetUid;

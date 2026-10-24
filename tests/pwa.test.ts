@@ -22,6 +22,7 @@ function workerHarness(files: Record<string, string>) {
   const scope = 'https://example.test/game/';
   const listeners = new Map<string, (event: any) => void>();
   const stores = new Map<string, Map<string, Response>>();
+  const storedHeaders=new Map<string,Headers>();
   const key = (value: any) => typeof value === 'string' ? value : value.url ?? String(value);
   const fetcher = vi.fn(async (request: any) => {
     const name = key(request).replace(scope, '');
@@ -32,31 +33,40 @@ function workerHarness(files: Record<string, string>) {
     if (!stores.has(name)) stores.set(name, new Map());
     const store = stores.get(name)!;
     return {
-      match: async (request: any) => store.get(key(request))?.clone(),
-      put: async (request: any, response: Response) => { store.set(key(request), response.clone()); },
+      match: async (request: any, options?:{ignoreVary?:boolean}) => {
+        const response=store.get(key(request));if(!response)return;
+        if(!options?.ignoreVary&&response.headers.get('Vary')?.toLowerCase()==='origin'){
+          const saved=storedHeaders.get(name+'|'+key(request))?.get('Origin')??null;
+          const current=typeof request==='string'?null:request.headers?.get('Origin')??null;
+          if(saved!==current)return;
+        }
+        return response.clone();
+      },
+      put: async (request: any, response: Response) => { store.set(key(request), response.clone());storedHeaders.set(name+'|'+key(request),new Headers(typeof request==='string'?undefined:request.headers)); },
       addAll: async (requests: Request[]) => {
         const responses = await Promise.all(requests.map(async request => {
           const response = await fetcher(request);
           if (!response.ok) throw new Error('Precache fetch failed');
           return response;
         }));
-        requests.forEach((request, index) => store.set(key(request), responses[index]));
+        requests.forEach((request, index) => {store.set(key(request), responses[index]);storedHeaders.set(name+'|'+key(request),new Headers(request.headers));});
       },
     };
   };
   const cacheApi = { open, keys: async () => [...stores.keys()], delete: vi.fn(async (name: string) => stores.delete(name)) };
   const skipWaiting = vi.fn(async () => {});
   const claim = vi.fn(async () => {});
+  const messages:any[]=[];
   runInNewContext(builder.renderServiceWorker(assetsFor(files)), {
     self: { registration: { scope }, location: { origin: 'https://example.test' }, clients: { claim }, skipWaiting,
       addEventListener: (event: string, handler: (event: any) => void) => listeners.set(event, handler) },
     caches: cacheApi, fetch: fetcher, Request, Response, URL, crypto: webcrypto, Uint8Array, btoa,
   });
   return {
-    scope, stores, fetcher, skipWaiting, claim, cacheApi,
+    scope, stores, fetcher, skipWaiting, claim, cacheApi,messages,
     lifecycle: async (name: string, data?: unknown) => {
       let pending: Promise<void> | undefined;
-      listeners.get(name)!({ data, waitUntil: (value: Promise<void>) => { pending = value; } });
+      listeners.get(name)!({ data,source:{postMessage:(value:any)=>messages.push(value)}, waitUntil: (value: Promise<void>) => { pending = value; } });
       await pending;
     },
     request: async (request: { url: string; method: string; mode: string } | Request) => {
@@ -106,6 +116,19 @@ describe('production offline release', () => {
     await worker.lifecycle('message', { type: 'SKIP_WAITING' });
     expect(worker.skipWaiting).toHaveBeenCalledOnce();
   });
+  it.each(['v3','v3-b'])('keeps %s theme assets out of install and makes a downloaded theme available offline',async directory=>{
+    const drink=`assets/${directory}/dish-fresh-ico-0009.webp`,cart=`assets/${directory}/vegetable-cart-l1.webp`;
+    const worker=workerHarness({'index.html':'game',[drink]:'milk tea',[cart]:'cart'});
+    await worker.lifecycle('install');
+    expect([...worker.stores.values()][0].size).toBe(2);
+    expect([...worker.stores.values()][0].has(worker.scope+drink)).toBe(false);
+    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:3});
+    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1});
+    expect(worker.messages.at(-1)).toEqual({type:'THEMES_CACHED',stage:8});
+    worker.fetcher.mockRejectedValue(new Error('offline'));
+    const image=await worker.request(new Request(worker.scope+drink));
+    expect(await image!.text()).toBe('milk tea');
+  });
 
   it('removes an incomplete new cache without deleting the previous release', async () => {
     const worker = workerHarness({ 'index.html': 'release one', 'assets/app-abcd.js': 'code' });
@@ -128,6 +151,14 @@ describe('production offline release', () => {
     worker.fetcher.mockRejectedValue(new Error('offline'));
     const offline = await worker.request({ url: worker.scope, method: 'GET', mode: 'navigate' });
     expect(await offline!.text()).toBe('<html>release one</html>');
+  });
+  it('serves integrity-pinned modules offline when CORS adds an Origin header after precaching',async()=>{
+    const worker=workerHarness({'index.html':'game','assets/app-cors.js':'verified module'});
+    worker.fetcher.mockImplementation(async(request:any)=>new Response(String(request.url??request).endsWith('.js')?'verified module':'game',{headers:{Vary:'Origin'}}));
+    await worker.lifecycle('install');
+    worker.fetcher.mockRejectedValue(new Error('offline'));
+    const module=await worker.request(new Request(worker.scope+'assets/app-cors.js',{headers:{Origin:'https://example.test'}}));
+    expect(await module!.text()).toBe('verified module');
   });
 
   it('lets standalone comparison pages navigate without substituting the game shell', async () => {

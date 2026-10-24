@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="-2.83333 -1.83333 103.66667 103.66667">
+  <title>鸡胸肉 · B 组暖色卡通可编辑母稿</title>
+  <defs><linearGradient id="chicken" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#ffdfba"/><stop offset=".55" stop-color="#f3bb94"/><stop offset="1" stop-color="#df9c77"/></linearGradient></defs>
+  <g stroke="#795438" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M27 22c11-10 28-11 39-1 11 9 15 23 20 41 2 9-1 15-11 16-10 2-17 7-31 8-17 0-30-10-32-23-3-16 6-32 15-41Z" fill="url(#chicken)"/><path d="M29 25q16-12 29-3c10 8 12 22 23 42-10-5-17-7-25-6-15-1-25-10-27-33Z" fill="#f9cfa9" stroke="none"/><path d="M32 29q-3 19 21 28M24 39q0 22 23 30m-26-16q2 20 21 24m11-48q5 17 17 28" fill="none" stroke="#dc9d79" stroke-width="1.8"/><path d="M27 32q6-10 15-10m-24 25q-3 10-1 15" fill="none" stroke="#ffe7bd" stroke-width="3.8"/><path d="M61 77q9-4 16-4" fill="none" stroke="#cb8969" stroke-width="1.9"/>
+  </g>
+</svg>

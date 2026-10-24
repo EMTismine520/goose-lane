@@ -1,0 +1,2179 @@
+{
+  "fresh-veg-1": {
+    "path": "assets/v3-b/fresh-veg-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-veg-2": {
+    "path": "assets/v3-b/fresh-veg-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-veg-3": {
+    "path": "assets/v3-b/fresh-veg-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-veg-4": {
+    "path": "assets/v3-b/fresh-veg-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-veg-5": {
+    "path": "assets/v3-b/fresh-veg-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-veg-6": {
+    "path": "assets/v3-b/fresh-veg-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-veg-7": {
+    "path": "assets/v3-b/fresh-veg-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-fruit-1": {
+    "path": "assets/v3-b/fresh-fruit-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-fruit-2": {
+    "path": "assets/v3-b/fresh-fruit-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-fruit-3": {
+    "path": "assets/v3-b/fresh-fruit-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-fruit-4": {
+    "path": "assets/v3-b/fresh-fruit-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-fruit-5": {
+    "path": "assets/v3-b/fresh-fruit-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-fruit-6": {
+    "path": "assets/v3-b/fresh-fruit-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-fruit-7": {
+    "path": "assets/v3-b/fresh-fruit-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-1": {
+    "path": "assets/v3-b/fresh-beast-1.webp",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-beast-2": {
+    "path": "assets/v3-b/fresh-beast-2.webp",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-beast-3": {
+    "path": "assets/v3-b/fresh-beast-3.webp",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-beast-4": {
+    "path": "assets/v3-b/fresh-beast-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-5": {
+    "path": "assets/v3-b/fresh-beast-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-6": {
+    "path": "assets/v3-b/fresh-beast-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-7": {
+    "path": "assets/v3-b/fresh-beast-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-8": {
+    "path": "assets/v3-b/fresh-beast-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-9": {
+    "path": "assets/v3-b/fresh-beast-9.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-beast-10": {
+    "path": "assets/v3-b/fresh-beast-10.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-1": {
+    "path": "assets/v3-b/fresh-poultry-1.webp",
+    "displaySize": 45.333333333333336,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-poultry-2": {
+    "path": "assets/v3-b/fresh-poultry-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-3": {
+    "path": "assets/v3-b/fresh-poultry-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-4": {
+    "path": "assets/v3-b/fresh-poultry-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-5": {
+    "path": "assets/v3-b/fresh-poultry-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-6": {
+    "path": "assets/v3-b/fresh-poultry-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-7": {
+    "path": "assets/v3-b/fresh-poultry-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-1": {
+    "path": "assets/v3-b/fresh-spice-1.webp",
+    "displaySize": 48,
+    "offsetX": -1,
+    "offsetY": -3,
+    "svgSize": 96
+  },
+  "fresh-spice-2": {
+    "path": "assets/v3-b/fresh-spice-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-3": {
+    "path": "assets/v3-b/fresh-spice-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-4": {
+    "path": "assets/v3-b/fresh-spice-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-5": {
+    "path": "assets/v3-b/fresh-spice-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-6": {
+    "path": "assets/v3-b/fresh-spice-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-7": {
+    "path": "assets/v3-b/fresh-spice-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-tomato-salad": {
+    "path": "assets/v3-b/dish-fresh-tomato-salad.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-carrot-salad": {
+    "path": "assets/v3-b/dish-fresh-carrot-salad.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-garden-bowl": {
+    "path": "assets/v3-b/dish-fresh-garden-bowl.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-berry-cup": {
+    "path": "assets/v3-b/dish-fresh-berry-cup.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-orange-juice": {
+    "path": "assets/v3-b/dish-fresh-orange-juice.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-fruit-platter": {
+    "path": "assets/v3-b/dish-fresh-fruit-platter.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-onion-salad": {
+    "path": "assets/v3-b/dish-fresh-home-onion-salad.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-tomato-eggs": {
+    "path": "assets/v3-b/dish-fresh-home-tomato-eggs.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-meatball-soup": {
+    "path": "assets/v3-b/dish-fresh-home-meatball-soup.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-garlic-broccoli": {
+    "path": "assets/v3-b/dish-fresh-home-garlic-broccoli.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-vegetable-rice": {
+    "path": "assets/v3-b/dish-fresh-home-vegetable-rice.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-scallion-egg-rice": {
+    "path": "assets/v3-b/dish-fresh-home-scallion-egg-rice.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-seared-pork": {
+    "path": "assets/v3-b/dish-fresh-home-seared-pork.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-garlic-cucumber": {
+    "path": "assets/v3-b/dish-fresh-home-garlic-cucumber.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-chicken-roll": {
+    "path": "assets/v3-b/dish-fresh-home-chicken-roll.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-orange-ribs": {
+    "path": "assets/v3-b/dish-fresh-home-orange-ribs.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "vegetable-cart-l1": {
+    "path": "assets/v3-b/vegetable-cart-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fruit-cart-l1": {
+    "path": "assets/v3-b/fruit-cart-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "beast-meat-cart-l1": {
+    "path": "assets/v3-b/beast-meat-cart-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "poultry-cart-l1": {
+    "path": "assets/v3-b/poultry-cart-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "spice-box-l1": {
+    "path": "assets/v3-b/spice-box-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "chopping-board-l1": {
+    "path": "assets/v3-b/chopping-board-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fruit-press-l1": {
+    "path": "assets/v3-b/fruit-press-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "home-cooking-pot-l1": {
+    "path": "assets/v3-b/home-cooking-pot-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-poultry-8": {
+    "path": "assets/v3-b/fresh-poultry-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-8": {
+    "path": "assets/v3-b/fresh-spice-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-9": {
+    "path": "assets/v3-b/fresh-spice-9.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-spice-10": {
+    "path": "assets/v3-b/fresh-spice-10.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-1": {
+    "path": "assets/v3-b/fresh-seasonal-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-2": {
+    "path": "assets/v3-b/fresh-seasonal-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-3": {
+    "path": "assets/v3-b/fresh-seasonal-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-4": {
+    "path": "assets/v3-b/fresh-seasonal-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-5": {
+    "path": "assets/v3-b/fresh-seasonal-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-6": {
+    "path": "assets/v3-b/fresh-seasonal-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-7": {
+    "path": "assets/v3-b/fresh-seasonal-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-seasonal-8": {
+    "path": "assets/v3-b/fresh-seasonal-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-1": {
+    "path": "assets/v3-b/fresh-exotic-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-2": {
+    "path": "assets/v3-b/fresh-exotic-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-3": {
+    "path": "assets/v3-b/fresh-exotic-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-4": {
+    "path": "assets/v3-b/fresh-exotic-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-5": {
+    "path": "assets/v3-b/fresh-exotic-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-6": {
+    "path": "assets/v3-b/fresh-exotic-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-7": {
+    "path": "assets/v3-b/fresh-exotic-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-exotic-8": {
+    "path": "assets/v3-b/fresh-exotic-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-1": {
+    "path": "assets/v3-b/fresh-sea-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-2": {
+    "path": "assets/v3-b/fresh-sea-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-3": {
+    "path": "assets/v3-b/fresh-sea-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-4": {
+    "path": "assets/v3-b/fresh-sea-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-5": {
+    "path": "assets/v3-b/fresh-sea-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-6": {
+    "path": "assets/v3-b/fresh-sea-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-7": {
+    "path": "assets/v3-b/fresh-sea-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-8": {
+    "path": "assets/v3-b/fresh-sea-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-9": {
+    "path": "assets/v3-b/fresh-sea-9.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-10": {
+    "path": "assets/v3-b/fresh-sea-10.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sea-11": {
+    "path": "assets/v3-b/fresh-sea-11.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-milk-1": {
+    "path": "assets/v3-b/fresh-milk-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-milk-2": {
+    "path": "assets/v3-b/fresh-milk-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-milk-3": {
+    "path": "assets/v3-b/fresh-milk-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-milk-4": {
+    "path": "assets/v3-b/fresh-milk-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-milk-5": {
+    "path": "assets/v3-b/fresh-milk-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-milk-6": {
+    "path": "assets/v3-b/fresh-milk-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-milk-7": {
+    "path": "assets/v3-b/fresh-milk-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-1": {
+    "path": "assets/v3-b/fresh-grain-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-2": {
+    "path": "assets/v3-b/fresh-grain-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-3": {
+    "path": "assets/v3-b/fresh-grain-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-4": {
+    "path": "assets/v3-b/fresh-grain-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-5": {
+    "path": "assets/v3-b/fresh-grain-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-6": {
+    "path": "assets/v3-b/fresh-grain-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-7": {
+    "path": "assets/v3-b/fresh-grain-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-8": {
+    "path": "assets/v3-b/fresh-grain-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-grain-9": {
+    "path": "assets/v3-b/fresh-grain-9.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-1": {
+    "path": "assets/v3-b/fresh-sweet-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-2": {
+    "path": "assets/v3-b/fresh-sweet-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-3": {
+    "path": "assets/v3-b/fresh-sweet-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-4": {
+    "path": "assets/v3-b/fresh-sweet-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-5": {
+    "path": "assets/v3-b/fresh-sweet-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-6": {
+    "path": "assets/v3-b/fresh-sweet-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-7": {
+    "path": "assets/v3-b/fresh-sweet-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-8": {
+    "path": "assets/v3-b/fresh-sweet-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-sweet-9": {
+    "path": "assets/v3-b/fresh-sweet-9.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-1": {
+    "path": "assets/v3-b/fresh-coffee-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-2": {
+    "path": "assets/v3-b/fresh-coffee-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-3": {
+    "path": "assets/v3-b/fresh-coffee-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-4": {
+    "path": "assets/v3-b/fresh-coffee-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-5": {
+    "path": "assets/v3-b/fresh-coffee-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-6": {
+    "path": "assets/v3-b/fresh-coffee-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-7": {
+    "path": "assets/v3-b/fresh-coffee-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-8": {
+    "path": "assets/v3-b/fresh-coffee-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-coffee-9": {
+    "path": "assets/v3-b/fresh-coffee-9.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-tea-1": {
+    "path": "assets/v3-b/fresh-tea-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-tea-2": {
+    "path": "assets/v3-b/fresh-tea-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-tea-3": {
+    "path": "assets/v3-b/fresh-tea-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-tea-4": {
+    "path": "assets/v3-b/fresh-tea-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-tea-5": {
+    "path": "assets/v3-b/fresh-tea-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-tea-6": {
+    "path": "assets/v3-b/fresh-tea-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-1": {
+    "path": "assets/v3-b/fresh-mixer-1.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-2": {
+    "path": "assets/v3-b/fresh-mixer-2.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-3": {
+    "path": "assets/v3-b/fresh-mixer-3.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-4": {
+    "path": "assets/v3-b/fresh-mixer-4.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-5": {
+    "path": "assets/v3-b/fresh-mixer-5.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-6": {
+    "path": "assets/v3-b/fresh-mixer-6.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-7": {
+    "path": "assets/v3-b/fresh-mixer-7.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-8": {
+    "path": "assets/v3-b/fresh-mixer-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-9": {
+    "path": "assets/v3-b/fresh-mixer-9.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-10": {
+    "path": "assets/v3-b/fresh-mixer-10.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-11": {
+    "path": "assets/v3-b/fresh-mixer-11.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-12": {
+    "path": "assets/v3-b/fresh-mixer-12.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fresh-mixer-13": {
+    "path": "assets/v3-b/fresh-mixer-13.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0030": {
+    "path": "assets/v3-b/dish-fresh-ico-0030.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0058": {
+    "path": "assets/v3-b/dish-fresh-ico-0058.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0074": {
+    "path": "assets/v3-b/dish-fresh-ico-0074.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0141": {
+    "path": "assets/v3-b/dish-fresh-ico-0141.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0146": {
+    "path": "assets/v3-b/dish-fresh-ico-0146.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0031": {
+    "path": "assets/v3-b/dish-fresh-ico-0031.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0047": {
+    "path": "assets/v3-b/dish-fresh-ico-0047.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0091": {
+    "path": "assets/v3-b/dish-fresh-ico-0091.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0164": {
+    "path": "assets/v3-b/dish-fresh-ico-0164.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0009": {
+    "path": "assets/v3-b/dish-fresh-ico-0009.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0020": {
+    "path": "assets/v3-b/dish-fresh-ico-0020.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0055": {
+    "path": "assets/v3-b/dish-fresh-ico-0055.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0087": {
+    "path": "assets/v3-b/dish-fresh-ico-0087.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0093": {
+    "path": "assets/v3-b/dish-fresh-ico-0093.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0121": {
+    "path": "assets/v3-b/dish-fresh-ico-0121.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0089": {
+    "path": "assets/v3-b/dish-fresh-ico-0089.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0104": {
+    "path": "assets/v3-b/dish-fresh-ico-0104.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0139": {
+    "path": "assets/v3-b/dish-fresh-ico-0139.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0140": {
+    "path": "assets/v3-b/dish-fresh-ico-0140.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0029": {
+    "path": "assets/v3-b/dish-fresh-ico-0029.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0048": {
+    "path": "assets/v3-b/dish-fresh-ico-0048.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0050": {
+    "path": "assets/v3-b/dish-fresh-ico-0050.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0057": {
+    "path": "assets/v3-b/dish-fresh-ico-0057.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0068": {
+    "path": "assets/v3-b/dish-fresh-ico-0068.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0071": {
+    "path": "assets/v3-b/dish-fresh-ico-0071.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0097": {
+    "path": "assets/v3-b/dish-fresh-ico-0097.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0085": {
+    "path": "assets/v3-b/dish-fresh-ico-0085.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0136": {
+    "path": "assets/v3-b/dish-fresh-ico-0136.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0107": {
+    "path": "assets/v3-b/dish-fresh-ico-0107.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0027": {
+    "path": "assets/v3-b/dish-fresh-ico-0027.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0028": {
+    "path": "assets/v3-b/dish-fresh-ico-0028.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0035": {
+    "path": "assets/v3-b/dish-fresh-ico-0035.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0036": {
+    "path": "assets/v3-b/dish-fresh-ico-0036.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0039": {
+    "path": "assets/v3-b/dish-fresh-ico-0039.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0042": {
+    "path": "assets/v3-b/dish-fresh-ico-0042.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0045": {
+    "path": "assets/v3-b/dish-fresh-ico-0045.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0049": {
+    "path": "assets/v3-b/dish-fresh-ico-0049.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0053": {
+    "path": "assets/v3-b/dish-fresh-ico-0053.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0059": {
+    "path": "assets/v3-b/dish-fresh-ico-0059.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0061": {
+    "path": "assets/v3-b/dish-fresh-ico-0061.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0079": {
+    "path": "assets/v3-b/dish-fresh-ico-0079.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0081": {
+    "path": "assets/v3-b/dish-fresh-ico-0081.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0082": {
+    "path": "assets/v3-b/dish-fresh-ico-0082.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0095": {
+    "path": "assets/v3-b/dish-fresh-ico-0095.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0109": {
+    "path": "assets/v3-b/dish-fresh-ico-0109.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0133": {
+    "path": "assets/v3-b/dish-fresh-ico-0133.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0034": {
+    "path": "assets/v3-b/dish-fresh-ico-0034.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0063": {
+    "path": "assets/v3-b/dish-fresh-ico-0063.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0052": {
+    "path": "assets/v3-b/dish-fresh-ico-0052.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0080": {
+    "path": "assets/v3-b/dish-fresh-ico-0080.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0092": {
+    "path": "assets/v3-b/dish-fresh-ico-0092.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0100": {
+    "path": "assets/v3-b/dish-fresh-ico-0100.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0102": {
+    "path": "assets/v3-b/dish-fresh-ico-0102.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0112": {
+    "path": "assets/v3-b/dish-fresh-ico-0112.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0129": {
+    "path": "assets/v3-b/dish-fresh-ico-0129.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0132": {
+    "path": "assets/v3-b/dish-fresh-ico-0132.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0134": {
+    "path": "assets/v3-b/dish-fresh-ico-0134.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0143": {
+    "path": "assets/v3-b/dish-fresh-ico-0143.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0157": {
+    "path": "assets/v3-b/dish-fresh-ico-0157.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0158": {
+    "path": "assets/v3-b/dish-fresh-ico-0158.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0161": {
+    "path": "assets/v3-b/dish-fresh-ico-0161.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0162": {
+    "path": "assets/v3-b/dish-fresh-ico-0162.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0065": {
+    "path": "assets/v3-b/dish-fresh-ico-0065.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0070": {
+    "path": "assets/v3-b/dish-fresh-ico-0070.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0072": {
+    "path": "assets/v3-b/dish-fresh-ico-0072.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0073": {
+    "path": "assets/v3-b/dish-fresh-ico-0073.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0077": {
+    "path": "assets/v3-b/dish-fresh-ico-0077.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0083": {
+    "path": "assets/v3-b/dish-fresh-ico-0083.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0088": {
+    "path": "assets/v3-b/dish-fresh-ico-0088.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0115": {
+    "path": "assets/v3-b/dish-fresh-ico-0115.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0116": {
+    "path": "assets/v3-b/dish-fresh-ico-0116.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0123": {
+    "path": "assets/v3-b/dish-fresh-ico-0123.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0144": {
+    "path": "assets/v3-b/dish-fresh-ico-0144.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0145": {
+    "path": "assets/v3-b/dish-fresh-ico-0145.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0086": {
+    "path": "assets/v3-b/dish-fresh-ico-0086.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0099": {
+    "path": "assets/v3-b/dish-fresh-ico-0099.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0101": {
+    "path": "assets/v3-b/dish-fresh-ico-0101.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0113": {
+    "path": "assets/v3-b/dish-fresh-ico-0113.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0117": {
+    "path": "assets/v3-b/dish-fresh-ico-0117.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0128": {
+    "path": "assets/v3-b/dish-fresh-ico-0128.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0096": {
+    "path": "assets/v3-b/dish-fresh-ico-0096.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0014": {
+    "path": "assets/v3-b/dish-fresh-ico-0014.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0015": {
+    "path": "assets/v3-b/dish-fresh-ico-0015.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0019": {
+    "path": "assets/v3-b/dish-fresh-ico-0019.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0054": {
+    "path": "assets/v3-b/dish-fresh-ico-0054.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0069": {
+    "path": "assets/v3-b/dish-fresh-ico-0069.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0105": {
+    "path": "assets/v3-b/dish-fresh-ico-0105.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0163": {
+    "path": "assets/v3-b/dish-fresh-ico-0163.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0106": {
+    "path": "assets/v3-b/dish-fresh-ico-0106.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0114": {
+    "path": "assets/v3-b/dish-fresh-ico-0114.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0125": {
+    "path": "assets/v3-b/dish-fresh-ico-0125.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0127": {
+    "path": "assets/v3-b/dish-fresh-ico-0127.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0120": {
+    "path": "assets/v3-b/dish-fresh-ico-0120.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0130": {
+    "path": "assets/v3-b/dish-fresh-ico-0130.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0126": {
+    "path": "assets/v3-b/dish-fresh-ico-0126.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0067": {
+    "path": "assets/v3-b/dish-fresh-ico-0067.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0075": {
+    "path": "assets/v3-b/dish-fresh-ico-0075.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0090": {
+    "path": "assets/v3-b/dish-fresh-ico-0090.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0098": {
+    "path": "assets/v3-b/dish-fresh-ico-0098.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0111": {
+    "path": "assets/v3-b/dish-fresh-ico-0111.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0118": {
+    "path": "assets/v3-b/dish-fresh-ico-0118.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0122": {
+    "path": "assets/v3-b/dish-fresh-ico-0122.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0131": {
+    "path": "assets/v3-b/dish-fresh-ico-0131.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0135": {
+    "path": "assets/v3-b/dish-fresh-ico-0135.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0142": {
+    "path": "assets/v3-b/dish-fresh-ico-0142.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0159": {
+    "path": "assets/v3-b/dish-fresh-ico-0159.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-ico-0160": {
+    "path": "assets/v3-b/dish-fresh-ico-0160.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "vegetable-cart-l2": {
+    "path": "assets/v3-b/vegetable-cart-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "vegetable-cart-l3": {
+    "path": "assets/v3-b/vegetable-cart-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fruit-cart-l2": {
+    "path": "assets/v3-b/fruit-cart-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fruit-cart-l3": {
+    "path": "assets/v3-b/fruit-cart-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "beast-meat-cart-l2": {
+    "path": "assets/v3-b/beast-meat-cart-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "beast-meat-cart-l3": {
+    "path": "assets/v3-b/beast-meat-cart-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "poultry-cart-l2": {
+    "path": "assets/v3-b/poultry-cart-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "poultry-cart-l3": {
+    "path": "assets/v3-b/poultry-cart-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "spice-box-l2": {
+    "path": "assets/v3-b/spice-box-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "spice-box-l3": {
+    "path": "assets/v3-b/spice-box-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "seafood-fridge-l1": {
+    "path": "assets/v3-b/seafood-fridge-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "seafood-fridge-l2": {
+    "path": "assets/v3-b/seafood-fridge-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "seafood-fridge-l3": {
+    "path": "assets/v3-b/seafood-fridge-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dairy-fridge-l1": {
+    "path": "assets/v3-b/dairy-fridge-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dairy-fridge-l2": {
+    "path": "assets/v3-b/dairy-fridge-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dairy-fridge-l3": {
+    "path": "assets/v3-b/dairy-fridge-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "grain-box-l1": {
+    "path": "assets/v3-b/grain-box-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "grain-box-l2": {
+    "path": "assets/v3-b/grain-box-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "grain-box-l3": {
+    "path": "assets/v3-b/grain-box-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "sweet-cabinet-l1": {
+    "path": "assets/v3-b/sweet-cabinet-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "sweet-cabinet-l2": {
+    "path": "assets/v3-b/sweet-cabinet-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "sweet-cabinet-l3": {
+    "path": "assets/v3-b/sweet-cabinet-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "drink-fridge-l1": {
+    "path": "assets/v3-b/drink-fridge-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "drink-fridge-l2": {
+    "path": "assets/v3-b/drink-fridge-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "drink-fridge-l3": {
+    "path": "assets/v3-b/drink-fridge-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "chopping-board-l2": {
+    "path": "assets/v3-b/chopping-board-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "chopping-board-l3": {
+    "path": "assets/v3-b/chopping-board-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fruit-press-l2": {
+    "path": "assets/v3-b/fruit-press-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fruit-press-l3": {
+    "path": "assets/v3-b/fruit-press-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "home-cooking-pot-l2": {
+    "path": "assets/v3-b/home-cooking-pot-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "home-cooking-pot-l3": {
+    "path": "assets/v3-b/home-cooking-pot-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "frying-station-l1": {
+    "path": "assets/v3-b/frying-station-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "frying-station-l2": {
+    "path": "assets/v3-b/frying-station-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "frying-station-l3": {
+    "path": "assets/v3-b/frying-station-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "charcoal-grill-l1": {
+    "path": "assets/v3-b/charcoal-grill-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "charcoal-grill-l2": {
+    "path": "assets/v3-b/charcoal-grill-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "charcoal-grill-l3": {
+    "path": "assets/v3-b/charcoal-grill-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "oven-l1": {
+    "path": "assets/v3-b/oven-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "oven-l2": {
+    "path": "assets/v3-b/oven-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "oven-l3": {
+    "path": "assets/v3-b/oven-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "steamer-l1": {
+    "path": "assets/v3-b/steamer-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "steamer-l2": {
+    "path": "assets/v3-b/steamer-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "steamer-l3": {
+    "path": "assets/v3-b/steamer-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "wok-l1": {
+    "path": "assets/v3-b/wok-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "wok-l2": {
+    "path": "assets/v3-b/wok-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "wok-l3": {
+    "path": "assets/v3-b/wok-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "microwave-l1": {
+    "path": "assets/v3-b/microwave-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "microwave-l2": {
+    "path": "assets/v3-b/microwave-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "microwave-l3": {
+    "path": "assets/v3-b/microwave-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "blender-l1": {
+    "path": "assets/v3-b/blender-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "blender-l2": {
+    "path": "assets/v3-b/blender-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "blender-l3": {
+    "path": "assets/v3-b/blender-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "ice-cream-machine-l1": {
+    "path": "assets/v3-b/ice-cream-machine-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "ice-cream-machine-l2": {
+    "path": "assets/v3-b/ice-cream-machine-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "ice-cream-machine-l3": {
+    "path": "assets/v3-b/ice-cream-machine-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "bar-l1": {
+    "path": "assets/v3-b/bar-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "bar-l2": {
+    "path": "assets/v3-b/bar-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "bar-l3": {
+    "path": "assets/v3-b/bar-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  }
+}

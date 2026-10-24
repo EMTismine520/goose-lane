@@ -1,6 +1,6 @@
 import type Phaser from 'phaser';
 import { activeDevices, BOARD_LAYOUT } from '../content/board-layouts';
-import { ITEMS } from '../content/catalog';
+import { CHAINS, ITEMS } from '../content/catalog';
 import { devicePresentation, itemPresentation } from '../content/assets';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { GameState, ItemInstance } from '../domain/types';
@@ -14,6 +14,7 @@ export interface ItemSprite {
   container: Phaser.GameObjects.Container;
 }
 interface DeviceSprite {
+  artId:string;
   container: Phaser.GameObjects.Container;
   label: Phaser.GameObjects.Text;
   labelBack: Phaser.GameObjects.Graphics;
@@ -109,6 +110,11 @@ export class BoardRenderer {
     this.updateClock(Date.now(), true);
   }
 
+  rebuildArt() {
+    for(const sprite of [...this.items.values(),...this.devices.values()]){this.scene.tweens.killTweensOf(sprite.container);sprite.container.destroy(true);}
+    this.items.clear();this.devices.clear();this.sync(false);
+  }
+
   private createItem(instance: ItemInstance, index: number): ItemSprite {
     const at = cellCenter(index);
     const def = ITEMS[instance.item];
@@ -119,23 +125,28 @@ export class BoardRenderer {
     const size = presentation.displaySize;
     const image = this.scene.add.image(presentation.offsetX, presentation.offsetY, texture.key, texture.frame).setDisplaySize(size, size);
     const badge = this.scene.add.graphics();
-    badge.fillStyle(def.kind === 'dish' ? 0xf29b45 : 0x77ae64, 1);
+    const isNode=CHAINS.some(chain=>chain.items.includes(instance.item));
+    badge.fillStyle(isNode ? 0x77ae64 : 0xf29b45, 1);
     badge.fillRoundedRect(10, 10, 13, 13, 4);
     badge.lineStyle(1.5, 0xfffdf2, 1);
     badge.strokeRoundedRect(10, 10, 13, 13, 4);
-    const level = this.scene.add.text(16.5, 16.5, def.kind === 'dish' ? '成' : `${def.level}`, { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
+    const level = this.scene.add.text(16.5, 16.5, isNode ? `${def.level}` : '成', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
     container.add([shadow, image, badge, level]);
     return { uid: instance.uid, item: instance.item, index, container };
   }
 
   private ensureDevice(id: string, index: number) {
-    if (this.devices.has(id)) return;
     const at = cellCenter(index);
     const entity = getBoardEntity(this.state(), index);
+    const definition=activeDevices(this.state()).find(d=>d.id===id)!;
+    const artId=definition.artId??id;
+    const existing=this.devices.get(id);
+    if(existing&&existing.artId===artId){existing.container.setPosition(at.x,at.y);return;}
+    if(existing){this.scene.tweens.killTweensOf(existing.container);existing.container.destroy(true);this.devices.delete(id);}
     const container = this.scene.add.container(at.x, at.y).setDepth(4);
     const shadow = this.scene.add.ellipse(0, 17, 37, 9, 0x795834, 0.17);
-    const texture = `entity:${id}`;
-    const presentation = devicePresentation(id);
+    const texture = `entity:${artId}`;
+    const presentation = devicePresentation(artId);
     const image = this.scene.textures.exists(texture)
       ? this.scene.add.image(presentation.offsetX, presentation.offsetY, texture).setDisplaySize(presentation.displaySize, presentation.displaySize)
       : this.scene.add.text(0, 0, entity.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '10px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(0.5);
@@ -143,11 +154,13 @@ export class BoardRenderer {
     const activity = this.scene.add.graphics();
     const label = this.scene.add.text(0, -22, '', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef2' }).setOrigin(0.5);
     container.add([shadow, image, activity, labelBack, label]);
-    this.devices.set(id, { container, label, labelBack, activity, phase: '' });
+    const tier=this.scene.add.text(17,17,`${definition.level??1}`,{resolution:this.pixelRatio,fontFamily:'Arial',fontSize:'9px',fontStyle:'bold',color:'#7e4b1d',backgroundColor:'#f7bc45',padding:{x:3,y:2}}).setOrigin(0.5);
+    container.add(tier);
+    this.devices.set(id, { container, label, labelBack, activity, phase: '',artId });
     if (entity.kind === 'generator') {
       labelBack.fillStyle(0xf7bc45, 1).fillRoundedRect(9, 10, 16, 14, 5);
       labelBack.lineStyle(1.5, 0xfff9df, 1).strokeRoundedRect(9, 10, 16, 14, 5);
-      label.setText('1').setPosition(17, 17).setColor('#7e4b1d');
+      label.setText('');
     }
   }
 

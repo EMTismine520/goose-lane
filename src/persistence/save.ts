@@ -4,6 +4,9 @@ import { availableApplianceRecipes, createInitialState, unlockedCells } from '..
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
 import { reconcileHomeDevices } from '../domain/home-progression';
 import { TUTORIAL_STEPS } from '../content/tutorial';
+import { DEVICE_FAMILIES } from '../content/expansion';
+import { productionFor, recipeMatchesDevice, reconcileDeviceGrants, themeStage } from '../domain/devices';
+import type { DeviceInstance } from '../domain/types';
 
 const MAX_SAVE_BYTES = 1_000_000;
 const MAX_COUNTER = 1_000_000_000_000;
@@ -56,7 +59,7 @@ function uniqueIds(value: unknown, choices: readonly string[], path: string): st
 }
 
 const LEGACY_FIELDS = ['schemaVersion', 'contentVersion', 'revision', 'seed', 'nextId', 'board', 'storage', 'storageCapacity', 'generators', 'jobs', 'completedOrders', 'day', 'coins', 'reputation', 'shops', 'decorations', 'discovered', 'stats', 'tutorial', 'settings', 'lastSeen', 'undo'];
-const CURRENT_FIELDS = [...LEGACY_FIELDS, 'energy', 'appliances', 'construction', 'tutorialState', 'session', 'migrationInbox', 'processedCommandIds', 'cellVersions', 'campaign'];
+const CURRENT_FIELDS = [...LEGACY_FIELDS, 'energy', 'appliances', 'construction', 'tutorialState', 'session', 'migrationInbox', 'processedCommandIds', 'cellVersions', 'campaign','devices','deviceGrants','deviceDiscovered'];
 
 /** Explicit, lossless inventory migration. Unknown content never silently changes identity. */
 function migrate(value: unknown): RecordValue {
@@ -64,6 +67,10 @@ function migrate(value: unknown): RecordValue {
   const version = integer(source.schemaVersion, '版本', 0, Number.MAX_SAFE_INTEGER);
   if (version > SCHEMA_VERSION) throw new SaveError('这是较新版本的存档，请使用新版游戏打开。原档已保留。', 'future');
   if (version === SCHEMA_VERSION) return source;
+  if (version === 2) {
+    if(!['2.0.0','2.1.0'].includes(String(source.contentVersion)))throw new SaveError('存档内容版本不兼容，原档已保留。','future');
+    return object(source,'旧版根对象',CURRENT_FIELDS.filter(k=>!['devices','deviceGrants','deviceDiscovered'].includes(k)));
+  }
   if (version !== 0 && version !== 1) return invalid('版本');
   object(source, '旧版根对象', LEGACY_FIELDS);
   let legacy = { ...source };
@@ -120,8 +127,9 @@ function migrate(value: unknown): RecordValue {
 /** Validate every persisted field and build a detached, bounded, known-shape state. */
 export function validateSave(input: unknown): GameState {
   const value = object(migrate(input), '根对象', CURRENT_FIELDS);
+  const oldSchema=value.schemaVersion===2;
   const oldContent = value.contentVersion === '2.0.0';
-  if (!oldContent && value.contentVersion !== CONTENT_VERSION) throw new SaveError('存档内容版本不兼容，请使用对应版本游戏；原档未被覆盖。', 'future');
+  if (!oldSchema && value.contentVersion !== CONTENT_VERSION) throw new SaveError('存档内容版本不兼容，请使用对应版本游戏；原档未被覆盖。', 'future');
   const day = integer(value.day, '经营日', 1, 6);
   const revision = integer(value.revision, '修订号');
   const nextId = integer(value.nextId, '下一个编号', 1);
@@ -146,15 +154,34 @@ export function validateSave(input: unknown): GameState {
   if (rewardClaimed && completed.length !== BUILD_NODES.length) return invalid('建设阶段奖励');
   const construction = { completed, hats: integer(constructionRaw.hats, '厨师帽'), rewardClaimed };
   const completedOrders = uniqueIds(value.completedOrders, ORDERS.map((order) => order.id), '已完成订单');
-  const progressState = { schemaVersion: SCHEMA_VERSION, day, campaign, construction, completedOrders } as GameState;
+  const progressState = { schemaVersion: oldSchema?2:SCHEMA_VERSION, day, campaign, construction, completedOrders } as GameState;
   const limit = unlockedCells(progressState);
-  const devices = oldContent ? BOARD_LAYOUT.entities : activeDevices(progressState);
-  const occupied = new Set(devices.map((entry) => entry.index));
+  const oldDefinitions = oldContent ? BOARD_LAYOUT.entities : activeDevices(progressState);
+  const devices: DeviceInstance[]=oldSchema ? oldDefinitions.map(d=>({id:d.id,familyId:d.id,level:1,index:d.index,selectedChain:d.chain??null,band:0,version:0})) : array(value.devices,'设备',256).map(raw=>{
+    const d=object(raw,'设备',['id','familyId','level','index','selectedChain','band','version']);
+    const familyId=known(d.familyId,DEVICE_FAMILIES.map(f=>f.id),'设备类别'), family=DEVICE_FAMILIES.find(f=>f.id===familyId)!;
+    const id=text(d.id,'设备编号');
+    const match=/^d([1-9]\d*)$/.exec(id);
+    if(id!==familyId&&(!match||Number(match[1])>=nextId)||used.has(id)||family.stage>themeStage(progressState)&&campaign==='fresh')return invalid('设备编号或开放状态');
+    used.add(id);
+    const level=integer(d.level,'设备等级',1,3), band=integer(d.band,'产出段',0,4);
+    const selectedChain=d.selectedChain===null?null:known(d.selectedChain,family.chains,'选择的系列');
+    if(family.kind==='generator'&&(!selectedChain||!productionFor(selectedChain,band)||productionFor(selectedChain,band)!.minLevel>level))return invalid('生产器设置');
+    if(family.kind==='appliance'&&(selectedChain!==null||band!==0))return invalid('厨具设置');
+    return {id,familyId,level,index:d.index===null?null:integer(d.index,'设备位置',0,limit-1),selectedChain,band,version:integer(d.version,'设备版本')};
+  });
+  const deviceGrants=oldSchema?devices.map(d=>d.familyId):uniqueIds(value.deviceGrants,DEVICE_FAMILIES.map(f=>f.id),'设备赠送记录');
+  const formIds=DEVICE_FAMILIES.flatMap(f=>[1,2,3].map(l=>`${f.id}-l${l}`));
+  const deviceDiscovered=oldSchema?devices.map(d=>`${d.familyId}-l1`):uniqueIds(value.deviceDiscovered,formIds,'设备图鉴');
+  if(new Set(devices.map(d=>d.id)).size!==devices.length||devices.some(d=>!deviceGrants.includes(d.familyId)))return invalid('设备记录');
+  const occupied = new Set(devices.filter(d=>d.index!==null).map(d=>d.index!));
+  if(occupied.size!==devices.filter(d=>d.index!==null).length)return invalid('设备重叠');
+  progressState.devices=devices;progressState.schemaVersion=SCHEMA_VERSION;
   const board = array(value.board, '棋盘', 63).map((raw, index) => raw === null ? null : item(raw, `棋盘${index + 1}`));
   if (board.length !== 63 || board.some((entry, index) => entry && (index >= limit || occupied.has(index)))) return invalid('棋盘格数');
   const storageCapacity = integer(value.storageCapacity, '仓库容量', 8, 8);
   const storage = array(value.storage, '仓库', storageCapacity).map((raw, index) => item(raw, `仓库${index + 1}`));
-  const generatorKeys = CHAINS.filter(chain => !oldContent || !HOME_CHAINS.includes(chain)).map((chain) => chain.id);
+  const generatorKeys = CHAINS.filter(chain => !oldSchema || !chain.stage || chain.stage<=2 && (!oldContent || !HOME_CHAINS.includes(chain))).map((chain) => chain.id);
   const generatorRaw = object(value.generators, '生产器', generatorKeys);
   const generators = Object.fromEntries(generatorKeys.map((id) => {
     const entry = object(generatorRaw[id], `生产器${id}`, ['remaining', 'readyAt']);
@@ -195,7 +222,7 @@ export function validateSave(input: unknown): GameState {
   const lastSeen = integer(value.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER);
   const energyRaw = object(value.energy, '体力', ['value', 'lastRecoveryAt']);
   const energy = { value: integer(energyRaw.value, '体力数值'), lastRecoveryAt: integer(energyRaw.lastRecoveryAt, '体力回复时间', 0, lastSeen) };
-  const applianceDefinitions = devices.filter((entry) => entry.kind === 'appliance');
+  const applianceDefinitions = devices.filter(d=>DEVICE_FAMILIES.find(f=>f.id===d.familyId)!.kind==='appliance').map(d=>({...d,index:d.index??-1,slot:DEVICE_FAMILIES.find(f=>f.id===d.familyId)!.slot}));
   const allowedRecipes = availableApplianceRecipes(progressState);
   const applianceIds = new Set<string>();
   const appliances = array(value.appliances, '厨具', applianceDefinitions.length).map((raw) => {
@@ -208,7 +235,7 @@ export function validateSave(input: unknown): GameState {
     if (entry.job !== null) {
       const rawJob = object(entry.job, '厨具任务', ['id', 'recipe', 'startedAt', 'endsAt', 'output']);
       const recipe = RECIPES.find((recipe) => recipe.id === rawJob.recipe);
-      if (!recipe || !allowedRecipes.includes(recipe) || recipe.appliance !== definition.slot || inputSlots.length) return invalid('厨具任务配方');
+      if (!recipe || !allowedRecipes.includes(recipe) || !recipeMatchesDevice(progressState,{id:definition.id,slot:definition.slot!,index:definition.index,inputSlots:[],job:null,outputSlot:null,version:0},recipe) || inputSlots.length) return invalid('厨具任务配方');
       const startedAt = integer(rawJob.startedAt, '厨具开始时间', 0, Number.MAX_SAFE_INTEGER);
       const endsAt = integer(rawJob.endsAt, '厨具结束时间', startedAt, Number.MAX_SAFE_INTEGER);
       const output = known(rawJob.output ?? recipe.output, itemIds, '厨具产物');
@@ -217,7 +244,8 @@ export function validateSave(input: unknown): GameState {
     }
     const outputSlot = entry.outputSlot === null ? null : item(entry.outputSlot, '待取料理');
     if (outputSlot && (!job || job.output !== outputSlot.item || job.endsAt > lastSeen)) return invalid('待取料理状态');
-    if (inputSlots.length && !allowedRecipes.some((recipe) => recipe.appliance === definition.slot && inputSlots.every((ingredient) => recipe.inputs.some((need) => need.item === ingredient.item)) && recipe.inputs.every((need) => inputSlots.filter((ingredient) => ingredient.item === need.item).length <= need.count))) return invalid('厨具投料');
+    if (inputSlots.length && !allowedRecipes.some((recipe) => recipeMatchesDevice(progressState,{id:definition.id,slot:definition.slot!,index:definition.index,inputSlots:[],job:null,outputSlot:null,version:0},recipe) && inputSlots.every((ingredient) => recipe.inputs.some((need) => need.item === ingredient.item)) && recipe.inputs.every((need) => inputSlots.filter((ingredient) => ingredient.item === need.item).length <= need.count))) return invalid('厨具投料');
+    if(definition.index===-1&&(inputSlots.length||job||outputSlot))return invalid('收纳中的忙碌厨具');
     return { id: definition.id, slot: definition.slot!, index: definition.index, inputSlots, job, outputSlot, version: integer(entry.version, '厨具版本') };
   });
   if (appliances.length !== applianceDefinitions.length) return invalid('厨具数量');
@@ -240,14 +268,16 @@ export function validateSave(input: unknown): GameState {
     stats: { merges: integer(statsRaw.merges, '合成统计'), generated: integer(statsRaw.generated, '生产统计'), cooked: integer(statsRaw.cooked, '料理统计'), earned: integer(statsRaw.earned, '收入统计') },
     tutorial: integer(value.tutorial, '教学进度', 0, 5),
     settings: { music: boolean(settingsRaw.music, '音乐开关'), sound: boolean(settingsRaw.sound, '音效开关'), reducedMotion: boolean(settingsRaw.reducedMotion, '减少动态'), volume: settingsRaw.volume },
-    lastSeen, undo, energy, appliances, construction, tutorialState, session, migrationInbox, processedCommandIds, cellVersions, campaign,
+    lastSeen, undo, energy, appliances, construction, tutorialState, session, migrationInbox, processedCommandIds, cellVersions, campaign,devices,deviceGrants,deviceDiscovered,
   };
-  if (oldContent) {
+  if (oldSchema) {
     // Validate the complete old shape before changing layout. Never repair corrupt input.
-    for (const chain of HOME_CHAINS) result.generators[chain.id] = { remaining: 12, readyAt: 0 };
+    for (const chain of CHAINS) result.generators[chain.id] ??= { remaining: 12, readyAt: 0 };
     reconcileHomeDevices(result);
     return validateSave(result);
   }
+  if(campaign==='fresh'&&DEVICE_FAMILIES.filter(f=>f.stage<=themeStage(result)).some(f=>!deviceGrants.includes(f.id)))return invalid('主题设备赠送记录');
+  if(campaign==='fresh'&&devices.some(d=>!deviceDiscovered.includes(`${d.familyId}-l${d.level}`)))return invalid('设备发现记录');
   return result;
 }
 
@@ -421,7 +451,7 @@ export class SaveRepository {
             if (valid) {
               store.put(valid, 'previous');
               const originalVersion: unknown = JSON.parse(valid.data).schemaVersion;
-              if (originalVersion === 0 || originalVersion === 1) store.put(valid, `migration-v${originalVersion}`);
+              if (originalVersion === 0 || originalVersion === 1 || originalVersion === 2) store.put(valid, `migration-v${originalVersion}`);
             }
             else store.put(rawCurrent, 'recovery');
           }
@@ -511,9 +541,9 @@ export class SaveRepository {
     const transaction = this.database.transaction(STORE, 'readonly');
     const done = completed(transaction);
     const store = transaction.objectStore(STORE);
-    const [current, previous, recovery, migrationV0, migrationV1, ...manualSlots] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1', ...SAVE_SLOT_IDS.map(id => `manual-slot-${id}`)].map((key) => request(store.get(key))));
+    const [current, previous, recovery, migrationV0, migrationV1, migrationV2, ...manualSlots] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1', 'migration-v2', ...SAVE_SLOT_IDS.map(id => `manual-slot-${id}`)].map((key) => request(store.get(key))));
     await done;
-    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1, manualSlots }, null, 2);
+    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1, migrationV2, manualSlots }, null, 2);
   }
 
   close(): void { this.database?.close(); this.database = null; this.opened = false; this.corrupt = false; }

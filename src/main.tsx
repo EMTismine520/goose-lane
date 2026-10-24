@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './ui/App';
 import './ui/styles.css';
 import './ui/home-cooking.css';
+import './ui/v3.css';
 
 class GameBoundary extends React.Component<{children: React.ReactNode}, {error: boolean}> {
   state = {error: false};
