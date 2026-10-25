@@ -43,6 +43,32 @@ export function dropKind(state: GameState, from: number, to: number): DropKind {
   return 'swap';
 }
 
+export type BoardTapAction =
+  | { kind: 'select'; index: number | null }
+  | { kind: 'command'; command: Command; identity?: string }
+  | { kind: 'drop'; from: number; uid: string };
+
+/** Device buttons take priority over the selection left by the preceding tap. */
+export function boardTapAction(state: GameState, index: number, selected: number | null, selectedUid: string | null): BoardTapAction {
+  const entity = getBoardEntity(state, index);
+  const source = selected === null ? null : getBoardEntity(state, selected);
+  const canDrop = selected !== null && selected !== index && source?.canMove && source.id === selectedUid;
+  if (entity.kind === 'generator' && entity.chain) {
+    return { kind: 'command', command: { type: 'generate', chain: entity.chain, ...(state.campaign === 'fresh' ? { device: entity.id } : {}) } };
+  }
+  if (entity.kind === 'appliance') {
+    const status = getApplianceStatus(state, entity.id);
+    const identity = `appliance:${entity.id}`;
+    if (status?.phase === 'ready') return { kind: 'command', command: { type: 'collectAppliance', appliance: entity.id, expectedJobId: status.appliance.job?.id }, identity };
+    if (status?.canStart) return { kind: 'command', command: { type: 'startCooking', appliance: entity.id }, identity };
+    // Keep tap-to-load for compatible ingredients; busy or wrong devices remain selectable.
+    if (canDrop && source?.kind === 'item' && dropKind(state, selected!, index) === 'stage') return { kind: 'drop', from: selected!, uid: selectedUid! };
+    return { kind: 'select', index };
+  }
+  if (canDrop && dropKind(state, selected!, index) !== 'blocked') return { kind: 'drop', from: selected!, uid: selectedUid! };
+  return { kind: 'select', index: entity.kind === 'empty' || selected === index ? null : index };
+}
+
 /** Capture object identity at gesture start and target version at release. */
 export function moveCommand(state: GameState, from: number, to: number, expectedUid: string): Command | null {
   const source = getBoardEntity(state, from);

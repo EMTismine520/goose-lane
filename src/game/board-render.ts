@@ -152,7 +152,7 @@ export class BoardRenderer {
       : this.scene.add.text(0, 0, entity.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '10px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(0.5);
     const labelBack = this.scene.add.graphics();
     const activity = this.scene.add.graphics();
-    const label = this.scene.add.text(0, -22, '', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef2' }).setOrigin(0.5);
+    const label = this.scene.add.text(0, -17, '', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef2' }).setOrigin(0.5);
     container.add([shadow, image, activity, labelBack, label]);
     const tier=this.scene.add.text(17,17,`${definition.level??1}`,{resolution:this.pixelRatio,fontFamily:'Arial',fontSize:'9px',fontStyle:'bold',color:'#7e4b1d',backgroundColor:'#f7bc45',padding:{x:3,y:2}}).setOrigin(0.5);
     container.add(tier);
@@ -271,7 +271,7 @@ export class BoardRenderer {
       visual.label.setText(label);
       visual.labelBack.clear();
       visual.activity.clear();
-      if (label) visual.labelBack.fillStyle(color, 1).fillRoundedRect(-18, -29, 36, 14, 6);
+      if (label) visual.labelBack.fillStyle(color, 1).fillRoundedRect(-18, -24, 36, 14, 6);
       if (phase === 'cooking') {
         const progress = status.appliance.job ? Math.min(1, (now - status.appliance.job.startedAt) / Math.max(1, status.appliance.job.endsAt - status.appliance.job.startedAt)) : 0;
         visual.activity.fillStyle(0x805a38, 0.3).fillRoundedRect(-18, 20, 36, 4, 2);

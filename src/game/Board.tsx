@@ -8,7 +8,7 @@ import { CHAINS, ITEMS } from '../content/catalog';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
 import { audio } from '../platform/audio';
-import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, DRAG_THRESHOLD, cellAt, isDropCommitted, moveCommand, nextKeyboardCell, selectionAfterDrop } from './board-input';
+import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, DRAG_THRESHOLD, boardTapAction, cellAt, isDropCommitted, moveCommand, nextKeyboardCell, selectionAfterDrop } from './board-input';
 import type { DropSelection } from './board-input';
 import { BoardRenderer, itemDisplaySize, itemTexture } from './board-render';
 import { boardPixelRatio, boardPoint, refreshBoardViewport } from './board-viewport';
@@ -249,22 +249,14 @@ export default function Board(props: BoardProps) {
           if (!this.allowed()) return;
           if (!gesture) { this.selectionIntent++; this.pendingSelection = null; void audio.unlock(); }
           const state = live.current.state;
-          const entity = getBoardEntity(state, index);
           const selected = gesture ? gesture.selected : live.current.selected;
           const selectedUid = gesture ? gesture.selectedUid : selected === null ? null : getBoardEntity(state,selected).canMove?getBoardEntity(state,selected).id:null;
-          if(selected!==null&&selected!==index&&selectedUid&&state.devices.some(d=>d.id===selectedUid)){void this.drop(selected,index,selectedUid);}
-          else if (entity.kind === 'generator' && entity.chain) {
-            live.current.onSelect(index);
-            void this.submit({ type: 'generate', chain: entity.chain, ...(state.campaign==='fresh'?{device:entity.id}:{}) });
-          } else if (selected !== null && selected !== index && selectedUid) {
-            void this.drop(selected, index, selectedUid);
-          } else if (entity.kind === 'appliance') {
-            live.current.onSelect(index);
-            const appliance = getApplianceStatus(state, entity.id);
-            if (appliance?.phase === 'ready') void this.submit({ type: 'collectAppliance', appliance: entity.id, expectedJobId: appliance.appliance.job?.id }, `appliance:${entity.id}`);
-            else if (appliance?.canStart) void this.submit({ type: 'startCooking', appliance: entity.id }, `appliance:${entity.id}`);
+          const action = boardTapAction(state, index, selected, selectedUid);
+          if (action.kind === 'drop') {
+            void this.drop(action.from, index, action.uid);
           } else {
-            live.current.onSelect(entity.kind === 'empty' || selected === index ? null : index);
+            live.current.onSelect(action.kind === 'select' ? action.index : index);
+            if (action.kind === 'command') void this.submit(action.command, action.identity);
           }
         }
 
