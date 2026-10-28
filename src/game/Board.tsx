@@ -27,9 +27,10 @@ export interface BoardProps {
   active?: boolean;
   inputEnabled?: boolean;
   sessionEpoch?: number;
+  selectionCancelSequence?: number;
 }
 interface BoardBridge { sync: () => void; resize: () => void; activate: (index: number) => void; cancel: () => void; }
-interface Gesture { index: number; x: number; y: number; pointerId: number; uid: string | null; selectedUid: string | null; selected: number | null; }
+interface Gesture { index: number; x: number; y: number; pointerId: number; uid: string | null; selected: number | null; maxDistance: number; }
 
 /** One scene per mounted board. React supplies snapshots; Phaser never mutates inventory. */
 export default function Board(props: BoardProps) {
@@ -45,7 +46,7 @@ export default function Board(props: BoardProps) {
   const pixelRatio = boardPixelRatio(art.pixelRatio ?? (typeof window === 'undefined' ? 1 : window.devicePixelRatio));
   live.current = props;
 
-  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled, props.sessionEpoch]);
+  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence]);
 
   useEffect(() => {
     setStatus('loading');
@@ -136,7 +137,13 @@ export default function Board(props: BoardProps) {
           this.input.on('pointerupoutside', this.cancel, this);
           const cancel = () => this.cancel();
           const visibility = () => this.sync();
-          const keydown = (event: KeyboardEvent) => { if (event.key === 'Escape') this.cancel(); };
+          const keydown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape' && !event.defaultPrevented && this.allowed()) {
+              event.preventDefault();
+              this.cancel();
+              live.current.onSelect(null);
+            }
+          };
           window.addEventListener('blur', cancel);
           document.addEventListener('visibilitychange', visibility);
           document.addEventListener('keydown', keydown);
@@ -166,12 +173,17 @@ export default function Board(props: BoardProps) {
         }
 
         private restoredEpoch = live.current.sessionEpoch;
+        private selectionCancelSequence = live.current.selectionCancelSequence;
 
         private sync() {
           if (!this.board) return;
           if(this.queueArt()&&!this.load.isLoading()){this.load.once('complete',()=>{this.board.rebuildArt();this.sync();});this.load.start();}
           const restoring = this.restoredEpoch !== live.current.sessionEpoch;
-          if (restoring) { this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.pendingSelection = null; this.selectionIntent++; this.board.settle(); }
+          if (restoring) { this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.board.settle(); }
+          if (this.selectionCancelSequence !== live.current.selectionCancelSequence) {
+            this.selectionCancelSequence = live.current.selectionCancelSequence;
+            this.cancel();
+          }
           const inactive = live.current.active === false || document.hidden;
           if (!this.allowed()) this.cancel();
           if (this.start?.uid && getBoardEntity(live.current.state,this.start.index).id !== this.start.uid) this.cancel();
@@ -201,19 +213,26 @@ export default function Board(props: BoardProps) {
           this.selectionIntent++;
           this.pendingSelection = null;
           const selected = live.current.selected;
-          this.start = { index, x: point.x, y: point.y, pointerId: pointer.id, uid: entity.item?.uid ?? (entity.canMove?entity.id:null), selected, selectedUid: selected === null ? null : getBoardEntity(live.current.state,selected).canMove?getBoardEntity(live.current.state,selected).id:null };
+          this.start = { index, x: point.x, y: point.y, pointerId: pointer.id, uid: entity.canMove ? entity.id : null, selected, maxDistance: 0 };
           this.board.press(index);
           void audio.unlock();
           if (this.time.now - this.lastPressed > 70) { audio.play('click'); this.lastPressed = this.time.now; }
         }
 
+        private measureMovement(point: { x: number; y: number }) {
+          if (!this.start) return;
+          const canvasScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH;
+          this.start.maxDistance = Math.max(this.start.maxDistance, Math.hypot(point.x - this.start.x, point.y - this.start.y) * canvasScale);
+        }
+
         private drag(pointer: Phaser.Input.Pointer) {
-          if (!this.allowed() || !this.start || pointer.id !== this.start.pointerId || !pointer.isDown || !this.start.uid) return;
+          if (!this.allowed() || !this.start || pointer.id !== this.start.pointerId || !pointer.isDown) return;
+          const point = boardPoint(pointer, pixelRatio);
+          this.measureMovement(point);
+          if (this.start.maxDistance < DRAG_THRESHOLD || !this.start.uid) return;
           const entity = getBoardEntity(live.current.state, this.start.index);
           if (!entity.canMove || entity.id !== this.start.uid) { this.cancel(); return; }
-          const canvasScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH;
-          const point = boardPoint(pointer, pixelRatio);
-          if (this.dragged === null && Math.hypot(point.x - this.start.x, point.y - this.start.y) * canvasScale >= DRAG_THRESHOLD) {
+          if (this.dragged === null) {
             this.dragged = this.start.index;
             live.current.onSelect(this.dragged);
             const d=live.current.state.devices.find(d=>d.id===entity.id);
@@ -236,11 +255,13 @@ export default function Board(props: BoardProps) {
           if (pointer.wasCanceled) { this.cancel(); return; }
           const start = this.start;
           const point = boardPoint(pointer, pixelRatio);
+          this.measureMovement(point);
           const target = cellAt(point.x, point.y);
           const dragged = this.dragged;
-          this.cancel();
+          this.endGesture();
           if (!this.allowed() || target === null) return;
           if (dragged !== null && start.uid) { void this.drop(start.index, target, start.uid); return; }
+          if (start.maxDistance >= DRAG_THRESHOLD) return;
           if (target !== start.index) return;
           this.activate(target, start);
         }
@@ -250,14 +271,9 @@ export default function Board(props: BoardProps) {
           if (!gesture) { this.selectionIntent++; this.pendingSelection = null; void audio.unlock(); }
           const state = live.current.state;
           const selected = gesture ? gesture.selected : live.current.selected;
-          const selectedUid = gesture ? gesture.selectedUid : selected === null ? null : getBoardEntity(state,selected).canMove?getBoardEntity(state,selected).id:null;
-          const action = boardTapAction(state, index, selected, selectedUid);
-          if (action.kind === 'drop') {
-            void this.drop(action.from, index, action.uid);
-          } else {
-            live.current.onSelect(action.kind === 'select' ? action.index : index);
-            if (action.kind === 'command') void this.submit(action.command, action.identity);
-          }
+          const action = boardTapAction(state, index, selected);
+          live.current.onSelect(action.kind === 'select' ? action.index : index);
+          if (action.kind === 'command') void this.submit(action.command, action.identity);
         }
 
         private async drop(from: number, to: number, uid: string) {
@@ -294,6 +310,12 @@ export default function Board(props: BoardProps) {
         }
 
         private cancel() {
+          this.selectionIntent++;
+          this.pendingSelection = null;
+          this.endGesture();
+        }
+
+        private endGesture() {
           this.start = null;
           this.dragged = null;
           this.hovered = null;
@@ -348,7 +370,6 @@ export default function Board(props: BoardProps) {
               onKeyDown={event => {
                 const next = nextKeyboardCell(index, event.key);
                 if (event.key.startsWith('Arrow') || event.key === 'Home' || event.key === 'End') { event.preventDefault(); buttons.current.get(next)?.focus(); }
-                if (event.key === 'Escape') { event.preventDefault(); bridge.current?.cancel(); props.onSelect(null); }
               }}
               style={{ width: '100%', height: '100%', opacity: focused === index ? 1 : 0, pointerEvents: 'none', border: '3px solid #4e965a', background: '#fff8e5ee', color: '#4c663b', borderRadius: 7, fontSize: 10, padding: 2, outline: 'none' }}>
               {entity.name}

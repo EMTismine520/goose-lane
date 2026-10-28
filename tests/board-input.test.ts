@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createInitialState, execute, getApplianceStatus, stateInvariantErrors } from '../src/domain/engine';
+import { CHAINS } from '../src/content/catalog';
 import { BOARD_HEIGHT, BOARD_WIDTH, boardTapAction, cellAt, cellCenter, dropKind, isDropCommitted, moveCommand, nextKeyboardCell, selectionAfterDrop } from '../src/game/board-input';
 
 describe('portrait board coordinate and gesture contract', () => {
@@ -44,6 +45,19 @@ describe('portrait board coordinate and gesture contract', () => {
     expect(dropKind(state, 0, 41)).toBe('blocked');
     state.appliances[0].inputSlots = [{ uid: 'already-loaded', item: 'fresh-veg-1' }];
     expect(dropKind(state, 0, 40)).toBe('blocked');
+  });
+
+  it.each(['fresh-veg', 'fresh-mixer'])('swaps two top-level %s items without consuming either UID', chain => {
+    const state = createInitialState(1_000);
+    const item = CHAINS.find(entry => entry.id === chain)!.items.at(-1)!;
+    state.board[0] = { uid: 'top-a', item };
+    state.board[1] = { uid: 'top-b', item };
+    expect(dropKind(state, 0, 1)).toBe('swap');
+    const result = execute(state, moveCommand(state, 0, 1, 'top-a')!, 1_001);
+    expect(result.ok).toBe(true);
+    expect(result.state.board[0]?.uid).toBe('top-b');
+    expect(result.state.board[1]?.uid).toBe('top-a');
+    expect(result.state.stats.merges).toBe(0);
   });
 
   it('never submits a gesture against a replacement occupant', () => {
@@ -106,7 +120,7 @@ describe('portrait board coordinate and gesture contract', () => {
   });
 });
 
-describe('device taps after selecting an ingredient or another device', () => {
+describe('clicks inspect objects and operate devices without transporting the previous selection', () => {
   function kitchen(phase: 'idle' | 'loaded' | 'cooking' | 'ready' = 'idle') {
     let state = createInitialState(Date.now());
     state.board.fill(null);
@@ -121,52 +135,41 @@ describe('device taps after selecting an ingredient or another device', () => {
     return state;
   }
 
-  it.each([
-    [null, null], [0, 'g5'], [35, 'vegetable-cart'], [41, 'fruit-press'],
-  ] as const)('collects a ready dish with selection %s without trying to load or move it', (selected, uid) => {
-    const state = kitchen('ready');
-    const selectedItem = state.board[0];
-    const output = state.appliances[0].outputSlot;
-    const action = boardTapAction(state, 40, selected, uid);
+  it.each([null, 0, 35, 41])('collects exactly one ready dish with preceding selection %s', selected => {
+    const state = kitchen('ready'), output = state.appliances[0].outputSlot;
+    const action = boardTapAction(state, 40, selected);
     expect(action.kind).toBe('command');
     if (action.kind !== 'command') throw new Error('Expected a collect command');
     expect(action.command).toEqual({ type: 'collectAppliance', appliance: 'chopping-board', expectedJobId: state.appliances[0].job!.id });
     const result = execute(state, action.command, state.lastSeen);
     expect(result.ok).toBe(true);
     expect(result.state.stats.cooked).toBe(1);
-    expect(result.state.board[0]).toEqual(selectedItem);
+    expect(result.state.board[0]).toEqual(state.board[0]);
     expect(result.state.board.filter(item => item?.uid === output!.uid)).toHaveLength(1);
     expect(result.state.appliances[0].job).toBeNull();
-    expect(boardTapAction(result.state, 40, 40, 'chopping-board')).toEqual({ kind: 'select', index: 40 });
+    expect(boardTapAction(result.state, 40, 40)).toEqual({ kind: 'select', index: 40 });
     expect(stateInvariantErrors(result.state)).toEqual([]);
   });
 
-  it('produces from consecutive generators even when the preceding selection is movable', () => {
+  it('produces exactly twenty times while alternating generators and preceding selections', () => {
     let state = kitchen();
-    for (const [index, selected, uid] of [[35, 0, 'g5'], [36, 35, 'vegetable-cart'], [35, 40, 'chopping-board']] as const) {
-      const action = boardTapAction(state, index, selected, uid);
-      expect(action.kind).toBe('command');
+    for (let n = 0; n < 20; n++) {
+      const action = boardTapAction(state, n % 2 ? 36 : 35, [null, 0, 35, 40][n % 4]);
       if (action.kind !== 'command') throw new Error('Expected a generate command');
-      expect(action.command.type).toBe('generate');
       const result = execute(state, action.command, state.lastSeen);
       expect(result.ok).toBe(true);
       state = result.state;
     }
-    expect(state.stats.generated).toBe(3);
-    expect(state.energy.value).toBe(57);
+    expect(state.stats.generated).toBe(20);
+    expect(state.energy.value).toBe(40);
     expect(state.board[0]?.uid).toBe('g5');
     expect(state.devices.find(device => device.id === 'vegetable-cart')?.index).toBe(35);
     expect(stateInvariantErrors(state)).toEqual([]);
   });
 
-  it('selects an ingredient after a generator tap instead of trying to move the generator onto it', () => {
-    expect(boardTapAction(kitchen(), 0, 35, 'vegetable-cart')).toEqual({ kind: 'select', index: 0 });
-  });
-
-  it('starts a loaded appliance while preserving the selected ingredient', () => {
+  it.each([null, 0, 35, 41])('starts a loaded appliance with preceding selection %s', selected => {
     const state = kitchen('loaded');
-    const action = boardTapAction(state, 40, 0, 'g5');
-    expect(action.kind).toBe('command');
+    const action = boardTapAction(state, 40, selected);
     if (action.kind !== 'command') throw new Error('Expected a start command');
     expect(action.command).toEqual({ type: 'startCooking', appliance: 'chopping-board' });
     const result = execute(state, action.command, state.lastSeen);
@@ -175,29 +178,59 @@ describe('device taps after selecting an ingredient or another device', () => {
     expect(result.state.board[0]).toEqual(state.board[0]);
   });
 
-  it('selects busy and incompatible appliances without submitting an invalid input', () => {
-    expect(boardTapAction(kitchen('cooking'), 40, 0, 'g5')).toEqual({ kind: 'select', index: 40 });
-    expect(boardTapAction(kitchen(), 41, 1, 'g6')).toEqual({ kind: 'select', index: 41 });
+  it.each(['idle', 'cooking'] as const)('selects an %s appliance without loading or clearing it on a second tap', phase => {
+    const state = kitchen(phase);
+    const before = structuredClone(state);
+    for (const selected of [null, 0, 1, 35, 40, 41]) {
+      expect(boardTapAction(state, 40, selected)).toEqual({ kind: 'select', index: 40 });
+      expect(boardTapAction(state, 41, selected)).toEqual({ kind: 'select', index: 41 });
+    }
+    expect(state).toEqual(before);
   });
 
-  it('retains tap-to-load for a compatible idle appliance and the original ingredient UID', () => {
-    const state = kitchen();
-    const action = boardTapAction(state, 40, 1, 'g6');
-    expect(action).toEqual({ kind: 'drop', from: 1, uid: 'g6' });
-    if (action.kind !== 'drop') throw new Error('Expected an input drop');
-    const result = execute(state, moveCommand(state, action.from, 40, action.uid)!, state.lastSeen);
-    expect(result.ok).toBe(true);
-    expect(result.state.board[1]).toBeNull();
-    expect(result.state.appliances[0].inputSlots).toEqual([state.board[1]]);
-  });
-
-  it('retains item moves and merges, device moves to empty cells, and stale-selection protection', () => {
-    const state = kitchen();
+  it('only switches or clears selection for same-level food, different food, empty cells and locks', () => {
+    const state = kitchen(), before = structuredClone(state);
     state.board[2] = { uid: `g${state.nextId++}`, item: 'fresh-veg-3' };
-    expect(boardTapAction(state, 2, 0, 'g5')).toEqual({ kind: 'drop', from: 0, uid: 'g5' });
-    expect(boardTapAction(state, 3, 0, 'g5')).toEqual({ kind: 'drop', from: 0, uid: 'g5' });
-    expect(boardTapAction(state, 3, 35, 'vegetable-cart')).toEqual({ kind: 'drop', from: 35, uid: 'vegetable-cart' });
-    expect(boardTapAction(state, 3, 0, 'replaced-uid')).toEqual({ kind: 'select', index: null });
-    expect(boardTapAction(state, 0, 0, 'g5')).toEqual({ kind: 'select', index: null });
+    const snapshot = structuredClone(state);
+    for (const selected of [null, 0, 1, 2, 35, 40]) {
+      expect(boardTapAction(state, 2, selected)).toEqual({ kind: 'select', index: selected === 2 ? null : 2 });
+      expect(boardTapAction(state, 3, selected)).toEqual({ kind: 'select', index: null });
+      expect(boardTapAction(state, 42, selected)).toEqual({ kind: 'select', index: null });
+    }
+    expect(boardTapAction(state, 0, 35)).toEqual({ kind: 'select', index: 0 });
+    expect(boardTapAction(state, 1, 0)).toEqual({ kind: 'select', index: 1 });
+    expect(state).toEqual(snapshot);
+    expect(state.board[0]).toEqual(before.board[0]);
+  });
+
+  it('only selects an incomplete appliance even when the selected ingredient could complete its recipe', () => {
+    let state = kitchen();
+    state.board[2] = { uid: `g${state.nextId++}`, item: 'fresh-veg-5' };
+    state.board[3] = { uid: `g${state.nextId++}`, item: 'fresh-fruit-2' };
+    state = execute(state, { type: 'stageInput', from: 2, appliance: 'chopping-board' }, state.lastSeen).state;
+    const before = structuredClone(state);
+    expect(getApplianceStatus(state, 'chopping-board')?.canStart).toBe(false);
+    expect(dropKind(state, 3, 40)).toBe('stage');
+    expect(boardTapAction(state, 40, 3)).toEqual({ kind: 'select', index: 40 });
+    expect(state).toEqual(before);
+  });
+
+  it('preserves a full-board ready output and insufficient-energy resources on failed device taps', () => {
+    const ready = kitchen('ready');
+    for (let i = 0; i < 35; i++) ready.board[i] ??= { uid: `g${ready.nextId++}`, item: 'fresh-veg-1' };
+    for (const i of [37, 38, 39]) ready.board[i] = { uid: `g${ready.nextId++}`, item: 'fresh-veg-1' };
+    const collect = boardTapAction(ready, 40, 0);
+    if (collect.kind !== 'command') throw new Error('Expected collection');
+    const failed = execute(ready, collect.command, ready.lastSeen);
+    expect(failed.ok).toBe(false);
+    expect(failed.state).toBe(ready);
+    expect(failed.state.appliances[0].outputSlot).not.toBeNull();
+
+    const tired = kitchen(); tired.energy.value = 0;
+    const generate = boardTapAction(tired, 35, 0);
+    if (generate.kind !== 'command') throw new Error('Expected generation');
+    const denied = execute(tired, generate.command, tired.lastSeen);
+    expect(denied.ok).toBe(false);
+    expect(denied.state).toBe(tired);
   });
 });

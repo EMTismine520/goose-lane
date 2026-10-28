@@ -45,14 +45,11 @@ export function dropKind(state: GameState, from: number, to: number): DropKind {
 
 export type BoardTapAction =
   | { kind: 'select'; index: number | null }
-  | { kind: 'command'; command: Command; identity?: string }
-  | { kind: 'drop'; from: number; uid: string };
+  | { kind: 'command'; command: Command; identity?: string };
 
-/** Device buttons take priority over the selection left by the preceding tap. */
-export function boardTapAction(state: GameState, index: number, selected: number | null, selectedUid: string | null): BoardTapAction {
+/** Selection is inspection only; only a drag may move or load an object. */
+export function boardTapAction(state: GameState, index: number, selected: number | null): BoardTapAction {
   const entity = getBoardEntity(state, index);
-  const source = selected === null ? null : getBoardEntity(state, selected);
-  const canDrop = selected !== null && selected !== index && source?.canMove && source.id === selectedUid;
   if (entity.kind === 'generator' && entity.chain) {
     return { kind: 'command', command: { type: 'generate', chain: entity.chain, ...(state.campaign === 'fresh' ? { device: entity.id } : {}) } };
   }
@@ -61,12 +58,9 @@ export function boardTapAction(state: GameState, index: number, selected: number
     const identity = `appliance:${entity.id}`;
     if (status?.phase === 'ready') return { kind: 'command', command: { type: 'collectAppliance', appliance: entity.id, expectedJobId: status.appliance.job?.id }, identity };
     if (status?.canStart) return { kind: 'command', command: { type: 'startCooking', appliance: entity.id }, identity };
-    // Keep tap-to-load for compatible ingredients; busy or wrong devices remain selectable.
-    if (canDrop && source?.kind === 'item' && dropKind(state, selected!, index) === 'stage') return { kind: 'drop', from: selected!, uid: selectedUid! };
     return { kind: 'select', index };
   }
-  if (canDrop && dropKind(state, selected!, index) !== 'blocked') return { kind: 'drop', from: selected!, uid: selectedUid! };
-  return { kind: 'select', index: entity.kind === 'empty' || selected === index ? null : index };
+  return { kind: 'select', index: entity.kind === 'empty' || entity.kind === 'blocker' || selected === index ? null : index };
 }
 
 /** Capture object identity at gesture start and target version at release. */

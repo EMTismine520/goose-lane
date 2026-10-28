@@ -213,7 +213,7 @@ export class BoardRenderer {
       if (entity.kind === 'blocker') continue;
       const at = cellCenter(index);
       const isSource = source === index;
-      const matching = tutorialTarget == null && source !== null && dropKind(state, source, index) === 'merge';
+      const matching = tutorialTarget == null && dragged !== null && dropKind(state, dragged, index) === 'merge';
       const isHint = tutorialTarget == null && hint?.includes(index);
       const isTutorialTarget = tutorialTarget === index;
       const over = hovered === index && dragged !== index;
@@ -266,7 +266,7 @@ export class BoardRenderer {
       const status = getApplianceStatus(state, device.id, now);
       if (!status) continue;
       const phase = status.phase;
-      const label = phase === 'cooking' ? `${Math.ceil(status.remaining / 1000)}s` : phase === 'ready' ? '领取' : phase === 'loaded' ? status.canStart ? '烹饪' : '待投料' : '';
+      const label = phase === 'cooking' ? `${Math.ceil(status.remaining / 1000)}s` : phase === 'ready' ? '领取' : phase === 'loaded' ? status.canStart ? '开火' : '待投料' : '';
       const color = phase === 'ready' ? 0x70ac4b : phase === 'cooking' ? 0xd78b43 : 0x79ad4c;
       visual.label.setText(label);
       visual.labelBack.clear();
