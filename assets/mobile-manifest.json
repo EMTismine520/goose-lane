@@ -1,0 +1,2490 @@
+[
+  {
+    "id": "fresh-veg-1",
+    "path": "assets/mobile/fresh-veg-1-03891f0670d8.webp",
+    "stage": 1,
+    "bytes": 5814,
+    "sha256": "03891f0670d86875ad6f5a06dcd5e3859e7d26116c689bd822fc13a2fac6f5b2",
+    "sourceSha256": "3e667e06e904ce644fa3404897d83c3b020e5943dc4e8e49e614e91b558ed5ce"
+  },
+  {
+    "id": "fresh-veg-2",
+    "path": "assets/mobile/fresh-veg-2-9bd559ddb15a.webp",
+    "stage": 1,
+    "bytes": 4876,
+    "sha256": "9bd559ddb15a7fe72e38d837c37b287bb1cdd22f9a11292fbc80696117f71156",
+    "sourceSha256": "2d9220484bd4223776a7659a30ec45ce6cfbedfd975b2d948cf695a5f9053e19"
+  },
+  {
+    "id": "fresh-veg-3",
+    "path": "assets/mobile/fresh-veg-3-fa80ecb3277d.webp",
+    "stage": 1,
+    "bytes": 5772,
+    "sha256": "fa80ecb3277d1419299d883e9061d92534841d04c0d9e6a21f48eb2b39bed861",
+    "sourceSha256": "f80eafb217efd48c5b1ceb4b8fa0d4785a64c03e922a51da5d54e3a305f60218"
+  },
+  {
+    "id": "fresh-veg-4",
+    "path": "assets/mobile/fresh-veg-4-761128848d0a.webp",
+    "stage": 1,
+    "bytes": 5046,
+    "sha256": "761128848d0a4945bc09543a7a206ad2dbcb08cf44a46906106544710cb31edf",
+    "sourceSha256": "1b758ba697f63064d81e920d5fcb24138347ae23b8fd5485b737eb9f9d61a04d"
+  },
+  {
+    "id": "fresh-veg-5",
+    "path": "assets/mobile/fresh-veg-5-e7a8906e3268.webp",
+    "stage": 1,
+    "bytes": 6648,
+    "sha256": "e7a8906e3268fb6af673e77fc2ac1fc8c7191b33467723b4d8f0c8e10e82e223",
+    "sourceSha256": "7f27c6ca5236dd6b0d01b8a6dc69f199f812a1cd106f37aafbb0a1b7c16ffd98"
+  },
+  {
+    "id": "fresh-veg-6",
+    "path": "assets/mobile/fresh-veg-6-18370b6ad039.webp",
+    "stage": 1,
+    "bytes": 5818,
+    "sha256": "18370b6ad03912edeab5d3b88cde33d6ace873c19bdb2f7af4d3efb54cd0990c",
+    "sourceSha256": "d2708d9cc2c8de7b242472f828a86b09cc6bdf10840ecb7848dee51b05cca311"
+  },
+  {
+    "id": "fresh-veg-7",
+    "path": "assets/mobile/fresh-veg-7-4e12c7cec7ff.webp",
+    "stage": 1,
+    "bytes": 5106,
+    "sha256": "4e12c7cec7ff5c59ad4c9608adad53e5bd4cf7472dd24d3b09e89e02c02d51bd",
+    "sourceSha256": "851d7826a745f62c7f0dd204d8e6eef5e7cd549023fd326c246b89d1d4ca72b2"
+  },
+  {
+    "id": "fresh-fruit-1",
+    "path": "assets/mobile/fresh-fruit-1-70fd61996ef3.webp",
+    "stage": 1,
+    "bytes": 5314,
+    "sha256": "70fd61996ef3e05b5cbe582089c4671773db050cc342c71aeb8dcbca4f8b38ad",
+    "sourceSha256": "e0b69cd1a2668b47eda2e8d216c1e5965e498336c9097b112335ef4761068c9b"
+  },
+  {
+    "id": "fresh-fruit-2",
+    "path": "assets/mobile/fresh-fruit-2-47c915c9f4f6.webp",
+    "stage": 1,
+    "bytes": 5252,
+    "sha256": "47c915c9f4f6aec85cceddd93853a67797aee7b558304acc783d162c73b7b0fa",
+    "sourceSha256": "c21a2ed6b680a1b0dcb8974f73db98716e307d1d0ea01c144c4f3503b3324674"
+  },
+  {
+    "id": "fresh-fruit-3",
+    "path": "assets/mobile/fresh-fruit-3-6c556b9b7a3f.webp",
+    "stage": 1,
+    "bytes": 5828,
+    "sha256": "6c556b9b7a3f7a53ed987700b4be36f8e7667c0b6903dca61a164cb89746fed7",
+    "sourceSha256": "2f0cd7bf72605617c5267e45fd7110952b2179b182048cafc4bfd3c3dec0ce92"
+  },
+  {
+    "id": "fresh-fruit-4",
+    "path": "assets/mobile/fresh-fruit-4-fe7920dd2624.webp",
+    "stage": 1,
+    "bytes": 6414,
+    "sha256": "fe7920dd2624587c3b13c5b1eedb45da0f375b101de5bd55b3c1fd3704763d5f",
+    "sourceSha256": "c7c50a720a918f90c20e36808e5681a83cfca7a23e3ea9c699b0dbe97753d53b"
+  },
+  {
+    "id": "fresh-fruit-5",
+    "path": "assets/mobile/fresh-fruit-5-4645c6456880.webp",
+    "stage": 1,
+    "bytes": 5586,
+    "sha256": "4645c6456880ceb8659567ac7939ca1956409290b7d6f8e6447c9cbbe64986f9",
+    "sourceSha256": "26bb9d7abd654612e4b7a805e1d0603f67338ca7049da3dfeef41e14177d6ef8"
+  },
+  {
+    "id": "fresh-fruit-6",
+    "path": "assets/mobile/fresh-fruit-6-5a168c5c20ef.webp",
+    "stage": 1,
+    "bytes": 7390,
+    "sha256": "5a168c5c20ef917784e720bbadf973e9cdbcd68fb91c71832fd8bba319623782",
+    "sourceSha256": "fa96c6b483444700b93153506111d3e325108dfbb03d223587c4695b0b6ac744"
+  },
+  {
+    "id": "fresh-fruit-7",
+    "path": "assets/mobile/fresh-fruit-7-ad220745d8a9.webp",
+    "stage": 1,
+    "bytes": 5104,
+    "sha256": "ad220745d8a988c7868852a95ec81cdcb800c1d186c60261830abeab8cfa15e1",
+    "sourceSha256": "72d56282ecd45df2356af8e75c2cc210d6c00a9f30a5d63fc72325aef9e8eb6f"
+  },
+  {
+    "id": "fresh-beast-1",
+    "path": "assets/mobile/fresh-beast-1-bb9519dafbbd.webp",
+    "stage": 2,
+    "bytes": 5558,
+    "sha256": "bb9519dafbbdcf316c5e2e6bcc372488b1d6501582e2c794f1e83012b73c88c1",
+    "sourceSha256": "cd1992d6b48fd0f180f4b9989ddbc71883f3b26abf47d8cd6a5ab6c232010828"
+  },
+  {
+    "id": "fresh-beast-2",
+    "path": "assets/mobile/fresh-beast-2-945fd59f7d59.webp",
+    "stage": 2,
+    "bytes": 7164,
+    "sha256": "945fd59f7d594d30642244d1a38cc578d5a73af996314a4f6ac58f97fa702071",
+    "sourceSha256": "e4696bee79ccb9ee82237d4c3ef7e3951144e0da2bb3cf0b62a11d87fad1f28f"
+  },
+  {
+    "id": "fresh-beast-3",
+    "path": "assets/mobile/fresh-beast-3-cc702834313d.webp",
+    "stage": 2,
+    "bytes": 7184,
+    "sha256": "cc702834313d9113c860a963a843af1ecce8d70d17ade3fdf41b4336d47d7c64",
+    "sourceSha256": "71c0a793d59c96daf04a132c57d01c83681ebfea2d7fcee057304e6d76a9add0"
+  },
+  {
+    "id": "fresh-beast-4",
+    "path": "assets/mobile/fresh-beast-4-4ce9b66c5c1e.webp",
+    "stage": 2,
+    "bytes": 7478,
+    "sha256": "4ce9b66c5c1e30e3498912b774a6ce00bba7b657195f2550a2006597bff63ebe",
+    "sourceSha256": "bfb96d6ec394abd8c1b238fed492d099941647d1f21aa38d78699e72a35681a3"
+  },
+  {
+    "id": "fresh-beast-5",
+    "path": "assets/mobile/fresh-beast-5-44a558870be0.webp",
+    "stage": 2,
+    "bytes": 8670,
+    "sha256": "44a558870be0f108ff1c6bac26bf37601dd44cd43f330f2333ffba76e63be41c",
+    "sourceSha256": "6a38372c0dfa1861fb771fb97c4739723f4c3dd9c38671be5b1a0f436aa03490"
+  },
+  {
+    "id": "fresh-beast-6",
+    "path": "assets/mobile/fresh-beast-6-d98d78c24119.webp",
+    "stage": 2,
+    "bytes": 8474,
+    "sha256": "d98d78c241191f8c4908e17e0fbf920c693d57be2cc7e421550abb8a84efc4bc",
+    "sourceSha256": "be7d95527ab99447d45a11ab2fc1a9df76b1b757b3557a2df8f1d932f655760e"
+  },
+  {
+    "id": "fresh-beast-7",
+    "path": "assets/mobile/fresh-beast-7-4f7e28810f06.webp",
+    "stage": 2,
+    "bytes": 7164,
+    "sha256": "4f7e28810f06ffafef76196be382b610414133a1af65e59b38027861aff57bf4",
+    "sourceSha256": "0c45ac8efcd90c723a9961e5efce236eddbe1ec1a0dc9e8c9ebfd687915e9bc7"
+  },
+  {
+    "id": "fresh-beast-8",
+    "path": "assets/mobile/fresh-beast-8-ce9b06c0ce17.webp",
+    "stage": 2,
+    "bytes": 9838,
+    "sha256": "ce9b06c0ce1793ff0603a2855581d30df2763f98b66447340b7368f9492ea793",
+    "sourceSha256": "fdf6fcc050f58db3c2868ebf33014173a504168d177c65e26ea79907853000be"
+  },
+  {
+    "id": "fresh-beast-9",
+    "path": "assets/mobile/fresh-beast-9-1694956ca8c0.webp",
+    "stage": 2,
+    "bytes": 8680,
+    "sha256": "1694956ca8c0377b09b6b02f5aeb7672843d79581d4974dab2ee95daa00f4e22",
+    "sourceSha256": "e341dbe0540f691aaa38a777cb4d8517ecc06f0d391ef1b54d3369f97753c80e"
+  },
+  {
+    "id": "fresh-beast-10",
+    "path": "assets/mobile/fresh-beast-10-91e024df9c6e.webp",
+    "stage": 2,
+    "bytes": 8598,
+    "sha256": "91e024df9c6ef7e97bb21ecf9ec8c7f8a9ded97b9ee65b4f36d7d0ce4fdc3d06",
+    "sourceSha256": "81aa26268ff63736448a6a69f4f1bb92a3b8e4b8b61777004f727382b40b5079"
+  },
+  {
+    "id": "fresh-poultry-1",
+    "path": "assets/mobile/fresh-poultry-1-ceb623bd4674.webp",
+    "stage": 2,
+    "bytes": 5266,
+    "sha256": "ceb623bd46745d3c5a7d09483d4a80f6966fa1b36811021108a47df55eb383a7",
+    "sourceSha256": "5548ae94bfc1d667a91c1bcf45efba1fe799ef60e50d9a403a9c4bfc36256429"
+  },
+  {
+    "id": "fresh-poultry-2",
+    "path": "assets/mobile/fresh-poultry-2-c4104bb9c428.webp",
+    "stage": 2,
+    "bytes": 7640,
+    "sha256": "c4104bb9c4286fe95d7616aaabf86aa9cb11f88d987f3916d9d6f7e7a78da596",
+    "sourceSha256": "3e93fa66c23f058cdf1fb0c2da9dc2aa42b1ddd6987b964c97f18f5943d6e149"
+  },
+  {
+    "id": "fresh-poultry-3",
+    "path": "assets/mobile/fresh-poultry-3-0c1d69ec90eb.webp",
+    "stage": 2,
+    "bytes": 6492,
+    "sha256": "0c1d69ec90eb4bdab8b3962daabc336a25224c1449dcbecf92a3fb3da8956e77",
+    "sourceSha256": "73001b1d027c1ad8dd69ec490f18633c7c0cc6e9ccb42f9207c48fe68ab39177"
+  },
+  {
+    "id": "fresh-poultry-4",
+    "path": "assets/mobile/fresh-poultry-4-2a948ee5e138.webp",
+    "stage": 2,
+    "bytes": 6532,
+    "sha256": "2a948ee5e1389fb60ccd1fbb7aed1c08db9b2d22b6202f096aa24d52ad4b8036",
+    "sourceSha256": "08663195cf95ca8f43e62997d12877c2b35392fd7f46dd80ed9a025c0e8ebc2d"
+  },
+  {
+    "id": "fresh-poultry-5",
+    "path": "assets/mobile/fresh-poultry-5-0fc3de9359ab.webp",
+    "stage": 2,
+    "bytes": 5794,
+    "sha256": "0fc3de9359ab4ebc6876af8469b949dbc1930f19272fd7cfed92a610787357b7",
+    "sourceSha256": "46d73f231f6b0a284b84424c6f5985d0319790ed470b8b4549d587cb306394bd"
+  },
+  {
+    "id": "fresh-poultry-6",
+    "path": "assets/mobile/fresh-poultry-6-6f78d35e9db2.webp",
+    "stage": 2,
+    "bytes": 6012,
+    "sha256": "6f78d35e9db272047ba26ed33c6374fbdeaa85d12b1b666bd7fe6e775ccac653",
+    "sourceSha256": "67498c513eb017ea6d0cbad24e41213282c35672da2a99a6b8058d54bb76e953"
+  },
+  {
+    "id": "fresh-poultry-7",
+    "path": "assets/mobile/fresh-poultry-7-d08d01dec4c4.webp",
+    "stage": 2,
+    "bytes": 7776,
+    "sha256": "d08d01dec4c45b97f198eeb9a435b64bdc9679e3475292611a032013e7c16de1",
+    "sourceSha256": "dd2571ba0176decf6c6e248ce86a90b0aac0b2e664d47a563c577006426b07cb"
+  },
+  {
+    "id": "fresh-spice-1",
+    "path": "assets/mobile/fresh-spice-1-6b10b17d32d9.webp",
+    "stage": 2,
+    "bytes": 8654,
+    "sha256": "6b10b17d32d90433bb8801aa6e0963bdef9ed0766de853d130b34ef23ea4257c",
+    "sourceSha256": "8473eeae52d2891accfa01ed08407558ef83cce8cd4b8a97ca07ed730279771c"
+  },
+  {
+    "id": "fresh-spice-2",
+    "path": "assets/mobile/fresh-spice-2-f4647fa65fca.webp",
+    "stage": 2,
+    "bytes": 7520,
+    "sha256": "f4647fa65fca02338ac8fa414a6a3a60a508bccf0cd9e869f2c43b1893900d92",
+    "sourceSha256": "3f7a5e1ff5fbf1cdd5f45fc47d555b508ddae6e0193a7a892c6ed6c79a353fcd"
+  },
+  {
+    "id": "fresh-spice-3",
+    "path": "assets/mobile/fresh-spice-3-2c244203a903.webp",
+    "stage": 2,
+    "bytes": 8054,
+    "sha256": "2c244203a9038cf6edbf12a60de566367c38c7de8089c3960216e941d9ff9ee6",
+    "sourceSha256": "0239d5bb1457edcb42f6a443157cb4e45a46629547daa4d048cf1af0a598aec5"
+  },
+  {
+    "id": "fresh-spice-4",
+    "path": "assets/mobile/fresh-spice-4-ea29990cc7e0.webp",
+    "stage": 2,
+    "bytes": 8832,
+    "sha256": "ea29990cc7e0118f0beb1f3fc4a5d5dc2bb20e6656320873b52d3e112c179fd8",
+    "sourceSha256": "58ca9d0d46948e50b5013b57f854923adf0e3126c8b2f36c7a1ec7b72df967d4"
+  },
+  {
+    "id": "fresh-spice-5",
+    "path": "assets/mobile/fresh-spice-5-364c1bd02c04.webp",
+    "stage": 2,
+    "bytes": 6818,
+    "sha256": "364c1bd02c04d7d00081cbc40753951a33b837c146124e05aacf2d3848338da4",
+    "sourceSha256": "74e4701171670cfede787ee278f5ed9d6592cc301bf5d9f02c69527934b8f7ad"
+  },
+  {
+    "id": "fresh-spice-6",
+    "path": "assets/mobile/fresh-spice-6-99bfa80663ec.webp",
+    "stage": 2,
+    "bytes": 9898,
+    "sha256": "99bfa80663ece64b28d643fef9b17b8b1b7ac0f2043cd6eacc4456bd2feedf9d",
+    "sourceSha256": "7ef24da3cf9434449e2e4d33d44602e9d0235724962009f0343e1abe3d45bf83"
+  },
+  {
+    "id": "fresh-spice-7",
+    "path": "assets/mobile/fresh-spice-7-8ddd6d8a33fd.webp",
+    "stage": 2,
+    "bytes": 7662,
+    "sha256": "8ddd6d8a33fd29623d020699ec54c1d4d2ef91bd12d8959e2649cae1c3e72a63",
+    "sourceSha256": "7edcbe0250c862361be45e97f8e143e9a13e98f6c83fda81facbe23331790285"
+  },
+  {
+    "id": "dish-fresh-tomato-salad",
+    "path": "assets/mobile/dish-fresh-tomato-salad-80f80e3c30b3.webp",
+    "stage": 1,
+    "bytes": 8738,
+    "sha256": "80f80e3c30b3f91a1660313f2e4655c6bdfc028a96d53c887151dc4737307b43",
+    "sourceSha256": "06a54696484a75a833dee6b2bb6d52fb59f94d63a28a096cc5b5b13e5a3e459c"
+  },
+  {
+    "id": "dish-fresh-carrot-salad",
+    "path": "assets/mobile/dish-fresh-carrot-salad-e5f0ec050ba6.webp",
+    "stage": 1,
+    "bytes": 7972,
+    "sha256": "e5f0ec050ba692e93a97959741d2caf4e1636bd157e4097785319ef4f972b46d",
+    "sourceSha256": "5e02515d525a8f990557ed6be17a2d258d793c8b1edc96db211f411e6e3644a4"
+  },
+  {
+    "id": "dish-fresh-garden-bowl",
+    "path": "assets/mobile/dish-fresh-garden-bowl-96e3854b8d3b.webp",
+    "stage": 1,
+    "bytes": 7852,
+    "sha256": "96e3854b8d3b8d0fa043b6c8d6a4c769f6cf2456d178f4aedb264d3d31c2eb70",
+    "sourceSha256": "ae595b8d043bd57c0710acda129549afdac9eca1f13f21685829466d77de4047"
+  },
+  {
+    "id": "dish-fresh-berry-cup",
+    "path": "assets/mobile/dish-fresh-berry-cup-3b67fc4bda56.webp",
+    "stage": 1,
+    "bytes": 6356,
+    "sha256": "3b67fc4bda56dcb875ce28b50643956a25bfcf51533b7782e8faa3257afc1bcb",
+    "sourceSha256": "9f0953a838071ab9aa5c4c54585d07416c7489df20dbbf8956b4960fec8fab9c"
+  },
+  {
+    "id": "dish-fresh-orange-juice",
+    "path": "assets/mobile/dish-fresh-orange-juice-24703e089706.webp",
+    "stage": 1,
+    "bytes": 7634,
+    "sha256": "24703e089706355c967db50dbc759f86d1143dac5d4df06e40cc9d8ec396fc51",
+    "sourceSha256": "b2c0f0add49b9ff0526636621bc10ff543f481c034e4d6229c861d91124ddb44"
+  },
+  {
+    "id": "dish-fresh-fruit-platter",
+    "path": "assets/mobile/dish-fresh-fruit-platter-413ee6d0140a.webp",
+    "stage": 1,
+    "bytes": 7436,
+    "sha256": "413ee6d0140ac5f3b973f0667c3aba85e224c5f46b96cd06befa4c5e62d8f9f9",
+    "sourceSha256": "3f1af36643d56362415f854c57e2a4685aa2c82a3c179689284a43272982c204"
+  },
+  {
+    "id": "dish-fresh-home-onion-salad",
+    "path": "assets/mobile/dish-fresh-home-onion-salad-dc3f7c1f726f.webp",
+    "stage": 2,
+    "bytes": 8466,
+    "sha256": "dc3f7c1f726f92cf5ce49113f746c5151821c718bec78c410bc9b82f7e27304b",
+    "sourceSha256": "c3a4f137a864e75ed37963dfaf910d838cfec1bb358f38914d5fb0726fa87df4"
+  },
+  {
+    "id": "dish-fresh-home-tomato-eggs",
+    "path": "assets/mobile/dish-fresh-home-tomato-eggs-60e36083933b.webp",
+    "stage": 2,
+    "bytes": 7846,
+    "sha256": "60e36083933b85bf4e243af1efc4fccaf59cc9b126a8b7c7b02d9261eb78b056",
+    "sourceSha256": "dac07fe90f38875ac2de382ba2f27189d2bdab1d2801e3b2462ffebaa232c4ae"
+  },
+  {
+    "id": "dish-fresh-home-meatball-soup",
+    "path": "assets/mobile/dish-fresh-home-meatball-soup-99263a359eda.webp",
+    "stage": 2,
+    "bytes": 8676,
+    "sha256": "99263a359eda8d465e1014fb856a6fc65cc24e31616cd10d9a68157cbb4d41d9",
+    "sourceSha256": "20746a64426e43ee7f52b3fdad00385ea0d670c010e02fb0d79ba4393b18f272"
+  },
+  {
+    "id": "dish-fresh-home-garlic-broccoli",
+    "path": "assets/mobile/dish-fresh-home-garlic-broccoli-c814cd04eca3.webp",
+    "stage": 2,
+    "bytes": 8064,
+    "sha256": "c814cd04eca3ccfe4312904e5411ee373474b689e92f7eba5d5b77ffdae16a1f",
+    "sourceSha256": "f7e972af4af5f7cbb8ff9c351cc3c8ad9c1141de47df0321a49a861241a847c8"
+  },
+  {
+    "id": "dish-fresh-home-vegetable-rice",
+    "path": "assets/mobile/dish-fresh-home-vegetable-rice-4f96b88552b4.webp",
+    "stage": 2,
+    "bytes": 8478,
+    "sha256": "4f96b88552b4ff770284ce08c4055e6995ec0960be8ef6fe6384268b4055800a",
+    "sourceSha256": "dc9ade1d8c53c2abac65adf160690b5a795b78ad7faa83b2e6effb5ce93d2c4b"
+  },
+  {
+    "id": "dish-fresh-home-scallion-egg-rice",
+    "path": "assets/mobile/dish-fresh-home-scallion-egg-rice-7a6c7cd8610b.webp",
+    "stage": 2,
+    "bytes": 8040,
+    "sha256": "7a6c7cd8610b13162da94d9d230e4d0807aad80cb21587ce7b77b77735d53d51",
+    "sourceSha256": "50c370fccd42e114e8888f51a40fb3e8fc1fc337ac07b9dfed20508943c7aef4"
+  },
+  {
+    "id": "dish-fresh-home-seared-pork",
+    "path": "assets/mobile/dish-fresh-home-seared-pork-8055c102632d.webp",
+    "stage": 2,
+    "bytes": 8576,
+    "sha256": "8055c102632d8648e2f4b3c749b1a7265e017cfd88cd0f62a3e2a1eb714e7408",
+    "sourceSha256": "3270c1fa0461c772edd39fc1dc502d999a588817aeb165568562b08d4524687a"
+  },
+  {
+    "id": "dish-fresh-home-garlic-cucumber",
+    "path": "assets/mobile/dish-fresh-home-garlic-cucumber-c8c8cbe632e6.webp",
+    "stage": 2,
+    "bytes": 7758,
+    "sha256": "c8c8cbe632e6e5978d7e1de6801ad7c554f133f8a4df3e42ed9a73a0b4323034",
+    "sourceSha256": "3642ffc136ef20ff4b57871899576e7848e9794a18f53eefc724876e8af21847"
+  },
+  {
+    "id": "dish-fresh-home-chicken-roll",
+    "path": "assets/mobile/dish-fresh-home-chicken-roll-9dc4bf49c27f.webp",
+    "stage": 2,
+    "bytes": 8170,
+    "sha256": "9dc4bf49c27f2b4eafc36cfe4761777bccccdb152a6cb751943a0d3d56d2cfbf",
+    "sourceSha256": "0be5258c4dce338757aa6a34aae4f35982a2001ac06f338d9318c857d03872d7"
+  },
+  {
+    "id": "dish-fresh-home-orange-ribs",
+    "path": "assets/mobile/dish-fresh-home-orange-ribs-21326d80d5a4.webp",
+    "stage": 2,
+    "bytes": 8526,
+    "sha256": "21326d80d5a46b49c4447126b149d34cb3a94485df06507cd7e595207eaf67db",
+    "sourceSha256": "81fd883a8cba7418541c359a06e18985930a7b9fd2b6581dbe67eb02019c675d"
+  },
+  {
+    "id": "vegetable-cart-l1",
+    "path": "assets/mobile/vegetable-cart-l1-9da2ac75c883.webp",
+    "stage": 1,
+    "bytes": 5980,
+    "sha256": "9da2ac75c8835a9d59a5708a48040251f3cd656e6e744b6a3ec904df9316b19d",
+    "sourceSha256": "267b35552291caf553f73a151fe0fd90ab67246a293b0df79a801c166b07e969"
+  },
+  {
+    "id": "fruit-cart-l1",
+    "path": "assets/mobile/fruit-cart-l1-3e02063b3653.webp",
+    "stage": 1,
+    "bytes": 5542,
+    "sha256": "3e02063b3653e06e1c994edf4e9592f689bf18e36af8a9779a379540b9cd035a",
+    "sourceSha256": "997b8f3e403a85388218c324cff7052becd175c0ec3fc57755edbf9c21f44e4f"
+  },
+  {
+    "id": "beast-meat-cart-l1",
+    "path": "assets/mobile/beast-meat-cart-l1-25d16f10078e.webp",
+    "stage": 2,
+    "bytes": 7628,
+    "sha256": "25d16f10078e49824bad6d34fc55ddbeb1cb01864f9314f49b3da042d7d4f17b",
+    "sourceSha256": "d53c5804aa305e53be0c36424cfbc96d28c1aba260e5f65f707187f03dc0e163"
+  },
+  {
+    "id": "poultry-cart-l1",
+    "path": "assets/mobile/poultry-cart-l1-6786a16e938e.webp",
+    "stage": 2,
+    "bytes": 7182,
+    "sha256": "6786a16e938e5b21d00abdd4a80f0183fb65977bfb5007679e8c22b54cea2f5c",
+    "sourceSha256": "27c8e80c277c16b84becd3033dae8e2f53e212432f1be5bad50d0e1ab814a8d5"
+  },
+  {
+    "id": "spice-box-l1",
+    "path": "assets/mobile/spice-box-l1-4396d34bb70d.webp",
+    "stage": 2,
+    "bytes": 6098,
+    "sha256": "4396d34bb70deaec66160e552984be42d35ec37162c034e70337d2675c87b858",
+    "sourceSha256": "8d3a020b0e4154aca603bfd220dc240cc66f14275e40404f4b33779498028fd7"
+  },
+  {
+    "id": "chopping-board-l1",
+    "path": "assets/mobile/chopping-board-l1-deb3c7502157.webp",
+    "stage": 1,
+    "bytes": 4368,
+    "sha256": "deb3c7502157634bf242b825b6ad59af7163c7d8a8a0e043cdaa197f23591dd1",
+    "sourceSha256": "7a70fac57417db38e4071212dfe7f4254a5796d0da98b7cc9dbba63de9f4c2e7"
+  },
+  {
+    "id": "fruit-press-l1",
+    "path": "assets/mobile/fruit-press-l1-e406e225cdec.webp",
+    "stage": 1,
+    "bytes": 4756,
+    "sha256": "e406e225cdec1b8757d242d185ab75f9366dfcd1fdea6800c43a6125b8002618",
+    "sourceSha256": "554175b8d2939068fd6ce401e82c43a44bf387530fe6d6a5927a104a96197cb6"
+  },
+  {
+    "id": "home-cooking-pot-l1",
+    "path": "assets/mobile/home-cooking-pot-l1-231c1bb07006.webp",
+    "stage": 2,
+    "bytes": 8750,
+    "sha256": "231c1bb07006c4f8cf6dc9bb8eec0b3268014835c243b399fdd2d88913aa88c3",
+    "sourceSha256": "51bc2d0fb1926e5cef6baa035b581be3bf6f7b795025d6ecff5e8829279fd22b"
+  },
+  {
+    "id": "fresh-poultry-8",
+    "path": "assets/mobile/fresh-poultry-8-c755f8fc4d20.webp",
+    "stage": 2,
+    "bytes": 5652,
+    "sha256": "c755f8fc4d20d6309a75d3a7c46a3e53d95586567d0895bd7f80a80234020447",
+    "sourceSha256": "e4a50b07c4f1313cc4b305e4dc2402da16076ea34a249b3e7a969c730fc43660"
+  },
+  {
+    "id": "fresh-spice-8",
+    "path": "assets/mobile/fresh-spice-8-63ddb5c84fcc.webp",
+    "stage": 2,
+    "bytes": 7826,
+    "sha256": "63ddb5c84fcc910e1ab9e455b097ee21153816244ec26d443e209652e6879e6e",
+    "sourceSha256": "7b37dc4fdfdb3a3e649954d2832ed1d907645fa4e728353a981e27142d396c2f"
+  },
+  {
+    "id": "fresh-spice-9",
+    "path": "assets/mobile/fresh-spice-9-1d713c37646e.webp",
+    "stage": 2,
+    "bytes": 3322,
+    "sha256": "1d713c37646e33281a61b82ac07b7f6f2e9bf64ababba91f1425dadbcce584a4",
+    "sourceSha256": "b2d7a1077aa115f57d0f4fee48047a3412ba8dd758e256d4122f0933ca75bec5"
+  },
+  {
+    "id": "fresh-spice-10",
+    "path": "assets/mobile/fresh-spice-10-5f832df90e0f.webp",
+    "stage": 2,
+    "bytes": 6248,
+    "sha256": "5f832df90e0fb5c069fb297cf01d05d254b9d51cb58e84480ee7747196fea6e9",
+    "sourceSha256": "1eb28935b545f1fadb6fceae47a4be8f59614e2bd7c341f66dbde745a9108885"
+  },
+  {
+    "id": "fresh-seasonal-1",
+    "path": "assets/mobile/fresh-seasonal-1-90003ae0ad17.webp",
+    "stage": 3,
+    "bytes": 6536,
+    "sha256": "90003ae0ad17f5ac284ef36e1ef59a06d98ec73cb798703b2ab5bd3ea300147c",
+    "sourceSha256": "f77d79730ab06b9271ec4e8599788dc6f6f0433ce855bb356169325df9f30ef3"
+  },
+  {
+    "id": "fresh-seasonal-2",
+    "path": "assets/mobile/fresh-seasonal-2-af50edd891b6.webp",
+    "stage": 3,
+    "bytes": 9500,
+    "sha256": "af50edd891b6a2ec074836e2d0d8eed818b99772ad78987c7f5348f3e2ea2a48",
+    "sourceSha256": "e01622eb142429308ff079b49fb532b14ff0b5adee8f371b116f5d1695531028"
+  },
+  {
+    "id": "fresh-seasonal-3",
+    "path": "assets/mobile/fresh-seasonal-3-2f415fb95cf6.webp",
+    "stage": 3,
+    "bytes": 8022,
+    "sha256": "2f415fb95cf69bd1af20f4d4784892d5fe095e4f98d30032347323921fda4536",
+    "sourceSha256": "80e04e91d48bb5ca1cc57de901802de4813a716aa69dcf4967d42f0294499042"
+  },
+  {
+    "id": "fresh-seasonal-4",
+    "path": "assets/mobile/fresh-seasonal-4-7f537c5bd62e.webp",
+    "stage": 3,
+    "bytes": 6186,
+    "sha256": "7f537c5bd62eab61f1b0aecc96dced70d15b609dfc9aa6a7830dab455374fe32",
+    "sourceSha256": "c7b8e24e57ca208ddf1ca2ea74068dea8f6a51f38baef1ae17e879a5159c3458"
+  },
+  {
+    "id": "fresh-seasonal-5",
+    "path": "assets/mobile/fresh-seasonal-5-a2fe0452505a.webp",
+    "stage": 3,
+    "bytes": 7094,
+    "sha256": "a2fe0452505a08f53161bfa2041b3dbce3f5a524fcb0d008401de2ba5bf1869e",
+    "sourceSha256": "aebbc735cfd41a16f9f2d603c189ba3a6103cff4ee6eeac789251545a59a960d"
+  },
+  {
+    "id": "fresh-seasonal-6",
+    "path": "assets/mobile/fresh-seasonal-6-e707af721a99.webp",
+    "stage": 3,
+    "bytes": 8952,
+    "sha256": "e707af721a990e3d871eaab239582aaa2c1837f58309e574c267ca8911f9806e",
+    "sourceSha256": "4a9d9e5bdc063fb9684659bae543af92f600c66730b7fb4f99a6a1688191eac0"
+  },
+  {
+    "id": "fresh-seasonal-7",
+    "path": "assets/mobile/fresh-seasonal-7-97d1c3b07596.webp",
+    "stage": 3,
+    "bytes": 5228,
+    "sha256": "97d1c3b075963f3e4d2ed342de5812ae3d692ff8f2f5bb61d185720bb1b9cd25",
+    "sourceSha256": "73696e8565ce9bbb6516f5abbfb929a764f3a8cc97bbc6b537867167fb8cbfc8"
+  },
+  {
+    "id": "fresh-seasonal-8",
+    "path": "assets/mobile/fresh-seasonal-8-d2584de4a9e3.webp",
+    "stage": 3,
+    "bytes": 5438,
+    "sha256": "d2584de4a9e34d51690897023be833d84740e111cdc2122950861baeefaf687b",
+    "sourceSha256": "eb0b644103c2bfc2dbad0bd2142dd6024867813aeede878b160aa7c2b32f453e"
+  },
+  {
+    "id": "fresh-exotic-1",
+    "path": "assets/mobile/fresh-exotic-1-f427a2409b06.webp",
+    "stage": 3,
+    "bytes": 9670,
+    "sha256": "f427a2409b06431826035bd9d1c0509efc5f649cd0b8ddc4a45fd1637060c37c",
+    "sourceSha256": "cfd5fb89fdc0b39e4770e64d0c5133abb30586f9bbbe2304b0eed0c61a8d74b7"
+  },
+  {
+    "id": "fresh-exotic-2",
+    "path": "assets/mobile/fresh-exotic-2-2c5cef9c7059.webp",
+    "stage": 3,
+    "bytes": 6524,
+    "sha256": "2c5cef9c7059d75beb2398d51fd55319603811afbca1ab0026ddee44f1e417ac",
+    "sourceSha256": "13416aab2ab85cddc55e5b5cf0a5dcaf31c4c6d5f7b7c252f3cbe676b27c5288"
+  },
+  {
+    "id": "fresh-exotic-3",
+    "path": "assets/mobile/fresh-exotic-3-8c32c3e716a7.webp",
+    "stage": 3,
+    "bytes": 6810,
+    "sha256": "8c32c3e716a7399ef6e986d620d3f338f83c5627aa69b5fe3459345ba18beb89",
+    "sourceSha256": "d9fc48c1ade21894a809232d62bf19d9279ab0a1c80b76c9a3c703c4fba1a900"
+  },
+  {
+    "id": "fresh-exotic-4",
+    "path": "assets/mobile/fresh-exotic-4-1fbccb52c97a.webp",
+    "stage": 3,
+    "bytes": 7578,
+    "sha256": "1fbccb52c97a2ffc8100059d279bda3b07f53b26e1e9778e5627ec3d14813604",
+    "sourceSha256": "5c7f3ec9e9bc33bbba29d465de49c848bfe7d5f924965574424c6379043e9953"
+  },
+  {
+    "id": "fresh-exotic-5",
+    "path": "assets/mobile/fresh-exotic-5-a26a4c5cff39.webp",
+    "stage": 3,
+    "bytes": 6054,
+    "sha256": "a26a4c5cff39d48d751b50ff7647e273e1fa2f0d4e5fe56ea101d3a0315aa7bc",
+    "sourceSha256": "d2cdbe55f7ccc66e7eeaec98043fd22d8f55d0d75117d72f949542bb19966343"
+  },
+  {
+    "id": "fresh-exotic-6",
+    "path": "assets/mobile/fresh-exotic-6-b4cafdb50bbe.webp",
+    "stage": 3,
+    "bytes": 6608,
+    "sha256": "b4cafdb50bbe4acb6f6f491ee3e25f87658411d129d9cb87d374eff7e4cffba5",
+    "sourceSha256": "a5d8f40a37e931b3a55ed15fa12a11e2dfb250fb7e7842ce5e45c9682350888f"
+  },
+  {
+    "id": "fresh-exotic-7",
+    "path": "assets/mobile/fresh-exotic-7-f5c17a7f1895.webp",
+    "stage": 3,
+    "bytes": 5162,
+    "sha256": "f5c17a7f1895936287b0c46c2259c6fac8ad99da24b0c057c09fe75aead7ad37",
+    "sourceSha256": "c0f813a8d4196965971d5d7feb1b00f267b3fcc6700208edd27a628c1a4b64e4"
+  },
+  {
+    "id": "fresh-exotic-8",
+    "path": "assets/mobile/fresh-exotic-8-ecbbaab33200.webp",
+    "stage": 3,
+    "bytes": 5608,
+    "sha256": "ecbbaab33200626b0d69561937578a37b55fae0cc6e0811ef58db8e29aa9eb50",
+    "sourceSha256": "90d31c9704ba75aa8bcbb57f7c3595dc7bcf86066a6f92bc1e003854e59dc526"
+  },
+  {
+    "id": "fresh-sea-1",
+    "path": "assets/mobile/fresh-sea-1-309090973f58.webp",
+    "stage": 6,
+    "bytes": 6658,
+    "sha256": "309090973f5859ed3b741c1b5229afd8a140bb9e1869137983a50cbdb8d8acff",
+    "sourceSha256": "8da1bf06c207ed4c9547725b0613d49b6fedaf929790d963403629e9fcaf360f"
+  },
+  {
+    "id": "fresh-sea-2",
+    "path": "assets/mobile/fresh-sea-2-ba3e327f18a2.webp",
+    "stage": 6,
+    "bytes": 6654,
+    "sha256": "ba3e327f18a24088ca17037215a040c25a57fd5de6a4ac4ffc6b967276eb7e8e",
+    "sourceSha256": "50376a64032892792bc0421009a79810085a751600c4a07b2e958dd1979a7a0a"
+  },
+  {
+    "id": "fresh-sea-3",
+    "path": "assets/mobile/fresh-sea-3-cedad6160fac.webp",
+    "stage": 6,
+    "bytes": 5888,
+    "sha256": "cedad6160fac41927bfb6ec323cb53649e6f82186b5b0205c0bc63dba3dbd5c1",
+    "sourceSha256": "fb93cab14ba728918bb03df1fa5f627ab095904128fbb336151e7d6eaedb1dc2"
+  },
+  {
+    "id": "fresh-sea-4",
+    "path": "assets/mobile/fresh-sea-4-0fb84c72afb0.webp",
+    "stage": 6,
+    "bytes": 5316,
+    "sha256": "0fb84c72afb04b2f228ab5a2578beb50fb08de8d336140e8ae72b61ae2f564ad",
+    "sourceSha256": "a9eb8d1a48694643199d2f7ea31defbe6f6252320419f0ee67f67066fd01fe31"
+  },
+  {
+    "id": "fresh-sea-5",
+    "path": "assets/mobile/fresh-sea-5-cb3739f8a808.webp",
+    "stage": 6,
+    "bytes": 6506,
+    "sha256": "cb3739f8a808e8b605cab010b933ca33e5ec597c06812720025d7d44f048bd64",
+    "sourceSha256": "f8100c16bf8e133c82501ff8e48003c7bc39a80320f3a538ab9846db7c32ea3e"
+  },
+  {
+    "id": "fresh-sea-6",
+    "path": "assets/mobile/fresh-sea-6-5d12f7c72817.webp",
+    "stage": 6,
+    "bytes": 8326,
+    "sha256": "5d12f7c72817d8e92a1934a1b7d4032d3aa1aac57eaf592be6689a13b4b7e81c",
+    "sourceSha256": "c6491f0a1b53bfe57ae9e6a29d0d992431c8b21baff13d97791ff1b79b793b8d"
+  },
+  {
+    "id": "fresh-sea-7",
+    "path": "assets/mobile/fresh-sea-7-2fac51dd4075.webp",
+    "stage": 6,
+    "bytes": 7564,
+    "sha256": "2fac51dd4075b1d0e9432472fd8c7cc62e2a1f91a49591709d35ca5348746ef7",
+    "sourceSha256": "fee481e7350448c62abe58eea6e1a61d2974b0bf8462a0845bcd08cbbfeb2c1e"
+  },
+  {
+    "id": "fresh-sea-8",
+    "path": "assets/mobile/fresh-sea-8-a241ba1454ea.webp",
+    "stage": 6,
+    "bytes": 7402,
+    "sha256": "a241ba1454eac8a109e3d5d5904b1d017a866b7a19f435fdb9fe0add29fc04db",
+    "sourceSha256": "4b72a5629c38d7f545ced4aa770f13a427498b0eef9cf3ea6b7fcab6a46ba153"
+  },
+  {
+    "id": "fresh-sea-9",
+    "path": "assets/mobile/fresh-sea-9-20748581f8ef.webp",
+    "stage": 6,
+    "bytes": 8398,
+    "sha256": "20748581f8efb66947d13f318d3e969c7c282285faada5bc2c9f9c7395325ccb",
+    "sourceSha256": "e3f09778c506257300b50ceb9bc259e3d0eb697d6f9b58f09ea73a6672fad77a"
+  },
+  {
+    "id": "fresh-sea-10",
+    "path": "assets/mobile/fresh-sea-10-6add3594ce26.webp",
+    "stage": 6,
+    "bytes": 7416,
+    "sha256": "6add3594ce2673c7790bd3b20b8c02e4692c2070e24663c3af98e2e01eaf153a",
+    "sourceSha256": "d2c8c1665b302837c4aac7911652c07c4738732306ece178e91423612a1546fa"
+  },
+  {
+    "id": "fresh-sea-11",
+    "path": "assets/mobile/fresh-sea-11-8f4883f95cdd.webp",
+    "stage": 6,
+    "bytes": 8514,
+    "sha256": "8f4883f95cdddcbce33ab6b1bdaf2e256da89bbe16f1bb22ada399ae579ffe39",
+    "sourceSha256": "179b70f1a89aea319233a82178ca9e1c43273b7e5527a0e3696cc1b7da3acb18"
+  },
+  {
+    "id": "fresh-milk-1",
+    "path": "assets/mobile/fresh-milk-1-e3255bfaee53.webp",
+    "stage": 3,
+    "bytes": 7370,
+    "sha256": "e3255bfaee53e67f9cf93a3720754227443e6b59e26ed4c1390b3886ea52a8d4",
+    "sourceSha256": "aded2792af9d5a9697fd955ad016a0bee84acbd96385b6d7a0c47b999c48ad9e"
+  },
+  {
+    "id": "fresh-milk-2",
+    "path": "assets/mobile/fresh-milk-2-0b4258221006.webp",
+    "stage": 3,
+    "bytes": 5736,
+    "sha256": "0b4258221006e56d655d2ad027d126bb90651897fca7b95acd4f436b09c02a18",
+    "sourceSha256": "0fcb56ac4f076806b597e4a05f4f479b53c8239d5e58209b93238e13c7a4e868"
+  },
+  {
+    "id": "fresh-milk-3",
+    "path": "assets/mobile/fresh-milk-3-6d34f5b7212a.webp",
+    "stage": 3,
+    "bytes": 7832,
+    "sha256": "6d34f5b7212a0f2c10f7aeecc80c92d6846ebfaa87568117afc1286cd9519305",
+    "sourceSha256": "707b590ce987b1decf1174b1072e7e3d8d045fb9cad794c6deaae82343979bb1"
+  },
+  {
+    "id": "fresh-milk-4",
+    "path": "assets/mobile/fresh-milk-4-c862ea250564.webp",
+    "stage": 3,
+    "bytes": 6564,
+    "sha256": "c862ea250564be32394eb20391a1e3a1772d04c2c00fb9159e6f173dde751f3a",
+    "sourceSha256": "553d2d92b97a1649d68efdb51fea738bce856e9811d0be6af9be4fdd10dec206"
+  },
+  {
+    "id": "fresh-milk-5",
+    "path": "assets/mobile/fresh-milk-5-41e2723e8642.webp",
+    "stage": 3,
+    "bytes": 4502,
+    "sha256": "41e2723e8642da43b1e1f13e477a13b394f4a371b5f174747841b95eab4b4dae",
+    "sourceSha256": "eca2ae12039b92c93b185fb97cd0140588f015af3dc7bc6ea53c89dc40793aa1"
+  },
+  {
+    "id": "fresh-milk-6",
+    "path": "assets/mobile/fresh-milk-6-157280c88412.webp",
+    "stage": 3,
+    "bytes": 5494,
+    "sha256": "157280c88412fd03b36ce82d19570791e50abd89f897b99661e8b806d91843b2",
+    "sourceSha256": "cb19ed6ce226e41ea92a4af91857aa2c7adab773681f1fb767a93bc9c3fe3ef8"
+  },
+  {
+    "id": "fresh-milk-7",
+    "path": "assets/mobile/fresh-milk-7-858b35e4ecfb.webp",
+    "stage": 3,
+    "bytes": 5650,
+    "sha256": "858b35e4ecfbb219ccb12e05af902749d359d1160c454bfe9259edc7e8757a0c",
+    "sourceSha256": "bef10beb012251f2134c2609027a18129a58b54cf33c54a190ae826b529bc48e"
+  },
+  {
+    "id": "fresh-grain-1",
+    "path": "assets/mobile/fresh-grain-1-c1dd86ccccf7.webp",
+    "stage": 3,
+    "bytes": 7778,
+    "sha256": "c1dd86ccccf77468aeb89676dc967bec3575f63f59e9ccc43df8138000011595",
+    "sourceSha256": "65b9b8634e5baeb7b669edd7cdaf05c352dcffce2ac2855fb637903c22911908"
+  },
+  {
+    "id": "fresh-grain-2",
+    "path": "assets/mobile/fresh-grain-2-f3905c32dc21.webp",
+    "stage": 3,
+    "bytes": 7466,
+    "sha256": "f3905c32dc21d13d30619ace2dc8d0093babb67fdcf7da08edee5c64cd06b00b",
+    "sourceSha256": "df758b1b3f35c9c52c777011e7de10ecef24c3c03af5332da2cfdd335eb0ec86"
+  },
+  {
+    "id": "fresh-grain-3",
+    "path": "assets/mobile/fresh-grain-3-bade5747c707.webp",
+    "stage": 3,
+    "bytes": 5232,
+    "sha256": "bade5747c7078199414c95be2c012e0d026aabea1a7018888bc70ee611c5b687",
+    "sourceSha256": "6280f2760dee7617ce5f60c5649a3ca22371889da88b90900f6637fc402c2c27"
+  },
+  {
+    "id": "fresh-grain-4",
+    "path": "assets/mobile/fresh-grain-4-f84d13b004b3.webp",
+    "stage": 3,
+    "bytes": 5128,
+    "sha256": "f84d13b004b33ecc58fdaeb3812d43454b5078adcff26baee54ae5645bf88938",
+    "sourceSha256": "189edf811da2315164fccc9a6fa2671437bf2f74755fa635aad078e890cff39f"
+  },
+  {
+    "id": "fresh-grain-5",
+    "path": "assets/mobile/fresh-grain-5-a8d15f478173.webp",
+    "stage": 3,
+    "bytes": 5340,
+    "sha256": "a8d15f478173a599246d6e0740a9191ea4851c0035f5b3c67d2f6a2fc07810c3",
+    "sourceSha256": "e95f79eb7eafab93a75ed104d7c224f0a2f47caee112c6721bf132698e8cd6d4"
+  },
+  {
+    "id": "fresh-grain-6",
+    "path": "assets/mobile/fresh-grain-6-d6edebe1f4d5.webp",
+    "stage": 3,
+    "bytes": 6224,
+    "sha256": "d6edebe1f4d53b397acff9881b49bafe533fefd2148d8b5fd7d825f1a3371df1",
+    "sourceSha256": "3ec594b8a332b953695f41aa1b5115729163000614f9f736d3ddf34e474e3c5f"
+  },
+  {
+    "id": "fresh-grain-7",
+    "path": "assets/mobile/fresh-grain-7-c63358e43965.webp",
+    "stage": 3,
+    "bytes": 6340,
+    "sha256": "c63358e43965713140ca98bec02225b54c205bef31e6890ad58c4ecf5eb2f397",
+    "sourceSha256": "4119c389262ab2f40f5c1de3086135d64471eab3d6ee453ff8898c63b7842a8f"
+  },
+  {
+    "id": "fresh-grain-8",
+    "path": "assets/mobile/fresh-grain-8-9f1836713655.webp",
+    "stage": 3,
+    "bytes": 5586,
+    "sha256": "9f1836713655db4d453f1fa027ccda15b8363ef20d6f62dfeb19adee97f0439d",
+    "sourceSha256": "977c32a72ce776172b270c2dc6417c80d952491115982071701ac4e57f37676b"
+  },
+  {
+    "id": "fresh-grain-9",
+    "path": "assets/mobile/fresh-grain-9-1fb69dee53dc.webp",
+    "stage": 3,
+    "bytes": 7888,
+    "sha256": "1fb69dee53dcf9fca3d432d1e8eb82f232ffce89fce64ff136a680818ae517d1",
+    "sourceSha256": "669961f950c07aa4064909c814fa679f7a17cbe7e6d9ef237be3db045426424c"
+  },
+  {
+    "id": "fresh-sweet-1",
+    "path": "assets/mobile/fresh-sweet-1-412a769d73aa.webp",
+    "stage": 3,
+    "bytes": 7018,
+    "sha256": "412a769d73aa7580723a36bdd3f91d99d757a073ef4ceb995f80ca36df773e73",
+    "sourceSha256": "73b3923de64605100c29bd0285c7ff31bdf12402c05944ee8a156cf7b41c6fb5"
+  },
+  {
+    "id": "fresh-sweet-2",
+    "path": "assets/mobile/fresh-sweet-2-6f4ef58ea4c9.webp",
+    "stage": 3,
+    "bytes": 8566,
+    "sha256": "6f4ef58ea4c9b1593c4fd0386879b810067e48bd61f4b67918a24dd907062948",
+    "sourceSha256": "751340f32beb08db08e3b191872f269036d987bc9d9cfc9625cf49d4a4099bb5"
+  },
+  {
+    "id": "fresh-sweet-3",
+    "path": "assets/mobile/fresh-sweet-3-ac9fd179febd.webp",
+    "stage": 3,
+    "bytes": 3320,
+    "sha256": "ac9fd179febd3d2dd8adbb3ec64b7b8dc26d577697578d160336d218e6479ceb",
+    "sourceSha256": "d259e22bbde744900fbcb0c88d2d0b94b6eeb2f729a98ef7527f0dbbc645c494"
+  },
+  {
+    "id": "fresh-sweet-4",
+    "path": "assets/mobile/fresh-sweet-4-dd3775a90ce7.webp",
+    "stage": 3,
+    "bytes": 4612,
+    "sha256": "dd3775a90ce7b9664a489af4b9b121f21b875cd13bfde51263ca5e323cb5c066",
+    "sourceSha256": "bd74deba9e101c86539156a7535cff523f22f78d5f64da54e85ad8a7fbeee718"
+  },
+  {
+    "id": "fresh-sweet-5",
+    "path": "assets/mobile/fresh-sweet-5-fd1a4b830f29.webp",
+    "stage": 3,
+    "bytes": 4706,
+    "sha256": "fd1a4b830f29f33b78dd3867f479e88c1e0128683ff93c27941e7e14a05bb81f",
+    "sourceSha256": "81ab398487f8026449d2c2ff47fbd5737064f514ec8a07ff4d9c79ecb2d65e29"
+  },
+  {
+    "id": "fresh-sweet-6",
+    "path": "assets/mobile/fresh-sweet-6-ab24bbb4f625.webp",
+    "stage": 3,
+    "bytes": 7856,
+    "sha256": "ab24bbb4f6252d75e276b93ed8366c96416cd5cabbb6af2ea92cdb64a6342121",
+    "sourceSha256": "8b5660c07e8e2e368904a62adf2f467cd3da9b1055f3591a573df16a04365271"
+  },
+  {
+    "id": "fresh-sweet-7",
+    "path": "assets/mobile/fresh-sweet-7-32dbb614ebbb.webp",
+    "stage": 3,
+    "bytes": 6464,
+    "sha256": "32dbb614ebbb1c8dc749a6376f0f6bc1dd29c18de0cc6abe7350c433bc1cd47c",
+    "sourceSha256": "ba0c3dcc4fcd156786c7a4c17dadfd4f347b4c728bd9a5b78175b215db69fb4a"
+  },
+  {
+    "id": "fresh-sweet-8",
+    "path": "assets/mobile/fresh-sweet-8-8e23d261be6a.webp",
+    "stage": 3,
+    "bytes": 7662,
+    "sha256": "8e23d261be6adea38b047c6d10dd367eecfdf417b5e7455bd9e1ac4664696ac4",
+    "sourceSha256": "34084d884633e35c37745fe0b96c6f81f71266ec7bb52d3e2f38c087440a7590"
+  },
+  {
+    "id": "fresh-sweet-9",
+    "path": "assets/mobile/fresh-sweet-9-48a2e37b8b81.webp",
+    "stage": 3,
+    "bytes": 7942,
+    "sha256": "48a2e37b8b81d76b4e9c9dedb42fe035d3252dbd04f5c99be6fe7d3f82b19017",
+    "sourceSha256": "4b15c82af9b694d69400aa45ce6c32e50be12a5d0ee4f6f81a7e19db9c6222bc"
+  },
+  {
+    "id": "fresh-coffee-1",
+    "path": "assets/mobile/fresh-coffee-1-da57f680dc02.webp",
+    "stage": 3,
+    "bytes": 5884,
+    "sha256": "da57f680dc024bb8a55b1f38c9131cd6ceb4a78b09036a834cd0e7a105c5bc66",
+    "sourceSha256": "4999ea07a99439187654852de85ac20d534ac68f728953d93caca904bc38ea2c"
+  },
+  {
+    "id": "fresh-coffee-2",
+    "path": "assets/mobile/fresh-coffee-2-61210b2cfe50.webp",
+    "stage": 3,
+    "bytes": 5896,
+    "sha256": "61210b2cfe50fa12de4cb7b5ba94eb240445dd27af02ac14316abd3168006de1",
+    "sourceSha256": "327b02a1ea8b0cb50a3106bfa22253813ba2c865bded7e880fec218e87f3fc48"
+  },
+  {
+    "id": "fresh-coffee-3",
+    "path": "assets/mobile/fresh-coffee-3-cf4a91ff2fbf.webp",
+    "stage": 3,
+    "bytes": 4850,
+    "sha256": "cf4a91ff2fbfa54044536930f5882d62b69599f33e5f72e38d76a88c851eb8d1",
+    "sourceSha256": "cf6612903a7bd4061365753bb236f918caacde4b1071ce5e3e12b914111da920"
+  },
+  {
+    "id": "fresh-coffee-4",
+    "path": "assets/mobile/fresh-coffee-4-713263da06e4.webp",
+    "stage": 3,
+    "bytes": 4462,
+    "sha256": "713263da06e4bffad4ce22a6b2e8af733c16956ba68816999f2cc780f7c03a0d",
+    "sourceSha256": "905c8063047d87532f3e4990a082d0e7dc1730046ea6a2538f25e9cad8d42032"
+  },
+  {
+    "id": "fresh-coffee-5",
+    "path": "assets/mobile/fresh-coffee-5-ac989699af2b.webp",
+    "stage": 3,
+    "bytes": 6584,
+    "sha256": "ac989699af2b55aebc1c52de8b2312f74ec29aa22b20534dcef7908ff71480ac",
+    "sourceSha256": "d830dd74b4ce86db3b5afb46bd4d9dd32f2c293f7b86085f78f5334dfdec2f34"
+  },
+  {
+    "id": "fresh-coffee-6",
+    "path": "assets/mobile/fresh-coffee-6-a71b87362e17.webp",
+    "stage": 3,
+    "bytes": 6560,
+    "sha256": "a71b87362e17f9e67b610e4e644d0c7106e512feac36baaaa04548f0a3c0bba0",
+    "sourceSha256": "05b8caa5704e53cbc8b469ec47a673c5d1b5e304c1326b7f89ea440579a30cf6"
+  },
+  {
+    "id": "fresh-coffee-7",
+    "path": "assets/mobile/fresh-coffee-7-11d98308810b.webp",
+    "stage": 3,
+    "bytes": 6670,
+    "sha256": "11d98308810bd83d433fe31946560a99fd31118dc13a6849c969f3cec3436a4c",
+    "sourceSha256": "dfa90a708ee39f33d19376c8077317f788cf832e5127f331e527716d499db7ad"
+  },
+  {
+    "id": "fresh-coffee-8",
+    "path": "assets/mobile/fresh-coffee-8-3ff0178656fd.webp",
+    "stage": 3,
+    "bytes": 4994,
+    "sha256": "3ff0178656fd51e2c4004f5a513232cf592e69762ba571f2559b54a92621c6b2",
+    "sourceSha256": "1d3f4b15195cee7b7418816d7d0885d4b79b9cd723c2e6a9df8167a9deac9d6c"
+  },
+  {
+    "id": "fresh-coffee-9",
+    "path": "assets/mobile/fresh-coffee-9-e1613101b3b0.webp",
+    "stage": 3,
+    "bytes": 6202,
+    "sha256": "e1613101b3b0e7579b85acd7028adc8f67141455d447406cd3d819d1d97ebdf8",
+    "sourceSha256": "a519d8c4591c345703f9aa31a2b5dd8f94b059eb548946e022303761b060f73b"
+  },
+  {
+    "id": "fresh-tea-1",
+    "path": "assets/mobile/fresh-tea-1-509872686a9b.webp",
+    "stage": 3,
+    "bytes": 5114,
+    "sha256": "509872686a9b3cf7a5fdd21049a77d445f1d7360d2fcc04ed896ba5bc62145e8",
+    "sourceSha256": "2b8fb74d816ead7a9da67577d55e7ec6e29b85e15ca06572dfb42ea4222735e3"
+  },
+  {
+    "id": "fresh-tea-2",
+    "path": "assets/mobile/fresh-tea-2-6de161f3450e.webp",
+    "stage": 3,
+    "bytes": 7042,
+    "sha256": "6de161f3450e1cf9cb94abacf7b037c353678d5effc894a167cd94d976f6bc25",
+    "sourceSha256": "60474dae65354b990b1b50acb24a63fc11fb07acd7536dc4d9eed14ed52e7e4a"
+  },
+  {
+    "id": "fresh-tea-3",
+    "path": "assets/mobile/fresh-tea-3-05e9af161760.webp",
+    "stage": 3,
+    "bytes": 6940,
+    "sha256": "05e9af1617604e3af27997eee6525510651d0a2bafe97ecdf3c964cafd848f49",
+    "sourceSha256": "98f4766204ff1caf71fc5187b930f5207fa1c08838f0bc666dbd8d6dbab034b0"
+  },
+  {
+    "id": "fresh-tea-4",
+    "path": "assets/mobile/fresh-tea-4-4f4127abf581.webp",
+    "stage": 3,
+    "bytes": 5694,
+    "sha256": "4f4127abf58161341cf0b389fc171f9686447255d3be6711aa63135bcc1527f9",
+    "sourceSha256": "6f17f877adb27d4cbb3156e5f0f8b0f3358c675856531d9c74849e5e18eae8d8"
+  },
+  {
+    "id": "fresh-tea-5",
+    "path": "assets/mobile/fresh-tea-5-dbe59a019bfc.webp",
+    "stage": 3,
+    "bytes": 7898,
+    "sha256": "dbe59a019bfcf2ec14d301960a1d0bcec847370f3872932e04c358bf228eb45b",
+    "sourceSha256": "70f7c6226a3851860eed0f152c5606aca9c7a569ead6d84325ab716fe47786cc"
+  },
+  {
+    "id": "fresh-tea-6",
+    "path": "assets/mobile/fresh-tea-6-f6325b61282d.webp",
+    "stage": 3,
+    "bytes": 6518,
+    "sha256": "f6325b61282d9e9ace39e2ea83628dd5d728dd6b8c5606a242f8caebb87c9018",
+    "sourceSha256": "2df754b377c8abc11f944acfac1379632acddcffe87f539a485cdb8dde9240ca"
+  },
+  {
+    "id": "fresh-mixer-1",
+    "path": "assets/mobile/fresh-mixer-1-c8c4943cf613.webp",
+    "stage": 8,
+    "bytes": 8554,
+    "sha256": "c8c4943cf61341e835ee684bd0b0324444f421954ac084323ee87428f5523be3",
+    "sourceSha256": "73103367da1815a01826c9f095020ec9d0bbabc60b95cc861674fc37d212ff13"
+  },
+  {
+    "id": "fresh-mixer-2",
+    "path": "assets/mobile/fresh-mixer-2-b51fea1c41e9.webp",
+    "stage": 8,
+    "bytes": 3642,
+    "sha256": "b51fea1c41e90977caa6b1fd8815912af36a5b490c38771a5d9516d754a38356",
+    "sourceSha256": "72b026b57c8e798ded614c674a6aee9b2b8ad9fee742ad6b2443f0ac5cd0b410"
+  },
+  {
+    "id": "fresh-mixer-3",
+    "path": "assets/mobile/fresh-mixer-3-bbfa33ce0dbb.webp",
+    "stage": 8,
+    "bytes": 7306,
+    "sha256": "bbfa33ce0dbb7f6874234884333eb54110b96d8354ad267417f69fe4891d7d60",
+    "sourceSha256": "b86e166903a21e0a3c7640e2cfdb902829866ea5c937cfc352b4ed6e2458b371"
+  },
+  {
+    "id": "fresh-mixer-4",
+    "path": "assets/mobile/fresh-mixer-4-5f985e730280.webp",
+    "stage": 8,
+    "bytes": 7784,
+    "sha256": "5f985e730280340aff20b0d8df67d36e46bbfc581f538b79b190bff2b92221a9",
+    "sourceSha256": "4cc198b0a2ce5b7d3d833b65fe1909432462c980bcb2df67c93c128cd436fa02"
+  },
+  {
+    "id": "fresh-mixer-5",
+    "path": "assets/mobile/fresh-mixer-5-e85126dead17.webp",
+    "stage": 8,
+    "bytes": 2958,
+    "sha256": "e85126dead178fd10f7281698b8ae638b008650ffe1a0b70bb19577ae0fa3b88",
+    "sourceSha256": "bd3709ca8a29252d8746bbbd0e7af21220134aa2431a6a5524da5fa995db9dba"
+  },
+  {
+    "id": "fresh-mixer-6",
+    "path": "assets/mobile/fresh-mixer-6-57ed23ebd58b.webp",
+    "stage": 8,
+    "bytes": 3432,
+    "sha256": "57ed23ebd58bef19c448b954c0681cdb08fdf5a9e086db6fa641213c8be7a450",
+    "sourceSha256": "40fbf3df96080d0a7ee44155614f635b505cf12f02d261a29f9aa1805d35119d"
+  },
+  {
+    "id": "fresh-mixer-7",
+    "path": "assets/mobile/fresh-mixer-7-2264bcd1133c.webp",
+    "stage": 8,
+    "bytes": 4640,
+    "sha256": "2264bcd1133c5ae08e4082ff29318c189f5f73f3d991fff1454fa6e672198f1c",
+    "sourceSha256": "7f1c62c594bad4b63690572a8012f681adf64397792089a814c5d388a0d5cb24"
+  },
+  {
+    "id": "fresh-mixer-8",
+    "path": "assets/mobile/fresh-mixer-8-4722be48d456.webp",
+    "stage": 8,
+    "bytes": 3866,
+    "sha256": "4722be48d45653341241f7bafdcbef3d00a1b1b976dfaefd5bfca9bd62026e53",
+    "sourceSha256": "43c202605db166c1c901a51afdfd58b4f8af2d090d38930590b0328b23d98c36"
+  },
+  {
+    "id": "fresh-mixer-9",
+    "path": "assets/mobile/fresh-mixer-9-9bd6a41ad13d.webp",
+    "stage": 8,
+    "bytes": 3200,
+    "sha256": "9bd6a41ad13d1b8f6899b9568b4c2e79ff0c72f53a830497ff4efddb52290e3b",
+    "sourceSha256": "002f880604a15a96809a248292e5d22e39b46809bed654d96f6706ae499fcee4"
+  },
+  {
+    "id": "fresh-mixer-10",
+    "path": "assets/mobile/fresh-mixer-10-f2874d68664e.webp",
+    "stage": 8,
+    "bytes": 3184,
+    "sha256": "f2874d68664efac7129c5e0e3f80e951efd690d8753e47096390f371b37694a2",
+    "sourceSha256": "4c323d337b9cec1f61d1a9b7c7ee16e3500423e4927be7e6810f984e5cf4c482"
+  },
+  {
+    "id": "fresh-mixer-11",
+    "path": "assets/mobile/fresh-mixer-11-5ff759d11612.webp",
+    "stage": 8,
+    "bytes": 4148,
+    "sha256": "5ff759d116122d8fe5c3b7b0a5adab408e52d31ed94e06f72eb7834f3340f0ec",
+    "sourceSha256": "7bd4d51d329ff0d6df96128afe9f5b64b050a04c6673e1b1bba55a96fe0b674a"
+  },
+  {
+    "id": "fresh-mixer-12",
+    "path": "assets/mobile/fresh-mixer-12-a2dbfdcb393d.webp",
+    "stage": 8,
+    "bytes": 3522,
+    "sha256": "a2dbfdcb393dc1d1550e468ab529efbb123823d5ef6bfdc9b372cd7afa75479c",
+    "sourceSha256": "26ba7812d6a19110fb32c8a0adcaf0e70cf60c77c002a7a112841753afac7be3"
+  },
+  {
+    "id": "fresh-mixer-13",
+    "path": "assets/mobile/fresh-mixer-13-97318447c4a8.webp",
+    "stage": 8,
+    "bytes": 3802,
+    "sha256": "97318447c4a802211c1a04a7dd3b53bc8dfed291cc6acfb2b426df0bafec3a21",
+    "sourceSha256": "636f318afea3b6f88f0c58a64f30d87f373db3539b65d61db1e125cd5eefaa7e"
+  },
+  {
+    "id": "dish-fresh-ico-0030",
+    "path": "assets/mobile/dish-fresh-ico-0030-554f5c3366f4.webp",
+    "stage": 5,
+    "bytes": 7602,
+    "sha256": "554f5c3366f41fe02f63963a3da98597b78d07c470eab2cb5c890c58271f6bd3",
+    "sourceSha256": "5dffb0b97f90a1e0be18f771bc391133fab18444fd28babfcabede9fff1fcc36"
+  },
+  {
+    "id": "dish-fresh-ico-0058",
+    "path": "assets/mobile/dish-fresh-ico-0058-ed1674c145ce.webp",
+    "stage": 3,
+    "bytes": 7390,
+    "sha256": "ed1674c145ce4ab06f3d2b9756511b73f1f6bae1b90b1ca9c1366cc69825749f",
+    "sourceSha256": "3a04cc02bdfeadf2465dd6051d2118015b042017e20501f2c54e567284c9b4d2"
+  },
+  {
+    "id": "dish-fresh-ico-0074",
+    "path": "assets/mobile/dish-fresh-ico-0074-6ad9be040520.webp",
+    "stage": 6,
+    "bytes": 7772,
+    "sha256": "6ad9be040520511c2af1325d5ff5150976e25b1212c9810695aad6b8dcf35ba1",
+    "sourceSha256": "f9337577eaef6721f5ad08e77b4eccf24b149062f6d5375a677b447c26a0ff10"
+  },
+  {
+    "id": "dish-fresh-ico-0141",
+    "path": "assets/mobile/dish-fresh-ico-0141-849fa48bd519.webp",
+    "stage": 3,
+    "bytes": 9664,
+    "sha256": "849fa48bd51932d4b050374a3660d77cd9d7600084aa224b2c6df0dab8dfd176",
+    "sourceSha256": "0d79fb97123da4f94cc792b172ee7c452fe85cf954dc6325d4c77f3e7907daa5"
+  },
+  {
+    "id": "dish-fresh-ico-0146",
+    "path": "assets/mobile/dish-fresh-ico-0146-191fea5a0dba.webp",
+    "stage": 3,
+    "bytes": 8162,
+    "sha256": "191fea5a0dbaf4e8a1165740d9a330ed26b823aacb64218ec9b41e20a356c7d1",
+    "sourceSha256": "3689d733681efcf539d72828ad00917e621b4b64bd78b8db9b6bee35d8c155df"
+  },
+  {
+    "id": "dish-fresh-ico-0031",
+    "path": "assets/mobile/dish-fresh-ico-0031-ca713ca043bf.webp",
+    "stage": 3,
+    "bytes": 6592,
+    "sha256": "ca713ca043bf7d24691e74523679d827a62d3b78d85b46b6088e8ca6edaffc17",
+    "sourceSha256": "5218be49157d74f0c1e5aceea2019759bb38fb8cdb720705e5ac174e1eabd898"
+  },
+  {
+    "id": "dish-fresh-ico-0047",
+    "path": "assets/mobile/dish-fresh-ico-0047-965920fd50f4.webp",
+    "stage": 3,
+    "bytes": 6934,
+    "sha256": "965920fd50f4c72c6595564bc6b53bce6a30bdb4b30cd33b8f2d2b04218ccf2f",
+    "sourceSha256": "56f9e8142dee6373ca5071a77d640a0ab7a74d8b1d11dbf6d9c3d63caefa2cf3"
+  },
+  {
+    "id": "dish-fresh-ico-0091",
+    "path": "assets/mobile/dish-fresh-ico-0091-91abf0132731.webp",
+    "stage": 3,
+    "bytes": 6538,
+    "sha256": "91abf01327315b58841cedf9298491f49e18cbe24598dccdbc727180948047ac",
+    "sourceSha256": "9437360c22d220b18b25d78f9409f2dd32c7476666c6dec1466d689347d91989"
+  },
+  {
+    "id": "dish-fresh-ico-0164",
+    "path": "assets/mobile/dish-fresh-ico-0164-1572abce589c.webp",
+    "stage": 8,
+    "bytes": 6812,
+    "sha256": "1572abce589c8bfdfdc6b4a34ee37bdb51f7a2c209386b779e1805e085fa66fc",
+    "sourceSha256": "641a3c26aef8427511fe8a17f5aca3653be737ab0af9ea4a7eef367c6b08bc73"
+  },
+  {
+    "id": "dish-fresh-ico-0009",
+    "path": "assets/mobile/dish-fresh-ico-0009-eb92456ec6fc.webp",
+    "stage": 3,
+    "bytes": 6056,
+    "sha256": "eb92456ec6fcb6d93fef9695e64a7e015109a6a6f1c2af8eb648621ffbe847d5",
+    "sourceSha256": "5ef3207fec231a7da41906398963a91055011656ed60bc0ac564985a0bf70d1c"
+  },
+  {
+    "id": "dish-fresh-ico-0020",
+    "path": "assets/mobile/dish-fresh-ico-0020-3359cd82b2cd.webp",
+    "stage": 3,
+    "bytes": 6244,
+    "sha256": "3359cd82b2cd28da12c829d4ea0e91bc75fe7125b1b581ed468be0ca0cf9b13c",
+    "sourceSha256": "2e9d235bd50dd867963ef9d48a07ea53441aaf77a145a2a12fe3a085dbfcce10"
+  },
+  {
+    "id": "dish-fresh-ico-0055",
+    "path": "assets/mobile/dish-fresh-ico-0055-d2a4b94fcedd.webp",
+    "stage": 3,
+    "bytes": 6700,
+    "sha256": "d2a4b94fcedd3a7a48ec4596531979e44db46461792bded348b11c9975f42be6",
+    "sourceSha256": "432901f14a7e6f8a01ed6d8d584e16e7e011f85b46b314f035b84d3c89d3159d"
+  },
+  {
+    "id": "dish-fresh-ico-0087",
+    "path": "assets/mobile/dish-fresh-ico-0087-bf0d44b5137e.webp",
+    "stage": 3,
+    "bytes": 6128,
+    "sha256": "bf0d44b5137e68c411c51474f63d31450ceab87e19a0dff8db942342ad67ec58",
+    "sourceSha256": "2d44afd7f1b439645f26c286529689ad53206dce41196ece79cabe28ee506c8a"
+  },
+  {
+    "id": "dish-fresh-ico-0093",
+    "path": "assets/mobile/dish-fresh-ico-0093-577fa633fe6d.webp",
+    "stage": 3,
+    "bytes": 8090,
+    "sha256": "577fa633fe6df7a9a40322070fa4896bc8477b3b3a7b58b0ea5dc0014bdb0b03",
+    "sourceSha256": "11608f9914800553a4d26a9f1dd25a9571371b4305b05c145babe0f3b68c62ac"
+  },
+  {
+    "id": "dish-fresh-ico-0121",
+    "path": "assets/mobile/dish-fresh-ico-0121-fe6b566df7ed.webp",
+    "stage": 3,
+    "bytes": 6934,
+    "sha256": "fe6b566df7ed5c88b682ccb418da1536a5cf1b8e7ddae56b0c795d7282db90b0",
+    "sourceSha256": "460074b8445ab18a85d6e6ed28ed9aa980c0bed013f5a947f756bf8cdcbc3b1c"
+  },
+  {
+    "id": "dish-fresh-ico-0089",
+    "path": "assets/mobile/dish-fresh-ico-0089-f73639b9cd74.webp",
+    "stage": 6,
+    "bytes": 9806,
+    "sha256": "f73639b9cd74a9824f086453e69b2bd0535542a5787b945824ce5bc470fd94fa",
+    "sourceSha256": "13c35e84148cb18c5412f062c1210d146dfc27b529aea37fc5325148b44a0c4a"
+  },
+  {
+    "id": "dish-fresh-ico-0104",
+    "path": "assets/mobile/dish-fresh-ico-0104-922e5e158b8a.webp",
+    "stage": 3,
+    "bytes": 7738,
+    "sha256": "922e5e158b8af3fac1b289023c7805370c3d9e52a2e7c782cdf53e361d7403dc",
+    "sourceSha256": "5766b6c10f6e7befbf9773293043036dda0415cf12841b5741003e22d39aed1a"
+  },
+  {
+    "id": "dish-fresh-ico-0139",
+    "path": "assets/mobile/dish-fresh-ico-0139-8a4f4805d404.webp",
+    "stage": 3,
+    "bytes": 7706,
+    "sha256": "8a4f4805d404bd649036a407a5621467ae26ce24ffab47892ea70b1e73d56838",
+    "sourceSha256": "102bf45f6870aad05960ac42430b6bffacb9d1e649d12b812a6b58a4db6fdb73"
+  },
+  {
+    "id": "dish-fresh-ico-0140",
+    "path": "assets/mobile/dish-fresh-ico-0140-d4cacaa98ab2.webp",
+    "stage": 3,
+    "bytes": 7286,
+    "sha256": "d4cacaa98ab26e6482aab0c5e51c9564fc4a4ce29f11a4821cd804770915ca8d",
+    "sourceSha256": "869fd1e0ec641766aaf4c8f3200d3ee7cb5cf94461b443f5beae0df7c87be1f5"
+  },
+  {
+    "id": "dish-fresh-ico-0029",
+    "path": "assets/mobile/dish-fresh-ico-0029-1f1277a5073b.webp",
+    "stage": 4,
+    "bytes": 7748,
+    "sha256": "1f1277a5073b56f1c3e5169b377ab8c511e4828a6d5fd8864db2db7dcab4bb57",
+    "sourceSha256": "7fa62b960c1ee252eb174c23436aed9ef32d9a4f2def12b8afbd2a1a232eaf16"
+  },
+  {
+    "id": "dish-fresh-ico-0048",
+    "path": "assets/mobile/dish-fresh-ico-0048-b8af27dc94e2.webp",
+    "stage": 4,
+    "bytes": 8460,
+    "sha256": "b8af27dc94e2cb01215d86e8e9d554ea0f10937262f9740930614ce33068e627",
+    "sourceSha256": "648466e7206dd20ae18883e8fce9e0680a15405df633eabcbe49979ed248a8e4"
+  },
+  {
+    "id": "dish-fresh-ico-0050",
+    "path": "assets/mobile/dish-fresh-ico-0050-feac2187fb30.webp",
+    "stage": 4,
+    "bytes": 6914,
+    "sha256": "feac2187fb301d2f618cf17679db652130be87d59c8fd7295db36ec849d622fe",
+    "sourceSha256": "133686eda1e15e3597ccb7cbe1671a971e5a626febc490b152c8d2671d3b51a9"
+  },
+  {
+    "id": "dish-fresh-ico-0057",
+    "path": "assets/mobile/dish-fresh-ico-0057-4eb9d018e012.webp",
+    "stage": 4,
+    "bytes": 7320,
+    "sha256": "4eb9d018e012ec3de502b674fbe5f981b3361dc2f97bf2a168c171e4362818f4",
+    "sourceSha256": "c0581ba9833f4dbf123bc3e70e5c8dc100a1b644e04d567ce13331564b22a69f"
+  },
+  {
+    "id": "dish-fresh-ico-0068",
+    "path": "assets/mobile/dish-fresh-ico-0068-afbe9a879757.webp",
+    "stage": 6,
+    "bytes": 6762,
+    "sha256": "afbe9a879757e0e405b235a5871ae41ae0578b869c901943465b71cb967061f6",
+    "sourceSha256": "d9db20bfdcffabced2aa03634580f69326f54fdb7b994a460e885c2e05969866"
+  },
+  {
+    "id": "dish-fresh-ico-0071",
+    "path": "assets/mobile/dish-fresh-ico-0071-42dbb27f5d3d.webp",
+    "stage": 4,
+    "bytes": 8194,
+    "sha256": "42dbb27f5d3da89b867aec7fb448d42a12970ef557fd1d3707a88cc48b3794f8",
+    "sourceSha256": "30ad171e0b5be1354fd74de0973f82a2d5098a1d43915cbd9cd9214ad704e615"
+  },
+  {
+    "id": "dish-fresh-ico-0097",
+    "path": "assets/mobile/dish-fresh-ico-0097-f47dd643ee0e.webp",
+    "stage": 4,
+    "bytes": 7476,
+    "sha256": "f47dd643ee0eb7b77ce69f31cb518d771d232ccb99955d955eec966ada405761",
+    "sourceSha256": "114c601d22186e399d9e8aa19c5b9f67b7b5a385ec3c6b4c2cb2817df3a9befa"
+  },
+  {
+    "id": "dish-fresh-ico-0085",
+    "path": "assets/mobile/dish-fresh-ico-0085-91c19cbf2d4e.webp",
+    "stage": 8,
+    "bytes": 9658,
+    "sha256": "91c19cbf2d4ef4d1a9bb37b7ad0d21a8b770ed7063b83da2845552524acc94cb",
+    "sourceSha256": "990a12ffc303f14493f1ac8c065a57cdbba6ba5391ecc79cdff5ab5a35d1e2de"
+  },
+  {
+    "id": "dish-fresh-ico-0136",
+    "path": "assets/mobile/dish-fresh-ico-0136-179934287298.webp",
+    "stage": 6,
+    "bytes": 7096,
+    "sha256": "17993428729818f41f74fb8ee966480e6015a8d49352a418d9afaf781c72e713",
+    "sourceSha256": "bb8d67e0d8005e23be5d587c4cf8582daca21d2de7fd48b0b9e9735ce8a52e13"
+  },
+  {
+    "id": "dish-fresh-ico-0107",
+    "path": "assets/mobile/dish-fresh-ico-0107-b73975084ebc.webp",
+    "stage": 4,
+    "bytes": 7974,
+    "sha256": "b73975084ebc72504ef03f8b43b43febaf4a0ee72799fbc9f958710479013b66",
+    "sourceSha256": "c4c4d5177b7886d2a9f8612cda74484be4f05a4e97766bc1ac22335c4a886515"
+  },
+  {
+    "id": "dish-fresh-ico-0027",
+    "path": "assets/mobile/dish-fresh-ico-0027-91fb143943be.webp",
+    "stage": 5,
+    "bytes": 8230,
+    "sha256": "91fb143943beabf4469d676cda84cc777a5a5ad16ae92d634ad7a5fe9188d617",
+    "sourceSha256": "c3956c87afd8aa1015da45755681af04a86adc89c543092edf67cfaf2f535a41"
+  },
+  {
+    "id": "dish-fresh-ico-0028",
+    "path": "assets/mobile/dish-fresh-ico-0028-3fc109699cf8.webp",
+    "stage": 5,
+    "bytes": 7718,
+    "sha256": "3fc109699cf85fec8a41bfde5700baf5aa10f74120674a903782ac440f39668b",
+    "sourceSha256": "c4ece374c1cf4774b7653fe1dc06f08cae2737bac28f6817900cda6d62eb218d"
+  },
+  {
+    "id": "dish-fresh-ico-0035",
+    "path": "assets/mobile/dish-fresh-ico-0035-99001e336b9c.webp",
+    "stage": 5,
+    "bytes": 9050,
+    "sha256": "99001e336b9c69bc57ce13d126a42cbd832b4df2aab89d42079015cf40341ed5",
+    "sourceSha256": "ba6504e1a667c763a8e8c1d95335280c196e1396f04cc1acd43e0bcdee2eba4e"
+  },
+  {
+    "id": "dish-fresh-ico-0036",
+    "path": "assets/mobile/dish-fresh-ico-0036-c8284f288c0f.webp",
+    "stage": 5,
+    "bytes": 8166,
+    "sha256": "c8284f288c0fbf764eee2cffb397af895df567f99ef8e0435cfe55762287945d",
+    "sourceSha256": "22c85943954e0b35638af957f0778cfb322b5758f3f9b8d3ae7602a37e83b8aa"
+  },
+  {
+    "id": "dish-fresh-ico-0039",
+    "path": "assets/mobile/dish-fresh-ico-0039-4a4ce5c01a12.webp",
+    "stage": 5,
+    "bytes": 7290,
+    "sha256": "4a4ce5c01a12a6d540d176d6447e7c49da85608b7d8f77d9fb9a22da2decac54",
+    "sourceSha256": "a88683ca1d42bc303a461e9033d693d1bde1844fc74bc452001b41561bb1d94e"
+  },
+  {
+    "id": "dish-fresh-ico-0042",
+    "path": "assets/mobile/dish-fresh-ico-0042-e2b9f591e1a8.webp",
+    "stage": 5,
+    "bytes": 7446,
+    "sha256": "e2b9f591e1a8f1c057ecac614a92984bf815106a8f28b70319c4291b4a2b4dbb",
+    "sourceSha256": "5843d15611542ef621c9da080cfe041aa47633c02876ebf6f9f020b0bbb81a5f"
+  },
+  {
+    "id": "dish-fresh-ico-0045",
+    "path": "assets/mobile/dish-fresh-ico-0045-7e08549e864d.webp",
+    "stage": 5,
+    "bytes": 7884,
+    "sha256": "7e08549e864dbf80ff94dadfca12131a26bd6a05d0001b485691160e231541b2",
+    "sourceSha256": "e65180e376284020688600a0808a9b43341476b0d771a73edc4477e9bc4d3920"
+  },
+  {
+    "id": "dish-fresh-ico-0049",
+    "path": "assets/mobile/dish-fresh-ico-0049-6fcd823cf6cf.webp",
+    "stage": 5,
+    "bytes": 7018,
+    "sha256": "6fcd823cf6cf617b7c68165a00c2ad8f3ed4784d9ab47c15b127d8f23f5800b3",
+    "sourceSha256": "88888b224723e673771fcffe679dca25132dc49e1cda907018672ded5f6b8e9f"
+  },
+  {
+    "id": "dish-fresh-ico-0053",
+    "path": "assets/mobile/dish-fresh-ico-0053-cb6fdf23660b.webp",
+    "stage": 5,
+    "bytes": 7212,
+    "sha256": "cb6fdf23660b6fb3f658e2c8b56c9a6b55b3a2ba3c54f7cc728d32429a1e0766",
+    "sourceSha256": "8b5e97b06311cb5f2e8a534a50c4d3ad2d998d68db6f649a461579f2c5aeb1a1"
+  },
+  {
+    "id": "dish-fresh-ico-0059",
+    "path": "assets/mobile/dish-fresh-ico-0059-fe8763f057c4.webp",
+    "stage": 5,
+    "bytes": 8196,
+    "sha256": "fe8763f057c42735bfa512b2deeab8c26d4a6cb93cd8df16e0459e207239965f",
+    "sourceSha256": "91a6a568a267497cc3cd3e0391314ed05444644234aa1db121cf9b7461bcdca5"
+  },
+  {
+    "id": "dish-fresh-ico-0061",
+    "path": "assets/mobile/dish-fresh-ico-0061-24c967d40e66.webp",
+    "stage": 6,
+    "bytes": 8458,
+    "sha256": "24c967d40e660589c31cfb7cce969a401835026fd0e7a0850e53e26e0016e612",
+    "sourceSha256": "e2c6ac13dd73f3b9b4f3f1d4899f75af3378a5d75727ed4c36b2592755b0bfc9"
+  },
+  {
+    "id": "dish-fresh-ico-0079",
+    "path": "assets/mobile/dish-fresh-ico-0079-8039a5c4fdf8.webp",
+    "stage": 6,
+    "bytes": 7010,
+    "sha256": "8039a5c4fdf820349b69ddf9ecd7ade4867e894caa9639ac2fcdbb916e913c1f",
+    "sourceSha256": "02c289ece30aae5e95020be81c4f3fbb22d1c6905e03499a7da03ef37a6fb9ab"
+  },
+  {
+    "id": "dish-fresh-ico-0081",
+    "path": "assets/mobile/dish-fresh-ico-0081-ed174bf20359.webp",
+    "stage": 8,
+    "bytes": 8076,
+    "sha256": "ed174bf203591951fb4652cfab1b5dad3d9941158d3e6c094cc52da6a32b3fe2",
+    "sourceSha256": "e6303c740c181e27e9c77625b97fc0861a7ee4f27e6e9f93fe2d73ca2fd38c46"
+  },
+  {
+    "id": "dish-fresh-ico-0082",
+    "path": "assets/mobile/dish-fresh-ico-0082-a1f8502b1933.webp",
+    "stage": 6,
+    "bytes": 7290,
+    "sha256": "a1f8502b1933d3f17caf59f60a68db81aee61f59345bb3deb1e21e981dc00d03",
+    "sourceSha256": "fae687c73da371daa54d3e6c4f56d6b0e396efa1fb07837eedb61df64f94910e"
+  },
+  {
+    "id": "dish-fresh-ico-0095",
+    "path": "assets/mobile/dish-fresh-ico-0095-0b7b271a54fb.webp",
+    "stage": 5,
+    "bytes": 8994,
+    "sha256": "0b7b271a54fbd8aea8b4b9dbb8f791c16a7d56a98cdc82fd208be1b1eb1ce473",
+    "sourceSha256": "cb0e8df39994013bdb17839dbaf7d1b942aff03fec56031ad0407b203f551341"
+  },
+  {
+    "id": "dish-fresh-ico-0109",
+    "path": "assets/mobile/dish-fresh-ico-0109-2241a8f4c85e.webp",
+    "stage": 6,
+    "bytes": 8198,
+    "sha256": "2241a8f4c85e2e42cd478aeb4c74fc067438a34b5a22147df21fd841af3675d9",
+    "sourceSha256": "9480f0ddb699342d98ee4ced54601dde1967ac478b0b6d2a9a3000905ac18f3f"
+  },
+  {
+    "id": "dish-fresh-ico-0133",
+    "path": "assets/mobile/dish-fresh-ico-0133-c2352a3fc079.webp",
+    "stage": 5,
+    "bytes": 8576,
+    "sha256": "c2352a3fc079602c97bc3d3d7504c382f63b346bf47c86df35e404b7a1316cd5",
+    "sourceSha256": "08858779a140866e83f1e1f0f486b6ef616278907a5aa2cb3a1a092a96c4b447"
+  },
+  {
+    "id": "dish-fresh-ico-0034",
+    "path": "assets/mobile/dish-fresh-ico-0034-f58cfe6197d9.webp",
+    "stage": 4,
+    "bytes": 7418,
+    "sha256": "f58cfe6197d91a039e88449c350e9a7812c2d7a60a947e47a6186dc5d059fdf8",
+    "sourceSha256": "6fd27614df10b5db92a376cf46bbc1289cedced2a10807435dff949db87bf923"
+  },
+  {
+    "id": "dish-fresh-ico-0063",
+    "path": "assets/mobile/dish-fresh-ico-0063-753fc28af7b4.webp",
+    "stage": 4,
+    "bytes": 6664,
+    "sha256": "753fc28af7b446f99dfca85980e8222a2dd28f6b2c80429e89bffc1ac6b57317",
+    "sourceSha256": "b9a44936135fb04350c4bebdf6d4103cf031e5bbe4f3fc36fe0747fd45108bd5"
+  },
+  {
+    "id": "dish-fresh-ico-0052",
+    "path": "assets/mobile/dish-fresh-ico-0052-da88943f2df7.webp",
+    "stage": 4,
+    "bytes": 7640,
+    "sha256": "da88943f2df75f580c99918461d7d67c18e1e6f6368573d235409f0ee652d74a",
+    "sourceSha256": "cd344985517ef685fcb372e790d10a62e4123e430322fc6522beaa9ce8a97dce"
+  },
+  {
+    "id": "dish-fresh-ico-0080",
+    "path": "assets/mobile/dish-fresh-ico-0080-04145f2b02a8.webp",
+    "stage": 4,
+    "bytes": 9034,
+    "sha256": "04145f2b02a838ce349c1ce891bddcd35e51d8a6026e6ff001cad8670caf5f70",
+    "sourceSha256": "0d6c1023205ea46e8f75bb5ed56be57276d0ea75783c7ebf1cc83e8f8b991489"
+  },
+  {
+    "id": "dish-fresh-ico-0092",
+    "path": "assets/mobile/dish-fresh-ico-0092-2023184e274b.webp",
+    "stage": 4,
+    "bytes": 8004,
+    "sha256": "2023184e274b8ca2a8e7ade32cf33102b652cfa5cbc7d345a6321ee145b8011d",
+    "sourceSha256": "5e9482312574b529537674947577ebc4b2dac747abbb0f2e0ffa979c07b288d1"
+  },
+  {
+    "id": "dish-fresh-ico-0100",
+    "path": "assets/mobile/dish-fresh-ico-0100-8f1b14632faa.webp",
+    "stage": 6,
+    "bytes": 8278,
+    "sha256": "8f1b14632faad0b578231aa3e34770386180c9fbc8d72f6a2a09881b2d36fcbb",
+    "sourceSha256": "472f5e26bef5de5dd1328512346e79f387365ce87f59d7cabfe5ea28329ae599"
+  },
+  {
+    "id": "dish-fresh-ico-0102",
+    "path": "assets/mobile/dish-fresh-ico-0102-04dc50000401.webp",
+    "stage": 4,
+    "bytes": 7368,
+    "sha256": "04dc500004016d62a884403bbcb667dedf7235fccbbccd99a7e8fc036cd0678a",
+    "sourceSha256": "69f5f90b980336e36102207e5159336de217c9895de3844d04f5920afe520036"
+  },
+  {
+    "id": "dish-fresh-ico-0112",
+    "path": "assets/mobile/dish-fresh-ico-0112-824359975195.webp",
+    "stage": 4,
+    "bytes": 7892,
+    "sha256": "824359975195a71474ad68e89c664eac53dd9e67885e0bffba2ebbfcb59f1a18",
+    "sourceSha256": "8aed1eff62df32ac3457c360c79aee33373ec2ce9991d925425b5e5a9959a74a"
+  },
+  {
+    "id": "dish-fresh-ico-0129",
+    "path": "assets/mobile/dish-fresh-ico-0129-f0c3c79324a2.webp",
+    "stage": 4,
+    "bytes": 7100,
+    "sha256": "f0c3c79324a2b57179fde33053d0bdffaf9aa98163b96558c4c562663e3373ad",
+    "sourceSha256": "7475a8e1c5a0d18e8ca3efd4f3c236a1fe65e07a363542e8dec5793d6784b7b0"
+  },
+  {
+    "id": "dish-fresh-ico-0132",
+    "path": "assets/mobile/dish-fresh-ico-0132-f401498ae6a2.webp",
+    "stage": 4,
+    "bytes": 7372,
+    "sha256": "f401498ae6a2185bc79ddeedeb3275bdf6963cfb5c3162cccd5784b276e824f2",
+    "sourceSha256": "c445523e74f639a26a7bb72db9657db4a943433808b70817e617191950541ae8"
+  },
+  {
+    "id": "dish-fresh-ico-0134",
+    "path": "assets/mobile/dish-fresh-ico-0134-f6fda6c8741f.webp",
+    "stage": 4,
+    "bytes": 8014,
+    "sha256": "f6fda6c8741f13b4bd32b539e7d22a33a163ec419ac1a62988875ef3e5dbb114",
+    "sourceSha256": "b885c1b249929c24c08125442baaad932b1d35e2cebc27216f3cc9bdc70b90a8"
+  },
+  {
+    "id": "dish-fresh-ico-0143",
+    "path": "assets/mobile/dish-fresh-ico-0143-663907b2e6d0.webp",
+    "stage": 4,
+    "bytes": 7356,
+    "sha256": "663907b2e6d0fc50a75a3422358caebd28cee57df7d886db253b5ac01289954d",
+    "sourceSha256": "48bf0ac1cd557e7042f0b72be7b9ccc5fa0dec2795b33c04b367a5c199774cd7"
+  },
+  {
+    "id": "dish-fresh-ico-0157",
+    "path": "assets/mobile/dish-fresh-ico-0157-9c29797ea79c.webp",
+    "stage": 6,
+    "bytes": 9412,
+    "sha256": "9c29797ea79c120199469c53f7e8b7e84055054453531b3d0f539b0bee1cecc4",
+    "sourceSha256": "4a8aa06ff360be8161627c0a98f6db022991fe7cfa9d5ddbd5b5a125bfadbb20"
+  },
+  {
+    "id": "dish-fresh-ico-0158",
+    "path": "assets/mobile/dish-fresh-ico-0158-31aef7f14404.webp",
+    "stage": 4,
+    "bytes": 8180,
+    "sha256": "31aef7f14404e3a0be978e826ea85be1325905e1d31a53f1ce5a87ecc091138e",
+    "sourceSha256": "633d4f4df04fb331efc0272bed36877117bda2c86344da40ab31bfe612688ad8"
+  },
+  {
+    "id": "dish-fresh-ico-0161",
+    "path": "assets/mobile/dish-fresh-ico-0161-d6628f286275.webp",
+    "stage": 4,
+    "bytes": 8326,
+    "sha256": "d6628f28627536f06e17302ef7c37c710a012d54ad867489c7997da153004990",
+    "sourceSha256": "d4208d7f0356e267b39b1b11d6fc3106771fc9e9b765d37e9d954a35d4afbb23"
+  },
+  {
+    "id": "dish-fresh-ico-0162",
+    "path": "assets/mobile/dish-fresh-ico-0162-57da371a185d.webp",
+    "stage": 4,
+    "bytes": 7694,
+    "sha256": "57da371a185d63c65839b89eb71bb0b74cd512ea23298f690a416fab7f9c958f",
+    "sourceSha256": "63ee6040a0d91423698a76456851b809e89bc7c543e37561e284e0e1c4eaf2d3"
+  },
+  {
+    "id": "dish-fresh-ico-0065",
+    "path": "assets/mobile/dish-fresh-ico-0065-be9069977d64.webp",
+    "stage": 6,
+    "bytes": 7514,
+    "sha256": "be9069977d6473d84eeaca75dcd4700802e1f957890ab1ce5aa3eb69cbb66074",
+    "sourceSha256": "617733b24c32d8e901255b511f6d3fb74e6ade0af52a0e84092865362a8d3757"
+  },
+  {
+    "id": "dish-fresh-ico-0070",
+    "path": "assets/mobile/dish-fresh-ico-0070-5d10f2a2e573.webp",
+    "stage": 6,
+    "bytes": 8136,
+    "sha256": "5d10f2a2e57318e81fe1417dcade2de55338ebde4625f6b563d39a497629a123",
+    "sourceSha256": "8e43a61703de871339af919f20c2e9f38203ca35e4888581a2fd2b37da9d3f3d"
+  },
+  {
+    "id": "dish-fresh-ico-0072",
+    "path": "assets/mobile/dish-fresh-ico-0072-724022aa135b.webp",
+    "stage": 6,
+    "bytes": 8088,
+    "sha256": "724022aa135b1135ee0439101e3c515bdce20f2889bccd175be5e97e8b7d5dc6",
+    "sourceSha256": "5f629cb46bad559508e5355f48b3a7d181b95c4f353f243c67a6b10002dd7ffa"
+  },
+  {
+    "id": "dish-fresh-ico-0073",
+    "path": "assets/mobile/dish-fresh-ico-0073-0b2564232d57.webp",
+    "stage": 6,
+    "bytes": 8036,
+    "sha256": "0b2564232d5792ac993185fafc8b695883da7e6ffdfbebc7fb6f352a2e54688f",
+    "sourceSha256": "09a4bf58a93b16ae1b4800340bdf57ea2a29377e746b66a4c44363c872b08ea5"
+  },
+  {
+    "id": "dish-fresh-ico-0077",
+    "path": "assets/mobile/dish-fresh-ico-0077-df3899befb3d.webp",
+    "stage": 6,
+    "bytes": 6850,
+    "sha256": "df3899befb3d9e8ca1b325a7f352b08002a5963c6d68e49be268a0931f55b99e",
+    "sourceSha256": "b86791afe5542ceeeb099c705de91b860bdae550505703ff2415e36adf250340"
+  },
+  {
+    "id": "dish-fresh-ico-0083",
+    "path": "assets/mobile/dish-fresh-ico-0083-e488496a2ed5.webp",
+    "stage": 6,
+    "bytes": 6776,
+    "sha256": "e488496a2ed525a8afdef1b341a499be12cd4391ea28a58b700076645305f095",
+    "sourceSha256": "d12e9ac48047d49c649627fa66548c2a06afaa5db5d950991d4d8ee8c91b286f"
+  },
+  {
+    "id": "dish-fresh-ico-0088",
+    "path": "assets/mobile/dish-fresh-ico-0088-de572f80bb42.webp",
+    "stage": 6,
+    "bytes": 7924,
+    "sha256": "de572f80bb42372d5bc719efa62a277f5e56b4a7c1f9e234c7ae667a80082246",
+    "sourceSha256": "4b2d527bf7b21d9658fdd4e522ef0496a9546449193be1e009c6b9784f18dd18"
+  },
+  {
+    "id": "dish-fresh-ico-0115",
+    "path": "assets/mobile/dish-fresh-ico-0115-7035b56db42e.webp",
+    "stage": 6,
+    "bytes": 8100,
+    "sha256": "7035b56db42e9d393e0bd4d0f039f8f61c730a3415d505c5f2893e3f28483271",
+    "sourceSha256": "e3503121d2662f121477d89057304f03090153f56e2dc27f818d17a8309e7ce1"
+  },
+  {
+    "id": "dish-fresh-ico-0116",
+    "path": "assets/mobile/dish-fresh-ico-0116-8baf052ba542.webp",
+    "stage": 6,
+    "bytes": 7684,
+    "sha256": "8baf052ba542a5c4bcd9dbaa1b91230d5612ec4b3b78e1840da1cab4eb7dea64",
+    "sourceSha256": "fbf328161e4a0deb443029a6509f7b231903012ae6ac5d60280cd16334e13ad4"
+  },
+  {
+    "id": "dish-fresh-ico-0123",
+    "path": "assets/mobile/dish-fresh-ico-0123-7eaef1df232b.webp",
+    "stage": 6,
+    "bytes": 7036,
+    "sha256": "7eaef1df232b18831bd9d1bc1851a88c8959a801ecb3d69b0f2d5da17dc72692",
+    "sourceSha256": "659f2a4e4b865cbef3d8c015944daaa1eec7793d50ff50a8c658cc846f29100d"
+  },
+  {
+    "id": "dish-fresh-ico-0144",
+    "path": "assets/mobile/dish-fresh-ico-0144-5f6679a11bea.webp",
+    "stage": 6,
+    "bytes": 7972,
+    "sha256": "5f6679a11bea6626e50d135c5333c0f80e3442198ffd40743bf95064931236ef",
+    "sourceSha256": "147895cebaa931fc20532b92703cb352287a0edfc827fb665647a17bcfebf8f8"
+  },
+  {
+    "id": "dish-fresh-ico-0145",
+    "path": "assets/mobile/dish-fresh-ico-0145-0789a40d185c.webp",
+    "stage": 6,
+    "bytes": 8368,
+    "sha256": "0789a40d185c1a6587b2504fc0fc322e64d07f3d25676cc79d20a0d40fe9d201",
+    "sourceSha256": "8d113ea803948cdfa5f6073b4363971078d05cda9bc88e79959f681a32aff7ae"
+  },
+  {
+    "id": "dish-fresh-ico-0086",
+    "path": "assets/mobile/dish-fresh-ico-0086-e49216fff547.webp",
+    "stage": 6,
+    "bytes": 9006,
+    "sha256": "e49216fff5474ed5b49bd2011a42ce20533a5282ced8248a3f7ad176a3940422",
+    "sourceSha256": "52ad9be13c163832272e5851c931b869788ec6cd8027936deb67f17b4f4ff46c"
+  },
+  {
+    "id": "dish-fresh-ico-0099",
+    "path": "assets/mobile/dish-fresh-ico-0099-5edd1efa8c41.webp",
+    "stage": 5,
+    "bytes": 6660,
+    "sha256": "5edd1efa8c415c1e96f2dd29adc2771d6576ab8407137ac2aa3bd38eeea4ac32",
+    "sourceSha256": "01f627c5a7a57861ad708f0f0e6f190e43de20cf16f4260fd313f5ccd8751adc"
+  },
+  {
+    "id": "dish-fresh-ico-0101",
+    "path": "assets/mobile/dish-fresh-ico-0101-97d1c7c4361a.webp",
+    "stage": 8,
+    "bytes": 9664,
+    "sha256": "97d1c7c4361af45f6740308e786c2c2ab26d3b2f75b82e4cbbb3c344adb4d792",
+    "sourceSha256": "204b523c34979b8ca726c3622c93f4e499a7df07a75fcf6577e57f32139ad214"
+  },
+  {
+    "id": "dish-fresh-ico-0113",
+    "path": "assets/mobile/dish-fresh-ico-0113-5f093f99465e.webp",
+    "stage": 5,
+    "bytes": 7230,
+    "sha256": "5f093f99465ef460341b757f240273846744508abdffab31c445fe6a657c969c",
+    "sourceSha256": "7210dd7c97e8d7fd6cd9429d66722b1d99bd31173f66e74ce63bd34c3f12bdfe"
+  },
+  {
+    "id": "dish-fresh-ico-0117",
+    "path": "assets/mobile/dish-fresh-ico-0117-1cdd78457503.webp",
+    "stage": 5,
+    "bytes": 6788,
+    "sha256": "1cdd7845750361044fe971931a593b5acac192525fd698e9bd32a11c24dd4639",
+    "sourceSha256": "0ef1c4b45029e426f45857571e1f211d4330cbce691cfeeb9bbb0f9fe0108eba"
+  },
+  {
+    "id": "dish-fresh-ico-0128",
+    "path": "assets/mobile/dish-fresh-ico-0128-5a5cb8ed4e77.webp",
+    "stage": 5,
+    "bytes": 8768,
+    "sha256": "5a5cb8ed4e7725ab1e21ece0c48471e1158276e9da2291dea66837456d3806ae",
+    "sourceSha256": "8b3dba5794258945c73cf022de8b06da5857488bb4b2b59622cbb0005c961ed0"
+  },
+  {
+    "id": "dish-fresh-ico-0096",
+    "path": "assets/mobile/dish-fresh-ico-0096-7a33cc4036ad.webp",
+    "stage": 5,
+    "bytes": 6974,
+    "sha256": "7a33cc4036ad792ce29fcc047b3fbdeba21375a94c2723710538db1df05c8b4e",
+    "sourceSha256": "7bc7cdcc3d134c8210c6148025e142bfc9301689d2780373bc29ca9e99550131"
+  },
+  {
+    "id": "dish-fresh-ico-0014",
+    "path": "assets/mobile/dish-fresh-ico-0014-87bb1c4b84bc.webp",
+    "stage": 4,
+    "bytes": 7540,
+    "sha256": "87bb1c4b84bc00668425ab8dc3824abe4ee61d7017d8810c33823f064b1407f1",
+    "sourceSha256": "686e0e93433365c778531f3c4b51a9cf18282731d25dc72ff2f8971ea3743ff4"
+  },
+  {
+    "id": "dish-fresh-ico-0015",
+    "path": "assets/mobile/dish-fresh-ico-0015-1ef9e59d2bb4.webp",
+    "stage": 4,
+    "bytes": 8678,
+    "sha256": "1ef9e59d2bb405915c282755a3a1e070b0cb05797c62fbc0d4a095d740c1648f",
+    "sourceSha256": "2c1ee3a6ee1bc65a099cb0e03ed247a8e75ddb6edeead2f87f4d97c511fdfc70"
+  },
+  {
+    "id": "dish-fresh-ico-0019",
+    "path": "assets/mobile/dish-fresh-ico-0019-9f82cf0bee85.webp",
+    "stage": 4,
+    "bytes": 7348,
+    "sha256": "9f82cf0bee85c7c70990f378e41b934d9c5046abbea9090722663ed288902cf9",
+    "sourceSha256": "fddd4440e51f8faca674fad5754c51d5a2ec91558058b2dcbbc5b7a008cea5e8"
+  },
+  {
+    "id": "dish-fresh-ico-0054",
+    "path": "assets/mobile/dish-fresh-ico-0054-8fdd16d5759f.webp",
+    "stage": 4,
+    "bytes": 8654,
+    "sha256": "8fdd16d5759fe0503654bd8463f7dc98e662e5cb08003493fd1e6bb50c411904",
+    "sourceSha256": "6a909efc673a5128d19c556e2d5a071732defab88e0f141a47b5831b6bcb2f69"
+  },
+  {
+    "id": "dish-fresh-ico-0069",
+    "path": "assets/mobile/dish-fresh-ico-0069-291be4bc45d9.webp",
+    "stage": 4,
+    "bytes": 7266,
+    "sha256": "291be4bc45d9bce079f7797c04020da412906159ed6096fbadebd8641c81478c",
+    "sourceSha256": "91af6b95d357744d60b04bd1b0e264e45f1161740326c88f0cd85bc8e52fa7e5"
+  },
+  {
+    "id": "dish-fresh-ico-0105",
+    "path": "assets/mobile/dish-fresh-ico-0105-e4848d90eaa2.webp",
+    "stage": 4,
+    "bytes": 5854,
+    "sha256": "e4848d90eaa254568cb3f66e8576930ec38d713c8192db8bd28075dfeb1ce06b",
+    "sourceSha256": "ea3d044acead9c3b8d432314a0387b45b7a7eb0f736d5888980050e95bae86f9"
+  },
+  {
+    "id": "dish-fresh-ico-0163",
+    "path": "assets/mobile/dish-fresh-ico-0163-06480bfcebd7.webp",
+    "stage": 4,
+    "bytes": 6700,
+    "sha256": "06480bfcebd79263a6236caf3a754233a016152925699bcab6a3e52712ab9379",
+    "sourceSha256": "146e2f0bfca83e20b7344115d95ad8b82b7c5c8ab674b9e87f0e555c6c078a93"
+  },
+  {
+    "id": "dish-fresh-ico-0106",
+    "path": "assets/mobile/dish-fresh-ico-0106-5e40864d7401.webp",
+    "stage": 7,
+    "bytes": 7772,
+    "sha256": "5e40864d74012201d02c8a6d6c33ff61b031b94e0a98e0ec273b05069639bbaa",
+    "sourceSha256": "69142f41a5a15baa188623971af0670c7a2441969c1222000990a36e1d12d243"
+  },
+  {
+    "id": "dish-fresh-ico-0114",
+    "path": "assets/mobile/dish-fresh-ico-0114-1b8d3f86e869.webp",
+    "stage": 7,
+    "bytes": 7606,
+    "sha256": "1b8d3f86e8690e1e5dbe7b07f280754cccb9845d25c7d6545bee95f76a7c4c88",
+    "sourceSha256": "87ce8adeabb5859f9524bdcf9117e7c0d1ae53c41374015fe98b1f01cce3e7a8"
+  },
+  {
+    "id": "dish-fresh-ico-0125",
+    "path": "assets/mobile/dish-fresh-ico-0125-643e4ab6deb4.webp",
+    "stage": 7,
+    "bytes": 9852,
+    "sha256": "643e4ab6deb427b8cbd6abd794ede6b972036dde3904c9104783aecbdd898bdb",
+    "sourceSha256": "b6761f21aaef820502998469021a0a40f780bd4fb7a4cefd738e80777d3b9bd3"
+  },
+  {
+    "id": "dish-fresh-ico-0127",
+    "path": "assets/mobile/dish-fresh-ico-0127-ecdbd1752645.webp",
+    "stage": 7,
+    "bytes": 8280,
+    "sha256": "ecdbd17526450729e5d3374caf0ffb473e580f7cd5e38103ef6bf853f734ea54",
+    "sourceSha256": "3443e2d12f2f5ed737b9c38998bb0e93cabffad183d7065f456328f4ba54dae6"
+  },
+  {
+    "id": "dish-fresh-ico-0120",
+    "path": "assets/mobile/dish-fresh-ico-0120-a6de494252a0.webp",
+    "stage": 7,
+    "bytes": 6606,
+    "sha256": "a6de494252a0401e18ef62deb3aef01f0f6f49ea0b7e802cd7ee3181e51b851c",
+    "sourceSha256": "555f62396aae6831b45573e097d35a2bd4a3266b14400f25e2b84d9d9c886eab"
+  },
+  {
+    "id": "dish-fresh-ico-0130",
+    "path": "assets/mobile/dish-fresh-ico-0130-3c7f41fe3ce6.webp",
+    "stage": 7,
+    "bytes": 7196,
+    "sha256": "3c7f41fe3ce6137b105b7ee9bc7c5e72a0120957e7ab4399a2e212711660a88a",
+    "sourceSha256": "afa6f06d4d5d56788f7e3b28697a00aebd369d49482f7588e358f2f7057d3dfd"
+  },
+  {
+    "id": "dish-fresh-ico-0126",
+    "path": "assets/mobile/dish-fresh-ico-0126-98d53a0c310f.webp",
+    "stage": 7,
+    "bytes": 8542,
+    "sha256": "98d53a0c310fc84fcc788700924376302e7b64fd9ae1f9bfc6eebd0cc9fadc74",
+    "sourceSha256": "c6fb30cb6208cd1d95dbaa94f4b4142fa34edefcf3bd14b4a9f1a0b2a6261034"
+  },
+  {
+    "id": "dish-fresh-ico-0067",
+    "path": "assets/mobile/dish-fresh-ico-0067-80769f01db8e.webp",
+    "stage": 8,
+    "bytes": 6522,
+    "sha256": "80769f01db8e8eef8baa699f01e532e546555b29d97b88e10cdfd03de3608844",
+    "sourceSha256": "851eef9708ee3a34fcd8c533a7fb9e3163d8ff2e7fbb2d83afd21072009a81e9"
+  },
+  {
+    "id": "dish-fresh-ico-0075",
+    "path": "assets/mobile/dish-fresh-ico-0075-2000d2404e1e.webp",
+    "stage": 8,
+    "bytes": 7622,
+    "sha256": "2000d2404e1ec240d9b1be2abcbf12626b7444b048cca153550cae7079741599",
+    "sourceSha256": "fddc19e3c2c94c85f3ffafeb532bb4e34071d807d6bc9d89c920c0fe1ee37d89"
+  },
+  {
+    "id": "dish-fresh-ico-0090",
+    "path": "assets/mobile/dish-fresh-ico-0090-a69092e55e21.webp",
+    "stage": 8,
+    "bytes": 6126,
+    "sha256": "a69092e55e21d82cb3c738e43b5ee51d7b26638e8d80c6e957b451336962f7dc",
+    "sourceSha256": "2a08a383825070bbd32b663b927b2878eb10cecd924c8ab6236fd21384bc292c"
+  },
+  {
+    "id": "dish-fresh-ico-0098",
+    "path": "assets/mobile/dish-fresh-ico-0098-ba1cd5a9795d.webp",
+    "stage": 8,
+    "bytes": 6902,
+    "sha256": "ba1cd5a9795dec0480f0ca50e14056d761d99fea19c254e8d2d472d0caa15cf6",
+    "sourceSha256": "40ed2b7c8b41b8300e531d8d14ce36ecbe3dc7c248b17601d986fb7f481d2025"
+  },
+  {
+    "id": "dish-fresh-ico-0111",
+    "path": "assets/mobile/dish-fresh-ico-0111-88abd65a5779.webp",
+    "stage": 8,
+    "bytes": 6718,
+    "sha256": "88abd65a57797d36bc549dc1e8982d6ad458e9f040bfe39a9f748acf4f9c6409",
+    "sourceSha256": "88508b6316583d40e01a1f5ec367d6b65eb78a5d6088c1649469080527ab263f"
+  },
+  {
+    "id": "dish-fresh-ico-0118",
+    "path": "assets/mobile/dish-fresh-ico-0118-be2fdcfc7e48.webp",
+    "stage": 8,
+    "bytes": 7128,
+    "sha256": "be2fdcfc7e48a49c1b60348b1cfe48907c4eb665e4aa6a9331a31e33b4e3268d",
+    "sourceSha256": "82d53a448154b80f458fa8533f6bd442d91f8aaab17a459539a3fa8009520ffc"
+  },
+  {
+    "id": "dish-fresh-ico-0122",
+    "path": "assets/mobile/dish-fresh-ico-0122-95d08ee19c89.webp",
+    "stage": 8,
+    "bytes": 6282,
+    "sha256": "95d08ee19c89cb9a77adad0977ebae38b3b0e83ee2990becfe314543acabda03",
+    "sourceSha256": "c2fcb89fb121fac2e95270f159be2152ea8a08e6a86212f3859d6e337d6551ff"
+  },
+  {
+    "id": "dish-fresh-ico-0131",
+    "path": "assets/mobile/dish-fresh-ico-0131-b3a98ec80ae7.webp",
+    "stage": 8,
+    "bytes": 6572,
+    "sha256": "b3a98ec80ae79ea4020e7c33ede2e2279a8782163de59f651198f86b4dc517b7",
+    "sourceSha256": "2c9b356a23524124141c84333185281644551668cb8636f43280020ff4a094e9"
+  },
+  {
+    "id": "dish-fresh-ico-0135",
+    "path": "assets/mobile/dish-fresh-ico-0135-f1b8468ff988.webp",
+    "stage": 8,
+    "bytes": 6570,
+    "sha256": "f1b8468ff988fca28c04157326ffbdda99a79fc962e526f54eb81dd084205ef8",
+    "sourceSha256": "747ad92561c2dfe87479bd4a917695c1182a43016d8e66d91895b0ee575b37c9"
+  },
+  {
+    "id": "dish-fresh-ico-0142",
+    "path": "assets/mobile/dish-fresh-ico-0142-1c95e555b40f.webp",
+    "stage": 8,
+    "bytes": 6458,
+    "sha256": "1c95e555b40fba2a287b048008e1e44c3cb7efcdacfce10356314c27f3b02101",
+    "sourceSha256": "2d6cb237e8957fc2636cc12b5fc4af440f9b3afae7a78b3ee02d9232d73f144d"
+  },
+  {
+    "id": "dish-fresh-ico-0159",
+    "path": "assets/mobile/dish-fresh-ico-0159-e48702b9d4fd.webp",
+    "stage": 8,
+    "bytes": 8632,
+    "sha256": "e48702b9d4fd523e8d3ae52f8d1dccc27a30e3a79c556e335e94e9c621998a0b",
+    "sourceSha256": "944abcd1e531aed0d2bd99e29003bac43383adfb0cf4892c4452765d0efeb376"
+  },
+  {
+    "id": "dish-fresh-ico-0160",
+    "path": "assets/mobile/dish-fresh-ico-0160-a4875cd02cea.webp",
+    "stage": 8,
+    "bytes": 4988,
+    "sha256": "a4875cd02ceaae87a7659fc2bfb7f3ff4475f72482a3e6b1e48d0a07bd54c024",
+    "sourceSha256": "6e1d51fddf022016fd9cbab494e7ecc9668cee238f4acfa055403e599ae96888"
+  },
+  {
+    "id": "vegetable-cart-l2",
+    "path": "assets/mobile/vegetable-cart-l2-eeb584650360.webp",
+    "stage": 3,
+    "bytes": 8238,
+    "sha256": "eeb584650360e11ac9067e557ac5a1536462b35ea579467913770e8259571f9d",
+    "sourceSha256": "8a417300cb014fa69076f1d0754a52d0656cda92e4f3297b56d00a34ee27e64e"
+  },
+  {
+    "id": "vegetable-cart-l3",
+    "path": "assets/mobile/vegetable-cart-l3-9bea74c612c4.webp",
+    "stage": 3,
+    "bytes": 9700,
+    "sha256": "9bea74c612c4fafc160b724f9d1758494fdf87cb509743bcc9a99287ac50bd2f",
+    "sourceSha256": "3727c276d510fa726e8e6eab1be65a72785299cc2153ef16d3a1cceb0e385181"
+  },
+  {
+    "id": "fruit-cart-l2",
+    "path": "assets/mobile/fruit-cart-l2-a8c7bdfa5ccc.webp",
+    "stage": 3,
+    "bytes": 6936,
+    "sha256": "a8c7bdfa5ccc1c3fc8d750b1c7560aebb59da5035b5ffd2671810b348738b2a4",
+    "sourceSha256": "d30bb58fe95a43bda56f43455fc8cd726dde56ba71468bc4dffe40a4cc57c3cb"
+  },
+  {
+    "id": "fruit-cart-l3",
+    "path": "assets/mobile/fruit-cart-l3-06b4955417ea.webp",
+    "stage": 3,
+    "bytes": 7510,
+    "sha256": "06b4955417ea520c579241fbd3983f40bf2982ad78022fcafeefffe5cee1ec9c",
+    "sourceSha256": "63aaea12e15111373a490365535d52c5f6c3d5952859e177091e3ddb7d23055e"
+  },
+  {
+    "id": "beast-meat-cart-l2",
+    "path": "assets/mobile/beast-meat-cart-l2-178d439f5d1d.webp",
+    "stage": 3,
+    "bytes": 8738,
+    "sha256": "178d439f5d1d82db6b3684e36b2921358b3e9c2036cc1198b78604f5a0a993a4",
+    "sourceSha256": "7ba7d5be1f5d5c4c93d001d563b6a269fb352130bcb335e2f47e2b9cbffcb8b2"
+  },
+  {
+    "id": "beast-meat-cart-l3",
+    "path": "assets/mobile/beast-meat-cart-l3-9ef89deafd02.webp",
+    "stage": 3,
+    "bytes": 10068,
+    "sha256": "9ef89deafd02d8567d9935f93e52733d9d4167e6707816c84636c8c2da89a585",
+    "sourceSha256": "e88c6bdcd92b2b40b41616bcba0f7b4fe91894a59df5b8c8e741dee9819c1db6"
+  },
+  {
+    "id": "poultry-cart-l2",
+    "path": "assets/mobile/poultry-cart-l2-380030406fe9.webp",
+    "stage": 3,
+    "bytes": 8130,
+    "sha256": "380030406fe96e9c419514a5c9cf90528c00983a491443f20141d4bd26bec037",
+    "sourceSha256": "04f590474c03596d43b30e9a0aec7bca8a8852f9730eb10e5d69037c9aeefb35"
+  },
+  {
+    "id": "poultry-cart-l3",
+    "path": "assets/mobile/poultry-cart-l3-b8ffd97e1212.webp",
+    "stage": 3,
+    "bytes": 9486,
+    "sha256": "b8ffd97e12120546728c774cfab0efed52855df4b23fa8050f09c73d0e23c23f",
+    "sourceSha256": "7d591da068caba1d536a3bf569ceed0669d899b60496eae4a77c4c02eff27239"
+  },
+  {
+    "id": "spice-box-l2",
+    "path": "assets/mobile/spice-box-l2-f496fdc73e8e.webp",
+    "stage": 3,
+    "bytes": 8282,
+    "sha256": "f496fdc73e8e5d6792d566a00b4b9533883ae5e39093b795147e9b8b839d0ec6",
+    "sourceSha256": "ccac9768080ae051b510611ee857bbc82f619547179eef96fee575114debbb1e"
+  },
+  {
+    "id": "spice-box-l3",
+    "path": "assets/mobile/spice-box-l3-4f24d9268f31.webp",
+    "stage": 3,
+    "bytes": 8808,
+    "sha256": "4f24d9268f310dee0af0c8014df05bda55e69987b0d2d13115b43488566fb543",
+    "sourceSha256": "8e2c8ab744b7dab1efd45a2c1c1c88f5c932689aafc9fdf3828d3a4d9ba020cc"
+  },
+  {
+    "id": "seafood-fridge-l1",
+    "path": "assets/mobile/seafood-fridge-l1-e8dc25a53749.webp",
+    "stage": 6,
+    "bytes": 6762,
+    "sha256": "e8dc25a537497716ed5ef78e238dce7857f148c9b8b4f47ab36af71288256598",
+    "sourceSha256": "ff4eefa49c3abc06c5a6a058c41b4c225b798ccebd40d4624a0a24b8bf02e300"
+  },
+  {
+    "id": "seafood-fridge-l2",
+    "path": "assets/mobile/seafood-fridge-l2-98ee953f804c.webp",
+    "stage": 6,
+    "bytes": 8172,
+    "sha256": "98ee953f804c553db24816c30d97abb419ee447fb6f0e690b1fcb009a9c201a5",
+    "sourceSha256": "a86be47b5ccc9e26fd01c8a3aef8e2ab0dc403e53f396ffc5cb02236548a8abc"
+  },
+  {
+    "id": "seafood-fridge-l3",
+    "path": "assets/mobile/seafood-fridge-l3-c5c7aa3dc98d.webp",
+    "stage": 6,
+    "bytes": 8320,
+    "sha256": "c5c7aa3dc98d35fd619b9148a69094c927549d4790646b59b5fcdc2f56bfef2c",
+    "sourceSha256": "e5185e5b0076d9601a18ef08068c860d42171fe91af9114f84519a8565605d59"
+  },
+  {
+    "id": "dairy-fridge-l1",
+    "path": "assets/mobile/dairy-fridge-l1-69740c475a55.webp",
+    "stage": 3,
+    "bytes": 4918,
+    "sha256": "69740c475a55a04aedcdf03f3a8a197d6ba2788015781ce288c04a76a9737075",
+    "sourceSha256": "23e9db1a7e912ee87e662e69907682dcefadbed0e5177a5dbda9b816e3a02a33"
+  },
+  {
+    "id": "dairy-fridge-l2",
+    "path": "assets/mobile/dairy-fridge-l2-20f95534797e.webp",
+    "stage": 3,
+    "bytes": 5956,
+    "sha256": "20f95534797ee67d723f537ae605e71325d2061a6e26d238b32dabf6e1fe50cd",
+    "sourceSha256": "5007c9b05d02fb81844884718295efaad39f3d6fc6860b6843883d4ae435d817"
+  },
+  {
+    "id": "dairy-fridge-l3",
+    "path": "assets/mobile/dairy-fridge-l3-78216eb66021.webp",
+    "stage": 3,
+    "bytes": 6086,
+    "sha256": "78216eb6602144e9b6c06ee4477bd486f733f48f9e7272fa9d144eed01cd7ea7",
+    "sourceSha256": "7ba5880345ba1d6be9c37dcc1513b1773246406a9ac4a0c00bc03792b7378e97"
+  },
+  {
+    "id": "grain-box-l1",
+    "path": "assets/mobile/grain-box-l1-ffabfebc9316.webp",
+    "stage": 3,
+    "bytes": 5688,
+    "sha256": "ffabfebc93163a9f8179394b4ce05bbc9296a92b47991bc968d1162b044a59ef",
+    "sourceSha256": "a9d1ef12e3ec4de7bea782e5066022e31d0862472c5b3c1c42c93d2a9183446c"
+  },
+  {
+    "id": "grain-box-l2",
+    "path": "assets/mobile/grain-box-l2-b8c7a2b16427.webp",
+    "stage": 3,
+    "bytes": 6782,
+    "sha256": "b8c7a2b16427a876dab88a96bab9c938e4d3a0c22a142d8698677e812f531b70",
+    "sourceSha256": "5054a16fa922c5a9f6a8dbe83ab1e0c09dc2d6e6045342e12e2deebfd0a9cbe8"
+  },
+  {
+    "id": "grain-box-l3",
+    "path": "assets/mobile/grain-box-l3-0f82c0ae665d.webp",
+    "stage": 3,
+    "bytes": 7456,
+    "sha256": "0f82c0ae665d2eaa6abe90e84039e828ed05f1c3dd62ea3f4ffdb34b63312edb",
+    "sourceSha256": "14c1bb0869c94cfb81ea1a770296f60740db5374315e829862915472501cf8a2"
+  },
+  {
+    "id": "sweet-cabinet-l1",
+    "path": "assets/mobile/sweet-cabinet-l1-56d3f1331656.webp",
+    "stage": 3,
+    "bytes": 5008,
+    "sha256": "56d3f1331656df4b745c0608176caa1a500c75792acd1243dc15f78a29728ce3",
+    "sourceSha256": "22247ededf82db95072b8e34dbd9a6f8e6111d85c3f0a6adaf9e9af0abb5f0cf"
+  },
+  {
+    "id": "sweet-cabinet-l2",
+    "path": "assets/mobile/sweet-cabinet-l2-1da75b9272df.webp",
+    "stage": 3,
+    "bytes": 6520,
+    "sha256": "1da75b9272df65a1087f887c3ca8ed126bf9eec0764006ecc291255f825f81b3",
+    "sourceSha256": "c002302765a3b1d4839fef8a55954d6ad050d6bb3f1d59bed924547996f8587a"
+  },
+  {
+    "id": "sweet-cabinet-l3",
+    "path": "assets/mobile/sweet-cabinet-l3-443fa1d37279.webp",
+    "stage": 3,
+    "bytes": 6256,
+    "sha256": "443fa1d372796642a8b31214647a8ddf9b6dec8d40cb2b8fbc5587d20293dd1f",
+    "sourceSha256": "20a4e37136a08ab5fff5e233e35b37945a67cc9b898454808825dd95f3509e90"
+  },
+  {
+    "id": "drink-fridge-l1",
+    "path": "assets/mobile/drink-fridge-l1-1203c1396ba9.webp",
+    "stage": 3,
+    "bytes": 4972,
+    "sha256": "1203c1396ba98d3e8c571f08161df0db19b8f0c483f8539405f84ec7a57ed0b1",
+    "sourceSha256": "457cc09f02fed885182a910c9f195e593fb145d3dcd022048ff0f9219d07a81c"
+  },
+  {
+    "id": "drink-fridge-l2",
+    "path": "assets/mobile/drink-fridge-l2-ed9509674614.webp",
+    "stage": 3,
+    "bytes": 6098,
+    "sha256": "ed950967461404d14ad48a21440043859e3096a46a4f96022d1263807118e890",
+    "sourceSha256": "833bfd9544b8c9e23ffa667d9ffec61f7a8876dd76141d4f4b78ddbb13cafe80"
+  },
+  {
+    "id": "drink-fridge-l3",
+    "path": "assets/mobile/drink-fridge-l3-d461232714a3.webp",
+    "stage": 3,
+    "bytes": 6128,
+    "sha256": "d461232714a3159f41f6f73dc90f30993a1c82463b6b592d5fad063cb13f976f",
+    "sourceSha256": "e4001a56aa14f8ad28a950db2df2520fd715220b29ef769434d044a14c35c6db"
+  },
+  {
+    "id": "chopping-board-l2",
+    "path": "assets/mobile/chopping-board-l2-67c8d803c932.webp",
+    "stage": 3,
+    "bytes": 6596,
+    "sha256": "67c8d803c93215e89275d536e7b7a57a2337fb8b803b5c81b55a4471aa336f30",
+    "sourceSha256": "8ebddc863d32f2dd8f25b2e76034a19c6d2ccef7d26043244a691faecade90dd"
+  },
+  {
+    "id": "chopping-board-l3",
+    "path": "assets/mobile/chopping-board-l3-0f728ac38a00.webp",
+    "stage": 3,
+    "bytes": 7540,
+    "sha256": "0f728ac38a00103308a42e1fb26b10edac90f2eda0b961467289f6fb18f9229a",
+    "sourceSha256": "d4c675d1d6ee6aa154a1b6f8f21380612d2fb5697735f37687464b6728ab6ee4"
+  },
+  {
+    "id": "fruit-press-l2",
+    "path": "assets/mobile/fruit-press-l2-1012faed5ab5.webp",
+    "stage": 3,
+    "bytes": 6520,
+    "sha256": "1012faed5ab53ff12583880322fcc121c4bda47d528567b0be33ad27928401ad",
+    "sourceSha256": "bdabee9064a3023b43f8bcebca76d50159fe697b007261d50ce9a5f4604f2371"
+  },
+  {
+    "id": "fruit-press-l3",
+    "path": "assets/mobile/fruit-press-l3-1d081c8900ae.webp",
+    "stage": 3,
+    "bytes": 7380,
+    "sha256": "1d081c8900aef14cba948e8a9c15415eb95497861787f6dcd672b96d72b938c8",
+    "sourceSha256": "fbceac83a404370a7187be8fce3a368d41b92977f86039b522b9765dc10035ff"
+  },
+  {
+    "id": "home-cooking-pot-l2",
+    "path": "assets/mobile/home-cooking-pot-l2-54864f97ad28.webp",
+    "stage": 3,
+    "bytes": 9002,
+    "sha256": "54864f97ad28f80d64fff0fafc1de0d9bf939dfa32071bb5e226f2bea454040a",
+    "sourceSha256": "673bfa9b8d5b46a17098b0921e0b489ac3b723a9b2186e0a39d38ef8e0e27356"
+  },
+  {
+    "id": "home-cooking-pot-l3",
+    "path": "assets/mobile/home-cooking-pot-l3-b3a475c1d7f5.webp",
+    "stage": 3,
+    "bytes": 8884,
+    "sha256": "b3a475c1d7f59abf7f89c1fba060a1e8830854a683b1c178a833ea3c1a59e1a7",
+    "sourceSha256": "fa5316c72eddcce39cccb5adcddf1914e1abd86014910abe4c4ee64115b989bb"
+  },
+  {
+    "id": "frying-station-l1",
+    "path": "assets/mobile/frying-station-l1-5df7701ce8be.webp",
+    "stage": 4,
+    "bytes": 5528,
+    "sha256": "5df7701ce8beb5ae0098ef22b4dae0b0e1c97a414e065ea1126413df08df95f9",
+    "sourceSha256": "f8ae5f3d366ff19c6ba973820b8d40fa99471f85d981e98e0802a6cea2177c9a"
+  },
+  {
+    "id": "frying-station-l2",
+    "path": "assets/mobile/frying-station-l2-1be9bda68478.webp",
+    "stage": 4,
+    "bytes": 5328,
+    "sha256": "1be9bda68478a8ad3dbf56b4cc0d7cb9dc59df0c35808c239533cf2acfffc376",
+    "sourceSha256": "51a25cf26955fffe21ca8a2bb79f2260dec131e567633a3f94aa0426561cfe7a"
+  },
+  {
+    "id": "frying-station-l3",
+    "path": "assets/mobile/frying-station-l3-a58807611128.webp",
+    "stage": 4,
+    "bytes": 6440,
+    "sha256": "a58807611128d7f78d81bc712a5eae3e484a6dc02822c895f63e47f4792ac811",
+    "sourceSha256": "6ad247413ffdd9d538a6f0f298e02f457e038e9cd8f431e630a5ab57432cac4a"
+  },
+  {
+    "id": "charcoal-grill-l1",
+    "path": "assets/mobile/charcoal-grill-l1-0f3770d01d03.webp",
+    "stage": 5,
+    "bytes": 4838,
+    "sha256": "0f3770d01d03c48bd2fc5abe6fcc208a136a417533a8d48da0a6690ea8c51dcc",
+    "sourceSha256": "07a574315096e05807c102eaaeb58f54733e1ff03b9106712f57e6e6d073d756"
+  },
+  {
+    "id": "charcoal-grill-l2",
+    "path": "assets/mobile/charcoal-grill-l2-645ccfa659aa.webp",
+    "stage": 5,
+    "bytes": 4600,
+    "sha256": "645ccfa659aa739825cc2dc65b107a872a19a25611b655b5f3bd9b57ca0fe90b",
+    "sourceSha256": "6ed8aeb11676b0c21f1c6763eadca9dcc6f7b58e7d6f9696c2a710d532321fd4"
+  },
+  {
+    "id": "charcoal-grill-l3",
+    "path": "assets/mobile/charcoal-grill-l3-179bda24482e.webp",
+    "stage": 5,
+    "bytes": 6138,
+    "sha256": "179bda24482e79f8da1487ab43b35718b291a0dd95972e498e9ec885f4adc50d",
+    "sourceSha256": "faf62c9018279a6f4000efef73b3b7e20f73a1b83b5c534c7c5d3d5aa3a30940"
+  },
+  {
+    "id": "oven-l1",
+    "path": "assets/mobile/oven-l1-dc7af9cf5ad1.webp",
+    "stage": 4,
+    "bytes": 5096,
+    "sha256": "dc7af9cf5ad1c52656e52752f77ecd47dfc07dcd0d3253149f5e3423ca1ec199",
+    "sourceSha256": "1e4bbd8e20c51fc7008a2edd4f1e2e68b258cb84d3827b22f5a028db1e770c9d"
+  },
+  {
+    "id": "oven-l2",
+    "path": "assets/mobile/oven-l2-4f09e7cfc9c4.webp",
+    "stage": 4,
+    "bytes": 5906,
+    "sha256": "4f09e7cfc9c4a9fe911ffc2cff759c93f31e7fda67c293bfc74467680c1dcd22",
+    "sourceSha256": "233af227e7d00adc3a28d50c4efe6e07b540413e00652122a8c5d3ee8ddc15c4"
+  },
+  {
+    "id": "oven-l3",
+    "path": "assets/mobile/oven-l3-bb15ba416562.webp",
+    "stage": 4,
+    "bytes": 6574,
+    "sha256": "bb15ba4165621d8d7e3d763d1808d13a3a4519e5f6cee64bf5967c37f7ce290e",
+    "sourceSha256": "631ca879f392100fcde19b8d93e1a00a58c21570c341ee74c198db7fbb9f1ff0"
+  },
+  {
+    "id": "steamer-l1",
+    "path": "assets/mobile/steamer-l1-bdb59b097572.webp",
+    "stage": 6,
+    "bytes": 7096,
+    "sha256": "bdb59b0975725efe4ee77b8e245c23eb7c2fe1d099a8f7b7a2ee7721e9f330f0",
+    "sourceSha256": "8b2c9ed8fa251aa7de8645496e48f5eb7b208aa4c37aa23d4f8b286ecb71119c"
+  },
+  {
+    "id": "steamer-l2",
+    "path": "assets/mobile/steamer-l2-08e85ea1e7e5.webp",
+    "stage": 6,
+    "bytes": 9402,
+    "sha256": "08e85ea1e7e5bb46ffc88ff1757966988e2bcfb476105cc18fd997c02baf6a73",
+    "sourceSha256": "ec2cd5056e06aa72ec7d37fc1e22f6255f3c0a10960ffefa75d4c170fc78b910"
+  },
+  {
+    "id": "steamer-l3",
+    "path": "assets/mobile/steamer-l3-35f1fe79dc72.webp",
+    "stage": 6,
+    "bytes": 9250,
+    "sha256": "35f1fe79dc72d2b79bf02553056cdd9104bc7d24b0d2dee383f6a3941948d802",
+    "sourceSha256": "5dce06a72749e2e10c890904a3b82ae90768aa3a67efbc161122795421d7eb88"
+  },
+  {
+    "id": "wok-l1",
+    "path": "assets/mobile/wok-l1-8750a4d7a75e.webp",
+    "stage": 5,
+    "bytes": 5490,
+    "sha256": "8750a4d7a75e053584c53a6a958354fc711ffb08b849056cae354c879454529e",
+    "sourceSha256": "11ed5b70ae7286b6c02a471e72cdb664476cff415de47e19cee3f83a894dee18"
+  },
+  {
+    "id": "wok-l2",
+    "path": "assets/mobile/wok-l2-01d88f13677d.webp",
+    "stage": 5,
+    "bytes": 5722,
+    "sha256": "01d88f13677d416d7acc853d0ca0147fdf2d97443fb4c034b6cc431d946e3bfa",
+    "sourceSha256": "5ec6533f259d3dd8cb5e2e3f03631f816a3e78fef8b6c25921e8546a26a39040"
+  },
+  {
+    "id": "wok-l3",
+    "path": "assets/mobile/wok-l3-0a93201972f0.webp",
+    "stage": 5,
+    "bytes": 6722,
+    "sha256": "0a93201972f0f9fbca74d9a4453be6dda1438848a2b1ba645fd4b82014bc7124",
+    "sourceSha256": "18d8de9ff5968fea42c6eb9981f5c613a9536af338554cb85f4618379838754a"
+  },
+  {
+    "id": "microwave-l1",
+    "path": "assets/mobile/microwave-l1-c89220dc3886.webp",
+    "stage": 4,
+    "bytes": 5396,
+    "sha256": "c89220dc38867495fd49019df40ce084b4693131d878c6bc10750ec8ca51dafd",
+    "sourceSha256": "c5c4744ac4fe2859c8ffe0581d42a681d3c2e541e8f0e4fc50caac4a3e04330f"
+  },
+  {
+    "id": "microwave-l2",
+    "path": "assets/mobile/microwave-l2-794d60635d64.webp",
+    "stage": 4,
+    "bytes": 6162,
+    "sha256": "794d60635d64217f971a3c4e60f70dceecf5f59d59c2f77afa080658501c929f",
+    "sourceSha256": "e6809a9c3009f5c54a88145c12b03250b20aa2d4739e2b4a659045d9c50d2822"
+  },
+  {
+    "id": "microwave-l3",
+    "path": "assets/mobile/microwave-l3-b441838eb7c0.webp",
+    "stage": 4,
+    "bytes": 6884,
+    "sha256": "b441838eb7c0bc7a4dda47f3b30ff2aaa61fbddca0db96d0ec7662fd15316aaf",
+    "sourceSha256": "a8c1738335bc62d9c4b6b4807c55a3b6fb8f139a131b7ca11e37a879786433d9"
+  },
+  {
+    "id": "blender-l1",
+    "path": "assets/mobile/blender-l1-ff5b6bf2bc6d.webp",
+    "stage": 7,
+    "bytes": 8306,
+    "sha256": "ff5b6bf2bc6d570afac8cd4d3c968c9f3752685c2b6f719aa9181d1714961262",
+    "sourceSha256": "712cc854d8da4efb2de9717893efda302c4a4cc5f40d66f6e47a0ef8b9eadc97"
+  },
+  {
+    "id": "blender-l2",
+    "path": "assets/mobile/blender-l2-58313f5a007f.webp",
+    "stage": 7,
+    "bytes": 8394,
+    "sha256": "58313f5a007ff313ae8df40ecfcda17e2d77b6e804efec879326b7f3172b43ee",
+    "sourceSha256": "b7f4febf91e48ba89baf425f0bbbffb7e64d12ddce48930077f025284472b336"
+  },
+  {
+    "id": "blender-l3",
+    "path": "assets/mobile/blender-l3-f4be3f0fcb8d.webp",
+    "stage": 7,
+    "bytes": 8070,
+    "sha256": "f4be3f0fcb8d045e5f6ace1ecb15421b7bdd304dea8baa43376c0d6efbed8f32",
+    "sourceSha256": "c23a7dc6c80c996ca9496ee525ad02b19ae5fb1077ade36a8b38b4abf7d90762"
+  },
+  {
+    "id": "ice-cream-machine-l1",
+    "path": "assets/mobile/ice-cream-machine-l1-8151778b9faa.webp",
+    "stage": 7,
+    "bytes": 5406,
+    "sha256": "8151778b9faa0f2f30b784461382fed072533cda45d1a5afce1eb0c89fe21a42",
+    "sourceSha256": "3d6fe5c8de84730ca63cc078afe18a00f0e26a2e1a62803954ad457fa890dba9"
+  },
+  {
+    "id": "ice-cream-machine-l2",
+    "path": "assets/mobile/ice-cream-machine-l2-7c441cfc3fd5.webp",
+    "stage": 7,
+    "bytes": 7000,
+    "sha256": "7c441cfc3fd5a8b6cea6f0513b41fce41dec531e736c2522df2d8d97ca353a3f",
+    "sourceSha256": "b349dae29bca5f1a401418e7aad65a55b45038819f727c859afac0e6c6ce664e"
+  },
+  {
+    "id": "ice-cream-machine-l3",
+    "path": "assets/mobile/ice-cream-machine-l3-7a8b4daf9d8a.webp",
+    "stage": 7,
+    "bytes": 7670,
+    "sha256": "7a8b4daf9d8abbbf077f1a09239f3d49b7909e08b02b0e029969db2b487b278b",
+    "sourceSha256": "d02895d155d09f2fbf58d8bcb429cb081873f60fab8d2f172810dcc3dbab0d0f"
+  },
+  {
+    "id": "bar-l1",
+    "path": "assets/mobile/bar-l1-9ec369270f4b.webp",
+    "stage": 8,
+    "bytes": 6288,
+    "sha256": "9ec369270f4b9dc43795586745ed9974e19405eac991787c4e3fa8f739bf168e",
+    "sourceSha256": "255ad48e3e9082127863e980ec2b2d4617fc64af42117e709e84146951491916"
+  },
+  {
+    "id": "bar-l2",
+    "path": "assets/mobile/bar-l2-607fee97b37e.webp",
+    "stage": 8,
+    "bytes": 7216,
+    "sha256": "607fee97b37e0d4a9a41bae475dabc81a751047074923d83680b0293e85aa49f",
+    "sourceSha256": "9cd94eac5c616b939e4c6a4bc6f86291eb94c4ca547d6eaf492e02551f3fe970"
+  },
+  {
+    "id": "bar-l3",
+    "path": "assets/mobile/bar-l3-fc5b0452e5d1.webp",
+    "stage": 8,
+    "bytes": 7530,
+    "sha256": "fc5b0452e5d1bdbfc2fb38796f861d3ccd2772b3bab7392885c2f32e969e9f6e",
+    "sourceSha256": "40ff93fe2c0109fafd8b4a3a23d6445eb0edff879b551d036a49c2dfb43b0d5e"
+  }
+]
