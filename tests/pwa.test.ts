@@ -7,18 +7,18 @@ import { pathToFileURL } from 'node:url';
 import { runInNewContext } from 'node:vm';
 import { registerPwa, type ActivateUpdate } from '../src/platform/pwa';
 
-interface Asset { url: string; size: number; integrity: string; }
+interface Asset { url: string; size: number; integrity: string; stage?: number; role?: string; variant?: string; }
 const scriptUrl = pathToFileURL(path.resolve('scripts/build-sw.mjs')).href;
 const builder = await import(scriptUrl) as {
   collectAssets: (directory: string) => Promise<Asset[]>;
-  renderServiceWorker: (assets: Asset[]) => string;
+  renderServiceWorker: (assets: Asset[], coreUrls?: string[]) => string;
   buildServiceWorker: (directory: string) => Promise<{ files: number; bytes: number }>;
 };
 const assetsFor = (files: Record<string, string>): Asset[] => Object.entries(files).map(([url, body]) => ({
   url, size: Buffer.byteLength(body), integrity: 'sha256-' + createHash('sha256').update(body).digest('base64'),
 }));
 
-function workerHarness(files: Record<string, string>) {
+function workerHarness(files: Record<string, string>, metadata: Record<string, Partial<Asset>> = {}, coreUrls?: string[]) {
   const scope = 'https://example.test/game/';
   const listeners = new Map<string, (event: any) => void>();
   const stores = new Map<string, Map<string, Response>>();
@@ -43,6 +43,7 @@ function workerHarness(files: Record<string, string>) {
         return response.clone();
       },
       put: async (request: any, response: Response) => { store.set(key(request), response.clone());storedHeaders.set(name+'|'+key(request),new Headers(typeof request==='string'?undefined:request.headers)); },
+      keys: async () => [...store.keys()].map(url => new Request(url)),
       addAll: async (requests: Request[]) => {
         const responses = await Promise.all(requests.map(async request => {
           const response = await fetcher(request);
@@ -57,7 +58,7 @@ function workerHarness(files: Record<string, string>) {
   const skipWaiting = vi.fn(async () => {});
   const claim = vi.fn(async () => {});
   const messages:any[]=[];
-  runInNewContext(builder.renderServiceWorker(assetsFor(files)), {
+  runInNewContext(builder.renderServiceWorker(assetsFor(files).map(asset => ({ ...asset, ...metadata[asset.url] })), coreUrls), {
     self: { registration: { scope }, location: { origin: 'https://example.test' }, clients: { claim }, skipWaiting,
       addEventListener: (event: string, handler: (event: any) => void) => listeners.set(event, handler) },
     caches: cacheApi, fetch: fetcher, Request, Response, URL, crypto: webcrypto, Uint8Array, btoa,
@@ -223,6 +224,67 @@ describe('production offline release', () => {
     const response = await worker.request(new Request(oldChunk));
     expect(await response!.text()).toBe('old board chunk');
     expect([...worker.stores.keys()].filter((name) => name.startsWith('goose-lane::https://example.test/game/::'))).toHaveLength(2);
+  });
+});
+
+
+describe('mobile resource scheduling and fast navigation', () => {
+  it('returns the cached shell without awaiting a stalled network', async () => {
+    const worker = workerHarness({ 'index.html': 'installed shell' });
+    await worker.lifecycle('install'); worker.fetcher.mockClear();
+    worker.fetcher.mockImplementation(() => new Promise(() => {}));
+    const response = await worker.request({url:worker.scope,method:'GET',mode:'navigate'});
+    expect(await response!.text()).toBe('installed shell');
+    expect(worker.fetcher).not.toHaveBeenCalled();
+  });
+  it('downloads only mobile theme variants automatically and all variants on explicit request', async () => {
+    const files={'index.html':'shell','assets/mobile/a-hash.webp':'small','assets/v3-b/a.webp':'large','ui-preview.html':'preview'};
+    const metadata:Record<string,Partial<Asset>>={
+      'assets/mobile/a-hash.webp':{role:'art',variant:'mobile',stage:1},
+      'assets/v3-b/a.webp':{role:'art',variant:'large',stage:1},
+    };
+    const worker=workerHarness(files,metadata,['index.html']);await worker.lifecycle('install');
+    expect([...worker.stores.values()][0].size).toBe(1);
+    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1,variant:'mobile'});
+    const requested=worker.fetcher.mock.calls.map(([request])=>String(request.url??request));
+    expect(requested.some(url=>url.endsWith('assets/mobile/a-hash.webp'))).toBe(true);
+    expect(requested.some(url=>url.endsWith('assets/v3-b/a.webp'))).toBe(false);
+    expect(requested.some(url=>url.endsWith('ui-preview.html'))).toBe(false);
+    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:8,variant:'full'});
+    expect(worker.fetcher.mock.calls.some(([request])=>String(request.url??request).endsWith('assets/v3-b/a.webp'))).toBe(true);
+  });
+  it('shares simultaneous foreground image misses', async () => {
+    const image='assets/mobile/image.webp';
+    const worker=workerHarness({'index.html':'shell',[image]:'image'}, {[image]:{role:'art',variant:'mobile',stage:1}},['index.html']);
+    await worker.lifecycle('install');worker.fetcher.mockClear();
+    let release!:(response:Response)=>void;
+    worker.fetcher.mockImplementation(()=>new Promise<Response>(resolve=>{release=resolve;}));
+    const first=worker.request(new Request(worker.scope+image)),second=worker.request(new Request(worker.scope+image));
+    await vi.waitFor(()=>expect(worker.fetcher).toHaveBeenCalledOnce());release(new Response('image'));
+    expect(await (await first)!.text()).toBe('image');expect(await (await second)!.text()).toBe('image');
+  });
+  it('pauses background work during input and resumes without re-downloading completed images', async () => {
+    const a='assets/mobile/a.webp',b='assets/mobile/b.webp';
+    const worker=workerHarness({'index.html':'shell',[a]:'a',[b]:'b'},{[a]:{role:'art',variant:'mobile',stage:1},[b]:{role:'art',variant:'mobile',stage:1}},['index.html']);
+    await worker.lifecycle('install');worker.fetcher.mockClear();
+    await worker.lifecycle('message',{type:'CACHE_PAUSE',visible:false});
+    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1,variant:'mobile'});
+    expect(worker.fetcher).not.toHaveBeenCalled();
+    await worker.lifecycle('message',{type:'CACHE_RESUME'});
+    expect(worker.fetcher).toHaveBeenCalledTimes(2);
+    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1,variant:'mobile'});
+    expect(worker.fetcher).toHaveBeenCalledTimes(2);
+  });
+  it('continues serving online resources when browser cache storage is unavailable', async () => {
+    const worker=workerHarness({'index.html':'shell','assets/app.js':'code'});await worker.lifecycle('install');
+    worker.cacheApi.open=async()=>{throw new Error('quota exceeded');};
+    expect(await (await worker.request(new Request(worker.scope+'assets/app.js')))!.text()).toBe('code');
+  });
+  it('reuses a previous cached resource only when its new integrity still matches', async () => {
+    const worker=workerHarness({'index.html':'new shell','assets/app.js':'new code'});
+    worker.stores.set('goose-lane::'+worker.scope+'::previous',new Map([[worker.scope+'assets/app.js',new Response('different old code')]]));
+    await worker.lifecycle('install');
+    expect(await (await worker.request(new Request(worker.scope+'assets/app.js')))!.text()).toBe('new code');
   });
 });
 

@@ -16,7 +16,8 @@ describe('high density board coordinates', () => {
   });
 
   it('bounds backing-store allocation and supports fractional desktop display scaling', () => {
-    expect([0, 1, 1.25, 2, 2.5, 4, NaN, Infinity].map(boardPixelRatio)).toEqual([1, 1, 2, 2, 3, 3, 1, 1]);
+    expect([0, 1, 1.25, 2, 2.5, 4, NaN, Infinity].map(value => boardPixelRatio(value))).toEqual([1, 1, 1.25, 2, 2, 2, 1, 1]);
+    expect(boardPixelRatio(3, 3)).toBe(3);
   });
 });
 

@@ -37,6 +37,22 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
 afterEach(() => { controllers.splice(0).forEach((controller) => controller.dispose()); vi.restoreAllMocks(); });
 
 describe('UI persistence orchestration', () => {
+  it('skips identical selection and scroll writes without skipping page events', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    expect(await controller.dispatch({type:'session',session:{selectedUid:null,orderScroll:0}})).toBe(true);
+    expect(repository.save).not.toHaveBeenCalled();
+    expect(await controller.dispatch({type:'session',session:{page:'merge'}})).toBe(true);
+    expect(repository.save).toHaveBeenCalledOnce();
+  });
+  it('retains a later selection cancellation while an earlier selection write is pending', async () => {
+    const {controller,repository}=setup();await controller.start();
+    const saved=deferred<void>();repository.save.mockReturnValueOnce(saved.promise);
+    const selected=controller.dispatch({type:'session',session:{selectedUid:'g1'}});
+    const cancelled=controller.dispatch({type:'session',session:{selectedUid:null}});
+    saved.resolve();expect(await selected).toBe(true);expect(await cancelled).toBe(true);
+    expect(controller.view.state?.session.selectedUid).toBeNull();
+    expect(repository.save).toHaveBeenCalledTimes(2);
+  });
   it('increments the scene restore epoch only when loading or replacing a session', async () => {
     const { controller, repository } = setup(); await controller.start();
     expect(controller.view.sessionEpoch).toBe(1);

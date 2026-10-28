@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { Check, Coins, LoaderCircle, Pin } from 'lucide-react';
 import { availableOrders, canAffordRequirements, getDayProgress, getOrderReward, inventoryCount } from '../domain/engine';
 import { CUSTOMERS, ITEMS } from '../content/catalog';
@@ -15,7 +15,7 @@ interface CustomerStripProps {
   onFocus?: (id: string | null) => void;
 }
 
-export function CustomerStrip({ state, act, onItem, onScroll, active, focusedOrderId = null, onFocus }: CustomerStripProps) {
+function CustomerStripView({ state, act, onItem, onScroll, active, focusedOrderId = null, onFocus }: CustomerStripProps) {
   const ref = useRef<HTMLDivElement>(null);
   const restored = useRef(false);
   const pending = useRef(new Set<string>());
@@ -85,3 +85,4 @@ export function CustomerStrip({ state, act, onItem, onScroll, active, focusedOrd
     </div>
   </section>;
 }
+export const CustomerStrip = memo(CustomerStripView);

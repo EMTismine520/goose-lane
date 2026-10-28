@@ -7,6 +7,7 @@ import { execute, stateInvariantErrors } from '../src/domain/engine';
 import { ItemArtProvider } from '../src/ui/ItemArtContext';
 import { ItemIcon } from '../src/ui/parts';
 import { ItemDetails } from '../src/ui/panels';
+import { ITEMS } from '../src/content/catalog';
 
 describe('B-only food art and isolated preview', () => {
   it('provides a full repeated-sausage board that frees a cell when merged', () => {
@@ -39,7 +40,8 @@ describe('B-only food art and isolated preview', () => {
     const state = createFoodStyleState(20_000_000);
     for (const id of FOOD_STYLE_ITEMS) {
       const html = renderToStaticMarkup(<ItemDetails state={state} item={id} onItem={() => {}} onCook={() => {}}/>);
-      expect(html).toContain(itemPresentation(id).path);
+      expect(html).toContain(`alt="${ITEMS[id].name}"`);
+      expect(html).toContain('data-art-status="loading"');
       expect(itemImageUrl(id)).toContain(itemPresentation(id).path);
       const normal = renderToStaticMarkup(<ItemIcon item={id}/>);
       expect(renderToStaticMarkup(<ItemArtProvider value={{ renderer: 'canvas', pixelRatio: 3 }}><ItemIcon item={id}/></ItemArtProvider>)).toBe(normal);

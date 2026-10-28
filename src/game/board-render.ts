@@ -6,12 +6,15 @@ import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { GameState, ItemInstance } from '../domain/types';
 import { BoardEffects } from './board-fx';
 import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, cellCenter, dropKind } from './board-input';
+import { perfSpan } from '../platform/performance';
 
 export interface ItemSprite {
   uid: string;
   item: string;
   index: number;
   container: Phaser.GameObjects.Container;
+  image: Phaser.GameObjects.Image;
+  placeholder: Phaser.GameObjects.Text;
 }
 interface DeviceSprite {
   artId:string;
@@ -20,6 +23,9 @@ interface DeviceSprite {
   labelBack: Phaser.GameObjects.Graphics;
   activity: Phaser.GameObjects.Graphics;
   phase: string;
+  image: Phaser.GameObjects.Image;
+  placeholder: Phaser.GameObjects.Text;
+  clockSignature: string;
 }
 
 export const entityAsset = (id: string) => id;
@@ -27,7 +33,8 @@ export const entityAsset = (id: string) => id;
 export function itemTexture(scene: Phaser.Scene, item: string): { key: string; frame?: number } {
   const def = ITEMS[item];
   const key = `item:${def?.assetId ?? item}`;
-  return scene.textures.exists(key) ? { key } : { key: 'legacy-foods', frame: def?.icon ?? 0 };
+  if (scene.textures.exists(key)) return { key };
+  return !def?.assetId && scene.textures.exists('legacy-foods') ? { key: 'legacy-foods', frame: def?.icon ?? 0 } : { key: 'pending-food' };
 }
 
 export function itemDisplaySize(item: string): number {
@@ -46,15 +53,18 @@ export class BoardRenderer {
   private gridSignature = '';
   private draggedUid: string | null = null;
   private lastClock = 0;
+  private highlightSignature = '';
+  private pendingUids = new Set<string>();
 
-  constructor(private scene: Phaser.Scene, private state: () => GameState, private pixelRatio = 1) {
+  constructor(private scene: Phaser.Scene, private state: () => GameState, private pixelRatio = 1, private decorationsReduced: () => boolean = () => false) {
     this.tiles = scene.add.graphics().setDepth(0);
     this.highlights = scene.add.graphics().setDepth(2);
     this.crates = scene.add.container(0, 0).setDepth(1);
-    this.effects = new BoardEffects(scene, () => state().settings.reducedMotion);
+    this.effects = new BoardEffects(scene, () => state().settings.reducedMotion, decorationsReduced);
   }
 
   sync(animate = true) {
+    const finish = perfSpan('board-sync');
     const state = this.state();
     const devices = activeDevices(state);
     const signature = `${state.day}:${state.campaign}:${state.construction.completed.join(',')}:${devices.map(device => device.id).join(',')}`;
@@ -91,7 +101,7 @@ export class BoardRenderer {
         if (animate) this.effects.move(rendered.container, at.x, at.y);
         else rendered.container.setPosition(at.x, at.y);
       }
-      rendered.container.setAlpha(instance.uid === this.draggedUid ? 0.2 : 1);
+      rendered.container.setAlpha(instance.uid === this.draggedUid || this.pendingUids.has(instance.uid) ? 0.2 : 1);
     }
     for (const [uid, rendered] of this.items) {
       if (liveUids.has(uid)) continue;
@@ -108,11 +118,22 @@ export class BoardRenderer {
     }
     this.previous = state;
     this.updateClock(Date.now(), true);
+    finish();
   }
 
-  rebuildArt() {
-    for(const sprite of [...this.items.values(),...this.devices.values()]){this.scene.tweens.killTweensOf(sprite.container);sprite.container.destroy(true);}
-    this.items.clear();this.devices.clear();this.sync(false);
+  refreshArt(keys: readonly string[]) {
+    const changed = new Set(keys);
+    for (const sprite of this.items.values()) {
+      const definition = ITEMS[sprite.item];
+      if (!changed.has(`item:${definition?.assetId ?? sprite.item}`) && !changed.has('legacy-foods')) continue;
+      const texture = itemTexture(this.scene, sprite.item);
+      sprite.image.setTexture(texture.key, texture.frame).setDisplaySize(itemDisplaySize(sprite.item), itemDisplaySize(sprite.item));
+      sprite.placeholder.setVisible(texture.key === 'pending-food');
+    }
+    for (const sprite of this.devices.values()) if (changed.has(`entity:${sprite.artId}`)) {
+      sprite.image.setTexture(`entity:${sprite.artId}`).setDisplaySize(devicePresentation(sprite.artId).displaySize, devicePresentation(sprite.artId).displaySize);
+      sprite.placeholder.setVisible(false);
+    }
   }
 
   private createItem(instance: ItemInstance, index: number): ItemSprite {
@@ -124,6 +145,7 @@ export class BoardRenderer {
     const presentation = itemPresentation(instance.item);
     const size = presentation.displaySize;
     const image = this.scene.add.image(presentation.offsetX, presentation.offsetY, texture.key, texture.frame).setDisplaySize(size, size);
+    const placeholder = this.scene.add.text(0, 0, def.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '9px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(.5).setVisible(texture.key === 'pending-food');
     const badge = this.scene.add.graphics();
     const isNode=CHAINS.some(chain=>chain.items.includes(instance.item));
     badge.fillStyle(isNode ? 0x4e8a5b : 0xd98543, 1);
@@ -131,8 +153,8 @@ export class BoardRenderer {
     badge.lineStyle(1.5, 0xfffdf2, 1);
     badge.strokeRoundedRect(10, 10, 13, 13, 4);
     const level = this.scene.add.text(16.5, 16.5, isNode ? `${def.level}` : '成', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '10px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
-    container.add([shadow, image, badge, level]);
-    return { uid: instance.uid, item: instance.item, index, container };
+    container.add([shadow, image, placeholder, badge, level]);
+    return { uid: instance.uid, item: instance.item, index, container, image, placeholder };
   }
 
   private ensureDevice(id: string, index: number) {
@@ -147,16 +169,16 @@ export class BoardRenderer {
     const shadow = this.scene.add.ellipse(0, 17, 37, 9, 0x795834, 0.17);
     const texture = `entity:${artId}`;
     const presentation = devicePresentation(artId);
-    const image = this.scene.textures.exists(texture)
-      ? this.scene.add.image(presentation.offsetX, presentation.offsetY, texture).setDisplaySize(presentation.displaySize, presentation.displaySize)
-      : this.scene.add.text(0, 0, entity.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '10px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(0.5);
+    const ready = this.scene.textures.exists(texture);
+    const image = this.scene.add.image(presentation.offsetX, presentation.offsetY, ready ? texture : 'pending-food').setDisplaySize(presentation.displaySize, presentation.displaySize);
+    const placeholder = this.scene.add.text(0, 0, entity.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '10px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(.5).setVisible(!ready);
     const labelBack = this.scene.add.graphics();
     const activity = this.scene.add.graphics();
     const label = this.scene.add.text(0, -17, '', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef2' }).setOrigin(0.5);
-    container.add([shadow, image, activity, labelBack, label]);
+    container.add([shadow, image, placeholder, activity, labelBack, label]);
     const tier=this.scene.add.text(17,17,`${definition.level??1}`,{resolution:this.pixelRatio,fontFamily:'Arial',fontSize:'9px',fontStyle:'bold',color:'#7e4b1d',backgroundColor:'#f7bc45',padding:{x:3,y:2}}).setOrigin(0.5);
     container.add(tier);
-    this.devices.set(id, { container, label, labelBack, activity, phase: '',artId });
+    this.devices.set(id, { container, label, labelBack, activity, phase: '', artId, image, placeholder, clockSignature: '' });
     if (entity.kind === 'generator') {
       labelBack.fillStyle(0xf7bc45, 1).fillRoundedRect(9, 10, 16, 14, 5);
       labelBack.lineStyle(1.5, 0xfff9df, 1).strokeRoundedRect(9, 10, 16, 14, 5);
@@ -195,8 +217,11 @@ export class BoardRenderer {
   }
 
   highlight(selected: number | null, hint: [number, number] | null | undefined, hovered: number | null = null, dragged: number | null = null, tutorialTarget?: number | null, guidanceUids: readonly string[] = []) {
-    this.highlights.clear();
     const state = this.state();
+    const signature = `${state.revision}:${selected}:${hint?.join(',')}:${hovered}:${dragged}:${tutorialTarget}:${guidanceUids.join(',')}`;
+    if (signature === this.highlightSignature) return;
+    this.highlightSignature = signature;
+    this.highlights.clear();
     const source = dragged ?? selected;
     for (let index = 0; index < BOARD_COLUMNS * BOARD_ROWS; index++) {
       const entity = getBoardEntity(state, index);
@@ -230,7 +255,13 @@ export class BoardRenderer {
 
   setDragging(uid: string | null) {
     this.draggedUid = uid;
-    for (const item of this.items.values()) item.container.setAlpha(item.uid === uid ? 0.2 : 1);
+    for (const item of this.items.values()) item.container.setAlpha(item.uid === uid || this.pendingUids.has(item.uid) ? 0.2 : 1);
+    for (const [id, device] of this.devices) device.container.setAlpha(id === uid || this.pendingUids.has(id) ? .2 : 1);
+  }
+
+  setPending(uid: string, pending: boolean) {
+    if (pending) this.pendingUids.add(uid); else this.pendingUids.delete(uid);
+    this.setDragging(this.draggedUid);
   }
 
   press(index: number) {
@@ -262,15 +293,19 @@ export class BoardRenderer {
       const phase = status.phase;
       const label = phase === 'cooking' ? `${Math.ceil(status.remaining / 1000)}s` : phase === 'ready' ? '领取' : phase === 'loaded' ? status.canStart ? '开火' : '待投料' : '';
       const color = phase === 'ready' ? 0x70ac4b : phase === 'cooking' ? 0xd78b43 : 0x79ad4c;
-      visual.label.setText(label);
+      const progress = phase === 'cooking' && status.appliance.job ? Math.min(1, (now - status.appliance.job.startedAt) / Math.max(1, status.appliance.job.endsAt - status.appliance.job.startedAt)) : 0;
+      const steam = phase === 'cooking' && !state.settings.reducedMotion && !this.decorationsReduced();
+      const signature = `${phase}:${label}:${Math.floor(progress * 36)}:${steam ? Math.floor(now / 200) : 0}`;
+      if (visual.clockSignature === signature) continue;
+      visual.clockSignature = signature;
+      if (visual.label.text !== label) visual.label.setText(label);
       visual.labelBack.clear();
       visual.activity.clear();
       if (label) visual.labelBack.fillStyle(color, 1).fillRoundedRect(-18, -24, 36, 14, 6);
       if (phase === 'cooking') {
-        const progress = status.appliance.job ? Math.min(1, (now - status.appliance.job.startedAt) / Math.max(1, status.appliance.job.endsAt - status.appliance.job.startedAt)) : 0;
         visual.activity.fillStyle(0x805a38, 0.3).fillRoundedRect(-18, 20, 36, 4, 2);
         visual.activity.fillStyle(0xf7bd4d).fillRoundedRect(-18, 20, Math.max(3, 36 * progress), 4, 2);
-        if (!state.settings.reducedMotion) {
+        if (steam) {
           const rise = (now % 1500) / 1500;
           visual.activity.fillStyle(0xfffdf0, 0.7 * (1 - rise)).fillCircle(-7, -13 - rise * 14, 3 + rise * 2).fillCircle(7, -10 - rise * 15, 2 + rise * 2);
         }
@@ -284,6 +319,7 @@ export class BoardRenderer {
   }
 
   settle() {
+    this.pendingUids.clear();
     this.effects.clear();
     for (const item of this.items.values()) {
       this.scene.tweens.killTweensOf(item.container);

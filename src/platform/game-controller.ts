@@ -6,6 +6,7 @@ import type { SaveSlotId } from '../persistence/save';
 import { acquireSession } from './session';
 import type { GameSession } from './session';
 import { audio } from './audio';
+import { perfMark, perfSpan } from './performance';
 
 export interface GameView {
   state: GameState | null;
@@ -35,7 +36,7 @@ export class GameController {
   private live = true;
   private conflict = false;
   private ready = false;
-  private commands: { command: Command; reserved: string[]; check: (state: GameState) => boolean; resolve: (ok: boolean) => void }[] = [];
+  private commands: { command: Command; reserved: string[]; check: (state: GameState) => boolean; resolve: (ok: boolean) => void; finish: () => void }[] = [];
   private processing = false;
   private commandSequence = 0;
   private readonly commandSession = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -89,6 +90,7 @@ export class GameController {
     this.ready = false;
     this.update({ readOnly: true });
     const loaded = await this.repository.open();
+    perfMark('save-ready');
     if (!this.live) return;
     const state = loaded.state ?? createInitialState(this.now());
     const canWrite = this.session?.readOnly === false;
@@ -129,6 +131,10 @@ export class GameController {
     try { this.ensureWriter(); } catch (cause) { this.setNotice({ type: 'error', message: this.message(cause) }); return Promise.resolve(false); }
     if (this.commands.length >= 64) { this.setNotice({ type: 'error', message: '操作正在依次保存，请稍候片刻。' }); return Promise.resolve(false); }
     const original = this.view.state;
+    if (input.type === 'session' && !this.processing && !this.commands.length) {
+      const entries = Object.entries(input.session ?? {});
+      if (entries.length && entries.every(([key, value]) => key === 'selectedUid' ? (value === null || typeof value === 'string') && original.session.selectedUid === value : key === 'orderScroll' && typeof value === 'number' && Number.isFinite(value) && value >= 0 && original.session.orderScroll === Math.min(100000, Math.round(value)))) return Promise.resolve(true);
+    }
     const command = { ...input, commandId: input.commandId ?? `${this.commandSession}:${++this.commandSequence}` } as Command;
     const checks: ((state: GameState) => boolean)[] = [];
     const reserved: string[] = [];
@@ -193,7 +199,7 @@ export class GameController {
     }
     reserved.forEach((uid) => this.reservations.add(uid));
     void this.sound.unlock().catch(() => undefined);
-    const result = new Promise<boolean>((resolve) => this.commands.push({ command, reserved, check: (state) => checks.every((check) => check(state)), resolve }));
+    const result = new Promise<boolean>((resolve) => this.commands.push({ command, reserved, check: (state) => checks.every((check) => check(state)), resolve, finish: perfSpan('command', command.type) }));
     this.update({ pendingCommands: this.commands.length + (this.processing ? 1 : 0), pendingUids: [...this.reservations] });
     void this.processCommands();
     return result;
@@ -211,12 +217,16 @@ export class GameController {
         if (!pending.check(original)) {
           this.setNotice({ type: 'error', message: '物品或落点已经改变，这次操作已安全取消。' });
         } else {
+          const finishExecute = perfSpan('execute', pending.command.type);
           const result = execute(original, pending.command, this.now());
+          finishExecute();
           if (!result.ok) this.setNotice(result.events[0] ?? { type: 'error', message: '现在还不能进行这个操作。' });
           else {
-            await this.repository.save(result.state);
+            const finishSave = perfSpan('persist', pending.command.type);
+            try { await this.repository.save(result.state); } finally { finishSave(); }
             if (this.live) {
-              this.publish(result.state);
+              const finishPublish = perfSpan('publish', pending.command.type);
+              this.publish(result.state); finishPublish();
               const event = result.events.find(entry => entry.type === 'home-unlocked'||entry.type==='theme-unlocked') ?? result.events.find((entry) => entry.type !== 'move');
               if (event) this.setNotice(event);
               if (result.events.some((event) => event.type === 'ready')) this.sound.play('complete');
@@ -238,6 +248,7 @@ export class GameController {
         this.cancelQueued();
         this.setNotice({ type: 'error', message: `${this.message(cause)} 后续操作已取消，物品仍在原处。` });
       } finally {
+        pending.finish();
         pending.reserved.forEach((uid) => this.reservations.delete(uid));
         pending.resolve(ok);
         this.update({ pendingCommands: this.commands.length, pendingUids: [...this.reservations] });
@@ -248,7 +259,7 @@ export class GameController {
   }
 
   private cancelQueued(): void {
-    this.commands.splice(0).forEach((entry) => { entry.reserved.forEach((uid) => this.reservations.delete(uid)); entry.resolve(false); });
+    this.commands.splice(0).forEach((entry) => { entry.finish(); entry.reserved.forEach((uid) => this.reservations.delete(uid)); entry.resolve(false); });
   }
 
   /** Accept no new input; finish every already accepted write before taking a checkpoint. */

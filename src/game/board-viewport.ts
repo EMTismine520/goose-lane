@@ -4,8 +4,8 @@ interface BoardScale {
 }
 
 /** Phaser 4 has no GameConfig.resolution. Scale the backing store and camera together. */
-export function boardPixelRatio(deviceRatio: number): number {
-  return Number.isFinite(deviceRatio) ? Math.min(3, Math.max(1, Math.ceil(deviceRatio))) : 1;
+export function boardPixelRatio(deviceRatio: number, maximum = 2): number {
+  return Number.isFinite(deviceRatio) ? Math.min(maximum, Math.max(1, deviceRatio)) : 1;
 }
 
 /** FIT already maps CSS to backing pixels; our centered camera maps these to design units. */

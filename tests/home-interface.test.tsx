@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { createInitialState, execute } from '../src/domain/engine';
-import { FRESH_ORDERS } from '../src/content/catalog';
+import { FRESH_ORDERS, ITEMS } from '../src/content/catalog';
 import { BUILD_NODES } from '../src/content/board-layouts';
 import { reconcileHomeDevices } from '../src/domain/home-progression';
 import { V3Codex } from '../src/ui/V3Codex';
@@ -17,7 +17,7 @@ describe('home kitchen interface contracts', () => {
     expect(html).toContain('完成首段 12 份订单和 3 项建设后开放');
     expect(html).toContain('disabled');
     expect(html).not.toContain('鲜果料理台');
-    expect(html).toContain('dish-fresh-home-tomato-eggs.');
+    expect(html).toContain(`alt="${ITEMS['dish-fresh-home-tomato-eggs'].name}"`);
   });
   it('renders exact codex category denominators and masks undiscovered icons with a question mark', () => {
     const state = createInitialState(1000);
@@ -30,7 +30,7 @@ describe('home kitchen interface contracts', () => {
     expect(html).toContain('/ 311');
     expect(html).toContain('codex-question');
     expect(html).not.toContain('fresh-beast-1.svg');
-    expect(html).toContain('fresh-veg-1.');
+    expect(html).toContain(`alt="${ITEMS['fresh-veg-1'].name}"`);
   });
   it('explains the complete two-input prefix and longer three-input recipe in the same control', () => {
     let state = createInitialState(1000);

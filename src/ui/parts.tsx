@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import { X } from 'lucide-react';
 import { ITEMS, CUSTOMERS } from '../content/catalog';
-import { B_ART, itemImageUrl, itemPresentation } from '../content/assets';
+import { B_ART, itemPresentation } from '../content/assets';
+import { ArtImage } from './ArtImage';
 
 export function Goose({color='#5e8066',accessory='',className='',expression='waiting'}: {color?:string;accessory?:string;className?:string;expression?:'waiting'|'expectant'|'eager'|'happy'}) {
   const variant = /chef|格子围裙|工装背带|hat/.test(accessory) ? 'chef' : /glasses|翡翠披肩/.test(accessory) ? 'shawl' : /邮帽|贝雷帽|水手领|头巾|草帽|旅行箱/.test(accessory) ? 'post' : 'flower';
@@ -40,7 +41,7 @@ export function ItemIcon({item,size=48,muted=false}: {item:string;size?:number;m
   const def=ITEMS[item]; if(!def) return null;
   if(def.assetId) {
     const custom=item in B_ART,presentation=itemPresentation(item);
-    return <img className={`item-icon vector-item ${muted?'muted':''}`} src={itemImageUrl(item)} alt={def.name} width={size} height={size} draggable={false}
+    return <ArtImage className={`item-icon vector-item ${muted?'muted':''}`} path={presentation.path!} size={size} alt={def.name} draggable={false}
       style={custom?{objectFit:'contain',transform:`translate(${presentation.offsetX*2}%,${(presentation.offsetY+2)*2}%) scale(${presentation.displaySize/50})`}:undefined}/>;
   }
   const col=def.icon%8,row=Math.floor(def.icon/8);

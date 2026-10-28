@@ -1,4 +1,5 @@
 import { APPLIANCES, CHAINS, CONTENT_VERSION, DECORATIONS, HOME_CHAINS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
+import { perfSpan } from '../platform/performance';
 import type { GameState, ItemInstance } from '../domain/types';
 import { availableApplianceRecipes, createInitialState, unlockedCells } from '../domain/engine';
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
@@ -413,7 +414,8 @@ export class SaveRepository {
 
   save(state: GameState): Promise<void> {
     let data: string;
-    try { data = serializeSave(state); } catch (cause) { return Promise.reject(cause); }
+    const finishSerialize = perfSpan('save-serialize');
+    try { data = serializeSave(state); } catch (cause) { return Promise.reject(cause); } finally { finishSerialize(); }
     const revision = state.revision;
     const operation = this.queue.then(() => this.commit(data, revision, false));
     this.queue = operation.catch(() => undefined);
@@ -427,6 +429,7 @@ export class SaveRepository {
     const candidate: Snapshot = { format: 1, token: newToken(), data, savedAt: Date.now() };
     let failure: SaveError | null = null;
     try {
+      const finishTransaction = perfSpan('indexeddb-transaction');
       const transaction = database.transaction(STORE, 'readwrite');
       const done = completed(transaction);
       const store = transaction.objectStore(STORE);
@@ -446,7 +449,8 @@ export class SaveRepository {
             store.delete('previous');
           } else if (rawCurrent !== undefined) {
             let valid: Snapshot | null = null;
-            try { const current = snapshot(rawCurrent); if (current) { parseSave(current.data); valid = current; } } catch { /* Preserve damaged input verbatim. */ }
+            const finishValidation = perfSpan('previous-save-validation');
+            try { const current = snapshot(rawCurrent); if (current) { parseSave(current.data); valid = current; } } catch { /* Preserve damaged input verbatim. */ } finally { finishValidation(); }
             // Never turn a corrupt current snapshot into the last known-good backup.
             if (valid) {
               store.put(valid, 'previous');
@@ -464,7 +468,7 @@ export class SaveRepository {
       };
       if (previousRequest) previousRequest.onsuccess = write;
       else currentRequest.onsuccess = write;
-      await done;
+      try { await done; } finally { finishTransaction(); }
       this.expectedToken = candidate.token;
       this.revision = revision;
       this.opened = true;

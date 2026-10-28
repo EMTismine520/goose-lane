@@ -5,7 +5,7 @@ import { BAND_COSTS, BAND_LEVELS, DEVICE_FAMILIES, THEME_NAMES } from '../conten
 import { deviceIdle, productionFor, themeStage } from '../domain/devices';
 import { getApplianceStatus, getBoardEntity, getRecipeDurationAtLevel, unlockedCells } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
-import { DeviceIcon } from './V3Codex';
+import { DeviceIcon } from './DeviceIcon';
 import { ItemIcon } from './parts';
 
 export function getDeviceShelfFamilies(state: GameState, filter = 'all') {

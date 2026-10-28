@@ -5,7 +5,7 @@ import { activeDevices } from '../content/board-layouts';
 import { getApplianceStatus, getBoardEntity, getRecipeDuration, unlockedCells } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
 import { ItemIcon } from './parts';
-import { DeviceIcon } from './V3Codex';
+import { DeviceIcon } from './DeviceIcon';
 
 export function formatCookingTime(milliseconds: number) {
   const seconds = Math.max(0, Math.ceil(milliseconds / 1000));

@@ -6,7 +6,7 @@ import { getBoardEntity, mergeTarget } from '../domain/engine';
 import { activeDevices } from '../content/board-layouts';
 import { ItemIcon } from './parts';
 import { BAND_COSTS } from '../content/expansion';
-import { DeviceIcon } from './V3Codex';
+import { DeviceIcon } from './DeviceIcon';
 import { getApplianceDrawerModel, formatCookingTime } from './ApplianceDrawer';
 
 type Props = {

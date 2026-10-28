@@ -6,7 +6,7 @@ export class BoardEffects {
   private inputs = new Set<Phaser.GameObjects.Container>();
   private lastBurst = 0;
 
-  constructor(private scene: Phaser.Scene, private reduced: () => boolean) {}
+  constructor(private scene: Phaser.Scene, private reduced: () => boolean, private decorationsReduced: () => boolean = () => false) {}
 
   press(target: Phaser.GameObjects.Container) {
     this.scene.tweens.killTweensOf(target);
@@ -54,7 +54,7 @@ export class BoardEffects {
   }
 
   burst(x: number, y: number, color = 0xffc750) {
-    if (this.reduced() || this.particles.size >= 24 || this.scene.time.now - this.lastBurst < 70) return;
+    if (this.reduced() || this.decorationsReduced() || this.particles.size >= 24 || this.scene.time.now - this.lastBurst < 70) return;
     this.lastBurst = this.scene.time.now;
     for (let i = 0; i < 6; i++) {
       const angle = i * Math.PI / 3 - Math.PI / 2;

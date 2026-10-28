@@ -1,9 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { memo, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type Phaser from 'phaser';
-import { ALL_DEVICES } from '../content/board-layouts';
-import { DEVICE_FAMILIES } from '../content/expansion';
-import { themeStage } from '../domain/devices';
-import { deviceAssetPath, devicePresentation, itemImageUrl, itemPresentation, svgRasterSize } from '../content/assets';
+import { artUrl, itemPresentation } from '../content/assets';
 import { CHAINS, ITEMS } from '../content/catalog';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
@@ -14,6 +11,10 @@ import { BoardRenderer, itemDisplaySize, itemTexture } from './board-render';
 import { boardPixelRatio, boardPoint, refreshBoardViewport } from './board-viewport';
 import { boardRendererMode } from './board-renderer-mode';
 import { useItemArt } from '../ui/ItemArtContext';
+import { planBoardAssets } from './board-assets';
+import { loadArtImage } from '../platform/asset-queue';
+import { loadEngine } from './load-engine';
+import { DecorationBudget, perfFrame, perfMark, perfMilestone, perfSpan, resetFrameClock } from '../platform/performance';
 
 export interface BoardProps {
   state: GameState;
@@ -29,12 +30,13 @@ export interface BoardProps {
   inputEnabled?: boolean;
   sessionEpoch?: number;
   selectionCancelSequence?: number;
+  onReady?: (ready: boolean) => void;
 }
-interface BoardBridge { sync: () => void; resize: () => void; activate: (index: number) => void; cancel: () => void; }
+interface BoardBridge { sync: () => void; resize: () => void; activate: (index: number) => void; cancel: () => void; retry: () => void; }
 interface Gesture { index: number; x: number; y: number; pointerId: number; uid: string | null; selected: number | null; maxDistance: number; }
 
 /** One scene per mounted board. React supplies snapshots; Phaser never mutates inventory. */
-export default function Board(props: BoardProps) {
+function Board(props: BoardProps) {
   const art = useItemArt();
   const mount = useRef<HTMLDivElement>(null);
   const live = useRef(props);
@@ -43,14 +45,21 @@ export default function Board(props: BoardProps) {
   const [focused, setFocused] = useState<number | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [loadingMessage, setLoadingMessage] = useState('正在加载绘图引擎…');
+  const [attempt, setAttempt] = useState(0);
+  const [deferredError, setDeferredError] = useState('');
+  const [started, setStarted] = useState(props.active !== false);
   const rendererMode = art.renderer ?? boardRendererMode(typeof navigator === 'undefined' ? '' : navigator.userAgent);
-  const pixelRatio = boardPixelRatio(art.pixelRatio ?? (typeof window === 'undefined' ? 1 : window.devicePixelRatio));
+  const deviceRatio = useRef(boardPixelRatio(typeof window === 'undefined' ? 1 : window.devicePixelRatio)).current;
+  const pixelRatio = art.pixelRatio === undefined ? deviceRatio : boardPixelRatio(art.pixelRatio, 3);
   live.current = props;
+  useEffect(() => { if (props.active !== false) setStarted(true); }, [props.active]);
 
   useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.guidanceUids, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence]);
 
   useEffect(() => {
+    if (!started) return;
     setStatus('loading');
+    live.current.onReady?.(false);
     let disposed = false;
     let game: Phaser.Game | undefined;
     let removeListeners: (() => void) | undefined;
@@ -73,11 +82,24 @@ export default function Board(props: BoardProps) {
     };
     progress('正在加载绘图引擎…');
 
-    void import('phaser').then(({ default: Engine }) => {
+    const prepared = new Map<string, HTMLImageElement>();
+    const prepare = async () => {
+      let signature: string;
+      do {
+        const resources = planBoardAssets(live.current.state).critical;
+        signature = `${live.current.sessionEpoch}:${resources.map(resource => resource.key).join(',')}`;
+        let complete = 0;
+        await Promise.all(resources.map(async resource => {
+          const image = await loadArtImage(artUrl(resource.path), 0);
+          prepared.set(resource.key, image);
+          progress(`正在摆好料理台… ${++complete}/${resources.length}`);
+        }));
+      } while (!disposed && signature !== `${live.current.sessionEpoch}:${planBoardAssets(live.current.state).critical.map(resource => resource.key).join(',')}`);
+    };
+    void Promise.all([loadEngine(), prepare()]).then(([{ default: Engine }]) => {
       if (disposed || failed || !mount.current) return;
+      perfMark('board-assets-ready');
       progress('正在初始化料理台…');
-      const directImages = rendererMode === 'canvas';
-
       class PantryScene extends Engine.Scene {
         private board!: BoardRenderer;
         private start: Gesture | null = null;
@@ -90,27 +112,47 @@ export default function Board(props: BoardProps) {
         private paused = false;
         private lastPressed = -Infinity;
         private queuedArt = new Set<string>();
+        private waitingForRestore = false;
+        private nextPointer: Phaser.Input.Pointer | null = null;
+        private cssScale = 1;
+        private measuredDrag = false;
+        private pendingGhosts = new Set<Phaser.GameObjects.Image>();
+        private decoration = new DecorationBudget();
 
         constructor() { super('pantry'); }
 
         preload() {
-          progress('正在加载棋盘素材… 0%');
-          this.load.on('progress', (value: number) => {if(!this.board)progress(`正在加载棋盘素材… ${Math.round(value * 100)}%`);});
-          this.load.on('loaderror', () => fail('棋盘素材未能加载，请检查网络后重试。'));
-          const base = `${import.meta.env.BASE_URL}assets/`;
-          this.load.image('legacy-foods', `${base}foods.webp`);
-          this.queueArt();
-          if (directImages) this.load.image('entity:crate', `${base}entities/crate.svg`);
-          else this.load.svg('entity:crate', `${base}entities/crate.svg`, { width: 96 * pixelRatio, height: 96 * pixelRatio });
+          for (const [key, image] of prepared) this.textures.addImage(key, image);
+          const placeholder = this.make.graphics({ x: 0, y: 0 });
+          placeholder.fillStyle(0xeadcc6).fillCircle(48, 48, 33).lineStyle(3, 0xfffcf2).strokeCircle(48, 48, 25);
+          placeholder.generateTexture('pending-food', 96, 96); placeholder.destroy();
         }
 
         private queueArt() {
-          const state=live.current.state,stage=themeStage(state);let added=false;
-          const add=(key:string,path:string,size:number)=>{if(this.queuedArt.has(key)||this.textures.exists(key))return;this.queuedArt.add(key);added=true;if(path.endsWith('.svg')&&!directImages)this.load.svg(key,path,{width:size,height:size});else this.load.image(key,path);};
-          for(const item of Object.values(ITEMS))if(item.assetId&&((item.stage??1)<=stage||state.discovered.includes(item.id)))add(`item:${item.assetId}`,itemImageUrl(item.id),svgRasterSize(itemPresentation(item.id),pixelRatio));
-          const ids=state.campaign==='fresh'&&state.schemaVersion>=3?DEVICE_FAMILIES.filter(f=>f.stage<=stage).flatMap(f=>(stage>=3?[1,2,3]:[1]).map(l=>`${f.id}-l${l}`)):ALL_DEVICES.map(f=>f.id);
-          for(const id of ids)add(`entity:${id}`,`${import.meta.env.BASE_URL}${deviceAssetPath(id)}`,svgRasterSize(devicePresentation(id),pixelRatio));
-          return added;
+          const plan = planBoardAssets(live.current.state), epoch = live.current.sessionEpoch;
+          for (const [priority, resources] of [[0, plan.critical], [2, plan.soon]] as const) for (const resource of resources) {
+            if (this.queuedArt.has(resource.key) || this.textures.exists(resource.key)) continue;
+            this.queuedArt.add(resource.key);
+            void loadArtImage(artUrl(resource.path), priority).then(image => {
+              if (disposed || epoch !== live.current.sessionEpoch) return;
+              if (!this.textures.exists(resource.key)) this.textures.addImage(resource.key, image);
+              this.installLegacyFrames();
+              this.board.refreshArt([resource.key]);
+              if (this.waitingForRestore && planBoardAssets(live.current.state).critical.every(asset => this.textures.exists(asset.key))) {
+                this.waitingForRestore = false; setStatus('ready'); live.current.onReady?.(true); this.sync();
+              }
+            }, () => {
+              if (!disposed && epoch === live.current.sessionEpoch && priority === 0) setDeferredError('有张食材图片还没准备好');
+            }).finally(() => { this.queuedArt.delete(resource.key); if (!disposed && epoch !== live.current.sessionEpoch) this.queueArt(); });
+          }
+        }
+
+        private installLegacyFrames() {
+          if (!this.textures.exists('legacy-foods')) return;
+          const texture = this.textures.get('legacy-foods');
+          if (texture.has('0')) return;
+          const source = texture.getSourceImage() as HTMLImageElement;
+          for (let i = 0; i < 64; i++) texture.add(i, 0, (i % 8) * source.width / 8, Math.floor(i / 8) * source.height / 8, source.width / 8, source.height / 8);
         }
 
         create() {
@@ -120,24 +162,23 @@ export default function Board(props: BoardProps) {
         }
 
         private createBoard() {
+          perfMark('board-scene-ready');
           this.cameras.main.setZoom(pixelRatio).centerOn(BOARD_WIDTH / 2, BOARD_HEIGHT / 2);
           this.game.canvas.dataset.renderBackend = this.game.renderer.type === Engine.CANVAS ? 'canvas' : 'webgl';
           if (this.game.renderer instanceof Engine.Renderer.Canvas.CanvasRenderer) {
             this.game.renderer.gameContext.imageSmoothingEnabled = true;
             this.game.renderer.gameContext.imageSmoothingQuality = 'high';
           }
-          if (this.textures.exists('legacy-foods')) {
-            const texture = this.textures.get('legacy-foods');
-            const source = texture.getSourceImage() as HTMLImageElement;
-            for (let i = 0; i < 64; i++) texture.add(i, 0, (i % 8) * source.width / 8, Math.floor(i / 8) * source.height / 8, source.width / 8, source.height / 8);
-          }
-          this.board = new BoardRenderer(this, () => live.current.state, pixelRatio);
+          this.installLegacyFrames();
+          this.board = new BoardRenderer(this, () => live.current.state, pixelRatio, () => this.decoration.reduced);
           this.input.on('pointerdown', this.press, this);
           this.input.on('pointermove', this.drag, this);
           this.input.on('pointerup', this.release, this);
           this.input.on('pointerupoutside', this.cancel, this);
           const cancel = () => this.cancel();
           const visibility = () => this.sync();
+          const rendered = () => { const now = performance.now(); perfFrame(now); this.decoration.sample(now); };
+          this.game.events.on(Engine.Core.Events.POST_RENDER, rendered);
           const keydown = (event: KeyboardEvent) => {
             if (event.key === 'Escape' && !event.defaultPrevented && this.allowed()) {
               event.preventDefault();
@@ -157,20 +198,27 @@ export default function Board(props: BoardProps) {
             document.removeEventListener('keydown', keydown);
             this.game.canvas.removeEventListener('pointercancel', cancel);
             this.game.canvas.removeEventListener('touchcancel', cancel);
+            this.game.events.off(Engine.Core.Events.POST_RENDER, rendered);
           };
-          bridge.current = { sync: () => this.sync(), resize: () => this.refreshViewport(), activate: index => this.activate(index), cancel: () => this.cancel() };
+          bridge.current = { sync: () => this.sync(), resize: () => this.refreshViewport(), activate: index => this.activate(index), cancel: () => this.cancel(), retry: () => { setDeferredError(''); this.queueArt(); } };
           this.sync();
           this.refreshViewport();
+          perfMark('board-objects-ready');
           clearTimeout(loadTimer);
-          if (!disposed) setStatus('ready');
+          this.game.events.once(Engine.Core.Events.POST_RENDER, () => {
+            if (!disposed) { setStatus('ready'); live.current.onReady?.(true); perfMark('board-ready'); }
+          });
         }
 
-        update() { this.board?.updateClock(Date.now()); }
+        update() { if (this.nextPointer) { const pointer = this.nextPointer; this.nextPointer = null; this.flushDrag(pointer); } this.board?.updateClock(Date.now()); }
 
-        private allowed() { return live.current.active !== false && live.current.inputEnabled !== false && !document.hidden; }
+        private allowed() { return !this.waitingForRestore && live.current.active !== false && live.current.inputEnabled !== false && !document.hidden; }
 
         private refreshViewport() {
-          if (mount.current && live.current.active !== false && !document.hidden) refreshBoardViewport(this.scale, mount.current);
+          if (mount.current && live.current.active !== false && !document.hidden) {
+            refreshBoardViewport(this.scale, mount.current);
+            this.cssScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH || 1;
+          }
         }
 
         private restoredEpoch = live.current.sessionEpoch;
@@ -178,9 +226,13 @@ export default function Board(props: BoardProps) {
 
         private sync() {
           if (!this.board) return;
-          if(this.queueArt()&&!this.load.isLoading()){this.load.once('complete',()=>{this.board.rebuildArt();this.sync();});this.load.start();}
+          this.queueArt();
           const restoring = this.restoredEpoch !== live.current.sessionEpoch;
-          if (restoring) { this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.board.settle(); }
+          if (restoring) {
+            this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.board.settle(); setDeferredError('');
+            this.waitingForRestore = planBoardAssets(live.current.state).critical.some(asset => !this.textures.exists(asset.key));
+            if (this.waitingForRestore) { setStatus('loading'); live.current.onReady?.(false); }
+          }
           if (this.selectionCancelSequence !== live.current.selectionCancelSequence) {
             this.selectionCancelSequence = live.current.selectionCancelSequence;
             this.cancel();
@@ -193,9 +245,10 @@ export default function Board(props: BoardProps) {
             if (inactive) {
               this.board.settle();
               this.scene.pause();
+              this.sys.setVisible(false); this.game.loop.sleep(); resetFrameClock();
             } else {
+              this.sys.setVisible(true); this.scene.resume(); this.game.loop.wake(); resetFrameClock(); this.decoration.reset();
               this.refreshViewport();
-              this.scene.resume();
             }
           }
           this.input.enabled = this.allowed();
@@ -212,8 +265,11 @@ export default function Board(props: BoardProps) {
           const entity = getBoardEntity(live.current.state, index);
           if (entity.item && this.pending.has(entity.item.uid)) return;
           this.selectionIntent++;
+          this.measuredDrag = false;
+          this.game.events.once(Engine.Core.Events.POST_RENDER, perfSpan('press-feedback'));
           this.pendingSelection = null;
           const selected = live.current.selected;
+          this.cssScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH || 1;
           this.start = { index, x: point.x, y: point.y, pointerId: pointer.id, uid: entity.canMove ? entity.id : null, selected, maxDistance: 0 };
           this.board.press(index);
           void audio.unlock();
@@ -222,12 +278,20 @@ export default function Board(props: BoardProps) {
 
         private measureMovement(point: { x: number; y: number }) {
           if (!this.start) return;
-          const canvasScale = this.game.canvas.getBoundingClientRect().width / BOARD_WIDTH;
-          this.start.maxDistance = Math.max(this.start.maxDistance, Math.hypot(point.x - this.start.x, point.y - this.start.y) * canvasScale);
+          this.start.maxDistance = Math.max(this.start.maxDistance, Math.hypot(point.x - this.start.x, point.y - this.start.y) * this.cssScale);
         }
 
         private drag(pointer: Phaser.Input.Pointer) {
           if (!this.allowed() || !this.start || pointer.id !== this.start.pointerId || !pointer.isDown) return;
+          this.measureMovement(boardPoint(pointer, pixelRatio));
+          if (!this.measuredDrag && this.start.maxDistance >= DRAG_THRESHOLD) {
+            this.measuredDrag = true; this.game.events.once(Engine.Core.Events.POST_RENDER, perfSpan('drag-feedback'));
+          }
+          this.nextPointer = pointer;
+        }
+
+        private flushDrag(pointer: Phaser.Input.Pointer) {
+          if (!this.allowed() || !this.start || pointer.id !== this.start.pointerId) return;
           const point = boardPoint(pointer, pixelRatio);
           this.measureMovement(point);
           if (this.start.maxDistance < DRAG_THRESHOLD || !this.start.uid) return;
@@ -254,14 +318,17 @@ export default function Board(props: BoardProps) {
           if (!this.start || pointer.id !== this.start.pointerId) return;
           // Phaser emits pointerup for native touchcancel before our DOM listener runs.
           if (pointer.wasCanceled) { this.cancel(); return; }
+          this.flushDrag(pointer);
           const start = this.start;
           const point = boardPoint(pointer, pixelRatio);
           this.measureMovement(point);
           const target = cellAt(point.x, point.y);
           const dragged = this.dragged;
+          const ghost = this.ghost; this.ghost = null;
           this.endGesture();
-          if (!this.allowed() || target === null) return;
-          if (dragged !== null && start.uid) { void this.drop(start.index, target, start.uid); return; }
+          if (!this.allowed() || target === null) { ghost?.destroy(); return; }
+          if (dragged !== null && start.uid) { void this.drop(start.index, target, start.uid, ghost); return; }
+          ghost?.destroy();
           if (start.maxDistance >= DRAG_THRESHOLD) return;
           if (target !== start.index) return;
           this.activate(target, start);
@@ -277,14 +344,19 @@ export default function Board(props: BoardProps) {
           if (action.kind === 'command') void this.submit(action.command, action.identity);
         }
 
-        private async drop(from: number, to: number, uid: string) {
-          if (this.pending.has(uid)) return;
+        private async drop(from: number, to: number, uid: string, ghost: Phaser.GameObjects.Image | null) {
+          if (this.pending.has(uid)) { ghost?.destroy(); return; }
           const command = moveCommand(live.current.state, from, to, uid);
-          if (!command) { this.board.reject(from); return; }
+          if (!command) { ghost?.destroy(); this.board.reject(from); return; }
+          if (ghost) { ghost.setAlpha(.72); this.pendingGhosts.add(ghost); this.board.setPending(uid, true); }
           const selection = selectionAfterDrop(live.current.state, from, to, uid);
           const intent = this.selectionIntent;
+          const epoch = live.current.sessionEpoch;
           const success = await this.submit(command, uid);
+          if (ghost) { this.pendingGhosts.delete(ghost); ghost.destroy(); }
           if (disposed) return;
+          this.board.setPending(uid, false);
+          if (epoch !== live.current.sessionEpoch) return;
           if (success && intent === this.selectionIntent) { this.pendingSelection = selection; this.reconcileSelection(); }
           else if (!success) this.board.reject(from);
         }
@@ -314,9 +386,12 @@ export default function Board(props: BoardProps) {
           this.selectionIntent++;
           this.pendingSelection = null;
           this.endGesture();
+          for (const ghost of this.pendingGhosts) ghost.destroy();
+          this.pendingGhosts.clear();
         }
 
         private endGesture() {
+          this.nextPointer = null;
           this.start = null;
           this.dragged = null;
           this.hovered = null;
@@ -335,8 +410,10 @@ export default function Board(props: BoardProps) {
         scale: { mode: Engine.Scale.FIT, autoCenter: Engine.Scale.CENTER_BOTH, width: BOARD_WIDTH * pixelRatio, height: BOARD_HEIGHT * pixelRatio },
         input: { activePointers: 1, touch: { capture: true }, mouse: { preventDefaultWheel: false } },
         render: { antialias: true, pixelArt: false }, audio: { noAudio: true }, banner: false,
-        loader: { imageLoadType: directImages ? 'HTMLImageElement' : 'XHR' },
+        fps: { target: 60, limit: 60 },
+        loader: { maxParallelDownloads: 4, imageLoadType: 'HTMLImageElement' },
       });
+      perfMark('board-engine-created');
       resizeObserver = new ResizeObserver(() => bridge.current?.resize());
       resizeObserver.observe(mount.current);
     }).catch(error => {
@@ -351,10 +428,10 @@ export default function Board(props: BoardProps) {
       removeListeners?.();
       game?.destroy(true);
     };
-  }, [rendererMode, pixelRatio]);
+  }, [rendererMode, pixelRatio, attempt, started]);
 
-  const interactive = props.active !== false && props.inputEnabled !== false;
-  return <div className="board-shell" data-board-status={status} data-board-renderer={rendererMode} data-board-pixel-ratio={pixelRatio} style={{ position: 'relative' }}>
+  const interactive = status === 'ready' && props.active !== false && props.inputEnabled !== false;
+  return <div className="board-shell" data-board-status={status} data-board-ready-ms={perfMilestone('board-ready')} data-board-renderer={rendererMode} data-board-pixel-ratio={pixelRatio} style={{ position: 'relative' }}>
     <div ref={mount} className="phaser-board" style={{ width: '100%', height: '100%', touchAction: 'none', overflow: 'hidden', borderRadius: 9 }} />
     <div className="board-keyboard-grid" role="grid" aria-label="料理棋盘，方向键换格，回车选择和操作，Escape取消选择" aria-rowcount={BOARD_ROWS} aria-colcount={BOARD_COLUMNS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateRows: 'repeat(9, minmax(0, 1fr))', pointerEvents: 'none' }}>
       {Array.from({ length: BOARD_ROWS }, (_, row) => <div key={row} role="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, minmax(0, 1fr))', minWidth: 0, minHeight: 0 }}>
@@ -380,6 +457,8 @@ export default function Board(props: BoardProps) {
       </div>)}
     </div>
     {status === 'loading' && <div className="board-loading" role="status" style={{ position: 'absolute', inset: 0 }}>{loadingMessage}</div>}
-    {status === 'failed' && <div className="board-error" role="alert" style={{ position: 'absolute', inset: 12, display: 'grid', placeContent: 'center', textAlign: 'center', background: '#eef2d5' }}><p>{loadingMessage}</p><button className="primary" onClick={() => window.location.reload()}>重新加载料理台</button><small>已保存的进度会保留</small></div>}
+    {deferredError && status === 'ready' && <div className="board-art-retry" role="status">{deferredError}<button onClick={() => bridge.current?.retry()}>重试图片</button></div>}
+    {status === 'failed' && <div className="board-error" role="alert" style={{ position: 'absolute', inset: 12, display: 'grid', placeContent: 'center', textAlign: 'center', background: '#eef2d5' }}><p>{loadingMessage}</p><button className="primary" onClick={() => setAttempt(value => value + 1)}>重新加载料理台</button><small>已保存的进度会保留</small></div>}
   </div>;
 }
+export default memo(Board);

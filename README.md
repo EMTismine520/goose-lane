@@ -20,6 +20,8 @@ npm run art:build
 npm run art:check
 npm run art:build:v3
 npm run art:check:v3
+npm run art:build:mobile
+npm run art:check:mobile
 npm test
 npm run simulate:v3
 npm run dev
@@ -35,6 +37,8 @@ npm run preview
 `dist/` 可部署到静态HTTPS托管，`release.json` 记录构建对应的源码提交。打开 `v3-preview.html` 可选择八个主题检查点、三材料料理样板和三个手机尺寸，使用独立存档。资源路径支持项目子目录；不能使用双击HTML代替HTTP服务。
 
 界面验收入口 `ui-preview.html?scenario=opening&run=review-01` 提供开局、订单、短配方、三材料烹饪、满盘、建设、主题开放及旧档等13种隔离场景。`scenario=full&renderer=canvas&motion=reduced` 可检查满盘及低动态模式；更换 `run` 可创建新的样板存档。该入口使用独立存档，不注册离线程序。
+
+移动性能版按当前棋盘准备素材，使用128×128无损小图与最多4个前台图片请求。棋盘默认像素比上限2、帧率上限60；图鉴、街景和详情按需加载。`performance.html?perf=1&scenario=late&run=review-01&renderer=canvas` 使用另一套隔离存档，可在“性能记录”中查看和导出启动、资源、帧时间、命令与存储耗时。正常游戏不采集这些记录，也没有远程上报。实现、复现方法与真机验收入口见 [移动性能说明](docs/MOBILE_PERFORMANCE.md)。
 
 ## 怎么玩
 
@@ -60,13 +64,13 @@ A 样板和已替换的新增位图仅保留在本地归档，当前运行包不
 - 每个成功操作先提交 IndexedDB 事务，再更新界面。写入失败不结算，提供错误和导出入口。
 - 当前与上一份快照、旧存档迁移、损坏恢复、JSON 导入导出和三个手动存档位继续保留。
 - Web Locks 保证单窗口写入；不支持时，通过同一 IndexedDB 事务内的存档令牌拒绝过期窗口写入。
-- 正式游戏首次完整联网加载后可离线使用。新版本等待玩家接受更新，未接受前保持原版本资源一致。
+- 正式游戏可玩且空闲后准备离线资源；设置会显示当前主题的实际准备状态。再次进入优先使用已安装版本的页面，版本检查在空闲时进行。新版本等待玩家接受更新，未接受前保持原版本资源一致。
 - 旧恢复链接自动进入 B 组独立试玩，无需点击修复，也不等待旧存档或旧离线程序。详见 [PWA 说明](docs/PWA.md)。
 
 ## 工程与验证
 
 React 19.2.0、Phaser 4.2.1、TypeScript 5.9.3、Vite 7.1.12；领域命令负责资产结算，React 与 Phaser 共用资源和展示配置。第三方许可见 [声明](docs/THIRD_PARTY_NOTICES.md)，构建会复制到 `dist/notices/`。
 
-本版运行完整测试、311项资产检查及三个种子的完整经营模拟。核心预缓存上限为5 MiB，完整离线资源上限为16 MiB；实际结果与手机尺寸检查见 [交付与验证说明](docs/V3_DELIVERY.md)。[原B组记录](docs/B_ART_RELEASE.md)作为历史证据保留。
+构建会检查311项移动小图的完整性和2.25 MiB预算，同时输出 `performance-budget.json` 与 `offline-budget.json`。现代新档首次资源预算1 MiB、后期1.5 MiB；核心预缓存上限5 MiB，完整资源上限16 MiB。压缩参考预算与手机实测分别记录，详见 [移动性能说明](docs/MOBILE_PERFORMANCE.md)。[原完整图鉴交付](docs/V3_DELIVERY.md)与[原B组记录](docs/B_ART_RELEASE.md)作为历史证据保留。
 
 桌面浏览器、模拟手机尺寸和 HTTP 校验与微信真机分别记录；前者不能标记为微信真机通过。真人上手与长期游玩体验也不能由自动模拟替代。

@@ -2,8 +2,19 @@ import { ALL_DEVICES } from './board-layouts';
 import { ITEMS } from './catalog';
 import B_ART from './b-art.json';
 import V3_ART from './v3-art.json';
+import MOBILE_ART from './mobile-art.json';
 
 export { B_ART };
+
+/** Content-addressed derivatives leave the original artwork and save identifiers intact. */
+export function mobileAssetPath(path: string): string {
+  const id = /^assets\/v3-b\/([^/]+)\.webp$/.exec(path)?.[1];
+  return id ? (MOBILE_ART as Record<string, string>)[id] ?? path : path;
+}
+export function artUrl(path: string): string { return path.startsWith('/') ? path : `${import.meta.env.BASE_URL}${path}`; }
+export function sizedArtPath(path: string, size: number, ratio: number): string {
+  return size * Math.min(3, Math.max(1, ratio)) <= 128 ? mobileAssetPath(path) : path;
+}
 
 /** Same paths for React and Phaser, relative to Vite's public base. */
 export function itemAssetPath(item: string): string | null {
@@ -53,5 +64,5 @@ export function svgRasterSize(presentation: { svgSize: number }, pixelRatio: num
 export function itemImageUrl(item: string): string {
   const path = itemPresentation(item).path;
   if (!path) return '';
-  return path.startsWith('/') ? path : `${import.meta.env.BASE_URL}${path}`;
+  return artUrl(path);
 }

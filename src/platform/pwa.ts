@@ -1,4 +1,5 @@
 export type ActivateUpdate = () => Promise<void>;
+import { afterPlayIdle } from './play-idle';
 
 /** Registers only a production build. Updates remain waiting until the caller has saved safely. */
 export function registerPwa(
@@ -15,6 +16,7 @@ export function registerPwa(
   let announced: ServiceWorker | null = null;
   let activating: Promise<void> | undefined;
   let cancelActivation: (() => void) | undefined;
+  let cancelCheck: (() => void) | undefined;
   const container = navigator.serviceWorker;
 
   const controllerChanged = () => {
@@ -63,7 +65,11 @@ export function registerPwa(
   };
   const checkForUpdate = () => {
     if (disposed || document.visibilityState === 'hidden') return;
-    void registration?.update().catch(() => { /* Offline is expected; the installed release remains available. */ });
+    cancelCheck?.();
+    cancelCheck = afterPlayIdle(() => {
+      void registration?.update().catch(() => { /* Offline is expected; the installed release remains available. */ });
+      return () => {};
+    });
   };
 
   const base = new URL(import.meta.env.BASE_URL, document.baseURI);
@@ -81,6 +87,7 @@ export function registerPwa(
 
   return () => {
     disposed = true;
+    cancelCheck?.();
     cancelActivation?.();
     container.removeEventListener('controllerchange', controllerChanged);
     registration?.removeEventListener('updatefound', updateFound);

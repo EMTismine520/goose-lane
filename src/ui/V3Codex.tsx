@@ -2,15 +2,13 @@ import { useLayoutEffect, useRef } from 'react';
 import { Search, ArrowLeft, ArrowRight, LockKeyhole, BookOpen, MapPin, Check } from 'lucide-react';
 import { CHAINS, ITEMS, MODERN_ITEMS, MODERN_RECIPES } from '../content/catalog';
 import { DEVICE_FAMILIES, THEME_NAMES } from '../content/expansion';
-import { deviceAssetPath } from '../content/assets';
 import { getRecipeDurationAtLevel, inventoryCount, mergeTarget } from '../domain/engine';
 import { themeStage } from '../domain/devices';
 import type { GameState } from '../domain/types';
 import { ItemIcon } from './parts';
+import { DeviceIcon, EMPTY_CODEX, type CodexView } from './DeviceIcon';
+export { DeviceIcon, EMPTY_CODEX, type CodexView } from './DeviceIcon';
 
-export interface CodexView { query:string; filter:string; scroll:number; }
-export const EMPTY_CODEX:CodexView={query:'',filter:'all',scroll:0};
-export function DeviceIcon({family,level=1,size=64}:{family:string;level?:number;size?:number}) { return <img className="device-icon" src={`${import.meta.env.BASE_URL}${deviceAssetPath(`${family}-l${level}`)}`} alt={`${DEVICE_FAMILIES.find(f=>f.id===family)?.name} ${level}级`} width={size} height={size} draggable={false}/>; }
 export function V3Codex({state,onItem,onDevice,view=EMPTY_CODEX,onView=()=>{}}:{state:GameState;onItem:(id:string)=>void;onDevice:(id:string)=>void;view?:CodexView;onView?:(v:CodexView)=>void}) {
   const ref=useRef<HTMLElement>(null),stage=themeStage(state);
   const currentView=useRef(view),publishView=useRef(onView);
