@@ -61,7 +61,7 @@ describe('home kitchen persistence transactions', () => {
     const listed = await repo.listManualSlots();
     expect(listed[0].status).toBe('ready');
     const read = await repo.readManualSlot(1);
-    expect(read.state.contentVersion).toBe('3.0.0');
+    expect(read.state.contentVersion).toBe('4.0.0');
     expect(read.state.appliances).toHaveLength(3);
     expect(await repo.exportRaw()).toBe(rawBefore);
   });

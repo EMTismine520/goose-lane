@@ -1,3 +1,5 @@
+import {finishedDrink} from './finished-drinks.mjs';
+import {openingRecipe} from './opening-recipes.mjs';
 import {C,p,e,r,line,light,t,leaf,plate,deepBowl,lemonSlice,tomatoWedge,onionRing,grillMarks,riceMarks,crab,milkTea,bagel} from './primitives.mjs';
 import {smallBowl,cup,bean,iceCube,pearls} from './materials.mjs';
 
@@ -7,7 +9,7 @@ const herbs=()=>line('m30 61 4-2m21 7 4-2m8-20 4 1','#82a15c',2.8)+e(42,47,2.2,1
 const rice=()=>p('M20 59q0-28 29-29 28 1 28 29 0 15-29 16T20 59Z','url(#rice)')+riceMarks();
 const cut=(color='url(#roast)',x=48,y=49,s=1,a=0)=>t(p('M-25-9q9-14 26-8l22 11q11 7 2 18-9 9-22 5l-26-10q-12-6-2-16Z',color)+light('m-17-7 8-2',2.5),`translate(${x} ${y}) rotate(${a}) scale(${s})`);
 const bowlMeal=body=>deepBowl()+body;
-const plated=body=>plate()+body;
+const plated=body=>plate()+t(body,'translate(-4 -7) scale(1.08)');
 const cubes=(color='url(#glaze)',count=5)=>Array.from({length:count},(_,i)=>{const x=23+i%3*22,y=39+Math.floor(i/3)*22;return p(`M${x} ${y}l14-5 10 10-2 15-16 4-8-10Z`,color,'stroke-width="1.8"')+light(`m${x+4} ${y+2} 8-2`,2);}).join('');
 const popcorn=(color='url(#garlic)')=>[[27,37],[47,27],[65,39],[35,55],[58,57]].map(([x,y])=>t(p('M-7-4q-5-8 2-11 6-4 9 3 9-2 11 5 2 7-6 8-2 10-10 6-8 1-6-7Z',color,'stroke-width="1.7"')+line('m-1-5 3 2','#d9bb86',1.3),`translate(${x} ${y})`)).join('');
 const meatball=(x,y,s=1)=>t(p('M-11-11q10-9 21-1 9 10 1 21-11 9-23 0-8-9 1-20Z','url(#roast)')+light('m-7-5 5-3',2.6)+line('m3 4 4 1','#9f6847',1.5),`translate(${x} ${y}) scale(${s})`);
@@ -22,9 +24,11 @@ const creamyMold=(color='url(#garlic)')=>plated(p('M28 27h39l8 40q-26 18-55 0Z',
 const iceCream=(chocolate=false)=>smallBowl('url(#bowl)')+[[33,39],[61,39],[48,21]].map(([x,y])=>e(x,y,18,16,chocolate?'url(#coffee)':'url(#egg)')+light(`M${x-9} ${y-5}q3-4 7-4`,2.6)).join('')+(chocolate?line('m34 31 3 2m19-16 3 2m5 22 3 2','#e0b38c',2.1):'');
 
 export function recipe(name,raw){
+ const opening=openingRecipe(name,raw);if(opening)return opening;
+ const beverage=finishedDrink(name,raw);if(beverage)return beverage;
  const cooked=(food,x=48,y=45,s=.64,a=0)=>small(raw(food).replace(/url\(#(?:pork|red|chicken|gizzard|meat)\)/g,'url(#roast)'),x,y,s,a);
  const ingredient=(food,x=48,y=45,s=.6,a=0)=>small(raw(food),x,y,s,a);
- const grill=(food,extra='')=>plated(cooked(food,48,47,.62)+grillMarks(48,51,.7)+herbs()+extra);
+ const grill=(food,extra='')=>p('M8 60 33 41h54v29L62 87H9Z','url(#wood)')+p('M8 60 33 41h54L62 78H9Z','url(#grain)')+line('M14 68 58 74m8-22 14-7',C.darkWood,1.3)+cooked(food,46,42,.77)+grillMarks(48,47,.75)+herbs()+extra;
  if(name==='凉拌鸡肉卷')return plated(greens()+[0,1].map(i=>t(p('M23 30h24l24 25q11 11-3 20-10 7-20-3L20 48q-7-11 3-18Z','url(#garlic)')+e(58,63,16,12,'#e4d8b3','transform="rotate(30 58 63)"')+e(58,63,11,8,'url(#green)','transform="rotate(30 58 63)" stroke-width="1.5"')+e(58,63,7,5,'url(#chicken)','transform="rotate(30 58 63)" stroke-width="1.3"'),`translate(${i*17-7} ${i*9-5}) scale(.8)`)).join(''));
  if(name==='手撕紫甘蓝')return plated(greens()+p('M20 48q10-19 26-10 17-11 30 4 13 22-9 29-27 12-48-6Z','url(#onion)')+line('M25 46q15 9 25-3m-28 11q22 12 40-3m-30 13q24 10 39-6m-26-20q11 10 25 5','#eac8df',2.5)+herbs());
  if(name==='新鲜生蚝')return plated(ingredient('生蚝',43,47,.7)+lemonSlice(76,66,.7));

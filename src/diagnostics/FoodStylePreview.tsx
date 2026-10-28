@@ -39,8 +39,8 @@ function Preview({ repository, scope }: { repository: SaveRepository; scope: str
 export async function renderFoodStylePreview() {
   const layout = new URLSearchParams(location.search).get('layout') === 'sausages' ? 'sausages' : 'showcase';
   const initial = createFoodStyleState(Date.now(), layout);
-  const key = 'goose-lane-art-qa-scope';
-  const scope = sessionStorage.getItem(key) ?? `goose-lane-art-qa-${crypto.randomUUID()}`;
+  const key = 'goose-lane-v4-art-qa-scope';
+  const scope = sessionStorage.getItem(key) ?? `goose-lane-v4-art-qa-${crypto.randomUUID()}`;
   sessionStorage.setItem(key, scope);
   const repository = new SaveRepository(scope);
   const previous = await repository.open();

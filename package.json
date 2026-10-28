@@ -1,11 +1,11 @@
 {
   "name": "goose-lane",
   "private": true,
-  "version": "3.0.0",
+  "version": "4.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "node scripts/build-mobile-art.mjs --check && tsc -b && vite build && node scripts/package-notices.mjs && node scripts/stamp-release.mjs && node scripts/build-sw.mjs && node scripts/performance-budget.mjs",
+    "build": "tsx scripts/export-v3-catalog.ts && node scripts/build-mobile-art.mjs --check && tsc -b && vite build && node scripts/package-notices.mjs && node scripts/stamp-release.mjs && node scripts/build-sw.mjs && node scripts/performance-budget.mjs",
     "package:food-preview": "node scripts/package-food-preview.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
@@ -17,7 +17,11 @@
     "art:check:v3": "node scripts/check-v3-art.mjs",
     "art:build:v3": "node artwork/v3-b/draw-masters.mjs && node scripts/package-v3-b-art.mjs",
     "art:build:mobile": "node scripts/build-mobile-art.mjs",
-    "art:check:mobile": "node scripts/build-mobile-art.mjs --check"
+    "art:check:mobile": "node scripts/build-mobile-art.mjs --check",
+    "simulate:v4": "tsx src/diagnostics/complete-v3.ts",
+    "art:build:v4": "node artwork/v3-b/draw-masters.mjs && node scripts/package-v3-b-art.mjs",
+    "art:check:v4": "node scripts/check-v3-art.mjs",
+    "art:review:v4": "node scripts/review-v4-art.mjs"
   },
   "dependencies": {
     "lucide-react": "0.468.0",

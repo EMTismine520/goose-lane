@@ -1,184 +1,184 @@
 {
   "schemaVersion": 3,
-  "contentVersion": "3.0.0",
-  "revision": 3251,
+  "contentVersion": "4.0.0",
+  "revision": 3349,
   "seed": 1058348983,
-  "nextId": 1308,
+  "nextId": 1320,
   "board": [
     null,
     null,
     null,
     null,
     {
-      "uid": "g1294",
-      "item": "fresh-fruit-7"
-    },
-    {
-      "uid": "g881",
-      "item": "fresh-spice-6"
-    },
-    {
-      "uid": "g870",
-      "item": "fresh-milk-3"
-    },
-    null,
-    null,
-    null,
-    {
-      "uid": "g1289",
+      "uid": "g1297",
       "item": "fresh-veg-7"
     },
     {
-      "uid": "g1290",
-      "item": "fresh-fruit-6"
-    },
-    {
-      "uid": "g845",
-      "item": "fresh-sea-3"
-    },
-    {
-      "uid": "g1300",
-      "item": "fresh-beast-10"
-    },
-    null,
-    {
-      "uid": "g1279",
-      "item": "fresh-mixer-12"
-    },
-    {
-      "uid": "g411",
-      "item": "fresh-poultry-8"
-    },
-    {
-      "uid": "g795",
+      "uid": "g883",
       "item": "fresh-spice-6"
     },
     {
-      "uid": "g1293",
-      "item": "fresh-fruit-5"
-    },
-    {
-      "uid": "g642",
+      "uid": "g644",
       "item": "fresh-seasonal-5"
     },
+    null,
+    null,
+    null,
     {
-      "uid": "g1059",
-      "item": "fresh-spice-8"
-    },
-    {
-      "uid": "g925",
-      "item": "fresh-poultry-3"
-    },
-    {
-      "uid": "g503",
-      "item": "fresh-sweet-8"
-    },
-    {
-      "uid": "g1227",
-      "item": "fresh-sea-5"
-    },
-    {
-      "uid": "g627",
-      "item": "fresh-beast-2"
-    },
-    {
-      "uid": "g1045",
-      "item": "fresh-milk-5"
-    },
-    {
-      "uid": "g1060",
-      "item": "fresh-spice-8"
-    },
-    {
-      "uid": "g1078",
-      "item": "fresh-tea-3"
-    },
-    {
-      "uid": "g1225",
-      "item": "fresh-sea-6"
-    },
-    {
-      "uid": "g860",
+      "uid": "g847",
       "item": "fresh-sea-3"
     },
     {
-      "uid": "g957",
+      "uid": "g505",
+      "item": "fresh-sweet-8"
+    },
+    {
+      "uid": "g862",
+      "item": "fresh-sea-3"
+    },
+    {
+      "uid": "g959",
       "item": "fresh-poultry-6"
     },
     null,
     {
-      "uid": "g145",
-      "item": "fresh-poultry-2"
+      "uid": "g1298",
+      "item": "fresh-fruit-6"
     },
-    null,
     {
-      "uid": "g1098",
-      "item": "fresh-coffee-6"
+      "uid": "g412",
+      "item": "fresh-poultry-8"
+    },
+    {
+      "uid": "g629",
+      "item": "fresh-beast-2"
+    },
+    {
+      "uid": "g776",
+      "item": "fresh-grain-9"
+    },
+    {
+      "uid": "g927",
+      "item": "fresh-poultry-3"
+    },
+    {
+      "uid": "g1304",
+      "item": "fresh-fruit-7"
+    },
+    {
+      "uid": "g1231",
+      "item": "fresh-sea-6"
     },
     {
       "uid": "g1229",
       "item": "fresh-sea-5"
     },
     {
-      "uid": "g1288",
-      "item": "fresh-veg-6"
+      "uid": "g1301",
+      "item": "fresh-fruit-5"
     },
     {
-      "uid": "g993",
-      "item": "fresh-milk-2"
+      "uid": "g1061",
+      "item": "fresh-spice-8"
     },
     {
-      "uid": "g1077",
-      "item": "fresh-tea-3"
+      "uid": "g1235",
+      "item": "fresh-sea-5"
     },
     {
-      "uid": "g1080",
-      "item": "fresh-tea-2"
-    },
-    {
-      "uid": "g1305",
-      "item": "fresh-sweet-6"
-    },
-    null,
-    {
-      "uid": "g774",
-      "item": "fresh-grain-9"
-    },
-    {
-      "uid": "g1040",
+      "uid": "g1042",
       "item": "fresh-sweet-2"
     },
     {
-      "uid": "g1105",
+      "uid": "g1102",
       "item": "fresh-coffee-6"
     },
     {
-      "uid": "g1083",
-      "item": "fresh-tea-2"
+      "uid": "g1047",
+      "item": "fresh-milk-5"
     },
     {
-      "uid": "g1104",
-      "item": "fresh-coffee-5"
+      "uid": "g1079",
+      "item": "fresh-tea-3"
+    },
+    {
+      "uid": "g995",
+      "item": "fresh-milk-2"
+    },
+    {
+      "uid": "g872",
+      "item": "fresh-milk-3"
+    },
+    {
+      "uid": "g145",
+      "item": "fresh-poultry-2"
+    },
+    {
+      "uid": "g1310",
+      "item": "fresh-beast-10"
     },
     null,
+    {
+      "uid": "g1285",
+      "item": "fresh-mixer-12"
+    },
+    {
+      "uid": "g1294",
+      "item": "fresh-veg-6"
+    },
     null,
     {
-      "uid": "g972",
-      "item": "fresh-sea-8"
+      "uid": "g1080",
+      "item": "fresh-tea-3"
     },
     {
-      "uid": "g1304",
-      "item": "fresh-sweet-5"
+      "uid": "g1109",
+      "item": "fresh-coffee-6"
     },
     {
-      "uid": "g1299",
+      "uid": "g1309",
       "item": "fresh-beast-6"
     },
     null,
+    {
+      "uid": "g976",
+      "item": "fresh-sea-8"
+    },
+    {
+      "uid": "g804",
+      "item": "fresh-spice-6"
+    },
+    {
+      "uid": "g1315",
+      "item": "fresh-sweet-6"
+    },
+    {
+      "uid": "g1108",
+      "item": "fresh-coffee-5"
+    },
+    {
+      "uid": "g1314",
+      "item": "fresh-sweet-5"
+    },
+    null,
+    null,
+    {
+      "uid": "g1062",
+      "item": "fresh-spice-8"
+    },
+    {
+      "uid": "g1082",
+      "item": "fresh-tea-2"
+    },
     null,
     null,
     null,
     null,
+    null,
+    {
+      "uid": "g1085",
+      "item": "fresh-tea-2"
+    },
     null,
     null,
     null,
@@ -432,7 +432,7 @@
     "v3-order-123"
   ],
   "day": 1,
-  "coins": 8342,
+  "coins": 7862,
   "reputation": 290,
   "shops": {
     "breakfast": 0,
@@ -703,11 +703,11 @@
     "reducedMotion": false,
     "volume": 0.55
   },
-  "lastSeen": 134865000,
+  "lastSeen": 134895000,
   "undo": null,
   "energy": {
-    "value": 0,
-    "lastRecoveryAt": 134770000
+    "value": 1,
+    "lastRecoveryAt": 134890000
   },
   "appliances": [
     {
@@ -717,7 +717,7 @@
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
-      "version": 60
+      "version": 58
     },
     {
       "id": "fruit-press",
@@ -726,7 +726,7 @@
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
-      "version": 77
+      "version": 79
     },
     {
       "id": "home-cooking-pot",
@@ -758,7 +758,7 @@
     {
       "id": "microwave",
       "slot": 10,
-      "index": 8,
+      "index": 3,
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
@@ -767,25 +767,25 @@
     {
       "id": "charcoal-grill",
       "slot": 6,
-      "index": 9,
+      "index": -1,
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
-      "version": 99
+      "version": 102
     },
     {
       "id": "wok",
       "slot": 9,
-      "index": 2,
+      "index": 7,
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
-      "version": 39
+      "version": 41
     },
     {
       "id": "steamer",
       "slot": 8,
-      "index": 0,
+      "index": 14,
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
@@ -803,7 +803,7 @@
     {
       "id": "ice-cream-machine",
       "slot": 12,
-      "index": 14,
+      "index": 9,
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
@@ -812,7 +812,7 @@
     {
       "id": "bar",
       "slot": 13,
-      "index": 3,
+      "index": 2,
       "inputSlots": [],
       "job": null,
       "outputSlot": null,
@@ -850,104 +850,6 @@
   },
   "migrationInbox": [],
   "processedCommandIds": [
-    "v3-sim-42-2995",
-    "v3-sim-42-2996",
-    "v3-sim-42-2997",
-    "v3-sim-42-2998",
-    "v3-sim-42-2999",
-    "v3-sim-42-3000",
-    "v3-sim-42-3001",
-    "v3-sim-42-3002",
-    "v3-sim-42-3003",
-    "v3-sim-42-3004",
-    "v3-sim-42-3005",
-    "v3-sim-42-3006",
-    "v3-sim-42-3007",
-    "v3-sim-42-3008",
-    "v3-sim-42-3009",
-    "v3-sim-42-3010",
-    "v3-sim-42-3011",
-    "v3-sim-42-3012",
-    "v3-sim-42-3013",
-    "v3-sim-42-3014",
-    "v3-sim-42-3015",
-    "v3-sim-42-3016",
-    "v3-sim-42-3017",
-    "v3-sim-42-3018",
-    "v3-sim-42-3019",
-    "v3-sim-42-3020",
-    "v3-sim-42-3021",
-    "v3-sim-42-3022",
-    "v3-sim-42-3023",
-    "v3-sim-42-3024",
-    "v3-sim-42-3025",
-    "v3-sim-42-3026",
-    "v3-sim-42-3027",
-    "v3-sim-42-3028",
-    "v3-sim-42-3029",
-    "v3-sim-42-3030",
-    "v3-sim-42-3031",
-    "v3-sim-42-3032",
-    "v3-sim-42-3033",
-    "v3-sim-42-3034",
-    "v3-sim-42-3035",
-    "v3-sim-42-3036",
-    "v3-sim-42-3037",
-    "v3-sim-42-3038",
-    "v3-sim-42-3039",
-    "v3-sim-42-3040",
-    "v3-sim-42-3041",
-    "v3-sim-42-3042",
-    "v3-sim-42-3043",
-    "v3-sim-42-3044",
-    "v3-sim-42-3045",
-    "v3-sim-42-3046",
-    "v3-sim-42-3047",
-    "v3-sim-42-3048",
-    "v3-sim-42-3049",
-    "v3-sim-42-3050",
-    "v3-sim-42-3051",
-    "v3-sim-42-3052",
-    "v3-sim-42-3053",
-    "v3-sim-42-3054",
-    "v3-sim-42-3055",
-    "v3-sim-42-3056",
-    "v3-sim-42-3057",
-    "v3-sim-42-3058",
-    "v3-sim-42-3059",
-    "v3-sim-42-3060",
-    "v3-sim-42-3061",
-    "v3-sim-42-3062",
-    "v3-sim-42-3063",
-    "v3-sim-42-3064",
-    "v3-sim-42-3065",
-    "v3-sim-42-3066",
-    "v3-sim-42-3067",
-    "v3-sim-42-3068",
-    "v3-sim-42-3069",
-    "v3-sim-42-3070",
-    "v3-sim-42-3071",
-    "v3-sim-42-3072",
-    "v3-sim-42-3073",
-    "v3-sim-42-3074",
-    "v3-sim-42-3075",
-    "v3-sim-42-3076",
-    "v3-sim-42-3077",
-    "v3-sim-42-3078",
-    "v3-sim-42-3079",
-    "v3-sim-42-3080",
-    "v3-sim-42-3081",
-    "v3-sim-42-3082",
-    "v3-sim-42-3083",
-    "v3-sim-42-3084",
-    "v3-sim-42-3085",
-    "v3-sim-42-3086",
-    "v3-sim-42-3087",
-    "v3-sim-42-3088",
-    "v3-sim-42-3089",
-    "v3-sim-42-3090",
-    "v3-sim-42-3091",
-    "v3-sim-42-3092",
     "v3-sim-42-3093",
     "v3-sim-42-3094",
     "v3-sim-42-3095",
@@ -1105,67 +1007,165 @@
     "v3-sim-42-3247",
     "v3-sim-42-3248",
     "v3-sim-42-3249",
-    "v3-sim-42-3250"
+    "v3-sim-42-3250",
+    "v3-sim-42-3251",
+    "v3-sim-42-3252",
+    "v3-sim-42-3253",
+    "v3-sim-42-3254",
+    "v3-sim-42-3255",
+    "v3-sim-42-3256",
+    "v3-sim-42-3257",
+    "v3-sim-42-3258",
+    "v3-sim-42-3259",
+    "v3-sim-42-3260",
+    "v3-sim-42-3261",
+    "v3-sim-42-3262",
+    "v3-sim-42-3263",
+    "v3-sim-42-3264",
+    "v3-sim-42-3265",
+    "v3-sim-42-3266",
+    "v3-sim-42-3267",
+    "v3-sim-42-3268",
+    "v3-sim-42-3269",
+    "v3-sim-42-3270",
+    "v3-sim-42-3271",
+    "v3-sim-42-3272",
+    "v3-sim-42-3273",
+    "v3-sim-42-3274",
+    "v3-sim-42-3275",
+    "v3-sim-42-3276",
+    "v3-sim-42-3277",
+    "v3-sim-42-3278",
+    "v3-sim-42-3279",
+    "v3-sim-42-3280",
+    "v3-sim-42-3281",
+    "v3-sim-42-3282",
+    "v3-sim-42-3283",
+    "v3-sim-42-3284",
+    "v3-sim-42-3285",
+    "v3-sim-42-3286",
+    "v3-sim-42-3287",
+    "v3-sim-42-3288",
+    "v3-sim-42-3289",
+    "v3-sim-42-3290",
+    "v3-sim-42-3291",
+    "v3-sim-42-3292",
+    "v3-sim-42-3293",
+    "v3-sim-42-3294",
+    "v3-sim-42-3295",
+    "v3-sim-42-3296",
+    "v3-sim-42-3297",
+    "v3-sim-42-3298",
+    "v3-sim-42-3299",
+    "v3-sim-42-3300",
+    "v3-sim-42-3301",
+    "v3-sim-42-3302",
+    "v3-sim-42-3303",
+    "v3-sim-42-3304",
+    "v3-sim-42-3305",
+    "v3-sim-42-3306",
+    "v3-sim-42-3307",
+    "v3-sim-42-3308",
+    "v3-sim-42-3309",
+    "v3-sim-42-3310",
+    "v3-sim-42-3311",
+    "v3-sim-42-3312",
+    "v3-sim-42-3313",
+    "v3-sim-42-3314",
+    "v3-sim-42-3315",
+    "v3-sim-42-3316",
+    "v3-sim-42-3317",
+    "v3-sim-42-3318",
+    "v3-sim-42-3319",
+    "v3-sim-42-3320",
+    "v3-sim-42-3321",
+    "v3-sim-42-3322",
+    "v3-sim-42-3323",
+    "v3-sim-42-3324",
+    "v3-sim-42-3325",
+    "v3-sim-42-3326",
+    "v3-sim-42-3327",
+    "v3-sim-42-3328",
+    "v3-sim-42-3329",
+    "v3-sim-42-3330",
+    "v3-sim-42-3331",
+    "v3-sim-42-3332",
+    "v3-sim-42-3333",
+    "v3-sim-42-3334",
+    "v3-sim-42-3335",
+    "v3-sim-42-3336",
+    "v3-sim-42-3337",
+    "v3-sim-42-3338",
+    "v3-sim-42-3339",
+    "v3-sim-42-3340",
+    "v3-sim-42-3341",
+    "v3-sim-42-3342",
+    "v3-sim-42-3343",
+    "v3-sim-42-3344",
+    "v3-sim-42-3345",
+    "v3-sim-42-3346",
+    "v3-sim-42-3347",
+    "v3-sim-42-3348"
   ],
   "cellVersions": [
-    117,
+    114,
     94,
-    40,
-    174,
-    70,
-    113,
-    56,
-    10,
-    100,
-    188,
-    115,
+    117,
+    88,
+    103,
     75,
-    30,
-    39,
-    139,
-    91,
-    9,
-    64,
-    68,
-    7,
-    39,
-    125,
-    38,
-    89,
-    13,
-    72,
-    9,
     5,
-    57,
-    109,
-    54,
-    76,
-    7,
-    46,
-    11,
-    37,
-    4,
-    40,
-    25,
-    3,
-    27,
-    14,
-    40,
+    192,
+    9,
+    146,
+    103,
+    19,
+    80,
+    13,
+    129,
+    110,
+    15,
+    23,
     43,
+    48,
+    17,
+    96,
+    109,
+    70,
+    63,
+    91,
+    24,
+    3,
+    91,
+    115,
+    64,
+    60,
+    7,
+    35,
+    12,
+    53,
+    29,
+    45,
+    20,
+    4,
+    21,
     14,
+    51,
+    20,
+    26,
     9,
     38,
     59,
     10,
-    21,
-    8,
+    23,
     9,
+    4,
     0,
     12,
     0,
     0,
-    0,
-    0,
+    2,
+    4,
     0,
     0,
     0,
@@ -1181,7 +1181,7 @@
       "index": null,
       "selectedChain": "fresh-veg",
       "band": 0,
-      "version": 37
+      "version": 21
     },
     {
       "id": "fruit-cart",
@@ -1190,7 +1190,7 @@
       "index": null,
       "selectedChain": "fresh-fruit",
       "band": 0,
-      "version": 39
+      "version": 15
     },
     {
       "id": "chopping-board",
@@ -1199,7 +1199,7 @@
       "index": null,
       "selectedChain": null,
       "band": 0,
-      "version": 21
+      "version": 19
     },
     {
       "id": "fruit-press",
@@ -1208,7 +1208,7 @@
       "index": null,
       "selectedChain": null,
       "band": 0,
-      "version": 13
+      "version": 15
     },
     {
       "id": "beast-meat-cart",
@@ -1217,7 +1217,7 @@
       "index": null,
       "selectedChain": "fresh-beast",
       "band": 0,
-      "version": 39
+      "version": 41
     },
     {
       "id": "poultry-cart",
@@ -1226,7 +1226,7 @@
       "index": null,
       "selectedChain": "fresh-poultry",
       "band": 0,
-      "version": 25
+      "version": 27
     },
     {
       "id": "spice-box",
@@ -1235,7 +1235,7 @@
       "index": null,
       "selectedChain": "fresh-spice",
       "band": 0,
-      "version": 47
+      "version": 57
     },
     {
       "id": "home-cooking-pot",
@@ -1253,7 +1253,7 @@
       "index": null,
       "selectedChain": "fresh-milk",
       "band": 0,
-      "version": 28
+      "version": 46
     },
     {
       "id": "grain-box",
@@ -1262,7 +1262,7 @@
       "index": null,
       "selectedChain": "fresh-grain",
       "band": 0,
-      "version": 30
+      "version": 50
     },
     {
       "id": "sweet-cabinet",
@@ -1271,16 +1271,43 @@
       "index": null,
       "selectedChain": "fresh-sweet",
       "band": 0,
-      "version": 20
+      "version": 38
     },
     {
-      "id": "drink-fridge",
-      "familyId": "drink-fridge",
+      "id": "seasonal-produce-rack",
+      "familyId": "seasonal-produce-rack",
+      "level": 3,
+      "index": null,
+      "selectedChain": "fresh-seasonal",
+      "band": 0,
+      "version": 18
+    },
+    {
+      "id": "exotic-fruit-basket",
+      "familyId": "exotic-fruit-basket",
+      "level": 3,
+      "index": null,
+      "selectedChain": "fresh-exotic",
+      "band": 0,
+      "version": 24
+    },
+    {
+      "id": "coffee-grinder",
+      "familyId": "coffee-grinder",
       "level": 3,
       "index": null,
       "selectedChain": "fresh-coffee",
       "band": 0,
-      "version": 28
+      "version": 16
+    },
+    {
+      "id": "tea-caddy",
+      "familyId": "tea-caddy",
+      "level": 3,
+      "index": null,
+      "selectedChain": "fresh-tea",
+      "band": 0,
+      "version": 14
     },
     {
       "id": "frying-station",
@@ -1304,7 +1331,7 @@
       "id": "microwave",
       "familyId": "microwave",
       "level": 3,
-      "index": 8,
+      "index": 3,
       "selectedChain": null,
       "band": 0,
       "version": 5
@@ -1313,25 +1340,25 @@
       "id": "charcoal-grill",
       "familyId": "charcoal-grill",
       "level": 3,
-      "index": 9,
+      "index": null,
       "selectedChain": null,
       "band": 0,
-      "version": 5
+      "version": 8
     },
     {
       "id": "wok",
       "familyId": "wok",
       "level": 3,
-      "index": 2,
+      "index": 7,
       "selectedChain": null,
       "band": 0,
-      "version": 3
+      "version": 5
     },
     {
       "id": "seafood-fridge",
       "familyId": "seafood-fridge",
       "level": 3,
-      "index": 7,
+      "index": 8,
       "selectedChain": "fresh-sea",
       "band": 0,
       "version": 3
@@ -1340,7 +1367,7 @@
       "id": "steamer",
       "familyId": "steamer",
       "level": 3,
-      "index": 0,
+      "index": 14,
       "selectedChain": null,
       "band": 0,
       "version": 3
@@ -1358,8 +1385,17 @@
       "id": "ice-cream-machine",
       "familyId": "ice-cream-machine",
       "level": 3,
-      "index": 14,
+      "index": 9,
       "selectedChain": null,
+      "band": 0,
+      "version": 3
+    },
+    {
+      "id": "mixer-base-cooler",
+      "familyId": "mixer-base-cooler",
+      "level": 3,
+      "index": 0,
+      "selectedChain": "fresh-mixer",
       "band": 0,
       "version": 3
     },
@@ -1367,7 +1403,7 @@
       "id": "bar",
       "familyId": "bar",
       "level": 3,
-      "index": 3,
+      "index": 2,
       "selectedChain": null,
       "band": 0,
       "version": 3
@@ -1385,7 +1421,10 @@
     "dairy-fridge",
     "grain-box",
     "sweet-cabinet",
-    "drink-fridge",
+    "seasonal-produce-rack",
+    "exotic-fruit-basket",
+    "coffee-grinder",
+    "tea-caddy",
     "frying-station",
     "oven",
     "microwave",
@@ -1395,6 +1434,7 @@
     "steamer",
     "blender",
     "ice-cream-machine",
+    "mixer-base-cooler",
     "bar"
   ],
   "deviceDiscovered": [
@@ -1409,7 +1449,10 @@
     "dairy-fridge-l1",
     "grain-box-l1",
     "sweet-cabinet-l1",
-    "drink-fridge-l1",
+    "seasonal-produce-rack-l1",
+    "exotic-fruit-basket-l1",
+    "coffee-grinder-l1",
+    "tea-caddy-l1",
     "frying-station-l1",
     "oven-l1",
     "microwave-l1",
@@ -1418,25 +1461,27 @@
     "sweet-cabinet-l2",
     "chopping-board-l2",
     "spice-box-l2",
-    "fruit-cart-l2",
-    "fruit-cart-l3",
+    "exotic-fruit-basket-l2",
+    "exotic-fruit-basket-l3",
     "fruit-press-l3",
+    "fruit-cart-l2",
     "chopping-board-l3",
     "poultry-cart-l2",
     "poultry-cart-l3",
-    "vegetable-cart-l2",
+    "seasonal-produce-rack-l2",
     "spice-box-l3",
     "sweet-cabinet-l3",
     "charcoal-grill-l1",
     "wok-l1",
     "frying-station-l2",
+    "vegetable-cart-l2",
     "microwave-l2",
     "oven-l2",
     "beast-meat-cart-l2",
     "grain-box-l2",
     "microwave-l3",
     "frying-station-l3",
-    "vegetable-cart-l3",
+    "seasonal-produce-rack-l3",
     "grain-box-l3",
     "oven-l3",
     "charcoal-grill-l2",
@@ -1456,13 +1501,20 @@
     "home-cooking-pot-l3",
     "dairy-fridge-l3",
     "blender-l2",
+    "mixer-base-cooler-l1",
     "bar-l1",
     "ice-cream-machine-l2",
     "ice-cream-machine-l3",
-    "drink-fridge-l2",
-    "drink-fridge-l3",
+    "coffee-grinder-l2",
+    "tea-caddy-l2",
+    "mixer-base-cooler-l2",
+    "coffee-grinder-l3",
     "bar-l2",
     "bar-l3",
+    "mixer-base-cooler-l3",
+    "vegetable-cart-l3",
+    "fruit-cart-l3",
+    "tea-caddy-l3",
     "blender-l3"
   ]
 }

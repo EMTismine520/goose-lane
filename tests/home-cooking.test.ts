@@ -186,7 +186,7 @@ describe('content 2.0 migration and portable pot states', () => {
     const source = oldFull(), serialized = JSON.stringify(source), before = inventory(source);
     const result = validateSave(source);
     expect(JSON.stringify(source)).toBe(serialized);
-    expect(result.contentVersion).toBe('3.0.0');
+    expect(result.contentVersion).toBe('4.0.0');
     expect(result.migrationInbox).toHaveLength(4);
     expect(inventory(result)).toEqual(before);
     expect(result.seed).toBe(source.seed);

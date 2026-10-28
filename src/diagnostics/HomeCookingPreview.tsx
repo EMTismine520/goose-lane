@@ -30,10 +30,10 @@ if (scene === 'three') {
     initial = execute(initial, { type: 'stageInput', from, appliance: 'home-cooking-pot' }, initial.lastSeen).state;
   }
 }
-const repository = new SaveRepository('goose-lane-home-qa-' + scene);
+const repository = new SaveRepository('goose-lane-v4-home-qa-' + scene);
 if (scene === 'three') initial.session.selectedUid = 'home-cooking-pot';
 const previous = await repository.open();
 initial.revision = Math.max(initial.revision, previous.state?.revision ?? -1) + 1;
 await repository.save(initial);
-createRoot(document.getElementById('root')!).render(<App repository={repository} sessionScope={'home-qa-' + scene}/>);
+createRoot(document.getElementById('root')!).render(<App repository={repository} sessionScope={'v4-home-qa-' + scene}/>);
 }

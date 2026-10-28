@@ -13,7 +13,7 @@ const mapping = {}, rows = [];
 if (!check) await mkdir(directory, { recursive: true });
 for (const source of sourceRows) {
   const original = await readFile(path.join(root, 'public', source.path));
-  const data = await sharp(original).resize(128, 128, { kernel: 'lanczos3' }).webp({ lossless: true, effort: 4 }).toBuffer();
+  const data = await sharp(original).resize(128, 128, { kernel: 'lanczos3' }).webp({ lossless: true, effort: 6, quality: 100 }).toBuffer();
   const hash = digest(data), filename = `${source.id}-${hash.slice(0, 12)}.webp`;
   const relative = `assets/mobile/${filename}`;
   mapping[source.id] = relative;
@@ -43,5 +43,5 @@ if (!check) {
   }
 }
 const bytes = rows.reduce((sum, row) => sum + row.bytes, 0);
-if (rows.length !== 311 || bytes > 2.25 * 1024 * 1024) throw new Error(`Mobile art budget exceeded: ${rows.length} files, ${bytes} bytes`);
+if (rows.length !== sourceRows.length || Object.keys(mapping).length !== sourceRows.length || bytes > 2.25 * 1024 * 1024) throw new Error(`Mobile art budget exceeded: ${rows.length} files, ${bytes} bytes`);
 console.log(`Mobile art ${check ? 'verified' : 'built'}: ${rows.length} transparent 128×128 WebP, ${(bytes / 1024 / 1024).toFixed(2)} MiB.`);

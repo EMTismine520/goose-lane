@@ -2,9 +2,9 @@
 
 合成一点食材，煮一碗热乎，把小店慢慢变成喜欢的模样。
 
-移动优先的合成烹饪游戏，保留两个主页面，通过左下角切换美食合成与店铺建设。当前完整图鉴版本3.0.0包含14条合成系列、123道配方、139种成品、22类三级设备和145份主线订单。311个唯一图鉴条目均配有已确认B类暖色卡通资产。设备可合成升级、收纳和移动，旧存档自动迁移至结构3。
+移动优先的合成烹饪游戏，保留两个主页面，通过左下角切换美食合成与店铺建设。当前 V4 版本包含14条合成系列、123道配方、139种成品、26类三级设备和145份主线订单。323个唯一图鉴条目统一使用精致暖色卡通美术。14类生产器材各自只供应一条食材链，设备可合成升级、收纳和移动。V4 使用独立存储并从新档开始，原版本数据保留原处。
 
-[开始游戏](https://emtismine520.github.io/goose-lane/) · [完整图鉴独立试玩](https://emtismine520.github.io/goose-lane-art-preview/v3-preview.html) · [完整图鉴与配方](docs/V3_CATALOG.md) · [交付与验证说明](docs/V3_DELIVERY.md)
+[开始游戏](https://emtismine520.github.io/goose-lane/) · [完整图鉴独立试玩](https://emtismine520.github.io/goose-lane-art-preview/v3-preview.html) · [完整图鉴与配方](docs/V3_CATALOG.md) · [V4交付与验证说明](docs/V4_DELIVERY.md)
 
 界面采用奶油色料理台、固定底部工具和随实际高度调整的棋盘布局。可以主动关注顾客订单、逐层查找食材来源，在厨具抽屉区分“现在可做”和“继续补料可做”；小馆随三次建设和八个主题逐步添上陈设。配方、资源、存档与轻点／拖动规则沿用现有游戏。
 
@@ -18,12 +18,12 @@
 npm ci --registry=https://registry.npmjs.org
 npm run art:build
 npm run art:check
-npm run art:build:v3
-npm run art:check:v3
+npm run art:build:v4
+npm run art:check:v4
 npm run art:build:mobile
 npm run art:check:mobile
 npm test
-npm run simulate:v3
+npm run simulate:v4
 npm run dev
 ```
 
@@ -49,11 +49,11 @@ npm run preview
 5. 左下角切换店铺与合成页；图鉴、仓库、配方和设置使用弹层。
 6. 在图鉴查看食材链与配方；出售可以撤销一次，后续资产变化会结束撤销资格。
 
-完整图鉴、主题进度、存档迁移和验收边界见 [本版交付](docs/V3_DELIVERY.md)。历史B试玩和原有双页规则继续保留，当前主线以3.0.0为准。
+完整图鉴、主题进度、新档存储与验收边界见 [V4交付](docs/V4_DELIVERY.md)。原V3交付保留为历史记录。
 
 ## 美术
 
-[artwork/v3-b](artwork/v3-b/) 保存完整图鉴的B类暖色卡通SVG母稿与绘制模块。[原B素材](artwork/b/README.md)的38项形状、路径、留白和展示偏移保留，新增内容沿同一套风格扩展。Sharp 0.35.5 固定在锁文件中，制作与检查可以从项目源文件复现。
+[artwork/v3-b](artwork/v3-b/) 保存全部323项V4可编辑SVG母稿与绘制模块，历史目录名称沿用以减少无关路径变动。器材按独立轮廓重绘，食物使用统一的材质、轮廓和上左光源。打开 [美术审查页](public/art-v4.html) 可检查32/40/48/96像素、灰度、剪影与隐藏名称模式。Sharp 0.35.5 固定在锁文件中，素材可以从项目源文件复现。
 
 96×96 是文件声明尺寸，棋盘显示框由共享配置单独控制。以 50×50 设计格计，可见主体最长边分别为鸡蛋 34、其他食材 36、料理 38、设备 42。DPR 只调整采样精度，不改变占格大小或指针坐标。来源和哈希见 `public/assets/b-art.json`，详细制作记录见 [素材说明](docs/ASSETS.md)。
 
@@ -62,7 +62,7 @@ A 样板和已替换的新增位图仅保留在本地归档，当前运行包不
 ## 保存、更新与恢复
 
 - 每个成功操作先提交 IndexedDB 事务，再更新界面。写入失败不结算，提供错误和导出入口。
-- 当前与上一份快照、旧存档迁移、损坏恢复、JSON 导入导出和三个手动存档位继续保留。
+- V4当前与上一份快照、损坏恢复、JSON导入导出和三个手动存档位继续保留；新版导入仅接受V4，旧库不自动读取或覆盖。
 - Web Locks 保证单窗口写入；不支持时，通过同一 IndexedDB 事务内的存档令牌拒绝过期窗口写入。
 - 正式游戏可玩且空闲后准备离线资源；设置会显示当前主题的实际准备状态。再次进入优先使用已安装版本的页面，版本检查在空闲时进行。新版本等待玩家接受更新，未接受前保持原版本资源一致。
 - 旧恢复链接自动进入 B 组独立试玩，无需点击修复，也不等待旧存档或旧离线程序。详见 [PWA 说明](docs/PWA.md)。
@@ -71,6 +71,6 @@ A 样板和已替换的新增位图仅保留在本地归档，当前运行包不
 
 React 19.2.0、Phaser 4.2.1、TypeScript 5.9.3、Vite 7.1.12；领域命令负责资产结算，React 与 Phaser 共用资源和展示配置。第三方许可见 [声明](docs/THIRD_PARTY_NOTICES.md)，构建会复制到 `dist/notices/`。
 
-构建会检查311项移动小图的完整性和2.25 MiB预算，同时输出 `performance-budget.json` 与 `offline-budget.json`。现代新档首次资源预算1 MiB、后期1.5 MiB；核心预缓存上限5 MiB，完整资源上限16 MiB。压缩参考预算与手机实测分别记录，详见 [移动性能说明](docs/MOBILE_PERFORMANCE.md)。[原完整图鉴交付](docs/V3_DELIVERY.md)与[原B组记录](docs/B_ART_RELEASE.md)作为历史证据保留。
+构建会检查323项移动小图的完整性和2.25 MiB预算，同时输出 `performance-budget.json` 与 `offline-budget.json`。现代新档首次资源预算1 MiB、后期1.5 MiB；核心预缓存上限5 MiB，完整资源上限16 MiB。压缩参考预算与手机实测分别记录，详见 [移动性能说明](docs/MOBILE_PERFORMANCE.md)。[原完整图鉴交付](docs/V3_DELIVERY.md)与[原B组记录](docs/B_ART_RELEASE.md)作为历史证据保留。
 
 桌面浏览器、模拟手机尺寸和 HTTP 校验与微信真机分别记录；前者不能标记为微信真机通过。真人上手与长期游玩体验也不能由自动模拟替代。

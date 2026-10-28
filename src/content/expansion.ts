@@ -3,6 +3,11 @@ import type { ChainDef, DeviceFamilyDef, ItemDef, OrderDef, RecipeDef } from '..
 
 export const EXPANSION = DATA;
 export const DEVICE_FAMILIES: DeviceFamilyDef[] = DATA.devices as DeviceFamilyDef[];
+// A production family has one permanent source chain; UI and commands share this contract.
+for (const family of DEVICE_FAMILIES) {
+  if (family.kind === 'generator' && (family.chains.length !== 1 || DATA.chains.find(c => c.id === family.chains[0])?.producer !== family.id)) throw new Error('Invalid dedicated producer: ' + family.id);
+}
+export const EQUIPMENT_FORM_COUNT = DEVICE_FAMILIES.length * 3;
 export const THEME_NAMES = ['果蔬开张','家常烟火','晨间茶饮','街角烘焙','炭火夜市','海港蒸鲜','缤纷甜点','晚风特调'];
 export const BAND_COSTS = [1,2,4,8,16];
 export const BAND_LEVELS = [1,2,3,3,3];

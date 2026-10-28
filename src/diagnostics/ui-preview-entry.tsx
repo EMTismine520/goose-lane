@@ -7,7 +7,9 @@ import '../ui/game.css';
 
 const query=new URLSearchParams(location.search);
 const scenario=UI_SCENARIOS.includes(query.get('scenario') as UiScenario)?query.get('scenario') as UiScenario:'opening';
-const scope=`goose-ui-redesign-${scenario}-${query.get('run')??'preview'}`;
+const scope=`goose-v4-ui-${scenario}-${query.get('run')??'preview'}`;
+const requestedRatio=Number(query.get('dpr'));
+const pixelRatio=[1,2,3].includes(requestedRatio)?requestedRatio:undefined;
 const repository=new SaveRepository(scope);
 const loaded=await repository.open();
 if(!loaded.state){
@@ -16,4 +18,4 @@ if(!loaded.state){
   await repository.save(initial);
 }
 document.title=`界面验收样板 · ${scenario} · 独立存档`;
-createRoot(document.getElementById('root')!).render(<ItemArtProvider value={{renderer:query.get('renderer')==='canvas'?'canvas':'auto'}}><App repository={repository} sessionScope={scope} offline={false}/></ItemArtProvider>);
+createRoot(document.getElementById('root')!).render(<ItemArtProvider value={{renderer:query.get('renderer')==='canvas'?'canvas':'auto',pixelRatio}}><App repository={repository} sessionScope={scope} offline={false}/></ItemArtProvider>);

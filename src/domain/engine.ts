@@ -299,7 +299,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
     }
     case 'configureDevice': {
       const device=state.devices.find(d=>d.id===command.device), chain=CHAINS.find(c=>c.id===command.chain), production=productionFor(command.chain,command.band);
-      if(!device||!chain||!DEVICE_FAMILIES.find(f=>f.id===device.familyId)?.chains.includes(command.chain)||!production||production.minLevel>device.level||(chain.stage??1)>themeStage(state)||command.band>0&&themeStage(state)<3)return reject('系列或产出段尚未开放。');
+      if(!device||!chain||DEVICE_FAMILIES.find(f=>f.id===device.familyId)?.chains[0]!==command.chain||device.selectedChain!==command.chain||!production||production.minLevel>device.level||(chain.stage??1)>themeStage(state)||command.band>0&&themeStage(state)<3)return reject('系列或产出段尚未开放。');
       device.selectedChain=chain.id;device.band=command.band;device.version++;break;
     }
     case 'buyDevice': {
@@ -341,7 +341,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       if (HOME_CHAINS.some(value => value.id === chain.id) && !homeCookingUnlocked(state)) return reject(HOME_UNLOCK_HINT);
       const family=DEVICE_FAMILIES.find(f=>f.chains.includes(chain.id));
       const device = activeDevices(state).find(entity => entity.kind === 'generator' && (state.schemaVersion>=3&&state.campaign==='fresh'?entity.familyId===family?.id&&(!command.device||entity.id===command.device):entity.chain===chain.id));
-      if(state.schemaVersion>=3&&state.campaign==='fresh'&&!device)return reject('先从设备架取出对应生产器。');
+      if(state.schemaVersion>=3&&state.campaign==='fresh'&&(!device||state.devices.find(d=>d.id===device.id)?.selectedChain!==chain.id))return reject('先从设备架取出本系列的专用生产器。');
       const index = emptyCell(state, state.schemaVersion >= 2 ? device?.index ?? 35 : 0);
       if (index < 0) return reject('棋盘满啦，试试合成、交单或移入仓库。');
       if (state.schemaVersion >= 2) {

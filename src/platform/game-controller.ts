@@ -1,7 +1,7 @@
 import type { Command, GameEvent, GameState } from '../domain/types';
 import { createInitialState, execute } from '../domain/engine';
 import { ORDERS, RECIPES } from '../content/catalog';
-import { SaveError, SaveRepository, parseSave, serializeSave, resumeManualSlot } from '../persistence/save';
+import { SaveError, SaveRepository, parseImportSave, serializeSave, resumeManualSlot } from '../persistence/save';
 import type { SaveSlotId } from '../persistence/save';
 import { acquireSession } from './session';
 import type { GameSession } from './session';
@@ -376,7 +376,7 @@ export class GameController {
   importSave = async (source: string): Promise<void> => {
     if (this.processing) throw new Error('正在保存，请稍候再导入。');
     this.ensureWriter(false);
-    const next = parseSave(source);
+    const next = parseImportSave(source);
     next.revision = (this.view.state?.revision ?? 0) + 1;
     next.undo = null;
     this.update({ busy: true });

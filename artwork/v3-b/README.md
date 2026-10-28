@@ -1,39 +1,52 @@
-# B 类暖色卡通：完整图鉴美术
+# V4 精致暖色卡通：完整图鉴美术
 
-正式运行时统一使用本目录的原生 SVG 系统。基准为 `../b/masters/`、`../b/draw-new-masters.mjs`、`../../src/content/b-art.json` 与原果蔬 SVG；未使用 ImageGen 画面或研究裁切图。
+现行集合共 **323 项**：122 个合成节点、123 个配方成品、78 个器材等级外观。26 类器材包含 14 类单链生产器和 12 类厨具，每类都有三级外观。
 
-## 覆盖与复用
+目录名 v3-b、运行路径 assets/v3-b 与既有命令别名沿用；内容与美术版本为 4.0.0。运行时统一读取完整图鉴映射，旧 B 图不再优先。
 
-- 311 项：122 个合成节点、123 个加工产物、66 个设备等级。
-- 62 项逐字节复用原 SVG：34 个 B 食物、4 个 B 家常设备一级、20 个原果蔬食物、4 个原初始设备一级。
-- 249 项通过同一暖色原生 SVG 系统扩展：84 个材料节点、107 个加工产物、58 个设备等级。
-- 原 B38 的轮廓、路径、展示尺寸及偏移完全保留。近似菜品用可见主体区分：贝果保留中孔、鲑鱼粉片和奶油奶酪；三类热狗分别显示芝士、包裹面包和番茄；培根汉堡正面显示红白培根条。咖啡阶段区分纸杯色、杯盖、冰块、杯柄及容量。
+## 画法与识别
 
-## 画法与尺寸
+- 96 单位原生 SVG；暖棕描边、上左光源、材质分层。木材、冷鲜金属、玻璃、陶瓷和食物使用各自的渐变及反光方式。
+- 器材的外轮廓和主体特征分别设计。兽肉使用横向冷鲜柜，禽肉使用圆拱蛋筐架；咖啡为豆仓磨机，茶为掀盖茶罐。
+- 三级成长保留类别身份，增加功能结构；避免换色或堆小图标代替升级。
+- 食物通过形状、切面、容器与内容物共同区分。肉类、乳品、谷物、咖啡与茶的重点混淆组有专门绘制；十款果饮与奶茶另有独立杯型。
+- 食物曲线可在生产器展示和料理构图中共享，保持同一食材的视觉身份；不嵌入外部位图或研究裁切。
 
-新绘图延续 `#795438` 暖棕描边、2.4 单位描边宽度、圆角连接、原 B 木色/奶油色/珐琅绿、简洁几何切面与柔和高光。所有母稿使用96单位可编辑画布，无外部图像嵌入。
-
-50像素设计格内，可见主体最长边为：鸡蛋34、其他材料36、料理38、设备42。运行图留白根据透明像素边界校准，新图采用75%主体占比；原 B38直接保留已有 `displaySize` / `offsetX` / `offsetY` / `svgSize`。本轮最大可见尺寸误差为0.1875像素。
+核心绘制模块：primitives.mjs、subjects.mjs、materials.mjs、devices.mjs、opening-recipes.mjs、finished-drinks.mjs、recipes.mjs。draw-masters.mjs 从内容定义生成全量母稿与清单。
 
 ## 文件与复现
 
-- `masters/*.svg`：311个可编辑SVG母稿，全部可版本化。
-- `runtime/*.svg`：仅调整viewBox的等形运行视口，路径与母稿相同。
-- `../../art/v3-b/masters/*.png`：311份512×512透明PNG导出；由SVG重建。
-- `../../public/assets/v3-b/*.webp`：311份256×256无损透明WebP，合计6,246,226字节。
-- `catalog.json`、`manifest.json`、`presentation.json`：源/运行图/原始复用依据/展示参数映射。
-- `overview.html`：搜索、类型过滤及32/64/96像素总览；`qa/`保存全量和分类检查图。
+- masters/：323 份可编辑 SVG 母稿。
+- runtime/：仅调整运行视口的等形 SVG。
+- ../../art/v3-b/masters/：512×512 透明 PNG 导出。
+- ../../public/assets/v3-b/：256×256 无损透明 WebP。
+- ../../public/assets/mobile/：128×128 无损透明 WebP，文件名带内容哈希。
+- catalog.json、manifest.json、presentation.json：身份、版本、源/运行哈希及可见尺寸。
+- overview.html 与 ../../public/art-v4.html：搜索、类别、等级、32/40/48/96 像素、灰度、剪影及隐藏名称审查。
+- qa/contact-*.png：全量与分类联系表。
 
 在项目根目录顺序运行：
 
-```text
-node artwork/v3-b/draw-masters.mjs
-node scripts/package-v3-b-art.mjs
-node scripts/check-v3-art.mjs
-```
+    npm run art:build:v4
+    npm run art:build:mobile
+    npm run art:check:v4
+    npm run art:check:mobile
+    npm run art:review:v4
 
-需要项目声明的 Node.js 与 sharp 开发依赖。全部输入路径均在项目内，不依赖 `.codex`、ImageGen缓存、外部图片服务或旧的 `art/v3`。
+独立代表样稿：
 
-检查覆盖数量、原SVG字节一致、原B38展示参数、原生定义引用、源与运行SVG路径一致、512/256尺寸、透明边界、311个唯一运行哈希与可见尺寸。
+    node artwork/v3-b/draw-masters.mjs --sample
 
-旧手绘运行目录和旧映射已移至 `../../../art-archive/v3-painted-20261025/`；旧 `../../art/v3/` 源保留为本地非运行时归档。
+审查图位于 output/v4-art-upgrade/review/。七组内容在四种尺寸、三种颜色模式下生成 84 张对照板；recognition-test.csv 是空白真人识别记录，不是已完成的测试。
+
+## 显示与预算
+
+以 50×50 设计格计，鸡蛋可见最长边 34、其他食材 36、料理 38、器材 42；误差不得超过 0.75 设计像素。显示占格和纹理采样分别控制，不能因高分辨率改变拖动坐标。
+
+移动图总量上限 2.25 MiB、256 图上限 8 MiB。128 图采用 WebP lossless、quality=100、effort=6；quality 在无损模式下用于编码压缩选择，不降低已生成的像素质量。
+
+## 历史与验收
+
+V3 源稿、运行图和清单已归档至项目外 art-archive/v3-before-v4-20261028/art-and-content.zip。V3 的旧 calibration 图单独移入同一归档目录，不作为 V4 验收证据。
+
+自动检查覆盖身份、数量、唯一哈希、SVG 定义、透明边界、尺寸和预算。灰度/剪影对照及桌面浏览器检查不能替代三名试玩者识别或 Android/iPhone 微信真机验收。当前具体状态见 ../../docs/V4_DELIVERY.md。

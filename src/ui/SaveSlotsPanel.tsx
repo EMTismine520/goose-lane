@@ -3,7 +3,7 @@ import { ArrowLeft, Check, Coins, FolderOpen, LoaderCircle, LockKeyhole, RotateC
 import type { GameState } from '../domain/types';
 import { unlockedCells } from '../domain/engine';
 import { activeDevices } from '../content/board-layouts';
-import { deviceAssetPath } from '../content/assets';
+import { deviceAssetPath, mobileAssetPath } from '../content/assets';
 import type { ManualSlot, SaveSlotId } from '../persistence/save';
 import { ItemIcon } from './parts';
 
@@ -14,7 +14,7 @@ function BoardPreview({ state }: { state: GameState }) {
   const limit = unlockedCells(state);
   return <div className="slot-mini-board" aria-hidden="true">{state.board.map((item, index) => {
     const device = activeDevices(state).find(entry => entry.index === index);
-    return <span key={index} className={index >= limit ? 'locked' : ''}>{item ? <ItemIcon item={item.item} size={12}/> : device ? <img src={`${import.meta.env.BASE_URL}${deviceAssetPath(device.id)}`} alt=""/> : null}</span>;
+    return <span key={index} className={index >= limit ? 'locked' : ''}>{item ? <ItemIcon item={item.item} size={12}/> : device ? <img src={`${import.meta.env.BASE_URL}${mobileAssetPath(deviceAssetPath(device.artId ?? device.id))}`} alt=""/> : null}</span>;
   })}</div>;
 }
 

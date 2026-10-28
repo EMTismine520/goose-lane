@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "4.0.0",
   "chains": [
     {
       "id": "fresh-veg",
@@ -87,7 +87,7 @@
       "id": "fresh-seasonal",
       "name": "时蔬",
       "stage": 3,
-      "producer": "vegetable-cart",
+      "producer": "seasonal-produce-rack",
       "names": [
         "蘑菇",
         "玉米",
@@ -103,7 +103,7 @@
       "id": "fresh-exotic",
       "name": "风味鲜果",
       "stage": 3,
-      "producer": "fruit-cart",
+      "producer": "exotic-fruit-basket",
       "names": [
         "蓝莓",
         "香蕉",
@@ -187,7 +187,7 @@
       "id": "fresh-coffee",
       "name": "咖啡",
       "stage": 3,
-      "producer": "drink-fridge",
+      "producer": "coffee-grinder",
       "names": [
         "咖啡豆",
         "浓缩咖啡",
@@ -204,7 +204,7 @@
       "id": "fresh-tea",
       "name": "茶",
       "stage": 3,
-      "producer": "drink-fridge",
+      "producer": "tea-caddy",
       "names": [
         "茶叶",
         "绿茶",
@@ -218,7 +218,7 @@
       "id": "fresh-mixer",
       "name": "特调基底",
       "stage": 8,
-      "producer": "drink-fridge",
+      "producer": "mixer-base-cooler",
       "names": [
         "冰块",
         "矿泉水",
@@ -1831,8 +1831,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-veg",
-        "fresh-seasonal"
+        "fresh-veg"
       ],
       "price": 40
     },
@@ -1842,8 +1841,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-fruit",
-        "fresh-exotic"
+        "fresh-fruit"
       ],
       "price": 40
     },
@@ -1918,13 +1916,51 @@
       "price": 40
     },
     {
-      "id": "drink-fridge",
-      "name": "饮品冰柜",
+      "id": "seasonal-produce-rack",
+      "name": "时蔬菜架",
       "kind": "generator",
       "stage": 3,
       "chains": [
-        "fresh-coffee",
-        "fresh-tea",
+        "fresh-seasonal"
+      ],
+      "price": 40
+    },
+    {
+      "id": "exotic-fruit-basket",
+      "name": "风味果筐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-exotic"
+      ],
+      "price": 40
+    },
+    {
+      "id": "coffee-grinder",
+      "name": "咖啡豆磨机",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-coffee"
+      ],
+      "price": 40
+    },
+    {
+      "id": "tea-caddy",
+      "name": "茶叶罐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-tea"
+      ],
+      "price": 40
+    },
+    {
+      "id": "mixer-base-cooler",
+      "name": "特调基底柜",
+      "kind": "generator",
+      "stage": 8,
+      "chains": [
         "fresh-mixer"
       ],
       "price": 40

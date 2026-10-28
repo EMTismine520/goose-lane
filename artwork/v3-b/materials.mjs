@@ -1,3 +1,4 @@
+import {subject} from './subjects.mjs';
 import {C,p,e,r,line,light,t,leaf,deepBowl,lemonSlice,crab,milkTea,ink} from './primitives.mjs';
 
 export const bean=(x=48,y=48,s=1,a=0)=>t(e(0,0,10,6,'url(#coffee)')+line('M-5-3q7 1 6 6','#76533f',1.5),`translate(${x} ${y}) rotate(${a}) scale(${s})`);
@@ -86,6 +87,7 @@ function sweet(name){
  return null;
 }
 export function material(name){
+ const upgraded=subject(name,{smallBowl,cup,bean,iceCube,bottle});if(upgraded)return upgraded;
  let body=vegetable(name)||fruit(name)||seafood(name)||dairy(name)||grain(name)||sweet(name);if(body)return body;
  if(name==='皮蛋')return e(38,43,23,29,'url(#coffee)')+light('M24 34q2-11 10-14',3.2)+e(61,64,24,18,'#97764f','transform="rotate(-20 61 64)"')+e(61,64,16,12,'#8c9b68','stroke="#6f7b52" stroke-width="1.7" transform="rotate(-20 61 64)"')+e(62,63,9,7,'#b5ba80','stroke-width="1.2"');
  if(name==='香草籽')return smallBowl('url(#bowl)')+Array.from({length:18},(_,i)=>e(25+i%6*9,34+Math.floor(i/6)*8,2.3,1.6,'#7f6147','stroke-width=".9"'))+p('M17 74q20-14 61-14-29 13-61 14Z','url(#vanilla)');

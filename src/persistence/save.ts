@@ -291,6 +291,15 @@ export function parseSave(source: string): GameState {
   return validateSave(value);
 }
 
+/** V4 imports never convert historical campaigns into the new game. */
+export function parseImportSave(source: string): GameState {
+  if (typeof source !== 'string' || source.length > MAX_SAVE_BYTES || new TextEncoder().encode(source).length > MAX_SAVE_BYTES) throw new SaveError('存档文件超过 1 MB 限制。','invalid');
+  let value: unknown;
+  try { value=JSON.parse(source); } catch (cause) { throw new SaveError('存档不是有效的 JSON 文件，现有进度未修改。','invalid',{cause}); }
+  if (!value || typeof value !== 'object' || (value as Record<string,unknown>).schemaVersion !== SCHEMA_VERSION || (value as Record<string,unknown>).contentVersion !== CONTENT_VERSION) throw new SaveError('V4 使用全新进度，只能导入 V4 存档；当前进度未修改。','future');
+  return validateSave(value);
+}
+
 export type SaveSlotId = 1 | 2 | 3;
 export const SAVE_SLOT_IDS: readonly SaveSlotId[] = [1, 2, 3];
 interface ManualSaveRecord {
@@ -368,7 +377,7 @@ export class SaveRepository {
   private queue: Promise<void> = Promise.resolve();
   private opening: Promise<{ state: GameState | null; recovered: boolean }> | null = null;
 
-  constructor(private readonly databaseName = 'goose-lane-v1') {}
+  constructor(private readonly databaseName = 'goose-lane-v4') {}
 
   async open(): Promise<{ state: GameState | null; recovered: boolean }> {
     if (this.opening) return this.opening;

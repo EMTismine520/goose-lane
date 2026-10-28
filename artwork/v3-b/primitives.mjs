@@ -1,18 +1,213 @@
-// Native B-style geometry. Palette, 2.4-unit warm outlines and simple highlights
-// follow artwork/b/draw-new-masters.mjs; no raster imagery is embedded.
-export const ink='#795438';
-export const C={cream:'#fff0ce',bone:'#fff9e4',wood:'#d8b27a',darkWood:'#b58c5e',green:'#89ad58',darkGreen:'#628c47',lightGreen:'#b3cc74',red:'#d77c69',tomato:'#e98159',yellow:'#f3cd72',orange:'#e7a36a',blue:'#91b8c1',paleBlue:'#d6e6dc',pink:'#d3a7b3',purple:'#b980a7',brown:'#a6754d',darkBrown:'#76533f',white:'#fff9df'};
+// V4 native vector materials. Warm ink, upper-left highlights and distinct surfaces.
+// Shared geometry is used by food, producer displays and recipes; no raster is embedded.
+export const ink='#624737';
+export const C={"cream":"#fff2d8","bone":"#fff5dd","wood":"#d9ac70","darkWood":"#98704a","green":"#73a657","darkGreen":"#407849","lightGreen":"#b7d780","red":"#cc6154","tomato":"#e86b48","yellow":"#f3c753","orange":"#ed954e","blue":"#83b9c7","paleBlue":"#deeee8","pink":"#d995a6","purple":"#a36a9a","brown":"#ab7249","darkBrown":"#684333","white":"#fff9ec","metal":"#697d80"};
 export const gradients={
- wood:['#e9ca93','#d8b27a','#c59b65'],green:['#b3cc74','#89ad58','#628c47'],darkGreen:['#8eb96a','#6e9955','#557e44'],enamel:['#c4d3a1','#a7bd88','#819d6d'],
- bowl:['#fff8de','#f4e8c5','#d9c49a'],bone:['#fff9e4','#f1dfbb','#e3caa3'],fat:['#fff6dc','#f6e4c3','#eed5b1'],
- tomato:['#f7aa77','#e98159','#cf654a'],red:['#ed9d85','#d77c69','#bd5f53'],pork:['#f7baa2','#eb987e','#d77b68'],chicken:['#ffdfba','#f3bb94','#df9c77'],
- roast:['#e7b583','#cb905f','#ae704b'],glaze:['#e7ab70','#c4854f','#a96841'],egg:['#ffeaae','#f3cd72','#dfab52'],rice:['#fff9db','#f6e6b1','#e5cd94'],
- onion:['#d1a7c3','#b980a7','#946184'],garlic:['#fff9df','#f5e5bd','#dbc99f'],cinnamon:['#d9a66f','#bc8855','#a56e45'],vanilla:['#b4875d','#926744','#795138'],
- meat:['#f2a583','#e48b6a','#ca7054'],gizzard:['#d99783','#ba7767','#9b5b51'],
- shell:['#fff5d9','#f4d6af','#d6a17b'],pepper:['#ed9b75','#dc785a','#c65f4b'],
- blue:['#d5e5da','#a8c9c8','#82abae'],glass:['#f5f5dc','#dce9cf','#aec7ba'],pink:['#f2d0c2','#dcaeaf','#bd8c9c'],purple:['#d6ccda','#b8a6c6','#9280ac'],
- gold:['#ffe5a6','#edc479','#cca05d'],coffee:['#c2986b','#99704c','#76533f'],tea:['#e7bc78','#c69958','#a57a42'],milkTea:['#ead0a3','#d2af7e','#b58b61'],
- berry:['#b1a9cf','#8b7eb1','#6f6397'],mango:['#ffe5a1','#efc373','#d9a15b'],coconut:['#b99570','#98724e','#795438']
+  "wood": [
+    "#f1d19c",
+    "#d9ac70",
+    "#b9804c"
+  ],
+  "green": [
+    "#c1de80",
+    "#79ad52",
+    "#497b3f"
+  ],
+  "darkGreen": [
+    "#94bd70",
+    "#5c9150",
+    "#326845"
+  ],
+  "enamel": [
+    "#e1ebc5",
+    "#a9c58a",
+    "#719368"
+  ],
+  "bowl": [
+    "#fffdf0",
+    "#f4e6c9",
+    "#d8c3a4"
+  ],
+  "bone": [
+    "#fffae9",
+    "#f2e0c2",
+    "#d9bd99"
+  ],
+  "fat": [
+    "#fff5df",
+    "#f5dabd",
+    "#e5bfa3"
+  ],
+  "tomato": [
+    "#ffbc77",
+    "#ec704a",
+    "#c44939"
+  ],
+  "red": [
+    "#f79a82",
+    "#d9685a",
+    "#a6403e"
+  ],
+  "pork": [
+    "#ffc2a6",
+    "#ed967e",
+    "#cb6b5e"
+  ],
+  "chicken": [
+    "#ffe3c1",
+    "#f5be92",
+    "#d58c64"
+  ],
+  "roast": [
+    "#f5c27e",
+    "#cf8b4d",
+    "#9a5836"
+  ],
+  "glaze": [
+    "#f3bd78",
+    "#c47b42",
+    "#8e462e"
+  ],
+  "egg": [
+    "#fff1b7",
+    "#f3ca5c",
+    "#dc9e39"
+  ],
+  "rice": [
+    "#fffce9",
+    "#f7e8bd",
+    "#dbc694"
+  ],
+  "onion": [
+    "#e0b8d0",
+    "#b783b2",
+    "#89537f"
+  ],
+  "garlic": [
+    "#fffbea",
+    "#f3e4c5",
+    "#d4c09b"
+  ],
+  "cinnamon": [
+    "#ebbd81",
+    "#c48a55",
+    "#895633"
+  ],
+  "vanilla": [
+    "#bd895c",
+    "#93623f",
+    "#63422f"
+  ],
+  "meat": [
+    "#f2a583",
+    "#e48b6a",
+    "#ca7054"
+  ],
+  "gizzard": [
+    "#d59c94",
+    "#a86f6a",
+    "#75494b"
+  ],
+  "shell": [
+    "#fff6e7",
+    "#e9c8a3",
+    "#ba8e73"
+  ],
+  "pepper": [
+    "#ffa57a",
+    "#df6d4e",
+    "#b74636"
+  ],
+  "blue": [
+    "#e2f1ee",
+    "#9ac7cf",
+    "#6495ac"
+  ],
+  "glass": [
+    "#f6fff7",
+    "#d5e9e2",
+    "#91b8b5"
+  ],
+  "pink": [
+    "#ffe4dc",
+    "#dda6b3",
+    "#b97392"
+  ],
+  "purple": [
+    "#e0cde6",
+    "#b198c5",
+    "#7f6b9d"
+  ],
+  "gold": [
+    "#fff0ac",
+    "#edc16c",
+    "#bd8a43"
+  ],
+  "coffee": [
+    "#bf8b59",
+    "#8c5839",
+    "#51362c"
+  ],
+  "tea": [
+    "#ffe0a0",
+    "#d4a35b",
+    "#9b6833"
+  ],
+  "milkTea": [
+    "#ead0a3",
+    "#d2af7e",
+    "#b58b61"
+  ],
+  "berry": [
+    "#b8b8dc",
+    "#7f79b0",
+    "#55517f"
+  ],
+  "mango": [
+    "#ffe5a1",
+    "#efc373",
+    "#d9a15b"
+  ],
+  "coconut": [
+    "#b99570",
+    "#98724e",
+    "#795438"
+  ],
+  "grain": [
+    "#f7dfb6",
+    "#e5c48e",
+    "#c49a64"
+  ],
+  "teaGreen": [
+    "#d4dfa0",
+    "#a4bd69",
+    "#6e914d"
+  ],
+  "metal": [
+    "#edf4eb",
+    "#aabeb9",
+    "#718c8e"
+  ],
+  "steel": [
+    "#aec2c0",
+    "#71878b",
+    "#40565d"
+  ],
+  "inkPot": [
+    "#788c80",
+    "#4e655c",
+    "#2e453d"
+  ],
+  "copper": [
+    "#f0c799",
+    "#cc9366",
+    "#9c6047"
+  ],
+  "paper": [
+    "#fffaf0",
+    "#f7e7c8",
+    "#d5c39c"
+  ]
 };
 export const defs=()=>Object.entries(gradients).map(([id,colors])=>`<linearGradient id="${id}" x1=".1" y1="0" x2=".85" y2="1"><stop stop-color="${colors[0]}"/><stop offset=".55" stop-color="${colors[1]}"/><stop offset="1" stop-color="${colors[2]}"/></linearGradient>`).join('')+'<linearGradient id="shine" x2=".7" y2="1"><stop stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="1" flood-color="#715739" flood-opacity=".2"/></filter>';
 export const p=(d,fill='none',rest='')=>`<path d="${d}" fill="${fill}"${rest?' '+rest:''}/>`;
@@ -24,8 +219,8 @@ export const t=(body,transform)=>`<g transform="${transform}">${body}</g>`;
 export const leaf=(x,y,scale=1,angle=0)=>t(p('M0 4q-12-17 6-25 17 10-1 27Z','url(#green)')+line('M2 1 5-15','#628c47',1.5),`translate(${x} ${y}) rotate(${angle}) scale(${scale})`);
 export const dot=(x,y,rad=2,color=C.darkGreen)=>e(x,y,rad,rad,color,'stroke="none"');
 export const garnish=(variant=0)=>[leaf(76,61,.45,60),line('m27 61 4-2m24 6 4-2m-5-27 4 1','#82a15c',2.5),dot(32,48,1.5,C.green),dot(64,55,1.4,C.yellow)].slice(variant%2).join('');
-export const plate=()=>e(48,64,39,20,'#dfc7a1')+e(48,59,39,22,'url(#bowl)')+e(48,57,32,16,'#f5e7c1','stroke="#d9bd92" stroke-width="1.5"')+line('M18 55q2-7 10-10','#fffcef',2.6);
-export const deepBowl=(filling='url(#rice)')=>p('M13 43c1 25 14 40 35 40s34-15 35-40Z','url(#bowl)')+e(48,43,35,20,'#fff6d8')+e(48,43,29,14,filling,'stroke="#c4a476" stroke-width="1.5"')+light('M23 62q5 10 14 12',2.7);
+export const plate=()=>e(48,73,35,11,'#d0b89b','stroke="none"')+e(48,66,38,17,'url(#bowl)')+e(48,63,31,12,'#fff8e8','stroke="#d8c6aa" stroke-width="1.3"')+line('M18 64q1-7 12-10','#fffef4',2.6);
+export const deepBowl=(filling='url(#rice)')=>e(48,81,26,5,'#d3bda0','stroke="none"')+p('M13 43c1 25 14 40 35 40s34-15 35-40Z','url(#bowl)')+e(48,43,35,20,'#fff9e9')+e(48,43,29,14,filling,'stroke="#b49c78" stroke-width="1.5"')+light('M23 60q4 12 15 15',3)+line('M28 75q17 10 38 0','#d5bc97',1.4);
 export const lemonSlice=(x=74,y=65,s=.6)=>t(p('M-15 0a15 15 0 1 1 30 0Z','url(#egg)')+p('M-10 0a10 10 0 1 1 20 0Z','#f4cd83','stroke="#d6ac65" stroke-width="1.4"')+line('M0-10V0m-7-7 7 7m7-7-7 7','#fff1bd',1.4),`translate(${x} ${y}) rotate(20) scale(${s})`);
 export const tomatoWedge=(x=40,y=50,s=.65,angle=0)=>t(p('M-15 3q2-22 22-17l8 20q-15 13-30-3Z','url(#tomato)')+p('M-9 2q2-13 12-12l5 13q-9 6-17-1Z','#f8ba82','stroke="none"')+line('m-4-2 2 1m5 0 2 1','#ffe2ac',2),`translate(${x} ${y}) rotate(${angle}) scale(${s})`);
 export const onionRing=(x=46,y=48,s=1)=>t(e(0,0,15,8,'url(#onion)')+e(0,0,10,4.5,'#f5e4d5','stroke="#a46f91" stroke-width="1.5"'),`translate(${x} ${y}) rotate(-20) scale(${s})`);

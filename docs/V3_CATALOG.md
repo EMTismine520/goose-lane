@@ -1,6 +1,6 @@
-# 完整料理图鉴 · 内容 3.0.0
+# 完整料理图鉴 · 内容 4.0.0
 
-245个食物材料、66个设备形态，共311个唯一收藏。139种成品通过123道配方或16个合成饮品节点获得。配方、阶数和成长为本项目设计。表中配方秒数为基础耗时，实际按厨具等级与已拥有的速度加成缩短。
+245个食物材料、78个设备形态，共323个唯一收藏。139种成品通过123道配方或16个合成饮品节点获得。配方、阶数和成长为本项目设计。表中配方秒数为基础耗时，实际按厨具等级与已拥有的速度加成缩短。
 
 ## 料理
 
@@ -110,22 +110,22 @@
 | ID | 名称 | 获取方法与材料 | 主题 | 资产 |
 |---|---|---|---|---|
 | dish-fresh-orange-juice | 阳光鲜橙汁 | 鲜果料理台1级；甜橙×1；18秒 | 果蔬开张 | assets/v3-b/dish-fresh-orange-juice.webp |
-| fresh-coffee-2 | 浓缩咖啡 | 咖啡 2阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-2.webp |
-| fresh-coffee-3 | 原味咖啡 | 咖啡 3阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-3.webp |
-| fresh-coffee-4 | 便携咖啡 | 咖啡 4阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-4.webp |
-| fresh-coffee-5 | 冰咖啡 | 咖啡 5阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-5.webp |
-| fresh-coffee-6 | 深烘咖啡 | 咖啡 6阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-6.webp |
-| fresh-coffee-7 | 美式咖啡 | 咖啡 7阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-7.webp |
-| fresh-coffee-8 | 大杯美式 | 咖啡 8阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-8.webp |
-| fresh-coffee-9 | 摩卡咖啡 | 咖啡 9阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-9.webp |
-| fresh-tea-2 | 绿茶 | 茶 2阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-2.webp |
-| fresh-tea-3 | 红茶 | 茶 3阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-3.webp |
-| fresh-tea-4 | 乌龙茶 | 茶 4阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-4.webp |
-| fresh-tea-5 | 花茶 | 茶 5阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-5.webp |
-| fresh-tea-6 | 香草绿茶 | 茶 6阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-6.webp |
-| fresh-mixer-4 | 姜汁水 | 特调基底 4阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-4.webp |
-| fresh-mixer-5 | 汤力水 | 特调基底 5阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-5.webp |
-| fresh-mixer-9 | 威士忌 | 特调基底 9阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-9.webp |
+| fresh-coffee-2 | 浓缩咖啡 | 咖啡 2阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-2.webp |
+| fresh-coffee-3 | 原味咖啡 | 咖啡 3阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-3.webp |
+| fresh-coffee-4 | 便携咖啡 | 咖啡 4阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-4.webp |
+| fresh-coffee-5 | 冰咖啡 | 咖啡 5阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-5.webp |
+| fresh-coffee-6 | 深烘咖啡 | 咖啡 6阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-6.webp |
+| fresh-coffee-7 | 美式咖啡 | 咖啡 7阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-7.webp |
+| fresh-coffee-8 | 大杯美式 | 咖啡 8阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-8.webp |
+| fresh-coffee-9 | 摩卡咖啡 | 咖啡 9阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-9.webp |
+| fresh-tea-2 | 绿茶 | 茶 2阶，茶叶罐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-2.webp |
+| fresh-tea-3 | 红茶 | 茶 3阶，茶叶罐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-3.webp |
+| fresh-tea-4 | 乌龙茶 | 茶 4阶，茶叶罐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-4.webp |
+| fresh-tea-5 | 花茶 | 茶 5阶，茶叶罐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-5.webp |
+| fresh-tea-6 | 香草绿茶 | 茶 6阶，茶叶罐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-6.webp |
+| fresh-mixer-4 | 姜汁水 | 特调基底 4阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-4.webp |
+| fresh-mixer-5 | 汤力水 | 特调基底 5阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-5.webp |
+| fresh-mixer-9 | 威士忌 | 特调基底 9阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-9.webp |
 | dish-fresh-ico-0031 | 葡萄果肉饮 | 鲜果料理台3级；葡萄×1＋桑葚×1；30秒 | 晨间茶饮 | assets/v3-b/dish-fresh-ico-0031.webp |
 | dish-fresh-ico-0047 | 热带芒果汁 | 鲜果料理台2级；芒果×1＋椰子×1；26秒 | 晨间茶饮 | assets/v3-b/dish-fresh-ico-0047.webp |
 | dish-fresh-ico-0091 | 鹅鹅手打柠檬茶 | 鲜果料理台1级；柠檬×1＋红茶×1＋糖浆×1；22秒 | 晨间茶饮 | assets/v3-b/dish-fresh-ico-0091.webp |
@@ -197,22 +197,22 @@
 | fresh-spice-8 | 香草籽 | 香料 8阶，香料盒生产与二合 | 家常烟火 | assets/v3-b/fresh-spice-8.webp |
 | fresh-spice-9 | 香草精 | 香料 9阶，香料盒生产与二合 | 家常烟火 | assets/v3-b/fresh-spice-9.webp |
 | fresh-spice-10 | 混合香叶 | 香料 10阶，香料盒生产与二合 | 家常烟火 | assets/v3-b/fresh-spice-10.webp |
-| fresh-seasonal-1 | 蘑菇 | 时蔬 1阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-1.webp |
-| fresh-seasonal-2 | 玉米 | 时蔬 2阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-2.webp |
-| fresh-seasonal-3 | 紫甘蓝 | 时蔬 3阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-3.webp |
-| fresh-seasonal-4 | 土豆 | 时蔬 4阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-4.webp |
-| fresh-seasonal-5 | 生菜 | 时蔬 5阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-5.webp |
-| fresh-seasonal-6 | 四季豆 | 时蔬 6阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-6.webp |
-| fresh-seasonal-7 | 茄子 | 时蔬 7阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-7.webp |
-| fresh-seasonal-8 | 白萝卜 | 时蔬 8阶，蔬菜推车生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-8.webp |
-| fresh-exotic-1 | 蓝莓 | 风味鲜果 1阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-1.webp |
-| fresh-exotic-2 | 香蕉 | 风味鲜果 2阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-2.webp |
-| fresh-exotic-3 | 柠檬 | 风味鲜果 3阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-3.webp |
-| fresh-exotic-4 | 芒果 | 风味鲜果 4阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-4.webp |
-| fresh-exotic-5 | 水蜜桃 | 风味鲜果 5阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-5.webp |
-| fresh-exotic-6 | 椰子 | 风味鲜果 6阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-6.webp |
-| fresh-exotic-7 | 梨 | 风味鲜果 7阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-7.webp |
-| fresh-exotic-8 | 桑葚 | 风味鲜果 8阶，鲜果木箱生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-8.webp |
+| fresh-seasonal-1 | 蘑菇 | 时蔬 1阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-1.webp |
+| fresh-seasonal-2 | 玉米 | 时蔬 2阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-2.webp |
+| fresh-seasonal-3 | 紫甘蓝 | 时蔬 3阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-3.webp |
+| fresh-seasonal-4 | 土豆 | 时蔬 4阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-4.webp |
+| fresh-seasonal-5 | 生菜 | 时蔬 5阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-5.webp |
+| fresh-seasonal-6 | 四季豆 | 时蔬 6阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-6.webp |
+| fresh-seasonal-7 | 茄子 | 时蔬 7阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-7.webp |
+| fresh-seasonal-8 | 白萝卜 | 时蔬 8阶，时蔬菜架生产与二合 | 晨间茶饮 | assets/v3-b/fresh-seasonal-8.webp |
+| fresh-exotic-1 | 蓝莓 | 风味鲜果 1阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-1.webp |
+| fresh-exotic-2 | 香蕉 | 风味鲜果 2阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-2.webp |
+| fresh-exotic-3 | 柠檬 | 风味鲜果 3阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-3.webp |
+| fresh-exotic-4 | 芒果 | 风味鲜果 4阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-4.webp |
+| fresh-exotic-5 | 水蜜桃 | 风味鲜果 5阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-5.webp |
+| fresh-exotic-6 | 椰子 | 风味鲜果 6阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-6.webp |
+| fresh-exotic-7 | 梨 | 风味鲜果 7阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-7.webp |
+| fresh-exotic-8 | 桑葚 | 风味鲜果 8阶，风味果筐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-exotic-8.webp |
 | fresh-sea-1 | 鲜虾 | 海鲜 1阶，海鲜冰箱生产与二合 | 海港蒸鲜 | assets/v3-b/fresh-sea-1.webp |
 | fresh-sea-2 | 鱿鱼 | 海鲜 2阶，海鲜冰箱生产与二合 | 海港蒸鲜 | assets/v3-b/fresh-sea-2.webp |
 | fresh-sea-3 | 鳕鱼 | 海鲜 3阶，海鲜冰箱生产与二合 | 海港蒸鲜 | assets/v3-b/fresh-sea-3.webp |
@@ -249,18 +249,18 @@
 | fresh-sweet-7 | 巧克力 | 糖果甜料 7阶，甜料柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-sweet-7.webp |
 | fresh-sweet-8 | 棉花软糖 | 糖果甜料 8阶，甜料柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-sweet-8.webp |
 | fresh-sweet-9 | 黑糖珍珠 | 糖果甜料 9阶，甜料柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-sweet-9.webp |
-| fresh-coffee-1 | 咖啡豆 | 咖啡 1阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-1.webp |
-| fresh-tea-1 | 茶叶 | 茶 1阶，饮品冰柜生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-1.webp |
-| fresh-mixer-1 | 冰块 | 特调基底 1阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-1.webp |
-| fresh-mixer-2 | 矿泉水 | 特调基底 2阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-2.webp |
-| fresh-mixer-3 | 苏打水 | 特调基底 3阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-3.webp |
-| fresh-mixer-6 | 可乐 | 特调基底 6阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-6.webp |
-| fresh-mixer-7 | 能量汽水 | 特调基底 7阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-7.webp |
-| fresh-mixer-8 | 朗姆酒 | 特调基底 8阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-8.webp |
-| fresh-mixer-10 | 伏特加 | 特调基底 10阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-10.webp |
-| fresh-mixer-11 | 龙舌兰 | 特调基底 11阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-11.webp |
-| fresh-mixer-12 | 金酒 | 特调基底 12阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-12.webp |
-| fresh-mixer-13 | 红葡萄酒 | 特调基底 13阶，饮品冰柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-13.webp |
+| fresh-coffee-1 | 咖啡豆 | 咖啡 1阶，咖啡豆磨机生产与二合 | 晨间茶饮 | assets/v3-b/fresh-coffee-1.webp |
+| fresh-tea-1 | 茶叶 | 茶 1阶，茶叶罐生产与二合 | 晨间茶饮 | assets/v3-b/fresh-tea-1.webp |
+| fresh-mixer-1 | 冰块 | 特调基底 1阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-1.webp |
+| fresh-mixer-2 | 矿泉水 | 特调基底 2阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-2.webp |
+| fresh-mixer-3 | 苏打水 | 特调基底 3阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-3.webp |
+| fresh-mixer-6 | 可乐 | 特调基底 6阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-6.webp |
+| fresh-mixer-7 | 能量汽水 | 特调基底 7阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-7.webp |
+| fresh-mixer-8 | 朗姆酒 | 特调基底 8阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-8.webp |
+| fresh-mixer-10 | 伏特加 | 特调基底 10阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-10.webp |
+| fresh-mixer-11 | 龙舌兰 | 特调基底 11阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-11.webp |
+| fresh-mixer-12 | 金酒 | 特调基底 12阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-12.webp |
+| fresh-mixer-13 | 红葡萄酒 | 特调基底 13阶，特调基底柜生产与二合 | 晚风特调 | assets/v3-b/fresh-mixer-13.webp |
 
 ## 设备
 
@@ -275,7 +275,11 @@
 | 乳品冷柜 | 生产器 | 晨间茶饮 | dairy-fridge-l1 → dairy-fridge-l2 → dairy-fridge-l3 | 40金币 |
 | 谷物面点箱 | 生产器 | 晨间茶饮 | grain-box-l1 → grain-box-l2 → grain-box-l3 | 40金币 |
 | 甜料柜 | 生产器 | 晨间茶饮 | sweet-cabinet-l1 → sweet-cabinet-l2 → sweet-cabinet-l3 | 40金币 |
-| 饮品冰柜 | 生产器 | 晨间茶饮 | drink-fridge-l1 → drink-fridge-l2 → drink-fridge-l3 | 40金币 |
+| 时蔬菜架 | 生产器 | 晨间茶饮 | seasonal-produce-rack-l1 → seasonal-produce-rack-l2 → seasonal-produce-rack-l3 | 40金币 |
+| 风味果筐 | 生产器 | 晨间茶饮 | exotic-fruit-basket-l1 → exotic-fruit-basket-l2 → exotic-fruit-basket-l3 | 40金币 |
+| 咖啡豆磨机 | 生产器 | 晨间茶饮 | coffee-grinder-l1 → coffee-grinder-l2 → coffee-grinder-l3 | 40金币 |
+| 茶叶罐 | 生产器 | 晨间茶饮 | tea-caddy-l1 → tea-caddy-l2 → tea-caddy-l3 | 40金币 |
+| 特调基底柜 | 生产器 | 晚风特调 | mixer-base-cooler-l1 → mixer-base-cooler-l2 → mixer-base-cooler-l3 | 40金币 |
 | 小鹅砧板 | 厨具 | 果蔬开张 | chopping-board-l1 → chopping-board-l2 → chopping-board-l3 | 30金币 |
 | 鲜果料理台 | 厨具 | 果蔬开张 | fruit-press-l1 → fruit-press-l2 → fruit-press-l3 | 30金币 |
 | 料理锅 | 厨具 | 家常烟火 | home-cooking-pot-l1 → home-cooking-pot-l2 → home-cooking-pot-l3 | 30金币 |

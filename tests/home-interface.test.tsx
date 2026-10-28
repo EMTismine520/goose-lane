@@ -25,9 +25,9 @@ describe('home kitchen interface contracts', () => {
     expect(html).toMatch(/料理.*?\(0\/98\)/);
     expect(html).toMatch(/饮品.*?\(0\/41\)/);
     expect(html).toMatch(/食材.*?\(2\/106\)/);
-    expect(html).toMatch(/生产器.*?\(2\/30\)/);
+    expect(html).toMatch(/生产器.*?\(2\/42\)/);
     expect(html).toMatch(/厨具.*?\(2\/36\)/);
-    expect(html).toContain('/ 311');
+    expect(html).toContain('/ 323');
     expect(html).toContain('codex-question');
     expect(html).not.toContain('fresh-beast-1.svg');
     expect(html).toContain(`alt="${ITEMS['fresh-veg-1'].name}"`);

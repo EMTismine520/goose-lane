@@ -1,12 +1,12 @@
 {
-  "version": "3.0.0",
+  "version": "4.0.0",
   "schema": 3,
   "counts": {
     "items": 245,
     "recipes": 123,
     "finished": 139,
-    "equipment": 66,
-    "total": 311,
+    "equipment": 78,
+    "total": 323,
     "orders": 145
   },
   "themes": [
@@ -128,7 +128,7 @@
         "fresh-seasonal-8"
       ],
       "stage": 3,
-      "producer": "vegetable-cart"
+      "producer": "seasonal-produce-rack"
     },
     {
       "id": "fresh-exotic",
@@ -146,7 +146,7 @@
         "fresh-exotic-8"
       ],
       "stage": 3,
-      "producer": "fruit-cart"
+      "producer": "exotic-fruit-basket"
     },
     {
       "id": "fresh-sea",
@@ -241,7 +241,7 @@
         "fresh-coffee-9"
       ],
       "stage": 3,
-      "producer": "drink-fridge"
+      "producer": "coffee-grinder"
     },
     {
       "id": "fresh-tea",
@@ -257,7 +257,7 @@
         "fresh-tea-6"
       ],
       "stage": 3,
-      "producer": "drink-fridge"
+      "producer": "tea-caddy"
     },
     {
       "id": "fresh-mixer",
@@ -280,7 +280,7 @@
         "fresh-mixer-13"
       ],
       "stage": 8,
-      "producer": "drink-fridge"
+      "producer": "mixer-base-cooler"
     }
   ],
   "items": [
@@ -1324,7 +1324,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-1",
       "assetPath": "assets/v3-b/fresh-seasonal-1.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 1,
       "description": "1阶时蔬。两份同阶物品可以合成下一阶。"
     },
@@ -1343,7 +1343,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-2",
       "assetPath": "assets/v3-b/fresh-seasonal-2.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 2,
       "description": "2阶时蔬。两份同阶物品可以合成下一阶。"
     },
@@ -1362,7 +1362,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-3",
       "assetPath": "assets/v3-b/fresh-seasonal-3.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 4,
       "description": "3阶时蔬。两份同阶物品可以合成下一阶。"
     },
@@ -1381,7 +1381,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-4",
       "assetPath": "assets/v3-b/fresh-seasonal-4.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 2,
       "description": "4阶时蔬。两份同阶物品可以合成下一阶。"
     },
@@ -1400,7 +1400,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-5",
       "assetPath": "assets/v3-b/fresh-seasonal-5.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 4,
       "description": "5阶时蔬。两份同阶物品可以合成下一阶。"
     },
@@ -1419,7 +1419,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-6",
       "assetPath": "assets/v3-b/fresh-seasonal-6.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 8,
       "description": "6阶时蔬。两份同阶物品可以合成下一阶。"
     },
@@ -1438,7 +1438,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-7",
       "assetPath": "assets/v3-b/fresh-seasonal-7.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 4,
       "description": "7阶时蔬。两份同阶物品可以合成下一阶。"
     },
@@ -1457,7 +1457,7 @@
       "icon": 0,
       "assetId": "fresh-seasonal-8",
       "assetPath": "assets/v3-b/fresh-seasonal-8.webp",
-      "source": "蔬菜推车",
+      "source": "时蔬菜架",
       "sell": 8,
       "description": "8阶时蔬。本系列最高阶，可收集图鉴。"
     },
@@ -1476,7 +1476,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-1",
       "assetPath": "assets/v3-b/fresh-exotic-1.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 1,
       "description": "1阶风味鲜果。两份同阶物品可以合成下一阶。"
     },
@@ -1495,7 +1495,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-2",
       "assetPath": "assets/v3-b/fresh-exotic-2.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 2,
       "description": "2阶风味鲜果。两份同阶物品可以合成下一阶。"
     },
@@ -1514,7 +1514,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-3",
       "assetPath": "assets/v3-b/fresh-exotic-3.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 4,
       "description": "3阶风味鲜果。两份同阶物品可以合成下一阶。"
     },
@@ -1533,7 +1533,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-4",
       "assetPath": "assets/v3-b/fresh-exotic-4.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 2,
       "description": "4阶风味鲜果。两份同阶物品可以合成下一阶。"
     },
@@ -1552,7 +1552,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-5",
       "assetPath": "assets/v3-b/fresh-exotic-5.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 4,
       "description": "5阶风味鲜果。两份同阶物品可以合成下一阶。"
     },
@@ -1571,7 +1571,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-6",
       "assetPath": "assets/v3-b/fresh-exotic-6.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 8,
       "description": "6阶风味鲜果。两份同阶物品可以合成下一阶。"
     },
@@ -1590,7 +1590,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-7",
       "assetPath": "assets/v3-b/fresh-exotic-7.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 4,
       "description": "7阶风味鲜果。两份同阶物品可以合成下一阶。"
     },
@@ -1609,7 +1609,7 @@
       "icon": 0,
       "assetId": "fresh-exotic-8",
       "assetPath": "assets/v3-b/fresh-exotic-8.webp",
-      "source": "鲜果木箱",
+      "source": "风味果筐",
       "sell": 8,
       "description": "8阶风味鲜果。本系列最高阶，可收集图鉴。"
     },
@@ -2312,7 +2312,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-1",
       "assetPath": "assets/v3-b/fresh-coffee-1.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 1,
       "description": "1阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2331,7 +2331,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-2",
       "assetPath": "assets/v3-b/fresh-coffee-2.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 2,
       "description": "2阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2350,7 +2350,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-3",
       "assetPath": "assets/v3-b/fresh-coffee-3.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 4,
       "description": "3阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2369,7 +2369,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-4",
       "assetPath": "assets/v3-b/fresh-coffee-4.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 2,
       "description": "4阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2388,7 +2388,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-5",
       "assetPath": "assets/v3-b/fresh-coffee-5.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 4,
       "description": "5阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2407,7 +2407,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-6",
       "assetPath": "assets/v3-b/fresh-coffee-6.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 8,
       "description": "6阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2426,7 +2426,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-7",
       "assetPath": "assets/v3-b/fresh-coffee-7.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 4,
       "description": "7阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2445,7 +2445,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-8",
       "assetPath": "assets/v3-b/fresh-coffee-8.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 8,
       "description": "8阶咖啡。两份同阶物品可以合成下一阶。"
     },
@@ -2464,7 +2464,7 @@
       "icon": 0,
       "assetId": "fresh-coffee-9",
       "assetPath": "assets/v3-b/fresh-coffee-9.webp",
-      "source": "饮品冰柜",
+      "source": "咖啡豆磨机",
       "sell": 16,
       "description": "9阶咖啡。本系列最高阶，可收集图鉴。"
     },
@@ -2483,7 +2483,7 @@
       "icon": 0,
       "assetId": "fresh-tea-1",
       "assetPath": "assets/v3-b/fresh-tea-1.webp",
-      "source": "饮品冰柜",
+      "source": "茶叶罐",
       "sell": 1,
       "description": "1阶茶。两份同阶物品可以合成下一阶。"
     },
@@ -2502,7 +2502,7 @@
       "icon": 0,
       "assetId": "fresh-tea-2",
       "assetPath": "assets/v3-b/fresh-tea-2.webp",
-      "source": "饮品冰柜",
+      "source": "茶叶罐",
       "sell": 2,
       "description": "2阶茶。两份同阶物品可以合成下一阶。"
     },
@@ -2521,7 +2521,7 @@
       "icon": 0,
       "assetId": "fresh-tea-3",
       "assetPath": "assets/v3-b/fresh-tea-3.webp",
-      "source": "饮品冰柜",
+      "source": "茶叶罐",
       "sell": 4,
       "description": "3阶茶。两份同阶物品可以合成下一阶。"
     },
@@ -2540,7 +2540,7 @@
       "icon": 0,
       "assetId": "fresh-tea-4",
       "assetPath": "assets/v3-b/fresh-tea-4.webp",
-      "source": "饮品冰柜",
+      "source": "茶叶罐",
       "sell": 2,
       "description": "4阶茶。两份同阶物品可以合成下一阶。"
     },
@@ -2559,7 +2559,7 @@
       "icon": 0,
       "assetId": "fresh-tea-5",
       "assetPath": "assets/v3-b/fresh-tea-5.webp",
-      "source": "饮品冰柜",
+      "source": "茶叶罐",
       "sell": 4,
       "description": "5阶茶。两份同阶物品可以合成下一阶。"
     },
@@ -2578,7 +2578,7 @@
       "icon": 0,
       "assetId": "fresh-tea-6",
       "assetPath": "assets/v3-b/fresh-tea-6.webp",
-      "source": "饮品冰柜",
+      "source": "茶叶罐",
       "sell": 8,
       "description": "6阶茶。本系列最高阶，可收集图鉴。"
     },
@@ -2597,7 +2597,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-1",
       "assetPath": "assets/v3-b/fresh-mixer-1.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 1,
       "description": "1阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2616,7 +2616,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-2",
       "assetPath": "assets/v3-b/fresh-mixer-2.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 2,
       "description": "2阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2635,7 +2635,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-3",
       "assetPath": "assets/v3-b/fresh-mixer-3.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 4,
       "description": "3阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2654,7 +2654,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-4",
       "assetPath": "assets/v3-b/fresh-mixer-4.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 2,
       "description": "4阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2673,7 +2673,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-5",
       "assetPath": "assets/v3-b/fresh-mixer-5.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 4,
       "description": "5阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2692,7 +2692,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-6",
       "assetPath": "assets/v3-b/fresh-mixer-6.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 8,
       "description": "6阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2711,7 +2711,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-7",
       "assetPath": "assets/v3-b/fresh-mixer-7.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 4,
       "description": "7阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2730,7 +2730,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-8",
       "assetPath": "assets/v3-b/fresh-mixer-8.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 8,
       "description": "8阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2749,7 +2749,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-9",
       "assetPath": "assets/v3-b/fresh-mixer-9.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 16,
       "description": "9阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2768,7 +2768,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-10",
       "assetPath": "assets/v3-b/fresh-mixer-10.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 8,
       "description": "10阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2787,7 +2787,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-11",
       "assetPath": "assets/v3-b/fresh-mixer-11.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 16,
       "description": "11阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2806,7 +2806,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-12",
       "assetPath": "assets/v3-b/fresh-mixer-12.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 32,
       "description": "12阶特调基底。两份同阶物品可以合成下一阶。"
     },
@@ -2825,7 +2825,7 @@
       "icon": 0,
       "assetId": "fresh-mixer-13",
       "assetPath": "assets/v3-b/fresh-mixer-13.webp",
-      "source": "饮品冰柜",
+      "source": "特调基底柜",
       "sell": 16,
       "description": "13阶特调基底。本系列最高阶，可收集图鉴。"
     },
@@ -7453,8 +7453,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-veg",
-        "fresh-seasonal"
+        "fresh-veg"
       ],
       "price": 40,
       "familyId": "vegetable-cart",
@@ -7467,8 +7466,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-veg",
-        "fresh-seasonal"
+        "fresh-veg"
       ],
       "price": 40,
       "familyId": "vegetable-cart",
@@ -7481,8 +7479,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-veg",
-        "fresh-seasonal"
+        "fresh-veg"
       ],
       "price": 40,
       "familyId": "vegetable-cart",
@@ -7495,8 +7492,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-fruit",
-        "fresh-exotic"
+        "fresh-fruit"
       ],
       "price": 40,
       "familyId": "fruit-cart",
@@ -7509,8 +7505,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-fruit",
-        "fresh-exotic"
+        "fresh-fruit"
       ],
       "price": 40,
       "familyId": "fruit-cart",
@@ -7523,8 +7518,7 @@
       "kind": "generator",
       "stage": 1,
       "chains": [
-        "fresh-fruit",
-        "fresh-exotic"
+        "fresh-fruit"
       ],
       "price": 40,
       "familyId": "fruit-cart",
@@ -7805,49 +7799,199 @@
       "assetPath": "assets/v3-b/sweet-cabinet-l3.webp"
     },
     {
-      "id": "drink-fridge-l1",
-      "name": "饮品冰柜",
+      "id": "seasonal-produce-rack-l1",
+      "name": "时蔬菜架",
       "kind": "generator",
       "stage": 3,
       "chains": [
-        "fresh-coffee",
-        "fresh-tea",
-        "fresh-mixer"
+        "fresh-seasonal"
       ],
       "price": 40,
-      "familyId": "drink-fridge",
+      "familyId": "seasonal-produce-rack",
       "level": 1,
-      "assetPath": "assets/v3-b/drink-fridge-l1.webp"
+      "assetPath": "assets/v3-b/seasonal-produce-rack-l1.webp"
     },
     {
-      "id": "drink-fridge-l2",
-      "name": "饮品冰柜",
+      "id": "seasonal-produce-rack-l2",
+      "name": "时蔬菜架",
       "kind": "generator",
       "stage": 3,
       "chains": [
-        "fresh-coffee",
-        "fresh-tea",
-        "fresh-mixer"
+        "fresh-seasonal"
       ],
       "price": 40,
-      "familyId": "drink-fridge",
+      "familyId": "seasonal-produce-rack",
       "level": 2,
-      "assetPath": "assets/v3-b/drink-fridge-l2.webp"
+      "assetPath": "assets/v3-b/seasonal-produce-rack-l2.webp"
     },
     {
-      "id": "drink-fridge-l3",
-      "name": "饮品冰柜",
+      "id": "seasonal-produce-rack-l3",
+      "name": "时蔬菜架",
       "kind": "generator",
       "stage": 3,
       "chains": [
-        "fresh-coffee",
-        "fresh-tea",
+        "fresh-seasonal"
+      ],
+      "price": 40,
+      "familyId": "seasonal-produce-rack",
+      "level": 3,
+      "assetPath": "assets/v3-b/seasonal-produce-rack-l3.webp"
+    },
+    {
+      "id": "exotic-fruit-basket-l1",
+      "name": "风味果筐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-exotic"
+      ],
+      "price": 40,
+      "familyId": "exotic-fruit-basket",
+      "level": 1,
+      "assetPath": "assets/v3-b/exotic-fruit-basket-l1.webp"
+    },
+    {
+      "id": "exotic-fruit-basket-l2",
+      "name": "风味果筐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-exotic"
+      ],
+      "price": 40,
+      "familyId": "exotic-fruit-basket",
+      "level": 2,
+      "assetPath": "assets/v3-b/exotic-fruit-basket-l2.webp"
+    },
+    {
+      "id": "exotic-fruit-basket-l3",
+      "name": "风味果筐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-exotic"
+      ],
+      "price": 40,
+      "familyId": "exotic-fruit-basket",
+      "level": 3,
+      "assetPath": "assets/v3-b/exotic-fruit-basket-l3.webp"
+    },
+    {
+      "id": "coffee-grinder-l1",
+      "name": "咖啡豆磨机",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-coffee"
+      ],
+      "price": 40,
+      "familyId": "coffee-grinder",
+      "level": 1,
+      "assetPath": "assets/v3-b/coffee-grinder-l1.webp"
+    },
+    {
+      "id": "coffee-grinder-l2",
+      "name": "咖啡豆磨机",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-coffee"
+      ],
+      "price": 40,
+      "familyId": "coffee-grinder",
+      "level": 2,
+      "assetPath": "assets/v3-b/coffee-grinder-l2.webp"
+    },
+    {
+      "id": "coffee-grinder-l3",
+      "name": "咖啡豆磨机",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-coffee"
+      ],
+      "price": 40,
+      "familyId": "coffee-grinder",
+      "level": 3,
+      "assetPath": "assets/v3-b/coffee-grinder-l3.webp"
+    },
+    {
+      "id": "tea-caddy-l1",
+      "name": "茶叶罐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-tea"
+      ],
+      "price": 40,
+      "familyId": "tea-caddy",
+      "level": 1,
+      "assetPath": "assets/v3-b/tea-caddy-l1.webp"
+    },
+    {
+      "id": "tea-caddy-l2",
+      "name": "茶叶罐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-tea"
+      ],
+      "price": 40,
+      "familyId": "tea-caddy",
+      "level": 2,
+      "assetPath": "assets/v3-b/tea-caddy-l2.webp"
+    },
+    {
+      "id": "tea-caddy-l3",
+      "name": "茶叶罐",
+      "kind": "generator",
+      "stage": 3,
+      "chains": [
+        "fresh-tea"
+      ],
+      "price": 40,
+      "familyId": "tea-caddy",
+      "level": 3,
+      "assetPath": "assets/v3-b/tea-caddy-l3.webp"
+    },
+    {
+      "id": "mixer-base-cooler-l1",
+      "name": "特调基底柜",
+      "kind": "generator",
+      "stage": 8,
+      "chains": [
         "fresh-mixer"
       ],
       "price": 40,
-      "familyId": "drink-fridge",
+      "familyId": "mixer-base-cooler",
+      "level": 1,
+      "assetPath": "assets/v3-b/mixer-base-cooler-l1.webp"
+    },
+    {
+      "id": "mixer-base-cooler-l2",
+      "name": "特调基底柜",
+      "kind": "generator",
+      "stage": 8,
+      "chains": [
+        "fresh-mixer"
+      ],
+      "price": 40,
+      "familyId": "mixer-base-cooler",
+      "level": 2,
+      "assetPath": "assets/v3-b/mixer-base-cooler-l2.webp"
+    },
+    {
+      "id": "mixer-base-cooler-l3",
+      "name": "特调基底柜",
+      "kind": "generator",
+      "stage": 8,
+      "chains": [
+        "fresh-mixer"
+      ],
+      "price": 40,
+      "familyId": "mixer-base-cooler",
       "level": 3,
-      "assetPath": "assets/v3-b/drink-fridge-l3.webp"
+      "assetPath": "assets/v3-b/mixer-base-cooler-l3.webp"
     },
     {
       "id": "chopping-board-l1",

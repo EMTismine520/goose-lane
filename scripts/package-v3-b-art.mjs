@@ -1,5 +1,6 @@
+import path from 'node:path';
 import sharp from 'sharp';
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir,unlink} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {measure,MEASURE_SIZE,svgGeometry} from './b-art-lib.mjs';
 const catalog=JSON.parse(await readFile('artwork/v3-b/catalog.json','utf8'));
@@ -29,7 +30,7 @@ for(const x of catalog){
  const bounds=await measure(runtimeSvg),actual=Math.max(bounds.width,bounds.height)/MEASURE_SIZE*presentation.displaySize;
  if(bounds.edgeAlpha||Math.abs(actual-target)>.75)throw new Error(`${x.id}: visible-size mismatch ${actual}/${target}`);
  map[x.id]={path,...presentation};
- manifest.push({id:x.id,name:x.name,kind:x.kind,stage:x.kind==='device'&&x.level>1?Math.max(3,x.stage):x.stage,path,bytes:webp.length,source:x.svg,rasterSource:pngPath,runtimeSvg:runtimeSvgPath,mode:x.mode,sha256:createHash('sha256').update(webp).digest('hex'),sourceSha256:createHash('sha256').update(source).digest('hex'),...(x.origin?{origin:x.origin,originSha256:x.originSha256}:{}),targetVisibleSize:target,visibleSize:Number(actual.toFixed(4)),...(x.presentation?{approvedPresentation:x.presentation}:{})});
+ manifest.push({id:x.id,name:x.name,kind:x.kind,level:x.level??null,family:x.base??null,stage:x.kind==='device'&&x.level>1?Math.max(3,x.stage):x.stage,path,bytes:webp.length,source:x.svg,rasterSource:pngPath,runtimeSvg:runtimeSvgPath,mode:x.mode,sha256:createHash('sha256').update(webp).digest('hex'),sourceSha256:createHash('sha256').update(source).digest('hex'),...(x.origin?{origin:x.origin,originSha256:x.originSha256}:{}),targetVisibleSize:target,visibleSize:Number(actual.toFixed(4)),...(x.presentation?{approvedPresentation:x.presentation}:{})});
 }
 await writeFile('artwork/v3-b/presentation.json',JSON.stringify(map,null,2)+'\n');
 await writeFile('artwork/v3-b/manifest.json',JSON.stringify(manifest,null,2)+'\n');
@@ -39,6 +40,12 @@ for(const{size,kind}of[{size:32},{size:96},...['material','recipe','device'].map
  for(let i=0;i<subset.length;i++){images.push({input:await sharp('public/'+subset[i].path).resize(size).png().toBuffer(),left:i%cols*cell+11,top:Math.floor(i/cols)*cell+3});images.push({input:Buffer.from(`<svg width="${cell}" height="16"><text x="${cell/2}" y="11" text-anchor="middle" font-size="8" fill="#795438">${i+1}</text></svg>`),left:i%cols*cell,top:Math.floor(i/cols)*cell+size+4});}
  await sharp({create:{width:cols*cell,height:rows*cell,channels:4,background:'#fff3dd'}}).composite(images).png().toFile(`artwork/v3-b/qa/contact-${kind?kind+'-':''}${size}.png`);
 }
-const html=`<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>鹅巷食光 · B暖色卡通图鉴美术</title><style>body{margin:0;background:#fff3dd;color:#795438;font:15px/1.6 system-ui,sans-serif}header{padding:20px;position:sticky;top:0;background:#fff3dded;border-bottom:1px solid #d6bc92}h1{margin:0;font-size:22px}p{margin:6px 0 12px}input,select{padding:8px;border:1px solid #c4a77d;border-radius:8px;background:#fff8e6;color:inherit;font:inherit}main{padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}article{text-align:center;padding:12px 4px;border:1px solid #dcc59f;border-radius:10px;background:#fff8e8}img{width:var(--size,96px);height:var(--size,96px);object-fit:contain}small{display:block;font-size:10px;word-break:break-all}</style><header><h1>B暖色卡通 · 311项完整图鉴美术</h1><p>62项原样复用，249项延续原生SVG系统；材料36、料理38、设备42设计可见尺寸，鸡蛋34。</p><input id="q" aria-label="搜索" placeholder="名称 / ID"><select id="kind" aria-label="类别"><option value="">全部</option><option value="material">合成节点</option><option value="recipe">料理饮品</option><option value="device">设备等级</option></select><select id="size" aria-label="尺寸"><option>96</option><option>64</option><option>32</option></select> <span id="count"></span></header><main id="grid"></main><script>const data=${JSON.stringify(manifest)},prefix=location.protocol==='file:'?'../../public/':'../../';function render(){const q=document.querySelector('#q').value.toLowerCase(),kind=document.querySelector('#kind').value;document.documentElement.style.setProperty('--size',document.querySelector('#size').value+'px');const rows=data.filter(x=>(!kind||x.kind===kind)&&(!q||(x.id+' '+x.name).toLowerCase().includes(q)));document.querySelector('#count').textContent=rows.length+' / 311';document.querySelector('#grid').replaceChildren(...rows.map(x=>{const a=document.createElement('article'),im=document.createElement('img'),n=document.createElement('div'),s=document.createElement('small');im.src=prefix+x.path;im.alt=x.name;im.loading='lazy';n.textContent=x.name;s.textContent=x.id+' · '+x.mode;a.append(im,n,s);return a}));}document.querySelectorAll('input,select').forEach(x=>x.addEventListener('input',render));render()</script></html>`;
+const html=(await readFile('artwork/v3-b/review-template.html','utf8')).replace('__MANIFEST__',JSON.stringify(manifest));
 await writeFile('artwork/v3-b/overview.html',html);
+await writeFile('public/art-v4.html',html);
+// Drop only obsolete generated runtime files; the V3 masters and exports were archived first.
+for(const [directory,extension] of [['public/assets/v3-b','.webp'],['art/v3-b/masters','.png']]){
+ const absolute=path.resolve(directory),wanted=new Set(catalog.map(x=>x.id+extension));
+ for(const name of await readdir(absolute)){const target=path.resolve(absolute,name);if(path.dirname(target)!==absolute)throw new Error('Unexpected generated path');if(name.endsWith(extension)&&!wanted.has(name))await unlink(target);}
+}
 console.log(JSON.stringify({assets:manifest.length,approved:manifest.filter(x=>x.mode==='approved-svg-reuse').length,newNative:manifest.filter(x=>x.mode==='native-b-svg').length,runtimeBytes:manifest.reduce((s,x)=>s+x.bytes,0),maxVisibleSizeError:Math.max(...manifest.map(x=>Math.abs(x.visibleSize-x.targetVisibleSize))),stageOnly},null,2));

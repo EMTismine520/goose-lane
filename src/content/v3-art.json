@@ -100,22 +100,22 @@
   "fresh-beast-1": {
     "path": "assets/v3-b/fresh-beast-1.webp",
     "displaySize": 48,
-    "offsetX": -1,
-    "offsetY": -3,
+    "offsetX": 0,
+    "offsetY": -2,
     "svgSize": 96
   },
   "fresh-beast-2": {
     "path": "assets/v3-b/fresh-beast-2.webp",
     "displaySize": 48,
-    "offsetX": -1,
-    "offsetY": -3,
+    "offsetX": 0,
+    "offsetY": -2,
     "svgSize": 96
   },
   "fresh-beast-3": {
     "path": "assets/v3-b/fresh-beast-3.webp",
     "displaySize": 48,
-    "offsetX": -1,
-    "offsetY": -3,
+    "offsetX": 0,
+    "offsetY": -2,
     "svgSize": 96
   },
   "fresh-beast-4": {
@@ -170,8 +170,8 @@
   "fresh-poultry-1": {
     "path": "assets/v3-b/fresh-poultry-1.webp",
     "displaySize": 45.333333333333336,
-    "offsetX": -1,
-    "offsetY": -3,
+    "offsetX": 0,
+    "offsetY": -2,
     "svgSize": 96
   },
   "fresh-poultry-2": {
@@ -216,11 +216,18 @@
     "offsetY": -2,
     "svgSize": 96
   },
+  "fresh-poultry-8": {
+    "path": "assets/v3-b/fresh-poultry-8.webp",
+    "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
   "fresh-spice-1": {
     "path": "assets/v3-b/fresh-spice-1.webp",
     "displaySize": 48,
-    "offsetX": -1,
-    "offsetY": -3,
+    "offsetX": 0,
+    "offsetY": -2,
     "svgSize": 96
   },
   "fresh-spice-2": {
@@ -260,181 +267,6 @@
   },
   "fresh-spice-7": {
     "path": "assets/v3-b/fresh-spice-7.webp",
-    "displaySize": 48,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-tomato-salad": {
-    "path": "assets/v3-b/dish-fresh-tomato-salad.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-carrot-salad": {
-    "path": "assets/v3-b/dish-fresh-carrot-salad.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-garden-bowl": {
-    "path": "assets/v3-b/dish-fresh-garden-bowl.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-berry-cup": {
-    "path": "assets/v3-b/dish-fresh-berry-cup.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-orange-juice": {
-    "path": "assets/v3-b/dish-fresh-orange-juice.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-fruit-platter": {
-    "path": "assets/v3-b/dish-fresh-fruit-platter.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-onion-salad": {
-    "path": "assets/v3-b/dish-fresh-home-onion-salad.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-tomato-eggs": {
-    "path": "assets/v3-b/dish-fresh-home-tomato-eggs.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-meatball-soup": {
-    "path": "assets/v3-b/dish-fresh-home-meatball-soup.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-garlic-broccoli": {
-    "path": "assets/v3-b/dish-fresh-home-garlic-broccoli.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-vegetable-rice": {
-    "path": "assets/v3-b/dish-fresh-home-vegetable-rice.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-scallion-egg-rice": {
-    "path": "assets/v3-b/dish-fresh-home-scallion-egg-rice.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-seared-pork": {
-    "path": "assets/v3-b/dish-fresh-home-seared-pork.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-garlic-cucumber": {
-    "path": "assets/v3-b/dish-fresh-home-garlic-cucumber.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-chicken-roll": {
-    "path": "assets/v3-b/dish-fresh-home-chicken-roll.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "dish-fresh-home-orange-ribs": {
-    "path": "assets/v3-b/dish-fresh-home-orange-ribs.webp",
-    "displaySize": 50.666666666666664,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "vegetable-cart-l1": {
-    "path": "assets/v3-b/vegetable-cart-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "fruit-cart-l1": {
-    "path": "assets/v3-b/fruit-cart-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "beast-meat-cart-l1": {
-    "path": "assets/v3-b/beast-meat-cart-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "poultry-cart-l1": {
-    "path": "assets/v3-b/poultry-cart-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "spice-box-l1": {
-    "path": "assets/v3-b/spice-box-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "chopping-board-l1": {
-    "path": "assets/v3-b/chopping-board-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "fruit-press-l1": {
-    "path": "assets/v3-b/fruit-press-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "home-cooking-pot-l1": {
-    "path": "assets/v3-b/home-cooking-pot-l1.webp",
-    "displaySize": 56,
-    "offsetX": 0,
-    "offsetY": -2,
-    "svgSize": 96
-  },
-  "fresh-poultry-8": {
-    "path": "assets/v3-b/fresh-poultry-8.webp",
     "displaySize": 48,
     "offsetX": 0,
     "offsetY": -2,
@@ -1017,6 +849,118 @@
   "fresh-mixer-13": {
     "path": "assets/v3-b/fresh-mixer-13.webp",
     "displaySize": 48,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-tomato-salad": {
+    "path": "assets/v3-b/dish-fresh-tomato-salad.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-carrot-salad": {
+    "path": "assets/v3-b/dish-fresh-carrot-salad.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-garden-bowl": {
+    "path": "assets/v3-b/dish-fresh-garden-bowl.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-berry-cup": {
+    "path": "assets/v3-b/dish-fresh-berry-cup.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-orange-juice": {
+    "path": "assets/v3-b/dish-fresh-orange-juice.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-fruit-platter": {
+    "path": "assets/v3-b/dish-fresh-fruit-platter.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-onion-salad": {
+    "path": "assets/v3-b/dish-fresh-home-onion-salad.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-tomato-eggs": {
+    "path": "assets/v3-b/dish-fresh-home-tomato-eggs.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-meatball-soup": {
+    "path": "assets/v3-b/dish-fresh-home-meatball-soup.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-garlic-broccoli": {
+    "path": "assets/v3-b/dish-fresh-home-garlic-broccoli.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-vegetable-rice": {
+    "path": "assets/v3-b/dish-fresh-home-vegetable-rice.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-scallion-egg-rice": {
+    "path": "assets/v3-b/dish-fresh-home-scallion-egg-rice.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-seared-pork": {
+    "path": "assets/v3-b/dish-fresh-home-seared-pork.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-garlic-cucumber": {
+    "path": "assets/v3-b/dish-fresh-home-garlic-cucumber.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-chicken-roll": {
+    "path": "assets/v3-b/dish-fresh-home-chicken-roll.webp",
+    "displaySize": 50.666666666666664,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "dish-fresh-home-orange-ribs": {
+    "path": "assets/v3-b/dish-fresh-home-orange-ribs.webp",
+    "displaySize": 50.666666666666664,
     "offsetX": 0,
     "offsetY": -2,
     "svgSize": 96
@@ -1770,6 +1714,13 @@
     "offsetY": -2,
     "svgSize": 96
   },
+  "vegetable-cart-l1": {
+    "path": "assets/v3-b/vegetable-cart-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
   "vegetable-cart-l2": {
     "path": "assets/v3-b/vegetable-cart-l2.webp",
     "displaySize": 56,
@@ -1779,6 +1730,13 @@
   },
   "vegetable-cart-l3": {
     "path": "assets/v3-b/vegetable-cart-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "fruit-cart-l1": {
+    "path": "assets/v3-b/fruit-cart-l1.webp",
     "displaySize": 56,
     "offsetX": 0,
     "offsetY": -2,
@@ -1798,6 +1756,13 @@
     "offsetY": -2,
     "svgSize": 96
   },
+  "beast-meat-cart-l1": {
+    "path": "assets/v3-b/beast-meat-cart-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
   "beast-meat-cart-l2": {
     "path": "assets/v3-b/beast-meat-cart-l2.webp",
     "displaySize": 56,
@@ -1812,6 +1777,13 @@
     "offsetY": -2,
     "svgSize": 96
   },
+  "poultry-cart-l1": {
+    "path": "assets/v3-b/poultry-cart-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
   "poultry-cart-l2": {
     "path": "assets/v3-b/poultry-cart-l2.webp",
     "displaySize": 56,
@@ -1821,6 +1793,13 @@
   },
   "poultry-cart-l3": {
     "path": "assets/v3-b/poultry-cart-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "spice-box-l1": {
+    "path": "assets/v3-b/spice-box-l1.webp",
     "displaySize": 56,
     "offsetX": 0,
     "offsetY": -2,
@@ -1924,22 +1903,113 @@
     "offsetY": -2,
     "svgSize": 96
   },
-  "drink-fridge-l1": {
-    "path": "assets/v3-b/drink-fridge-l1.webp",
+  "seasonal-produce-rack-l1": {
+    "path": "assets/v3-b/seasonal-produce-rack-l1.webp",
     "displaySize": 56,
     "offsetX": 0,
     "offsetY": -2,
     "svgSize": 96
   },
-  "drink-fridge-l2": {
-    "path": "assets/v3-b/drink-fridge-l2.webp",
+  "seasonal-produce-rack-l2": {
+    "path": "assets/v3-b/seasonal-produce-rack-l2.webp",
     "displaySize": 56,
     "offsetX": 0,
     "offsetY": -2,
     "svgSize": 96
   },
-  "drink-fridge-l3": {
-    "path": "assets/v3-b/drink-fridge-l3.webp",
+  "seasonal-produce-rack-l3": {
+    "path": "assets/v3-b/seasonal-produce-rack-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "exotic-fruit-basket-l1": {
+    "path": "assets/v3-b/exotic-fruit-basket-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "exotic-fruit-basket-l2": {
+    "path": "assets/v3-b/exotic-fruit-basket-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "exotic-fruit-basket-l3": {
+    "path": "assets/v3-b/exotic-fruit-basket-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "coffee-grinder-l1": {
+    "path": "assets/v3-b/coffee-grinder-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "coffee-grinder-l2": {
+    "path": "assets/v3-b/coffee-grinder-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "coffee-grinder-l3": {
+    "path": "assets/v3-b/coffee-grinder-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "tea-caddy-l1": {
+    "path": "assets/v3-b/tea-caddy-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "tea-caddy-l2": {
+    "path": "assets/v3-b/tea-caddy-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "tea-caddy-l3": {
+    "path": "assets/v3-b/tea-caddy-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "mixer-base-cooler-l1": {
+    "path": "assets/v3-b/mixer-base-cooler-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "mixer-base-cooler-l2": {
+    "path": "assets/v3-b/mixer-base-cooler-l2.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "mixer-base-cooler-l3": {
+    "path": "assets/v3-b/mixer-base-cooler-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "chopping-board-l1": {
+    "path": "assets/v3-b/chopping-board-l1.webp",
     "displaySize": 56,
     "offsetX": 0,
     "offsetY": -2,
@@ -1959,6 +2029,13 @@
     "offsetY": -2,
     "svgSize": 96
   },
+  "fruit-press-l1": {
+    "path": "assets/v3-b/fruit-press-l1.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
   "fruit-press-l2": {
     "path": "assets/v3-b/fruit-press-l2.webp",
     "displaySize": 56,
@@ -1968,6 +2045,13 @@
   },
   "fruit-press-l3": {
     "path": "assets/v3-b/fruit-press-l3.webp",
+    "displaySize": 56,
+    "offsetX": 0,
+    "offsetY": -2,
+    "svgSize": 96
+  },
+  "home-cooking-pot-l1": {
+    "path": "assets/v3-b/home-cooking-pot-l1.webp",
     "displaySize": 56,
     "offsetX": 0,
     "offsetY": -2,

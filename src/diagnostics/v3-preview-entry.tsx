@@ -7,7 +7,7 @@ import COMPLETE from './v3-played-state.json';
 import '../ui/game.css';
 
 const query=new URLSearchParams(location.search), requested=query.get('stage'),stage=requested==='cooking'||requested==='complete'?requested:String(Math.min(8,Math.max(1,Number(requested)||3)));
-const scope=`goose-v3-b-qa-${stage}-${query.get('size')??'390'}`;
+const scope=`goose-v4-art-qa-${stage}-${query.get('size')??'390'}`;
 const repository=new SaveRepository(scope);
 const loaded=await repository.open();
 if(!loaded.state){const captured=validateSave(stage==='cooking'?COOKING_SAMPLE:stage==='complete'?COMPLETE:(MILESTONES as Record<string,unknown>)[stage]);await repository.save(resumeManualSlot({id:1,status:'ready',state:captured,capturedAt:captured.lastSeen,savedAt:captured.lastSeen},Date.now()));}

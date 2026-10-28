@@ -10,7 +10,7 @@ const query = new URLSearchParams(location.search);
 if (query.get('perf') !== '1') { query.set('perf', '1'); location.replace(`${location.pathname}?${query}`); }
 else {
   const scenario = UI_SCENARIOS.includes(query.get('scenario') as UiScenario) ? query.get('scenario') as UiScenario : 'opening';
-  const scope = `goose-performance-${scenario}-${query.get('run') ?? 'preview'}`;
+  const scope = `goose-v4-performance-${scenario}-${query.get('run') ?? 'preview'}`;
   const repository = new SaveRepository(scope);
   const loaded = await repository.open();
   if (!loaded.state) await repository.save(createUiPreviewState(scenario));

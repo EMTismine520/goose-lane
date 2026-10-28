@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>鹅巷食光 · V4 美术图鉴</title>
+<style>
+:root{color-scheme:light;--ink:#624737;--paper:#fff8eb;--line:#ddc8a9;--green:#557852}
+*{box-sizing:border-box}body{margin:0;background:#efe3cc;color:var(--ink);font:14px/1.6 system-ui,"Microsoft YaHei",sans-serif}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:25px max(20px,calc((100vw - 1200px)/2));box-shadow:0 5px 22px #71553809}
+.kicker{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:700}h1{font-size:clamp(22px,3vw,34px);font-weight:650;letter-spacing:-1px;margin:3px 0 7px}p{margin:0;color:#8b755f}
+.toolbar{position:sticky;top:0;z-index:2;background:#fff8ebf5;backdrop-filter:blur(12px);padding:12px max(20px,calc((100vw - 1200px)/2));border-bottom:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input,select,button{font:inherit;color:var(--ink);background:#fffdf6;border:1px solid var(--line);border-radius:9px;padding:7px 10px}input{min-width:170px;flex:1}label{white-space:nowrap;font-size:12px}button{cursor:pointer}button[aria-pressed=true]{background:#e5ebd6;border-color:#9bb08b}
+#count{font-size:11px;color:#8b755f;margin-left:auto}main{max-width:1240px;margin:auto;padding:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:12px}
+article{background:var(--paper);border:1px solid var(--line);border-radius:16px;min-width:0;padding:14px 9px 12px;text-align:center;box-shadow:0 2px 0 #d3bd9928;transition:transform .15s}article:hover{transform:translateY(-3px)}
+.art{height:112px;display:grid;place-items:center;border-radius:10px;margin-bottom:8px;background:radial-gradient(ellipse at center,#fffdf5,#fff8eb)}
+.art img{width:var(--size,96px);height:var(--size,96px);object-fit:contain}.name{display:block;font-size:13px;font-weight:650;min-height:21px}.id{display:block;font-size:9px;color:#a58b71;word-break:break-all}.tag{display:inline-block;font-size:9px;padding:1px 6px;background:#e7ecd9;color:#607450;border-radius:10px;margin-top:5px}.blind .name,.blind .id{visibility:hidden}
+.gray img{filter:grayscale(1)}.silhouette img{filter:brightness(0) saturate(0);opacity:.85}footer{max-width:1200px;margin:auto;padding:8px 22px 30px;color:#927b65;font-size:11px}
+@media(max-width:500px){header{padding:18px}main{padding:12px;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}article{padding:10px 3px}.art{height:100px}.name{font-size:11px}.toolbar{padding:10px 12px}select{font-size:12px;padding:6px}#count{width:100%;margin:0}}
+</style>
+</head>
+<body>
+<header><span class="kicker">GOOSE LANE · ART COLLECTION 04</span><h1>把食材画清楚，把烟火留住。</h1><p>精致暖色卡通 · 每台生产器只有一条食材链 · 全量可编辑矢量母稿</p></header>
+<div class="toolbar">
+<input id="q" aria-label="搜索图标" placeholder="搜索名称或 ID">
+<select id="kind" aria-label="图标类别"><option value="">全部图标</option><option value="device">器材</option><option value="material">合成食材</option><option value="recipe">料理与饮品</option></select>
+<select id="level" aria-label="等级筛选"><option value="">全部等级</option><option value="1">一级</option><option value="2">二级</option><option value="3">三级</option></select>
+<select id="size" aria-label="图标尺寸"><option value="96">96 像素</option><option value="48">48 像素</option><option value="40">40 像素</option><option value="32">32 像素</option></select>
+<select id="mode" aria-label="查看模式"><option value="">彩色</option><option value="gray">灰度</option><option value="silhouette">剪影</option></select>
+<button id="blind" aria-pressed="false">隐藏名称</button><span id="count"></span>
+</div>
+<main id="grid"></main>
+<footer>此页用于图形识别与尺寸检查。灰度、剪影和隐藏名称可辅助识别测试；自动生成的对照图不能代替真人识别与手机实测。</footer>
+<script>
+const data=__MANIFEST__;
+const prefix=location.pathname.endsWith('/art-v4.html')?'./':location.protocol==='file:'?'../../public/':'../../';
+let blind=false;
+function render(){
+ const query=document.querySelector('#q').value.toLowerCase(),kind=document.querySelector('#kind').value,level=document.querySelector('#level').value;
+ document.documentElement.style.setProperty('--size',document.querySelector('#size').value+'px');
+ document.body.className=document.querySelector('#mode').value+(blind?' blind':'');
+ const rows=data.filter(x=>(!kind||x.kind===kind)&&(!level||String(x.level)===level)&&(!query||(x.name+' '+x.id).toLowerCase().includes(query)));
+ document.querySelector('#count').textContent=rows.length+' / '+data.length+' 项 · V4';
+ document.querySelector('#grid').replaceChildren(...rows.map((x,index)=>{
+  const card=document.createElement('article'),art=document.createElement('div'),image=document.createElement('img'),name=document.createElement('span'),id=document.createElement('small'),tag=document.createElement('span');
+  art.className='art';image.src=prefix+x.path;image.alt=x.name+(x.kind==='device'?' '+x.level+'级':'');image.loading='lazy';image.width=96;image.height=96;
+  name.className='name';name.textContent=x.name+(x.kind==='device'?' · '+x.level+'级':'');
+  id.className='id';id.textContent=x.id;tag.className='tag';tag.textContent=blind?'#'+(index+1):({device:'器材成长',material:'合成食材',recipe:'料理饮品'}[x.kind]);
+  art.append(image);card.append(art,name,id,tag);return card;
+ }));
+}
+document.querySelectorAll('input,select').forEach(x=>x.addEventListener('input',render));
+document.querySelector('#blind').addEventListener('click',()=>{blind=!blind;document.querySelector('#blind').setAttribute('aria-pressed',String(blind));document.querySelector('#blind').textContent=blind?'显示名称':'隐藏名称';render();});
+render();
+</script>
+</body>
+</html>

@@ -24,7 +24,7 @@ export function itemAssetPath(item: string): string | null {
   return def?.assetPath ?? (def?.assetId ? `assets/items/${def.assetId}.svg` : null);
 }
 export function deviceAssetPath(id: string): string {
-  const expanded = (V3_ART as Record<string, ArtPresentation>)[id];
+  const expanded = (V3_ART as Record<string, ArtPresentation>)[id] ?? (V3_ART as Record<string, ArtPresentation>)[id + '-l1'];
   if (expanded) return expanded.path;
   if (/-l1$/.test(id)) return deviceAssetPath(id.slice(0, -3));
   return ALL_DEVICES.find(device => device.id === id)?.assetPath ?? `assets/entities/${id}.svg`;
@@ -51,7 +51,7 @@ export function itemPresentation(item: string) {
 }
 
 export function devicePresentation(id: string): ArtPresentation {
-  return (V3_ART as Record<string, ArtPresentation>)[id] ?? (B_ART as Record<string, ArtPresentation>)[id] ?? {
+  return (V3_ART as Record<string, ArtPresentation>)[id] ?? (V3_ART as Record<string, ArtPresentation>)[id + '-l1'] ?? (B_ART as Record<string, ArtPresentation>)[id] ?? {
     path: deviceAssetPath(id), displaySize: 47, offsetX: 0, offsetY: -2, svgSize: 96,
   };
 }
