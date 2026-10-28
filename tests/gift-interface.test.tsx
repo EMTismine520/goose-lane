@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { createInitialState, createLegacyInitialState } from '../src/domain/engine';
 import { ResourceBar } from '../src/ui/ResourceBar';
 import { RedeemGiftPanel } from '../src/ui/RedeemGiftPanel';
+import { GiftArtwork, giftTierFor } from '../src/ui/GiftArtwork';
 
 const noop = () => {};
 describe('gift interface accessibility contracts', () => {
@@ -27,7 +28,8 @@ describe('gift interface accessibility contracts', () => {
     expect(html).toContain('maxLength="64"'); expect(html).toContain('spellCheck="false"');
     expect(html).toContain('autoComplete="off"'); expect(html).toContain('aria-describedby=');
     expect(html).toContain('可重复使用');
-    expect(html).not.toContain('GOOSE100'); expect(html).not.toContain('autofocus');
+    for (const code of ['GOOSE100','JIAJIABB','SISIBB']) expect(html).not.toContain(code);
+    expect(html).not.toContain('autofocus');
     expect(html).toMatch(/type="submit" disabled/);
   });
 
@@ -35,5 +37,24 @@ describe('gift interface accessibility contracts', () => {
     const html = renderToStaticMarkup(<RedeemGiftPanel busy={false} readOnly redeemGift={async () => ({ ok: false, message: '只读' })} onPendingChange={noop}/>);
     expect(html).toContain('role="status"'); expect(html).toContain('接管');
     expect(html).toMatch(/type="submit" disabled/);
+  });
+});
+
+describe('tiered gift presentation', () => {
+  it.each([[100,'little'],[999,'little'],[1000,'ribbon'],[9999,'ribbon'],[10000,'treasure'],[100000,'treasure']] as const)('uses the committed amount %i for the %s tier', (amount, tier) => {
+    expect(giftTierFor(amount)).toBe(tier);
+    const closed = renderToStaticMarkup(<GiftArtwork amount={amount}/>);
+    const opened = renderToStaticMarkup(<GiftArtwork amount={amount} opened/>);
+    expect(closed).toContain(`gift-artwork--${tier}`); expect(closed).not.toContain('is-open');
+    expect(opened).toContain('is-open');
+    expect(opened).toContain('aria-hidden="true"'); expect(opened).toContain('focusable="false"');
+    expect(opened).not.toMatch(/<(?:image|img|foreignObject)\b|https?:\/\//);
+    expect((opened.match(/class="gift-spark"/g) ?? []).length).toBeLessThanOrEqual(10);
+  });
+
+  it('isolates gradient IDs when several gifts share a document', () => {
+    const html = renderToStaticMarkup(<><GiftArtwork/><GiftArtwork amount={1000}/><GiftArtwork amount={10000} opened/></>);
+    const ids = [...html.matchAll(/id="(gift-[^"]+)"/g)].map(match => match[1]);
+    expect(ids.length).toBeGreaterThan(0); expect(new Set(ids).size).toBe(ids.length);
   });
 });

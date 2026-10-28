@@ -22,7 +22,30 @@ describe('offline repeatable energy gifts', () => {
     expect(state.energy.value).toBe(60);
   });
 
-  it.each(['', ' \n ', 'GOOSE 100', 'GOOSE101', 'GOOSE100\u200b', '兑换码', 'x'.repeat(GIFT_CODE_MAX_LENGTH + 1)])('rejects %j without even advancing recovery or revision', key => {
+  it.each([
+    ['jiajiabb',1000],['JIAJIABB',1000],['  JiaJiaBb\n',1000],
+    ['sisibb',10000],['SISIBB',10000],['\n SiSiBb ',10000],
+  ] as const)('redeems %s for its configured amount %i', (key, amount) => {
+    const state = createInitialState(now);
+    const result = execute(state, { type: 'redeemGift', key }, now);
+    expect(result.ok).toBe(true);
+    expect(result.state.energy.value).toBe(60 + amount);
+    expect(result.events.find(event => event.type === 'redeem')?.amount).toBe(amount);
+    expect(parseSave(serializeSave(result.state)).energy.value).toBe(60 + amount);
+  });
+
+  it('repeats both new codes without a redemption ledger or a schema change', () => {
+    let state = createInitialState(now);
+    const fields = Object.keys(state).sort();
+    for (const [key, expected] of [['jiajiabb',1060],['sisibb',11060],['sisibb',21060],['GOOSE100',21160]] as const) {
+      const result = execute(state, { type: 'redeemGift', key }, now);
+      expect(result.ok).toBe(true); expect(result.state.energy.value).toBe(expected);
+      state = parseSave(serializeSave(result.state));
+      expect(Object.keys(state).sort()).toEqual(fields);
+    }
+  });
+
+  it.each(['', ' \n ', 'GOOSE 100', 'GOOSE101', 'GOOSE100\u200b', 'JIA JIABB', 'SISI BB', 'jiajiab', 'sisib', '兑换码', 'x'.repeat(GIFT_CODE_MAX_LENGTH + 1)])('rejects %j without even advancing recovery or revision', key => {
     const state = createInitialState(now);
     const result = execute(state, { type: 'redeemGift', key }, now + ENERGY_CONFIG.recoveryInterval);
     expect(result.ok).toBe(false);
@@ -50,14 +73,14 @@ describe('offline repeatable energy gifts', () => {
     expect(getEnergyStatus(result.state, now + ENERGY_CONFIG.recoveryInterval * 3)).toMatchObject({ value: 161, nextRecoveryIn: 0 });
   });
 
-  it('accepts the exact persistent energy limit and refuses a partial award above it', () => {
+  it.each([['GOOSE100',100],['jiajiabb',1000],['sisibb',10000]] as const)('enforces the exact persistent limit for %s', (key, amount) => {
     const state = createInitialState(now);
-    state.energy.value = ENERGY_CONFIG.maxValue - 100;
-    const exact = execute(state, { type: 'redeemGift', key: 'GOOSE100' }, now);
+    state.energy.value = ENERGY_CONFIG.maxValue - amount;
+    const exact = execute(state, { type: 'redeemGift', key }, now);
     expect(exact.ok).toBe(true); expect(exact.state.energy.value).toBe(ENERGY_CONFIG.maxValue);
     expect(parseSave(serializeSave(exact.state)).energy.value).toBe(ENERGY_CONFIG.maxValue);
     state.energy.value++;
-    const overflow = execute(state, { type: 'redeemGift', key: 'GOOSE100' }, now);
+    const overflow = execute(state, { type: 'redeemGift', key }, now);
     expect(overflow.ok).toBe(false); expect(overflow.state).toBe(state);
     expect(overflow.events[0].message).toContain('上限');
     const invalid = { ...exact.state, energy: { ...exact.state.energy, value: ENERGY_CONFIG.maxValue + 1 } };
@@ -76,12 +99,12 @@ describe('offline repeatable energy gifts', () => {
     expect(restored.state.energy.value).toBe(160);
   });
 
-  it('supports migrated legacy saves without changing their schema or adding redemption fields', () => {
+  it.each([['GOOSE100',100],['jiajiabb',1000],['sisibb',10000]] as const)('supports %s in migrated legacy saves without new fields', (key, amount) => {
     const legacy = parseSave(JSON.stringify(legacyFixture));
-    const result = execute(legacy, { type: 'redeemGift', key: 'GOOSE100' }, legacy.lastSeen);
+    const result = execute(legacy, { type: 'redeemGift', key }, legacy.lastSeen);
     expect(result.ok).toBe(true);
     const restored = parseSave(serializeSave(result.state));
-    expect(restored.energy.value).toBe(legacy.energy.value + 100);
+    expect(restored.energy.value).toBe(legacy.energy.value + amount);
     expect(restored.campaign).toBe('legacy');
     expect(restored.schemaVersion).toBe(legacy.schemaVersion);
     expect(Object.keys(restored).sort()).toEqual(Object.keys(legacy).sort());

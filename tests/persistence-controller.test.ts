@@ -37,6 +37,26 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
 afterEach(() => { controllers.splice(0).forEach((controller) => controller.dispose()); vi.restoreAllMocks(); });
 
 describe('committed gift redemption feedback', () => {
+  it('preserves the exact amount and balance for different high-value gifts in the same queue', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const first = controller.redeemGift('jiajiabb'), second = controller.redeemGift('sisibb');
+    expect(controller.view.state?.energy.value).toBe(60);
+    save.resolve();
+    expect(await first).toEqual({ ok: true, energyAdded: 1000, energyValue: 1060 });
+    expect(await second).toEqual({ ok: true, energyAdded: 10000, energyValue: 11060 });
+  });
+
+  it.each([['jiajiabb',1000],['sisibb',10000]] as const)('does not publish %s until its retry actually commits', async (key, amount) => {
+    const { controller, repository, audio } = setup(); await controller.start();
+    repository.save.mockRejectedValueOnce(new SaveError('测试写入失败','storage'));
+    expect(await controller.redeemGift(key)).toMatchObject({ ok: false });
+    expect(controller.view.state?.energy.value).toBe(60);
+    expect(controller.view.notice?.type).not.toBe('redeem'); expect(audio.play).not.toHaveBeenCalled();
+    expect(await controller.redeemGift(key)).toEqual({ ok: true, energyAdded: amount, energyValue: 60 + amount });
+    expect(audio.play).toHaveBeenCalledExactlyOnceWith('complete');
+  });
+
   it('waits for storage before publishing the amount, feedback or completion sound', async () => {
     const { controller, repository, audio } = setup(); await controller.start();
     const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
