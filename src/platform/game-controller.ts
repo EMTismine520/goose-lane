@@ -29,6 +29,11 @@ interface Dependencies {
   now?: () => number;
 }
 
+type DispatchResult = { ok: true; state: GameState; events: GameEvent[] } | { ok: false; message: string };
+export type GiftRedemptionResult =
+  | { ok: true; energyAdded: number; energyValue: number }
+  | { ok: false; message: string };
+
 /** Owns the async boundary: the UI only observes states whose transaction committed. */
 export class GameController {
   view: GameView = { state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0 };
@@ -36,7 +41,7 @@ export class GameController {
   private live = true;
   private conflict = false;
   private ready = false;
-  private commands: { command: Command; reserved: string[]; check: (state: GameState) => boolean; resolve: (ok: boolean) => void; finish: () => void }[] = [];
+  private commands: { command: Command; reserved: string[]; check: (state: GameState) => boolean; resolve: (result: DispatchResult) => void; finish: () => void }[] = [];
   private processing = false;
   private commandSequence = 0;
   private readonly commandSession = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -125,15 +130,31 @@ export class GameController {
     if (this.conflict || this.session?.readOnly !== false) throw new Error('本窗口暂时只读，请先重新取得经营权限并载入最新进度。');
   }
 
+  dispatch = (input: Command): Promise<boolean> => this.enqueue(input).then(result => result.ok);
+
+  redeemGift = async (key: string): Promise<GiftRedemptionResult> => {
+    const result = await this.enqueue({ type: 'redeemGift', key });
+    if (!result.ok) return result;
+    return { ok: true, energyAdded: result.events.find(event => event.type === 'redeem')!.amount!, energyValue: result.state.energy.value };
+  };
+
   /** Capture identity at pointer-up, never reinterpret stale cell indices after an earlier save. */
-  dispatch = (input: Command): Promise<boolean> => {
-    if (!this.live || !this.view.state || this.view.busy) return Promise.resolve(false);
-    try { this.ensureWriter(); } catch (cause) { this.setNotice({ type: 'error', message: this.message(cause) }); return Promise.resolve(false); }
-    if (this.commands.length >= 64) { this.setNotice({ type: 'error', message: '操作正在依次保存，请稍候片刻。' }); return Promise.resolve(false); }
+  private enqueue = (input: Command): Promise<DispatchResult> => {
+    if (!this.view.state) return Promise.resolve({ ok: false, message: '正在打开游戏，请稍后重试。' });
+    try { this.ensureWriter(); } catch (cause) {
+      const message = this.message(cause);
+      this.setNotice({ type: 'error', message });
+      return Promise.resolve({ ok: false, message });
+    }
+    if (this.commands.length >= 64) {
+      const message = '操作正在依次保存，请稍候片刻。';
+      this.setNotice({ type: 'error', message });
+      return Promise.resolve({ ok: false, message });
+    }
     const original = this.view.state;
     if (input.type === 'session' && !this.processing && !this.commands.length) {
       const entries = Object.entries(input.session ?? {});
-      if (entries.length && entries.every(([key, value]) => key === 'selectedUid' ? (value === null || typeof value === 'string') && original.session.selectedUid === value : key === 'orderScroll' && typeof value === 'number' && Number.isFinite(value) && value >= 0 && original.session.orderScroll === Math.min(100000, Math.round(value)))) return Promise.resolve(true);
+      if (entries.length && entries.every(([key, value]) => key === 'selectedUid' ? (value === null || typeof value === 'string') && original.session.selectedUid === value : key === 'orderScroll' && typeof value === 'number' && Number.isFinite(value) && value >= 0 && original.session.orderScroll === Math.min(100000, Math.round(value)))) return Promise.resolve({ ok: true, state: original, events: [] });
     }
     const command = { ...input, commandId: input.commandId ?? `${this.commandSession}:${++this.commandSequence}` } as Command;
     const checks: ((state: GameState) => boolean)[] = [];
@@ -194,12 +215,13 @@ export class GameController {
       checks.push((state) => state.shops[shop] === stage);
     }
     if (reserved.some((uid) => this.reservations.has(uid))) {
-      this.setNotice({ type: 'error', message: '这件物品正在落定，请等它落稳后再操作。' });
-      return Promise.resolve(false);
+      const message = '这件物品正在落定，请等它落稳后再操作。';
+      this.setNotice({ type: 'error', message });
+      return Promise.resolve({ ok: false, message });
     }
     reserved.forEach((uid) => this.reservations.add(uid));
     void this.sound.unlock().catch(() => undefined);
-    const result = new Promise<boolean>((resolve) => this.commands.push({ command, reserved, check: (state) => checks.every((check) => check(state)), resolve, finish: perfSpan('command', command.type) }));
+    const result = new Promise<DispatchResult>((resolve) => this.commands.push({ command, reserved, check: (state) => checks.every((check) => check(state)), resolve, finish: perfSpan('command', command.type) }));
     this.update({ pendingCommands: this.commands.length + (this.processing ? 1 : 0), pendingUids: [...this.reservations] });
     void this.processCommands();
     return result;
@@ -210,17 +232,22 @@ export class GameController {
     this.processing = true;
     while (this.live && this.commands.length) {
       const pending = this.commands.shift()!;
-      let ok = false;
+      let outcome: DispatchResult = { ok: false, message: '本次操作已取消，请重新打开游戏后重试。' };
       try {
         this.ensureWriter(true, true);
         const original = this.view.state!;
         if (!pending.check(original)) {
-          this.setNotice({ type: 'error', message: '物品或落点已经改变，这次操作已安全取消。' });
+          outcome = { ok: false, message: '物品或落点已经改变，这次操作已安全取消。' };
+          this.setNotice({ type: 'error', message: outcome.message });
         } else {
           const finishExecute = perfSpan('execute', pending.command.type);
           const result = execute(original, pending.command, this.now());
           finishExecute();
-          if (!result.ok) this.setNotice(result.events[0] ?? { type: 'error', message: '现在还不能进行这个操作。' });
+          if (!result.ok) {
+            const event = result.events[0] ?? { type: 'error', message: '现在还不能进行这个操作。' };
+            outcome = { ok: false, message: event.message };
+            this.setNotice(event);
+          }
           else {
             const finishSave = perfSpan('persist', pending.command.type);
             try { await this.repository.save(result.state); } finally { finishSave(); }
@@ -235,9 +262,9 @@ export class GameController {
               else if (pending.command.type === 'deliver') this.sound.play('deliver');
               else if (['cook', 'startCooking'].includes(pending.command.type)) this.sound.play('cook');
               else if (['upgrade', 'build'].includes(pending.command.type)) this.sound.play('upgrade');
-              else if (['collect', 'collectAppliance'].includes(pending.command.type)) this.sound.play('complete');
+              else if (['collect', 'collectAppliance', 'redeemGift'].includes(pending.command.type)) this.sound.play('complete');
               else if (!['session', 'recover'].includes(pending.command.type)) this.sound.play('click');
-              ok = true;
+              outcome = { ok: true, state: result.state, events: result.events };
             }
           }
         }
@@ -245,12 +272,13 @@ export class GameController {
         this.writeFailures++;
         this.failed(cause);
         // A failed persistence transaction breaks the submitted command chain. No invisible retry.
-        this.cancelQueued();
+        this.cancelQueued('上一操作未保存成功，本次操作已取消，请重试。');
+        outcome = { ok: false, message: pending.command.type === 'redeemGift' ? `兑换未完成，体力未增加。${this.message(cause)}` : this.message(cause) };
         this.setNotice({ type: 'error', message: `${this.message(cause)} 后续操作已取消，物品仍在原处。` });
       } finally {
         pending.finish();
         pending.reserved.forEach((uid) => this.reservations.delete(uid));
-        pending.resolve(ok);
+        pending.resolve(outcome);
         this.update({ pendingCommands: this.commands.length, pendingUids: [...this.reservations] });
       }
     }
@@ -258,8 +286,8 @@ export class GameController {
     this.idleWaiters.splice(0).forEach((resolve) => resolve());
   }
 
-  private cancelQueued(): void {
-    this.commands.splice(0).forEach((entry) => { entry.finish(); entry.reserved.forEach((uid) => this.reservations.delete(uid)); entry.resolve(false); });
+  private cancelQueued(message = '此页面已关闭，本次操作已取消。'): void {
+    this.commands.splice(0).forEach((entry) => { entry.finish(); entry.reserved.forEach((uid) => this.reservations.delete(uid)); entry.resolve({ ok: false, message }); });
   }
 
   /** Accept no new input; finish every already accepted write before taking a checkpoint. */

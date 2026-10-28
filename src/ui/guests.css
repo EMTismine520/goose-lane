@@ -1,18 +1,22 @@
 /* Guest-facing chrome shares the kitchen's cream, cocoa and leaf palette. */
-.game-shell .guest-resources{height:var(--resource);padding:0 8px;gap:4px;background:linear-gradient(180deg,#fff6e5,#f6ead3);color:#493729}
-.guest-resources .theme-badge{height:44px;min-width:82px;max-width:106px;flex:0 1 98px;padding:0 2px;display:flex;align-items:center;gap:4px;border:0;background:none;text-align:left}
+.game-shell .guest-resources{height:var(--resource);padding:0 8px;gap:4px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr) minmax(0,.92fr) 44px 44px;background:linear-gradient(180deg,#fff6e5,#f6ead3);color:#493729}
+.guest-resources .theme-badge{height:44px;min-width:0;max-width:none;padding:0 2px;display:flex;align-items:center;gap:4px;border:0;background:none;text-align:left}
 .theme-emblem{display:grid;place-items:center;width:23px;height:29px;flex:0 0 23px;border-radius:9px 9px 11px 11px;background:#dce6cb;border:1px solid #b6c7a4;color:#3f7b58;box-shadow:0 2px 0 #b6c7a430}
 .theme-badge-copy{min-width:0}
 .theme-badge-copy small{display:block;font-size:10px;line-height:13px;letter-spacing:.4px;color:#796348}
 .theme-badge-copy b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:17px;color:#493729}
 .guest-resources .resource-pill{height:34px;padding:0 6px;border:1px solid #dbc5a2;border-radius:12px;background:#fff9ed;gap:3px;box-shadow:0 2px 0 #c2a77b22;min-width:0}
 .guest-resources .resource-pill b{font-size:15px;color:#493729;font-variant-numeric:tabular-nums}
-.guest-resources .resource-pill.energy{height:44px;flex:0 0 auto;min-width:81px;padding:0 5px;border-color:transparent;box-shadow:none;background:transparent}
+.guest-resources .resource-pill.energy{height:44px;min-width:0;padding:0 1px;border-color:transparent;box-shadow:none;background:transparent;justify-content:center}
+.guest-resources .resource-pill.energy b{min-width:0;font-size:14px}
+.guest-resources .resource-pill.energy svg,.guest-resources .resource-pill.energy>span{flex-shrink:0}
 .guest-resources .resource-pill.energy svg{color:#3f7b58;stroke:#3f7b58;filter:none}
 .guest-resources .resource-pill>span{font-size:10px;color:#796348}
-.guest-resources .resource-pill.coins{flex:1;max-width:none;justify-content:center;overflow:hidden}
-.guest-resources .coins svg{color:#ad7527;fill:#efc66c}
-.guest-resources .settings-button{height:44px;width:44px;min-width:44px;border:0;margin:0;background:none;color:#725c42;box-shadow:none}
+.guest-resources .resource-pill.coins{max-width:none;justify-content:center;overflow:hidden;padding:0 4px}
+.guest-resources .coins b{font-size:13px}
+.guest-resources .coins svg{color:#ad7527;fill:#efc66c;width:16px;flex-shrink:0}
+.guest-resources .settings-button,.guest-resources .gift-button{height:44px;width:44px;min-width:44px;border:0;margin:0;background:none;color:#725c42;box-shadow:none}
+.guest-resources .gift-button{color:#8f6536}
 .guest-resources .day-badge{height:39px;flex:0 0 39px;margin-right:5px;grid-template-rows:12px 22px}
 .guest-resources .day-badge span{font-size:9px;padding-top:2px}
 .guest-resources .day-badge b{font-size:21px}

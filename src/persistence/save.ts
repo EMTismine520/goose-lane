@@ -1,5 +1,6 @@
 import { APPLIANCES, CHAINS, CONTENT_VERSION, DECORATIONS, HOME_CHAINS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import { perfSpan } from '../platform/performance';
+import { ENERGY_CONFIG } from '../content/production';
 import type { GameState, ItemInstance } from '../domain/types';
 import { availableApplianceRecipes, createInitialState, unlockedCells } from '../domain/engine';
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
@@ -222,7 +223,7 @@ export function validateSave(input: unknown): GameState {
   }
   const lastSeen = integer(value.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER);
   const energyRaw = object(value.energy, '体力', ['value', 'lastRecoveryAt']);
-  const energy = { value: integer(energyRaw.value, '体力数值'), lastRecoveryAt: integer(energyRaw.lastRecoveryAt, '体力回复时间', 0, lastSeen) };
+  const energy = { value: integer(energyRaw.value, '体力数值', 0, ENERGY_CONFIG.maxValue), lastRecoveryAt: integer(energyRaw.lastRecoveryAt, '体力回复时间', 0, lastSeen) };
   const applianceDefinitions = devices.filter(d=>DEVICE_FAMILIES.find(f=>f.id===d.familyId)!.kind==='appliance').map(d=>({...d,index:d.index??-1,slot:DEVICE_FAMILIES.find(f=>f.id===d.familyId)!.slot}));
   const allowedRecipes = availableApplianceRecipes(progressState);
   const applianceIds = new Set<string>();

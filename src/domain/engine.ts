@@ -2,6 +2,7 @@ import { APPLIANCES, baseUnits, CHAINS, CONTENT_VERSION, DECORATIONS, FRESH_ORDE
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES, HOME_UNLOCK_HINT, homeCookingUnlocked } from '../content/board-layouts';
 import { reconcileHomeDevices } from './home-progression';
 import { ENERGY_CONFIG, nextRandom, PRODUCTION } from '../content/production';
+import { GIFT_CODES, GIFT_CODE_MAX_LENGTH } from '../content/gift-codes';
 import { TUTORIAL_STEPS } from '../content/tutorial';
 import type { ApplianceState, Command, CommandResult, GameEvent, GameState, ItemInstance, OrderDef, RecipeDef, Requirement } from './types';
 import { DEVICE_FAMILIES } from '../content/expansion';
@@ -281,9 +282,21 @@ export function execute(original: GameState, command: Command, now = Date.now())
   if (!Number.isSafeInteger(time) || !Number.isSafeInteger(time + MAX_OFFLINE_MS)) return reject('存档时间超出安全范围，请恢复有效备份。');
   const events: GameEvent[] = [];
   reconcileTime(state, time, events);
-  const preserveUndo = ['session', 'recover', 'settings'].includes(command.type);
+  const preserveUndo = ['session', 'recover', 'settings', 'redeemGift'].includes(command.type);
   state.undo = preserveUndo ? state.undo : null;
   switch (command.type) {
+    case 'redeemGift': {
+      if (typeof command.key !== 'string') return reject('兑换码格式不正确，请重新输入。');
+      if (command.key.length > GIFT_CODE_MAX_LENGTH) return reject(`兑换码不能超过 ${GIFT_CODE_MAX_LENGTH} 个字符。`);
+      const key = command.key.trim().toUpperCase();
+      if (!key) return reject('请输入兑换码。');
+      const gift = GIFT_CODES.find(entry => entry.key === key);
+      if (!gift) return reject('兑换码无效，请检查后重试。');
+      if (state.energy.value > ENERGY_CONFIG.maxValue - gift.energy) return reject('体力已接近可保存上限，请消耗一些后再兑换。');
+      state.energy.value += gift.energy;
+      events.push({ type: 'redeem', message: `兑换成功，体力 +${gift.energy}`, amount: gift.energy });
+      break;
+    }
     case 'configureDevice': {
       const device=state.devices.find(d=>d.id===command.device), chain=CHAINS.find(c=>c.id===command.chain), production=productionFor(command.chain,command.band);
       if(!device||!chain||!DEVICE_FAMILIES.find(f=>f.id===device.familyId)?.chains.includes(command.chain)||!production||production.minLevel>device.level||(chain.stage??1)>themeStage(state)||command.band>0&&themeStage(state)<3)return reject('系列或产出段尚未开放。');

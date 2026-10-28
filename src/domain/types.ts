@@ -60,6 +60,7 @@ export type Command = CommandMetadata & (
   | { type: 'collectAppliance'; appliance: string }
   | { type: 'build'; node: string }
   | { type: 'claimConstructionReward' }
+  | { type: 'redeemGift'; key: string }
   | { type: 'claimMigration'; uid: string }
   | { type: 'session'; session: Partial<SessionState> }
   | { type: 'recover' });

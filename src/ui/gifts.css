@@ -1,0 +1,36 @@
+.modal-backdrop.gift-dialog{bottom:auto;height:var(--app-height,100dvh);padding:max(12px,env(safe-area-inset-top,0px)) 12px max(12px,env(safe-area-inset-bottom,0px))}
+.modal.gift-dialog{max-height:calc(var(--app-height,100dvh) - 24px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));width:min(100%,390px);background:#fff9ed;scroll-padding:16px}
+.gift-dialog .modal-header{margin-bottom:0;border-color:#e8d8bb}
+.gift-dialog .modal-header h2{color:#493729}
+.gift-panel{color:#493729}
+.gift-hero{text-align:center;padding:22px 0 20px}
+.gift-emblem{position:relative;display:grid;place-items:center;width:82px;height:82px;margin:0 auto 14px;background:linear-gradient(145deg,#f6e5c3,#eee7d0);border:1px solid #e2cfaa;border-radius:25px;color:#986d37;box-shadow:inset 0 2px 0 #fff9e8,0 4px 0 #cbb48b24;transform:rotate(-5deg)}
+.gift-emblem>svg{transform:rotate(5deg)}
+.gift-emblem>span{position:absolute;right:-5px;bottom:-2px;display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#e0ebd1;border:3px solid #fff9ed;color:#48764d;transform:rotate(5deg)}
+.gift-panel .gift-hero h3{font-size:20px;margin:0 0 5px;color:#493729;letter-spacing:.3px}
+.gift-panel .gift-hero p{margin:0;color:#796348;font-size:12px}
+.gift-input-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.gift-input-heading label{font-size:13px;font-weight:700}
+.gift-input-heading>span{font-size:11px;color:#796348}
+.gift-form input{display:block;width:100%;height:50px;min-width:0;padding:0 14px;border:1.5px solid #d8c4a2;border-radius:12px;background:#fffdf7;color:#493729;font-family:inherit;font-size:16px;font-weight:500;line-height:1.5;letter-spacing:.6px;transition:border-color .15s,background .15s}
+.gift-form input::placeholder{color:#a28c6f;font-weight:400;font-size:14px;letter-spacing:0}
+.gift-form input:focus{border-color:#5e8a60}
+.gift-form input[aria-invalid=true]{border-color:#b87558;background:#fff8f2}
+.gift-form input:read-only{color:#796348;background:#f5efdf}
+.gift-form .gift-submit{width:100%;min-height:48px;margin-top:12px;font-size:14px;border-radius:12px;background:linear-gradient(#6c9868,#557e52);border-color:#4f744b;box-shadow:0 3px 0 #45694030,inset 0 1px 0 #a7c196}
+.gift-form .gift-submit:disabled{opacity:.55;box-shadow:none;cursor:default}
+.gift-feedback{min-height:78px;padding:14px 0 8px;overflow-wrap:anywhere}
+.gift-panel .gift-hint,.gift-panel .gift-pending{text-align:center;font-size:11px;color:#796348;margin:7px 0}
+.gift-success{display:flex;gap:10px;align-items:center;padding:10px 12px;background:#edf3e3;border:1px solid #cbdcba;border-radius:12px;animation:gift-received .22s ease-out}
+.gift-success>span{display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;border-radius:50%;background:#dae9ce;color:#3d6c40}
+.gift-success b{display:block;font-size:13px;color:#3d6c40;line-height:1.5}
+.gift-success small{display:block;margin-top:2px;font-size:11px;color:#5b7250;line-height:1.6;font-variant-numeric:tabular-nums}
+.gift-panel .gift-error,.gift-panel .gift-readonly{display:flex;align-items:flex-start;gap:7px;margin:0;padding:10px 11px;border:1px solid #e7c7ae;border-radius:11px;background:#fff1e5;font-size:12px;line-height:1.7;color:#8b4e36}
+.gift-error>svg,.gift-readonly>svg{flex:0 0 auto;margin-top:2px}
+.gift-panel .gift-readonly{background:#f4eddd;border-color:#e1d2b5;color:#796348;margin-top:7px}
+.gift-panel .gift-rules{display:flex;align-items:flex-start;justify-content:center;gap:6px;padding-top:12px;border-top:1px solid #e8dcc4;margin:0;font-size:11px;line-height:1.9;color:#796348;text-align:center}
+.gift-rules>svg{margin-top:3px;color:#638257;flex-shrink:0}
+@keyframes gift-received{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+[data-motion=reduced] .gift-success{animation:none}
+@media(prefers-reduced-motion:reduce){.gift-success{animation:none}.gift-form input{transition:none}}
+@media(max-height:550px){.gift-hero{padding:14px 0}.gift-emblem{width:60px;height:60px;border-radius:19px;margin-bottom:10px}.gift-emblem>svg{width:31px;height:31px}.gift-panel .gift-hero h3{font-size:18px}.gift-feedback{min-height:65px;padding-top:10px}}

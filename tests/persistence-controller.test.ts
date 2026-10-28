@@ -36,6 +36,79 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
 }
 afterEach(() => { controllers.splice(0).forEach((controller) => controller.dispose()); vi.restoreAllMocks(); });
 
+describe('committed gift redemption feedback', () => {
+  it('waits for storage before publishing the amount, feedback or completion sound', async () => {
+    const { controller, repository, audio } = setup(); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    let settled = false;
+    const redeem = controller.redeemGift('GOOSE100').then(result => { settled = true; return result; });
+    await Promise.resolve();
+    expect(controller.view.state?.energy.value).toBe(60);
+    expect(controller.view.notice?.type).not.toBe('redeem');
+    expect(settled).toBe(false); expect(audio.play).not.toHaveBeenCalled();
+    save.resolve();
+    expect(await redeem).toEqual({ ok: true, energyAdded: 100, energyValue: 160 });
+    expect(controller.view.state?.energy.value).toBe(160);
+    expect(audio.play).toHaveBeenCalledExactlyOnceWith('complete');
+  });
+
+  it('returns each transaction result even when several redemptions are queued', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const first = controller.redeemGift('goose100'), second = controller.redeemGift(' GOOSE100 ');
+    save.resolve();
+    expect(await first).toEqual({ ok: true, energyAdded: 100, energyValue: 160 });
+    expect(await second).toEqual({ ok: true, energyAdded: 100, energyValue: 260 });
+    expect(repository.save).toHaveBeenCalledTimes(2);
+  });
+
+  it('returns the actual failure, cancels queued work and grants once on explicit retry', async () => {
+    const { controller, repository, audio } = setup(); await controller.start();
+    const save = deferred<void>(); repository.save.mockReturnValueOnce(save.promise);
+    const first = controller.redeemGift('GOOSE100'), queued = controller.redeemGift('GOOSE100');
+    save.reject(new SaveError('磁盘空间不足', 'storage'));
+    expect(await first).toEqual({ ok: false, message: '兑换未完成，体力未增加。磁盘空间不足' });
+    expect(await queued).toMatchObject({ ok: false, message: expect.stringContaining('上一操作') });
+    expect(controller.view.state?.energy.value).toBe(60); expect(audio.play).not.toHaveBeenCalled();
+    expect(await controller.redeemGift('GOOSE100')).toEqual({ ok: true, energyAdded: 100, energyValue: 160 });
+    expect(repository.save).toHaveBeenCalledTimes(2);
+    expect(audio.play).toHaveBeenCalledExactlyOnceWith('complete');
+  });
+
+  it('does not mistake an old notice for the current invalid-code result', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    controller.setNotice({ type: 'redeem', message: '旧成功信息', amount: 999 });
+    expect(await controller.redeemGift('wrong')).toEqual({ ok: false, message: '兑换码无效，请检查后重试。' });
+    expect(repository.save).not.toHaveBeenCalled();
+  });
+
+  it('returns a useful reason when not ready, busy or read-only', async () => {
+    const { controller, repository } = setup(undefined, true);
+    expect(await controller.redeemGift('GOOSE100')).toMatchObject({ ok: false, message: expect.stringContaining('打开游戏') });
+    await controller.start();
+    expect(await controller.redeemGift('GOOSE100')).toMatchObject({ ok: false, message: expect.stringContaining('只读') });
+    expect(repository.save).not.toHaveBeenCalled();
+    const writable = setup(); await writable.controller.start();
+    const activation = deferred<void>();
+    const updating = writable.controller.applyUpdate(() => activation.promise);
+    expect(await writable.controller.redeemGift('GOOSE100')).toMatchObject({ ok: false, message: expect.stringContaining('稍候') });
+    activation.resolve(); await updating;
+  });
+
+  it('requires a fresh state after a conflicting writer before another gift can be applied', async () => {
+    const { controller, repository } = setup(); await controller.start();
+    repository.save.mockRejectedValueOnce(new SaveError('另一窗口已保存新进度', 'conflict'));
+    expect(await controller.redeemGift('GOOSE100')).toMatchObject({ ok: false, message: expect.stringContaining('另一窗口') });
+    expect(controller.view.state?.energy.value).toBe(60); expect(controller.view.readOnly).toBe(true);
+    expect((await controller.redeemGift('GOOSE100')).ok).toBe(false);
+    const latest = createInitialState(now); latest.revision = 7; latest.energy.value = 200;
+    repository.open.mockResolvedValue({ state: latest, recovered: false });
+    await controller.retry();
+    expect(await controller.redeemGift('GOOSE100')).toEqual({ ok: true, energyAdded: 100, energyValue: 300 });
+    expect(controller.view.state?.revision).toBe(8);
+  });
+});
+
 describe('UI persistence orchestration', () => {
   it('skips identical selection and scroll writes without skipping page events', async () => {
     const { controller, repository } = setup(); await controller.start();

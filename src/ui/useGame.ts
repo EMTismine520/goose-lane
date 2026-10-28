@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Command, GameEvent } from '../domain/types';
 import { GameController } from '../platform/game-controller';
 import type { GameView } from '../platform/game-controller';
+import type { GiftRedemptionResult } from '../platform/game-controller';
 import type { SaveRepository, SaveSlotId } from '../persistence/save';
 import { acquireSession } from '../platform/session';
 
@@ -38,6 +39,7 @@ export function useGame(repository?: SaveRepository, sessionScope?: string) {
   return {
     ...view,
     dispatch: (command: Command) => controller.current?.dispatch(command) ?? Promise.resolve(false),
+    redeemGift: (key: string): Promise<GiftRedemptionResult> => controller.current?.redeemGift(key) ?? Promise.resolve({ ok: false, message: '正在打开游戏，请稍后重试。' }),
     setNotice: (notice: GameEvent | null) => controller.current?.setNotice(notice),
     exportSave: () => controller.current?.exportSave(),
     importSave: (source: string) => active().importSave(source),

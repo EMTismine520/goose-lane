@@ -1,4 +1,4 @@
-export const ENERGY_CONFIG = { initial: 60, naturalCap: 100, recoveryInterval: 120_000, buildCompletionReward: 50 } as const;
+export const ENERGY_CONFIG = { initial: 60, naturalCap: 100, recoveryInterval: 120_000, buildCompletionReward: 50, maxValue: 1_000_000_000_000 } as const;
 export interface ProductionDefinition { energyCost: number; drops: { item: string; weight: number }[]; }
 /** Tuned local design values, independent of the three observed source-game samples. */
 export const PRODUCTION: Record<string, ProductionDefinition> = {

@@ -14,13 +14,13 @@ const card = (html: string, id: string) => html.split('<article').find(part => p
 describe('guest-facing order and resource contracts', () => {
   it('shows actual modern theme progress and retains the legacy business day', () => {
     const modern = createInitialState(1000);
-    const modernHtml = renderToStaticMarkup(<ResourceBar state={modern} now={1000} onSettings={noop} onEnergy={noop} onTheme={noop}/>);
+    const modernHtml = renderToStaticMarkup(<ResourceBar state={modern} now={1000} onSettings={noop} onEnergy={noop} onRedeem={noop} onTheme={noop}/>);
     expect(modernHtml).toContain(themeProgress(modern).name);
     expect(modernHtml).toContain('查看风味进度');
     expect(modernHtml).not.toContain('营业日');
     const legacy = createLegacyInitialState(1000);
     legacy.day = 4;
-    const legacyHtml = renderToStaticMarkup(<ResourceBar state={legacy} now={1000} onSettings={noop} onEnergy={noop}/>);
+    const legacyHtml = renderToStaticMarkup(<ResourceBar state={legacy} now={1000} onSettings={noop} onEnergy={noop} onRedeem={noop}/>);
     expect(legacyHtml).toContain('营业日');
     expect(legacyHtml).toContain('<b>4</b>');
     expect(legacyHtml).not.toContain('查看风味进度');
@@ -29,10 +29,10 @@ describe('guest-facing order and resource contracts', () => {
   it('keeps the exact coin amount accessible while shortening the visible large number', () => {
     const state = createInitialState(1000);
     state.coins = 12345678;
-    const html = renderToStaticMarkup(<ResourceBar state={state} now={1000} onSettings={noop} onEnergy={noop}/>);
+    const html = renderToStaticMarkup(<ResourceBar state={state} now={1000} onSettings={noop} onEnergy={noop} onRedeem={noop}/>);
     expect(html).toContain('data-resource-anchor="coins"');
     expect(html).toContain('aria-label="金币 12345678"');
-    expect(html).toContain('1234.6万');
+    expect(html).toContain('1230万');
   });
 
   it('distinguishes missing, partial and deliverable inventory, including stored food', () => {

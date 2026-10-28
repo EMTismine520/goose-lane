@@ -35,6 +35,25 @@ async function harness(readOnly = false) {
 }
 function deferred() { let resolve!: () => void; const promise = new Promise<void>(yes => { resolve = yes; }); return { promise, resolve }; }
 
+describe('gift energy in existing save workflows', () => {
+  it('round-trips through slots and imports, while restart preserves the manual gifts', async () => {
+    const { controller } = await harness();
+    await controller.saveSlot(1);
+    await controller.redeemGift('GOOSE100');
+    await controller.saveSlot(2);
+    const exported = serializeSave(controller.view.state!);
+    await controller.redeemGift('GOOSE100');
+    expect(controller.view.state?.energy.value).toBe(260);
+    await controller.loadSlot(2); expect(controller.view.state?.energy.value).toBe(160);
+    await controller.loadSlot(1); expect(controller.view.state?.energy.value).toBe(60);
+    await controller.importSave(exported); expect(controller.view.state?.energy.value).toBe(160);
+    await controller.restartGame(); expect(controller.view.state?.energy.value).toBe(60);
+    const slots = await controller.listSlots();
+    expect(slots.map(slot => slot.status === 'ready' ? slot.state.energy.value : null)).toEqual([60, 160, null]);
+    await controller.redeemGift('GOOSE100'); expect(controller.view.state?.energy.value).toBe(160);
+  });
+});
+
 describe('three independent transactional checkpoints', () => {
   it('opens an existing automatic save with exactly three empty slots', async () => {
     const { repo } = await repository();

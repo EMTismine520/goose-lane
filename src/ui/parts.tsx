@@ -53,7 +53,7 @@ export function Avatar({id,size=54}: {id:string;size?:number}) {
   return <span className="avatar" style={{'--avatar':c?.color??'#71927a',width:size,height:size} as CSSProperties}><Goose color={c?.color} accessory={c?.accessory}/></span>;
 }
 
-export function Modal({title,eyebrow,children,onClose,wide=false,busy=false,variant='dialog',scrollKey,initialScrollTop=0}: {title:string;eyebrow?:string;children:ReactNode;onClose:()=>void;wide?:boolean;busy?:boolean;variant?:'dialog'|'sheet';scrollKey?:string;initialScrollTop?:number}) {
+export function Modal({title,eyebrow,children,onClose,wide=false,busy=false,variant='dialog',scrollKey,initialScrollTop=0,className=''}: {title:string;eyebrow?:string;children:ReactNode;onClose:()=>void;wide?:boolean;busy?:boolean;variant?:'dialog'|'sheet';scrollKey?:string;initialScrollTop?:number;className?:string}) {
   const ref=useRef<HTMLDivElement>(null);
   const busyRef=useRef(busy);busyRef.current=busy;
   const closeRef=useRef(onClose);closeRef.current=onClose;
@@ -85,5 +85,5 @@ export function Modal({title,eyebrow,children,onClose,wide=false,busy=false,vari
     };document.addEventListener('keydown',key);
     return()=>{document.body.style.overflow=previous;document.removeEventListener('keydown',key);before?.focus();};
   },[]);
-  return <div className={`modal-backdrop modal-backdrop--${variant}`} onClick={e=>{if(e.target===e.currentTarget&&!busy)onClose();}}><div className={`modal modal--${variant} ${wide?'wide':''}`} ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-label={title} data-scroll-key={positionKey} onScroll={event=>{currentPosition.current=event.currentTarget.scrollTop;scrollPositions.current.set(positionKey,currentPosition.current)}}><header className="modal-header"><div>{eyebrow&&<span className="eyebrow">{eyebrow}</span>}<h2>{title}</h2></div><button className="icon-button" disabled={busy} onClick={onClose} aria-label="关闭"><X size={21}/></button></header>{children}</div></div>;
+  return <div className={`modal-backdrop modal-backdrop--${variant} ${className}`} onClick={e=>{if(e.target===e.currentTarget&&!busy)onClose();}}><div className={`modal modal--${variant} ${wide?'wide':''} ${className}`} ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-label={title} data-scroll-key={positionKey} onScroll={event=>{currentPosition.current=event.currentTarget.scrollTop;scrollPositions.current.set(positionKey,currentPosition.current)}}><header className="modal-header"><div>{eyebrow&&<span className="eyebrow">{eyebrow}</span>}<h2>{title}</h2></div><button className="icon-button" disabled={busy} onClick={onClose} aria-label="关闭"><X size={21}/></button></header>{children}</div></div>;
 }

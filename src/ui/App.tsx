@@ -37,9 +37,10 @@ const ItemDetails=lazy(()=>import('./panels').then(module=>({default:module.Item
 const Kitchen=lazy(()=>import('./panels').then(module=>({default:module.Kitchen})));
 const RecipePicker=lazy(()=>import('./panels').then(module=>({default:module.RecipePicker})));
 const SettingsPanel=lazy(()=>import('./panels').then(module=>({default:module.SettingsPanel})));
+const RedeemGiftPanel=lazy(()=>import('./RedeemGiftPanel').then(module=>({default:module.RedeemGiftPanel})));
 const Storage=lazy(()=>import('./panels').then(module=>({default:module.Storage})));
 const Street=lazy(()=>import('./panels').then(module=>({default:module.Street})));
-type Dialog = {type:'settings'|'save'|'load'|'restart'|'storage'|'book'|'build'|'energy'|'help'|'legacy'|'order'|'theme'}|{type:'item';id:string}|{type:'devices';family?:string;back?:string}|{type:'recipes';slot:number}|{type:'appliance';id:string}|null;
+type Dialog = {type:'settings'|'save'|'load'|'restart'|'storage'|'book'|'build'|'energy'|'gift'|'help'|'legacy'|'order'|'theme'}|{type:'item';id:string}|{type:'devices';family?:string;back?:string}|{type:'recipes';slot:number}|{type:'appliance';id:string}|null;
 export default function App({repository,sessionScope,offline=true}:{repository?:SaveRepository;sessionScope?:string;offline?:boolean}={}){
  const game=useGame(repository,sessionScope),state=game.state;
  const [page,setPage]=useState<'merge'|'street'>('merge'),[dialog,setDialog]=useState<Dialog>(null),[selected,setSelected]=useState<number|null>(null),[hint,setHint]=useState<[number,number]|null>(null),[cell,setCell]=useState(46);
@@ -51,6 +52,9 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const [codexSeen,setCodexSeen]=useState(0);
  const [focusedOrderId,setFocusedOrderId]=useState<string|null>(null),[guidance,setGuidance]=useState<string[]>([]);
  const [newTheme,setNewTheme]=useState<number|null>(null),[discovery,setDiscovery]=useState<string|null>(null);
+ const [giftPending,setGiftPending]=useState(false);
+ const giftRunning=useRef(false);
+ const onGiftPending=useCallback((pending:boolean)=>{giftRunning.current=pending;setGiftPending(pending)},[]);
  const observedProgress=useRef<{epoch:number;stage:number;items:string[];devices:string[]}|null>(null);
  const ready=boardReady||streetReady;
  const themeOffline=useThemeOffline(state?themeProgress(state).stage:1,offline,ready,state?.campaign==='legacy');
@@ -59,7 +63,7 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  stateRef.current=state; gameRef.current=game;
  const orderPosition=useRef(0);
  const act=useCallback((command:Command)=>gameRef.current.dispatch(command),[]);
- const close=useCallback(()=>{setDialog(null);setDetailHistory([])},[]);
+ const close=useCallback(()=>{if(giftRunning.current)return;setDialog(null);setDetailHistory([])},[]);
  const showItem=useCallback((id:string)=>{const previous=dialogRef.current;if(previous?.type==='item'&&previous.id===id)return;setDetailHistory(h=>previous?[...h,previous]:[null]);setDialog({type:'item',id});},[]);
  const showDevices=useCallback((family?:string)=>{const previous=dialogRef.current;setDetailHistory(h=>previous?[...h,previous]:[null]);setDialog({type:'devices',family});},[]);
  const backItem=()=>{const prior=detailHistory.at(-1);setDetailHistory(h=>h.slice(0,-1));setDialog(prior===undefined?{type:'book'}:prior);};
@@ -67,7 +71,7 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  useEffect(()=>{if(page==='street')setStreetVisited(true)},[page]);
  useEffect(()=>offline&&ready?afterPlayIdle(()=>registerPwa(activate=>setUpdate(()=>activate),setCacheError)):undefined,[offline,ready]);
  useEffect(()=>{document.documentElement.dataset.motion=state?.settings.reducedMotion?'reduced':'full'},[state?.settings.reducedMotion]);
- useEffect(()=>{if(!state||hydrated.current===game.sessionEpoch)return;orderPosition.current=state.session.orderScroll;hydrated.current=game.sessionEpoch;if(scrollTimer.current)clearTimeout(scrollTimer.current);setDialog(null);setHint(null);setFocusedOrderId(null);setGuidance([]);setNewTheme(null);setDiscovery(null);setDetailHistory([]);setCodexView(EMPTY_CODEX);setCodexSeen(state.discovered.length+state.deviceDiscovered.length);setPage(state.session.page);selectedUid.current=state.session.selectedUid;const index=state.board.findIndex(i=>i?.uid===state.session.selectedUid);setSelected(index>=0?index:activeDevices(state).find(e=>e.id===state.session.selectedUid)?.index??null)},[state,game.sessionEpoch]);
+ useEffect(()=>{if(!state||hydrated.current===game.sessionEpoch)return;orderPosition.current=state.session.orderScroll;hydrated.current=game.sessionEpoch;if(scrollTimer.current)clearTimeout(scrollTimer.current);giftRunning.current=false;setGiftPending(false);setDialog(null);setHint(null);setFocusedOrderId(null);setGuidance([]);setNewTheme(null);setDiscovery(null);setDetailHistory([]);setCodexView(EMPTY_CODEX);setCodexSeen(state.discovered.length+state.deviceDiscovered.length);setPage(state.session.page);selectedUid.current=state.session.selectedUid;const index=state.board.findIndex(i=>i?.uid===state.session.selectedUid);setSelected(index>=0?index:activeDevices(state).find(e=>e.id===state.session.selectedUid)?.index??null)},[state,game.sessionEpoch]);
  useEffect(()=>{if(!state||!selectedUid.current)return;const index=state.board.findIndex(i=>i?.uid===selectedUid.current);const device=activeDevices(state).find(e=>e.id===selectedUid.current);if(index>=0)setSelected(index);else if(device)setSelected(device.index);else{setSelected(null);selectedUid.current=null}},[state?.revision]);
  useEffect(()=>{if(!area.current)return;const el=area.current;const resize=()=>{const rect=el.getBoundingClientRect();if(rect.width&&rect.height)setCell(Math.max(Math.min(40,Math.floor((rect.width-28-12)/7)),Math.floor(Math.min((rect.width-28-12)/7,(rect.height-12)/9,50))))};const observer=new ResizeObserver(resize);observer.observe(el);resize();return()=>observer.disconnect()},[!!state,page]);
  useEffect(()=>{if(!hint)return;const timer=setTimeout(()=>setHint(null),4000);return()=>clearTimeout(timer)},[hint]);
@@ -117,8 +121,8 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const focus=focusedOrder(state,focusedOrderId);
  const time=effectiveNow(state,Date.now()),tutorial=getTutorialStep(state),construction=getConstructionProgress(state),theme=themeProgress(state);
  const tutorialIndex=tutorial?activeDevices(state).find(e=>e.id===tutorial.target)?.index??state.board.findIndex(i=>i?.uid===tutorial.target):-1;
- const title=dialog?.type==='order'?'这份心愿':dialog?.type==='theme'?'小馆风味记':dialog?.type==='appliance'?activeDevices(state).find(device=>device.id===dialog.id)?.name??'我的厨具':dialog?.type==='save'?'保存存档':dialog?.type==='load'?'读取存档':dialog?.type==='restart'?'重新开始':dialog?.type==='item'?ITEMS[dialog.id].name:dialog?.type==='build'?'今日鲜果蔬店':dialog?.type==='devices'?'小鹅设备架':dialog?.type==='book'?'完整风味图鉴':dialog?.type==='storage'?'小鹅仓库':dialog?.type==='energy'?'满满活力':dialog?.type==='recipes'?'料理配方':dialog?.type==='legacy'?'旧日食光':'设置与存档';
- return <GameShell page={page} backgroundEnabled={page==='merge'&&!dialog&&!game.readOnly&&!game.busy} onBackgroundTap={()=>select(null)}><RecoveryClock state={state} readOnly={game.readOnly} busy={game.busy} act={act}/><ResourceBar state={state} now={time} onSettings={openSettings} onEnergy={()=>setDialog({type:'energy'})} onTheme={()=>setDialog({type:'theme'})}/>
+ const title=dialog?.type==='gift'?'兑换礼包':dialog?.type==='order'?'这份心愿':dialog?.type==='theme'?'小馆风味记':dialog?.type==='appliance'?activeDevices(state).find(device=>device.id===dialog.id)?.name??'我的厨具':dialog?.type==='save'?'保存存档':dialog?.type==='load'?'读取存档':dialog?.type==='restart'?'重新开始':dialog?.type==='item'?ITEMS[dialog.id].name:dialog?.type==='build'?'今日鲜果蔬店':dialog?.type==='devices'?'小鹅设备架':dialog?.type==='book'?'完整风味图鉴':dialog?.type==='storage'?'小鹅仓库':dialog?.type==='energy'?'满满活力':dialog?.type==='recipes'?'料理配方':dialog?.type==='legacy'?'旧日食光':'设置与存档';
+ return <GameShell page={page} backgroundEnabled={page==='merge'&&!dialog&&!game.readOnly&&!game.busy} onBackgroundTap={()=>select(null)}><RecoveryClock state={state} readOnly={game.readOnly} busy={game.busy} act={act}/><ResourceBar state={state} now={time} onSettings={openSettings} onRedeem={()=>setDialog({type:'gift'})} onEnergy={()=>setDialog({type:'energy'})} onTheme={()=>setDialog({type:'theme'})}/>
  <div className="merge-page" data-selection-background hidden={page!=='merge'}>
   <CustomerStrip key={game.sessionEpoch} active={page==='merge'} state={state} act={act} onItem={showItem} onScroll={saveScroll} focusedOrderId={focusedOrderId} onFocus={setFocusedOrderId}/>
   <div className={`guide-bar ${focus?'is-focused':''}`}><Sparkles size={14}/><span>{tutorial?.text??(focus?orderSummary(state,focus):state.campaign!=='fresh'?`第${state.day}天 · ${getDayProgress(state).completed}/${getDayProgress(state).total}份款待`:theme.allCompleted?'每一份滋味，都成为小馆的回忆。':`${theme.name} · ${theme.completed}/${theme.total}份心愿`)}</span></div>
@@ -132,8 +136,9 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  {(game.error||game.readOnly||update||cacheError)&&<div className="connection-banner" role="alert">{game.error|| (game.readOnly?'另一窗口正在经营，当前只读':update?'新版本已准备好':cacheError)}{game.readOnly?<button onClick={game.retry}>接管</button>:update?<button disabled={game.busy} onClick={()=>game.applyUpdate(update).catch(e=>setCacheError(String(e)))}>更新</button>:<button onClick={()=>setDialog({type:'settings'})}>查看</button>}</div>}
  {newTheme!==null&&<aside className="theme-unlock-card" aria-label="新主题开放"><Sparkles size={25}/><div><b>{THEME_NAMES[newTheme-1]}，开张啦</b><small>{DEVICE_FAMILIES.filter(f=>f.stage===newTheme).length} 类新设备已备好</small><div className="theme-gifts">{DEVICE_FAMILIES.filter(f=>f.stage===newTheme).slice(0,3).map(f=><DeviceIcon key={f.id} family={f.id} size={32}/>)}</div></div><button className="primary" onClick={()=>{setNewTheme(null);showDevices()}}>去看看</button><button className="dismiss" aria-label="关闭主题提示" onClick={()=>setNewTheme(null)}>收起</button></aside>}
  {discovery&&!newTheme&&<div className="discovery-stamp" role="status"><BookOpen size={17}/><span>风味收录 · <b>{discovery}</b></span></div>}
- {dialog&&<Modal key={'modal:'+game.sessionEpoch} title={title} initialScrollTop={dialog.type==='book'?codexView.scroll:0} onClose={close} busy={game.busy} variant={['settings','save','load','restart'].includes(dialog.type)?'dialog':'sheet'} scrollKey={dialog.type+('id' in dialog?':'+dialog.id:dialog.type==='devices'?':'+dialog.family:'')}>
+ {dialog&&<Modal key={'modal:'+game.sessionEpoch} title={title} className={dialog.type==='gift'?'gift-dialog':''} initialScrollTop={dialog.type==='book'?codexView.scroll:0} onClose={close} busy={game.busy||giftPending} variant={['settings','save','load','restart','gift'].includes(dialog.type)?'dialog':'sheet'} scrollKey={dialog.type+('id' in dialog?':'+dialog.id:dialog.type==='devices'?':'+dialog.family:'')}>
  <Suspense fallback={<p className="panel-loading" role="status">正在准备…</p>}>
+ {dialog.type==='gift'&&<RedeemGiftPanel busy={game.busy} readOnly={game.readOnly} redeemGift={game.redeemGift} onPendingChange={onGiftPending}/>}
  {dialog.type==='order'&&focus&&<OrderFocus state={state} order={focus} onItem={showItem} onLocate={locate} onClear={()=>{setFocusedOrderId(null);close()}} onBack={close}/>}
  {dialog.type==='theme'&&<ThemeProgressPanel state={state} onDevices={showDevices}/>}
  {dialog.type==='appliance'&&<SecondClock>{now=><ApplianceDrawer state={state} applianceId={dialog.id} now={effectiveNow(state,now)} act={act} onItem={showItem} onDevices={showDevices} onOrganize={close} onStorage={()=>setDialog({type:'storage'})}/>}</SecondClock>}
