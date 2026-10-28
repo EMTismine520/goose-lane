@@ -5,8 +5,7 @@ import { execute, getBoardEntity } from '../domain/engine';
 import { SaveRepository, resumeManualSlot } from '../persistence/save';
 import App from '../ui/App';
 import { simulateOpening } from './opening';
-import '../ui/styles.css';
-import '../ui/home-cooking.css';
+import '../ui/game.css';
 
 const scene = new URLSearchParams(location.search).get('scene') ?? 'play';
 if (scene === 'styles') {

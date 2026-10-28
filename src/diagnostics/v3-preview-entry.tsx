@@ -4,9 +4,7 @@ import { SaveRepository, resumeManualSlot, validateSave } from '../persistence/s
 import MILESTONES from './v3-milestones.json';
 import COOKING_SAMPLE from './v3-cooking-sample.json';
 import COMPLETE from './v3-played-state.json';
-import '../ui/styles.css';
-import '../ui/home-cooking.css';
-import '../ui/v3.css';
+import '../ui/game.css';
 
 const query=new URLSearchParams(location.search), requested=query.get('stage'),stage=requested==='cooking'||requested==='complete'?requested:String(Math.min(8,Math.max(1,Number(requested)||3)));
 const scope=`goose-v3-b-qa-${stage}-${query.get('size')??'390'}`;

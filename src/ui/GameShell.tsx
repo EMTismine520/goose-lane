@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { DRAG_THRESHOLD } from '../game/board-input';
 import { installGameViewport } from '../platform/viewport';
+import { layoutDensity } from './ui-guidance';
 type BackgroundPress = { pointerId: number; surface: HTMLElement; x: number; y: number; maxDistance: number };
 // Mobile browsers may retarget a border touch to the nearby canvas. Use its actual position.
 const backgroundSurface = (x:number,y:number) => {
@@ -9,7 +10,14 @@ const backgroundSurface = (x:number,y:number) => {
 };
 export function GameShell({children,page,backgroundEnabled=false,onBackgroundTap}:{children:ReactNode;page:string;backgroundEnabled?:boolean;onBackgroundTap?:()=>void}) {
  const press=useRef<BackgroundPress|null>(null);
+ const shell=useRef<HTMLElement>(null);
  useLayoutEffect(() => installGameViewport(), []);
+ useLayoutEffect(()=>{
+  const element=shell.current;if(!element)return;
+  const measure=()=>{element.dataset.density=layoutDensity(element.getBoundingClientRect().height)};
+  const observer=new ResizeObserver(measure);observer.observe(element);measure();
+  return()=>observer.disconnect();
+ },[]);
  useEffect(()=>{if(!backgroundEnabled)press.current=null},[backgroundEnabled]);
  useEffect(()=>{
   const cancel=()=>{press.current=null};
@@ -17,7 +25,7 @@ export function GameShell({children,page,backgroundEnabled=false,onBackgroundTap
   document.addEventListener('visibilitychange',cancel);
   return()=>{window.removeEventListener('blur',cancel);document.removeEventListener('visibilitychange',cancel)};
  },[]);
- return <main className={`game-shell page-${page}`} aria-label="鹅巷食光" data-selection-background
+ return <main ref={shell} className={`game-shell page-${page}`} aria-label="鹅巷食光" data-selection-background
   onPointerDown={event=>{
    if(!event.isPrimary)return;
    const surface=backgroundSurface(event.clientX,event.clientY);

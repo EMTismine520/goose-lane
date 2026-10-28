@@ -24,6 +24,7 @@ export interface BoardProps {
   onMove?: (from: number, to: number) => void;
   hint?: [number, number] | null;
   tutorialTarget?: number | null;
+  guidanceUids?: readonly string[];
   active?: boolean;
   inputEnabled?: boolean;
   sessionEpoch?: number;
@@ -46,7 +47,7 @@ export default function Board(props: BoardProps) {
   const pixelRatio = boardPixelRatio(art.pixelRatio ?? (typeof window === 'undefined' ? 1 : window.devicePixelRatio));
   live.current = props;
 
-  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence]);
+  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.guidanceUids, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence]);
 
   useEffect(() => {
     setStatus('loading');
@@ -325,7 +326,7 @@ export default function Board(props: BoardProps) {
           this.paintHighlights();
         }
 
-        private paintHighlights() { this.board?.highlight(live.current.selected, live.current.hint, this.hovered, this.dragged, live.current.tutorialTarget); }
+        private paintHighlights() { this.board?.highlight(live.current.selected, live.current.hint, this.hovered, this.dragged, live.current.tutorialTarget, live.current.guidanceUids); }
       }
 
       game = new Engine.Game({
@@ -355,15 +356,15 @@ export default function Board(props: BoardProps) {
   const interactive = props.active !== false && props.inputEnabled !== false;
   return <div className="board-shell" data-board-status={status} data-board-renderer={rendererMode} data-board-pixel-ratio={pixelRatio} style={{ position: 'relative' }}>
     <div ref={mount} className="phaser-board" style={{ width: '100%', height: '100%', touchAction: 'none', overflow: 'hidden', borderRadius: 9 }} />
-    <div className="board-keyboard-grid" role="grid" aria-label="料理棋盘，方向键换格，回车选择和操作，Escape取消选择" aria-rowcount={BOARD_ROWS} aria-colcount={BOARD_COLUMNS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateRows: 'repeat(9, 1fr)', pointerEvents: 'none' }}>
-      {Array.from({ length: BOARD_ROWS }, (_, row) => <div key={row} role="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
+    <div className="board-keyboard-grid" role="grid" aria-label="料理棋盘，方向键换格，回车选择和操作，Escape取消选择" aria-rowcount={BOARD_ROWS} aria-colcount={BOARD_COLUMNS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateRows: 'repeat(9, minmax(0, 1fr))', pointerEvents: 'none' }}>
+      {Array.from({ length: BOARD_ROWS }, (_, row) => <div key={row} role="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, minmax(0, 1fr))', minWidth: 0, minHeight: 0 }}>
         {Array.from({ length: BOARD_COLUMNS }, (_, column) => {
           const index = row * BOARD_COLUMNS + column;
           const entity = getBoardEntity(props.state, index);
           const appliance = entity.kind === 'appliance' ? getApplianceStatus(props.state, entity.id) : null;
           const details = entity.item ? CHAINS.some(c=>c.items.includes(entity.item!.item))?`${ITEMS[entity.item.item].level}级`:`成品${ITEMS[entity.item.item].kind==='drink'?'饮品':'料理'}` : appliance ? { idle: '等待投料', loaded: '已投料', cooking: '烹饪中', ready: '点击领取' }[appliance.phase] : '';
-          return <div key={index} role="gridcell" aria-selected={props.selected === index} aria-rowindex={row + 1} aria-colindex={column + 1}>
-            <button ref={node => { if (node) buttons.current.set(index, node); else buttons.current.delete(index); }} type="button" disabled={!interactive} tabIndex={interactive && index === (focused ?? 0) ? 0 : -1}
+          return <div key={index} role="gridcell" aria-selected={props.selected === index} aria-rowindex={row + 1} aria-colindex={column + 1} style={{ minWidth: 0, minHeight: 0 }}>
+            <button ref={node => { if (node) buttons.current.set(index, node); else buttons.current.delete(index); }} type="button" data-board-index={index} data-board-item={entity.item?.item} data-board-uid={entity.id} disabled={!interactive} tabIndex={interactive && index === (focused ?? 0) ? 0 : -1}
               aria-label={`第${row + 1}行第${column + 1}列，${entity.name}${details ? `，${details}` : ''}`}
               onFocus={() => setFocused(index)} onBlur={() => setFocused(null)}
               onClick={() => bridge.current?.activate(index)}
@@ -371,7 +372,7 @@ export default function Board(props: BoardProps) {
                 const next = nextKeyboardCell(index, event.key);
                 if (event.key.startsWith('Arrow') || event.key === 'Home' || event.key === 'End') { event.preventDefault(); buttons.current.get(next)?.focus(); }
               }}
-              style={{ width: '100%', height: '100%', opacity: focused === index ? 1 : 0, pointerEvents: 'none', border: '3px solid #4e965a', background: '#fff8e5ee', color: '#4c663b', borderRadius: 7, fontSize: 10, padding: 2, outline: 'none' }}>
+              style={{ display: 'block', width: '100%', height: '100%', minWidth: 0, minHeight: 0, overflow: 'hidden', opacity: focused === index ? 1 : 0, pointerEvents: 'none', border: '3px solid #4e965a', background: '#fff8e5ee', color: '#4c663b', borderRadius: 7, fontSize: 10, padding: 2, outline: 'none' }}>
               {entity.name}
             </button>
           </div>;

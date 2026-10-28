@@ -4,7 +4,9 @@
 
 移动优先的合成烹饪游戏，保留两个主页面，通过左下角切换美食合成与店铺建设。当前完整图鉴版本3.0.0包含14条合成系列、123道配方、139种成品、22类三级设备和145份主线订单。311个唯一图鉴条目均配有已确认B类暖色卡通资产。设备可合成升级、收纳和移动，旧存档自动迁移至结构3。
 
-[私有试玩](https://goose-lane-table-20261023.leafyscarf257.chatgpt.site) · [完整图鉴与配方](docs/V3_CATALOG.md) · [交付与验证说明](docs/V3_DELIVERY.md)
+[开始游戏](https://emtismine520.github.io/goose-lane/) · [完整图鉴独立试玩](https://emtismine520.github.io/goose-lane-art-preview/v3-preview.html) · [完整图鉴与配方](docs/V3_CATALOG.md) · [交付与验证说明](docs/V3_DELIVERY.md)
+
+界面采用奶油色料理台、固定底部工具和随实际高度调整的棋盘布局。可以主动关注顾客订单、逐层查找食材来源，在厨具抽屉区分“现在可做”和“继续补料可做”；小馆随三次建设和八个主题逐步添上陈设。配方、资源、存档与轻点／拖动规则沿用现有游戏。
 
 ![完整图鉴32像素美术总览](artwork/v3-b/qa/contact-32.png)
 
@@ -31,6 +33,8 @@ npm run preview
 ```
 
 `dist/` 可部署到静态HTTPS托管，`release.json` 记录构建对应的源码提交。打开 `v3-preview.html` 可选择八个主题检查点、三材料料理样板和三个手机尺寸，使用独立存档。资源路径支持项目子目录；不能使用双击HTML代替HTTP服务。
+
+界面验收入口 `ui-preview.html?scenario=opening&run=review-01` 提供开局、订单、短配方、三材料烹饪、满盘、建设、主题开放及旧档等13种隔离场景。`scenario=full&renderer=canvas&motion=reduced` 可检查满盘及低动态模式；更换 `run` 可创建新的样板存档。该入口使用独立存档，不注册离线程序。
 
 ## 怎么玩
 

@@ -126,11 +126,11 @@ export class BoardRenderer {
     const image = this.scene.add.image(presentation.offsetX, presentation.offsetY, texture.key, texture.frame).setDisplaySize(size, size);
     const badge = this.scene.add.graphics();
     const isNode=CHAINS.some(chain=>chain.items.includes(instance.item));
-    badge.fillStyle(isNode ? 0x77ae64 : 0xf29b45, 1);
+    badge.fillStyle(isNode ? 0x4e8a5b : 0xd98543, 1);
     badge.fillRoundedRect(10, 10, 13, 13, 4);
     badge.lineStyle(1.5, 0xfffdf2, 1);
     badge.strokeRoundedRect(10, 10, 13, 13, 4);
-    const level = this.scene.add.text(16.5, 16.5, isNode ? `${def.level}` : '成', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
+    const level = this.scene.add.text(16.5, 16.5, isNode ? `${def.level}` : '成', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '10px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
     container.add([shadow, image, badge, level]);
     return { uid: instance.uid, item: instance.item, index, container };
   }
@@ -166,45 +166,35 @@ export class BoardRenderer {
 
   private paintTiles() {
     this.tiles.clear();
-    this.tiles.fillStyle(0xdfb98a, 1).fillRoundedRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT, 9);
+    this.tiles.fillStyle(0xe6d5b5, 1).fillRoundedRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT, 9);
     for (let index = 0; index < BOARD_COLUMNS * BOARD_ROWS; index++) {
       const at = cellCenter(index);
       const locked = getBoardEntity(this.state(), index).kind === 'blocker';
-      this.tiles.fillStyle(locked ? 0xe6c6a0 : (Math.floor(index / BOARD_COLUMNS) + index % BOARD_COLUMNS) % 2 ? 0xffefd5 : 0xfff6e2, 1);
-      this.tiles.fillRoundedRect(at.x - 24, at.y - 24, 48, 48, 5);
+      this.tiles.fillStyle(locked ? 0xe6d4b4 : (Math.floor(index / BOARD_COLUMNS) + index % BOARD_COLUMNS) % 2 ? 0xfaf0dc : 0xfff9ed, 1);
+      this.tiles.fillRoundedRect(at.x - 24, at.y - 24, 48, 48, 7);
+      if (!locked) this.tiles.lineStyle(1, 0xfffdf5, .9).lineBetween(at.x - 17, at.y - 22, at.x + 17, at.y - 22);
     }
     this.crates.removeAll(true);
     for (const block of BOARD_LAYOUT.blockers) {
       const entity = getBoardEntity(this.state(), block.index);
       if (entity.kind !== 'blocker') continue;
-      const at = cellCenter(block.index);
-      const width = block.footprint.length * 50 - 4;
+      const at = cellCenter(block.index), width = block.footprint.length * 50 - 8;
       const band = this.scene.add.graphics();
-      band.fillStyle(0xd3a66f, 0.4).fillRoundedRect(at.x - 23, at.y - 23, width, 46, 7);
+      band.fillStyle(0xcbb38d, .24).fillRoundedRect(at.x - 21, at.y - 21, width, 42, 8);
+      band.lineStyle(1, 0xbda179, .42).strokeRoundedRect(at.x - 21, at.y - 21, width, 42, 8);
+      for (let x = 13; x < BOARD_WIDTH; x += 34) band.lineStyle(1, 0xf6ecd7, .5).lineBetween(x, at.y - 17, x + 14, at.y - 17);
       this.crates.add(band);
-      for (let i = 0; i < block.footprint.length; i++) {
-        if (this.scene.textures.exists('entity:crate')) {
-          const crate = this.scene.add.image(at.x + i * 50, at.y + 1, 'entity:crate').setDisplaySize(45, 45).setAlpha(0.86);
-          this.crates.add(crate);
-        } else {
-          const box = this.scene.add.graphics();
-          const x = at.x + i * 50;
-          box.fillStyle(0xdab47e).fillRoundedRect(x - 21, at.y - 18, 42, 38, 4);
-          box.lineStyle(2, 0xaf8553).strokeRoundedRect(x - 21, at.y - 18, 42, 38, 4);
-          box.fillStyle(0xe9c78f).fillRect(x - 4, at.y - 18, 8, 38);
-          this.crates.add(box);
-        }
-      }
-      const badgeX = BOARD_WIDTH / 2;
-      const badge = this.scene.add.graphics();
-      badge.fillStyle(0x94714c, 0.94).fillRoundedRect(badgeX - 52, at.y - 10, 104, 22, 10);
-      badge.lineStyle(1.5, 0xfce6bd, 0.7).strokeRoundedRect(badgeX - 52, at.y - 10, 104, 22, 10);
-      const text = this.scene.add.text(badgeX, at.y + 1, entity.name, { fontFamily: 'Arial, sans-serif', fontSize: '10px', fontStyle: 'bold', color: '#fff5da' }).setOrigin(0.5);
-      this.crates.add([badge, text]);
+      if (this.scene.textures.exists('entity:crate')) this.crates.add(this.scene.add.image(32, at.y, 'entity:crate').setDisplaySize(32, 32).setAlpha(.82));
+      const lock = this.scene.add.graphics();
+      lock.lineStyle(2, 0x917859, 1).strokeRoundedRect(BOARD_WIDTH - 38, at.y - 9, 10, 12, 5);
+      lock.fillStyle(0x917859, 1).fillRoundedRect(BOARD_WIDTH - 41, at.y - 1, 16, 11, 3);
+      lock.fillStyle(0xf7eedb, 1).fillCircle(BOARD_WIDTH - 33, at.y + 4, 1.5);
+      const text = this.scene.add.text(BOARD_WIDTH / 2, at.y, entity.name, { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '12px', fontStyle: 'bold', color: '#79664d' }).setOrigin(.5);
+      this.crates.add([lock, text]);
     }
   }
 
-  highlight(selected: number | null, hint: [number, number] | null | undefined, hovered: number | null = null, dragged: number | null = null, tutorialTarget?: number | null) {
+  highlight(selected: number | null, hint: [number, number] | null | undefined, hovered: number | null = null, dragged: number | null = null, tutorialTarget?: number | null, guidanceUids: readonly string[] = []) {
     this.highlights.clear();
     const state = this.state();
     const source = dragged ?? selected;
@@ -213,13 +203,14 @@ export class BoardRenderer {
       if (entity.kind === 'blocker') continue;
       const at = cellCenter(index);
       const isSource = source === index;
-      const matching = tutorialTarget == null && dragged !== null && dropKind(state, dragged, index) === 'merge';
+      const matching = dragged !== null && dropKind(state, dragged, index) === 'merge';
       const isHint = tutorialTarget == null && hint?.includes(index);
-      const isTutorialTarget = tutorialTarget === index;
+      const isTutorialTarget = dragged === null && tutorialTarget === index;
+      const isGuidance = dragged === null && tutorialTarget == null && guidanceUids.includes(entity.id);
       const over = hovered === index && dragged !== index;
-      if (!isSource && !matching && !isHint && !over && !isTutorialTarget) continue;
+      if (!isSource && !matching && !isHint && !over && !isTutorialTarget && !isGuidance) continue;
       const kind = over && source !== null ? dropKind(state, source, index) : null;
-      const color = kind === 'blocked' ? 0xe78265 : kind === 'stage' ? 0x62b9c0 : matching || isHint || isTutorialTarget ? 0xf1ba42 : 0x82b74e;
+      const color = kind === 'blocked' ? 0xc5694e : kind === 'stage' ? 0x389d9e : isGuidance ? 0x488db5 : matching || isHint || isTutorialTarget ? 0xd29a35 : 0x3f7b58;
       this.highlights.fillStyle(color, over ? 0.25 : 0.13).fillRoundedRect(at.x - 23, at.y - 23, 46, 46, 8);
       this.highlights.lineStyle(isSource || over ? 2.5 : 1.7, color, 1).strokeRoundedRect(at.x - 23, at.y - 23, 46, 46, 8);
       if (matching || isHint) this.highlights.fillStyle(color, 1).fillCircle(at.x + 18, at.y - 18, 3);
@@ -228,6 +219,9 @@ export class BoardRenderer {
         this.highlights.fillStyle(0xffd366, 1).fillTriangle(at.x + 10, at.y - 23, at.x + 24, at.y - 23, at.x + 17, at.y - 12);
         this.highlights.lineStyle(1.5, 0xa6752e, 1).strokeTriangle(at.x + 10, at.y - 23, at.x + 24, at.y - 23, at.x + 17, at.y - 12);
       }
+      if (isGuidance) this.highlights.fillStyle(color, 1).fillCircle(at.x, at.y - 20, 3);
+      if (over && kind === 'blocked') this.highlights.lineStyle(2, color, 1).lineBetween(at.x - 4, at.y + 12, at.x + 4, at.y + 20).lineBetween(at.x + 4, at.y + 12, at.x - 4, at.y + 20);
+      if (over && kind === 'stage') this.highlights.lineStyle(2, color, 1).lineBetween(at.x, at.y - 20, at.x, at.y - 10).lineBetween(at.x - 4, at.y - 14, at.x, at.y - 10).lineBetween(at.x + 4, at.y - 14, at.x, at.y - 10);
       if (over && kind !== 'blocked' && kind !== 'same') {
         this.highlights.lineStyle(2, color, 1).lineBetween(at.x - 4, at.y + 15, at.x - 1, at.y + 18).lineBetween(at.x - 1, at.y + 18, at.x + 5, at.y + 11);
       }

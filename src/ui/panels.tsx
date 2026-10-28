@@ -3,7 +3,7 @@ import { ArrowRight, Check, ChefHat, Clock3, Coins, FolderOpen, Flower2, Heart, 
 import type { Command, GameState, OrderDef, Requirement } from '../domain/types';
 import { ITEMS, CHAINS, RECIPES, ORDERS, SHOPS, CUSTOMERS, DECORATIONS, APPLIANCES, CONTENT_VERSION } from '../content/catalog';
 import { ALL_DEVICES, HOME_UNLOCK_HINT, homeCookingUnlocked } from '../content/board-layouts';
-import { inventoryCount, canAffordRequirements, availableOrders, getDayProgress, getOrderReward, getRecipeDuration, getBonuses } from '../domain/engine';
+import { inventoryCount, canAffordRequirements, availableOrders, getDayProgress, getOrderReward, getRecipeDuration, getBonuses, getBoardEntity, unlockedCells } from '../domain/engine';
 import { Avatar, Goose, ItemIcon } from './parts';
 
 type Send=(command:Command)=>Promise<boolean>;
@@ -46,7 +46,8 @@ export function ItemDetails({state,item,onItem,onCook}: {state:GameState;item:st
 }
 
 export function Storage({state,dispatch}: {state:GameState;dispatch:Send}) {
-  return <><p className="modal-intro">给好食材留一个位置。仓库食材可直接交付订单；烹饪前先取回棋盘，再拖到厨具。</p><div className="storage-grid">{Array.from({length:state.storageCapacity},(_,i)=>{const instance=state.storage[i];return instance?<button key={instance.uid} onClick={()=>dispatch({type:'retrieve',uid:instance.uid})}><ItemIcon item={instance.item} size={64}/><b>{ITEMS[instance.item].name}</b><small>点击取回棋盘</small></button>:<div className="storage-empty" key={`empty-${i}`}><PackageOpen size={27}/><span>空位置</span></div>;})}</div><p className="quiet-note">在棋盘选中食材后，点击「放入仓库」。棋盘满时不会取出或丢失物品。</p></>;
+  const freeCells = Array.from({length:unlockedCells(state)},(_,index)=>index).filter(index=>getBoardEntity(state,index).kind==='empty').length;
+  return <section className="storage-panel"><div className="storage-capacity"><b>食材仓库</b><span>已用 <strong>{state.storage.length}</strong> / {state.storageCapacity} 格</span></div><p className="modal-intro">仓库食材可直接交付订单；烹饪前先取回棋盘，再拖到厨具。</p><p id="storage-space-status" className={`storage-space-status ${freeCells?'':'is-full'}`} role="status">{freeCells?`棋盘还有 ${freeCells} 个空位，点击食材即可取回。`:'棋盘满了，先回棋盘合成或交付订单，腾出一个空位再取回。'}</p><div className="storage-grid">{Array.from({length:state.storageCapacity},(_,i)=>{const instance=state.storage[i];return instance?<button key={instance.uid} disabled={!freeCells} aria-label={`取回${ITEMS[instance.item].name}`} aria-describedby="storage-space-status" onClick={()=>dispatch({type:'retrieve',uid:instance.uid})}><ItemIcon item={instance.item} size={64}/><b>{ITEMS[instance.item].name}</b><small>{freeCells?'点击取回棋盘':'棋盘满了 · 暂不能取回'}</small></button>:<div className="storage-empty" key={`empty-${i}`}><PackageOpen size={27}/><span>空位置</span></div>;})}</div><p className="quiet-note">存入食材：在棋盘选中食材 → 整理 → 放入仓库。</p></section>;
 }
 
 export function SettingsPanel({state,dispatch,onSave,onLoad,onRestart}: {state:GameState;dispatch:Send;onSave:()=>void;onLoad:()=>void;onRestart:()=>void}) {

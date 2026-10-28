@@ -6,7 +6,7 @@ import { BUILD_NODES } from '../src/content/board-layouts';
 import { reconcileHomeDevices } from '../src/domain/home-progression';
 import { V3Codex } from '../src/ui/V3Codex';
 import { ItemDetails } from '../src/ui/panels';
-import { ItemActionBar } from '../src/ui/ItemActionBar';
+import { ApplianceDrawer } from '../src/ui/ApplianceDrawer';
 
 const noop = () => {};
 describe('home kitchen interface contracts', () => {
@@ -40,7 +40,7 @@ describe('home kitchen interface contracts', () => {
       state.board[from] = { uid: `g${state.nextId++}`, item };
       state = execute(state, { type: 'stageInput', from, appliance: 'home-cooking-pot' }, 1000).state;
     }
-    const html = renderToStaticMarkup(<ItemActionBar state={state} selected={47} now={1000} act={async () => true} onStorage={noop} onBook={noop} onItem={noop}/>);
+    const html = renderToStaticMarkup(<ApplianceDrawer state={state} applianceId="home-cooking-pot" now={1000} act={async () => true} onItem={noop}/>);
     expect(html).toContain('葱香蛋饭');
     expect(html).toContain('可开火 · 也可继续补料');
     expect(html).toContain('番茄炒蛋');

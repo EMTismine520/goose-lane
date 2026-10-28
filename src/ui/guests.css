@@ -1,0 +1,80 @@
+/* Guest-facing chrome shares the kitchen's cream, cocoa and leaf palette. */
+.game-shell .guest-resources{height:var(--resource);padding:0 8px;gap:4px;background:linear-gradient(180deg,#fff6e5,#f6ead3);color:#493729}
+.guest-resources .theme-badge{height:44px;min-width:82px;max-width:106px;flex:0 1 98px;padding:0 2px;display:flex;align-items:center;gap:4px;border:0;background:none;text-align:left}
+.theme-emblem{display:grid;place-items:center;width:23px;height:29px;flex:0 0 23px;border-radius:9px 9px 11px 11px;background:#dce6cb;border:1px solid #b6c7a4;color:#3f7b58;box-shadow:0 2px 0 #b6c7a430}
+.theme-badge-copy{min-width:0}
+.theme-badge-copy small{display:block;font-size:10px;line-height:13px;letter-spacing:.4px;color:#796348}
+.theme-badge-copy b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:17px;color:#493729}
+.guest-resources .resource-pill{height:34px;padding:0 6px;border:1px solid #dbc5a2;border-radius:12px;background:#fff9ed;gap:3px;box-shadow:0 2px 0 #c2a77b22;min-width:0}
+.guest-resources .resource-pill b{font-size:15px;color:#493729;font-variant-numeric:tabular-nums}
+.guest-resources .resource-pill.energy{height:44px;flex:0 0 auto;min-width:81px;padding:0 5px;border-color:transparent;box-shadow:none;background:transparent}
+.guest-resources .resource-pill.energy svg{color:#3f7b58;stroke:#3f7b58;filter:none}
+.guest-resources .resource-pill>span{font-size:10px;color:#796348}
+.guest-resources .resource-pill.coins{flex:1;max-width:none;justify-content:center;overflow:hidden}
+.guest-resources .coins svg{color:#ad7527;fill:#efc66c}
+.guest-resources .settings-button{height:44px;width:44px;min-width:44px;border:0;margin:0;background:none;color:#725c42;box-shadow:none}
+.guest-resources .day-badge{height:39px;flex:0 0 39px;margin-right:5px;grid-template-rows:12px 22px}
+.guest-resources .day-badge span{font-size:9px;padding-top:2px}
+.guest-resources .day-badge b{font-size:21px}
+
+.game-shell .guest-orders{background:none;overflow:hidden}
+.guest-orders .customer-caption{height:20px;line-height:20px;padding:0 13px;font-size:11px;letter-spacing:.2px;color:#796348}
+.guest-orders .customer-caption>span:first-child{font-weight:800;color:#60482f}
+.guest-orders .customer-caption b{font-variant-numeric:tabular-nums;color:#3f7b58;margin-left:3px}
+.game-shell .guest-orders .customer-strip{height:92px;width:100%;gap:8px;padding:0 12px;align-items:flex-start;scroll-padding-inline:12px;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
+.game-shell .guest-orders .customer-card{flex:0 0 calc((100% - 32px)/2);min-width:0;height:92px;max-height:92px;margin:0;display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-rows:44px 44px;background:#fff9ed;border:2px solid #d5b98e;border-radius:13px;box-shadow:inset 0 1px 0 #fff;overflow:hidden;transition:border-color .14s,background .14s}
+.game-shell .guest-orders .customer-card.ready{border-color:#6d976d;background:#f5f8e8}
+.game-shell .guest-orders .customer-card.focused{border-color:#c59538;box-shadow:inset 0 0 0 1px #eccd82;background:#fff6dd}
+.game-shell .guest-orders .customer-portrait{grid-row:1;grid-column:1;position:relative;width:44px;height:44px;min-height:44px;margin:0;padding:0;display:flex;align-items:center;justify-content:center;border-radius:9px;background:none;overflow:visible}
+.game-shell .guest-orders .customer-portrait>.goose-character{width:40px;height:44px;filter:none;flex:0 0 40px}
+.game-shell .guest-orders .customer-portrait>span{position:absolute;bottom:0;max-width:44px;line-height:12px;font-size:10px;font-weight:600;padding:0 3px;border-radius:4px;background:#fff4d7eF;color:#60482f;white-space:nowrap}
+.game-shell .guest-orders .customer-portrait>.order-focus-pin{position:absolute;top:2px;left:1px;width:11px;height:11px;color:#a27624;filter:none}
+.game-shell .guest-orders .customer-wants{grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:center;min-width:0;height:44px;padding:0;gap:2px}
+.game-shell .guest-orders .order-item{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;min-width:44px;width:44px;min-height:44px;height:44px;padding:0;border-radius:8px}
+.game-shell .guest-orders .order-item .item-icon{width:35px!important;height:35px!important;max-width:35px!important;max-height:35px!important;margin-top:-4px}
+.game-shell .guest-orders .order-item small{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:14px;min-width:28px;line-height:12px;padding:0 3px;margin:0;display:flex;align-items:center;justify-content:center;gap:1px;border:1px solid #fff6e0;border-radius:5px;background:#816b51;color:#fff9ed;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums}
+.game-shell .guest-orders .order-item small.enough{background:#3f7b58}
+.game-shell .guest-orders .serve-button{grid-row:2;grid-column:1/3;width:100%;height:44px;min-height:44px;padding:0 8px;border:0;border-top:1px solid #e4d0ae;border-radius:0 0 10px 10px;display:flex;align-items:center;justify-content:space-between;gap:4px;background:#f0e3ca;color:#796348;font-size:12px;box-shadow:none}
+.game-shell .guest-orders .serve-button.can-serve{background:#3f7b58;border-top-color:#326748;color:#fff9ed;box-shadow:inset 0 1px 0 #ffffff25}
+.game-shell .guest-orders .serve-button>span{display:flex;align-items:center;gap:3px;font-size:12px;margin:0}
+.game-shell .guest-orders .serve-button .order-reward b{font-size:14px;font-variant-numeric:tabular-nums}
+.game-shell .guest-orders .serve-button .order-reward svg{color:#9f702a;fill:#eac265}
+.game-shell .guest-orders .serve-button.can-serve .order-reward svg{color:#f5d887;fill:#f5d887}
+.game-shell .guest-orders .serve-button .order-status{justify-content:center;font-weight:700;white-space:nowrap}
+.game-shell .guest-orders .serve-button:disabled{opacity:1;filter:none}
+.game-shell .guest-orders .orders-finished{width:100%;height:88px;gap:10px;padding:10px 14px;border:1px dashed #b9c6a0;border-radius:14px;background:#f4f4df;color:#3f7b58}
+.guest-orders .orders-finished b{display:block;font-size:14px;line-height:20px}
+.guest-orders .orders-finished small{display:block;font-size:12px;line-height:18px;color:#796348;margin-top:3px}
+.game-shell[data-density=compact] .guest-orders .customer-caption,.game-shell[data-density=short] .guest-orders .customer-caption,.game-shell[data-density=tiny] .guest-orders .customer-caption{display:none}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .customer-strip{height:78px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .customer-card{flex-basis:calc(100% - 24px);height:74px;max-height:74px;margin:2px 0;grid-template-columns:52px minmax(0,1fr) 86px;grid-template-rows:70px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .customer-portrait{width:52px;height:70px;grid-row:1}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .customer-portrait>.goose-character{width:47px;height:61px;flex-basis:47px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .customer-portrait>span{bottom:2px;font-size:11px;line-height:14px;max-width:50px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .customer-wants{height:70px;gap:7px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .order-item{height:56px;width:52px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .order-item .item-icon{width:43px!important;height:43px!important;max-width:43px!important;max-height:43px!important}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .order-item small{bottom:2px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .serve-button{grid-column:3;grid-row:1;height:70px;flex-direction:column;justify-content:center;gap:7px;padding:3px;border-top:0;border-left:1px solid #dac8a7;border-radius:0 10px 10px 0}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .serve-button .order-status{font-size:14px}
+.game-shell:is([data-density=short],[data-density=tiny]) .guest-orders .orders-finished{height:74px}
+
+.goose-character{overflow:visible}
+.goose-character .goose-body{transform-origin:49px 99px}
+.guest-orders .customer-card.ready .goose-body{animation:guest-ready 2.8s ease-in-out infinite}
+@keyframes guest-ready{0%,75%,100%{transform:translateY(0)}82%{transform:translateY(-2px) rotate(-2deg)}90%{transform:translateY(0) rotate(1deg)}}
+.delivery-thanks{width:198px;min-height:52px;display:flex;align-items:center;gap:5px;padding:4px 8px;border:1px solid #b4c49b;border-radius:14px;background:#fff9ed;box-shadow:0 4px 14px #49372924;color:#493729}
+.delivery-thanks>span:last-child{min-width:0;flex:1}
+.delivery-thanks b{display:block;font-size:12px;line-height:17px;color:#3f7b58}
+.delivery-thanks small{display:block;font-size:11px;line-height:15px;color:#796348}
+.delivery-thanks.quiet{box-shadow:none}
+
+.modal-backdrop.modal-backdrop--sheet{align-items:flex-end;padding:12px 0 0;background:#49372966;backdrop-filter:blur(3px)}
+.modal.modal--sheet{width:min(100%,430px);max-height:min(calc(var(--app-height,100vh) - env(safe-area-inset-top,0px) - 12px),760px);padding:0 16px max(18px,env(safe-area-inset-bottom,0px));border:1px solid #d5b98e;border-bottom:0;border-radius:24px 24px 0 0;background:#fff9ed;box-shadow:0 -8px 40px #49372925;animation:guest-sheet-in .2s ease-out;scroll-padding-top:80px}
+.modal--sheet .modal-header{position:sticky;top:0;z-index:6;margin:0 0 12px;padding:19px 0 10px;background:#fff9ed;border-color:#e8d8bb;min-height:73px}
+.modal--sheet .modal-header:before{content:"";position:absolute;top:7px;left:calc(50% - 17px);width:34px;height:4px;border-radius:3px;background:#d8c9ad}
+.modal--sheet .modal-header h2{font-size:19px;color:#493729}
+.modal .modal-header .icon-button{height:44px;width:44px;min-height:44px;flex:0 0 44px;border:0;background:#f0e6d2;color:#725c42;border-radius:14px}
+.modal--sheet .modal-header .eyebrow{display:block;font-size:10px;line-height:15px;color:#8b704d;letter-spacing:1px}
+@keyframes guest-sheet-in{from{opacity:.6;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.guest-orders .goose-body,.modal--sheet{animation:none}.guest-orders .customer-card{transition:none}}

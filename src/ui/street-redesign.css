@@ -1,0 +1,69 @@
+.shop-world.bistro-world {
+  display:grid;grid-template-rows:100px minmax(0,1fr) 34px;min-height:0;
+  background:radial-gradient(ellipse at 50% 49%,#fff7df 0%,#f5e9cc 60%,#ecddbd 100%);
+  color:#493729;isolation:isolate;
+}
+.bistro-world::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 12% 29%,#d7dcbc55 0,transparent 25%),radial-gradient(circle at 90% 75%,#e6cca65c 0,transparent 30%)}
+.bistro-world.bistro-evening{background:radial-gradient(ellipse at 50% 50%,#f5e4c5 0,#e4d9cb 60%,#ced3ca 100%)}
+.bistro-title{position:relative;text-align:center;padding:14px 14px 0;z-index:1}
+.bistro-kicker{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:1.2px;color:#667358}
+.bistro-kicker i{width:5px;height:5px;border-radius:50%;background:var(--theme-accent)}
+.bistro-title h1{font-family:Georgia,'Songti SC','Noto Serif CJK SC',serif;font-size:30px;font-weight:800;letter-spacing:5px;margin:5px 0 6px;color:#4b5b3b;text-shadow:0 2px #fff9e7}
+.bistro-title p{font-size:12px;line-height:1.6;color:#786750;margin:0}
+.bistro-stage{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;position:relative;padding:0 6px}
+.bistro-diorama{position:relative;flex:none}
+.bistro-scene{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 7px 5px #7f6a4320)}
+.bistro-hotspot{position:absolute;transform:translate(-50%,-50%);z-index:3;display:flex;align-items:center;justify-content:center;gap:5px;min-width:76px;min-height:46px;padding:4px 10px 4px 5px;border:2px solid #e7c589;border-radius:16px;background:#fff8e8;color:#8c613a;box-shadow:0 4px 0 #ad88554d,0 0 0 4px #fff8e67d}
+.bistro-hotspot::after{content:"";position:absolute;bottom:-7px;left:calc(50% - 5px);width:10px;height:10px;transform:rotate(45deg);background:#fff8e8;border-right:2px solid #e7c589;border-bottom:2px solid #e7c589}
+.bistro-hotspot>span{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#f3e1ba}
+.bistro-hotspot b{font-size:12px;white-space:nowrap;font-weight:800}
+.bistro-hotspot.affordable{background:#3f7b58;border-color:#315e43;color:#fff9e9;box-shadow:0 4px 0 #315e4366,0 0 0 4px #fff8e67d}
+.bistro-hotspot.affordable>span{background:#fff3d829}.bistro-hotspot.affordable::after{background:#3f7b58;border-color:#315e43}
+.bistro-hotspot:active{transform:translate(-50%,calc(-50% + 2px));box-shadow:0 2px 0 #ad88554d}
+.bistro-open-sign{position:absolute;right:10%;bottom:4%;display:flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:5px 8px;background:#fcf4de;border:1px solid #d6c49e;border-radius:9px;color:#4f7858;box-shadow:0 2px 0 #ac99712b}
+.bistro-footnote{display:flex;align-items:center;justify-content:center;gap:5px;padding:0 10px 5px;color:#807359;font-size:10px;white-space:nowrap;overflow:hidden}
+.bistro-footnote>span{overflow:hidden;text-overflow:ellipsis}.bistro-footnote>svg{flex-shrink:0;color:#aa8f56}
+.bistro-resident-body{transform-box:fill-box;transform-origin:50% 100%;animation:bistro-bob 4s ease-in-out infinite}
+.bistro-resident-arriving .bistro-resident-body{animation:bistro-arrive 12s ease-in-out infinite}
+.bistro-resident-chef .bistro-resident-body{animation:bistro-chef 3.6s ease-in-out infinite}
+.bistro-reaction{animation:bistro-heart 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.bistro-steam{animation:bistro-steam 3.2s ease-in-out infinite}
+.bistro-building .bistro-built-part{transform-box:fill-box;transform-origin:50% 100%;animation:bistro-build .8s cubic-bezier(.2,.8,.3,1)}
+.bistro-confetti{animation:bistro-celebrate .9s ease-out both}
+.bistro-showcase{animation:bistro-appear .35s ease-out both}
+.bistro-world[data-reduced-motion="true"] *,[data-motion="reduced"] .bistro-world *{animation:none!important;transition:none!important}
+.street-page-new[hidden] .bistro-world *{animation-play-state:paused}
+.street-context{display:flex;align-items:center;gap:6px;width:100%;min-width:0;min-height:44px;height:100%}
+.street-context-copy{flex:1;min-width:0;text-align:left}.street-context-copy b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:#493729}
+.street-context-copy small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px;line-height:1.7;color:#7b6850}
+.street-context-action,.street-context-action.primary{display:flex;align-items:center;justify-content:center;gap:4px;flex-shrink:0;min-height:44px;min-width:68px;padding:4px 8px;border-radius:12px;font-size:13px;font-weight:800}
+.street-context-action:not(.primary){color:#3f7b58;background:#e6ecd9;border:1px solid #c8d4b9}
+.theme-album{color:#493729}.theme-album-intro{display:flex;align-items:center;gap:10px;padding:3px 0 18px}.theme-album-intro>.theme-emblem{flex-shrink:0}
+.theme-album-intro h3{font-size:18px;margin:3px 0 6px;color:#4b633f}.theme-album-intro p{font-size:12px;line-height:1.6;margin:0;color:#7c6952}
+.theme-chapters{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.theme-chapter{position:relative;padding:12px;border:1px solid #dfccaa;border-radius:17px;background:#fff8e9;box-shadow:0 2px 0 #b6a07c15}
+.theme-chapter.current{border:2px solid #729273;padding:11px;background:#f8f8e9}
+.theme-chapter.locked{background:#efe8d8;border-color:#e0d4bf;color:#8a7c67}
+.theme-chapter-heading{display:flex;align-items:center;gap:8px;min-width:0}.theme-chapter-heading>div{min-width:0;flex:1}.theme-chapter-heading>.theme-emblem{flex-shrink:0}
+.theme-chapter-number{position:absolute;right:12px;bottom:8px;font-family:Georgia,serif;font-size:38px;color:#ab95750d;line-height:1;pointer-events:none}
+.theme-chapter-heading h3{font-size:15px;line-height:1.4;margin:0}.theme-chapter-heading p{font-size:10px;line-height:1.5;margin:3px 0 0;color:#8a7257}.theme-chapter-heading>svg:not(.theme-emblem){flex-shrink:0;color:#60815d}
+.theme-status{font-size:10px;color:#436b46;font-weight:700;white-space:nowrap;background:#e5ecd5;padding:4px 6px;border-radius:6px}
+.theme-description{font-size:12px;line-height:1.6;margin:7px 0 10px;color:#826c50}
+.theme-progress-line{display:flex;align-items:center;gap:10px;font-size:11px;color:#6b7857;margin-bottom:10px}.theme-progress-line span{white-space:nowrap}.theme-progress-line progress{width:100%;height:5px;border:0;border-radius:5px;overflow:hidden;accent-color:#719367;background:#e8ddc5}.theme-progress-line progress::-webkit-progress-bar{background:#e8ddc5;border-radius:5px}.theme-progress-line progress::-webkit-progress-value{background:#719367;border-radius:5px}
+.theme-device-list{display:grid;grid-template-columns:1fr 1fr;gap:5px}.theme-device-list>button{display:flex;align-items:center;gap:3px;min-width:0;min-height:44px;padding:3px 5px;border:1px solid #e3d5bb;border-radius:10px;background:#f7efdD;color:#64523e;text-align:left;font-size:11px}
+.theme-device-list>button>span{flex:1;line-height:1.4;min-width:0}.theme-device-list>button>svg{flex-shrink:0}.theme-device-list>button:disabled{opacity:1;cursor:default}.theme-device-list>button:hover:not(:disabled){background:#eaf0df;border-color:#b7c5a0}
+.theme-next{display:flex;align-items:flex-start;gap:5px;font-size:11px;line-height:1.6;color:#52734c;margin:12px 0 0}.theme-next>svg{flex-shrink:0;margin-top:2px}
+.theme-lock-copy{font-size:11px;line-height:1.7;color:#8d7a62;margin:5px 0 0;padding-left:54px}.theme-chapter.locked .theme-emblem{opacity:.48;filter:saturate(.4)}
+.game-shell[data-density="compact"] .bistro-world{grid-template-rows:82px minmax(0,1fr) 27px}
+.game-shell[data-density="short"] .bistro-world,.game-shell[data-density="tiny"] .bistro-world{grid-template-rows:72px minmax(0,1fr) 24px}
+.game-shell[data-density="compact"] .bistro-title,.game-shell[data-density="short"] .bistro-title,.game-shell[data-density="tiny"] .bistro-title{padding-top:8px}
+.game-shell[data-density="compact"] .bistro-title h1,.game-shell[data-density="short"] .bistro-title h1,.game-shell[data-density="tiny"] .bistro-title h1{font-size:25px;line-height:1.15;margin:4px 0}
+.game-shell[data-density="short"] .bistro-title p,.game-shell[data-density="tiny"] .bistro-title p{font-size:10px}.game-shell[data-density="tiny"] .bistro-footnote{font-size:10px}
+@keyframes bistro-bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-2px) rotate(1deg)}}
+@keyframes bistro-arrive{0%,8%{transform:translate(24px,10px);opacity:0}20%{opacity:1}43%,75%{transform:translate(0,0);opacity:1}90%,100%{transform:translate(-14px,-8px);opacity:0}}
+@keyframes bistro-chef{0%,100%{transform:rotate(-2deg)}40%{transform:rotate(3deg)}60%{transform:rotate(1deg)}}
+@keyframes bistro-heart{0%,40%,100%{opacity:0}50%,75%{opacity:1}80%{opacity:0}}
+@keyframes bistro-steam{0%,100%{opacity:.3}50%{opacity:.9}}
+@keyframes bistro-build{0%{opacity:0;transform:translateY(-14px) scale(.9)}70%{opacity:1;transform:translateY(2px) scale(1.02)}100%{transform:none}}
+@keyframes bistro-celebrate{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+@keyframes bistro-appear{from{opacity:0}to{opacity:1}}

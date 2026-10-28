@@ -1,11 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { CUSTOMERS, ITEMS, ORDERS } from '../content/catalog';
+import { CUSTOMERS, ORDERS } from '../content/catalog';
 import type { GameEvent } from '../domain/types';
 import { Goose, ItemIcon } from './parts';
 
 export interface RewardFlightProps { event: GameEvent | null; reducedMotion: boolean; }
 interface Point { x: number; y: number; }
+interface DeliveryOrigin { source: Point; at: number; items: Map<string, Point[]>; }
 interface Flight {
   id: number;
   source: Point;
@@ -15,6 +16,8 @@ interface Flight {
   reduced: boolean;
   color?: string;
   accessory?: string;
+  customer?: string;
+  thanks: string;
   foods: { item: string; source: Point }[];
 }
 
@@ -33,7 +36,7 @@ function visibleElement(root: Element, selector: string): HTMLElement | null {
   return [...root.querySelectorAll<HTMLElement>(selector)].find(element => {
     const rect = element.getBoundingClientRect();
     if (!rect.width || !rect.height || rect.bottom <= 0 || rect.top >= innerHeight || rect.right <= shell.left || rect.left >= shell.right) return false;
-    const strip = element.closest('.customer-strip')?.getBoundingClientRect();
+    const strip = element.closest('[data-order-strip]')?.getBoundingClientRect();
     return !strip || Math.min(rect.right, strip.right) - Math.max(rect.left, strip.left) > 16;
   }) ?? null;
 }
@@ -42,8 +45,7 @@ function visibleElement(root: Element, selector: string): HTMLElement | null {
 export function RewardFlight({ event, reducedMotion }: RewardFlightProps) {
   const [host, setHost] = useState<HTMLElement | null>(null);
   const [flight, setFlight] = useState<Flight | null>(null);
-  const origin = useRef<{ x: number; y: number; at: number } | null>(null);
-  const inventoryPositions = useRef(new Map<string, Point[]>());
+  const origins = useRef(new Map<string, DeliveryOrigin>());
   const seen = useRef(new Set<string>());
   const sequence = useRef(0);
   const lastFlight = useRef(-Infinity);
@@ -58,21 +60,22 @@ export function RewardFlight({ event, reducedMotion }: RewardFlightProps) {
     // Capture the original customer's position before the committed order replaces its card.
     const remember = (click: MouseEvent) => {
       if (!(click.target instanceof Element)) return;
-      const button = click.target.closest('.serve-button');
-      const card = button?.closest('.customer-card');
-      if (!card || !shell?.contains(card)) return;
+      const button = click.target.closest<HTMLButtonElement>('[data-deliver-order]');
+      const card = button?.closest('[data-order-id]');
+      const orderId = button?.dataset.deliverOrder;
+      if (!orderId || button?.disabled || !card || !shell?.contains(card)) return;
       const rect = card.getBoundingClientRect();
-      origin.current = { x: rect.left + rect.width * 0.62, y: rect.top + rect.height * 0.7, at: performance.now() };
       const positions = new Map<string, Point[]>();
-      for (const button of shell.querySelectorAll<HTMLButtonElement>('.board-keyboard-grid [role="gridcell"] > button')) {
-        const name = button.getAttribute('aria-label')?.split('，')[1];
-        const rect = button.getBoundingClientRect();
-        if (!name || !rect.width || !rect.height) continue;
-        positions.set(name, [...(positions.get(name) ?? []), { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }]);
+      for (const cell of shell.querySelectorAll<HTMLElement>('[data-board-item]')) {
+        const item = cell.dataset.boardItem;
+        const rect = cell.getBoundingClientRect();
+        if (!item || !rect.width || !rect.height) continue;
+        positions.set(item, [...(positions.get(item) ?? []), { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }]);
       }
-      inventoryPositions.current = positions;
+      origins.current.set(orderId, { source: { x: rect.left + rect.width * 0.62, y: rect.top + rect.height * 0.7 }, at: performance.now(), items: positions });
+      if (origins.current.size > 16) origins.current.delete(origins.current.keys().next().value!);
     };
-    const clear = () => setFlight(null);
+    const clear = () => { setFlight(null); origins.current.clear(); };
     const visibility = () => { if (document.hidden) clear(); };
     document.addEventListener('click', remember, true);
     document.addEventListener('visibilitychange', visibility);
@@ -90,29 +93,31 @@ export function RewardFlight({ event, reducedMotion }: RewardFlightProps) {
     if (seen.current.has(identity)) return;
     seen.current.add(identity);
     if (seen.current.size > 32) seen.current.delete(seen.current.values().next().value!);
-    const destination = visibleElement(host, '.resource-pill.coins');
+    const destination = visibleElement(host, '[data-resource-anchor="coins"]');
     if (!destination) return;
     const shellRect = host.getBoundingClientRect();
     const targetRect = destination.getBoundingClientRect();
-    const customerCard = visibleElement(host, '.customer-card.leaving') ?? visibleElement(host, '.customer-card');
+    const customerCard = visibleElement(host, '[data-order-id]');
     const cardRect = customerCard?.getBoundingClientRect();
-    const recent = origin.current && performance.now() - origin.current.at < 4_000 ? origin.current : null;
-    const source = recent ?? { x: cardRect ? cardRect.left + cardRect.width * 0.62 : shellRect.left + shellRect.width / 2, y: cardRect ? cardRect.top + cardRect.height * 0.7 : shellRect.top + 125 };
+    const captured = event.order ? origins.current.get(event.order) : undefined;
+    const recent = captured && performance.now() - captured.at < 4_000 ? captured : null;
+    const source = recent?.source ?? { x: cardRect ? cardRect.left + cardRect.width * 0.62 : shellRect.left + shellRect.width / 2, y: cardRect ? cardRect.top + cardRect.height * 0.7 : shellRect.top + 125 };
     const order = ORDERS.find(order => order.id === event.order);
     const customer = CUSTOMERS.find(customer => customer.id === order?.customer);
     const now = performance.now();
     // Rapid deliveries replace the previous flourish; no particle or animation queue is created.
     const reduced = reducedMotion || now - lastFlight.current < 120;
     lastFlight.current = now;
-    origin.current = null;
+    if (event.order) origins.current.delete(event.order);
     setFlight({
       id: ++sequence.current,
       source: { x: Math.max(22, Math.min(shellRect.width - 22, source.x - shellRect.left)), y: source.y - shellRect.top },
       target: { x: targetRect.left + 20 - shellRect.left, y: targetRect.top + targetRect.height / 2 - shellRect.top },
       amount: Math.max(0, event.amount ?? 0), width: shellRect.width, reduced,
-      color: customer?.color, accessory: customer?.accessory,
+      color: customer?.color, accessory: customer?.accessory, customer: customer?.name,
+      thanks: (order?.thanks ?? event.message).replace(/^[^：:]+[：:]\s*/, ''),
       foods: (order?.needs ?? []).slice(0, 2).flatMap(need => {
-        const point = recent ? inventoryPositions.current.get(ITEMS[need.item]?.name)?.[0] : undefined;
+        const point = recent?.items.get(need.item)?.[0];
         return point ? [{ item: need.item, source: { x: point.x - shellRect.left, y: point.y - shellRect.top } }] : [];
       }),
     });
@@ -121,7 +126,7 @@ export function RewardFlight({ event, reducedMotion }: RewardFlightProps) {
   useLayoutEffect(() => {
     if (!flight) return;
     const animations: Animation[] = [];
-    const timer = window.setTimeout(() => setFlight(current => current?.id === flight.id ? null : current), flight.reduced ? 850 : 750);
+    const timer = window.setTimeout(() => setFlight(current => current?.id === flight.id ? null : current), flight.reduced ? 850 : 650);
     if (!flight.reduced && !reducedMotion) {
       const dx = flight.target.x - flight.source.x;
       const dy = flight.target.y - flight.source.y;
@@ -166,10 +171,10 @@ export function RewardFlight({ event, reducedMotion }: RewardFlightProps) {
     <style>{'.reward-flight .reward-flight-goose{display:block;width:38px;height:43px}'}</style>
     {!quiet && flight.foods.map((food, index) => <span key={`${flight.id}-${food.item}`} ref={node => { foods.current[index] = node; }} style={{ position: 'absolute', left: food.source.x - 21, top: food.source.y - 21, width: 42, height: 42, willChange: 'transform,opacity' }}><ItemIcon item={food.item} size={42}/></span>)}
     {!quiet && [0, 1, 2].map(index => <span key={`${flight.id}-${index}`} ref={node => { coins.current[index] = node; }} style={{ position: 'absolute', left: flight.source.x - 14, top: flight.source.y - 14, width: 28, height: 28, filter: 'drop-shadow(0 2px 2px #96652a44)', willChange: 'transform,opacity' }}><Coin/></span>)}
-    {!quiet && <div ref={thanks} style={{ position: 'absolute', left: Math.max(8, Math.min(flight.width - 126, flight.source.x - 69)), top: Math.max(56, flight.source.y - 49), display: 'flex', alignItems: 'center', gap: 1, width: 118, height: 48, border: '1.5px solid #b5bd7c', borderRadius: 12, background: '#fff9de', boxShadow: '0 3px 10px #6a764329', padding: '2px 5px', willChange: 'transform,opacity' }}>
+    <div ref={thanks} className={`delivery-thanks ${quiet ? 'quiet' : ''}`} style={{ position: 'absolute', left: Math.max(8, Math.min(flight.width - 206, flight.source.x - 94)), top: Math.max(52, flight.source.y - 57), willChange: quiet ? undefined : 'transform,opacity' }}>
       <span style={{ display: 'block', width: 38, height: 43, flex: '0 0 38px' }}><Goose className="reward-flight-goose" color={flight.color} accessory={flight.accessory} expression="happy"/></span>
-      <b style={{ fontSize: 12, color: '#66824a', whiteSpace: 'nowrap' }}>谢谢招待！</b>
-    </div>}
+      <span><b>{flight.customer ?? '顾客'} · 谢谢招待</b><small>{flight.thanks}</small></span>
+    </div>
     <div ref={amount} style={{ position: 'absolute', left: Math.max(6, Math.min(flight.width - (quiet ? 105 : 65), flight.target.x - 20)), top: flight.target.y + 17, minWidth: 47, padding: '2px 8px', textAlign: 'center', color: '#8c5b20', background: '#fff1b7', border: '1.5px solid #e4b650', borderRadius: 9, fontSize: quiet ? 11 : 13, lineHeight: '18px', fontWeight: 800, boxShadow: '0 2px 5px #90641e22', display: 'flex', alignItems: 'center', gap: 3 }}>{quiet && <svg width="12" height="12" viewBox="0 0 12 12"><path d="m2 6 3 3 5-6" fill="none" stroke="#70984b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}+{flight.amount}{quiet ? ' 已入账' : ''}</div>
   </div>, host);
 }

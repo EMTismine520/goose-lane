@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "revision": 4,
+  "seed": 1234,
+  "nextId": 5,
+  "board": [
+    {
+      "uid": "g1",
+      "item": "grain-2"
+    },
+    null,
+    {
+      "uid": "g3",
+      "item": "coffee-1"
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "storage": [
+    {
+      "uid": "g4",
+      "item": "grain-1"
+    }
+  ],
+  "generators": {
+    "grain": {
+      "remaining": 9,
+      "readyAt": 0
+    },
+    "coffee": {
+      "remaining": 11,
+      "readyAt": 0
+    },
+    "vegetable": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "dairy": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "fruit": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "seafood": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "meat": {
+      "remaining": 12,
+      "readyAt": 0
+    },
+    "dessert": {
+      "remaining": 12,
+      "readyAt": 0
+    }
+  },
+  "jobs": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "completedOrders": [],
+  "day": 1,
+  "coins": 42,
+  "reputation": 0,
+  "shops": {
+    "breakfast": 0,
+    "cafe": 0,
+    "steam": 0,
+    "grill": 0,
+    "dessert": 0,
+    "night": 0
+  },
+  "decorations": [],
+  "discovered": [
+    "grain-1",
+    "grain-2",
+    "coffee-1"
+  ],
+  "stats": {
+    "merges": 1,
+    "generated": 3,
+    "cooked": 0,
+    "earned": 0
+  },
+  "tutorial": 2,
+  "settings": {
+    "music": true,
+    "sound": true,
+    "volume": 0.4,
+    "reducedMotion": false
+  },
+  "lastSeen": 1792713600000,
+  "contentVersion": "1.0.0",
+  "storageCapacity": 8,
+  "undo": null
+}

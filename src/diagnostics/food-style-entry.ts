@@ -1,6 +1,5 @@
 import { renderFoodStylePreview } from './FoodStylePreview';
-import '../ui/styles.css';
-import '../ui/home-cooking.css';
+import '../ui/game.css';
 
 void renderFoodStylePreview().catch(() => {
   const message = document.createElement('p');
