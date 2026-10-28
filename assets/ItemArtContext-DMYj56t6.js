@@ -1,1 +1,0 @@
-import{r as t,j as s}from"./gift-codes-BXGo2Qgw.js";const r=t.createContext({});function x({value:e,children:o}){return s.jsx(r.Provider,{value:e,children:o})}const a=()=>t.useContext(r);export{x as I,a as u};
