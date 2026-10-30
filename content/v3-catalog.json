@@ -586,9 +586,9 @@
       "icon": 80,
       "assetId": "dish-fresh-garden-bowl",
       "source": "小鹅砧板",
-      "description": "西兰花和甜橙，把田园的颜色装满一碗。",
+      "description": "西兰花和彩椒清拌成一碗田园鲜蔬，清脆又明亮。",
       "kind": "dish",
-      "sell": 14,
+      "sell": 16,
       "stage": 1,
       "assetPath": "assets/v3-b/dish-fresh-garden-bowl.webp"
     },
@@ -867,7 +867,7 @@
     },
     {
       "id": "fresh-poultry-3",
-      "name": "鸡翅中",
+      "name": "鸭掌",
       "chain": "fresh-poultry",
       "level": 3,
       "icon": 0,
@@ -881,12 +881,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-4",
-      "name": "鸡胸肉",
+      "name": "鸽肉串",
       "chain": "fresh-poultry",
       "level": 4,
       "icon": 0,
@@ -900,12 +900,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-5",
-      "name": "鸡腿",
+      "name": "鸡胸肉",
       "chain": "fresh-poultry",
       "level": 5,
       "icon": 0,
@@ -919,12 +919,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-6",
-      "name": "鸡全翅",
+      "name": "鹅肝",
       "chain": "fresh-poultry",
       "level": 6,
       "icon": 0,
@@ -938,12 +938,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-7",
-      "name": "整鸡",
+      "name": "火鸡腿",
       "chain": "fresh-poultry",
       "level": 7,
       "icon": 0,
@@ -957,7 +957,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
@@ -1216,7 +1216,7 @@
       "source": "料理锅",
       "description": "嫩鸡肉裹入蛋皮，煎成一卷金黄。",
       "kind": "dish",
-      "sell": 8,
+      "sell": 15,
       "stage": 2
     },
     {
@@ -1235,7 +1235,7 @@
     },
     {
       "id": "fresh-poultry-8",
-      "name": "皮蛋",
+      "name": "卤鹅肉",
       "chain": "fresh-poultry",
       "level": 8,
       "stage": 2,
@@ -1243,7 +1243,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null,
       "icon": 0,
       "assetId": "fresh-poultry-8",
@@ -1653,7 +1653,7 @@
     },
     {
       "id": "fresh-sea-3",
-      "name": "鳕鱼",
+      "name": "扇贝",
       "chain": "fresh-sea",
       "level": 3,
       "stage": 6,
@@ -1661,7 +1661,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null,
       "icon": 0,
       "assetId": "fresh-sea-3",
@@ -1672,7 +1672,7 @@
     },
     {
       "id": "fresh-sea-4",
-      "name": "鲶鱼",
+      "name": "鲷鱼",
       "chain": "fresh-sea",
       "level": 4,
       "stage": 6,
@@ -1680,7 +1680,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null,
       "icon": 0,
       "assetId": "fresh-sea-4",
@@ -1767,7 +1767,7 @@
     },
     {
       "id": "fresh-sea-9",
-      "name": "肥蟹",
+      "name": "青蟹",
       "chain": "fresh-sea",
       "level": 9,
       "stage": 6,
@@ -1775,7 +1775,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null,
       "icon": 0,
       "assetId": "fresh-sea-9",
@@ -2413,15 +2413,15 @@
     },
     {
       "id": "fresh-coffee-7",
-      "name": "美式咖啡",
+      "name": "拿铁咖啡",
       "chain": "fresh-coffee",
       "level": 7,
       "stage": 3,
       "kind": "drink",
       "referenceId": "ico-0002",
       "referenceName": "美式咖啡",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
       "icon": 0,
       "assetId": "fresh-coffee-7",
@@ -2432,15 +2432,15 @@
     },
     {
       "id": "fresh-coffee-8",
-      "name": "大杯美式",
+      "name": "气泡冷萃",
       "chain": "fresh-coffee",
       "level": 8,
       "stage": 3,
       "kind": "drink",
       "referenceId": "ico-0078",
       "referenceName": "大杯美式",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
       "icon": 0,
       "assetId": "fresh-coffee-8",
@@ -2660,15 +2660,15 @@
     },
     {
       "id": "fresh-mixer-5",
-      "name": "汤力水",
+      "name": "西柚气泡水",
       "chain": "fresh-mixer",
       "level": 5,
       "stage": 8,
       "kind": "drink",
       "referenceId": "ico-0064",
       "referenceName": "汤力水",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
       "icon": 0,
       "assetId": "fresh-mixer-5",
@@ -2717,7 +2717,7 @@
     },
     {
       "id": "fresh-mixer-8",
-      "name": "朗姆酒",
+      "name": "蓝柑气泡饮",
       "chain": "fresh-mixer",
       "level": 8,
       "stage": 8,
@@ -2725,7 +2725,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null,
       "icon": 0,
       "assetId": "fresh-mixer-8",
@@ -2736,15 +2736,15 @@
     },
     {
       "id": "fresh-mixer-9",
-      "name": "威士忌",
+      "name": "橙子冰沙",
       "chain": "fresh-mixer",
       "level": 9,
       "stage": 8,
       "kind": "drink",
       "referenceId": "ico-0103",
       "referenceName": "威士忌",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
       "icon": 0,
       "assetId": "fresh-mixer-9",
@@ -2755,7 +2755,7 @@
     },
     {
       "id": "fresh-mixer-10",
-      "name": "伏特加",
+      "name": "椰青水",
       "chain": "fresh-mixer",
       "level": 10,
       "stage": 8,
@@ -2763,7 +2763,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null,
       "icon": 0,
       "assetId": "fresh-mixer-10",
@@ -2840,7 +2840,7 @@
       "kind": "dish",
       "source": "小鹅砧板",
       "description": "炭烤鸡胸肉、黄瓜、罗勒，交给小鹅砧板制作，留住一份街巷风味。",
-      "sell": 37,
+      "sell": 40,
       "stage": 5,
       "referenceId": "ico-0030",
       "naming": "reference"
@@ -2895,7 +2895,7 @@
     },
     {
       "id": "dish-fresh-ico-0146",
-      "name": "凉拌皮蛋",
+      "name": "凉拌卤鹅肉",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -2903,11 +2903,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0146.webp",
       "kind": "dish",
       "source": "小鹅砧板",
-      "description": "皮蛋、紫洋葱、红椒，交给小鹅砧板制作，留住一份街巷风味。",
+      "description": "卤鹅肉、紫洋葱、红椒，交给小鹅砧板制作，留住一份街巷风味。",
       "sell": 21,
       "stage": 3,
       "referenceId": "ico-0146",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0031",
@@ -3135,7 +3135,7 @@
     },
     {
       "id": "dish-fresh-ico-0029",
-      "name": "脆皮翅根",
+      "name": "香煎鹅肝",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3143,11 +3143,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0029.webp",
       "kind": "dish",
       "source": "煎台",
-      "description": "鸡翅中、面粉、红椒，交给煎台制作，留住一份街巷风味。",
-      "sell": 17,
+      "description": "鹅肝、面粉、红椒，交给煎台制作，留住一份街巷风味。",
+      "sell": 23,
       "stage": 4,
       "referenceId": "ico-0029",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0048",
@@ -3199,7 +3199,7 @@
     },
     {
       "id": "dish-fresh-ico-0068",
-      "name": "酥香鳕鱼",
+      "name": "酥炸扇贝",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3207,11 +3207,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0068.webp",
       "kind": "dish",
       "source": "煎台",
-      "description": "鳕鱼、面粉、柠檬，交给煎台制作，留住一份街巷风味。",
+      "description": "扇贝、面粉、柠檬，交给煎台制作，留住一份街巷风味。",
       "sell": 21,
       "stage": 6,
       "referenceId": "ico-0068",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0071",
@@ -3231,7 +3231,7 @@
     },
     {
       "id": "dish-fresh-ico-0097",
-      "name": "酥炸大鸡腿",
+      "name": "酥炸火鸡腿",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3239,11 +3239,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0097.webp",
       "kind": "dish",
       "source": "煎台",
-      "description": "鸡腿、面粉、红椒，交给煎台制作，留住一份街巷风味。",
-      "sell": 17,
+      "description": "火鸡腿、面粉、红椒，交给煎台制作，留住一份街巷风味。",
+      "sell": 18,
       "stage": 4,
       "referenceId": "ico-0097",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0085",
@@ -3263,7 +3263,7 @@
     },
     {
       "id": "dish-fresh-ico-0136",
-      "name": "醇香鲶鱼块",
+      "name": "黄油煎鲷鱼",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3271,11 +3271,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0136.webp",
       "kind": "dish",
       "source": "煎台",
-      "description": "鲶鱼、黄油、香葱，交给煎台制作，留住一份街巷风味。",
+      "description": "鲷鱼、黄油、香葱，交给煎台制作，留住一份街巷风味。",
       "sell": 13,
       "stage": 6,
       "referenceId": "ico-0136",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0107",
@@ -3384,7 +3384,7 @@
       "kind": "dish",
       "source": "炭烤炉",
       "description": "鸡胸肉、罗勒，交给炭烤炉制作，留住一份街巷风味。",
-      "sell": 20,
+      "sell": 23,
       "stage": 5,
       "referenceId": "ico-0042",
       "naming": "reference"
@@ -3423,7 +3423,7 @@
     },
     {
       "id": "dish-fresh-ico-0053",
-      "name": "炭烤琵琶腿",
+      "name": "炭烤火鸡腿",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3431,11 +3431,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0053.webp",
       "kind": "dish",
       "source": "炭烤炉",
-      "description": "鸡腿、红椒，交给炭烤炉制作，留住一份街巷风味。",
+      "description": "火鸡腿、红椒，交给炭烤炉制作，留住一份街巷风味。",
       "sell": 13,
       "stage": 5,
       "referenceId": "ico-0053",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0059",
@@ -3455,7 +3455,7 @@
     },
     {
       "id": "dish-fresh-ico-0061",
-      "name": "熟烤肥蟹",
+      "name": "葱香烤青蟹",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3463,11 +3463,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0061.webp",
       "kind": "dish",
       "source": "炭烤炉",
-      "description": "肥蟹、香葱，交给炭烤炉制作，留住一份街巷风味。",
+      "description": "青蟹、香葱，交给炭烤炉制作，留住一份街巷风味。",
       "sell": 31,
       "stage": 6,
       "referenceId": "ico-0061",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0079",
@@ -3487,7 +3487,7 @@
     },
     {
       "id": "dish-fresh-ico-0081",
-      "name": "威士忌三文鱼",
+      "name": "橙香三文鱼",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3495,11 +3495,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0081.webp",
       "kind": "dish",
       "source": "炭烤炉",
-      "description": "三文鱼、威士忌，交给炭烤炉制作，留住一份街巷风味。",
-      "sell": 40,
-      "stage": 8,
+      "description": "三文鱼、甜橙，交给炭烤炉制作，留住一份街巷风味。",
+      "sell": 20,
+      "stage": 6,
       "referenceId": "ico-0081",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0082",
@@ -3599,7 +3599,7 @@
     },
     {
       "id": "dish-fresh-ico-0052",
-      "name": "烤土豆片",
+      "name": "黄油烤薯角",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3611,7 +3611,7 @@
       "sell": 12,
       "stage": 4,
       "referenceId": "ico-0052",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0080",
@@ -3631,7 +3631,7 @@
     },
     {
       "id": "dish-fresh-ico-0092",
-      "name": "蜜汁烤鸡",
+      "name": "蜜汁烤鸽串",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3639,11 +3639,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0092.webp",
       "kind": "dish",
       "source": "烤箱",
-      "description": "整鸡、蜂蜜，交给烤箱制作，留住一份街巷风味。",
-      "sell": 16,
+      "description": "鸽肉串、蜂蜜，交给烤箱制作，留住一份街巷风味。",
+      "sell": 12,
       "stage": 4,
       "referenceId": "ico-0092",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0100",
@@ -3695,7 +3695,7 @@
     },
     {
       "id": "dish-fresh-ico-0129",
-      "name": "烤热狗面包",
+      "name": "芝士焗西兰花",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3703,11 +3703,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0129.webp",
       "kind": "dish",
       "source": "烤箱",
-      "description": "面包胚、香肠，交给烤箱制作，留住一份街巷风味。",
-      "sell": 19,
+      "description": "西兰花、芝士片，交给烤箱制作，留住一份街巷风味。",
+      "sell": 18,
       "stage": 4,
       "referenceId": "ico-0129",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0132",
@@ -3727,7 +3727,7 @@
     },
     {
       "id": "dish-fresh-ico-0134",
-      "name": "焦香洋葱贝果",
+      "name": "黄油洋葱烤茄子",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3735,11 +3735,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0134.webp",
       "kind": "dish",
       "source": "烤箱",
-      "description": "面包胚、紫洋葱、黄油，交给烤箱制作，留住一份街巷风味。",
-      "sell": 27,
+      "description": "茄子、紫洋葱、黄油，交给烤箱制作，留住一份街巷风味。",
+      "sell": 21,
       "stage": 4,
       "referenceId": "ico-0134",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0143",
@@ -3775,7 +3775,7 @@
     },
     {
       "id": "dish-fresh-ico-0158",
-      "name": "培根汉堡",
+      "name": "培根四季豆卷",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3783,11 +3783,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0158.webp",
       "kind": "dish",
       "source": "烤箱",
-      "description": "面包胚、培根、生菜，交给烤箱制作，留住一份街巷风味。",
-      "sell": 27,
+      "description": "培根、四季豆，交给烤箱制作，留住一份街巷风味。",
+      "sell": 21,
       "stage": 4,
       "referenceId": "ico-0158",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0161",
@@ -3807,7 +3807,7 @@
     },
     {
       "id": "dish-fresh-ico-0162",
-      "name": "烤肠热狗",
+      "name": "番茄芝士披萨",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3815,11 +3815,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0162.webp",
       "kind": "dish",
       "source": "烤箱",
-      "description": "面包胚、香肠、番茄，交给烤箱制作，留住一份街巷风味。",
-      "sell": 21,
+      "description": "软面团、番茄、芝士片，交给烤箱制作，留住一份街巷风味。",
+      "sell": 17,
       "stage": 4,
       "referenceId": "ico-0162",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0065",
@@ -3855,7 +3855,7 @@
     },
     {
       "id": "dish-fresh-ico-0072",
-      "name": "香菇肠粉",
+      "name": "香菇酿肉",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3863,11 +3863,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0072.webp",
       "kind": "dish",
       "source": "蒸笼",
-      "description": "蘑菇、米粉浆、香葱，交给蒸笼制作，留住一份街巷风味。",
-      "sell": 16,
+      "description": "蘑菇、五花肉、香葱，交给蒸笼制作，留住一份街巷风味。",
+      "sell": 13,
       "stage": 6,
       "referenceId": "ico-0072",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0073",
@@ -3919,7 +3919,7 @@
     },
     {
       "id": "dish-fresh-ico-0088",
-      "name": "古法糯米鸡",
+      "name": "火鸡糯米饭",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3927,15 +3927,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0088.webp",
       "kind": "dish",
       "source": "蒸笼",
-      "description": "糯米团、鸡腿、蘑菇，交给蒸笼制作，留住一份街巷风味。",
+      "description": "糯米团、火鸡腿、蘑菇，交给蒸笼制作，留住一份街巷风味。",
       "sell": 24,
       "stage": 6,
       "referenceId": "ico-0088",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0115",
-      "name": "鲜肉肠粉",
+      "name": "南瓜蒸排骨",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -3943,11 +3943,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0115.webp",
       "kind": "dish",
       "source": "蒸笼",
-      "description": "五花肉、米粉浆、香葱，交给蒸笼制作，留住一份街巷风味。",
-      "sell": 17,
+      "description": "南瓜、排骨，交给蒸笼制作，留住一份街巷风味。",
+      "sell": 23,
       "stage": 6,
       "referenceId": "ico-0115",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0116",
@@ -4175,7 +4175,7 @@
     },
     {
       "id": "dish-fresh-ico-0054",
-      "name": "玉米花",
+      "name": "焦糖玉米段",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4187,7 +4187,7 @@
       "sell": 11,
       "stage": 4,
       "referenceId": "ico-0054",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0069",
@@ -4351,7 +4351,7 @@
     },
     {
       "id": "dish-fresh-ico-0067",
-      "name": "朗姆可乐",
+      "name": "蓝柑可乐",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4359,15 +4359,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0067.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "朗姆酒、可乐，交给调饮台制作，留住一份街巷风味。",
+      "description": "蓝柑气泡饮、可乐，交给调饮台制作，留住一份街巷风味。",
       "sell": 26,
       "stage": 8,
       "referenceId": "ico-0067",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0075",
-      "name": "威士忌苏打",
+      "name": "橙冰苏打",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4375,15 +4375,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0075.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "威士忌、苏打水，交给调饮台制作，留住一份街巷风味。",
+      "description": "橙子冰沙、苏打水，交给调饮台制作，留住一份街巷风味。",
       "sell": 32,
       "stage": 8,
       "referenceId": "ico-0075",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0090",
-      "name": "甜蛋酒",
+      "name": "香甜蛋奶饮",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4391,15 +4391,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0090.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "鸡蛋、朗姆酒、纯牛奶，交给调饮台制作，留住一份街巷风味。",
-      "sell": 18,
+      "description": "鸡蛋、糖浆、纯牛奶，交给调饮台制作，留住一份街巷风味。",
+      "sell": 11,
       "stage": 8,
       "referenceId": "ico-0090",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0098",
-      "name": "威士忌酸酒",
+      "name": "橙柠酸甜冰饮",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4407,15 +4407,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0098.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "威士忌、柠檬、糖浆，交给调饮台制作，留住一份街巷风味。",
+      "description": "橙子冰沙、柠檬、糖浆，交给调饮台制作，留住一份街巷风味。",
       "sell": 38,
       "stage": 8,
       "referenceId": "ico-0098",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0111",
-      "name": "莫斯科之骡",
+      "name": "椰青姜柠饮",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4423,15 +4423,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0111.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "伏特加、姜汁水、柠檬，交给调饮台制作，留住一份街巷风味。",
+      "description": "椰青水、姜汁水、柠檬，交给调饮台制作，留住一份街巷风味。",
       "sell": 24,
       "stage": 8,
       "referenceId": "ico-0111",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0118",
-      "name": "龙舌兰螺丝刀",
+      "name": "桑葚龙舌兰特调",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4439,15 +4439,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0118.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "龙舌兰、甜橙，交给调饮台制作，留住一份街巷风味。",
-      "sell": 29,
+      "description": "龙舌兰、桑葚、柠檬，交给调饮台制作，留住一份街巷风味。",
+      "sell": 43,
       "stage": 8,
       "referenceId": "ico-0118",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0122",
-      "name": "金汤力",
+      "name": "西柚金酒气泡",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4455,15 +4455,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0122.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "金酒、汤力水，交给调饮台制作，留住一份街巷风味。",
+      "description": "金酒、西柚气泡水，交给调饮台制作，留住一份街巷风味。",
       "sell": 54,
       "stage": 8,
       "referenceId": "ico-0122",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0131",
-      "name": "热托迪",
+      "name": "蜂蜜橙柠冰饮",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4471,15 +4471,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0131.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "威士忌、蜂蜜、柠檬，交给调饮台制作，留住一份街巷风味。",
+      "description": "橙子冰沙、蜂蜜、柠檬，交给调饮台制作，留住一份街巷风味。",
       "sell": 35,
       "stage": 8,
       "referenceId": "ico-0131",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0135",
-      "name": "伏特加汤力",
+      "name": "西柚椰青气泡",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4487,11 +4487,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0135.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "伏特加、汤力水，交给调饮台制作，留住一份街巷风味。",
+      "description": "椰青水、西柚气泡水，交给调饮台制作，留住一份街巷风味。",
       "sell": 21,
       "stage": 8,
       "referenceId": "ico-0135",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0142",
@@ -4511,7 +4511,7 @@
     },
     {
       "id": "dish-fresh-ico-0159",
-      "name": "能量伏特加",
+      "name": "椰青能量饮",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4519,15 +4519,15 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0159.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "伏特加、能量汽水，交给调饮台制作，留住一份街巷风味。",
+      "description": "椰青水、能量汽水，交给调饮台制作，留住一份街巷风味。",
       "sell": 21,
       "stage": 8,
       "referenceId": "ico-0159",
-      "naming": "reference"
+      "naming": "project"
     },
     {
       "id": "dish-fresh-ico-0160",
-      "name": "浓缩马提尼",
+      "name": "椰青浓缩咖啡",
       "chain": "fresh-menu",
       "level": 1,
       "icon": 0,
@@ -4535,11 +4535,11 @@
       "assetPath": "assets/v3-b/dish-fresh-ico-0160.webp",
       "kind": "drink",
       "source": "调饮台",
-      "description": "伏特加、浓缩咖啡、糖浆，交给调饮台制作，留住一份街巷风味。",
+      "description": "椰青水、浓缩咖啡、糖浆，交给调饮台制作，留住一份街巷风味。",
       "sell": 24,
       "stage": 8,
       "referenceId": "ico-0160",
-      "naming": "reference"
+      "naming": "project"
     }
   ],
   "recipes": [
@@ -4590,13 +4590,13 @@
           "count": 1
         },
         {
-          "item": "fresh-fruit-2",
+          "item": "fresh-veg-3",
           "count": 1
         }
       ],
       "output": "dish-fresh-garden-bowl",
       "unlockDay": 1,
-      "description": "西兰花和甜橙，把田园的颜色装满一碗。",
+      "description": "西兰花和彩椒清拌成一碗田园鲜蔬，清脆又明亮。",
       "deviceFamilyId": "chopping-board",
       "minDeviceLevel": 1,
       "stage": 1
@@ -4848,7 +4848,7 @@
       "name": "香煎鸡肉卷",
       "inputs": [
         {
-          "item": "fresh-poultry-4",
+          "item": "fresh-poultry-5",
           "count": 1
         },
         {
@@ -4993,7 +4993,7 @@
     },
     {
       "id": "fresh-ico-0146",
-      "name": "凉拌皮蛋",
+      "name": "凉拌卤鹅肉",
       "output": "dish-fresh-ico-0146",
       "inputs": [
         {
@@ -5015,7 +5015,7 @@
       "stage": 3,
       "duration": 28000,
       "unlockDay": 1,
-      "description": "皮蛋、紫洋葱、红椒，交给小鹅砧板制作，留住一份街巷风味。"
+      "description": "卤鹅肉、紫洋葱、红椒，交给小鹅砧板制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0031",
@@ -5347,11 +5347,11 @@
     },
     {
       "id": "fresh-ico-0029",
-      "name": "脆皮翅根",
+      "name": "香煎鹅肝",
       "output": "dish-fresh-ico-0029",
       "inputs": [
         {
-          "item": "fresh-poultry-3",
+          "item": "fresh-poultry-6",
           "count": 1
         },
         {
@@ -5365,11 +5365,11 @@
       ],
       "appliance": 5,
       "deviceFamilyId": "frying-station",
-      "minDeviceLevel": 1,
+      "minDeviceLevel": 2,
       "stage": 4,
-      "duration": 34000,
+      "duration": 40000,
       "unlockDay": 1,
-      "description": "鸡翅中、面粉、红椒，交给煎台制作，留住一份街巷风味。"
+      "description": "鹅肝、面粉、红椒，交给煎台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0048",
@@ -5435,7 +5435,7 @@
     },
     {
       "id": "fresh-ico-0068",
-      "name": "酥香鳕鱼",
+      "name": "酥炸扇贝",
       "output": "dish-fresh-ico-0068",
       "inputs": [
         {
@@ -5457,7 +5457,7 @@
       "stage": 6,
       "duration": 34000,
       "unlockDay": 1,
-      "description": "鳕鱼、面粉、柠檬，交给煎台制作，留住一份街巷风味。"
+      "description": "扇贝、面粉、柠檬，交给煎台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0071",
@@ -5483,11 +5483,11 @@
     },
     {
       "id": "fresh-ico-0097",
-      "name": "酥炸大鸡腿",
+      "name": "酥炸火鸡腿",
       "output": "dish-fresh-ico-0097",
       "inputs": [
         {
-          "item": "fresh-poultry-5",
+          "item": "fresh-poultry-7",
           "count": 1
         },
         {
@@ -5503,9 +5503,9 @@
       "deviceFamilyId": "frying-station",
       "minDeviceLevel": 2,
       "stage": 4,
-      "duration": 38000,
+      "duration": 42000,
       "unlockDay": 1,
-      "description": "鸡腿、面粉、红椒，交给煎台制作，留住一份街巷风味。"
+      "description": "火鸡腿、面粉、红椒，交给煎台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0085",
@@ -5535,7 +5535,7 @@
     },
     {
       "id": "fresh-ico-0136",
-      "name": "醇香鲶鱼块",
+      "name": "黄油煎鲷鱼",
       "output": "dish-fresh-ico-0136",
       "inputs": [
         {
@@ -5557,7 +5557,7 @@
       "stage": 6,
       "duration": 36000,
       "unlockDay": 1,
-      "description": "鲶鱼、黄油、香葱，交给煎台制作，留住一份街巷风味。"
+      "description": "鲷鱼、黄油、香葱，交给煎台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0107",
@@ -5705,7 +5705,7 @@
       "output": "dish-fresh-ico-0042",
       "inputs": [
         {
-          "item": "fresh-poultry-4",
+          "item": "fresh-poultry-5",
           "count": 1
         },
         {
@@ -5767,11 +5767,11 @@
     },
     {
       "id": "fresh-ico-0053",
-      "name": "炭烤琵琶腿",
+      "name": "炭烤火鸡腿",
       "output": "dish-fresh-ico-0053",
       "inputs": [
         {
-          "item": "fresh-poultry-5",
+          "item": "fresh-poultry-7",
           "count": 1
         },
         {
@@ -5783,9 +5783,9 @@
       "deviceFamilyId": "charcoal-grill",
       "minDeviceLevel": 2,
       "stage": 5,
-      "duration": 46000,
+      "duration": 50000,
       "unlockDay": 1,
-      "description": "鸡腿、红椒，交给炭烤炉制作，留住一份街巷风味。"
+      "description": "火鸡腿、红椒，交给炭烤炉制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0059",
@@ -5811,7 +5811,7 @@
     },
     {
       "id": "fresh-ico-0061",
-      "name": "熟烤肥蟹",
+      "name": "葱香烤青蟹",
       "output": "dish-fresh-ico-0061",
       "inputs": [
         {
@@ -5829,7 +5829,7 @@
       "stage": 6,
       "duration": 52000,
       "unlockDay": 1,
-      "description": "肥蟹、香葱，交给炭烤炉制作，留住一份街巷风味。"
+      "description": "青蟹、香葱，交给炭烤炉制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0079",
@@ -5855,7 +5855,7 @@
     },
     {
       "id": "fresh-ico-0081",
-      "name": "威士忌三文鱼",
+      "name": "橙香三文鱼",
       "output": "dish-fresh-ico-0081",
       "inputs": [
         {
@@ -5863,17 +5863,17 @@
           "count": 1
         },
         {
-          "item": "fresh-mixer-9",
+          "item": "fresh-fruit-2",
           "count": 1
         }
       ],
       "appliance": 6,
       "deviceFamilyId": "charcoal-grill",
-      "minDeviceLevel": 3,
-      "stage": 8,
-      "duration": 52000,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 48000,
       "unlockDay": 1,
-      "description": "三文鱼、威士忌，交给炭烤炉制作，留住一份街巷风味。"
+      "description": "三文鱼、甜橙，交给炭烤炉制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0082",
@@ -6017,7 +6017,7 @@
     },
     {
       "id": "fresh-ico-0052",
-      "name": "烤土豆片",
+      "name": "黄油烤薯角",
       "output": "dish-fresh-ico-0052",
       "inputs": [
         {
@@ -6065,11 +6065,11 @@
     },
     {
       "id": "fresh-ico-0092",
-      "name": "蜜汁烤鸡",
+      "name": "蜜汁烤鸽串",
       "output": "dish-fresh-ico-0092",
       "inputs": [
         {
-          "item": "fresh-poultry-7",
+          "item": "fresh-poultry-4",
           "count": 1
         },
         {
@@ -6081,9 +6081,9 @@
       "deviceFamilyId": "oven",
       "minDeviceLevel": 2,
       "stage": 4,
-      "duration": 58000,
+      "duration": 52000,
       "unlockDay": 1,
-      "description": "整鸡、蜂蜜，交给烤箱制作，留住一份街巷风味。"
+      "description": "鸽肉串、蜂蜜，交给烤箱制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0100",
@@ -6165,15 +6165,15 @@
     },
     {
       "id": "fresh-ico-0129",
-      "name": "烤热狗面包",
+      "name": "芝士焗西兰花",
       "output": "dish-fresh-ico-0129",
       "inputs": [
         {
-          "item": "fresh-grain-6",
+          "item": "fresh-veg-5",
           "count": 1
         },
         {
-          "item": "fresh-beast-1",
+          "item": "fresh-milk-3",
           "count": 1
         }
       ],
@@ -6183,7 +6183,7 @@
       "stage": 4,
       "duration": 56000,
       "unlockDay": 1,
-      "description": "面包胚、香肠，交给烤箱制作，留住一份街巷风味。"
+      "description": "西兰花、芝士片，交给烤箱制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0132",
@@ -6213,11 +6213,11 @@
     },
     {
       "id": "fresh-ico-0134",
-      "name": "焦香洋葱贝果",
+      "name": "黄油洋葱烤茄子",
       "output": "dish-fresh-ico-0134",
       "inputs": [
         {
-          "item": "fresh-grain-6",
+          "item": "fresh-seasonal-7",
           "count": 1
         },
         {
@@ -6235,7 +6235,7 @@
       "stage": 4,
       "duration": 58000,
       "unlockDay": 1,
-      "description": "面包胚、紫洋葱、黄油，交给烤箱制作，留住一份街巷风味。"
+      "description": "茄子、紫洋葱、黄油，交给烤箱制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0143",
@@ -6291,19 +6291,15 @@
     },
     {
       "id": "fresh-ico-0158",
-      "name": "培根汉堡",
+      "name": "培根四季豆卷",
       "output": "dish-fresh-ico-0158",
       "inputs": [
-        {
-          "item": "fresh-grain-6",
-          "count": 1
-        },
         {
           "item": "fresh-beast-2",
           "count": 1
         },
         {
-          "item": "fresh-seasonal-5",
+          "item": "fresh-seasonal-6",
           "count": 1
         }
       ],
@@ -6313,7 +6309,7 @@
       "stage": 4,
       "duration": 58000,
       "unlockDay": 1,
-      "description": "面包胚、培根、生菜，交给烤箱制作，留住一份街巷风味。"
+      "description": "培根、四季豆，交给烤箱制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0161",
@@ -6343,19 +6339,19 @@
     },
     {
       "id": "fresh-ico-0162",
-      "name": "烤肠热狗",
+      "name": "番茄芝士披萨",
       "output": "dish-fresh-ico-0162",
       "inputs": [
         {
-          "item": "fresh-grain-6",
-          "count": 1
-        },
-        {
-          "item": "fresh-beast-1",
+          "item": "fresh-grain-4",
           "count": 1
         },
         {
           "item": "fresh-veg-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-3",
           "count": 1
         }
       ],
@@ -6365,7 +6361,7 @@
       "stage": 4,
       "duration": 58000,
       "unlockDay": 1,
-      "description": "面包胚、香肠、番茄，交给烤箱制作，留住一份街巷风味。"
+      "description": "软面团、番茄、芝士片，交给烤箱制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0065",
@@ -6417,7 +6413,7 @@
     },
     {
       "id": "fresh-ico-0072",
-      "name": "香菇肠粉",
+      "name": "香菇酿肉",
       "output": "dish-fresh-ico-0072",
       "inputs": [
         {
@@ -6425,7 +6421,7 @@
           "count": 1
         },
         {
-          "item": "fresh-grain-7",
+          "item": "fresh-beast-4",
           "count": 1
         },
         {
@@ -6439,7 +6435,7 @@
       "stage": 6,
       "duration": 50000,
       "unlockDay": 1,
-      "description": "蘑菇、米粉浆、香葱，交给蒸笼制作，留住一份街巷风味。"
+      "description": "蘑菇、五花肉、香葱，交给蒸笼制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0073",
@@ -6521,7 +6517,7 @@
     },
     {
       "id": "fresh-ico-0088",
-      "name": "古法糯米鸡",
+      "name": "火鸡糯米饭",
       "output": "dish-fresh-ico-0088",
       "inputs": [
         {
@@ -6529,7 +6525,7 @@
           "count": 1
         },
         {
-          "item": "fresh-poultry-5",
+          "item": "fresh-poultry-7",
           "count": 1
         },
         {
@@ -6543,23 +6539,19 @@
       "stage": 6,
       "duration": 52000,
       "unlockDay": 1,
-      "description": "糯米团、鸡腿、蘑菇，交给蒸笼制作，留住一份街巷风味。"
+      "description": "糯米团、火鸡腿、蘑菇，交给蒸笼制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0115",
-      "name": "鲜肉肠粉",
+      "name": "南瓜蒸排骨",
       "output": "dish-fresh-ico-0115",
       "inputs": [
         {
-          "item": "fresh-beast-4",
+          "item": "fresh-veg-6",
           "count": 1
         },
         {
-          "item": "fresh-grain-7",
-          "count": 1
-        },
-        {
-          "item": "fresh-spice-2",
+          "item": "fresh-beast-5",
           "count": 1
         }
       ],
@@ -6569,7 +6561,7 @@
       "stage": 6,
       "duration": 50000,
       "unlockDay": 1,
-      "description": "五花肉、米粉浆、香葱，交给蒸笼制作，留住一份街巷风味。"
+      "description": "南瓜、排骨，交给蒸笼制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0116",
@@ -6897,7 +6889,7 @@
     },
     {
       "id": "fresh-ico-0054",
-      "name": "玉米花",
+      "name": "焦糖玉米段",
       "output": "dish-fresh-ico-0054",
       "inputs": [
         {
@@ -7159,7 +7151,7 @@
     },
     {
       "id": "fresh-ico-0067",
-      "name": "朗姆可乐",
+      "name": "蓝柑可乐",
       "output": "dish-fresh-ico-0067",
       "inputs": [
         {
@@ -7177,11 +7169,11 @@
       "stage": 8,
       "duration": 34000,
       "unlockDay": 1,
-      "description": "朗姆酒、可乐，交给调饮台制作，留住一份街巷风味。"
+      "description": "蓝柑气泡饮、可乐，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0075",
-      "name": "威士忌苏打",
+      "name": "橙冰苏打",
       "output": "dish-fresh-ico-0075",
       "inputs": [
         {
@@ -7199,11 +7191,11 @@
       "stage": 8,
       "duration": 34000,
       "unlockDay": 1,
-      "description": "威士忌、苏打水，交给调饮台制作，留住一份街巷风味。"
+      "description": "橙子冰沙、苏打水，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0090",
-      "name": "甜蛋酒",
+      "name": "香甜蛋奶饮",
       "output": "dish-fresh-ico-0090",
       "inputs": [
         {
@@ -7211,7 +7203,7 @@
           "count": 1
         },
         {
-          "item": "fresh-mixer-8",
+          "item": "fresh-sweet-3",
           "count": 1
         },
         {
@@ -7221,15 +7213,15 @@
       ],
       "appliance": 13,
       "deviceFamilyId": "bar",
-      "minDeviceLevel": 3,
+      "minDeviceLevel": 1,
       "stage": 8,
-      "duration": 36000,
+      "duration": 26000,
       "unlockDay": 1,
-      "description": "鸡蛋、朗姆酒、纯牛奶，交给调饮台制作，留住一份街巷风味。"
+      "description": "鸡蛋、糖浆、纯牛奶，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0098",
-      "name": "威士忌酸酒",
+      "name": "橙柠酸甜冰饮",
       "output": "dish-fresh-ico-0098",
       "inputs": [
         {
@@ -7251,11 +7243,11 @@
       "stage": 8,
       "duration": 36000,
       "unlockDay": 1,
-      "description": "威士忌、柠檬、糖浆，交给调饮台制作，留住一份街巷风味。"
+      "description": "橙子冰沙、柠檬、糖浆，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0111",
-      "name": "莫斯科之骡",
+      "name": "椰青姜柠饮",
       "output": "dish-fresh-ico-0111",
       "inputs": [
         {
@@ -7277,11 +7269,11 @@
       "stage": 8,
       "duration": 36000,
       "unlockDay": 1,
-      "description": "伏特加、姜汁水、柠檬，交给调饮台制作，留住一份街巷风味。"
+      "description": "椰青水、姜汁水、柠檬，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0118",
-      "name": "龙舌兰螺丝刀",
+      "name": "桑葚龙舌兰特调",
       "output": "dish-fresh-ico-0118",
       "inputs": [
         {
@@ -7289,7 +7281,11 @@
           "count": 1
         },
         {
-          "item": "fresh-fruit-2",
+          "item": "fresh-exotic-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
           "count": 1
         }
       ],
@@ -7299,11 +7295,11 @@
       "stage": 8,
       "duration": 34000,
       "unlockDay": 1,
-      "description": "龙舌兰、甜橙，交给调饮台制作，留住一份街巷风味。"
+      "description": "龙舌兰、桑葚、柠檬，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0122",
-      "name": "金汤力",
+      "name": "西柚金酒气泡",
       "output": "dish-fresh-ico-0122",
       "inputs": [
         {
@@ -7321,11 +7317,11 @@
       "stage": 8,
       "duration": 34000,
       "unlockDay": 1,
-      "description": "金酒、汤力水，交给调饮台制作，留住一份街巷风味。"
+      "description": "金酒、西柚气泡水，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0131",
-      "name": "热托迪",
+      "name": "蜂蜜橙柠冰饮",
       "output": "dish-fresh-ico-0131",
       "inputs": [
         {
@@ -7347,11 +7343,11 @@
       "stage": 8,
       "duration": 36000,
       "unlockDay": 1,
-      "description": "威士忌、蜂蜜、柠檬，交给调饮台制作，留住一份街巷风味。"
+      "description": "橙子冰沙、蜂蜜、柠檬，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0135",
-      "name": "伏特加汤力",
+      "name": "西柚椰青气泡",
       "output": "dish-fresh-ico-0135",
       "inputs": [
         {
@@ -7369,7 +7365,7 @@
       "stage": 8,
       "duration": 34000,
       "unlockDay": 1,
-      "description": "伏特加、汤力水，交给调饮台制作，留住一份街巷风味。"
+      "description": "椰青水、西柚气泡水，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0142",
@@ -7399,7 +7395,7 @@
     },
     {
       "id": "fresh-ico-0159",
-      "name": "能量伏特加",
+      "name": "椰青能量饮",
       "output": "dish-fresh-ico-0159",
       "inputs": [
         {
@@ -7417,11 +7413,11 @@
       "stage": 8,
       "duration": 34000,
       "unlockDay": 1,
-      "description": "伏特加、能量汽水，交给调饮台制作，留住一份街巷风味。"
+      "description": "椰青水、能量汽水，交给调饮台制作，留住一份街巷风味。"
     },
     {
       "id": "fresh-ico-0160",
-      "name": "浓缩马提尼",
+      "name": "椰青浓缩咖啡",
       "output": "dish-fresh-ico-0160",
       "inputs": [
         {
@@ -7443,7 +7439,7 @@
       "stage": 8,
       "duration": 36000,
       "unlockDay": 1,
-      "description": "伏特加、浓缩咖啡、糖浆，交给调饮台制作，留住一份街巷风味。"
+      "description": "椰青水、浓缩咖啡、糖浆，交给调饮台制作，留住一份街巷风味。"
     }
   ],
   "equipment": [
@@ -8732,7 +8728,7 @@
           "count": 1
         }
       ],
-      "coins": 45,
+      "coins": 69,
       "reputation": 2
     },
     {
@@ -9007,8 +9003,8 @@
       "day": 1,
       "stage": 3,
       "customer": "lin",
-      "title": "晨间茶饮 · 凉拌皮蛋",
-      "message": "今天想尝尝凉拌皮蛋，慢慢来，我就在这里等你。",
+      "title": "晨间茶饮 · 凉拌卤鹅肉",
+      "message": "今天想尝尝凉拌卤鹅肉，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9143,8 +9139,8 @@
       "day": 1,
       "stage": 4,
       "customer": "lin",
-      "title": "街角烘焙 · 脆皮翅根",
-      "message": "今天想尝尝脆皮翅根，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 香煎鹅肝",
+      "message": "今天想尝尝香煎鹅肝，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9152,7 +9148,7 @@
           "count": 1
         }
       ],
-      "coins": 76,
+      "coins": 95,
       "reputation": 2
     },
     {
@@ -9245,8 +9241,8 @@
       "day": 1,
       "stage": 4,
       "customer": "uncle",
-      "title": "街角烘焙 · 玉米花",
-      "message": "今天想尝尝玉米花，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 焦糖玉米段",
+      "message": "今天想尝尝焦糖玉米段，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9262,8 +9258,8 @@
       "day": 1,
       "stage": 4,
       "customer": "taro",
-      "title": "街角烘焙 · 烤土豆片",
-      "message": "今天想尝尝烤土豆片，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 黄油烤薯角",
+      "message": "今天想尝尝黄油烤薯角，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9296,8 +9292,8 @@
       "day": 1,
       "stage": 4,
       "customer": "momo",
-      "title": "街角烘焙 · 蜜汁烤鸡",
-      "message": "今天想尝尝蜜汁烤鸡，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 蜜汁烤鸽串",
+      "message": "今天想尝尝蜜汁烤鸽串，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9305,7 +9301,7 @@
           "count": 1
         }
       ],
-      "coins": 73,
+      "coins": 62,
       "reputation": 2
     },
     {
@@ -9330,8 +9326,8 @@
       "day": 1,
       "stage": 4,
       "customer": "taro",
-      "title": "街角烘焙 · 酥炸大鸡腿",
-      "message": "今天想尝尝酥炸大鸡腿，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 酥炸火鸡腿",
+      "message": "今天想尝尝酥炸火鸡腿，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9339,7 +9335,7 @@
           "count": 1
         }
       ],
-      "coins": 77,
+      "coins": 79,
       "reputation": 2
     },
     {
@@ -9347,8 +9343,8 @@
       "day": 1,
       "stage": 4,
       "customer": "lin",
-      "title": "街角烘焙 · 烤热狗面包",
-      "message": "今天想尝尝烤热狗面包，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 芝士焗西兰花",
+      "message": "今天想尝尝芝士焗西兰花，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9356,7 +9352,7 @@
           "count": 1
         }
       ],
-      "coins": 84,
+      "coins": 80,
       "reputation": 2
     },
     {
@@ -9364,8 +9360,8 @@
       "day": 1,
       "stage": 4,
       "customer": "momo",
-      "title": "街角烘焙 · 烤肠热狗",
-      "message": "今天想尝尝烤肠热狗，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 番茄芝士披萨",
+      "message": "今天想尝尝番茄芝士披萨，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9373,7 +9369,7 @@
           "count": 1
         }
       ],
-      "coins": 89,
+      "coins": 77,
       "reputation": 2
     },
     {
@@ -9432,8 +9428,8 @@
       "day": 1,
       "stage": 4,
       "customer": "momo",
-      "title": "街角烘焙 · 焦香洋葱贝果",
-      "message": "今天想尝尝焦香洋葱贝果，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 黄油洋葱烤茄子",
+      "message": "今天想尝尝黄油洋葱烤茄子，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9441,7 +9437,7 @@
           "count": 1
         }
       ],
-      "coins": 106,
+      "coins": 89,
       "reputation": 2
     },
     {
@@ -9449,8 +9445,8 @@
       "day": 1,
       "stage": 4,
       "customer": "uncle",
-      "title": "街角烘焙 · 培根汉堡",
-      "message": "今天想尝尝培根汉堡，慢慢来，我就在这里等你。",
+      "title": "街角烘焙 · 培根四季豆卷",
+      "message": "今天想尝尝培根四季豆卷，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9458,7 +9454,7 @@
           "count": 1
         }
       ],
-      "coins": 106,
+      "coins": 89,
       "reputation": 2
     },
     {
@@ -9653,8 +9649,8 @@
       "day": 1,
       "stage": 5,
       "customer": "uncle",
-      "title": "炭火夜市 · 炭烤琵琶腿",
-      "message": "今天想尝尝炭烤琵琶腿，慢慢来，我就在这里等你。",
+      "title": "炭火夜市 · 炭烤火鸡腿",
+      "message": "今天想尝尝炭烤火鸡腿，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9662,7 +9658,7 @@
           "count": 1
         }
       ],
-      "coins": 64,
+      "coins": 65,
       "reputation": 2
     },
     {
@@ -9730,7 +9726,7 @@
           "count": 1
         }
       ],
-      "coins": 85,
+      "coins": 94,
       "reputation": 2
     },
     {
@@ -9832,7 +9828,7 @@
           "count": 1
         }
       ],
-      "coins": 137,
+      "coins": 145,
       "reputation": 2
     },
     {
@@ -9857,8 +9853,8 @@
       "day": 1,
       "stage": 6,
       "customer": "uncle",
-      "title": "海港蒸鲜 · 酥香鳕鱼",
-      "message": "今天想尝尝酥香鳕鱼，慢慢来，我就在这里等你。",
+      "title": "海港蒸鲜 · 酥炸扇贝",
+      "message": "今天想尝尝酥炸扇贝，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -9942,8 +9938,8 @@
       "day": 1,
       "stage": 6,
       "customer": "taro",
-      "title": "海港蒸鲜 · 醇香鲶鱼块",
-      "message": "今天想尝尝醇香鲶鱼块，慢慢来，我就在这里等你。",
+      "title": "海港蒸鲜 · 黄油煎鲷鱼",
+      "message": "今天想尝尝黄油煎鲷鱼，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10010,8 +10006,8 @@
       "day": 1,
       "stage": 6,
       "customer": "taro",
-      "title": "海港蒸鲜 · 香菇肠粉",
-      "message": "今天想尝尝香菇肠粉，慢慢来，我就在这里等你。",
+      "title": "海港蒸鲜 · 香菇酿肉",
+      "message": "今天想尝尝香菇酿肉，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10019,7 +10015,7 @@
           "count": 1
         }
       ],
-      "coins": 74,
+      "coins": 65,
       "reputation": 2
     },
     {
@@ -10044,8 +10040,8 @@
       "day": 1,
       "stage": 6,
       "customer": "momo",
-      "title": "海港蒸鲜 · 鲜肉肠粉",
-      "message": "今天想尝尝鲜肉肠粉，慢慢来，我就在这里等你。",
+      "title": "海港蒸鲜 · 南瓜蒸排骨",
+      "message": "今天想尝尝南瓜蒸排骨，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10053,7 +10049,7 @@
           "count": 1
         }
       ],
-      "coins": 78,
+      "coins": 94,
       "reputation": 2
     },
     {
@@ -10146,8 +10142,8 @@
       "day": 1,
       "stage": 6,
       "customer": "taro",
-      "title": "海港蒸鲜 · 古法糯米鸡",
-      "message": "今天想尝尝古法糯米鸡，慢慢来，我就在这里等你。",
+      "title": "海港蒸鲜 · 火鸡糯米饭",
+      "message": "今天想尝尝火鸡糯米饭，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10180,8 +10176,8 @@
       "day": 1,
       "stage": 6,
       "customer": "momo",
-      "title": "海港蒸鲜 · 熟烤肥蟹",
-      "message": "今天想尝尝熟烤肥蟹，慢慢来，我就在这里等你。",
+      "title": "海港蒸鲜 · 葱香烤青蟹",
+      "message": "今天想尝尝葱香烤青蟹，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10520,8 +10516,8 @@
       "day": 1,
       "stage": 8,
       "customer": "momo",
-      "title": "晚风特调 · 汤力水",
-      "message": "今天想尝尝汤力水，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 西柚气泡水",
+      "message": "今天想尝尝西柚气泡水，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10588,8 +10584,8 @@
       "day": 1,
       "stage": 8,
       "customer": "momo",
-      "title": "晚风特调 · 美式咖啡",
-      "message": "今天想尝尝美式咖啡，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 拿铁咖啡",
+      "message": "今天想尝尝拿铁咖啡，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10605,8 +10601,8 @@
       "day": 1,
       "stage": 8,
       "customer": "uncle",
-      "title": "晚风特调 · 大杯美式",
-      "message": "今天想尝尝大杯美式，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 气泡冷萃",
+      "message": "今天想尝尝气泡冷萃，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10622,8 +10618,8 @@
       "day": 1,
       "stage": 8,
       "customer": "taro",
-      "title": "晚风特调 · 甜蛋酒",
-      "message": "今天想尝尝甜蛋酒，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 香甜蛋奶饮",
+      "message": "今天想尝尝香甜蛋奶饮，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10631,7 +10627,7 @@
           "count": 1
         }
       ],
-      "coins": 81,
+      "coins": 60,
       "reputation": 2
     },
     {
@@ -10639,8 +10635,8 @@
       "day": 1,
       "stage": 8,
       "customer": "lin",
-      "title": "晚风特调 · 伏特加汤力",
-      "message": "今天想尝尝伏特加汤力，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 西柚椰青气泡",
+      "message": "今天想尝尝西柚椰青气泡，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10656,8 +10652,8 @@
       "day": 1,
       "stage": 8,
       "customer": "momo",
-      "title": "晚风特调 · 能量伏特加",
-      "message": "今天想尝尝能量伏特加，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 椰青能量饮",
+      "message": "今天想尝尝椰青能量饮，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10690,8 +10686,8 @@
       "day": 1,
       "stage": 8,
       "customer": "taro",
-      "title": "晚风特调 · 威士忌",
-      "message": "今天想尝尝威士忌，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 橙子冰沙",
+      "message": "今天想尝尝橙子冰沙，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10707,8 +10703,8 @@
       "day": 1,
       "stage": 8,
       "customer": "lin",
-      "title": "晚风特调 · 莫斯科之骡",
-      "message": "今天想尝尝莫斯科之骡，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 椰青姜柠饮",
+      "message": "今天想尝尝椰青姜柠饮，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10724,8 +10720,8 @@
       "day": 1,
       "stage": 8,
       "customer": "momo",
-      "title": "晚风特调 · 浓缩马提尼",
-      "message": "今天想尝尝浓缩马提尼，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 椰青浓缩咖啡",
+      "message": "今天想尝尝椰青浓缩咖啡，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10741,8 +10737,8 @@
       "day": 1,
       "stage": 8,
       "customer": "uncle",
-      "title": "晚风特调 · 朗姆可乐",
-      "message": "今天想尝尝朗姆可乐，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 蓝柑可乐",
+      "message": "今天想尝尝蓝柑可乐，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10758,8 +10754,8 @@
       "day": 1,
       "stage": 8,
       "customer": "taro",
-      "title": "晚风特调 · 龙舌兰螺丝刀",
-      "message": "今天想尝尝龙舌兰螺丝刀，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 桑葚龙舌兰特调",
+      "message": "今天想尝尝桑葚龙舌兰特调，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10767,7 +10763,7 @@
           "count": 1
         }
       ],
-      "coins": 113,
+      "coins": 155,
       "reputation": 2
     },
     {
@@ -10775,8 +10771,8 @@
       "day": 1,
       "stage": 8,
       "customer": "lin",
-      "title": "晚风特调 · 威士忌苏打",
-      "message": "今天想尝尝威士忌苏打，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 橙冰苏打",
+      "message": "今天想尝尝橙冰苏打，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10792,8 +10788,8 @@
       "day": 1,
       "stage": 8,
       "customer": "momo",
-      "title": "晚风特调 · 热托迪",
-      "message": "今天想尝尝热托迪，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 蜂蜜橙柠冰饮",
+      "message": "今天想尝尝蜂蜜橙柠冰饮，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10809,8 +10805,8 @@
       "day": 1,
       "stage": 8,
       "customer": "uncle",
-      "title": "晚风特调 · 威士忌酸酒",
-      "message": "今天想尝尝威士忌酸酒，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 橙柠酸甜冰饮",
+      "message": "今天想尝尝橙柠酸甜冰饮，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10841,10 +10837,10 @@
     {
       "id": "v3-order-120",
       "day": 1,
-      "stage": 8,
+      "stage": 6,
       "customer": "lin",
-      "title": "晚风特调 · 威士忌三文鱼",
-      "message": "今天想尝尝威士忌三文鱼，慢慢来，我就在这里等你。",
+      "title": "海港蒸鲜 · 橙香三文鱼",
+      "message": "今天想尝尝橙香三文鱼，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {
@@ -10852,7 +10848,7 @@
           "count": 1
         }
       ],
-      "coins": 145,
+      "coins": 85,
       "reputation": 2
     },
     {
@@ -10894,8 +10890,8 @@
       "day": 1,
       "stage": 8,
       "customer": "taro",
-      "title": "晚风特调 · 金汤力",
-      "message": "今天想尝尝金汤力，慢慢来，我就在这里等你。",
+      "title": "晚风特调 · 西柚金酒气泡",
+      "message": "今天想尝尝西柚金酒气泡，慢慢来，我就在这里等你。",
       "thanks": "这份滋味，值得专程来一趟！",
       "needs": [
         {

@@ -4,12 +4,12 @@
     {
       "file": "index.html",
       "bytes": 2605,
-      "gzipReferenceBytes": 1100
+      "gzipReferenceBytes": 1104
     },
     {
-      "file": "assets/game-DedaLIF7.js",
+      "file": "assets/game-DyXhqNwO.js",
       "bytes": 2209,
-      "gzipReferenceBytes": 1155
+      "gzipReferenceBytes": 1158
     },
     {
       "file": "assets/modulepreload-polyfill-B5Qt9EMX.js",
@@ -17,14 +17,14 @@
       "gzipReferenceBytes": 399
     },
     {
-      "file": "assets/load-engine-D7japR3e.js",
+      "file": "assets/load-engine-DCLVjf5U.js",
       "bytes": 7753,
-      "gzipReferenceBytes": 3165
+      "gzipReferenceBytes": 3164
     },
     {
-      "file": "assets/asset-queue-_uGGm-xR.js",
-      "bytes": 234068,
-      "gzipReferenceBytes": 46636
+      "file": "assets/asset-queue-DMAv7LHf.js",
+      "bytes": 236981,
+      "gzipReferenceBytes": 47300
     },
     {
       "file": "assets/gift-codes-Djut_bYv.js",
@@ -37,9 +37,9 @@
       "gzipReferenceBytes": 4207
     },
     {
-      "file": "assets/game-BzbaDiv6.js",
+      "file": "assets/game-Br62i8OK.js",
       "bytes": 290658,
-      "gzipReferenceBytes": 93343
+      "gzipReferenceBytes": 93345
     },
     {
       "file": "assets/game-D0FAWXw3.css",
@@ -67,12 +67,12 @@
       "gzipReferenceBytes": 353
     },
     {
-      "file": "assets/parts-BWc-jm3w.js",
-      "bytes": 8796,
-      "gzipReferenceBytes": 3624
+      "file": "assets/parts-DrROYYIH.js",
+      "bytes": 8815,
+      "gzipReferenceBytes": 3635
     },
     {
-      "file": "assets/DeviceIcon-SyLOiXHy.js",
+      "file": "assets/DeviceIcon-C8LecwLm.js",
       "bytes": 1465,
       "gzipReferenceBytes": 707
     },
@@ -87,7 +87,7 @@
       "gzipReferenceBytes": 436
     },
     {
-      "file": "assets/ThemeEmblem-CvM9WDzo.js",
+      "file": "assets/ThemeEmblem-BUfDJY7h.js",
       "bytes": 6021,
       "gzipReferenceBytes": 2768
     },
@@ -112,9 +112,9 @@
       "gzipReferenceBytes": 173
     },
     {
-      "file": "assets/Board-CYYlfAlV.js",
-      "bytes": 28241,
-      "gzipReferenceBytes": 10300
+      "file": "assets/Board-BGNjjS5t.js",
+      "bytes": 27487,
+      "gzipReferenceBytes": 10090
     },
     {
       "file": "assets/engine-DMjGVukU.js",
@@ -122,50 +122,50 @@
       "gzipReferenceBytes": 381663
     }
   ],
-  "codeGzipReferenceBytes": 573943,
+  "codeGzipReferenceBytes": 574416,
   "mobileArt": {
     "files": 323,
-    "bytes": 2348330
+    "bytes": 18051776
   },
   "offline": {
     "files": 37,
-    "bytes": 2464037,
-    "totalBytes": 13954023,
+    "bytes": 2466215,
+    "totalBytes": 42082503,
     "themeFiles": 749,
     "coreUrls": [
       "app-icon-180.png",
       "app-icon-192.png",
       "app-icon-512.png",
       "assets/arrow-right-DB7M5Fx_.js",
-      "assets/asset-queue-_uGGm-xR.js",
-      "assets/Board-CYYlfAlV.js",
+      "assets/asset-queue-DMAv7LHf.js",
+      "assets/Board-BGNjjS5t.js",
       "assets/check-CPbIflhE.js",
       "assets/coins-CiftTqv-.js",
-      "assets/DeviceIcon-SyLOiXHy.js",
-      "assets/DeviceShelf-phRbhvZz.js",
+      "assets/DeviceIcon-C8LecwLm.js",
+      "assets/DeviceShelf-ocUKNaBv.js",
       "assets/engine-DMjGVukU.js",
       "assets/flame-Dz4pTuNR.js",
-      "assets/game-BzbaDiv6.js",
+      "assets/game-Br62i8OK.js",
       "assets/game-D0FAWXw3.css",
-      "assets/game-DedaLIF7.js",
+      "assets/game-DyXhqNwO.js",
       "assets/gift-BTPPin2Y.js",
       "assets/gift-codes-Djut_bYv.js",
       "assets/ItemArtContext-8U5_pQTt.js",
-      "assets/load-engine-D7japR3e.js",
+      "assets/load-engine-DCLVjf5U.js",
       "assets/lock-keyhole-CREuBMs9.js",
       "assets/modulepreload-polyfill-B5Qt9EMX.js",
       "assets/package-open-Bg-znRSs.js",
-      "assets/panels-DRHjaADU.js",
-      "assets/parts-BWc-jm3w.js",
-      "assets/PerformanceTools-DYD-WiT8.js",
+      "assets/panels-2hKOxEur.js",
+      "assets/parts-DrROYYIH.js",
+      "assets/PerformanceTools-tpFycMEA.js",
       "assets/react-Bzgz95E1.js",
       "assets/RedeemGiftPanel-CM1OAFH8.js",
       "assets/save-DQcwVlUZ.js",
       "assets/search-CyDeMNGJ.js",
-      "assets/ShopScene-DQVZ4QNl.js",
+      "assets/ShopScene-M2H28p2S.js",
       "assets/sparkles-BvZ7cZbY.js",
-      "assets/ThemeEmblem-CvM9WDzo.js",
-      "assets/V3Codex-DvWUjs9T.js",
+      "assets/ThemeEmblem-BUfDJY7h.js",
+      "assets/V3Codex-nOlvyhMP.js",
       "assets/zap-kn8U2GMe.js",
       "favicon.svg",
       "index.html",
@@ -178,9 +178,11 @@
       "blockingTextures": 7,
       "prewarmTextures": 4,
       "visibleImageRequests": 10,
-      "imageBytes": 64176,
-      "gzipReferenceBytes": 638119,
+      "imageBytes": 470808,
+      "gzipReferenceBytes": 1045224,
       "budgetBytes": 1048576,
+      "budgetScope": "startup-code-gzip",
+      "artBytesInformational": true,
       "pass": true
     },
     {
@@ -188,9 +190,11 @@
       "blockingTextures": 31,
       "prewarmTextures": 20,
       "visibleImageRequests": 34,
-      "imageBytes": 225172,
-      "gzipReferenceBytes": 799115,
+      "imageBytes": 1806616,
+      "gzipReferenceBytes": 2381032,
       "budgetBytes": 1572864,
+      "budgetScope": "startup-code-gzip",
+      "artBytesInformational": true,
       "pass": true
     },
     {
@@ -198,9 +202,11 @@
       "blockingTextures": 13,
       "prewarmTextures": 12,
       "visibleImageRequests": 16,
-      "imageBytes": 110588,
-      "gzipReferenceBytes": 684531,
+      "imageBytes": 807970,
+      "gzipReferenceBytes": 1382386,
       "budgetBytes": 1572864,
+      "budgetScope": "startup-code-gzip",
+      "artBytesInformational": true,
       "pass": true
     },
     {
@@ -208,9 +214,11 @@
       "blockingTextures": 6,
       "prewarmTextures": 6,
       "visibleImageRequests": 6,
-      "imageBytes": 569080,
-      "gzipReferenceBytes": 1143023,
+      "imageBytes": 752364,
+      "gzipReferenceBytes": 1326780,
       "budgetBytes": null,
+      "budgetScope": "startup-code-gzip",
+      "artBytesInformational": true,
       "pass": true
     }
   ]

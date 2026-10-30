@@ -1,13 +1,17 @@
 {
-  "sourceCommit": "8b270f8b09bc46e4dc734b4f598e340d8e035d7c",
+  "sourceCommit": "73cd7de7bb7fc854d8d0d485febbd62abe8e3df2",
   "sourceDirty": false,
   "contentVersion": "4.0.0",
   "schemaVersion": 3,
   "artwork": "V4-warm-cartoon",
-  "vectorSize": 96,
+  "vectorSize": null,
+  "vectorSizes": [
+    96,
+    256
+  ],
   "sourceSize": 512,
-  "runtimeSize": 256,
-  "mobileRuntimeSize": 128,
+  "runtimeSize": 512,
+  "mobileRuntimeSize": 512,
   "boardDprLimit": 2,
   "assets": 323,
   "finished": 139,
