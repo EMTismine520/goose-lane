@@ -1,0 +1,168 @@
+{
+  "sourceReviewId": "c124d8672c9e",
+  "date": "2026-10-29",
+  "userQuote": "兽肉使用新版B07,B08,B09,B10,其它保留原版。禽肉重新设计，不要“鸡腿”后面又“鸭腿”，可以考虑其他食材，不要局限于鸡鸭鹅。要做得顶尖",
+  "beastModifiedIds": [
+    "fresh-beast-7",
+    "fresh-beast-8",
+    "fresh-beast-9",
+    "fresh-beast-10"
+  ],
+  "beastOriginalIds": [
+    "fresh-beast-1",
+    "fresh-beast-2",
+    "fresh-beast-3",
+    "fresh-beast-4",
+    "fresh-beast-5",
+    "fresh-beast-6"
+  ],
+  "redesignIds": [
+    "fresh-poultry-1",
+    "fresh-poultry-2",
+    "fresh-poultry-3",
+    "fresh-poultry-4",
+    "fresh-poultry-5",
+    "fresh-poultry-6",
+    "fresh-poultry-7",
+    "fresh-poultry-8"
+  ],
+  "proposedPoultryNames": [
+    "鹌鹑蛋",
+    "鸡胗",
+    "鹅肝",
+    "鸡胸肉",
+    "火鸡腿",
+    "鸭血",
+    "鸽肉串",
+    "卤鹅肉"
+  ],
+  "structureRoles": [
+    "斑点蛋品",
+    "紧实肌胃",
+    "柔软分叶肝",
+    "宽三角瘦肉",
+    "唯一带骨腿",
+    "平整凝块",
+    "竹签肉串",
+    "熟制斜切片"
+  ],
+  "diversityRule": "只有火鸡腿一种腿类；以食材结构和加工形态区分，加入鹌鹑、火鸡、鸽等，避免相同部位仅换物种。",
+  "recipeProposals": [
+    {
+      "id": "fresh-ico-0146",
+      "before": "凉拌皮蛋",
+      "after": "凉拌卤鹅肉",
+      "inputBefore": "皮蛋、紫洋葱、红椒",
+      "inputAfter": "卤鹅肉、紫洋葱、红椒",
+      "family": "chopping-board",
+      "changedIngredient": true,
+      "nameChanged": true
+    },
+    {
+      "id": "fresh-ico-0029",
+      "before": "脆皮翅根",
+      "after": "香煎鹅肝",
+      "inputBefore": "鸡翅中、面粉、红椒",
+      "inputAfter": "鹅肝、面粉、红椒",
+      "family": "frying-station",
+      "changedIngredient": true,
+      "nameChanged": true
+    },
+    {
+      "id": "fresh-ico-0050",
+      "before": "油炸太阳蛋",
+      "after": "香煎鹌鹑蛋",
+      "inputBefore": "鸡蛋",
+      "inputAfter": "鹌鹑蛋",
+      "family": "frying-station",
+      "changedIngredient": true,
+      "nameChanged": true
+    },
+    {
+      "id": "fresh-ico-0097",
+      "before": "酥炸大鸡腿",
+      "after": "酥炸火鸡腿",
+      "inputBefore": "鸡腿、面粉、红椒",
+      "inputAfter": "火鸡腿、面粉、红椒",
+      "family": "frying-station",
+      "changedIngredient": true,
+      "nameChanged": true
+    },
+    {
+      "id": "fresh-ico-0053",
+      "before": "炭烤琵琶腿",
+      "after": "炭烤火鸡腿",
+      "inputBefore": "鸡腿、红椒",
+      "inputAfter": "火鸡腿、红椒",
+      "family": "charcoal-grill",
+      "changedIngredient": true,
+      "nameChanged": true
+    },
+    {
+      "id": "fresh-ico-0063",
+      "before": "早餐三明治",
+      "after": "早餐三明治",
+      "inputBefore": "吐司、培根、鸡蛋",
+      "inputAfter": "吐司、培根、鹌鹑蛋",
+      "family": "oven",
+      "changedIngredient": true,
+      "nameChanged": false
+    },
+    {
+      "id": "fresh-ico-0092",
+      "before": "蜜汁烤鸡",
+      "after": "蜜汁烤鸽串",
+      "inputBefore": "整鸡、蜂蜜",
+      "inputAfter": "鸽肉串、蜂蜜",
+      "family": "oven",
+      "changedIngredient": true,
+      "nameChanged": true
+    },
+    {
+      "id": "fresh-ico-0077",
+      "before": "流沙奶黄包",
+      "after": "流沙奶黄包",
+      "inputBefore": "软面团、鸡蛋、黄油",
+      "inputAfter": "软面团、鹌鹑蛋、黄油",
+      "family": "steamer",
+      "changedIngredient": true,
+      "nameChanged": false
+    },
+    {
+      "id": "fresh-ico-0083",
+      "before": "焦糖马拉糕",
+      "after": "焦糖马拉糕",
+      "inputBefore": "面粉、鸡蛋、焦糖",
+      "inputAfter": "面粉、鹌鹑蛋、焦糖",
+      "family": "steamer",
+      "changedIngredient": true,
+      "nameChanged": false
+    },
+    {
+      "id": "fresh-ico-0088",
+      "before": "古法糯米鸡",
+      "after": "荷香火鸡糯米饭",
+      "inputBefore": "糯米团、鸡腿、蘑菇",
+      "inputAfter": "糯米团、火鸡腿、蘑菇",
+      "family": "steamer",
+      "changedIngredient": true,
+      "nameChanged": true
+    },
+    {
+      "id": "fresh-ico-0090",
+      "before": "甜蛋酒",
+      "after": "甜蛋酒",
+      "inputBefore": "鸡蛋、朗姆酒、纯牛奶",
+      "inputAfter": "鹌鹑蛋、朗姆酒、纯牛奶",
+      "family": "bar",
+      "changedIngredient": true,
+      "nameChanged": false
+    }
+  ],
+  "recipeSummary": {
+    "ingredientUpdates": 11,
+    "proposedDishRenames": 7,
+    "allEggRecipesReviewed": true
+  },
+  "scope": "兽肉10项选用已固定为4新版6原版；禽肉8项全新重设计待用户决定，包含6项拟换食材。食材和菜谱实际内容尚未修改。"
+}

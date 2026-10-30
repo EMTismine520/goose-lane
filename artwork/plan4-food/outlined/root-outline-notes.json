@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fresh-veg-2",
+    "name": "黄瓜",
+    "baseReviewId": "dac74a498613",
+    "baseSha256": "4ebafc4ddebebdb4d3e02c50465907e6948358a3d4d5966c103fbf1b40df51cb",
+    "sourceSha256": "4770e9d4d5ff88b3c1c061af37cc2c134b198c24888578d9911879662a369225",
+    "basePreserved": true,
+    "outlineColor": "#2b211c",
+    "mainStrokeRange": [
+      2.6,
+      3.1
+    ],
+    "previousMainStrokeRange": [
+      5.1,
+      5.8
+    ],
+    "adjustment": "参考原有美术的视觉重量收细；只改可见描边线宽，遮罩与所有形状和填色保持"
+  },
+  {
+    "id": "dish-fresh-ico-0085",
+    "name": "红酒酱牛排",
+    "baseReviewId": "dac74a498613",
+    "baseSha256": "c66515a47d97328968e54f691de8960db2beb2024d9e0024d7676f410ae4c5c8",
+    "sourceSha256": "a644b1a1ea1f6da26085ecf2dd3c7087c101aa7c6287599aed8ca61b9d3eb1a6",
+    "basePreserved": true,
+    "outlineColor": "#2b211c",
+    "mainStrokeRange": [
+      2.6,
+      3.1
+    ],
+    "previousMainStrokeRange": [
+      5.1,
+      5.8
+    ],
+    "adjustment": "参考原有美术的视觉重量收细；只改可见描边线宽，遮罩与所有形状和填色保持"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "sourceReviewId": "4eddc982c70a",
+  "date": "2026-10-29",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "confirmedStarterReviewId": "9ecc918006ca",
+  "confirmedHomeReviewId": "7b4a11197419",
+  "batchId": "chopping-board",
+  "batchTitle": "砧板冷食五道",
+  "orderedIds": [
+    "dish-fresh-ico-0030",
+    "dish-fresh-ico-0058",
+    "dish-fresh-ico-0074",
+    "dish-fresh-ico-0141",
+    "dish-fresh-ico-0146"
+  ],
+  "orderedNames": [
+    "凉拌鸡肉卷",
+    "手撕紫甘蓝",
+    "新鲜生蚝",
+    "田园沙拉",
+    "凉拌皮蛋"
+  ],
+  "occupancies": [
+    0.82,
+    0.8,
+    0.82,
+    0.82,
+    0.82
+  ],
+  "courses": [
+    "roll",
+    "vegetable",
+    "seafood",
+    "vegetable",
+    "egg"
+  ],
+  "actualExpansionSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "actualBaseCatalogSha256": "07b19a67d40d86396d60403e853654c22b75d91a53e7b72278cb1be76f73cbaf",
+  "scope": "家常十道用图及尺寸已全部确认，DS13两片肉与DS16三块小排固定。进入砧板冷食五道全部新版候选。DS20田园沙拉437既定原版继续原字节保留为左侧对照，新稿另供选择；此前各链、开局鲜食和其它配方选用保持。",
+  "sizePolicy": "配方成品按构图、盛器与美观确定体量，不套用低阶原料缩小规则。五道新稿主体82%／80%／82%／82%／82%，原版对照80%，透明留白与视觉居中。",
+  "authoringPolicy": "原生透明SVG、清晰细深描边、可辨大形与克制材质。鸡肉卷、紫甘蓝、生蚝、田园沙拉与皮蛋使用不同主轮廓、切法和盛器。控制数量，主料清楚、配菜适量；五道均全新重绘，逐项由用户选择，本轮不改名称、配方或逻辑。"
+}

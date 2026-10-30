@@ -41,8 +41,9 @@ describe('home content and gated production', () => {
     const ids = [...HOME_CHAINS.flatMap(chain => chain.items), ...HOME_RECIPES.map(recipe => recipe.output)];
     expect(new Set(ids).size).toBe(38);
     expect(ids.every(id => !!ITEMS[id].assetId)).toBe(true);
-    expect(HOME_RECIPES.reduce((sum, recipe) => sum + baseUnits(recipe.output), 0)).toBe(126);
-    expect(HOME_ORDERS.reduce((sum, order) => sum + order.coins, 0)).toBe(498);
+    // Chicken breast now occupies tier 5; recipe costs follow its real merge tier.
+    expect(HOME_RECIPES.reduce((sum, recipe) => sum + baseUnits(recipe.output), 0)).toBe(134);
+    expect(HOME_ORDERS.reduce((sum, order) => sum + order.coins, 0)).toBe(522);
     expect(new Set(HOME_ORDERS.map(order => order.customer)).size).toBe(4);
     expect(new Set(HOME_ORDERS.map(order => order.needs[0].item)).size).toBe(10);
   });

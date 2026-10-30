@@ -57,12 +57,12 @@
       "names": [
         "鸡蛋",
         "鸡胗",
-        "鸡翅中",
+        "鸭掌",
+        "鸽肉串",
         "鸡胸肉",
-        "鸡腿",
-        "鸡全翅",
-        "整鸡",
-        "皮蛋"
+        "鹅肝",
+        "火鸡腿",
+        "卤鹅肉"
       ]
     },
     {
@@ -123,13 +123,13 @@
       "names": [
         "鲜虾",
         "鱿鱼",
-        "鳕鱼",
-        "鲶鱼",
+        "扇贝",
+        "鲷鱼",
         "金枪鱼",
         "三文鱼",
         "生蚝",
         "海螺",
-        "肥蟹",
+        "青蟹",
         "龙虾",
         "帝王蟹"
       ]
@@ -195,8 +195,8 @@
         "便携咖啡",
         "冰咖啡",
         "深烘咖啡",
-        "美式咖啡",
-        "大杯美式",
+        "拿铁咖啡",
+        "气泡冷萃",
         "摩卡咖啡"
       ]
     },
@@ -224,12 +224,12 @@
         "矿泉水",
         "苏打水",
         "姜汁水",
-        "汤力水",
+        "西柚气泡水",
         "可乐",
         "能量汽水",
-        "朗姆酒",
-        "威士忌",
-        "伏特加",
+        "蓝柑气泡饮",
+        "橙子冰沙",
+        "椰青水",
         "龙舌兰",
         "金酒",
         "红葡萄酒"
@@ -577,7 +577,7 @@
     },
     {
       "id": "fresh-poultry-3",
-      "name": "鸡翅中",
+      "name": "鸭掌",
       "chain": "fresh-poultry",
       "level": 3,
       "stage": 2,
@@ -585,12 +585,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-4",
-      "name": "鸡胸肉",
+      "name": "鸽肉串",
       "chain": "fresh-poultry",
       "level": 4,
       "stage": 2,
@@ -598,12 +598,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-5",
-      "name": "鸡腿",
+      "name": "鸡胸肉",
       "chain": "fresh-poultry",
       "level": 5,
       "stage": 2,
@@ -611,12 +611,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-6",
-      "name": "鸡全翅",
+      "name": "鹅肝",
       "chain": "fresh-poultry",
       "level": 6,
       "stage": 2,
@@ -624,12 +624,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-7",
-      "name": "整鸡",
+      "name": "火鸡腿",
       "chain": "fresh-poultry",
       "level": 7,
       "stage": 2,
@@ -637,12 +637,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-poultry-8",
-      "name": "皮蛋",
+      "name": "卤鹅肉",
       "chain": "fresh-poultry",
       "level": 8,
       "stage": 2,
@@ -650,7 +650,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
@@ -1019,7 +1019,7 @@
     },
     {
       "id": "fresh-sea-3",
-      "name": "鳕鱼",
+      "name": "扇贝",
       "chain": "fresh-sea",
       "level": 3,
       "stage": 6,
@@ -1027,12 +1027,12 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-sea-4",
-      "name": "鲶鱼",
+      "name": "鲷鱼",
       "chain": "fresh-sea",
       "level": 4,
       "stage": 6,
@@ -1040,7 +1040,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
@@ -1097,7 +1097,7 @@
     },
     {
       "id": "fresh-sea-9",
-      "name": "肥蟹",
+      "name": "青蟹",
       "chain": "fresh-sea",
       "level": 9,
       "stage": 6,
@@ -1105,7 +1105,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
@@ -1539,28 +1539,28 @@
     },
     {
       "id": "fresh-coffee-7",
-      "name": "美式咖啡",
+      "name": "拿铁咖啡",
       "chain": "fresh-coffee",
       "level": 7,
       "stage": 3,
       "kind": "drink",
       "referenceId": "ico-0002",
       "referenceName": "美式咖啡",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/841801833067315716"
     },
     {
       "id": "fresh-coffee-8",
-      "name": "大杯美式",
+      "name": "气泡冷萃",
       "chain": "fresh-coffee",
       "level": 8,
       "stage": 3,
       "kind": "drink",
       "referenceId": "ico-0078",
       "referenceName": "大杯美式",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790641292114657994"
     },
     {
@@ -1708,15 +1708,15 @@
     },
     {
       "id": "fresh-mixer-5",
-      "name": "汤力水",
+      "name": "西柚气泡水",
       "chain": "fresh-mixer",
       "level": 5,
       "stage": 8,
       "kind": "drink",
       "referenceId": "ico-0064",
       "referenceName": "汤力水",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/797858476368857347"
     },
     {
@@ -1747,7 +1747,7 @@
     },
     {
       "id": "fresh-mixer-8",
-      "name": "朗姆酒",
+      "name": "蓝柑气泡饮",
       "chain": "fresh-mixer",
       "level": 8,
       "stage": 8,
@@ -1755,25 +1755,25 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
       "id": "fresh-mixer-9",
-      "name": "威士忌",
+      "name": "橙子冰沙",
       "chain": "fresh-mixer",
       "level": 9,
       "stage": 8,
       "kind": "drink",
       "referenceId": "ico-0103",
       "referenceName": "威士忌",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/823602182489113413"
     },
     {
       "id": "fresh-mixer-10",
-      "name": "伏特加",
+      "name": "椰青水",
       "chain": "fresh-mixer",
       "level": 10,
       "stage": 8,
@@ -1781,7 +1781,7 @@
       "referenceId": null,
       "referenceName": null,
       "naming": "project",
-      "design": "本项目配方与成长规则",
+      "design": "Plan4：采用用户确认的基础食材身份；referenceName保留原参考出处。",
       "sourceUrl": null
     },
     {
@@ -2121,7 +2121,7 @@
       "minDeviceLevel": 3,
       "stage": 5,
       "duration": 24000,
-      "effort": 18.68888888888889
+      "effort": 20.077777777777776
     },
     {
       "id": "fresh-ico-0058",
@@ -2223,19 +2223,19 @@
     },
     {
       "id": "fresh-ico-0146",
-      "name": "凉拌皮蛋",
+      "name": "凉拌卤鹅肉",
       "output": "dish-fresh-ico-0146",
       "family": "chopping-board",
       "inputNames": [
-        "皮蛋",
+        "卤鹅肉",
         "紫洋葱",
         "红椒"
       ],
       "kind": "dish",
       "referenceId": "ico-0146",
       "referenceName": "凉拌皮蛋",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
       "inputs": [
         {
@@ -2718,23 +2718,23 @@
     },
     {
       "id": "fresh-ico-0029",
-      "name": "脆皮翅根",
+      "name": "香煎鹅肝",
       "output": "dish-fresh-ico-0029",
       "family": "frying-station",
       "inputNames": [
-        "鸡翅中",
+        "鹅肝",
         "面粉",
         "红椒"
       ],
       "kind": "dish",
       "referenceId": "ico-0029",
       "referenceName": "脆皮翅根",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/793899686799870679",
       "inputs": [
         {
-          "item": "fresh-poultry-3",
+          "item": "fresh-poultry-6",
           "count": 1
         },
         {
@@ -2746,11 +2746,11 @@
           "count": 1
         }
       ],
-      "ancestorRank": 3,
-      "minDeviceLevel": 1,
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
       "stage": 4,
-      "duration": 34000,
-      "effort": 8.516666666666666
+      "duration": 40000,
+      "effort": 11.694444444444443
     },
     {
       "id": "fresh-ico-0048",
@@ -2842,19 +2842,19 @@
     },
     {
       "id": "fresh-ico-0068",
-      "name": "酥香鳕鱼",
+      "name": "酥炸扇贝",
       "output": "dish-fresh-ico-0068",
       "family": "frying-station",
       "inputNames": [
-        "鳕鱼",
+        "扇贝",
         "面粉",
         "柠檬"
       ],
       "kind": "dish",
       "referenceId": "ico-0068",
       "referenceName": "酥香鳕鱼",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
       "inputs": [
         {
@@ -2909,23 +2909,23 @@
     },
     {
       "id": "fresh-ico-0097",
-      "name": "酥炸大鸡腿",
+      "name": "酥炸火鸡腿",
       "output": "dish-fresh-ico-0097",
       "family": "frying-station",
       "inputNames": [
-        "鸡腿",
+        "火鸡腿",
         "面粉",
         "红椒"
       ],
       "kind": "dish",
       "referenceId": "ico-0097",
       "referenceName": "酥炸大鸡腿",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
       "inputs": [
         {
-          "item": "fresh-poultry-5",
+          "item": "fresh-poultry-7",
           "count": 1
         },
         {
@@ -2937,11 +2937,11 @@
           "count": 1
         }
       ],
-      "ancestorRank": 5,
+      "ancestorRank": 7,
       "minDeviceLevel": 2,
       "stage": 4,
-      "duration": 38000,
-      "effort": 8.783333333333333
+      "duration": 42000,
+      "effort": 9.05
     },
     {
       "id": "fresh-ico-0085",
@@ -2981,19 +2981,19 @@
     },
     {
       "id": "fresh-ico-0136",
-      "name": "醇香鲶鱼块",
+      "name": "黄油煎鲷鱼",
       "output": "dish-fresh-ico-0136",
       "family": "frying-station",
       "inputNames": [
-        "鲶鱼",
+        "鲷鱼",
         "黄油",
         "香葱"
       ],
       "kind": "dish",
       "referenceId": "ico-0136",
       "referenceName": "醇香鲶鱼块",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
       "inputs": [
         {
@@ -3228,7 +3228,7 @@
       "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
       "inputs": [
         {
-          "item": "fresh-poultry-4",
+          "item": "fresh-poultry-5",
           "count": 1
         },
         {
@@ -3240,7 +3240,7 @@
       "minDeviceLevel": 2,
       "stage": 5,
       "duration": 48000,
-      "effort": 10.144444444444446
+      "effort": 11.533333333333331
     },
     {
       "id": "fresh-ico-0045",
@@ -3306,22 +3306,22 @@
     },
     {
       "id": "fresh-ico-0053",
-      "name": "炭烤琵琶腿",
+      "name": "炭烤火鸡腿",
       "output": "dish-fresh-ico-0053",
       "family": "charcoal-grill",
       "inputNames": [
-        "鸡腿",
+        "火鸡腿",
         "红椒"
       ],
       "kind": "dish",
       "referenceId": "ico-0053",
       "referenceName": "炭烤琵琶腿",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
       "inputs": [
         {
-          "item": "fresh-poultry-5",
+          "item": "fresh-poultry-7",
           "count": 1
         },
         {
@@ -3329,11 +3329,11 @@
           "count": 1
         }
       ],
-      "ancestorRank": 5,
+      "ancestorRank": 7,
       "minDeviceLevel": 2,
       "stage": 5,
-      "duration": 46000,
-      "effort": 6.53888888888889
+      "duration": 50000,
+      "effort": 6.805555555555555
     },
     {
       "id": "fresh-ico-0059",
@@ -3368,18 +3368,18 @@
     },
     {
       "id": "fresh-ico-0061",
-      "name": "熟烤肥蟹",
+      "name": "葱香烤青蟹",
       "output": "dish-fresh-ico-0061",
       "family": "charcoal-grill",
       "inputNames": [
-        "肥蟹",
+        "青蟹",
         "香葱"
       ],
       "kind": "dish",
       "referenceId": "ico-0061",
       "referenceName": "熟烤肥蟹",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
       "inputs": [
         {
@@ -3430,18 +3430,18 @@
     },
     {
       "id": "fresh-ico-0081",
-      "name": "威士忌三文鱼",
+      "name": "橙香三文鱼",
       "output": "dish-fresh-ico-0081",
       "family": "charcoal-grill",
       "inputNames": [
         "三文鱼",
-        "威士忌"
+        "甜橙"
       ],
       "kind": "dish",
       "referenceId": "ico-0081",
       "referenceName": "威士忌三文鱼",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/813179056844441824",
       "inputs": [
         {
@@ -3449,15 +3449,15 @@
           "count": 1
         },
         {
-          "item": "fresh-mixer-9",
+          "item": "fresh-fruit-2",
           "count": 1
         }
       ],
-      "ancestorRank": 9,
-      "minDeviceLevel": 3,
-      "stage": 8,
-      "duration": 52000,
-      "effort": 20.133333333333333
+      "ancestorRank": 6,
+      "minDeviceLevel": 2,
+      "stage": 6,
+      "duration": 48000,
+      "effort": 10.144444444444446
     },
     {
       "id": "fresh-ico-0082",
@@ -3657,7 +3657,7 @@
     },
     {
       "id": "fresh-ico-0052",
-      "name": "烤土豆片",
+      "name": "黄油烤薯角",
       "output": "dish-fresh-ico-0052",
       "family": "oven",
       "inputNames": [
@@ -3667,8 +3667,8 @@
       "kind": "dish",
       "referenceId": "ico-0052",
       "referenceName": "烤土豆片",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
       "inputs": [
         {
@@ -3724,22 +3724,22 @@
     },
     {
       "id": "fresh-ico-0092",
-      "name": "蜜汁烤鸡",
+      "name": "蜜汁烤鸽串",
       "output": "dish-fresh-ico-0092",
       "family": "oven",
       "inputNames": [
-        "整鸡",
+        "鸽肉串",
         "蜂蜜"
       ],
       "kind": "dish",
       "referenceId": "ico-0092",
       "referenceName": "蜜汁烤鸡",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
       "inputs": [
         {
-          "item": "fresh-poultry-7",
+          "item": "fresh-poultry-4",
           "count": 1
         },
         {
@@ -3747,11 +3747,11 @@
           "count": 1
         }
       ],
-      "ancestorRank": 7,
+      "ancestorRank": 4,
       "minDeviceLevel": 2,
       "stage": 4,
-      "duration": 58000,
-      "effort": 8.033333333333333
+      "duration": 52000,
+      "effort": 6.2444444444444445
     },
     {
       "id": "fresh-ico-0100",
@@ -3863,34 +3863,34 @@
     },
     {
       "id": "fresh-ico-0129",
-      "name": "烤热狗面包",
+      "name": "芝士焗西兰花",
       "output": "dish-fresh-ico-0129",
       "family": "oven",
       "inputNames": [
-        "面包胚",
-        "香肠"
+        "西兰花",
+        "芝士片"
       ],
       "kind": "dish",
       "referenceId": "ico-0129",
       "referenceName": "烤热狗面包",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
       "inputs": [
         {
-          "item": "fresh-grain-6",
+          "item": "fresh-veg-5",
           "count": 1
         },
         {
-          "item": "fresh-beast-1",
+          "item": "fresh-milk-3",
           "count": 1
         }
       ],
-      "ancestorRank": 6,
+      "ancestorRank": 5,
       "minDeviceLevel": 2,
       "stage": 4,
       "duration": 56000,
-      "effort": 9.983333333333334
+      "effort": 9.288888888888888
     },
     {
       "id": "fresh-ico-0132",
@@ -3930,23 +3930,23 @@
     },
     {
       "id": "fresh-ico-0134",
-      "name": "焦香洋葱贝果",
+      "name": "黄油洋葱烤茄子",
       "output": "dish-fresh-ico-0134",
       "family": "oven",
       "inputNames": [
-        "面包胚",
+        "茄子",
         "紫洋葱",
         "黄油"
       ],
       "kind": "dish",
       "referenceId": "ico-0134",
       "referenceName": "焦香洋葱贝果",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
       "inputs": [
         {
-          "item": "fresh-grain-6",
+          "item": "fresh-seasonal-7",
           "count": 1
         },
         {
@@ -3958,11 +3958,11 @@
           "count": 1
         }
       ],
-      "ancestorRank": 6,
+      "ancestorRank": 7,
       "minDeviceLevel": 2,
       "stage": 4,
       "duration": 58000,
-      "effort": 13.588888888888889
+      "effort": 10.811111111111112
     },
     {
       "id": "fresh-ico-0143",
@@ -4038,31 +4038,26 @@
     },
     {
       "id": "fresh-ico-0158",
-      "name": "培根汉堡",
+      "name": "培根四季豆卷",
       "output": "dish-fresh-ico-0158",
       "family": "oven",
       "inputNames": [
-        "面包胚",
         "培根",
-        "生菜"
+        "四季豆"
       ],
       "kind": "dish",
       "referenceId": "ico-0158",
       "referenceName": "培根汉堡",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/812261385202305394?group_id=1191393",
       "inputs": [
-        {
-          "item": "fresh-grain-6",
-          "count": 1
-        },
         {
           "item": "fresh-beast-2",
           "count": 1
         },
         {
-          "item": "fresh-seasonal-5",
+          "item": "fresh-seasonal-6",
           "count": 1
         }
       ],
@@ -4070,7 +4065,7 @@
       "minDeviceLevel": 2,
       "stage": 4,
       "duration": 58000,
-      "effort": 13.588888888888889
+      "effort": 10.811111111111112
     },
     {
       "id": "fresh-ico-0161",
@@ -4110,39 +4105,39 @@
     },
     {
       "id": "fresh-ico-0162",
-      "name": "烤肠热狗",
+      "name": "番茄芝士披萨",
       "output": "dish-fresh-ico-0162",
       "family": "oven",
       "inputNames": [
-        "面包胚",
-        "香肠",
-        "番茄"
+        "软面团",
+        "番茄",
+        "芝士片"
       ],
       "kind": "dish",
       "referenceId": "ico-0162",
       "referenceName": "烤肠热狗",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/811355926735882115?group_id=1191393",
       "inputs": [
         {
-          "item": "fresh-grain-6",
-          "count": 1
-        },
-        {
-          "item": "fresh-beast-1",
+          "item": "fresh-grain-4",
           "count": 1
         },
         {
           "item": "fresh-veg-1",
           "count": 1
+        },
+        {
+          "item": "fresh-milk-3",
+          "count": 1
         }
       ],
-      "ancestorRank": 6,
+      "ancestorRank": 4,
       "minDeviceLevel": 2,
       "stage": 4,
       "duration": 58000,
-      "effort": 10.811111111111112
+      "effort": 8.727777777777778
     },
     {
       "id": "fresh-ico-0065",
@@ -4213,19 +4208,19 @@
     },
     {
       "id": "fresh-ico-0072",
-      "name": "香菇肠粉",
+      "name": "香菇酿肉",
       "output": "dish-fresh-ico-0072",
       "family": "steamer",
       "inputNames": [
         "蘑菇",
-        "米粉浆",
+        "五花肉",
         "香葱"
       ],
       "kind": "dish",
       "referenceId": "ico-0072",
       "referenceName": "香菇肠粉",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/841801833067315716",
       "inputs": [
         {
@@ -4233,7 +4228,7 @@
           "count": 1
         },
         {
-          "item": "fresh-grain-7",
+          "item": "fresh-beast-4",
           "count": 1
         },
         {
@@ -4241,11 +4236,11 @@
           "count": 1
         }
       ],
-      "ancestorRank": 7,
+      "ancestorRank": 4,
       "minDeviceLevel": 2,
       "stage": 6,
       "duration": 50000,
-      "effort": 8.194444444444445
+      "effort": 6.805555555555555
     },
     {
       "id": "fresh-ico-0073",
@@ -4357,19 +4352,19 @@
     },
     {
       "id": "fresh-ico-0088",
-      "name": "古法糯米鸡",
+      "name": "火鸡糯米饭",
       "output": "dish-fresh-ico-0088",
       "family": "steamer",
       "inputNames": [
         "糯米团",
-        "鸡腿",
+        "火鸡腿",
         "蘑菇"
       ],
       "kind": "dish",
       "referenceId": "ico-0088",
       "referenceName": "古法糯米鸡",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
       "inputs": [
         {
@@ -4377,7 +4372,7 @@
           "count": 1
         },
         {
-          "item": "fresh-poultry-5",
+          "item": "fresh-poultry-7",
           "count": 1
         },
         {
@@ -4393,39 +4388,34 @@
     },
     {
       "id": "fresh-ico-0115",
-      "name": "鲜肉肠粉",
+      "name": "南瓜蒸排骨",
       "output": "dish-fresh-ico-0115",
       "family": "steamer",
       "inputNames": [
-        "五花肉",
-        "米粉浆",
-        "香葱"
+        "南瓜",
+        "排骨"
       ],
       "kind": "dish",
       "referenceId": "ico-0115",
       "referenceName": "鲜肉肠粉",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/823602182489113413",
       "inputs": [
         {
-          "item": "fresh-beast-4",
+          "item": "fresh-veg-6",
           "count": 1
         },
         {
-          "item": "fresh-grain-7",
-          "count": 1
-        },
-        {
-          "item": "fresh-spice-2",
+          "item": "fresh-beast-5",
           "count": 1
         }
       ],
-      "ancestorRank": 7,
+      "ancestorRank": 6,
       "minDeviceLevel": 2,
       "stage": 6,
       "duration": 50000,
-      "effort": 8.88888888888889
+      "effort": 11.666666666666666
     },
     {
       "id": "fresh-ico-0116",
@@ -4883,7 +4873,7 @@
     },
     {
       "id": "fresh-ico-0054",
-      "name": "玉米花",
+      "name": "焦糖玉米段",
       "output": "dish-fresh-ico-0054",
       "family": "microwave",
       "inputNames": [
@@ -4893,8 +4883,8 @@
       "kind": "dish",
       "referenceId": "ico-0054",
       "referenceName": "玉米花",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/793897976891182314",
       "inputs": [
         {
@@ -5249,18 +5239,18 @@
     },
     {
       "id": "fresh-ico-0067",
-      "name": "朗姆可乐",
+      "name": "蓝柑可乐",
       "output": "dish-fresh-ico-0067",
       "family": "bar",
       "inputNames": [
-        "朗姆酒",
+        "蓝柑气泡饮",
         "可乐"
       ],
       "kind": "drink",
       "referenceId": "ico-0067",
       "referenceName": "朗姆可乐",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/813578914763900111",
       "inputs": [
         {
@@ -5280,18 +5270,18 @@
     },
     {
       "id": "fresh-ico-0075",
-      "name": "威士忌苏打",
+      "name": "橙冰苏打",
       "output": "dish-fresh-ico-0075",
       "family": "bar",
       "inputNames": [
-        "威士忌",
+        "橙子冰沙",
         "苏打水"
       ],
       "kind": "drink",
       "referenceId": "ico-0075",
       "referenceName": "威士忌苏打",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/813391239243108080",
       "inputs": [
         {
@@ -5311,19 +5301,19 @@
     },
     {
       "id": "fresh-ico-0090",
-      "name": "甜蛋酒",
+      "name": "香甜蛋奶饮",
       "output": "dish-fresh-ico-0090",
       "family": "bar",
       "inputNames": [
         "鸡蛋",
-        "朗姆酒",
+        "糖浆",
         "纯牛奶"
       ],
       "kind": "drink",
       "referenceId": "ico-0090",
       "referenceName": "甜蛋酒",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/797858476368857347",
       "inputs": [
         {
@@ -5331,7 +5321,7 @@
           "count": 1
         },
         {
-          "item": "fresh-mixer-8",
+          "item": "fresh-sweet-3",
           "count": 1
         },
         {
@@ -5339,27 +5329,27 @@
           "count": 1
         }
       ],
-      "ancestorRank": 8,
-      "minDeviceLevel": 3,
+      "ancestorRank": 3,
+      "minDeviceLevel": 1,
       "stage": 8,
-      "duration": 36000,
-      "effort": 9.344444444444445
+      "duration": 26000,
+      "effort": 5.9
     },
     {
       "id": "fresh-ico-0098",
-      "name": "威士忌酸酒",
+      "name": "橙柠酸甜冰饮",
       "output": "dish-fresh-ico-0098",
       "family": "bar",
       "inputNames": [
-        "威士忌",
+        "橙子冰沙",
         "柠檬",
         "糖浆"
       ],
       "kind": "drink",
       "referenceId": "ico-0098",
       "referenceName": "威士忌酸酒",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
       "inputs": [
         {
@@ -5383,19 +5373,19 @@
     },
     {
       "id": "fresh-ico-0111",
-      "name": "莫斯科之骡",
+      "name": "椰青姜柠饮",
       "output": "dish-fresh-ico-0111",
       "family": "bar",
       "inputNames": [
-        "伏特加",
+        "椰青水",
         "姜汁水",
         "柠檬"
       ],
       "kind": "drink",
       "referenceId": "ico-0111",
       "referenceName": "莫斯科之骡",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
       "inputs": [
         {
@@ -5419,18 +5409,19 @@
     },
     {
       "id": "fresh-ico-0118",
-      "name": "龙舌兰螺丝刀",
+      "name": "桑葚龙舌兰特调",
       "output": "dish-fresh-ico-0118",
       "family": "bar",
       "inputNames": [
         "龙舌兰",
-        "甜橙"
+        "桑葚",
+        "柠檬"
       ],
       "kind": "drink",
       "referenceId": "ico-0118",
       "referenceName": "龙舌兰螺丝刀",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790629105325312627",
       "inputs": [
         {
@@ -5438,7 +5429,11 @@
           "count": 1
         },
         {
-          "item": "fresh-fruit-2",
+          "item": "fresh-exotic-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
           "count": 1
         }
       ],
@@ -5446,22 +5441,22 @@
       "minDeviceLevel": 3,
       "stage": 8,
       "duration": 34000,
-      "effort": 14.766666666666666
+      "effort": 21.71111111111111
     },
     {
       "id": "fresh-ico-0122",
-      "name": "金汤力",
+      "name": "西柚金酒气泡",
       "output": "dish-fresh-ico-0122",
       "family": "bar",
       "inputNames": [
         "金酒",
-        "汤力水"
+        "西柚气泡水"
       ],
       "kind": "drink",
       "referenceId": "ico-0122",
       "referenceName": "金汤力",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
       "inputs": [
         {
@@ -5481,19 +5476,19 @@
     },
     {
       "id": "fresh-ico-0131",
-      "name": "热托迪",
+      "name": "蜂蜜橙柠冰饮",
       "output": "dish-fresh-ico-0131",
       "family": "bar",
       "inputNames": [
-        "威士忌",
+        "橙子冰沙",
         "蜂蜜",
         "柠檬"
       ],
       "kind": "drink",
       "referenceId": "ico-0131",
       "referenceName": "热托迪",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790641292114657994",
       "inputs": [
         {
@@ -5517,18 +5512,18 @@
     },
     {
       "id": "fresh-ico-0135",
-      "name": "伏特加汤力",
+      "name": "西柚椰青气泡",
       "output": "dish-fresh-ico-0135",
       "family": "bar",
       "inputNames": [
-        "伏特加",
-        "汤力水"
+        "椰青水",
+        "西柚气泡水"
       ],
       "kind": "drink",
       "referenceId": "ico-0135",
       "referenceName": "伏特加汤力",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/790906865650238207",
       "inputs": [
         {
@@ -5584,18 +5579,18 @@
     },
     {
       "id": "fresh-ico-0159",
-      "name": "能量伏特加",
+      "name": "椰青能量饮",
       "output": "dish-fresh-ico-0159",
       "family": "bar",
       "inputNames": [
-        "伏特加",
+        "椰青水",
         "能量汽水"
       ],
       "kind": "drink",
       "referenceId": "ico-0159",
       "referenceName": "能量伏特加",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/811935337432481938",
       "inputs": [
         {
@@ -5615,19 +5610,19 @@
     },
     {
       "id": "fresh-ico-0160",
-      "name": "浓缩马提尼",
+      "name": "椰青浓缩咖啡",
       "output": "dish-fresh-ico-0160",
       "family": "bar",
       "inputNames": [
-        "伏特加",
+        "椰青水",
         "浓缩咖啡",
         "糖浆"
       ],
       "kind": "drink",
       "referenceId": "ico-0160",
       "referenceName": "浓缩马提尼",
-      "naming": "reference",
-      "design": "本项目配方与成长规则",
+      "naming": "project",
+      "design": "Plan4：配方、名称与已确认基础食材一致；referenceName保留原参考出处。",
       "sourceUrl": "https://www.taptap.cn/moment/811614696531559002",
       "inputs": [
         {
@@ -5825,11 +5820,11 @@
     {
       "output": "dish-fresh-ico-0029",
       "stage": 4,
-      "minDeviceLevel": 1,
-      "effort": 8.516666666666666,
+      "minDeviceLevel": 2,
+      "effort": 11.694444444444443,
       "index": 19,
       "id": "v3-order-020",
-      "coins": 76
+      "coins": 95
     },
     {
       "output": "dish-fresh-ico-0034",
@@ -5907,10 +5902,10 @@
       "output": "dish-fresh-ico-0092",
       "stage": 4,
       "minDeviceLevel": 2,
-      "effort": 8.033333333333333,
+      "effort": 6.2444444444444445,
       "index": 50,
       "id": "v3-order-029",
-      "coins": 73
+      "coins": 62
     },
     {
       "output": "dish-fresh-ico-0063",
@@ -5925,28 +5920,28 @@
       "output": "dish-fresh-ico-0097",
       "stage": 4,
       "minDeviceLevel": 2,
-      "effort": 8.783333333333333,
+      "effort": 9.05,
       "index": 25,
       "id": "v3-order-031",
-      "coins": 77
+      "coins": 79
     },
     {
       "output": "dish-fresh-ico-0129",
       "stage": 4,
       "minDeviceLevel": 2,
-      "effort": 9.983333333333334,
+      "effort": 9.288888888888888,
       "index": 54,
       "id": "v3-order-032",
-      "coins": 84
+      "coins": 80
     },
     {
       "output": "dish-fresh-ico-0162",
       "stage": 4,
       "minDeviceLevel": 2,
-      "effort": 10.811111111111112,
+      "effort": 8.727777777777778,
       "index": 61,
       "id": "v3-order-033",
-      "coins": 89
+      "coins": 77
     },
     {
       "output": "dish-fresh-ico-0057",
@@ -5979,19 +5974,19 @@
       "output": "dish-fresh-ico-0134",
       "stage": 4,
       "minDeviceLevel": 2,
-      "effort": 13.588888888888889,
+      "effort": 10.811111111111112,
       "index": 56,
       "id": "v3-order-037",
-      "coins": 106
+      "coins": 89
     },
     {
       "output": "dish-fresh-ico-0158",
       "stage": 4,
       "minDeviceLevel": 2,
-      "effort": 13.588888888888889,
+      "effort": 10.811111111111112,
       "index": 59,
       "id": "v3-order-038",
-      "coins": 106
+      "coins": 89
     },
     {
       "output": "dish-fresh-ico-0143",
@@ -6096,10 +6091,10 @@
       "output": "dish-fresh-ico-0053",
       "stage": 5,
       "minDeviceLevel": 2,
-      "effort": 6.53888888888889,
+      "effort": 6.805555555555555,
       "index": 37,
       "id": "v3-order-050",
-      "coins": 64
+      "coins": 65
     },
     {
       "output": "dish-fresh-ico-0045",
@@ -6132,10 +6127,10 @@
       "output": "dish-fresh-ico-0042",
       "stage": 5,
       "minDeviceLevel": 2,
-      "effort": 10.144444444444446,
+      "effort": 11.533333333333331,
       "index": 34,
       "id": "v3-order-054",
-      "coins": 85
+      "coins": 94
     },
     {
       "output": "dish-fresh-ico-0128",
@@ -6186,10 +6181,10 @@
       "output": "dish-fresh-ico-0030",
       "stage": 5,
       "minDeviceLevel": 3,
-      "effort": 18.68888888888889,
+      "effort": 20.077777777777776,
       "index": 0,
       "id": "v3-order-060",
-      "coins": 137
+      "coins": 145
     },
     {
       "output": "dish-fresh-ico-0133",
@@ -6285,10 +6280,10 @@
       "output": "dish-fresh-ico-0072",
       "stage": 6,
       "minDeviceLevel": 2,
-      "effort": 8.194444444444445,
+      "effort": 6.805555555555555,
       "index": 64,
       "id": "v3-order-071",
-      "coins": 74
+      "coins": 65
     },
     {
       "output": "dish-fresh-ico-0079",
@@ -6303,10 +6298,10 @@
       "output": "dish-fresh-ico-0115",
       "stage": 6,
       "minDeviceLevel": 2,
-      "effort": 8.88888888888889,
+      "effort": 11.666666666666666,
       "index": 69,
       "id": "v3-order-073",
-      "coins": 78
+      "coins": 94
     },
     {
       "output": "dish-fresh-ico-0083",
@@ -6608,11 +6603,11 @@
     {
       "output": "dish-fresh-ico-0090",
       "stage": 8,
-      "minDeviceLevel": 3,
-      "effort": 9.344444444444445,
+      "minDeviceLevel": 1,
+      "effort": 5.9,
       "index": 97,
       "id": "v3-order-107",
-      "coins": 81
+      "coins": 60
     },
     {
       "output": "dish-fresh-ico-0135",
@@ -6681,10 +6676,10 @@
       "output": "dish-fresh-ico-0118",
       "stage": 8,
       "minDeviceLevel": 3,
-      "effort": 14.766666666666666,
+      "effort": 21.71111111111111,
       "index": 100,
       "id": "v3-order-115",
-      "coins": 113
+      "coins": 155
     },
     {
       "output": "dish-fresh-ico-0075",
@@ -6724,12 +6719,12 @@
     },
     {
       "output": "dish-fresh-ico-0081",
-      "stage": 8,
-      "minDeviceLevel": 3,
-      "effort": 20.133333333333333,
+      "stage": 6,
+      "minDeviceLevel": 2,
+      "effort": 10.144444444444446,
       "index": 41,
       "id": "v3-order-120",
-      "coins": 145
+      "coins": 85
     },
     {
       "output": "dish-fresh-ico-0142",

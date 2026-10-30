@@ -1,0 +1,2152 @@
+{
+  "version": 1,
+  "date": "2026-10-30",
+  "source": "Plan4 approved material identities; round31 complete recipe semantic reconciliation; round39 oven menu diversification",
+  "rawItems": [
+    {
+      "id": "fresh-veg-1",
+      "name": "番茄",
+      "chain": "fresh-veg",
+      "level": 1
+    },
+    {
+      "id": "fresh-veg-2",
+      "name": "黄瓜",
+      "chain": "fresh-veg",
+      "level": 2
+    },
+    {
+      "id": "fresh-veg-3",
+      "name": "彩椒",
+      "chain": "fresh-veg",
+      "level": 3
+    },
+    {
+      "id": "fresh-veg-4",
+      "name": "胡萝卜",
+      "chain": "fresh-veg",
+      "level": 4
+    },
+    {
+      "id": "fresh-veg-5",
+      "name": "西兰花",
+      "chain": "fresh-veg",
+      "level": 5
+    },
+    {
+      "id": "fresh-veg-6",
+      "name": "南瓜",
+      "chain": "fresh-veg",
+      "level": 6
+    },
+    {
+      "id": "fresh-veg-7",
+      "name": "田园菜篮",
+      "chain": "fresh-veg",
+      "level": 7
+    },
+    {
+      "id": "fresh-fruit-1",
+      "name": "草莓",
+      "chain": "fresh-fruit",
+      "level": 1
+    },
+    {
+      "id": "fresh-fruit-2",
+      "name": "甜橙",
+      "chain": "fresh-fruit",
+      "level": 2
+    },
+    {
+      "id": "fresh-fruit-3",
+      "name": "苹果",
+      "chain": "fresh-fruit",
+      "level": 3
+    },
+    {
+      "id": "fresh-fruit-4",
+      "name": "葡萄",
+      "chain": "fresh-fruit",
+      "level": 4
+    },
+    {
+      "id": "fresh-fruit-5",
+      "name": "菠萝",
+      "chain": "fresh-fruit",
+      "level": 5
+    },
+    {
+      "id": "fresh-fruit-6",
+      "name": "西瓜",
+      "chain": "fresh-fruit",
+      "level": 6
+    },
+    {
+      "id": "fresh-fruit-7",
+      "name": "缤纷果篮",
+      "chain": "fresh-fruit",
+      "level": 7
+    },
+    {
+      "id": "fresh-beast-1",
+      "name": "香肠",
+      "chain": "fresh-beast",
+      "level": 1
+    },
+    {
+      "id": "fresh-beast-2",
+      "name": "培根",
+      "chain": "fresh-beast",
+      "level": 2
+    },
+    {
+      "id": "fresh-beast-3",
+      "name": "肉丸",
+      "chain": "fresh-beast",
+      "level": 3
+    },
+    {
+      "id": "fresh-beast-4",
+      "name": "五花肉",
+      "chain": "fresh-beast",
+      "level": 4
+    },
+    {
+      "id": "fresh-beast-5",
+      "name": "排骨",
+      "chain": "fresh-beast",
+      "level": 5
+    },
+    {
+      "id": "fresh-beast-6",
+      "name": "猪排",
+      "chain": "fresh-beast",
+      "level": 6
+    },
+    {
+      "id": "fresh-beast-7",
+      "name": "带骨肘子",
+      "chain": "fresh-beast",
+      "level": 7
+    },
+    {
+      "id": "fresh-beast-8",
+      "name": "带骨牛排",
+      "chain": "fresh-beast",
+      "level": 8
+    },
+    {
+      "id": "fresh-beast-9",
+      "name": "羊排",
+      "chain": "fresh-beast",
+      "level": 9
+    },
+    {
+      "id": "fresh-beast-10",
+      "name": "火腿",
+      "chain": "fresh-beast",
+      "level": 10
+    },
+    {
+      "id": "fresh-poultry-1",
+      "name": "鸡蛋",
+      "chain": "fresh-poultry",
+      "level": 1
+    },
+    {
+      "id": "fresh-poultry-2",
+      "name": "鸡胗",
+      "chain": "fresh-poultry",
+      "level": 2
+    },
+    {
+      "id": "fresh-poultry-3",
+      "name": "鸭掌",
+      "chain": "fresh-poultry",
+      "level": 3
+    },
+    {
+      "id": "fresh-poultry-4",
+      "name": "鸽肉串",
+      "chain": "fresh-poultry",
+      "level": 4
+    },
+    {
+      "id": "fresh-poultry-5",
+      "name": "鸡胸肉",
+      "chain": "fresh-poultry",
+      "level": 5
+    },
+    {
+      "id": "fresh-poultry-6",
+      "name": "鹅肝",
+      "chain": "fresh-poultry",
+      "level": 6
+    },
+    {
+      "id": "fresh-poultry-7",
+      "name": "火鸡腿",
+      "chain": "fresh-poultry",
+      "level": 7
+    },
+    {
+      "id": "fresh-poultry-8",
+      "name": "卤鹅肉",
+      "chain": "fresh-poultry",
+      "level": 8
+    },
+    {
+      "id": "fresh-spice-1",
+      "name": "红椒",
+      "chain": "fresh-spice",
+      "level": 1
+    },
+    {
+      "id": "fresh-spice-2",
+      "name": "香葱",
+      "chain": "fresh-spice",
+      "level": 2
+    },
+    {
+      "id": "fresh-spice-3",
+      "name": "紫洋葱",
+      "chain": "fresh-spice",
+      "level": 3
+    },
+    {
+      "id": "fresh-spice-4",
+      "name": "香草荚",
+      "chain": "fresh-spice",
+      "level": 4
+    },
+    {
+      "id": "fresh-spice-5",
+      "name": "大蒜",
+      "chain": "fresh-spice",
+      "level": 5
+    },
+    {
+      "id": "fresh-spice-6",
+      "name": "罗勒",
+      "chain": "fresh-spice",
+      "level": 6
+    },
+    {
+      "id": "fresh-spice-7",
+      "name": "肉桂",
+      "chain": "fresh-spice",
+      "level": 7
+    },
+    {
+      "id": "fresh-spice-8",
+      "name": "香草籽",
+      "chain": "fresh-spice",
+      "level": 8
+    },
+    {
+      "id": "fresh-spice-9",
+      "name": "香草精",
+      "chain": "fresh-spice",
+      "level": 9
+    },
+    {
+      "id": "fresh-spice-10",
+      "name": "混合香叶",
+      "chain": "fresh-spice",
+      "level": 10
+    },
+    {
+      "id": "fresh-seasonal-1",
+      "name": "蘑菇",
+      "chain": "fresh-seasonal",
+      "level": 1
+    },
+    {
+      "id": "fresh-seasonal-2",
+      "name": "玉米",
+      "chain": "fresh-seasonal",
+      "level": 2
+    },
+    {
+      "id": "fresh-seasonal-3",
+      "name": "紫甘蓝",
+      "chain": "fresh-seasonal",
+      "level": 3
+    },
+    {
+      "id": "fresh-seasonal-4",
+      "name": "土豆",
+      "chain": "fresh-seasonal",
+      "level": 4
+    },
+    {
+      "id": "fresh-seasonal-5",
+      "name": "生菜",
+      "chain": "fresh-seasonal",
+      "level": 5
+    },
+    {
+      "id": "fresh-seasonal-6",
+      "name": "四季豆",
+      "chain": "fresh-seasonal",
+      "level": 6
+    },
+    {
+      "id": "fresh-seasonal-7",
+      "name": "茄子",
+      "chain": "fresh-seasonal",
+      "level": 7
+    },
+    {
+      "id": "fresh-seasonal-8",
+      "name": "白萝卜",
+      "chain": "fresh-seasonal",
+      "level": 8
+    },
+    {
+      "id": "fresh-exotic-1",
+      "name": "蓝莓",
+      "chain": "fresh-exotic",
+      "level": 1
+    },
+    {
+      "id": "fresh-exotic-2",
+      "name": "香蕉",
+      "chain": "fresh-exotic",
+      "level": 2
+    },
+    {
+      "id": "fresh-exotic-3",
+      "name": "柠檬",
+      "chain": "fresh-exotic",
+      "level": 3
+    },
+    {
+      "id": "fresh-exotic-4",
+      "name": "芒果",
+      "chain": "fresh-exotic",
+      "level": 4
+    },
+    {
+      "id": "fresh-exotic-5",
+      "name": "水蜜桃",
+      "chain": "fresh-exotic",
+      "level": 5
+    },
+    {
+      "id": "fresh-exotic-6",
+      "name": "椰子",
+      "chain": "fresh-exotic",
+      "level": 6
+    },
+    {
+      "id": "fresh-exotic-7",
+      "name": "梨",
+      "chain": "fresh-exotic",
+      "level": 7
+    },
+    {
+      "id": "fresh-exotic-8",
+      "name": "桑葚",
+      "chain": "fresh-exotic",
+      "level": 8
+    },
+    {
+      "id": "fresh-sea-1",
+      "name": "鲜虾",
+      "chain": "fresh-sea",
+      "level": 1
+    },
+    {
+      "id": "fresh-sea-2",
+      "name": "鱿鱼",
+      "chain": "fresh-sea",
+      "level": 2
+    },
+    {
+      "id": "fresh-sea-3",
+      "name": "扇贝",
+      "chain": "fresh-sea",
+      "level": 3
+    },
+    {
+      "id": "fresh-sea-4",
+      "name": "鲷鱼",
+      "chain": "fresh-sea",
+      "level": 4
+    },
+    {
+      "id": "fresh-sea-5",
+      "name": "金枪鱼",
+      "chain": "fresh-sea",
+      "level": 5
+    },
+    {
+      "id": "fresh-sea-6",
+      "name": "三文鱼",
+      "chain": "fresh-sea",
+      "level": 6
+    },
+    {
+      "id": "fresh-sea-7",
+      "name": "生蚝",
+      "chain": "fresh-sea",
+      "level": 7
+    },
+    {
+      "id": "fresh-sea-8",
+      "name": "海螺",
+      "chain": "fresh-sea",
+      "level": 8
+    },
+    {
+      "id": "fresh-sea-9",
+      "name": "青蟹",
+      "chain": "fresh-sea",
+      "level": 9
+    },
+    {
+      "id": "fresh-sea-10",
+      "name": "龙虾",
+      "chain": "fresh-sea",
+      "level": 10
+    },
+    {
+      "id": "fresh-sea-11",
+      "name": "帝王蟹",
+      "chain": "fresh-sea",
+      "level": 11
+    },
+    {
+      "id": "fresh-milk-1",
+      "name": "纯牛奶",
+      "chain": "fresh-milk",
+      "level": 1
+    },
+    {
+      "id": "fresh-milk-2",
+      "name": "黄油",
+      "chain": "fresh-milk",
+      "level": 2
+    },
+    {
+      "id": "fresh-milk-3",
+      "name": "芝士片",
+      "chain": "fresh-milk",
+      "level": 3
+    },
+    {
+      "id": "fresh-milk-4",
+      "name": "奶油",
+      "chain": "fresh-milk",
+      "level": 4
+    },
+    {
+      "id": "fresh-milk-5",
+      "name": "酸奶",
+      "chain": "fresh-milk",
+      "level": 5
+    },
+    {
+      "id": "fresh-milk-6",
+      "name": "奶酪",
+      "chain": "fresh-milk",
+      "level": 6
+    },
+    {
+      "id": "fresh-milk-7",
+      "name": "炼乳",
+      "chain": "fresh-milk",
+      "level": 7
+    },
+    {
+      "id": "fresh-grain-1",
+      "name": "大米",
+      "chain": "fresh-grain",
+      "level": 1
+    },
+    {
+      "id": "fresh-grain-2",
+      "name": "燕麦",
+      "chain": "fresh-grain",
+      "level": 2
+    },
+    {
+      "id": "fresh-grain-3",
+      "name": "面粉",
+      "chain": "fresh-grain",
+      "level": 3
+    },
+    {
+      "id": "fresh-grain-4",
+      "name": "软面团",
+      "chain": "fresh-grain",
+      "level": 4
+    },
+    {
+      "id": "fresh-grain-5",
+      "name": "吐司",
+      "chain": "fresh-grain",
+      "level": 5
+    },
+    {
+      "id": "fresh-grain-6",
+      "name": "面包胚",
+      "chain": "fresh-grain",
+      "level": 6
+    },
+    {
+      "id": "fresh-grain-7",
+      "name": "米粉浆",
+      "chain": "fresh-grain",
+      "level": 7
+    },
+    {
+      "id": "fresh-grain-8",
+      "name": "糯米团",
+      "chain": "fresh-grain",
+      "level": 8
+    },
+    {
+      "id": "fresh-grain-9",
+      "name": "酥皮",
+      "chain": "fresh-grain",
+      "level": 9
+    },
+    {
+      "id": "fresh-sweet-1",
+      "name": "砂糖",
+      "chain": "fresh-sweet",
+      "level": 1
+    },
+    {
+      "id": "fresh-sweet-2",
+      "name": "冰糖",
+      "chain": "fresh-sweet",
+      "level": 2
+    },
+    {
+      "id": "fresh-sweet-3",
+      "name": "糖浆",
+      "chain": "fresh-sweet",
+      "level": 3
+    },
+    {
+      "id": "fresh-sweet-4",
+      "name": "蜂蜜",
+      "chain": "fresh-sweet",
+      "level": 4
+    },
+    {
+      "id": "fresh-sweet-5",
+      "name": "焦糖",
+      "chain": "fresh-sweet",
+      "level": 5
+    },
+    {
+      "id": "fresh-sweet-6",
+      "name": "糖豆",
+      "chain": "fresh-sweet",
+      "level": 6
+    },
+    {
+      "id": "fresh-sweet-7",
+      "name": "巧克力",
+      "chain": "fresh-sweet",
+      "level": 7
+    },
+    {
+      "id": "fresh-sweet-8",
+      "name": "棉花软糖",
+      "chain": "fresh-sweet",
+      "level": 8
+    },
+    {
+      "id": "fresh-sweet-9",
+      "name": "黑糖珍珠",
+      "chain": "fresh-sweet",
+      "level": 9
+    },
+    {
+      "id": "fresh-coffee-1",
+      "name": "咖啡豆",
+      "chain": "fresh-coffee",
+      "level": 1
+    },
+    {
+      "id": "fresh-coffee-2",
+      "name": "浓缩咖啡",
+      "chain": "fresh-coffee",
+      "level": 2
+    },
+    {
+      "id": "fresh-coffee-3",
+      "name": "原味咖啡",
+      "chain": "fresh-coffee",
+      "level": 3
+    },
+    {
+      "id": "fresh-coffee-4",
+      "name": "便携咖啡",
+      "chain": "fresh-coffee",
+      "level": 4
+    },
+    {
+      "id": "fresh-coffee-5",
+      "name": "冰咖啡",
+      "chain": "fresh-coffee",
+      "level": 5
+    },
+    {
+      "id": "fresh-coffee-6",
+      "name": "深烘咖啡",
+      "chain": "fresh-coffee",
+      "level": 6
+    },
+    {
+      "id": "fresh-coffee-7",
+      "name": "拿铁咖啡",
+      "chain": "fresh-coffee",
+      "level": 7
+    },
+    {
+      "id": "fresh-coffee-8",
+      "name": "气泡冷萃",
+      "chain": "fresh-coffee",
+      "level": 8
+    },
+    {
+      "id": "fresh-coffee-9",
+      "name": "摩卡咖啡",
+      "chain": "fresh-coffee",
+      "level": 9
+    },
+    {
+      "id": "fresh-tea-1",
+      "name": "茶叶",
+      "chain": "fresh-tea",
+      "level": 1
+    },
+    {
+      "id": "fresh-tea-2",
+      "name": "绿茶",
+      "chain": "fresh-tea",
+      "level": 2
+    },
+    {
+      "id": "fresh-tea-3",
+      "name": "红茶",
+      "chain": "fresh-tea",
+      "level": 3
+    },
+    {
+      "id": "fresh-tea-4",
+      "name": "乌龙茶",
+      "chain": "fresh-tea",
+      "level": 4
+    },
+    {
+      "id": "fresh-tea-5",
+      "name": "花茶",
+      "chain": "fresh-tea",
+      "level": 5
+    },
+    {
+      "id": "fresh-tea-6",
+      "name": "香草绿茶",
+      "chain": "fresh-tea",
+      "level": 6
+    },
+    {
+      "id": "fresh-mixer-1",
+      "name": "冰块",
+      "chain": "fresh-mixer",
+      "level": 1
+    },
+    {
+      "id": "fresh-mixer-2",
+      "name": "矿泉水",
+      "chain": "fresh-mixer",
+      "level": 2
+    },
+    {
+      "id": "fresh-mixer-3",
+      "name": "苏打水",
+      "chain": "fresh-mixer",
+      "level": 3
+    },
+    {
+      "id": "fresh-mixer-4",
+      "name": "姜汁水",
+      "chain": "fresh-mixer",
+      "level": 4
+    },
+    {
+      "id": "fresh-mixer-5",
+      "name": "西柚气泡水",
+      "chain": "fresh-mixer",
+      "level": 5
+    },
+    {
+      "id": "fresh-mixer-6",
+      "name": "可乐",
+      "chain": "fresh-mixer",
+      "level": 6
+    },
+    {
+      "id": "fresh-mixer-7",
+      "name": "能量汽水",
+      "chain": "fresh-mixer",
+      "level": 7
+    },
+    {
+      "id": "fresh-mixer-8",
+      "name": "蓝柑气泡饮",
+      "chain": "fresh-mixer",
+      "level": 8
+    },
+    {
+      "id": "fresh-mixer-9",
+      "name": "橙子冰沙",
+      "chain": "fresh-mixer",
+      "level": 9
+    },
+    {
+      "id": "fresh-mixer-10",
+      "name": "椰青水",
+      "chain": "fresh-mixer",
+      "level": 10
+    },
+    {
+      "id": "fresh-mixer-11",
+      "name": "龙舌兰",
+      "chain": "fresh-mixer",
+      "level": 11
+    },
+    {
+      "id": "fresh-mixer-12",
+      "name": "金酒",
+      "chain": "fresh-mixer",
+      "level": 12
+    },
+    {
+      "id": "fresh-mixer-13",
+      "name": "红葡萄酒",
+      "chain": "fresh-mixer",
+      "level": 13
+    }
+  ],
+  "recipes": [
+    {
+      "id": "fresh-ico-0146",
+      "output": "dish-fresh-ico-0146",
+      "name": "凉拌卤鹅肉",
+      "inputs": [
+        {
+          "item": "fresh-poultry-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousName": "凉拌皮蛋",
+      "previousInputs": [
+        {
+          "item": "fresh-poultry-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "皮蛋",
+        "紫洋葱",
+        "红椒"
+      ]
+    },
+    {
+      "id": "fresh-ico-0029",
+      "output": "dish-fresh-ico-0029",
+      "name": "香煎鹅肝",
+      "inputs": [
+        {
+          "item": "fresh-poultry-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousName": "脆皮翅根",
+      "previousInputs": [
+        {
+          "item": "fresh-poultry-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "鸡翅中",
+        "面粉",
+        "红椒"
+      ]
+    },
+    {
+      "id": "fresh-ico-0068",
+      "output": "dish-fresh-ico-0068",
+      "name": "酥炸扇贝",
+      "inputs": [
+        {
+          "item": "fresh-sea-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "previousName": "酥香鳕鱼",
+      "previousInputs": [
+        {
+          "item": "fresh-sea-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "鳕鱼",
+        "面粉",
+        "柠檬"
+      ]
+    },
+    {
+      "id": "fresh-ico-0097",
+      "output": "dish-fresh-ico-0097",
+      "name": "酥炸火鸡腿",
+      "inputs": [
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousName": "酥炸大鸡腿",
+      "previousInputs": [
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "鸡腿",
+        "面粉",
+        "红椒"
+      ]
+    },
+    {
+      "id": "fresh-ico-0136",
+      "output": "dish-fresh-ico-0136",
+      "name": "黄油煎鲷鱼",
+      "inputs": [
+        {
+          "item": "fresh-sea-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "previousName": "醇香鲶鱼块",
+      "previousInputs": [
+        {
+          "item": "fresh-sea-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "鲶鱼",
+        "黄油",
+        "香葱"
+      ]
+    },
+    {
+      "id": "fresh-ico-0042",
+      "output": "dish-fresh-ico-0042",
+      "name": "炭烤鸡胸肉",
+      "inputs": [
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "previousName": "炭烤鸡胸肉",
+      "previousInputs": [
+        {
+          "item": "fresh-poultry-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "鸡胸肉",
+        "罗勒"
+      ]
+    },
+    {
+      "id": "fresh-ico-0053",
+      "output": "dish-fresh-ico-0053",
+      "name": "炭烤火鸡腿",
+      "inputs": [
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousName": "炭烤琵琶腿",
+      "previousInputs": [
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "鸡腿",
+        "红椒"
+      ]
+    },
+    {
+      "id": "fresh-ico-0061",
+      "output": "dish-fresh-ico-0061",
+      "name": "葱香烤青蟹",
+      "inputs": [
+        {
+          "item": "fresh-sea-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "previousName": "熟烤肥蟹",
+      "previousInputs": [
+        {
+          "item": "fresh-sea-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "肥蟹",
+        "香葱"
+      ]
+    },
+    {
+      "id": "fresh-ico-0081",
+      "output": "dish-fresh-ico-0081",
+      "name": "橙香三文鱼",
+      "inputs": [
+        {
+          "item": "fresh-sea-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-fruit-2",
+          "count": 1
+        }
+      ],
+      "previousName": "威士忌三文鱼",
+      "previousInputs": [
+        {
+          "item": "fresh-sea-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "三文鱼",
+        "威士忌"
+      ]
+    },
+    {
+      "id": "fresh-ico-0092",
+      "output": "dish-fresh-ico-0092",
+      "name": "蜜汁烤鸽串",
+      "inputs": [
+        {
+          "item": "fresh-poultry-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        }
+      ],
+      "previousName": "蜜汁烤鸡",
+      "previousInputs": [
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "整鸡",
+        "蜂蜜"
+      ]
+    },
+    {
+      "id": "fresh-ico-0088",
+      "output": "dish-fresh-ico-0088",
+      "name": "火鸡糯米饭",
+      "inputs": [
+        {
+          "item": "fresh-grain-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        }
+      ],
+      "previousName": "古法糯米鸡",
+      "previousInputs": [
+        {
+          "item": "fresh-grain-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "糯米团",
+        "鸡腿",
+        "蘑菇"
+      ]
+    },
+    {
+      "id": "fresh-ico-0067",
+      "output": "dish-fresh-ico-0067",
+      "name": "蓝柑可乐",
+      "inputs": [
+        {
+          "item": "fresh-mixer-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-6",
+          "count": 1
+        }
+      ],
+      "previousName": "朗姆可乐",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-6",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "朗姆酒",
+        "可乐"
+      ]
+    },
+    {
+      "id": "fresh-ico-0075",
+      "output": "dish-fresh-ico-0075",
+      "name": "橙冰苏打",
+      "inputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-3",
+          "count": 1
+        }
+      ],
+      "previousName": "威士忌苏打",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-3",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "威士忌",
+        "苏打水"
+      ]
+    },
+    {
+      "id": "fresh-ico-0090",
+      "output": "dish-fresh-ico-0090",
+      "name": "香甜蛋奶饮",
+      "inputs": [
+        {
+          "item": "fresh-poultry-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        }
+      ],
+      "previousName": "甜蛋酒",
+      "previousInputs": [
+        {
+          "item": "fresh-poultry-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "鸡蛋",
+        "朗姆酒",
+        "纯牛奶"
+      ]
+    },
+    {
+      "id": "fresh-ico-0098",
+      "output": "dish-fresh-ico-0098",
+      "name": "橙柠酸甜冰饮",
+      "inputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        }
+      ],
+      "previousName": "威士忌酸酒",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "威士忌",
+        "柠檬",
+        "糖浆"
+      ]
+    },
+    {
+      "id": "fresh-ico-0111",
+      "output": "dish-fresh-ico-0111",
+      "name": "椰青姜柠饮",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "previousName": "莫斯科之骡",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "伏特加",
+        "姜汁水",
+        "柠檬"
+      ]
+    },
+    {
+      "id": "fresh-ico-0122",
+      "output": "dish-fresh-ico-0122",
+      "name": "西柚金酒气泡",
+      "inputs": [
+        {
+          "item": "fresh-mixer-12",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-5",
+          "count": 1
+        }
+      ],
+      "previousName": "金汤力",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-12",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-5",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "金酒",
+        "汤力水"
+      ]
+    },
+    {
+      "id": "fresh-ico-0131",
+      "output": "dish-fresh-ico-0131",
+      "name": "蜂蜜橙柠冰饮",
+      "inputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "previousName": "热托迪",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-9",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "威士忌",
+        "蜂蜜",
+        "柠檬"
+      ]
+    },
+    {
+      "id": "fresh-ico-0135",
+      "output": "dish-fresh-ico-0135",
+      "name": "西柚椰青气泡",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-5",
+          "count": 1
+        }
+      ],
+      "previousName": "伏特加汤力",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-5",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "伏特加",
+        "汤力水"
+      ]
+    },
+    {
+      "id": "fresh-ico-0159",
+      "output": "dish-fresh-ico-0159",
+      "name": "椰青能量饮",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-7",
+          "count": 1
+        }
+      ],
+      "previousName": "能量伏特加",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-mixer-7",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "伏特加",
+        "能量汽水"
+      ]
+    },
+    {
+      "id": "fresh-ico-0160",
+      "output": "dish-fresh-ico-0160",
+      "name": "椰青浓缩咖啡",
+      "inputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-coffee-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        }
+      ],
+      "previousName": "浓缩马提尼",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-10",
+          "count": 1
+        },
+        {
+          "item": "fresh-coffee-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-3",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "伏特加",
+        "浓缩咖啡",
+        "糖浆"
+      ]
+    },
+    {
+      "id": "fresh-ico-0052",
+      "output": "dish-fresh-ico-0052",
+      "name": "黄油烤薯角",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "previousName": "烤土豆片",
+      "previousInputs": [
+        {
+          "item": "fresh-seasonal-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "土豆",
+        "黄油"
+      ],
+      "schedule": {
+        "family": "oven",
+        "minDeviceLevel": 2,
+        "stage": 4,
+        "duration": 52000
+      }
+    },
+    {
+      "id": "fresh-ico-0129",
+      "output": "dish-fresh-ico-0129",
+      "name": "芝士焗西兰花",
+      "inputs": [
+        {
+          "item": "fresh-veg-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-3",
+          "count": 1
+        }
+      ],
+      "previousName": "烤热狗面包",
+      "previousInputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "面包胚",
+        "香肠"
+      ],
+      "schedule": {
+        "family": "oven",
+        "minDeviceLevel": 2,
+        "stage": 4,
+        "duration": 56000
+      }
+    },
+    {
+      "id": "fresh-ico-0134",
+      "output": "dish-fresh-ico-0134",
+      "name": "黄油洋葱烤茄子",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "previousName": "焦香洋葱贝果",
+      "previousInputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-2",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "面包胚",
+        "紫洋葱",
+        "黄油"
+      ],
+      "schedule": {
+        "family": "oven",
+        "minDeviceLevel": 2,
+        "stage": 4,
+        "duration": 58000
+      }
+    },
+    {
+      "id": "fresh-ico-0158",
+      "output": "dish-fresh-ico-0158",
+      "name": "培根四季豆卷",
+      "inputs": [
+        {
+          "item": "fresh-beast-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-6",
+          "count": 1
+        }
+      ],
+      "previousName": "培根汉堡",
+      "previousInputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-5",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "面包胚",
+        "培根",
+        "生菜"
+      ],
+      "schedule": {
+        "family": "oven",
+        "minDeviceLevel": 2,
+        "stage": 4,
+        "duration": 58000
+      }
+    },
+    {
+      "id": "fresh-ico-0162",
+      "output": "dish-fresh-ico-0162",
+      "name": "番茄芝士披萨",
+      "inputs": [
+        {
+          "item": "fresh-grain-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-veg-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-milk-3",
+          "count": 1
+        }
+      ],
+      "previousName": "烤肠热狗",
+      "previousInputs": [
+        {
+          "item": "fresh-grain-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-veg-1",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "面包胚",
+        "香肠",
+        "番茄"
+      ],
+      "schedule": {
+        "family": "oven",
+        "minDeviceLevel": 2,
+        "stage": 4,
+        "duration": 58000
+      }
+    },
+    {
+      "id": "fresh-ico-0072",
+      "output": "dish-fresh-ico-0072",
+      "name": "香菇酿肉",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "previousName": "香菇肠粉",
+      "previousInputs": [
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "蘑菇",
+        "米粉浆",
+        "香葱"
+      ],
+      "schedule": {
+        "family": "steamer",
+        "minDeviceLevel": 2,
+        "stage": 6,
+        "duration": 50000
+      },
+      "revision": 40
+    },
+    {
+      "id": "fresh-ico-0115",
+      "output": "dish-fresh-ico-0115",
+      "name": "南瓜蒸排骨",
+      "inputs": [
+        {
+          "item": "fresh-veg-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-beast-5",
+          "count": 1
+        }
+      ],
+      "previousName": "鲜肉肠粉",
+      "previousInputs": [
+        {
+          "item": "fresh-beast-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-2",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "五花肉",
+        "米粉浆",
+        "香葱"
+      ],
+      "schedule": {
+        "family": "steamer",
+        "minDeviceLevel": 2,
+        "stage": 6,
+        "duration": 50000
+      },
+      "revision": 40
+    },
+    {
+      "id": "fresh-ico-0054",
+      "output": "dish-fresh-ico-0054",
+      "name": "焦糖玉米段",
+      "inputs": [
+        {
+          "item": "fresh-seasonal-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-5",
+          "count": 1
+        }
+      ],
+      "previousName": "玉米花",
+      "previousInputs": [
+        {
+          "item": "fresh-seasonal-2",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-5",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "玉米",
+        "焦糖"
+      ],
+      "schedule": {
+        "family": "microwave",
+        "minDeviceLevel": 2,
+        "stage": 4,
+        "duration": 24000
+      },
+      "revision": 42
+    },
+    {
+      "id": "fresh-ico-0163",
+      "output": "dish-fresh-ico-0163",
+      "name": "棉花软糖热巧克力",
+      "inputs": [
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-8",
+          "count": 1
+        }
+      ],
+      "previousName": "肉桂热牛奶",
+      "previousInputs": [
+        {
+          "item": "fresh-milk-1",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-7",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "纯牛奶",
+        "肉桂"
+      ],
+      "schedule": {
+        "family": "microwave",
+        "minDeviceLevel": 3,
+        "stage": 4,
+        "duration": 32000
+      },
+      "revision": 43,
+      "history": [
+        {
+          "revision": 42,
+          "reviewId": "132697088ec6",
+          "status": "CANDIDATE_NOT_SELECTED",
+          "name": "肉桂热牛奶",
+          "inputs": [
+            {
+              "item": "fresh-milk-1",
+              "count": 1
+            },
+            {
+              "item": "fresh-spice-7",
+              "count": 1
+            }
+          ],
+          "schedule": {
+            "family": "microwave",
+            "minDeviceLevel": 3,
+            "stage": 4,
+            "duration": 32000
+          }
+        }
+      ],
+      "selectedFromReview": {
+        "reviewId": "132697088ec6",
+        "variant": "original"
+      }
+    },
+    {
+      "id": "fresh-ico-0118",
+      "output": "dish-fresh-ico-0118",
+      "name": "桑葚龙舌兰特调",
+      "inputs": [
+        {
+          "item": "fresh-mixer-11",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-exotic-3",
+          "count": 1
+        }
+      ],
+      "previousName": "龙舌兰螺丝刀",
+      "previousInputs": [
+        {
+          "item": "fresh-mixer-11",
+          "count": 1
+        },
+        {
+          "item": "fresh-fruit-2",
+          "count": 1
+        }
+      ],
+      "previousInputNames": [
+        "龙舌兰",
+        "甜橙"
+      ],
+      "schedule": {
+        "family": "bar",
+        "minDeviceLevel": 3,
+        "stage": 8,
+        "duration": 34000
+      },
+      "revision": 46,
+      "reason": "用户指出与DS113橙冰苏打相似，允许更换饮品；以桑葚紫红低脚杯与柠檬酸香替换橙色高杯。",
+      "history": [
+        {
+          "revision": 45,
+          "reviewId": "4e20964f5ee6",
+          "name": "龙舌兰螺丝刀",
+          "inputs": [
+            {
+              "item": "fresh-mixer-11",
+              "count": 1
+            },
+            {
+              "item": "fresh-fruit-2",
+              "count": 1
+            }
+          ],
+          "inputNames": [
+            "龙舌兰",
+            "甜橙"
+          ],
+          "status": "REWORK_REQUESTED"
+        }
+      ]
+    }
+  ],
+  "homeChickenRollInputIds": [
+    "fresh-poultry-5",
+    "fresh-poultry-1",
+    "fresh-spice-2"
+  ],
+  "baseRecipes": [
+    {
+      "id": "dish-fresh-tomato-salad",
+      "name": "番茄小沙拉",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 1,
+      "ingredients": [
+        "番茄"
+      ]
+    },
+    {
+      "id": "dish-fresh-carrot-salad",
+      "name": "胡萝卜花园",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 1,
+      "ingredients": [
+        "胡萝卜"
+      ]
+    },
+    {
+      "id": "dish-fresh-garden-bowl",
+      "name": "田园丰收碗",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 1,
+      "ingredients": [
+        "西兰花",
+        "彩椒"
+      ]
+    },
+    {
+      "id": "dish-fresh-berry-cup",
+      "name": "草莓甜心杯",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 1,
+      "ingredients": [
+        "草莓"
+      ]
+    },
+    {
+      "id": "dish-fresh-orange-juice",
+      "name": "阳光鲜橙汁",
+      "kind": "drink",
+      "type": "recipe",
+      "stage": 1,
+      "ingredients": [
+        "甜橙"
+      ]
+    },
+    {
+      "id": "dish-fresh-fruit-platter",
+      "name": "缤纷水果盘",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 1,
+      "ingredients": [
+        "葡萄"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-onion-salad",
+      "name": "凉拌紫洋葱",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "黄瓜",
+        "紫洋葱"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-tomato-eggs",
+      "name": "番茄炒蛋",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "番茄",
+        "鸡蛋",
+        "香葱"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-meatball-soup",
+      "name": "肉丸蔬菜汤",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "肉丸",
+        "番茄",
+        "香葱"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-garlic-broccoli",
+      "name": "蒜香西兰花",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "西兰花",
+        "大蒜"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-vegetable-rice",
+      "name": "彩蔬拌饭",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "彩椒",
+        "胡萝卜",
+        "香葱"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-scallion-egg-rice",
+      "name": "葱香蛋饭",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "鸡蛋",
+        "香葱"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-seared-pork",
+      "name": "香煎肉片",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "五花肉",
+        "紫洋葱"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-garlic-cucumber",
+      "name": "蒜香黄瓜",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "黄瓜",
+        "大蒜"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-chicken-roll",
+      "name": "香煎鸡肉卷",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "鸡胸肉",
+        "鸡蛋",
+        "香葱"
+      ]
+    },
+    {
+      "id": "dish-fresh-home-orange-ribs",
+      "name": "橙香小排",
+      "kind": "dish",
+      "type": "recipe",
+      "stage": 2,
+      "ingredients": [
+        "排骨",
+        "甜橙",
+        "红椒"
+      ]
+    }
+  ],
+  "changedRawIds": [
+    "fresh-poultry-3",
+    "fresh-poultry-4",
+    "fresh-poultry-5",
+    "fresh-poultry-6",
+    "fresh-poultry-7",
+    "fresh-poultry-8",
+    "fresh-sea-3",
+    "fresh-sea-4",
+    "fresh-sea-9",
+    "fresh-coffee-7",
+    "fresh-coffee-8",
+    "fresh-mixer-5",
+    "fresh-mixer-8",
+    "fresh-mixer-9",
+    "fresh-mixer-10"
+  ],
+  "retiredCurrentNames": [
+    "鸡翅中",
+    "鸡全翅",
+    "整鸡",
+    "鸡腿",
+    "皮蛋",
+    "鳕鱼",
+    "鲶鱼",
+    "肥蟹",
+    "美式咖啡",
+    "大杯美式",
+    "汤力水",
+    "朗姆酒",
+    "威士忌",
+    "伏特加"
+  ],
+  "catalogSeedLevels": {
+    "fresh-poultry": 7,
+    "fresh-spice": 7
+  },
+  "reconciliationReport": "output/plan4-round46-work/content-reconciliation.json"
+}

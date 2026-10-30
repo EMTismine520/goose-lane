@@ -1,0 +1,36 @@
+{
+  "sourceReviewId": "4733ea115111",
+  "confirmedBarReviewId": "7d115f8358b8",
+  "date": "2026-10-30",
+  "userQuote": "原版保留DS118，其它采用新版。继续下一轮，要做得顶尖",
+  "familyIds": [
+    "vegetable-cart",
+    "fruit-cart",
+    "beast-meat-cart",
+    "poultry-cart"
+  ],
+  "orderedIds": [
+    "vegetable-cart-l1",
+    "vegetable-cart-l2",
+    "vegetable-cart-l3",
+    "fruit-cart-l1",
+    "fruit-cart-l2",
+    "fruit-cart-l3",
+    "beast-meat-cart-l1",
+    "beast-meat-cart-l2",
+    "beast-meat-cart-l3",
+    "poultry-cart-l1",
+    "poultry-cart-l2",
+    "poultry-cart-l3"
+  ],
+  "occupancies": [
+    0.78,
+    0.82,
+    0.84
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定DS118原版与其余六款新版，123配方成品用图全部确定；进入器材首批四族三级12款独立候选。",
+  "sizePolicy": "三级分别78%/82%/84%，透明留白与视觉居中；升级通过功能结构区分，避免仅靠变大或换色。",
+  "authoringPolicy": "原生透明SVG，细近黑轮廓、左上光，Q版体积和材质，少量对应链食材标志；器材图内无字、数字或等级角标，不改实际生产/升级逻辑。"
+}

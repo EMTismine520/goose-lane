@@ -1,0 +1,27 @@
+{
+  "sourceReviewId": "c3ad9160623a",
+  "date": "2026-10-29",
+  "userQuote": "确认采用新版。重做“DS46 · 孜然烤肉肠”“DS47 · 风味蔬菜烤串”“DS57 · 炭烧金枪鱼排”“DS53 · 烟熏牛胸肉”“DS56 · 葱香烤青蟹”，颜色要更活泼，更有食欲。牛胸肉造型也要打磨。要做得顶尖",
+  "confirmedFryingReviewId": "f916a4f4238a",
+  "selectedGrillReviewId": "04a822b80329",
+  "batchId": "charcoal-grill",
+  "redesignCodes": [
+    "DS46",
+    "DS47",
+    "DS53",
+    "DS56",
+    "DS57"
+  ],
+  "redesignIds": [
+    "dish-fresh-ico-0027",
+    "dish-fresh-ico-0028",
+    "dish-fresh-ico-0049",
+    "dish-fresh-ico-0061",
+    "dish-fresh-ico-0079"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "0c427f5beecb6587bfee47cf70eda856f9df391811585c7bd080164df758feee",
+  "scope": "第36轮十八项新版全部选用。DS40精修确认，煎炸十道全部固定；炭烤十七道选用第36轮新版，其中五项在已选新版基底上继续精修，非拒稿。第37轮仅重做DS46、DS47、DS53、DS56、DS57，其余二十二项源与导出保持，不进入新设备批次。",
+  "sizePolicy": "五项沿用已选体量：肉肠82%、蔬菜串82%、牛胸肉84%、青蟹84%、金枪鱼排82%，其余尺寸原样保持。成品按构图美观控制，透明留白并居中。",
+  "authoringPolicy": "原生透明SVG精修，保留清晰细近黑描边和克制数量。以栗红熟肠、红黄绿彩椒与亮紫茄皮、暖栗红软厚熟牛肉、鲜亮朱红蟹壳、暖玫瑰棕熟鱼排提升色彩与食欲；牛胸肉重点重塑自然弧度、肉片厚度、柔软边缘和纤维，避免硬梯形木片或香肠感。不增加配方外主料，不改实际菜名、输入或烹饪逻辑。"
+}

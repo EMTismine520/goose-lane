@@ -140,7 +140,7 @@ freshChains.forEach((chain, row) => chain.names.forEach((name, index) => {
 const freshRecipes: [string, string, number, number, [string, number][], string][] = [
   ['fresh-tomato-salad', '番茄小沙拉', 0, 12, [['fresh-veg-1', 1]], '红番茄切成小瓣，淋上清新的香草汁。'],
   ['fresh-carrot-salad', '胡萝卜花园', 0, 22, [['fresh-veg-4', 1]], '胡萝卜切成花朵，撒上脆脆的芝麻。'],
-  ['fresh-garden-bowl', '田园丰收碗', 0, 30, [['fresh-veg-5', 1], ['fresh-fruit-2', 1]], '西兰花和甜橙，把田园的颜色装满一碗。'],
+  ['fresh-garden-bowl', '田园丰收碗', 0, 30, [['fresh-veg-5', 1], ['fresh-veg-3', 1]], '西兰花和彩椒清拌成一碗田园鲜蔬，清脆又明亮。'],
   ['fresh-berry-cup', '草莓甜心杯', 1, 14, [['fresh-fruit-1', 1]], '鲜切草莓层层堆起，盛进小小玻璃杯。'],
   ['fresh-orange-juice', '阳光鲜橙汁', 1, 18, [['fresh-fruit-2', 1]], '现榨甜橙，杯里是明亮的清晨。'],
   ['fresh-fruit-platter', '缤纷水果盘', 1, 26, [['fresh-fruit-4', 1]], '把紫葡萄排成一圈，分享果园的甜。'],
@@ -176,7 +176,7 @@ ORDERS.push(...FRESH_ORDERS);
 
 const homeChains = [
   { id: 'fresh-beast', name: '兽肉', source: '兽肉推车', color: '#d97d65', names: ['香肠', '培根', '肉丸', '五花肉', '排骨', '猪排', '带骨肘子', '带骨牛排', '羊排', '火腿'] },
-  { id: 'fresh-poultry', name: '禽肉', source: '禽肉推车', color: '#e8a7a1', names: ['鸡蛋', '鸡胗', '鸡翅中', '鸡胸肉', '鸡腿', '鸡全翅', '整鸡'] },
+  { id: 'fresh-poultry', name: '禽肉', source: '禽肉推车', color: '#e8a7a1', names: ['鸡蛋', '鸡胗', '鸭掌', '鸽肉串', '鸡胸肉', '鹅肝', '火鸡腿'] },
   { id: 'fresh-spice', name: '香料调料', source: '香料盒', color: '#98b65d', names: ['红椒', '香葱', '紫洋葱', '香草荚', '大蒜', '罗勒', '肉桂'] },
 ];
 export const HOME_CHAINS: ChainDef[] = homeChains.map(chain => ({ id: chain.id, name: chain.name, color: chain.color, unlockDay: 1, items: chain.names.map((_, i) => `${chain.id}-${i + 1}`) }));
@@ -194,7 +194,7 @@ const homeRecipes: [string, string, number, string[], string][] = [
   ['scallion-egg-rice', '葱香蛋饭', 18, ['fresh-poultry-1', 'fresh-spice-2'], '蓬松米饭盖上嫩蛋，葱香暖暖地散开。'],
   ['seared-pork', '香煎肉片', 28, ['fresh-beast-4', 'fresh-spice-3'], '肉片煎出焦香，配上清甜紫洋葱。'],
   ['garlic-cucumber', '蒜香黄瓜', 22, ['fresh-veg-2', 'fresh-spice-5'], '蒜末爆香，黄瓜清脆，一盘简单的好味道。'],
-  ['chicken-roll', '香煎鸡肉卷', 34, ['fresh-poultry-4', 'fresh-poultry-1', 'fresh-spice-2'], '嫩鸡肉裹入蛋皮，煎成一卷金黄。'],
+  ['chicken-roll', '香煎鸡肉卷', 34, ['fresh-poultry-5', 'fresh-poultry-1', 'fresh-spice-2'], '嫩鸡肉裹入蛋皮，煎成一卷金黄。'],
   ['orange-ribs', '橙香小排', 40, ['fresh-beast-5', 'fresh-fruit-2', 'fresh-spice-1'], '甜橙与红椒调成亮亮的酱汁，包住鲜嫩小排。'],
 ];
 export const HOME_RECIPES: RecipeDef[] = homeRecipes.map(([slug, name, seconds, ingredients, description]) => {

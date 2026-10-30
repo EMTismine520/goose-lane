@@ -1,0 +1,54 @@
+{
+  "sourceReviewId": "d6a12bd86191",
+  "date": "2026-10-29",
+  "userQuote": "确认，继续下一轮",
+  "chain": "fresh-seasonal",
+  "orderedNames": [
+    "蘑菇",
+    "玉米",
+    "紫甘蓝",
+    "土豆",
+    "生菜",
+    "四季豆",
+    "茄子",
+    "白萝卜"
+  ],
+  "codes": [
+    "SV01",
+    "SV02",
+    "SV03",
+    "SV04",
+    "SV05",
+    "SV06",
+    "SV07",
+    "SV08"
+  ],
+  "presentationOccupancies": [
+    0.68,
+    0.72,
+    0.68,
+    0.68,
+    0.72,
+    0.78,
+    0.8,
+    0.8
+  ],
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "previousFinalReviews": [
+    {
+      "chain": "fresh-poultry",
+      "reviewId": "7b7284a3439f",
+      "stem": "poultry-final",
+      "count": 8
+    },
+    {
+      "chain": "fresh-spice",
+      "reviewId": "ffb43f3f0f2a",
+      "stem": "spice-final",
+      "count": 10
+    }
+  ],
+  "authoringPolicy": "时蔬8项全部独立新绘，保留原版供比较，由用户逐项决定采用；不自动套用新版。",
+  "sizePolicy": "前五级按视觉重量控制尺寸：蘑菇.68、玉米.72、紫甘蓝.68、土豆.68、生菜.72；高阶四季豆.78、茄子/白萝卜.8。尺寸以清楚大形与整链协调为准，不统一塞满画布。",
+  "scope": "第10轮18项用图和六项尺寸全部已通过并固定，进入时蔬8项全新候选。食材ID、名称、等级、菜谱和存档保持，已确认禽肉与香料18项母稿和导出逐字节保留。"
+}

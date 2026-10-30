@@ -1,0 +1,33 @@
+{
+  "sourceReviewId": "532507fb1282",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "batchId": "ice-cream-machine",
+  "batchTitle": "冰淇淋甜品三款",
+  "confirmedBlenderReviewId": "68dd232e6b7c",
+  "orderedIds": [
+    "dish-fresh-ico-0120",
+    "dish-fresh-ico-0130",
+    "dish-fresh-ico-0126"
+  ],
+  "orderedNames": [
+    "巧克力冰淇淋",
+    "黄油冰淇淋",
+    "阿芙佳朵"
+  ],
+  "occupancies": [
+    0.84,
+    0.82,
+    0.84
+  ],
+  "courses": [
+    "chocolate",
+    "butter",
+    "coffee"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "d01ee106f8c2f408d40619c990b991307350e75fda65de06825ca54d89f781e2",
+  "scope": "固定DS105—DS108全部第43轮新版，QQ此前原版保留为历史。进入DS109—DS111冰淇淋机三款，全新独立候选逐项选择；当前名称、配方、订单与运行资源保持。",
+  "sizePolicy": "成品按造型和盛器控制为84%／82%／84%，透明留白与视觉居中，不适用前五级基础食材缩小规则。",
+  "authoringPolicy": "原生透明SVG，细近黑描边、生动食欲、克制份量。巧棕双球小瓷杯、柔黄挖勺形低碟、透明玻璃咖啡浸单奶球，轮廓与材质分别设计。只表现当前实际主料。"
+}

@@ -1,0 +1,19 @@
+{
+  "sourceReviewId": "dacce046ad49",
+  "date": "2026-10-29",
+  "userQuote": "确认。继续下一轮，要做得顶尖",
+  "confirmedStarterReviewId": "9ecc918006ca",
+  "confirmedHomeReviewId": "7b4a11197419",
+  "confirmedColdReviewId": "5caee26b153b",
+  "batchId": "fruit-press",
+  "batchTitle": "果饮奶茶十款",
+  "orderedIds": ["dish-fresh-ico-0031", "dish-fresh-ico-0047", "dish-fresh-ico-0091", "dish-fresh-ico-0164", "dish-fresh-ico-0009", "dish-fresh-ico-0020", "dish-fresh-ico-0055", "dish-fresh-ico-0087", "dish-fresh-ico-0093", "dish-fresh-ico-0121"],
+  "orderedNames": ["葡萄果肉饮", "热带芒果汁", "鹅鹅手打柠檬茶", "冰镇水蜜桃露", "珍珠奶茶", "清新奶绿", "香草慕斯奶绿", "厚顶鸳鸯奶茶", "优酪乳", "益生菌饮品"],
+  "occupancies": [0.82, 0.82, 0.84, 0.82, 0.82, 0.80, 0.84, 0.84, 0.80, 0.80],
+  "courses": ["fruit", "fruit", "tea", "fruit", "milk-tea", "milk-tea", "milk-tea", "milk-tea", "yogurt", "yogurt"],
+  "actualExpansionSha256": "0c427f5beecb6587bfee47cf70eda856f9df391811585c7bd080164df758feee",
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "scope": "砧板冷食五道已全部确认，凉拌卤鹅肉新稿固定；前轮基础食材、配方与正式图标的语义修正保持。进入鲜果料理台十款全部新版候选。DS24鹅鹅手打柠檬茶与DS26珍珠奶茶437既定原版继续精确保留，新版单独供用户决定。",
+  "sizePolicy": "配方成品按杯型、液体与构图美观确定体量，不套用低阶基础食材缩小规则。十款新稿主体82%／82%／84%／82%／82%／80%／84%／84%／80%／80%，原版对照80%，保留透明留白与视觉居中。",
+  "authoringPolicy": "十张原生透明SVG独立重绘，清晰细深描边、大形可辨、材质克制。以杯型、果肉、茶色、乳感、慕斯厚顶、珍珠与酸奶稠度区分，不做同杯换色，不添加与实际主料矛盾的食材。控制点缀数量；全部新稿逐项由用户选择，本轮不修改菜名、配方或游戏规则。"
+}

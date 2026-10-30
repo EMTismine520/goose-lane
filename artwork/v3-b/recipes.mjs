@@ -26,14 +26,15 @@ const iceCream=(chocolate=false)=>smallBowl('url(#bowl)')+[[33,39],[61,39],[48,2
 export function recipe(name,raw){
  const opening=openingRecipe(name,raw);if(opening)return opening;
  const beverage=finishedDrink(name,raw);if(beverage)return beverage;
- const cooked=(food,x=48,y=45,s=.64,a=0)=>small(raw(food).replace(/url\(#(?:pork|red|chicken|gizzard|meat)\)/g,'url(#roast)'),x,y,s,a);
+ // Approved SVGs namespace definition IDs when embedded; the material suffix stays stable.
+ const cooked=(food,x=48,y=45,s=.64,a=0)=>small(raw(food).replace(/url\(#(?:[\w:.-]+-)?(?:pork|red|chicken|gizzard|meat)\)/g,'url(#roast)'),x,y,s,a);
  const ingredient=(food,x=48,y=45,s=.6,a=0)=>small(raw(food),x,y,s,a);
  const grill=(food,extra='')=>p('M8 60 33 41h54v29L62 87H9Z','url(#wood)')+p('M8 60 33 41h54L62 78H9Z','url(#grain)')+line('M14 68 58 74m8-22 14-7',C.darkWood,1.3)+cooked(food,46,42,.77)+grillMarks(48,47,.75)+herbs()+extra;
  if(name==='凉拌鸡肉卷')return plated(greens()+[0,1].map(i=>t(p('M23 30h24l24 25q11 11-3 20-10 7-20-3L20 48q-7-11 3-18Z','url(#garlic)')+e(58,63,16,12,'#e4d8b3','transform="rotate(30 58 63)"')+e(58,63,11,8,'url(#green)','transform="rotate(30 58 63)" stroke-width="1.5"')+e(58,63,7,5,'url(#chicken)','transform="rotate(30 58 63)" stroke-width="1.3"'),`translate(${i*17-7} ${i*9-5}) scale(.8)`)).join(''));
  if(name==='手撕紫甘蓝')return plated(greens()+p('M20 48q10-19 26-10 17-11 30 4 13 22-9 29-27 12-48-6Z','url(#onion)')+line('M25 46q15 9 25-3m-28 11q22 12 40-3m-30 13q24 10 39-6m-26-20q11 10 25 5','#eac8df',2.5)+herbs());
  if(name==='新鲜生蚝')return plated(ingredient('生蚝',43,47,.7)+lemonSlice(76,66,.7));
  if(name==='田园沙拉')return bowlMeal(greens()+tomatoWedge(36,45,.7,-20)+tomatoWedge(60,54,.65,25)+leaf(43,62,.6,30)+herbs());
- if(name==='凉拌皮蛋')return plated([0,1,2].map(i=>t(p('M-12-6q4-17 20-10l9 19-24 9Z','url(#coffee)')+e(2,0,10,7,'#9faa75','stroke-width="1.5"')+e(2,0,6,4,'#c6c68e','stroke-width="1.1"'),`translate(${30+i*17} ${45+i%2*15}) rotate(${i*25-25})`)).join('')+onionRing(59,66,.65)+herbs());
+ if(name==='凉拌卤鹅肉')return plated(ingredient('卤鹅肉',45,42,.65)+onionRing(70,60,.5)+p('m23 57 11-4 3 5-11 5Z','url(#red)','stroke-width="1.3"'));
  // Beverages have distinct glass silhouettes, foam, pearls and fruit garnish.
  const fruitDrinks={
  '葡萄果肉饮':{color:'url(#onion)',grape:true},'热带芒果汁':{color:'url(#mango)',fruit:'芒果'},'鹅鹅手打柠檬茶':{color:'url(#tea)',garnishType:'lemon'},'冰镇水蜜桃露':{color:'url(#pink)',fruit:'水蜜桃'},
@@ -44,29 +45,35 @@ export function recipe(name,raw){
  if(name==='特色白粥')return deepBowl('url(#rice)')+riceMarks()+line('m43 41 4-2m7 7 4-1','#96ad70',2.6);
  if(name==='焦香洋葱饭')return plated(rice()+onionRing(35,46,.65)+onionRing(59,54,.7)+cut('url(#egg)',57,39,.3)+herbs());
  if(name==='黄油拌饭')return plated(rice()+p('m37 37 19-6 10 9-1 14-19 6-10-9Z','url(#egg)','stroke-width="1.7"')+light('m41 38 13-3',2.2)+herbs());
- if(name==='脆皮翅根')return plated(cooked('鸡翅中',46,47,.67)+line('m31 38 2 1m16-4 2 1m-12 17 2 1m22-4 2 1','#e8bd7b',2.4)+herbs());
+ if(name==='香煎鹅肝')return plated(cut('url(#roast)',38,42,.75,-18)+cut('url(#glaze)',60,60,.68,-18)+grillMarks(44,48,.48)+p('M68 36q8-7 13 1l-2 8-5-2 1-5-5 2Z','url(#red)','stroke-width="1.4"'));
  if(name==='煎炸培根')return plated([0,1,2].map(i=>t(p('M-28-6q10-9 19-1 8 6 16-1 10-7 21 2l-2 11q-8-6-18 1-10 6-20-2-6-4-16 1Z','url(#red)')+line('M-23-2q8-4 15 2 10 4 17-2 10-3 14 1','#f5d0a8',3),`translate(48 ${37+i*16}) rotate(-12) scale(.85)`)).join('')+onionRing(72,67,.45));
  if(name==='油炸太阳蛋')return plated(p('M18 43q1-16 17-12 9-14 21-3 16-8 24 6 13 5 5 19 4 16-13 18-12 13-24 2-15 8-23-7-17-3-7-23Z','url(#garlic)')+e(48,47,17,15,'url(#egg)')+light('M40 42q4-5 9-3',3));
  if(name==='香煎肉丸')return plated(meatball(30,49,.9)+meatball(56,39,.9)+meatball(59,63,.9)+herbs());
- if(name==='酥香鳕鱼')return plated(cut('url(#egg)',39,44,.9,-20)+cut('url(#egg)',62,62,.7,-20)+line('m26 43 3 1m14-10 3 1m-5 20 3 1m19 7 3 1','#c6a06a',2.2)+lemonSlice(74,48,.7));
+ if(name==='酥炸扇贝')return plated([[30,45],[58,38],[53,64]].map(([x,y])=>e(x,y+4,14,10,'url(#glaze)','stroke-width="1.7"')+e(x,y,14,10,'url(#egg)','stroke-width="1.7"')+e(x-1,y-1,10,6,'url(#garlic)','stroke-width="1.1"')+line(`m${x-8} ${y+5} 2 1m13-3 2-1`,'#b78549',1.4)+light(`m${x-6} ${y-3} 4-1`,1.7)).join('')+lemonSlice(77,57,.6));
  if(name==='香煎胡萝卜')return plated([[28,46],[49,36],[66,48],[39,63],[61,66]].map(([x,y])=>e(x,y,12,9,'url(#tomato)','transform="rotate(-20 '+x+' '+y+')"')+e(x,y,4,3,'#f3bb7d','stroke-width="1.2"')).join('')+herbs());
- if(name==='酥炸大鸡腿')return plated(cooked('鸡腿',47,44,.69)+line('m29 46 2 1m12-7 2 1m-5 22 2 1m14-13 2 1','#e9bd82',2.8)+herbs());
+ if(name==='酥炸火鸡腿')return plated(cooked('火鸡腿',47,44,.69)+line('m29 46 2 1m12-7 2 1m-5 22 2 1m14-13 2 1','#e9bd82',2.8)+p('m68 64 10-5 3 4-10 6Z','url(#red)','stroke-width="1.3"'));
  if(name==='红酒酱牛排')return plated(e(48,56,29,14,'#ba7b73','stroke-width="1.5"')+cooked('带骨牛排',47,43,.64)+grillMarks(48,49,.55)+onionRing(72,64,.45));
- if(name==='醇香鲶鱼块')return plated(cubes('url(#roast)',5)+herbs());
+ if(name==='黄油煎鲷鱼'){
+  const fillet=(x,y,s=1)=>t(p('M-25-4Q-19-15-6-15L21-8Q28-3 23 7L7 14Q-9 15-24 5Z','url(#roast)','stroke-width="1.8"')+p('M-22-5Q-17-12-5-12L19-6Q24-3 19 3L5 9Q-8 10-20 3Z','url(#garlic)','stroke-width="1.25"')+line('M-12-7-9 3M-3-8 1 5M7-5 11 3','#ddc7a1',1.2)+light('M-14-7-6-8',1.7),`translate(${x} ${y}) rotate(-17) scale(${s})`);
+  return plated(fillet(37,43,.87)+fillet(57,62,.85)+p('m67 39 10-3 6 6-1 8-10 3-6-6Z','url(#egg)','stroke-width="1.5"')+light('m70 40 6-1',1.4)+[[28,60],[43,72],[69,66]].map(([x,y])=>e(x,y,3.5,2.2,'url(#green)','stroke-width="1.1"')+e(x,y,1.4,.8,'#e2e9bc','stroke="none"')).join(''));
+ }
  if(name==='酥脆萝卜糕')return plated([0,1,2].map(i=>t(p('M-18-12 10-16 21-4 19 13-29 4-11-10Z','url(#garlic)')+p('m-18-12 9 11 30-3-2 10-29 4-11-10Z','url(#wood)','stroke-width="1.5"')+light('m-12-10 16-3',2),`translate(${30+i*16} ${40+i%2*20}) rotate(-10)`)).join('')+herbs());
  if(name==='孜然烤肉肠')return plated(cooked('香肠',37,44,.65,-20)+cooked('香肠',60,55,.57,-20)+herbs());
  if(name==='风味蔬菜烤串')return plated([0,1].map(i=>t(line('M19 71 75 18','#a97d50',2.8)+[0,1,2,3].map(k=>p(`M${26+k*11} ${59-k*11}l4-12 11 3 1 10-10 4Z`,[C.tomato,C.green,C.wood,C.yellow][k],'stroke-width="1.8"')).join(''),`translate(${i*10-5} ${i*10-4})`)).join(''));
  if(name==='孜然椒盐排骨')return grill('排骨');
  if(name==='炭烧熏肉')return grill('五花肉',leaf(76,69,.45,55));
  if(name==='炭烧鲜菇')return plated(cooked('蘑菇',34,47,.48,-15)+cooked('蘑菇',61,54,.45,20)+grillMarks(45,44,.5)+herbs());
- if(name==='炭烤鸡胸肉')return grill('鸡胸肉');
+ if(name==='炭烤鸡胸肉'){
+  const breast=(x,y,s=1,a=0)=>t(p('M-25-3Q-24-17-9-19Q7-23 23-10L25 4Q20 15 5 16L-17 11Q-27 8-25-3Z','url(#roast)','stroke-width="1.9"')+p('M-23-5Q-21-17-8-17Q8-20 21-10L23 1Q17 10 4 11L-15 7Q-23 5-23-5Z','url(#garlic)','stroke-width="1.3"')+line('M-13-10Q-4-6 4-5M-12 0Q-3 4 7 4','#dfc9a5',1.2)+grillMarks(0,-1,.68)+light('M-14-11-7-13',1.7),`translate(${x} ${y}) rotate(${a}) scale(${s})`);
+  return p('M8 60 33 41h54v29L62 87H9Z','url(#wood)')+p('M8 60 33 41h54L62 78H9Z','url(#grain)')+line('M14 68 58 74m8-22 14-7',C.darkWood,1.3)+breast(42,36,.86,-15)+breast(55,57,.81,9)+leaf(27,63,.4,-35)+leaf(74,48,.34,60);
+ }
  if(name==='黄金烤肘子')return grill('带骨肘子',line('m31 40 7 3m13 16 9 1','#efc581',3));
  if(name==='烟熏牛胸肉')return plated(cut('url(#coffee)',40,42,.8,-15)+cut('url(#roast)',53,58,.9,-15)+line('m28 42 22 10m-10 3 22 10','#e5b188',2.5)+herbs());
- if(name==='炭烤琵琶腿')return grill('鸡腿');
+ if(name==='炭烤火鸡腿')return grill('火鸡腿',p('m70 63 10-4 2 5-10 4Z','url(#red)','stroke-width="1.3"'));
  if(name==='烟熏黄油五花')return grill('五花肉',cut('url(#egg)',68,62,.3));
- if(name==='熟烤肥蟹')return plated(small(crab(false,true),48,43,.76)+herbs());
+ if(name==='葱香烤青蟹')return plated(small(crab(false,true),48,43,.76)+[[31,59],[48,69],[67,58]].map(([x,y])=>e(x,y,4,2.7,'url(#green)','stroke-width="1.1"')+e(x,y,1.8,.9,'#d9e6b3','stroke="none"')).join(''));
  if(name==='炭烧金枪鱼排')return plated(p('M22 40 63 28q19 8 15 26L51 72 21 60Z','url(#roast)')+p('m25 43 30-9 18 15-23 17-26-9Z','#dda98a','stroke-width="1.7"')+grillMarks(47,50,.65)+lemonSlice(74,67,.6));
- if(name==='威士忌三文鱼')return plated(cooked('三文鱼',44,45,.62)+grillMarks(43,49,.6)+p('M69 44h15l-2 20q-6 5-11 0Z','url(#tea)','stroke-width="1.4"')+herbs());
+ if(name==='橙香三文鱼')return plated(cooked('三文鱼',44,45,.62)+grillMarks(43,49,.6)+ingredient('甜橙',74,62,.28)+line('M32 45q10 7 22 6','#e5b05e',2));
  if(name==='炭烤海螺')return grill('海螺');
  if(name==='炭烤牛排')return grill('带骨牛排');
  if(name==='烟熏三文鱼')return plated([0,1,2].map(i=>t(p('M-24-8q8-8 18-1 8-8 17-2l15 11q5 9-6 12L-22 6q-9-3-2-14Z','url(#red)')+line('m-15-6 12 13m0-13 13 12','#f8c7a7',2.4),`translate(${44+i*5} ${35+i*15}) scale(.82)`)).join('')+lemonSlice(75,63,.65));
@@ -75,7 +82,7 @@ export function recipe(name,raw){
  if(name==='早餐三明治')return plated(p('M18 55 48 25l30 40-38 14Z','url(#roast)')+p('M21 51 48 29l28 32-36 12Z','url(#garlic)')+p('m23 52 9-9 34 13 7 7-33 9Z','url(#green)')+p('m25 45 22-13 22 24-28 10Z','url(#egg)')+p('M20 43 47 19l29 37-37 13Z','url(#wood)')+light('m28 42 18-16',2.6));
  if(name==='烤土豆片')return plated([[28,45],[49,34],[69,48],[38,63],[61,66]].map(([x,y])=>e(x,y,12,9,'url(#wood)','transform="rotate(-20 '+x+' '+y+')"')+line(`m${x-6} ${y-3} 11 3`,'#b08250',1.6)).join('')+herbs());
  if(name==='蒜香面包')return plated([0,1,2].map(i=>t(p('M-15-18q15-7 25 6l3 25-27 8-10-21Z','url(#roast)')+p('M-11-13q12-5 18 5l2 18-20 6-7-18Z','url(#garlic)','stroke-width="1.4"')+line('m-9-4 11 5m-11 5 11 3','#d3bc86',1.3)+leaf(0,6,.32,45),`translate(${29+i*19} ${43+i%2*17}) rotate(-20)`)).join(''));
- if(name==='蜜汁烤鸡')return plated(cooked('整鸡',48,44,.7)+line('M37 36q-5 10-3 16m17-16 9 7','#efc48c',2.8)+herbs());
+ if(name==='蜜汁烤鸽串')return plated([0,1].map(i=>t(line('M25 73 69 21','#a27b4e',2.7)+[[34,60],[47,45],[59,31]].map(([x,y])=>p(`M${x-9} ${y-7}q8-6 17 0l2 11-13 7-9-5Z`,'url(#glaze)','stroke-width="1.7"')+light(`m${x-5} ${y-4} 7-1`,2.2)+line(`m${x-3} ${y+7} 5-1`,'#a0643d',1.2)).join(''),`translate(${i*19-8} ${i*8-4}) scale(.84)`)).join(''));
  if(name==='三文鱼贝果')return bagel({salmon:true});
  if(name==='芝士热狗')return hotdog({cheesy:true});
  if(name==='蜜汁叉烧')return plated(cut('url(#red)',40,39,.8,-10)+cut('url(#glaze)',48,56,.8,-10)+cut('url(#red)',58,69,.7,-10)+grillMarks(46,48,.5)+herbs());
@@ -93,7 +100,7 @@ export function recipe(name,raw){
  if(name==='椰汁奶白小丸')return smallBowl('url(#bowl)')+[[31,38],[58,31],[51,53]].map(([x,y])=>e(x,y,15,12,'url(#garlic)')+light(`M${x-7} ${y-4}q3-4 6-3`,2.5)).join('')+line('m26 45 37 11','#e9cc94',2.4);
  if(name==='流沙奶黄包')return plated(p('M19 58q1-31 28-33 30 0 32 31 0 21-31 21T19 58Z','url(#garlic)')+p('M48 26 38 46l11 13-8 17q30 1 35-15 4-26-28-35Z','url(#egg)')+p('m48 31 5 20-8 8 6 11-8 10-6-6 7-17-7-11Z','#ffdda0','stroke-width="1.5"')+light('M28 49q4-12 12-13',2.8));
  if(name==='焦糖马拉糕')return plated(cubes('url(#glaze)',4)+line('m26 46 2 1m18-6 2 1m15 14 2 1m-26 14 2 1','#e8bd87',2.4));
- if(name==='古法糯米鸡')return plated(p('M18 37 53 23l28 23-6 25-37 10-22-20Z','url(#darkGreen)')+p('m18 37 24 22 39-13-6 25-37 10-22-20Z','url(#green)')+p('M28 36q21-12 39 4L58 65 28 57Z','url(#rice)')+meatball(46,43,.6)+ingredient('蘑菇',57,52,.27)+herbs());
+ if(name==='火鸡糯米饭')return plated(p('M18 37 53 23l28 23-6 25-37 10-22-20Z','url(#darkGreen)')+p('m18 37 24 22 39-13-6 25-37 10-22-20Z','url(#green)')+p('M28 36q21-12 39 4L58 65 28 57Z','url(#rice)')+cut('url(#roast)',40,42,.28,-12)+cut('url(#roast)',51,51,.26,15)+ingredient('蘑菇',61,44,.25)+line('m30 45 2 1m0 8 2 1m20 7 2-1','#fdf4cf',1.6));
  if(name==='鲜肉肠粉')return cheungFun('pork');
  if(name==='三鲜虾肉饺子')return dimSum('shrimp')+herbs();
  if(name==='爆汁灌汤小笼包')return dimSum('soup');
@@ -120,9 +127,7 @@ export function recipe(name,raw){
  if(name==='黄油冰淇淋')return iceCream(false);
  if(name==='阿芙佳朵')return smallBowl('url(#bowl)')+e(48,42,26,8,'url(#coffee)','stroke-width="1.5"')+e(44,30,21,18,'url(#egg)')+light('M33 24q4-5 9-4',2.9)+p('M66 19q17-10 20 3l-6 14-14-7Z','url(#bowl)','stroke-width="1.8"')+line('M69 28q-12 8-12 13','#8e6747',3.5);
  const bars={
- '朗姆可乐':{color:'url(#coffee)',glass:'tall',lemon:true},'威士忌苏打':{color:'url(#tea)',glass:'short',ice:true},'甜蛋酒':{color:'url(#garlic)',glass:'mug',cinnamon:true},'威士忌酸酒':{color:'url(#tea)',glass:'short',lemon:true,cherry:true},
- '莫斯科之骡':{color:'url(#tea)',glass:'copper',lemon:true},'龙舌兰螺丝刀':{color:'url(#mango)',glass:'tall',orange:true},'金汤力':{color:'url(#glass)',glass:'stem',lemon:true,berries:true},'热托迪':{color:'url(#tea)',glass:'mug',lemon:true,cinnamon:true},
- '伏特加汤力':{color:'url(#glass)',glass:'tall',lemon:true},'椰香帕洛玛':{color:'url(#pink)',glass:'stem',coconut:true},'能量伏特加':{color:'url(#egg)',glass:'tall',ice:true},'浓缩马提尼':{color:'url(#coffee)',glass:'martini',beans:true}
+ '龙舌兰螺丝刀':{color:'url(#mango)',glass:'tall',orange:true},'椰香帕洛玛':{color:'url(#pink)',glass:'stem',coconut:true}
  };
  if(bars[name]){const v=bars[name];let b='';if(v.glass==='tall')b=milkTea({color:v.color,straw:false});else if(v.glass==='short')b=t(milkTea({color:v.color,straw:false}),'translate(-5 26) scale(1.1 .65)');else if(v.glass==='mug'||v.glass==='copper')b=cup({color:v.color,shell:v.glass==='copper'?'url(#glaze)':'url(#glass)',handle:true});else if(v.glass==='martini')b=e(48,83,21,5,'url(#glass)')+r(45,49,6,32,2,'url(#glass)','stroke-width="1.6"')+p('M15 23h66L52 53h-8Z','url(#glass)')+p('M22 29h52L50 49h-4Z',v.color,'stroke-width="1.5"');else b=e(48,84,20,5,'url(#glass)')+r(45,53,6,30,2,'url(#glass)','stroke-width="1.6"')+p('M23 20h50q5 36-25 38T23 20Z','url(#glass)')+p('M26 31h44q-1 23-22 23T26 31Z',v.color,'stroke-width="1.5"');if(v.ice)b+=iceCube(41,46,.42)+iceCube(56,54,.4);if(v.lemon)b+=lemonSlice(67,29,.65);if(v.orange)b+=lemonSlice(68,30,.7);if(v.cherry)b+=e(62,39,4,4,'url(#red)','stroke-width="1.2"')+line('M62 35q0-6 5-7','#6e914f',1.3);if(v.cinnamon)b+=line('m58 31 11-20','#a77a52',3.3);if(v.beans)b+=bean(39,31,.45,20)+bean(52,34,.45,-20);if(v.berries)b+=e(43,43,3,3,'url(#berry)','stroke-width="1"')+e(54,45,2.5,2.5,'url(#berry)','stroke-width="1"');if(v.coconut)b+=ingredient('椰子',74,65,.28);return b;}
  throw new Error(`Missing native recipe artwork: ${name}`);

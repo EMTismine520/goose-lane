@@ -1,0 +1,18 @@
+{
+  "sourceReviewId": "9b722695d7fc",
+  "date": "2026-10-29",
+  "userQuote": "确认。继续下一轮，要做得顶尖",
+  "confirmedStarterReviewId": "9ecc918006ca",
+  "batchId": "home-kitchen",
+  "batchTitle": "家常料理十道",
+  "orderedIds": ["dish-fresh-home-onion-salad", "dish-fresh-home-tomato-eggs", "dish-fresh-home-meatball-soup", "dish-fresh-home-garlic-broccoli", "dish-fresh-home-vegetable-rice", "dish-fresh-home-scallion-egg-rice", "dish-fresh-home-seared-pork", "dish-fresh-home-garlic-cucumber", "dish-fresh-home-chicken-roll", "dish-fresh-home-orange-ribs"],
+  "orderedNames": ["凉拌紫洋葱", "番茄炒蛋", "肉丸蔬菜汤", "蒜香西兰花", "彩蔬拌饭", "葱香蛋饭", "香煎肉片", "蒜香黄瓜", "香煎鸡肉卷", "橙香小排"],
+  "occupancies": [0.80, 0.82, 0.82, 0.80, 0.82, 0.82, 0.82, 0.80, 0.82, 0.84],
+  "courses": ["cold", "hot", "soup-rice", "hot", "soup-rice", "soup-rice", "hot", "cold", "hot", "hot"],
+  "recipeDescriptions": ["紫洋葱丝拌上清脆黄瓜，酸甜开胃。", "嫩黄鸡蛋裹着番茄汁，撒一把葱花。", "圆滚滚的肉丸在清汤中咕嘟，热气里满是鲜香。", "脆嫩西兰花翻炒蒜末，留住一盘翠绿。", "彩椒、胡萝卜与葱花，把家常米饭点亮。", "蓬松米饭盖上嫩蛋，葱香暖暖地散开。", "肉片煎出焦香，配上清甜紫洋葱。", "蒜末爆香，黄瓜清脆，一盘简单的好味道。", "嫩鸡肉裹入蛋皮，煎成一卷金黄。", "甜橙与红椒调成亮亮的酱汁，包住鲜嫩小排。"],
+  "actualExpansionSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "actualBaseCatalogSha256": "07b19a67d40d86396d60403e853654c22b75d91a53e7b72278cb1be76f73cbaf",
+  "scope": "开局鲜食6道的用图及尺寸已确认固定，进入家常10道全部新版候选。DS08番茄炒蛋437既定原版继续完整保留为左侧对照，新版单独供选择；其它既有材料与配方样板选择保持。",
+  "sizePolicy": "成品按构图、盛器与美观确定体量，不套用低阶食材缩小规则。本批主体最长边80%／82%／82%／80%／82%／82%／82%／80%／82%／84%，保持透明留白和视觉居中。",
+  "authoringPolicy": "原生透明底SVG，延续清楚细深描边、可辨大形和克制材质。按现有主料与描述表现冷拌、热炒、清汤、米饭、香煎和橙酱，区分切法、火候及摆盘。十道均另绘新版，用户逐项决定采用，本轮不改配方逻辑。"
+}

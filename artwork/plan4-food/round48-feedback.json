@@ -1,0 +1,37 @@
+{
+  "sourceReviewId": "e19d9b0d5512",
+  "confirmedBarReviewId": "7d115f8358b8",
+  "confirmedEquipmentReviewId": "8be737722e17",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "familyIds": [
+    "spice-box",
+    "seafood-fridge",
+    "dairy-fridge",
+    "grain-box"
+  ],
+  "orderedIds": [
+    "spice-box-l1",
+    "spice-box-l2",
+    "spice-box-l3",
+    "seafood-fridge-l1",
+    "seafood-fridge-l2",
+    "seafood-fridge-l3",
+    "dairy-fridge-l1",
+    "dairy-fridge-l2",
+    "dairy-fridge-l3",
+    "grain-box-l1",
+    "grain-box-l2",
+    "grain-box-l3"
+  ],
+  "occupancies": [
+    0.78,
+    0.82,
+    0.84
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定EQ01—EQ04十二款第47轮新版，进入EQ05香料盒、EQ06海鲜冰箱、EQ07乳品冷柜、EQ08谷物面点箱四族三级12款候选。",
+  "sizePolicy": "三级78%/82%/84%，功能结构体现升级，透明留白与视觉居中，保持此前确认器材的原尺寸和字节。",
+  "authoringPolicy": "原生透明SVG，近黑细外轮廓、左上光、Q版体积；暗木香料分格盒、海蓝横冰鲜柜、奶白竖乳品柜、奶油搪瓷弧盖面点箱互相区分，食材标志限对应链，无字/数字/等级角标。"
+}

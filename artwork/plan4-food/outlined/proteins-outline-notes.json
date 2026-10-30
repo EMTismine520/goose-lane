@@ -1,0 +1,135 @@
+{
+  "baseReviewId": "dac74a498613",
+  "scope": "Only explicit visible-boundary outline overlays; accepted base artwork remains byte-identical after layer removal.",
+  "entries": [
+    {
+      "index": 8,
+      "id": "fresh-beast-8",
+      "name": "带骨牛排",
+      "baseSource": "output/plan4-food-review/checkpoints/dac74a498613/site/sources/fresh-beast-8.svg",
+      "baseSourceSha256": "59846063a1d65a02ddc62f4eda089b91fad1a72b6479af2dab44744399d6df12",
+      "outlinedSourceSha256": "20d26f82a0be9e6fa3c37a4f704d313f68548f92f93ed15244d8fa1a41d443be",
+      "stripRestoresBase": true,
+      "color": "#2b211c",
+      "outerWidth": 3.1,
+      "edgeAlpha": 0,
+      "note": "主肉排脂边与骨柄补近黑描边；骨柄遮挡处通过明确矢量遮罩让肉排边线自然停止，脂纹与高光不描黑。",
+      "outerWidthBefore": 5.5,
+      "visibleStrokeWidthsBefore": [
+        5.2,
+        5.5
+      ],
+      "visibleStrokeWidthsAfter": [
+        2.4,
+        3,
+        3.1
+      ],
+      "occlusionMasksPreserved": true,
+      "refinement": "参考原版小图收细可见描边；仅调整新增层的线宽，颜色、几何、遮罩及底稿均保持。"
+    },
+    {
+      "index": 9,
+      "id": "fresh-poultry-4",
+      "name": "鸡胸肉",
+      "baseSource": "output/plan4-food-review/checkpoints/dac74a498613/site/sources/fresh-poultry-4.svg",
+      "baseSourceSha256": "662ad95f0088738f064ab6371914deb1db9b88181ed148d6e1afac0161588e51",
+      "outlinedSourceSha256": "400f8b1bf97d9193fb8e7e3639f713092e4e5138842e3dad2767a348c851f04f",
+      "stripRestoresBase": true,
+      "color": "#2b211c",
+      "outerWidth": 3.1,
+      "edgeAlpha": 0,
+      "note": "前后两片各保留清楚外轮廓；前片遮挡后片的边线保持隐藏；纤维、柔光与表面细节原样保留。",
+      "outerWidthBefore": 5.5,
+      "visibleStrokeWidthsBefore": [
+        5.2,
+        5.5
+      ],
+      "visibleStrokeWidthsAfter": [
+        2.4,
+        3,
+        3.1
+      ],
+      "occlusionMasksPreserved": true,
+      "refinement": "参考原版小图收细可见描边；仅调整新增层的线宽，颜色、几何、遮罩及底稿均保持。"
+    },
+    {
+      "index": 11,
+      "id": "fresh-sea-1",
+      "name": "鲜虾",
+      "baseSource": "output/plan4-food-review/checkpoints/dac74a498613/site/sources/fresh-sea-1.svg",
+      "baseSourceSha256": "afd093167e57b134bab8800a953cc3d797f1600b612ed13996f0e1cbd563d56a",
+      "outlinedSourceSha256": "20fcf99ce24cdd247f020831ed609bb2ec27d0be8d9f4f3441f4ca6f2b369e6a",
+      "stripRestoresBase": true,
+      "color": "#2b211c",
+      "outerWidth": 3.1,
+      "edgeAlpha": 0,
+      "note": "C形虾身、尖头与展开尾扇补清楚外描边，尾部与头部的遮挡保持；细须轻描黑、壳面高光与半透色块原样保留。",
+      "outerWidthBefore": 5.5,
+      "visibleStrokeWidthsBefore": [
+        2.15,
+        2.5,
+        3.1,
+        5.3,
+        5.5
+      ],
+      "visibleStrokeWidthsAfter": [
+        1.4,
+        1.5,
+        1.8,
+        3,
+        3.1
+      ],
+      "occlusionMasksPreserved": true,
+      "refinement": "参考原版小图收细可见描边；仅调整新增层的线宽，颜色、几何、遮罩及底稿均保持。"
+    },
+    {
+      "index": 12,
+      "id": "fresh-sea-6",
+      "name": "三文鱼",
+      "baseSource": "output/plan4-food-review/checkpoints/dac74a498613/site/sources/fresh-sea-6.svg",
+      "baseSourceSha256": "5516eb2ff0bc73b8725a5eaa8298868caad7abd5d081fffe38660a5cac06a2a7",
+      "outlinedSourceSha256": "00a050324a5573515d28cc9a44abbb6d92daecd2296cf1c2e7f2ebf5f8ed4c49",
+      "stripRestoresBase": true,
+      "color": "#2b211c",
+      "outerWidth": 3.2,
+      "edgeAlpha": 0,
+      "note": "厚切鱼柳外缘补近黑描边，顶面、前切面与鱼皮边缘用较细结构线区分；脂肪纹不加黑。",
+      "outerWidthBefore": 5.6,
+      "visibleStrokeWidthsBefore": [
+        2.5,
+        2.8,
+        5.6
+      ],
+      "visibleStrokeWidthsAfter": [
+        1.5,
+        1.6,
+        3.2
+      ],
+      "occlusionMasksPreserved": true,
+      "refinement": "参考原版小图收细可见描边；仅调整新增层的线宽，颜色、几何、遮罩及底稿均保持。"
+    },
+    {
+      "index": 13,
+      "id": "fresh-poultry-1",
+      "name": "鸡蛋",
+      "baseSource": "output/plan4-food-review/checkpoints/dac74a498613/site/sources/fresh-poultry-1.svg",
+      "baseSourceSha256": "8e2be277bd9ab26bb5532d7e3f6a50290b51abe1fc7a5c7bc754ddd4b0505b6b",
+      "outlinedSourceSha256": "e8d05c1d1b585f6d66330d0fa9224fbb2ef272549d28ae0708a649de9e8053ce",
+      "stripRestoresBase": true,
+      "color": "#2b211c",
+      "outerWidth": 3.1,
+      "edgeAlpha": 0,
+      "note": "完整蛋壳增加连续近黑外轮廓，蛋壳体积、柔光和孔点保持原样。",
+      "outerWidthBefore": 5.5,
+      "visibleStrokeWidthsBefore": [
+        5.5
+      ],
+      "visibleStrokeWidthsAfter": [
+        3.1
+      ],
+      "occlusionMasksPreserved": true,
+      "refinement": "参考原版小图收细可见描边；仅调整新增层的线宽，颜色、几何、遮罩及底稿均保持。"
+    }
+  ],
+  "refinement": "2026-10-29：按用户要求参考原版收细描边，主轮廓约3.0—3.2，内部结构1.4—1.8；侧面厚度边2.4。"
+}

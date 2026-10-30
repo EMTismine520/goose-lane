@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode 
 import { X } from 'lucide-react';
 import { ITEMS, CUSTOMERS } from '../content/catalog';
 import { B_ART, itemPresentation } from '../content/assets';
+import V3_ART from '../content/v3-art.json';
 import { ArtImage } from './ArtImage';
 
 export function Goose({color='#5e8066',accessory='',className='',expression='waiting'}: {color?:string;accessory?:string;className?:string;expression?:'waiting'|'expectant'|'eager'|'happy'}) {
@@ -40,7 +41,7 @@ export function Goose({color='#5e8066',accessory='',className='',expression='wai
 export function ItemIcon({item,size=48,muted=false}: {item:string;size?:number;muted?:boolean}) {
   const def=ITEMS[item]; if(!def) return null;
   if(def.assetId) {
-    const custom=item in B_ART,presentation=itemPresentation(item);
+    const custom=item in B_ART&&!(item in V3_ART),presentation=itemPresentation(item);
     return <ArtImage className={`item-icon vector-item ${muted?'muted':''}`} path={presentation.path!} size={size} alt={def.name} draggable={false}
       style={custom?{objectFit:'contain',transform:`translate(${presentation.offsetX*2}%,${(presentation.offsetY+2)*2}%) scale(${presentation.displaySize/50})`}:undefined}/>;
   }

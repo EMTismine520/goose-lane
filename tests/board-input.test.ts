@@ -206,7 +206,7 @@ describe('clicks inspect objects and operate devices without transporting the pr
   it('only selects an incomplete appliance even when the selected ingredient could complete its recipe', () => {
     let state = kitchen();
     state.board[2] = { uid: `g${state.nextId++}`, item: 'fresh-veg-5' };
-    state.board[3] = { uid: `g${state.nextId++}`, item: 'fresh-fruit-2' };
+    state.board[3] = { uid: `g${state.nextId++}`, item: 'fresh-veg-3' };
     state = execute(state, { type: 'stageInput', from: 2, appliance: 'chopping-board' }, state.lastSeen).state;
     const before = structuredClone(state);
     expect(getApplianceStatus(state, 'chopping-board')?.canStart).toBe(false);

@@ -1,0 +1,29 @@
+{
+  "sourceReviewId": "49e8e9d4586c",
+  "confirmedBarReviewId": "7d115f8358b8",
+  "confirmedEquipmentReviewId": "21d51ee76291",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "familyIds": [
+    "ice-cream-machine",
+    "bar"
+  ],
+  "orderedIds": [
+    "ice-cream-machine-l1",
+    "ice-cream-machine-l2",
+    "ice-cream-machine-l3",
+    "bar-l1",
+    "bar-l2",
+    "bar-l3"
+  ],
+  "occupancies": [
+    0.78,
+    0.82,
+    0.84
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定EQ21—EQ24十二款第52轮新版，进入EQ25冰淇淋机、EQ26调饮台两族三级最后6款器材候选；全部按真实烹饪用途展示，配方与制作规则保持。全部78级已提供候选，当前6款仍待人工选择。",
+  "sizePolicy": "三级78%/82%/84%，功能结构体现升级，透明留白与视觉居中，保持此前确认器材的原尺寸和字节。",
+  "authoringPolicy": "原生透明SVG，近黑细外轮廓、左上光、Q版体积；奶油莓紫单出料冰淇淋机与胡桃翠绿开放调饮台互相区分；三级通过功能结构升级，无字/数字/等级角标。"
+}

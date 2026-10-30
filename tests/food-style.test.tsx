@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { B_ART, devicePresentation, itemImageUrl, itemPresentation, svgRasterSize } from '../src/content/assets';
+import { B_ART, devicePresentation, itemImageUrl, itemPresentation, svgRasterSize, type ArtPresentation } from '../src/content/assets';
+import V3_ART from '../src/content/v3-art.json';
 import { activeDevices, homeCookingUnlocked, HOME_DEVICES } from '../src/content/board-layouts';
 import { createFoodStyleState, FOOD_STYLE_ITEMS } from '../src/diagnostics/food-style-state';
 import { execute, stateInvariantErrors } from '../src/domain/engine';
@@ -49,15 +50,33 @@ describe('B-only food art and isolated preview', () => {
     expect(itemPresentation('fresh-veg-1').displaySize).toBeLessThanOrEqual(56);
   });
 
-  it.each([1, 2, 3])('keeps layout stable while raising SVG sampling at DPR %i', ratio => {
+  it('uses the selected V3 canvas once without applying the historical B-art transform again', () => {
+    const selectedHistoricalItems = Object.keys(B_ART).filter(id => id in V3_ART && ITEMS[id]?.assetId);
+    expect(selectedHistoricalItems.length).toBeGreaterThan(0);
+    for (const id of selectedHistoricalItems) {
+      expect(renderToStaticMarkup(<ItemIcon item={id}/>), id).not.toContain('transform:');
+      expect(itemPresentation(id), id).toEqual((V3_ART as Record<string, ArtPresentation>)[id]);
+    }
+  });
+
+  it.each([1, 2, 3])('keeps canonical layout stable while raising SVG sampling at DPR %i', ratio => {
+    const canonical = V3_ART as Record<string, ArtPresentation>;
     for (const id of Object.keys(B_ART)) {
-      const presentation = HOME_DEVICES.some(device => device.id === id) ? devicePresentation(id) : itemPresentation(id);
-      expect([96,256]).toContain(presentation.svgSize);
+      const device = HOME_DEVICES.some(device => device.id === id);
+      const presentation = device ? devicePresentation(id) : itemPresentation(id);
+      const selected = canonical[id] ?? (device ? canonical[id + '-l1'] : undefined);
+      if (selected) expect(presentation, id).toEqual(selected);
+      else expect(presentation, id).toEqual((B_ART as Record<string, ArtPresentation>)[id]);
+      expect(Number.isFinite(presentation.svgSize), id).toBe(true);
+      expect(presentation.svgSize, id).toBeGreaterThan(0);
       expect(svgRasterSize(presentation, ratio)).toBe(Math.max(presentation.svgSize,96 * ratio));
       expect(presentation.displaySize).toBeLessThanOrEqual(56);
     }
     expect(itemPresentation('fresh-beast-1').displaySize).toBeLessThanOrEqual(56);
     expect(itemPresentation('fresh-poultry-1').displaySize).toBeLessThanOrEqual(56);
-    for (const device of HOME_DEVICES) expect(devicePresentation(device.id).displaySize * .75).toBe(42);
+    for (const device of HOME_DEVICES) {
+      const selected = canonical[device.id] ?? canonical[device.id + '-l1'] ?? (B_ART as Record<string, ArtPresentation>)[device.id];
+      expect(devicePresentation(device.id), device.id).toEqual(selected);
+    }
   });
 });

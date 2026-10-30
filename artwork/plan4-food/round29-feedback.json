@@ -1,0 +1,14 @@
+{
+  "sourceReviewId": "eca46c2048d3",
+  "date": "2026-10-29",
+  "userQuote": "保留原版DS09，其它采用新版美术。重做“DS13 · 香煎肉片”和“DS16 · 橙香小排”，控制数量，不要太多。要做得顶尖。",
+  "selectedOriginalCodes": ["DS09"],
+  "selectedNewCodes": ["DS07", "DS08", "DS10", "DS11", "DS12", "DS13", "DS14", "DS15", "DS16"],
+  "redesignCodes": ["DS13", "DS16"],
+  "batchId": "home-kitchen",
+  "actualExpansionSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "actualBaseCatalogSha256": "07b19a67d40d86396d60403e853654c22b75d91a53e7b72278cb1be76f73cbaf",
+  "scope": "家常十道采用九项新版、一项DS09原版；DS08本次明确改选第28轮新版，437原版选择留作历史。DS13与DS16保持第28轮所选新版作为对照，减少肉块数量的新稿另交用户确认。其余八项和此前已确认用图保持。",
+  "sizePolicy": "配方成品按构图美观定体量，不套用低级原料缩小规则。八项所选图源与导出原字节保持；DS13主体82%、DS16主体84%，仅重排盘中主体与数量，保持透明留白与居中。",
+  "authoringPolicy": "沿用清晰细深描边与可辨熟食大形。香煎肉片减为两片，橙香小排减为三块，放大单片辨识、保留盘内留白，辅料只点明既定配方身份。本轮不改食材、名称或配方逻辑。"
+}

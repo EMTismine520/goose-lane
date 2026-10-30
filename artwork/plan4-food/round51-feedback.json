@@ -1,0 +1,37 @@
+{
+  "sourceReviewId": "33e5f7494a2b",
+  "confirmedBarReviewId": "7d115f8358b8",
+  "confirmedEquipmentReviewId": "5a58a0b42627",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "familyIds": [
+    "home-cooking-pot",
+    "frying-station",
+    "charcoal-grill",
+    "oven"
+  ],
+  "orderedIds": [
+    "home-cooking-pot-l1",
+    "home-cooking-pot-l2",
+    "home-cooking-pot-l3",
+    "frying-station-l1",
+    "frying-station-l2",
+    "frying-station-l3",
+    "charcoal-grill-l1",
+    "charcoal-grill-l2",
+    "charcoal-grill-l3",
+    "oven-l1",
+    "oven-l2",
+    "oven-l3"
+  ],
+  "occupancies": [
+    0.78,
+    0.82,
+    0.84
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定EQ13—EQ16十二款第50轮新版，进入EQ17料理锅、EQ18煎台、EQ19炭烤炉、EQ20烤箱四族三级12款候选；全部按真实烹饪用途展示，配方与制作规则保持。",
+  "sizePolicy": "三级78%/82%/84%，功能结构体现升级，透明留白与视觉居中，保持此前确认器材的原尺寸和字节。",
+  "authoringPolicy": "原生透明SVG，近黑细外轮廓、左上光、Q版体积；珊瑚圆腹料理锅、奶油铸铁煎台、海蓝开放炭炉、薄荷玻璃烤箱互相区分；三级通过功能结构升级，无字/数字/等级角标。"
+}

@@ -1,0 +1,16 @@
+{
+  "sourceReviewId": "165fa39f80fa",
+  "date": "2026-10-29",
+  "userQuote": "确认采用。EX04 · 芒果，与“柠檬”太像，修改芒果的美术。继续下一轮。要做得顶尖",
+  "acceptedReplacementCodes": ["SE03", "SE04", "SE09"],
+  "acceptedReplacementNames": ["扇贝", "鲷鱼", "青蟹"],
+  "redesignTargetId": "fresh-exotic-4",
+  "nextChain": "fresh-milk",
+  "orderedMilkNames": ["纯牛奶", "黄油", "芝士片", "奶油", "酸奶", "奶酪", "炼乳"],
+  "milkOccupancies": [0.66, 0.70, 0.68, 0.70, 0.68, 0.80, 0.80],
+  "originalCheeseReviewId": "437a9a667ee5",
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "scope": "确认采用扇贝、鲷鱼、青蟹，固定海鲜11项既定用图与尺寸；重设计芒果并进入乳品7项全新候选。桑葚采用稿与其余六果当前展示、此前26项跨链固定稿保持。实际游戏名称、ID、等级、菜谱与存档保持，已确认替换映射留待后续统一接入。",
+  "sizePolicy": "芒果四级最长边68%；乳品前五级66%／70%／68%／70%／68%，第六七级80%。此前已选用导出逐字节保持，不累计缩小。",
+  "authoringPolicy": "原生SVG，清楚细深色描边、大形、适量留白和克制光泽。芒果独立重画为橙红弯长整果与金橙切面，明显区别柠檬；乳品7项全部另绘新版，由用户逐项决定采用。"
+}

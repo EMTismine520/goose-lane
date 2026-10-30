@@ -1,0 +1,14 @@
+{
+  "sourceReviewId": "bd87b6decaca",
+  "date": "2026-10-29",
+  "userQuote": "新版美术采用CF01,CF05,CF06,CF09。其它保留原版，控制尺寸。修改“美式咖啡”和“大杯美式”，可以换成其它饮品。要做得顶尖",
+  "selectedNewCodes": ["CF01", "CF05", "CF06", "CF09"],
+  "selectedOriginalCodes": ["CF02", "CF03", "CF04", "CF07", "CF08"],
+  "originalSizeTargets": {"CF02": 0.68, "CF03": 0.70, "CF04": 0.70},
+  "replacementNames": {"CF07": "拿铁咖啡", "CF08": "气泡冷萃"},
+  "replacementIds": ["fresh-coffee-7", "fresh-coffee-8"],
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "scope": "采用CF01、CF05、CF06、CF09第21轮新版，其余原版；CF02、CF03、CF04原版仅缩小尺寸。CF07美式咖啡与CF08大杯美式另绘拿铁咖啡、气泡冷萃两个替换候选，原版保留。55项既定跨链资产、乳品7项当前来源及鲜果8项保持；实际游戏内容、名称、ID、等级、菜谱和存档保持。",
+  "sizePolicy": "咖啡前五级主体最长边66%／68%／70%／70%／70%，高阶80%。已采用四新版全档原字节保持；三项原版从80%等比收小并透明补边；两项高阶新候选80%，主体视觉居中。",
+  "authoringPolicy": "两项新的原生SVG候选，保持清楚细深色描边。拿铁以圆鼓陶杯、浅奶咖与心形奶泡拉开差异；气泡冷萃以高球杯、琥珀层次、贴杯柑橘片和少量气泡区分矮杯冰咖啡。替换名仅为审阅方案，采用由用户决定。"
+}

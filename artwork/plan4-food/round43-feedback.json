@@ -1,0 +1,37 @@
+{
+  "sourceReviewId": "132697088ec6",
+  "date": "2026-10-30",
+  "userQuote": "原版保留DS98和DS104,其它采用新版。继续下一轮，要做得顶尖",
+  "batchId": "blender",
+  "batchTitle": "搅拌机甜品四款",
+  "confirmedMicrowaveReviewId": "baff4b705a4c",
+  "orderedIds": [
+    "dish-fresh-ico-0106",
+    "dish-fresh-ico-0114",
+    "dish-fresh-ico-0125",
+    "dish-fresh-ico-0127"
+  ],
+  "orderedNames": [
+    "QQ芒果布丁",
+    "芒果慕斯",
+    "浆果蜂蜜燕麦碗",
+    "肉桂苹果奶冻"
+  ],
+  "occupancies": [
+    0.82,
+    0.82,
+    0.84,
+    0.82
+  ],
+  "courses": [
+    "mango",
+    "mango",
+    "oat",
+    "apple"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "d01ee106f8c2f408d40619c990b991307350e75fda65de06825ca54d89f781e2",
+  "scope": "按最新选择固定微波7款：DS98和DS104原版，其它5款新版；DS104同步恢复原版棉花软糖热巧克力配方。进入DS105—DS108搅拌机甜品4款，全部独立另绘新版供逐项选择。QQ芒果布丁既有437原版已确认，左侧源与导出及80%体量保持，新候选未经确认不替换。",
+  "sizePolicy": "成品按主料、盛器和构图定美观体量，布丁/慕斯/奶冻82%、燕麦碗84%；透明留白与居中，份量克制。QQ既定原版80%及全部导出原字节保持。",
+  "authoringPolicy": "原生透明SVG，细近黑清楚描边、鲜活色块与食欲。凝润低圆芒果布丁、轻盈矮三角慕斯、蓝紫莓与金蜜燕麦碗、象牙方奶冻与红皮苹果，轮廓和质地清楚区分；不加配方外饼底、酸奶、坚果或其它水果。原版与既定选择保留，新稿由用户选择。"
+}

@@ -1,0 +1,49 @@
+{
+  "sourceReviewId": "4e20964f5ee6",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。DS117与DS113太像，修改，可以更换其它饮品。继续下一轮，要做得顶尖",
+  "batchId": "bar-final",
+  "batchTitle": "桑葚特调重设计与吧台末批六款",
+  "selectedBarFrontReviewId": "15593cd5fb70",
+  "orderedIds": [
+    "dish-fresh-ico-0118",
+    "dish-fresh-ico-0122",
+    "dish-fresh-ico-0131",
+    "dish-fresh-ico-0135",
+    "dish-fresh-ico-0142",
+    "dish-fresh-ico-0159",
+    "dish-fresh-ico-0160"
+  ],
+  "orderedNames": [
+    "桑葚龙舌兰特调",
+    "西柚金酒气泡",
+    "蜂蜜橙柠冰饮",
+    "西柚椰青气泡",
+    "椰香帕洛玛",
+    "椰青能量饮",
+    "椰青浓缩咖啡"
+  ],
+  "occupancies": [
+    0.84,
+    0.84,
+    0.84,
+    0.84,
+    0.84,
+    0.84,
+    0.84
+  ],
+  "courses": [
+    "refined",
+    "citrus",
+    "citrus",
+    "coconut",
+    "coconut",
+    "energy",
+    "coffee"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定DS112—DS116五张新版，DS117改为桑葚紫红短脚杯并同步龙舌兰/桑葚/柠檬配方；与DS118—DS123末批六张独立候选一并审阅。",
+  "sizePolicy": "七款配方成品均84%，按杯型和盛器控制视觉份量，透明留白与居中；前稿与既有选择原字节保持。",
+  "authoringPolicy": "原生透明SVG，细近黑描边，鲜活色彩与食欲，克制冰块和装饰。桑葚莓紫低脚杯、西柚浅粉高杯、蜂蜜橙矮肚杯、椰青圆角方杯、剖开椰壳、青绿能量罐、双壁椰青浓缩杯，各有形态。"
+}

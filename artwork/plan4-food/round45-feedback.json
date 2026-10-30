@@ -1,0 +1,45 @@
+{
+  "sourceReviewId": "af792d24b368",
+  "date": "2026-10-30",
+  "userQuote": "原版保留DS111，其它采用新版。继续下一轮，要做得顶尖",
+  "batchId": "bar-front",
+  "batchTitle": "吧台特调前六款",
+  "confirmedIceCreamReviewId": "ce2951587eff",
+  "orderedIds": [
+    "dish-fresh-ico-0067",
+    "dish-fresh-ico-0075",
+    "dish-fresh-ico-0090",
+    "dish-fresh-ico-0098",
+    "dish-fresh-ico-0111",
+    "dish-fresh-ico-0118"
+  ],
+  "orderedNames": [
+    "蓝柑可乐",
+    "橙冰苏打",
+    "香甜蛋奶饮",
+    "橙柠酸甜冰饮",
+    "椰青姜柠饮",
+    "龙舌兰螺丝刀"
+  ],
+  "occupancies": [
+    0.84,
+    0.84,
+    0.82,
+    0.84,
+    0.84,
+    0.84
+  ],
+  "courses": [
+    "fizz",
+    "fizz",
+    "milk",
+    "citrus",
+    "clear",
+    "citrus"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "d01ee106f8c2f408d40619c990b991307350e75fda65de06825ca54d89f781e2",
+  "scope": "固定冰淇淋DS109、DS110第44轮新版，DS111保留V4原版。进入吧台DS112—DS117六款全新独立候选供逐项选择；名称、配方、订单与运行资源保持。",
+  "sizePolicy": "配方成品按杯型与主料控制美观体量，蛋奶饮82%、其余84%，透明留白与视觉居中；保留DS111原版80%。",
+  "authoringPolicy": "原生透明SVG，细近黑描边，生动配色与食欲，克制冰块和装饰。矮棱杯、高弧杯、奶白陶杯、宽口短梗杯、低磨砂桶杯、直壁窄高杯各有轮廓；只表现当前真实主料，不复活已退役酒基。"
+}

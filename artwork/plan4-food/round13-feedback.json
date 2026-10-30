@@ -1,0 +1,61 @@
+{
+  "sourceReviewId": "34d2121293c9",
+  "date": "2026-10-29",
+  "userQuote": "符合预期，继续下一轮",
+  "chain": "fresh-exotic",
+  "orderedNames": [
+    "蓝莓",
+    "香蕉",
+    "柠檬",
+    "芒果",
+    "水蜜桃",
+    "椰子",
+    "梨",
+    "桑葚"
+  ],
+  "codes": [
+    "EX01",
+    "EX02",
+    "EX03",
+    "EX04",
+    "EX05",
+    "EX06",
+    "EX07",
+    "EX08"
+  ],
+  "presentationOccupancies": [
+    0.66,
+    0.72,
+    0.68,
+    0.68,
+    0.68,
+    0.8,
+    0.8,
+    0.8
+  ],
+  "baselinePeachReviewId": "437a9a667ee5",
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "previousFinalReviews": [
+    {
+      "chain": "fresh-poultry",
+      "reviewId": "7b7284a3439f",
+      "stem": "poultry-final",
+      "count": 8
+    },
+    {
+      "chain": "fresh-spice",
+      "reviewId": "ffb43f3f0f2a",
+      "stem": "spice-final",
+      "count": 10
+    },
+    {
+      "chain": "fresh-seasonal",
+      "reviewId": "d5e8dbfea343",
+      "stem": "seasonal-final",
+      "count": 8
+    }
+  ],
+  "authoringPolicy": "风味鲜果8项全部独立新绘并保留原版，由用户逐项决定采用；水蜜桃已选原版仍作为既定来源保留，新稿不自动采用。",
+  "sizePolicy": "前五级按视觉重量控制大小：蓝莓.66、香蕉.72、柠檬/芒果/水蜜桃.68；椰子、梨、桑葚.8。清晰细深描边优先，避免低阶塞满画布。",
+  "scope": "第12轮蘑菇新稿和原版玉米尺寸已通过，时蔬8项全固定；此前禽肉8和香料10同样固定。当前仅风味鲜果8项全新候选，食材名称/ID/等级/菜谱/存档保持；已选水蜜桃原版精确保留作对照。"
+}

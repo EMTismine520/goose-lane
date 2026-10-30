@@ -1,0 +1,74 @@
+{
+  "sourceReviewId": "1b494fd39424",
+  "date": "2026-10-29",
+  "userQuote": "这两项不采用新版，以后全部设计新版，我来考虑是否采用。这一轮还需要修改的有：B01香肠，不要前面的方块状。B02培根，要更紧凑。B03肉丸，更换颜色。P03鸡翅中，造型奇怪，可以换成别的食材，不需要保持“鸡翅中”这个食材。P06鸡全翅，同样造型奇怪，可以换成别的食材。P07整鸡，同样造型奇怪。P08皮蛋，整个禽肉链设计的很不合理，可以考虑鸭，鹅等食材。重新设计，要做得顶尖",
+  "rejectedCandidateIds": [
+    "fresh-beast-6",
+    "fresh-poultry-3"
+  ],
+  "futurePolicy": "每一批全部制作新版候选，由用户决定逐项采用，不再由实现者只挑少数项目制作。",
+  "allCandidateIds": [
+    "fresh-beast-1",
+    "fresh-beast-2",
+    "fresh-beast-3",
+    "fresh-beast-4",
+    "fresh-beast-5",
+    "fresh-beast-6",
+    "fresh-beast-7",
+    "fresh-beast-8",
+    "fresh-beast-9",
+    "fresh-beast-10",
+    "fresh-poultry-1",
+    "fresh-poultry-2",
+    "fresh-poultry-3",
+    "fresh-poultry-4",
+    "fresh-poultry-5",
+    "fresh-poultry-6",
+    "fresh-poultry-7",
+    "fresh-poultry-8"
+  ],
+  "allowPoultryIdentityRedesign": true,
+  "proposedPoultryNames": [
+    "鸡蛋",
+    "鸡胗",
+    "鸡里脊",
+    "鸡胸肉",
+    "鸡腿",
+    "鸭胸肉",
+    "鸭腿",
+    "卤鹅肉"
+  ],
+  "requirements": {
+    "B01": "移除前端方块状端帽，使用自然肠衣扎口",
+    "B02": "更紧凑的层叠培根",
+    "B03": "更换肉丸颜色",
+    "poultry": "整体重设计，允许鸡翅中/鸡全翅/整鸡/皮蛋替换，加入鸭鹅"
+  },
+  "recipeProposals": [
+    {
+      "id": "fresh-ico-0029",
+      "before": "脆皮翅根",
+      "after": "脆皮鸡柳",
+      "inputBefore": "鸡翅中",
+      "inputAfter": "鸡里脊",
+      "family": "frying-station"
+    },
+    {
+      "id": "fresh-ico-0092",
+      "before": "蜜汁烤鸡",
+      "after": "蜜汁烤鸭腿",
+      "inputBefore": "整鸡",
+      "inputAfter": "鸭腿",
+      "family": "oven"
+    },
+    {
+      "id": "fresh-ico-0146",
+      "before": "凉拌皮蛋",
+      "after": "凉拌卤鹅肉",
+      "inputBefore": "皮蛋",
+      "inputAfter": "卤鹅肉",
+      "family": "chopping-board"
+    }
+  ],
+  "scope": "兽肉10项与禽肉8项全部新画；改名与菜谱联动仅为待用户采用的方案，实际游戏内容与存档尚未修改。"
+}

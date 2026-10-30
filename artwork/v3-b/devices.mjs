@@ -55,7 +55,7 @@ function butcher(l,raw){
 }
 function poultry(l,raw){
   let b=p('M21 67V31q0-24 27-24t27 24v36Z',U('egg'))+p('M29 46V30q0-16 19-16t19 16v16Z',U('bowl'))+line('M35 20q13-8 25 0','#fff8df',2.5);
-  b+=food(raw,'鸡腿',48,38,.55,-15)+p('M13 59h69l-8 23H22Z',U('grain'))+e(48,60,35,8,U('wood'))+food(raw,'鸡蛋',30,58,.31,-15)+food(raw,'鸡蛋',49,57,.33,4)+food(raw,'鸡蛋',65,60,.28,20);
+  b+=food(raw,'火鸡腿',48,38,.55,-15)+p('M13 59h69l-8 23H22Z',U('grain'))+e(48,60,35,8,U('wood'))+food(raw,'鸡蛋',30,58,.31,-15)+food(raw,'鸡蛋',49,57,.33,4)+food(raw,'鸡蛋',65,60,.28,20);
   b+=line('M23 70q25 8 49 0m-40-5 3 13m16-13v15m14-14-2 12',C.darkWood,1.4);
   if(l>=2)b+=r(18,80,61,6,2,U('metal'))+p('M21 49h-7v24m61-24h8v25','none','stroke-width="3"')+r(36,69,24,10,4,U('bowl'),'stroke-width="1.2"');
   if(l===3)b+=p('M29 10q19-12 38 0','none','stroke-width="5"')+p('M29 12 20 5l-8 7 9 8Z',U('tomato'))+wheel(25,86)+wheel(72,86);
@@ -70,7 +70,7 @@ function spices(l,raw){
 }
 function sea(l,raw){
   let b=feet()+p('M10 42 25 24h57l6 18-8 36H18Z',U('blue'))+p('M10 42 27 29h49l12 13-16 15H26Z',U('metal'))+p('M20 42 33 34h37l7 8-10 7H30Z',U('glass'));
-  b+=iceCube(32,41,.23)+iceCube(65,41,.25)+food(raw,'鲶鱼',48,38,.55,-12)+r(24,61,49,8,3,U('bowl'),'stroke-width="1.3"')+p('m41 65 9-3 8 3-8 3Z',U('blue'),'stroke-width="1"');
+  b+=iceCube(32,41,.23)+iceCube(65,41,.25)+food(raw,'鲷鱼',48,38,.55,-12)+r(24,61,49,8,3,U('bowl'),'stroke-width="1.3"')+p('m41 65 9-3 8 3-8 3Z',U('blue'),'stroke-width="1"');
   if(l>=2)b+=p('M25 25V11h56v17','none','stroke-width="3"')+p('M27 11h53l-2 10H25Z',U('glass'))+light('M34 13h28',2);
   if(l===3)b+=p('M9 77H4V49h7m72 28h9V48h-7','none','stroke-width="3"')+food(raw,'鲜虾',75,37,.3,25)+rivets([27,36,45],75);
   return b;

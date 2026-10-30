@@ -1,0 +1,37 @@
+{
+  "sourceReviewId": "ffe30d6e6825",
+  "confirmedBarReviewId": "7d115f8358b8",
+  "confirmedEquipmentReviewId": "daa7aefd8b12",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "familyIds": [
+    "tea-caddy",
+    "mixer-base-cooler",
+    "chopping-board",
+    "fruit-press"
+  ],
+  "orderedIds": [
+    "tea-caddy-l1",
+    "tea-caddy-l2",
+    "tea-caddy-l3",
+    "mixer-base-cooler-l1",
+    "mixer-base-cooler-l2",
+    "mixer-base-cooler-l3",
+    "chopping-board-l1",
+    "chopping-board-l2",
+    "chopping-board-l3",
+    "fruit-press-l1",
+    "fruit-press-l2",
+    "fruit-press-l3"
+  ],
+  "occupancies": [
+    0.78,
+    0.82,
+    0.84
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定EQ09—EQ12十二款第49轮新版，进入EQ13茶叶罐、EQ14特调基底柜、EQ15小鹅砧板、EQ16鲜果料理台四族三级12款候选；两类生产器与两类烹饪器材按真实用途区分。",
+  "sizePolicy": "三级78%/82%/84%，功能结构体现升级，透明留白与视觉居中，保持此前确认器材的原尺寸和字节。",
+  "authoringPolicy": "原生透明SVG，近黑细外轮廓、左上光、Q版体积；青瓷密封茶罐、深青珊瑚冰饮基底柜、枫木切配砧板、奶油鲜果料理台互相区分；三级通过功能结构升级，无字/数字/等级角标。"
+}

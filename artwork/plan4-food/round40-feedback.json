@@ -1,0 +1,82 @@
+{
+  "sourceReviewId": "863fa7ee8cbb",
+  "date": "2026-10-30",
+  "userQuote": "确认。继续下一轮，要做得顶尖",
+  "batchId": "steamer",
+  "batchTitle": "蒸笼十二道",
+  "confirmedOvenReviewId": "e586e7e80e71",
+  "orderedIds": [
+    "dish-fresh-ico-0065",
+    "dish-fresh-ico-0070",
+    "dish-fresh-ico-0072",
+    "dish-fresh-ico-0073",
+    "dish-fresh-ico-0077",
+    "dish-fresh-ico-0083",
+    "dish-fresh-ico-0088",
+    "dish-fresh-ico-0115",
+    "dish-fresh-ico-0116",
+    "dish-fresh-ico-0123",
+    "dish-fresh-ico-0144",
+    "dish-fresh-ico-0145"
+  ],
+  "orderedNames": [
+    "晶莹鲜虾饺",
+    "牛肉肠粉",
+    "香菇酿肉",
+    "椰汁奶白小丸",
+    "流沙奶黄包",
+    "焦糖马拉糕",
+    "火鸡糯米饭",
+    "南瓜蒸排骨",
+    "三鲜虾肉饺子",
+    "爆汁灌汤小笼包",
+    "蒜蓉蒸鱿鱼",
+    "蒸龙虾"
+  ],
+  "occupancies": [
+    0.82,
+    0.82,
+    0.82,
+    0.8,
+    0.82,
+    0.82,
+    0.84,
+    0.82,
+    0.82,
+    0.82,
+    0.82,
+    0.84
+  ],
+  "courses": [
+    "dim-sum",
+    "dim-sum",
+    "savoury",
+    "sweet",
+    "sweet",
+    "sweet",
+    "savoury",
+    "savoury",
+    "dim-sum",
+    "dim-sum",
+    "sea",
+    "sea"
+  ],
+  "currentSemanticComparisons": [
+    {
+      "id": "dish-fresh-ico-0088",
+      "code": "DS85",
+      "name": "火鸡糯米饭",
+      "source": "artwork/v3-b/masters/dish-fresh-ico-0088.svg",
+      "sourceSha256": "950649ab63e7edf36d134ddafe51d366e74effb11df0422bbccfc5c0e21975c6"
+    }
+  ],
+  "replacedCodes": [
+    "DS81",
+    "DS86"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "ff6e29465e3856cfedc7ae9e1ad3f186f78867baac95ba2d2ac837ce5d604edd",
+  "scope": "确认第39轮五道去重稿，烤箱16道全部固定。进入DS79—DS90蒸笼12道，各项全部独立另绘新版，仍由用户逐项决定。延续相近品类只留一款要求：肠粉保留DS80，DS81改香菇酿肉、DS86改南瓜蒸排骨并同步真实配方。",
+  "sizePolicy": "配方成品按构图和盛器美观定体量；奶白丸80%、糯米饭与龙虾84%、其余82%，居中透明留白。前五级原料尺寸规则不套用于配方成品。",
+  "authoringPolicy": "原生透明SVG，清楚细近黑描边，鲜活熟色、克制数量与自然轮廓。透亮虾饺、滑粉卷、酿菇、奶白丸、流沙包、蒸糕、糯米饭、南瓜排骨、肉饺、小笼、蒜鱿与龙虾各有大形，不复制同款换色。画面对应真实输入。两款被替换的肠粉只作旧菜历史参考；火鸡饭用当前语义同步母稿对照，旧原版另存历史。"
+}

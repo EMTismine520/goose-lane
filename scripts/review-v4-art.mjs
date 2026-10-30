@@ -8,7 +8,7 @@ const groups=[
  {id:'equipment',title:'26类器材 · 一级轮廓',entries:manifest.filter(x=>x.kind==='device'&&x.level===1)},
  {id:'growth',title:'26类器材 · 三级成长',entries:manifest.filter(x=>x.kind==='device')},
  {id:'produce',title:'果蔬与香料 · 外形识别',entries:named(['番茄','彩椒','红椒','黄瓜','四季豆','香葱','葡萄','蓝莓','桑葚','田园菜篮','缤纷果篮','混合香叶'])},
- {id:'meat',title:'肉类与海鲜 · 切面和结构',entries:named(['培根','五花肉','猪排','鸡胸肉','带骨牛排','羊排','鸡腿','鸡全翅','鳕鱼','鲶鱼','金枪鱼','三文鱼'])},
+ {id:'meat',title:'肉类与海鲜 · 切面和结构',entries:named(['培根','五花肉','猪排','鸡胸肉','带骨牛排','羊排','火鸡腿','卤鹅肉','扇贝','鲷鱼','金枪鱼','三文鱼'])},
  {id:'pantry',title:'乳品谷物 · 容器和内容物',entries:named(['纯牛奶','酸奶','炼乳','米粉浆','大米','燕麦','面粉','砂糖','冰糖','冰块'])},
  {id:'finished-drinks',title:'果饮奶茶 · 杯型与层次',entries:manifest.filter(x=>x.kind==='recipe'&&['葡萄果肉饮','热带芒果汁','鹅鹅手打柠檬茶','冰镇水蜜桃露','珍珠奶茶','清新奶绿','香草慕斯奶绿','厚顶鸳鸯奶茶','优酪乳','益生菌饮品'].includes(x.name))},
  {id:'drinks',title:'咖啡、茶与基底 · 容器和轮廓',entries:manifest.filter(x=>x.kind==='material'&&/^fresh-(coffee|tea|mixer)-/.test(x.id))}

@@ -1,0 +1,51 @@
+{
+  "sourceReviewId": "9c414840fd6c",
+  "date": "2026-10-30",
+  "userQuote": "确认。继续下一轮，要做得顶尖",
+  "batchId": "wok",
+  "batchTitle": "炒锅七道",
+  "confirmedSteamerReviewId": "88b21f914b14",
+  "orderedIds": [
+    "dish-fresh-ico-0086",
+    "dish-fresh-ico-0099",
+    "dish-fresh-ico-0101",
+    "dish-fresh-ico-0113",
+    "dish-fresh-ico-0117",
+    "dish-fresh-ico-0128",
+    "dish-fresh-ico-0096"
+  ],
+  "orderedNames": [
+    "蒜香炒虾",
+    "彩椒土豆丝",
+    "红酒烧排骨",
+    "爆炒西兰花",
+    "脆皮炸鲜奶",
+    "清炒四季豆",
+    "咸水角"
+  ],
+  "occupancies": [
+    0.82,
+    0.82,
+    0.84,
+    0.82,
+    0.82,
+    0.82,
+    0.82
+  ],
+  "courses": [
+    "sea",
+    "veg",
+    "meat",
+    "veg",
+    "snack",
+    "veg",
+    "snack"
+  ],
+  "currentSemanticComparisons": [],
+  "replacedCodes": [],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "ff6e29465e3856cfedc7ae9e1ad3f186f78867baac95ba2d2ac837ce5d604edd",
+  "scope": "确认第40轮蒸笼12道全部新版，固定获选来源与显示尺寸。进入DS91—DS97炒锅7道，逐项全新绘制候选并保留原版对照，由用户选择；本轮不更换菜名或实际配方。",
+  "sizePolicy": "配方成品按主料、盛器和构图定美观体量，红酒排骨84%，其它82%；居中透明留白，克制份量，不套用前五级合成原料缩小规则。",
+  "authoringPolicy": "原生透明SVG，清楚细近黑描边，鲜活熟色与自然轮廓。虾肉弹润、土豆丝清爽、排骨酱亮、蔬菜嫩绿、奶条与糯米角酥脆，份量和配菜不过多；全部对应实际输入，不添加矛盾主料。原版保持，新稿待用户逐项选择。"
+}

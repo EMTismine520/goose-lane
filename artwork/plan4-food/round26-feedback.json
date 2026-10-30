@@ -1,0 +1,18 @@
+{
+  "sourceReviewId": "496793313c2a",
+  "date": "2026-10-29",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "confirmedMixerReviewId": "4345705c2f3a",
+  "nextPhase": "recipe-artwork",
+  "batchId": "starter-fresh",
+  "batchTitle": "开局鲜食六道",
+  "orderedIds": ["dish-fresh-tomato-salad", "dish-fresh-carrot-salad", "dish-fresh-garden-bowl", "dish-fresh-berry-cup", "dish-fresh-orange-juice", "dish-fresh-fruit-platter"],
+  "orderedNames": ["番茄小沙拉", "胡萝卜花园", "田园丰收碗", "草莓甜心杯", "阳光鲜橙汁", "缤纷水果盘"],
+  "occupancies": [0.72, 0.70, 0.74, 0.72, 0.72, 0.76],
+  "courses": ["savory", "savory", "savory", "sweet", "drink", "sweet"],
+  "recipeDescriptions": ["红番茄切成小瓣，淋上清新的香草汁。", "胡萝卜切成花朵，撒上脆脆的芝麻。", "西兰花和甜橙，把田园的颜色装满一碗。", "鲜切草莓层层堆起，盛进小小玻璃杯。", "现榨甜橙，杯里是明亮的清晨。", "把紫葡萄排成一圈，分享果园的甜。"],
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "scope": "四种替换饮品已确认，特调13项用图与尺寸固定。进入123个配方成品阶段，先交付开局鲜食六道全部新版候选，保留V4原版对照；原有七项配方样板选择及合成节点既定来源保持。",
+  "sizePolicy": "六道开局低阶成品主体最长边72%／70%／74%／72%／72%／76%，包含盛器，视觉居中、透明留白；不通过盘碟和配饰撑满格子。已确认资产不重复缩放。",
+  "authoringPolicy": "原生透明底SVG，延续清晰细深描边与简洁卡通大形。突出番茄切瓣、胡萝卜花片、西兰花与橙瓣、切草莓杯、现榨橙汁和紫葡萄环形分享盘，主料与现有菜谱描述一致；盛器和摆盘有区别，新稿是否采用由用户逐项决定。"
+}

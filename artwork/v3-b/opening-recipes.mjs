@@ -9,7 +9,7 @@ export function openingRecipe(name,raw){
  const food=(n,x=48,y=48,s=.5,a=0)=>mini(raw(n),x,y,s,a);
  if(name==='番茄小沙拉')return deepBowl(u('green'))+tomatoWedge(34,40,.95,-15)+tomatoWedge(63,47,.85,25)+leaf(43,57,.6,-30)+onionRing(59,58,.45);
  if(name==='胡萝卜花园')return plate()+[[29,47],[47,32],[68,48],[43,65]].map(([x,y])=>e(x,y,12,9,u('tomato'))+e(x,y,4,3,u('mango'),'stroke-width="1.3"')).join('')+leaf(64,35,.7,35)+herbs();
- if(name==='田园丰收碗')return deepBowl(u('rice'))+food('西兰花',36,33,.47)+food('甜橙',63,44,.43)+tomatoWedge(37,57,.6)+herbs();
+ if(name==='田园丰收碗')return deepBowl(u('bowl'))+food('西兰花',36,37,.52)+food('彩椒',63,47,.45);
  if(name==='草莓甜心杯')return p('M22 32h54l-8 40q-18 15-39 0Z',u('glass'))+p('M27 48h43l-4 20q-17 11-34 0Z',u('pink'),'stroke-width="1.4"')+p('M25 35q-4-11 8-10 1-9 12-5 10-7 18 1 14-2 12 12Z',u('garlic'))+food('草莓',36,26,.37,-15)+food('草莓',62,31,.34,15)+line('M33 51 36 64',C.white,3);
  if(name==='阳光鲜橙汁')return p('M23 19h46l-5 57q-18 15-36 0Z',u('glass'))+p('M29 35h34l-4 38q-12 9-25 0Z',u('mango'),'stroke-width="1.3"')+e(46,35,17,6,u('egg'),'stroke-width="1.3"')+p('m56 46 12-37 5 2-12 37Z',u('enamel'),'stroke-width="1.3"')+lemonSlice(69,26,.8)+light('M31 44 34 65',2.7);
  if(name==='缤纷水果盘')return plate()+food('西瓜',35,42,.58,-15)+food('葡萄',66,51,.43)+food('甜橙',47,63,.37)+food('草莓',24,66,.3,20);

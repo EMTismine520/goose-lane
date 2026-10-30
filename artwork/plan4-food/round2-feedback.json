@@ -1,0 +1,31 @@
+{
+  "sourceReviewId": "ff7e98ad1789",
+  "date": "2026-10-29",
+  "userQuote": "这次修改只有v07通过，“F06 · 西瓜”还可以修改，其它保持原版",
+  "acceptedModifiedIds": [
+    "fresh-veg-7"
+  ],
+  "keepOriginalIds": [
+    "fresh-veg-3",
+    "fresh-veg-4",
+    "fresh-veg-6",
+    "fresh-fruit-3",
+    "fresh-fruit-4",
+    "fresh-fruit-5",
+    "fresh-fruit-7"
+  ],
+  "revisionIds": [
+    "fresh-fruit-6"
+  ],
+  "inheritedAcceptedReview": "437a9a667ee5",
+  "interpretation": "本轮仅田园菜篮采用修改版，七项其他新审查节点采用原版；西瓜单独精修待确认；此前确认的黄瓜及其他样板选择保持。",
+  "finalDecision": {
+    "sourceReviewId": "a2ddee3fbe93",
+    "date": "2026-10-29",
+    "userQuote": "不符合，维持原版。继续下一轮",
+    "keepOriginalIds": [
+      "fresh-fruit-6"
+    ],
+    "status": "ALL_14_SELECTIONS_CONFIRMED"
+  }
+}

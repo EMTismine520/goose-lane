@@ -1,0 +1,15 @@
+{
+  "sourceReviewId": "20d05b6ee8a4",
+  "date": "2026-10-29",
+  "userQuote": "原版保留DS32,新版采用DS33和DS35,重做DS34 · 焦香洋葱饭，紫洋葱不要呈条状且重复。要做得顶尖",
+  "batchId": "home-cooking-pot",
+  "selectedOriginalCodes": ["DS32"],
+  "selectedNewCodes": ["DS33", "DS35"],
+  "redesignCodes": ["DS34"],
+  "rejectedCandidateCodes": ["DS34"],
+  "actualExpansionSha256": "0c427f5beecb6587bfee47cf70eda856f9df391811585c7bd080164df758feee",
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "scope": "DS32原版、DS33与DS35第33轮新版固定。撤回DS34第33轮条状洋葱新稿，另绘块瓣状洋葱候选，仅此项待用户确认；未将DS34原版记为用户采用。",
+  "sizePolicy": "DS32原版80%，DS33与DS35已选新版82%精确保留。DS34以浅盘、米饭与洋葱块瓣整体构图确定82%体量，保持透明留白和视觉居中。",
+  "authoringPolicy": "DS34原生透明SVG重绘，延续清楚细深描边。煎软紫洋葱采用少量、大小形态与朝向不同的短块瓣，表现棕金焦边与柔和紫色内层，避免长条、整圈和重复克隆。只呈现实际配方大米、紫洋葱与黄油。"
+}

@@ -1,0 +1,98 @@
+{
+  "sourceReviewId": "773fe4a2e4b6",
+  "date": "2026-10-29",
+  "userQuote": "确认。继续下一轮，要做得顶尖",
+  "confirmedStarterReviewId": "9ecc918006ca",
+  "confirmedHomeReviewId": "7b4a11197419",
+  "confirmedColdReviewId": "5caee26b153b",
+  "confirmedDrinkReviewId": "feb086daf312",
+  "batchId": "frying-station",
+  "batchTitle": "煎炸十道",
+  "orderedIds": [
+    "dish-fresh-ico-0029",
+    "dish-fresh-ico-0048",
+    "dish-fresh-ico-0050",
+    "dish-fresh-ico-0057",
+    "dish-fresh-ico-0068",
+    "dish-fresh-ico-0071",
+    "dish-fresh-ico-0097",
+    "dish-fresh-ico-0085",
+    "dish-fresh-ico-0136",
+    "dish-fresh-ico-0107"
+  ],
+  "orderedNames": [
+    "香煎鹅肝",
+    "煎炸培根",
+    "油炸太阳蛋",
+    "香煎肉丸",
+    "酥炸扇贝",
+    "香煎胡萝卜",
+    "酥炸火鸡腿",
+    "红酒酱牛排",
+    "黄油煎鲷鱼",
+    "酥脆萝卜糕"
+  ],
+  "occupancies": [
+    0.82,
+    0.82,
+    0.8,
+    0.82,
+    0.82,
+    0.82,
+    0.84,
+    0.84,
+    0.82,
+    0.82
+  ],
+  "courses": [
+    "meat",
+    "meat",
+    "egg",
+    "meat",
+    "sea",
+    "veg",
+    "meat",
+    "meat",
+    "sea",
+    "veg"
+  ],
+  "actualExpansionSha256": "0c427f5beecb6587bfee47cf70eda856f9df391811585c7bd080164df758feee",
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "currentSemanticComparisons": [
+    {
+      "id": "dish-fresh-ico-0029",
+      "code": "DS36",
+      "name": "香煎鹅肝",
+      "source": "artwork/v3-b/masters/dish-fresh-ico-0029.svg",
+      "sourceSha256": "82ba75e86356420481c64e9679c95bb6990492e5dfdb597f6dea110e11b2b4fc",
+      "previousRecipeName": "脆皮翅根"
+    },
+    {
+      "id": "dish-fresh-ico-0068",
+      "code": "DS40",
+      "name": "酥炸扇贝",
+      "source": "artwork/v3-b/masters/dish-fresh-ico-0068.svg",
+      "sourceSha256": "da0363b1e975adc7e253c1f0c31237eaf3c98b0df25ae9f36a3254e82f396910",
+      "previousRecipeName": "酥香鳕鱼"
+    },
+    {
+      "id": "dish-fresh-ico-0097",
+      "code": "DS42",
+      "name": "酥炸火鸡腿",
+      "source": "artwork/v3-b/masters/dish-fresh-ico-0097.svg",
+      "sourceSha256": "5bca85e0bab7dbf71908593389df9fd2ecc530b902cc22737ce620aec3505444",
+      "previousRecipeName": "酥炸大鸡腿"
+    },
+    {
+      "id": "dish-fresh-ico-0136",
+      "code": "DS44",
+      "name": "黄油煎鲷鱼",
+      "source": "artwork/v3-b/masters/dish-fresh-ico-0136.svg",
+      "sourceSha256": "593170c12842aab3bf6746523af85cca91a13b0ffeb754c56d083b335cce6133",
+      "previousRecipeName": "醇香鲶鱼块"
+    }
+  ],
+  "scope": "确认DS34第34轮块瓣状洋葱新稿，料理锅四道全部固定。进入DS36至DS45煎炸十道，全部另绘新版候选，由用户逐项决定采用。DS43此前437既定新版继续保留。",
+  "sizePolicy": "成品按主料轮廓与盘器构图控制美观体量，不套用低阶原料缩小规则。太阳蛋80%，火鸡腿与带骨牛排84%，其余82%；对照80%，保留透明留白与视觉居中。",
+  "authoringPolicy": "原生透明SVG独立重绘，清楚细深描边与熟食材质。每道主料数量克制，用轮廓、色块、焦面、切面和盛器区分；不加入实际配方以外的主料。四道曾更换食材的菜品使用第31轮已完成同步的现用母稿作左侧对照，旧菜图仅作历史参考，本轮不再改名或更改配方。"
+}

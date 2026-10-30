@@ -1,0 +1,110 @@
+{
+  "sourceReviewId": "bcf029fa03a3",
+  "date": "2026-10-29",
+  "userQuote": "重新设计“桑葚”，颜色要活泼。继续下一轮，要做得顶尖。",
+  "redesignTargetId": "fresh-exotic-8",
+  "redesignExpectedOccupancy": 0.8,
+  "retainedFruitIds": [
+    "fresh-exotic-1",
+    "fresh-exotic-2",
+    "fresh-exotic-3",
+    "fresh-exotic-4",
+    "fresh-exotic-5",
+    "fresh-exotic-6",
+    "fresh-exotic-7"
+  ],
+  "retainedFruitOccupancies": [
+    {
+      "id": "fresh-exotic-1",
+      "occupancy": 0.66,
+      "previousStatus": "ART_PENDING"
+    },
+    {
+      "id": "fresh-exotic-2",
+      "occupancy": 0.72,
+      "previousStatus": "SIZE_PENDING"
+    },
+    {
+      "id": "fresh-exotic-3",
+      "occupancy": 0.68,
+      "previousStatus": "SIZE_PENDING"
+    },
+    {
+      "id": "fresh-exotic-4",
+      "occupancy": 0.68,
+      "previousStatus": "SIZE_PENDING"
+    },
+    {
+      "id": "fresh-exotic-5",
+      "occupancy": 0.68,
+      "previousStatus": "SIZE_PENDING"
+    },
+    {
+      "id": "fresh-exotic-6",
+      "occupancy": 0.8,
+      "previousStatus": "ACCEPTED"
+    },
+    {
+      "id": "fresh-exotic-7",
+      "occupancy": 0.8,
+      "previousStatus": "ACCEPTED"
+    }
+  ],
+  "retainedFruitAcceptanceNote": "沿用上轮当前展示，不把继续下一轮单独记为对上轮聚拢/尺寸的新明示验收；此前原版基础选择不变，本轮不重复改画。",
+  "nextChain": "fresh-sea",
+  "orderedSeaNames": [
+    "鲜虾",
+    "鱿鱼",
+    "鳕鱼",
+    "鲶鱼",
+    "金枪鱼",
+    "三文鱼",
+    "生蚝",
+    "海螺",
+    "肥蟹",
+    "龙虾",
+    "帝王蟹"
+  ],
+  "seaOccupancies": [
+    0.66,
+    0.72,
+    0.68,
+    0.7,
+    0.7,
+    0.8,
+    0.8,
+    0.8,
+    0.8,
+    0.8,
+    0.8
+  ],
+  "approvedSeaSampleReviewId": "437a9a667ee5",
+  "approvedSeaIds": [
+    "fresh-sea-1",
+    "fresh-sea-6"
+  ],
+  "previousFinalReviews": [
+    {
+      "chain": "fresh-poultry",
+      "reviewId": "7b7284a3439f",
+      "stem": "poultry-final",
+      "count": 8
+    },
+    {
+      "chain": "fresh-spice",
+      "reviewId": "ffb43f3f0f2a",
+      "stem": "spice-final",
+      "count": 10
+    },
+    {
+      "chain": "fresh-seasonal",
+      "reviewId": "d5e8dbfea343",
+      "stem": "seasonal-final",
+      "count": 8
+    }
+  ],
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "sizePolicy": "桑葚高阶.8；海鲜前五级按视觉体量控制为.66/.72/.68/.70/.70，其余6级以上.8。保持清楚细深色描边与小图辨识，不统一塞满低阶格。",
+  "authoringPolicy": "本轮海鲜11项全部另绘新版，并单独重设计桑葚；用户逐项决定采用，原版/既定用图保留比较。已确认鲜虾和三文鱼437细描边稿作既定对照，不自动回退V4或替换新稿。",
+  "scope": "桑葚重新设计为活泼明亮玫红/明紫新稿，深蓝黑第14轮方案转历史；其它7果实沿用第14轮当前展示并保留原有状态。进入海鲜11项全新候选，当前12新稿待用户选择，7果实展示保持；已确认26项母稿/导出和实际game/content/名称/ID/等级/菜谱/存档不改。"
+}

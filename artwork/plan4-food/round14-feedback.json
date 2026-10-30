@@ -1,0 +1,106 @@
+{
+  "sourceReviewId": "3cdac59d280c",
+  "date": "2026-10-29",
+  "userQuote": "新版只采用EX08，重新设计颜色。其它全部保留原版，控制尺寸。原版”蓝莓“设计成聚拢。要做得顶尖",
+  "chain": "fresh-exotic",
+  "orderedNames": [
+    "蓝莓",
+    "香蕉",
+    "柠檬",
+    "芒果",
+    "水蜜桃",
+    "椰子",
+    "梨",
+    "桑葚"
+  ],
+  "selectedVariants": {
+    "fresh-exotic-1": "original",
+    "fresh-exotic-2": "original",
+    "fresh-exotic-3": "original",
+    "fresh-exotic-4": "original",
+    "fresh-exotic-5": "original",
+    "fresh-exotic-6": "original",
+    "fresh-exotic-7": "original",
+    "fresh-exotic-8": "proposal"
+  },
+  "selectedOriginalIds": [
+    "fresh-exotic-1",
+    "fresh-exotic-2",
+    "fresh-exotic-3",
+    "fresh-exotic-4",
+    "fresh-exotic-5",
+    "fresh-exotic-6",
+    "fresh-exotic-7"
+  ],
+  "acceptedNewShapeIds": [
+    "fresh-exotic-8"
+  ],
+  "artworkAdjustmentIds": [
+    "fresh-exotic-1",
+    "fresh-exotic-8"
+  ],
+  "targetOccupancies": [
+    0.66,
+    0.72,
+    0.68,
+    0.68,
+    0.68,
+    0.8,
+    0.8,
+    0.8
+  ],
+  "presentationAdjustments": {
+    "fresh-exotic-2": {
+      "scale": 0.9,
+      "expectedOccupancy": 0.72
+    },
+    "fresh-exotic-3": {
+      "scale": 0.85,
+      "expectedOccupancy": 0.68
+    },
+    "fresh-exotic-4": {
+      "scale": 0.85,
+      "expectedOccupancy": 0.68
+    },
+    "fresh-exotic-5": {
+      "scale": 0.85,
+      "expectedOccupancy": 0.68
+    }
+  },
+  "baselinePeachReviewId": "437a9a667ee5",
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "previousFinalReviews": [
+    {
+      "chain": "fresh-poultry",
+      "reviewId": "7b7284a3439f",
+      "stem": "poultry-final",
+      "count": 8
+    },
+    {
+      "chain": "fresh-spice",
+      "reviewId": "ffb43f3f0f2a",
+      "stem": "spice-final",
+      "count": 10
+    },
+    {
+      "chain": "fresh-seasonal",
+      "reviewId": "d5e8dbfea343",
+      "stem": "seasonal-final",
+      "count": 8
+    }
+  ],
+  "artworkAdjustments": {
+    "fresh-exotic-1": {
+      "kind": "arrangement",
+      "basis": "original-v4",
+      "preserve": "3颗原版蓝莓和原叶的路径、颜色、果冠、高光、描边、个体缩放，仅平移为聚拢构图"
+    },
+    "fresh-exotic-8": {
+      "kind": "recolour",
+      "basis": "round13-proposal",
+      "preserve": "采用第13轮两枚细长桑葚造型，只改成熟深蓝黑紫配色，路径/位置/颗粒/描边宽度保持"
+    }
+  },
+  "sizePolicy": "前五级按形体控制体量：蓝莓聚拢后.66，原版香蕉缩小10%至.72、原版柠檬/芒果/水蜜桃缩小15%至.68；椰子/梨原版及桑葚新版形体.8。仅所需导出缩放，已选母稿不自动重新归一或重绘。",
+  "scope": "8项基础用图选择已定：仅EX08桑葚采用新版造型，原版蓝莓收拢排列、桑葚重新配色，原版香蕉/柠檬/芒果/水蜜桃仅控制显示尺寸；原版椰子/梨完整保持。当前2项艺术调整及4项尺寸待用户看，不开始下一链，不修改实际食材名称/ID/等级/菜谱/存档或已确认26项。"
+}

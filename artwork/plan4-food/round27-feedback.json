@@ -1,0 +1,31 @@
+{
+  "sourceReviewId": "e29a39acf8a4",
+  "date": "2026-10-29",
+  "latestSteering": "不用考虑旧存档，继续。要做得顶尖",
+  "userQuote": "新版采用DS01,DS02。其它保留原版。配方成品尺寸不需要缩小，控制尺寸达到美观的效果。重做“DS03 · 田园丰收碗”，可以换其它合成方式，但也要对应修改逻辑。要做得顶尖",
+  "selectedNewCodes": ["DS01", "DS02"],
+  "selectedOriginalCodes": ["DS03", "DS04", "DS05", "DS06"],
+  "redesignCode": "DS03",
+  "redesignId": "dish-fresh-garden-bowl",
+  "newSizeTargets": {"DS01": 0.80, "DS02": 0.80},
+  "redesignOccupancy": 0.82,
+  "recipeRevision": {
+    "recipeId": "fresh-garden-bowl",
+    "outputId": "dish-fresh-garden-bowl",
+    "name": "田园丰收碗",
+    "oldInputs": ["西兰花", "甜橙"],
+    "oldInputIds": ["fresh-veg-5", "fresh-fruit-2"],
+    "newInputs": ["西兰花", "彩椒"],
+    "newInputIds": ["fresh-veg-5", "fresh-veg-3"],
+    "description": "西兰花和彩椒清拌成一碗田园鲜蔬，清脆又明亮。",
+    "durationSeconds": 30,
+    "appliance": "小鹅砧板",
+    "sellPrice": 16,
+    "status": "LOCAL_IMPLEMENTED"
+  },
+  "actualExpansionSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "previousBaseCatalogSha256": "f85b8bea96596491dd5c511d93967c76845663b19b5844bbd8c4f50e0dbd3d39",
+  "scope": "DS01、DS02采用第26轮新版造型，成品显示体量恢复至80%；DS04、DS05、DS06保留V4原版。DS03以V4原版为对照，重做西兰花与彩椒鲜蔬碗并同步修改本地真实配方。按最新指令不增加旧存档兼容或迁移处理，售价沿用当前原料统一自动计算规则。",
+  "sizePolicy": "配方成品按构图和美观确定尺寸，取消按低阶食材统一缩小的做法。DS01与DS02保持所选SVG造型，显示占比由72%／70%恢复至80%；三项所选原版80%原样保持，新DS03约82%。",
+  "authoringPolicy": "新田园丰收碗为奶油色浅陶碗，短切西兰花与红金彩椒自然层叠，低矮饱满，延续清楚细深描边。主料、配方提示和实际投料逻辑保持一致，原版与被弃第26轮候选分别保留。新美术与两项展示尺寸交由用户确认。"
+}

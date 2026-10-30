@@ -1,0 +1,73 @@
+{
+  "sourceReviewId": "93eb1db22c7b",
+  "date": "2026-10-29",
+  "userQuote": "保留SV02，SV06,SV07,SV08原版,其它采用新版美术。重新设计”蘑菇“。注意控制尺寸，要做得顶尖。",
+  "chain": "fresh-seasonal",
+  "orderedNames": [
+    "蘑菇",
+    "玉米",
+    "紫甘蓝",
+    "土豆",
+    "生菜",
+    "四季豆",
+    "茄子",
+    "白萝卜"
+  ],
+  "selectedVariants": {
+    "fresh-seasonal-1": "proposal",
+    "fresh-seasonal-2": "original",
+    "fresh-seasonal-3": "proposal",
+    "fresh-seasonal-4": "proposal",
+    "fresh-seasonal-5": "proposal",
+    "fresh-seasonal-6": "original",
+    "fresh-seasonal-7": "original",
+    "fresh-seasonal-8": "original"
+  },
+  "comparisonOnlyIds": [
+    "fresh-seasonal-1"
+  ],
+  "selectedOriginalIds": [
+    "fresh-seasonal-2",
+    "fresh-seasonal-6",
+    "fresh-seasonal-7",
+    "fresh-seasonal-8"
+  ],
+  "acceptedNewIds": [
+    "fresh-seasonal-3",
+    "fresh-seasonal-4",
+    "fresh-seasonal-5"
+  ],
+  "redesignTargetId": "fresh-seasonal-1",
+  "redesignExpectedOccupancy": 0.66,
+  "presentationAdjustments": {
+    "fresh-seasonal-2": {
+      "scale": 0.9,
+      "expectedOccupancy": 0.72
+    }
+  },
+  "fixedTargetIds": [
+    "fresh-seasonal-3",
+    "fresh-seasonal-4",
+    "fresh-seasonal-5",
+    "fresh-seasonal-6",
+    "fresh-seasonal-7",
+    "fresh-seasonal-8"
+  ],
+  "actualContentSha256": "771950d46856633eaea94d3547b27fff3b837c3945572d1ede46a943e8acd0c0",
+  "previousFinalReviews": [
+    {
+      "chain": "fresh-poultry",
+      "reviewId": "7b7284a3439f",
+      "stem": "poultry-final",
+      "count": 8
+    },
+    {
+      "chain": "fresh-spice",
+      "reviewId": "ffb43f3f0f2a",
+      "stem": "spice-final",
+      "count": 10
+    }
+  ],
+  "sizePolicy": "前五级按视觉体量控制大小：蘑菇新稿.66，原版玉米导出缩小10%至.72，已通过紫甘蓝/土豆/生菜新版.68/.68/.72原样保持；四季豆/茄子/白萝卜选择原版.8，透明留白与细描边保持。",
+  "scope": "时蔬SV02/06/07/08采用原版，SV03/04/05采用第11轮新版；蘑菇单独重新设计，原版玉米仅缩小显示尺寸。7项美术选择已定、1项蘑菇新稿待选；当前仅蘑菇和玉米尺寸需要看，不开始下一链，不改实际内容、菜谱、等级、存档或已确认18项禽肉香料。"
+}

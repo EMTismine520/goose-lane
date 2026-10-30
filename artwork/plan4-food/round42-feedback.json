@@ -1,0 +1,54 @@
+{
+  "sourceReviewId": "7ba979336ab7",
+  "date": "2026-10-30",
+  "userQuote": "确认。继续下一轮，要做得顶尖",
+  "batchId": "microwave",
+  "batchTitle": "微波七款",
+  "confirmedWokReviewId": "156af9c55df9",
+  "orderedIds": [
+    "dish-fresh-ico-0014",
+    "dish-fresh-ico-0015",
+    "dish-fresh-ico-0019",
+    "dish-fresh-ico-0054",
+    "dish-fresh-ico-0069",
+    "dish-fresh-ico-0105",
+    "dish-fresh-ico-0163"
+  ],
+  "orderedNames": [
+    "香蕉泥",
+    "爆米花",
+    "巧克力脆皮蓝莓",
+    "焦糖玉米段",
+    "酸甜芒果丁",
+    "热可可",
+    "肉桂热牛奶"
+  ],
+  "occupancies": [
+    0.8,
+    0.82,
+    0.8,
+    0.82,
+    0.82,
+    0.82,
+    0.82
+  ],
+  "courses": [
+    "fruit",
+    "snack",
+    "fruit",
+    "snack",
+    "fruit",
+    "drink",
+    "drink"
+  ],
+  "currentSemanticComparisons": [],
+  "replacedCodes": [
+    "DS101",
+    "DS104"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "cad55d7fff341e2ff64c6e941454564884920c68559e8790cd0cb53f1dc54fd1",
+  "scope": "确认第41轮炒锅7道全部新版，固定获选来源与尺寸。进入DS98—DS104微波7款，全部独立另绘新版，由用户逐项选择。延续相近品类只留一款：保留DS99爆米花与DS103热可可，DS101重做焦糖玉米段（输入保持），DS104替换为肉桂热牛奶并同步实际输入。",
+  "sizePolicy": "配方成品按主料、盛器与构图控制美观体量，香蕉泥与脆皮蓝莓80%、其余82%；克制数量、居中透明留白，不套用前五级合成原料缩小规则。",
+  "authoringPolicy": "原生透明SVG，清楚细近黑描边、鲜活食欲与自然形态。果泥柔润、爆米花绽开、蓝莓有巧克力薄壳与蓝紫莓心、玉米段粒面饱满、芒果橙金清爽；矮陶杯热可可与高玻璃杯肉桂奶有明显形态差异。画面对应实际输入，旧重复食品仅留历史参考，当前7稿不提前记为采用。"
+}

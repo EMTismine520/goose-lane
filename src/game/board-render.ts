@@ -1,6 +1,6 @@
 import type Phaser from 'phaser';
 import { activeDevices, BOARD_LAYOUT } from '../content/board-layouts';
-import { CHAINS, ITEMS } from '../content/catalog';
+import { ITEMS } from '../content/catalog';
 import { devicePresentation, itemPresentation } from '../content/assets';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { GameState, ItemInstance } from '../domain/types';
@@ -146,14 +146,7 @@ export class BoardRenderer {
     const size = presentation.displaySize;
     const image = this.scene.add.image(presentation.offsetX, presentation.offsetY, texture.key, texture.frame).setDisplaySize(size, size);
     const placeholder = this.scene.add.text(0, 0, def.name, { resolution: this.pixelRatio, fontFamily: 'sans-serif', fontSize: '9px', color: '#80552e', wordWrap: { width: 40 } }).setOrigin(.5).setVisible(texture.key === 'pending-food');
-    const badge = this.scene.add.graphics();
-    const isNode=CHAINS.some(chain=>chain.items.includes(instance.item));
-    badge.fillStyle(isNode ? 0x4e8a5b : 0xd98543, 1);
-    badge.fillRoundedRect(10, 10, 13, 13, 4);
-    badge.lineStyle(1.5, 0xfffdf2, 1);
-    badge.strokeRoundedRect(10, 10, 13, 13, 4);
-    const level = this.scene.add.text(16.5, 16.5, isNode ? `${def.level}` : '成', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '10px', fontStyle: 'bold', color: '#fffef5' }).setOrigin(0.5);
-    container.add([shadow, image, placeholder, badge, level]);
+    container.add([shadow, image, placeholder]);
     return { uid: instance.uid, item: instance.item, index, container, image, placeholder };
   }
 
@@ -176,14 +169,7 @@ export class BoardRenderer {
     const activity = this.scene.add.graphics();
     const label = this.scene.add.text(0, -17, '', { resolution: this.pixelRatio, fontFamily: 'Arial, sans-serif', fontSize: '9px', fontStyle: 'bold', color: '#fffef2' }).setOrigin(0.5);
     container.add([shadow, image, placeholder, activity, labelBack, label]);
-    const tier=this.scene.add.text(17,17,`${definition.level??1}`,{resolution:this.pixelRatio,fontFamily:'Arial',fontSize:'9px',fontStyle:'bold',color:'#7e4b1d',backgroundColor:'#f7bc45',padding:{x:3,y:2}}).setOrigin(0.5);
-    container.add(tier);
     this.devices.set(id, { container, label, labelBack, activity, phase: '', artId, image, placeholder, clockSignature: '' });
-    if (entity.kind === 'generator') {
-      labelBack.fillStyle(0xf7bc45, 1).fillRoundedRect(9, 10, 16, 14, 5);
-      labelBack.lineStyle(1.5, 0xfff9df, 1).strokeRoundedRect(9, 10, 16, 14, 5);
-      label.setText('');
-    }
   }
 
   private paintTiles() {

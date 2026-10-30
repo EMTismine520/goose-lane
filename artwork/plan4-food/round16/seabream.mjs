@@ -1,0 +1,52 @@
+// Round 16 review candidate only. The existing ingredient mapping stays unchanged.
+const body = 'M70 124C85 103 111 91 139 93C166 91 188 104 202 120L216 132L207 140C193 158 168 169 141 167C110 168 86 153 70 138Z';
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 256 256">
+<title>鲷鱼 · 海鲜独立候选</title>
+<defs>
+  <linearGradient id="s16-bream-body" x1=".25" y1="0" x2=".6" y2="1"><stop stop-color="#f78d85"/><stop offset=".42" stop-color="#e66d76"/><stop offset="1" stop-color="#c94760"/></linearGradient>
+  <linearGradient id="s16-bream-fin" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#ed7a7d"/><stop offset="1" stop-color="#b7475a"/></linearGradient>
+  <linearGradient id="s16-bream-belly" x1="0" y1="0" x2=".3" y2="1"><stop stop-color="#ffe5d7"/><stop offset="1" stop-color="#f7beb6"/></linearGradient>
+  <clipPath id="s16-bream-clip"><path d="${body}"/></clipPath>
+</defs>
+<g transform="rotate(-8 128 128)" stroke="#59413d" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- The large forked tail, shallow dorsal crest and little paired fins read as one whole fish. -->
+  <path fill="url(#s16-bream-fin)" d="M81 122C64 120 51 105 36 96C38 109 45 122 49 131C44 140 38 154 37 165C54 155 66 143 81 140Z"/>
+  <path fill="none" stroke="#f5b0a2" stroke-width="1.45" d="M45 108L64 127M45 153L64 136"/>
+  <path fill="url(#s16-bream-fin)" d="M91 108L97 91L108 92L117 78L129 86L141 78L151 89L164 87L174 104Z"/>
+  <path fill="none" stroke="#ffc5b4" stroke-width="1.4" d="M107 96L109 90M122 93L124 86M139 93L141 86M154 98L155 93"/>
+  <path fill="url(#s16-bream-fin)" d="M115 157L120 176C134 174 143 169 149 161Z"/>
+  <path fill="url(#s16-bream-body)" d="${body}"/>
+  <g clip-path="url(#s16-bream-clip)" stroke="none">
+    <path fill="url(#s16-bream-belly)" d="M70 140C98 145 127 155 155 152C181 150 199 140 212 129L228 147L189 179L138 178L91 161Z"/>
+    <path fill="#ffb6a4" opacity=".85" d="M90 113C108 100 132 99 150 103C155 104 155 109 149 109C128 105 110 109 95 117C90 120 86 116 90 113Z"/>
+    <path fill="#bc3b59" opacity=".24" d="M83 142C98 158 118 163 135 164L121 175L84 163Z"/>
+  </g>
+  <!-- A single natural eye and gill arc avoid a face-like expression. -->
+  <path fill="none" stroke="#9d4d59" stroke-width="1.6" d="M177 109C168 120 169 137 179 146"/>
+  <ellipse cx="190" cy="121" rx="3.15" ry="3.25" fill="#45373a" stroke="none"/>
+  <ellipse cx="189.1" cy="120.15" rx=".85" ry=".8" fill="#ffe8d7" stroke="none"/>
+  <path fill="none" stroke="#9b5260" stroke-width="1.35" d="M209 134L214 133"/>
+  <path fill="#f7afaa" stroke-width="1.55" d="M156 134C146 138 140 148 138 158C149 155 158 147 161 139Z"/>
+  <path fill="none" stroke="#cf7980" stroke-width="1.3" d="M155 141L144 152"/>
+  <!-- Three restrained scale marks support texture without obscuring the silhouette at 40px. -->
+  <path fill="none" stroke="#b74f65" stroke-width="1.35" opacity=".72" d="M107 125Q111 131 116 126M123 119Q127 125 132 120M129 135Q133 141 138 136"/>
+  <path fill="none" stroke="#ffd9c9" stroke-width="1.5" opacity=".8" d="M102 144C111 149 120 151 129 152"/>
+</g>
+</svg>`;
+
+export const seaCatfishRedesign = {
+  id: 'fresh-sea-4',
+  name: '鲷鱼',
+  previousName: '鲶鱼',
+  svg,
+  expectedOccupancy: .70,
+  design: {
+    silhouette: '完整红鲷，饱满椭圆鱼身、清楚的叉形大尾和低矮背鳍，微斜侧面姿态',
+    angle: '头朝右上、尾朝左下的单侧微俯视，轻轻抬起鱼头',
+    material: '珊瑚粉红与莓红鱼背、粉白鱼腹，少量奶油色高光和稀疏鳞片弧线',
+    identity: '短胖完整鱼体、叉尾、简洁背鳍、单枚自然小眼和独立鳃弧，替代灰暗长须鲶鱼',
+    container: '透明背景单条裸鱼，四级小体量，无盘无装饰',
+  },
+  reason: '以完整珊瑚红鲷替换鲶鱼候选，用叉尾、简洁背鳍和粉白鱼腹建立鲜活食材形象；少量结构线使40px下仍有清楚的鱼体身份。',
+};

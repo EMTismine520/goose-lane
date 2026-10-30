@@ -1,0 +1,26 @@
+{
+  "sourceReviewId": "546bb9396751",
+  "selectedOvenReviewId": "666f64fd523a",
+  "date": "2026-10-30",
+  "userQuote": "确认采用新版。重新设计“DS65 · 烤土豆片”，和“DS66 · 蒜香面包”太像。DS69,DS71,DS78太相似，DS74和DS76太像。可以换成别的食材，相似的食材只保留一个。要做得顶尖。",
+  "batchId": "oven",
+  "redesignCodes": [
+    "DS65",
+    "DS71",
+    "DS73",
+    "DS76",
+    "DS78"
+  ],
+  "redesignIds": [
+    "dish-fresh-ico-0052",
+    "dish-fresh-ico-0129",
+    "dish-fresh-ico-0134",
+    "dish-fresh-ico-0158",
+    "dish-fresh-ico-0162"
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "a242c5cce6f1e5192811d276352b2c5665c462d9ed67ce6a30e5b52f811e3ea7",
+  "scope": "第38轮16张新版已选；11款固定。薯片重绘为薯角；替换2款重复热狗、1款重复汉堡、1款重复贝果。热狗DS69、汉堡DS74、贝果DS68各保留一款。实际配方、名称、说明、售价与订单奖励同步。",
+  "sizePolicy": "五稿含盛器82%居中透明体量；其它11款维持已选尺寸及原字节。40/96/256与1024图验看。",
+  "authoringPolicy": "原生透明SVG，清楚细深描边、鲜活熟色与克制份量；通过薯角、焗盘、长茄、培根豆卷、圆披萨拉开轮廓。旧38图只作为历史已选参考，当前五稿待用户验收。"
+}

@@ -1,0 +1,40 @@
+{
+  "sourceReviewId": "38c27e8618f6",
+  "date": "2026-10-29",
+  "userQuote": "新版采用DS30和DS31，其它保留原版。继续下一轮，要做得顶尖。",
+  "confirmedStarterReviewId": "9ecc918006ca",
+  "confirmedHomeReviewId": "7b4a11197419",
+  "confirmedColdReviewId": "5caee26b153b",
+  "confirmedDrinkReviewId": "feb086daf312",
+  "batchId": "home-cooking-pot",
+  "batchTitle": "料理锅四道",
+  "orderedIds": [
+    "dish-fresh-ico-0089",
+    "dish-fresh-ico-0104",
+    "dish-fresh-ico-0139",
+    "dish-fresh-ico-0140"
+  ],
+  "orderedNames": [
+    "什锦海鲜汤",
+    "特色白粥",
+    "焦香洋葱饭",
+    "黄油拌饭"
+  ],
+  "occupancies": [
+    0.84,
+    0.82,
+    0.82,
+    0.82
+  ],
+  "courses": [
+    "soup",
+    "congee",
+    "rice",
+    "rice"
+  ],
+  "actualExpansionSha256": "0c427f5beecb6587bfee47cf70eda856f9df391811585c7bd080164df758feee",
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "scope": "果饮奶茶十款按本次选择全部固定：DS30、DS31新版，其余八款原版。进入料理锅四道全部独立新稿候选，所有既有基础食材、配方语义修正及美术选用保持。",
+  "sizePolicy": "配方成品按汤、粥、熟米饭及盛器构图确定美观体量，不套用低阶基础食材缩小规则。新稿主体84%／82%／82%／82%，原版对照80%，透明留白与视觉居中。",
+  "authoringPolicy": "四张原生透明SVG独立重绘，延续清晰细深描边、可辨大形和克制材质。海鲜汤明确熟虾、鱿鱼和海螺，白粥突出米汤融合，焦香洋葱饭表现熟洋葱与饭粒，黄油饭表现少量融化黄油与蓬松米饭；不添加与实际主料矛盾的食材。全部新稿由用户逐项选择，本轮不改名称、配方或游戏规则。"
+}

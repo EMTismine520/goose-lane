@@ -1,0 +1,395 @@
+{
+  "sourceReviewId": "10a62f94f38d",
+  "date": "2026-10-29",
+  "userQuote": "使用“鸡蛋”，“鸡胗”，“鸭血”，“鸽肉串”，“鸡胸肉”，“鹅肝”，“火鸡腿”，“卤鹅肉”这个顺序。美术保留原有的“鸡蛋”，“鸡胗”，“鸡胸肉”。“火鸡腿”图标使用原有的“鸡腿”，“鹅肝”和“鸽肉串”使用新版，“鸭血”美术重新设计，“卤鹅肉”使用上一版本的美术。要做得顶尖",
+  "orderedNames": [
+    "鸡蛋",
+    "鸡胗",
+    "鸭血",
+    "鸽肉串",
+    "鸡胸肉",
+    "鹅肝",
+    "火鸡腿",
+    "卤鹅肉"
+  ],
+  "slots": [
+    {
+      "level": 1,
+      "code": "P01",
+      "id": "fresh-poultry-1",
+      "name": "鸡蛋",
+      "status": "ACCEPTED",
+      "sourceReviewId": "10a62f94f38d",
+      "sourceManifest": "round5.json",
+      "sourceId": "fresh-poultry-1",
+      "sourceVariant": "original",
+      "sourceLabel": "保留现用鸡蛋稿",
+      "semanticLegacyId": "fresh-poultry-1"
+    },
+    {
+      "level": 2,
+      "code": "P02",
+      "id": "fresh-poultry-2",
+      "name": "鸡胗",
+      "status": "ACCEPTED",
+      "sourceReviewId": "10a62f94f38d",
+      "sourceManifest": "round5.json",
+      "sourceId": "fresh-poultry-2",
+      "sourceVariant": "original",
+      "sourceLabel": "保留现用鸡胗稿",
+      "semanticLegacyId": "fresh-poultry-2"
+    },
+    {
+      "level": 3,
+      "code": "P03",
+      "id": "fresh-poultry-3",
+      "name": "鸭血",
+      "status": "CANDIDATE",
+      "sourceReviewId": "10a62f94f38d",
+      "sourceManifest": "round5.json",
+      "sourceId": "fresh-poultry-6",
+      "sourceVariant": "proposal",
+      "sourceLabel": "上轮鸭血稿，仅作重画对照",
+      "semanticLegacyId": "fresh-poultry-6"
+    },
+    {
+      "level": 4,
+      "code": "P04",
+      "id": "fresh-poultry-4",
+      "name": "鸽肉串",
+      "status": "ACCEPTED",
+      "sourceReviewId": "10a62f94f38d",
+      "sourceManifest": "round5.json",
+      "sourceId": "fresh-poultry-7",
+      "sourceVariant": "proposal",
+      "sourceLabel": "采用本轮新版鸽肉串",
+      "semanticLegacyId": "fresh-poultry-7"
+    },
+    {
+      "level": 5,
+      "code": "P05",
+      "id": "fresh-poultry-5",
+      "name": "鸡胸肉",
+      "status": "ACCEPTED",
+      "sourceReviewId": "10a62f94f38d",
+      "sourceManifest": "round5.json",
+      "sourceId": "fresh-poultry-4",
+      "sourceVariant": "original",
+      "sourceLabel": "保留现用鸡胸肉稿",
+      "semanticLegacyId": "fresh-poultry-4"
+    },
+    {
+      "level": 6,
+      "code": "P06",
+      "id": "fresh-poultry-6",
+      "name": "鹅肝",
+      "status": "ACCEPTED",
+      "sourceReviewId": "10a62f94f38d",
+      "sourceManifest": "round5.json",
+      "sourceId": "fresh-poultry-3",
+      "sourceVariant": "proposal",
+      "sourceLabel": "采用本轮新版鹅肝",
+      "semanticLegacyId": "fresh-poultry-3"
+    },
+    {
+      "level": 7,
+      "code": "P07",
+      "id": "fresh-poultry-7",
+      "name": "火鸡腿",
+      "status": "ACCEPTED",
+      "sourceReviewId": "10a62f94f38d",
+      "sourceManifest": "round5.json",
+      "sourceId": "fresh-poultry-5",
+      "sourceVariant": "original",
+      "sourceLabel": "复用现用鸡腿图标，名称为火鸡腿",
+      "semanticLegacyId": "fresh-poultry-5"
+    },
+    {
+      "level": 8,
+      "code": "P08",
+      "id": "fresh-poultry-8",
+      "name": "卤鹅肉",
+      "status": "ACCEPTED",
+      "sourceReviewId": "c124d8672c9e",
+      "sourceManifest": "round4.json",
+      "sourceId": "fresh-poultry-8",
+      "sourceVariant": "proposal",
+      "sourceLabel": "采用上一版本卤鹅肉（18项整链稿）",
+      "semanticLegacyId": "fresh-poultry-8"
+    }
+  ],
+  "idRelocations": [
+    {
+      "fromItemId": "fresh-poultry-1",
+      "toItemId": "fresh-poultry-1",
+      "fromName": "鸡蛋",
+      "selectedName": "鸡蛋",
+      "fromLevel": 1,
+      "toLevel": 1
+    },
+    {
+      "fromItemId": "fresh-poultry-2",
+      "toItemId": "fresh-poultry-2",
+      "fromName": "鸡胗",
+      "selectedName": "鸡胗",
+      "fromLevel": 2,
+      "toLevel": 2
+    },
+    {
+      "fromItemId": "fresh-poultry-6",
+      "toItemId": "fresh-poultry-3",
+      "fromName": "鸡全翅",
+      "selectedName": "鸭血",
+      "fromLevel": 6,
+      "toLevel": 3
+    },
+    {
+      "fromItemId": "fresh-poultry-7",
+      "toItemId": "fresh-poultry-4",
+      "fromName": "整鸡",
+      "selectedName": "鸽肉串",
+      "fromLevel": 7,
+      "toLevel": 4
+    },
+    {
+      "fromItemId": "fresh-poultry-4",
+      "toItemId": "fresh-poultry-5",
+      "fromName": "鸡胸肉",
+      "selectedName": "鸡胸肉",
+      "fromLevel": 4,
+      "toLevel": 5
+    },
+    {
+      "fromItemId": "fresh-poultry-3",
+      "toItemId": "fresh-poultry-6",
+      "fromName": "鸡翅中",
+      "selectedName": "鹅肝",
+      "fromLevel": 3,
+      "toLevel": 6
+    },
+    {
+      "fromItemId": "fresh-poultry-5",
+      "toItemId": "fresh-poultry-7",
+      "fromName": "鸡腿",
+      "selectedName": "火鸡腿",
+      "fromLevel": 5,
+      "toLevel": 7
+    },
+    {
+      "fromItemId": "fresh-poultry-8",
+      "toItemId": "fresh-poultry-8",
+      "fromName": "皮蛋",
+      "selectedName": "卤鹅肉",
+      "fromLevel": 8,
+      "toLevel": 8
+    }
+  ],
+  "recipeProposals": [
+    {
+      "id": "fresh-ico-0146",
+      "before": "凉拌皮蛋",
+      "after": "凉拌卤鹅肉",
+      "inputBefore": "皮蛋、紫洋葱、红椒",
+      "inputAfter": "卤鹅肉、紫洋葱、红椒",
+      "family": "chopping-board",
+      "nameChanged": true,
+      "targetInputs": [
+        {
+          "item": "fresh-poultry-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "inputIdMappings": [
+        {
+          "from": "fresh-poultry-8",
+          "to": "fresh-poultry-8",
+          "name": "卤鹅肉"
+        }
+      ]
+    },
+    {
+      "id": "fresh-ico-0029",
+      "before": "脆皮翅根",
+      "after": "香煎鹅肝",
+      "inputBefore": "鸡翅中、面粉、红椒",
+      "inputAfter": "鹅肝、面粉、红椒",
+      "family": "frying-station",
+      "nameChanged": true,
+      "targetInputs": [
+        {
+          "item": "fresh-poultry-6",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "inputIdMappings": [
+        {
+          "from": "fresh-poultry-3",
+          "to": "fresh-poultry-6",
+          "name": "鹅肝"
+        }
+      ]
+    },
+    {
+      "id": "fresh-ico-0097",
+      "before": "酥炸大鸡腿",
+      "after": "酥炸火鸡腿",
+      "inputBefore": "鸡腿、面粉、红椒",
+      "inputAfter": "火鸡腿、面粉、红椒",
+      "family": "frying-station",
+      "nameChanged": true,
+      "targetInputs": [
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-grain-3",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "inputIdMappings": [
+        {
+          "from": "fresh-poultry-5",
+          "to": "fresh-poultry-7",
+          "name": "火鸡腿"
+        }
+      ]
+    },
+    {
+      "id": "fresh-ico-0042",
+      "before": "炭烤鸡胸肉",
+      "after": "炭烤鸡胸肉",
+      "inputBefore": "鸡胸肉、罗勒",
+      "inputAfter": "鸡胸肉、罗勒",
+      "family": "charcoal-grill",
+      "nameChanged": false,
+      "targetInputs": [
+        {
+          "item": "fresh-poultry-5",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-6",
+          "count": 1
+        }
+      ],
+      "inputIdMappings": [
+        {
+          "from": "fresh-poultry-4",
+          "to": "fresh-poultry-5",
+          "name": "鸡胸肉"
+        }
+      ]
+    },
+    {
+      "id": "fresh-ico-0053",
+      "before": "炭烤琵琶腿",
+      "after": "炭烤火鸡腿",
+      "inputBefore": "鸡腿、红椒",
+      "inputAfter": "火鸡腿、红椒",
+      "family": "charcoal-grill",
+      "nameChanged": true,
+      "targetInputs": [
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-spice-1",
+          "count": 1
+        }
+      ],
+      "inputIdMappings": [
+        {
+          "from": "fresh-poultry-5",
+          "to": "fresh-poultry-7",
+          "name": "火鸡腿"
+        }
+      ]
+    },
+    {
+      "id": "fresh-ico-0092",
+      "before": "蜜汁烤鸡",
+      "after": "蜜汁烤鸽串",
+      "inputBefore": "整鸡、蜂蜜",
+      "inputAfter": "鸽肉串、蜂蜜",
+      "family": "oven",
+      "nameChanged": true,
+      "targetInputs": [
+        {
+          "item": "fresh-poultry-4",
+          "count": 1
+        },
+        {
+          "item": "fresh-sweet-4",
+          "count": 1
+        }
+      ],
+      "inputIdMappings": [
+        {
+          "from": "fresh-poultry-7",
+          "to": "fresh-poultry-4",
+          "name": "鸽肉串"
+        }
+      ]
+    },
+    {
+      "id": "fresh-ico-0088",
+      "before": "古法糯米鸡",
+      "after": "荷香火鸡糯米饭",
+      "inputBefore": "糯米团、鸡腿、蘑菇",
+      "inputAfter": "糯米团、火鸡腿、蘑菇",
+      "family": "steamer",
+      "nameChanged": true,
+      "targetInputs": [
+        {
+          "item": "fresh-grain-8",
+          "count": 1
+        },
+        {
+          "item": "fresh-poultry-7",
+          "count": 1
+        },
+        {
+          "item": "fresh-seasonal-1",
+          "count": 1
+        }
+      ],
+      "inputIdMappings": [
+        {
+          "from": "fresh-poultry-5",
+          "to": "fresh-poultry-7",
+          "name": "火鸡腿"
+        }
+      ]
+    }
+  ],
+  "recipeSummary": {
+    "ingredientUpdates": 7,
+    "proposedDishRenames": 6,
+    "eggRecipesRetained": 5
+  },
+  "originalArtInterpretation": "原有美术按上一审阅页左侧当前选用稿固定；鸡蛋和鸡胸肉继续用此前确认稿、鸡胗和鸡腿用既定原版。",
+  "previousGooseReviewId": "c124d8672c9e",
+  "scope": "用户指定顺序与7项用图已确认，仅P03鸭血重设计待审。按新顺序排列目标P01-P08，来源ID与目标ID单独记录；兽肉、果蔬已确认选择保持。实际游戏身份/合成层级/菜谱/存档尚未接入重排。"
+}

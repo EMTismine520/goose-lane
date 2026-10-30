@@ -1,10 +1,27 @@
 // Finished beverages keep a readable serving silhouette as well as their ingredient identity.
 import {C,p,e,r,line,light,t,leaf,lemonSlice} from './primitives.mjs';
+import {iceCube} from './materials.mjs';
 const u=n=>'url(#'+n+')';
 const mini=(body,x,y,s=.32,a=0)=>t(body,'translate('+x+' '+y+') rotate('+a+') scale('+s+') translate(-48 -48)');
 const straw=(x=60)=>p('M'+x+' 10l6 1-13 49-5-1Z',u('wood'),'stroke-width="1.6"');
 const glint=()=>light('M30 42 33 67',2.8);
+const citrus=(x,y,s=1,pink=false)=>t(e(0,0,13,11,pink?'#f2bc88':u('egg'),'stroke-width="1.5"')+e(0,0,10,8,pink?'#e48b83':u('mango'),'stroke-width="1.1"')+line('M-9 0h18M0-8V8M-7-5 7 5M-7 5 7-5','#fff0c9',1.2),`translate(${x} ${y}) scale(${s})`);
+const youngCoconut=(x,y,s=1)=>t(p('M-13-3 0-13l14 11-4 15q-10 7-20 0Z','#81ab68','stroke-width="1.5"')+p('M-10-2 0-10l11 9-3 7q-8 5-16 0Z','#f6f1d7','stroke-width="1.1"')+line('M-6-2 0-7 7-1','#d7dfbc',1.3),`translate(${x} ${y}) scale(${s})`);
+const tallCold=(color,lower=null)=>p('M23 20h50l-4 58q-20 11-42 0Z',u('glass'))+p('M28 35h40l-3 39q-16 7-33 0Z',color,'stroke-width="1.3"')+e(48,35,20,6,color,'stroke-width="1.2"')+(lower?p('M30 57q18 5 36 0l-1 17q-16 7-33 0Z',lower,'stroke-width="1.1"'):'')+e(48,20,25,7,u('glass'),'stroke-width="1.6"')+glint();
+const coldJar=color=>p('M69 38q21-6 18 16-2 14-18 10',u('glass'),'stroke-width="2.2"')+r(20,25,51,55,9,u('glass'))+r(25,39,41,35,6,color,'stroke-width="1.3"')+e(45,26,25,7,u('glass'),'stroke-width="1.5"')+light('M28 46v16',2.6);
+const bubbles=(x,y,color='#f6f4d9')=>e(x,y,2.1,2.1,color,'stroke="none"')+e(x+9,y+12,1.7,1.7,color,'stroke="none"')+e(x-2,y+24,1.4,1.4,color,'stroke="none"');
 export function finishedDrink(name,raw){
+ // These blends follow the confirmed mixer ingredients rather than their retired spirits.
+ if(name==='蓝柑可乐')return tallCold(u('coffee'),'#548f9b')+iceCube(41,38,.33)+iceCube(57,45,.3)+bubbles(40,53,'#8fc5cb');
+ if(name==='橙冰苏打')return p('M18 35h60l-4 42q-26 13-52 0Z',u('glass'))+p('M24 47h48l-3 25q-21 10-42 0Z',u('mango'),'stroke-width="1.3"')+p('M23 46q0-10 10-10 3-8 12-5 8-7 14 2 13-1 15 12-25 12-51 1Z',u('egg'),'stroke-width="1.4"')+iceCube(39,49,.3)+iceCube(57,55,.31)+bubbles(34,61,'#fff3c4')+light('M28 56 30 68',2.4);
+ if(name==='香甜蛋奶饮')return p('M23 27h50l-4 49q-20 14-42 0Z',u('glass'))+p('M28 37h40l-3 36q-16 8-33 0Z',u('garlic'),'stroke-width="1.3"')+e(48,37,20,7,u('egg'),'stroke-width="1.3"')+line('M32 49q15 4 32 0M32 59q17 4 31 0','#dfba78',2)+e(48,27,25,7,u('glass'),'stroke-width="1.6"')+light('M32 43 34 69',2.6);
+ if(name==='橙柠酸甜冰饮')return tallCold(u('mango'))+iceCube(39,42,.34)+iceCube(56,52,.33)+lemonSlice(68,26,.66)+light('M34 66q14 5 28 0',1.7);
+ if(name==='椰青姜柠饮')return coldJar('#d4ddbd')+p('M27 60q18 5 37 0v10q-18 7-36 0Z','#d9c58d','stroke-width="1.1"')+iceCube(38,42,.3)+iceCube(55,50,.31)+lemonSlice(65,27,.62)+youngCoconut(73,72,.55);
+ if(name==='西柚金酒气泡')return e(48,84,21,5,u('glass'))+r(45,57,6,26,2,u('glass'),'stroke-width="1.5"')+p('M22 20h52q5 38-26 39T22 20Z',u('glass'))+p('M27 33h42q0 23-21 22T27 33Z',u('pink'),'stroke-width="1.3"')+bubbles(41,37,'#f9ded7')+citrus(68,25,.68,true)+light('M30 40q2 9 8 12',2.2);
+ if(name==='蜂蜜橙柠冰饮')return coldJar(u('mango'))+iceCube(36,42,.33)+iceCube(54,52,.34)+lemonSlice(67,27,.65)+line('M30 60q15 5 30 0','#edcc88',2.3)+light('M31 67q12 4 27 0',1.4);
+ if(name==='西柚椰青气泡')return tallCold('#e8e2ca',u('pink'))+iceCube(39,39,.3)+iceCube(57,46,.3)+bubbles(39,52,'#fff5e1')+citrus(70,26,.63,true)+youngCoconut(73,73,.52);
+ if(name==='椰青能量饮')return p('M25 23h46l-3 56q-20 11-40 0Z',u('glass'))+p('M30 36h36l-2 39q-16 7-32 0Z','#c4d57d','stroke-width="1.3"')+e(48,23,23,7,u('glass'),'stroke-width="1.5"')+iceCube(40,39,.3)+iceCube(55,48,.3)+bubbles(41,55,'#f6f3cb')+youngCoconut(74,71,.58)+light('M33 50 35 69',2.5);
+ if(name==='椰青浓缩咖啡')return tallCold('#dce4d2')+p('M28 35h40l-1 19q-18 5-37 0Z',u('coffee'),'stroke-width="1.3"')+e(48,35,20,6,u('coffee'),'stroke-width="1.3"')+line('M34 40q15 4 28 0','#c2966b',1.4)+youngCoconut(75,73,.58)+light('M33 58 35 70',2.6);
  if(name==='葡萄果肉饮')return straw(62)+p('M20 23h56l-7 52q-21 16-42 0Z',u('glass'))+p('M26 38h44l-6 34q-16 11-32 0Z',u('onion'),'stroke-width="1.4"')+e(48,38,22,7,u('onion'),'stroke-width="1.3"')+line('M34 46 38 73m22-27-4 27','#ddb1cf',1.4)+[[38,57],[55,64],[43,72]].map(([x,y])=>e(x,y,5.5,4.5,u('berry'),'stroke-width="1.1"')).join('')+mini(raw('葡萄'),76,31,.3,-15)+glint();
  if(name==='热带芒果汁')return e(48,85,24,6,u('glass'))+r(44,64,8,17,2,u('glass'),'stroke-width="1.5"')+p('M17 25h62l-4 26q-6 20-27 20T21 51Z',u('glass'))+p('M23 38h50l-4 13q-5 14-21 14T27 51Z',u('mango'),'stroke-width="1.3"')+e(48,38,25,7,u('mango'),'stroke-width="1.2"')+p('M53 30 68 9l14 12-17 17Z',u('egg'),'stroke-width="1.5"')+line('m62 20 10 8m-12-2 11 8','#d99d3e',1.4)+leaf(69,26,.4,45)+light('M27 43q3 12 12 15',2.7);
  if(name==='鹅鹅手打柠檬茶')return p('M70 34q23-6 20 17-1 17-20 15',u('glass'),'stroke-width="2.5"')+r(18,22,56,60,10,u('glass'))+r(23,35,46,41,7,u('tea'),'stroke-width="1.3"')+e(46,24,28,7,u('glass'))+straw(62)+lemonSlice(46,57,1.12)+lemonSlice(69,28,.7)+light('M25 42v25',2.8);

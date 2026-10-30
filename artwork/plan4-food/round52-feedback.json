@@ -1,0 +1,37 @@
+{
+  "sourceReviewId": "80726628b78b",
+  "confirmedBarReviewId": "7d115f8358b8",
+  "confirmedEquipmentReviewId": "02d55ba3e540",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "familyIds": [
+    "steamer",
+    "wok",
+    "microwave",
+    "blender"
+  ],
+  "orderedIds": [
+    "steamer-l1",
+    "steamer-l2",
+    "steamer-l3",
+    "wok-l1",
+    "wok-l2",
+    "wok-l3",
+    "microwave-l1",
+    "microwave-l2",
+    "microwave-l3",
+    "blender-l1",
+    "blender-l2",
+    "blender-l3"
+  ],
+  "occupancies": [
+    0.78,
+    0.82,
+    0.84
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定EQ17—EQ20十二款第51轮新版，进入EQ21蒸笼、EQ22炒锅、EQ23微波炉、EQ24搅拌机四族三级12款候选；全部按真实烹饪用途展示，配方与制作规则保持。",
+  "sizePolicy": "三级78%/82%/84%，功能结构体现升级，透明留白与视觉居中，保持此前确认器材的原尺寸和字节。",
+  "authoringPolicy": "原生透明SVG，近黑细外轮廓、左上光、Q版体积；暖竹叠层蒸笼、深弧铸铁炒锅、珊瑚胶囊微波炉、雾蓝玻璃搅拌机互相区分；三级通过功能结构升级，无字/数字/等级角标。"
+}

@@ -116,12 +116,26 @@ describe('exclusive input ownership and timed appliance settlement', () => {
   });
   it('multi-input recipe reserves all ingredients and does not start early', () => {
     let state = createInitialState(1000);
-    state.board[16]!.item = 'fresh-veg-5'; state.board[17]!.item = 'fresh-fruit-2';
+    state.board[16]!.item = 'fresh-veg-5'; state.board[17]!.item = 'fresh-veg-3';
     state = act(state, { type: 'stageInput', from: 16, appliance: 'chopping-board' });
     expect(execute(state, { type: 'startCooking', appliance: 'chopping-board' }).state).toBe(state);
     state = act(state, { type: 'stageInput', from: 17, appliance: 'chopping-board' });
     state = act(state, { type: 'startCooking', appliance: 'chopping-board' });
     expect(state.appliances[0].job!.recipe).toBe('fresh-garden-bowl');
+    expect(state.appliances[0].job!.output).toBe('dish-fresh-garden-bowl');
+    expect(state.appliances[0].job!.endsAt - state.appliances[0].job!.startedAt).toBe(30_000);
+  });
+  it('does not accept the retired orange ingredient for a new harvest bowl', () => {
+    let state = createInitialState(1000);
+    state.board[16]!.item = 'fresh-veg-5';
+    state.board[17]!.item = 'fresh-fruit-2';
+    const orange = state.board[17];
+    state = act(state, { type: 'stageInput', from: 16, appliance: 'chopping-board' });
+    const rejected = execute(state, { type: 'stageInput', from: 17, appliance: 'chopping-board' });
+    expect(rejected.ok).toBe(false);
+    expect(rejected.state).toBe(state);
+    expect(state.board[17]).toEqual(orange);
+    expect(getApplianceStatus(state, 'chopping-board')?.canStart).toBe(false);
   });
 });
 

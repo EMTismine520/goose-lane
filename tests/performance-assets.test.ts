@@ -1,11 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import sharp from 'sharp';
 import { createInitialState, createLegacyInitialState } from '../src/domain/engine';
 import { createUiPreviewState } from '../src/diagnostics/ui-preview-state';
 import { planBoardAssets } from '../src/game/board-assets';
 import { AssetQueue } from '../src/platform/asset-queue';
 import { DecorationBudget } from '../src/platform/performance';
-import { mobileAssetPath, sizedArtPath } from '../src/content/assets';
+import { deviceAssetPath, itemAssetPath, mobileAssetPath, sizedArtPath } from '../src/content/assets';
 
 describe('state-scoped board assets', () => {
   it('loads opening ownership, not the unlocked/discovered catalogue', () => {
@@ -27,18 +29,37 @@ describe('state-scoped board assets', () => {
     const plan = planBoardAssets(createLegacyInitialState(1000));
     expect(plan.critical.find(asset => asset.key === 'legacy-foods')?.path).toBe('assets/foods.webp');
   });
-  it('uses mobile textures within 128 physical pixels and original artwork for details', () => {
+  it('resolves the same selected picture through compact and detail entrypoints', () => {
     const original = 'assets/v3-b/fresh-veg-1.webp';
     expect(mobileAssetPath(original)).toMatch(/^assets\/mobile\/fresh-veg-1-[a-f0-9]{12}\.webp$/);
     expect(sizedArtPath(original, 40, 3)).toBe(mobileAssetPath(original));
     expect(sizedArtPath(original, 88, 3)).toBe(original);
     expect(mobileAssetPath('assets/items/tomato.svg')).toBe('assets/items/tomato.svg');
   });
-  it('keeps derived images inside the agreed budget and preserves all original IDs', async () => {
+  it('uses the selected 512 exports byte-identically for every board and detail asset', async () => {
     const mobile = JSON.parse(await readFile('public/assets/mobile-manifest.json', 'utf8'));
     const original = JSON.parse(await readFile('public/assets/v3-manifest.json', 'utf8'));
+    const digest = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
+    expect(original).toHaveLength(323);
     expect(mobile.map((row: any) => row.id).sort()).toEqual(original.map((row: any) => row.id).sort());
-    expect(mobile.reduce((sum: number, row: any) => sum + row.bytes, 0)).toBeLessThanOrEqual(2.25 * 1024 * 1024);
+    expect(mobile.every((row: any) => row.sourceSha256 === original.find((source: any) => source.id === row.id)?.sha256)).toBe(true);
+    for (const source of original) {
+      expect(source.mode, source.id).toBe('plan4-selected-export');
+      const alias = mobile.find((row: any) => row.id === source.id)!;
+      const [formalBytes, mobileBytes, selectedBytes] = await Promise.all([
+        readFile('public/' + source.path), readFile('public/' + alias.path), readFile(source.selectedExports.image),
+      ]);
+      expect(formalBytes.equals(selectedBytes), source.id + ' selected image').toBe(true);
+      expect(mobileBytes.equals(formalBytes), source.id + ' compact alias').toBe(true);
+      expect(digest(formalBytes), source.id).toBe(source.selectedExports.sha256.image);
+      expect(digest(mobileBytes), source.id).toBe(alias.sha256);
+      const metadata = await sharp(formalBytes).metadata();
+      expect([metadata.width, metadata.height, metadata.hasAlpha], source.id).toEqual([512, 512, true]);
+      expect(source.kind === 'device' ? deviceAssetPath(source.id) : itemAssetPath(source.id), source.id).toBe(source.path);
+      expect(mobileAssetPath(source.path), source.id).toBe(alias.path);
+      expect(sizedArtPath(source.path, 40, 3), source.id).toBe(alias.path);
+      expect(sizedArtPath(source.path, 100, 3), source.id).toBe(source.path);
+    }
   });
 });
 

@@ -1,0 +1,37 @@
+{
+  "sourceReviewId": "16f8b88fa544",
+  "confirmedBarReviewId": "7d115f8358b8",
+  "confirmedEquipmentReviewId": "70bfa92fd06f",
+  "date": "2026-10-30",
+  "userQuote": "确认采用。继续下一轮，要做得顶尖",
+  "familyIds": [
+    "sweet-cabinet",
+    "seasonal-produce-rack",
+    "exotic-fruit-basket",
+    "coffee-grinder"
+  ],
+  "orderedIds": [
+    "sweet-cabinet-l1",
+    "sweet-cabinet-l2",
+    "sweet-cabinet-l3",
+    "seasonal-produce-rack-l1",
+    "seasonal-produce-rack-l2",
+    "seasonal-produce-rack-l3",
+    "exotic-fruit-basket-l1",
+    "exotic-fruit-basket-l2",
+    "exotic-fruit-basket-l3",
+    "coffee-grinder-l1",
+    "coffee-grinder-l2",
+    "coffee-grinder-l3"
+  ],
+  "occupancies": [
+    0.78,
+    0.82,
+    0.84
+  ],
+  "actualBaseCatalogSha256": "16f50aaae40fb8b54f90511b73908b0c7a6b7edad720dd8b23749ead3dced4df",
+  "actualExpansionSha256": "7be7e4cf40f363a7c4dbed3c8a687c69cc7e9fbc1c38d7bc6c646c22dfa3bcf2",
+  "scope": "固定EQ05—EQ08十二款第48轮新版，进入EQ09甜料柜、EQ10时蔬菜架、EQ11风味果筐、EQ12咖啡豆磨机四族三级12款候选。",
+  "sizePolicy": "三级78%/82%/84%，功能结构体现升级，透明留白与视觉居中，保持此前确认器材的原尺寸和字节。",
+  "authoringPolicy": "原生透明SVG，近黑细外轮廓、左上光、Q版体积；玫瑰奶油甜料柜、苔绿原木菜架、暖藤编果筐、胡桃黄铜磨机互相区分，食材标志限对应链，无字/数字/等级角标。"
+}
