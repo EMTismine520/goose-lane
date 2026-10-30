@@ -4,12 +4,12 @@
     {
       "file": "index.html",
       "bytes": 2605,
-      "gzipReferenceBytes": 1104
+      "gzipReferenceBytes": 1100
     },
     {
-      "file": "assets/game-DyXhqNwO.js",
+      "file": "assets/game-CR9Wvl8s.js",
       "bytes": 2209,
-      "gzipReferenceBytes": 1158
+      "gzipReferenceBytes": 1154
     },
     {
       "file": "assets/modulepreload-polyfill-B5Qt9EMX.js",
@@ -17,9 +17,9 @@
       "gzipReferenceBytes": 399
     },
     {
-      "file": "assets/load-engine-DCLVjf5U.js",
-      "bytes": 7753,
-      "gzipReferenceBytes": 3164
+      "file": "assets/load-engine-DezAFPj2.js",
+      "bytes": 7837,
+      "gzipReferenceBytes": 3184
     },
     {
       "file": "assets/asset-queue-DMAv7LHf.js",
@@ -37,14 +37,14 @@
       "gzipReferenceBytes": 4207
     },
     {
-      "file": "assets/game-Br62i8OK.js",
-      "bytes": 290658,
-      "gzipReferenceBytes": 93345
+      "file": "assets/game-8t2fS3ft.js",
+      "bytes": 292590,
+      "gzipReferenceBytes": 94001
     },
     {
-      "file": "assets/game-D0FAWXw3.css",
-      "bytes": 91320,
-      "gzipReferenceBytes": 20280
+      "file": "assets/game-1p1Xv_a_.css",
+      "bytes": 92921,
+      "gzipReferenceBytes": 20579
     },
     {
       "file": "assets/zap-kn8U2GMe.js",
@@ -112,9 +112,9 @@
       "gzipReferenceBytes": 173
     },
     {
-      "file": "assets/Board-BGNjjS5t.js",
-      "bytes": 27487,
-      "gzipReferenceBytes": 10090
+      "file": "assets/Board-Cjs-F1UN.js",
+      "bytes": 27776,
+      "gzipReferenceBytes": 10188
     },
     {
       "file": "assets/engine-DMjGVukU.js",
@@ -122,15 +122,15 @@
       "gzipReferenceBytes": 381663
     }
   ],
-  "codeGzipReferenceBytes": 574416,
+  "codeGzipReferenceBytes": 575481,
   "mobileArt": {
     "files": 323,
     "bytes": 18051776
   },
   "offline": {
     "files": 37,
-    "bytes": 2466215,
-    "totalBytes": 42082503,
+    "bytes": 2470121,
+    "totalBytes": 42087118,
     "themeFiles": 749,
     "coreUrls": [
       "app-icon-180.png",
@@ -138,26 +138,26 @@
       "app-icon-512.png",
       "assets/arrow-right-DB7M5Fx_.js",
       "assets/asset-queue-DMAv7LHf.js",
-      "assets/Board-BGNjjS5t.js",
+      "assets/Board-Cjs-F1UN.js",
       "assets/check-CPbIflhE.js",
       "assets/coins-CiftTqv-.js",
       "assets/DeviceIcon-C8LecwLm.js",
       "assets/DeviceShelf-ocUKNaBv.js",
       "assets/engine-DMjGVukU.js",
       "assets/flame-Dz4pTuNR.js",
-      "assets/game-Br62i8OK.js",
-      "assets/game-D0FAWXw3.css",
-      "assets/game-DyXhqNwO.js",
+      "assets/game-1p1Xv_a_.css",
+      "assets/game-8t2fS3ft.js",
+      "assets/game-CR9Wvl8s.js",
       "assets/gift-BTPPin2Y.js",
       "assets/gift-codes-Djut_bYv.js",
       "assets/ItemArtContext-8U5_pQTt.js",
-      "assets/load-engine-DCLVjf5U.js",
+      "assets/load-engine-DezAFPj2.js",
       "assets/lock-keyhole-CREuBMs9.js",
       "assets/modulepreload-polyfill-B5Qt9EMX.js",
       "assets/package-open-Bg-znRSs.js",
       "assets/panels-2hKOxEur.js",
       "assets/parts-DrROYYIH.js",
-      "assets/PerformanceTools-tpFycMEA.js",
+      "assets/PerformanceTools-D8LWmoQi.js",
       "assets/react-Bzgz95E1.js",
       "assets/RedeemGiftPanel-CM1OAFH8.js",
       "assets/save-DQcwVlUZ.js",
@@ -179,7 +179,7 @@
       "prewarmTextures": 4,
       "visibleImageRequests": 10,
       "imageBytes": 470808,
-      "gzipReferenceBytes": 1045224,
+      "gzipReferenceBytes": 1046289,
       "budgetBytes": 1048576,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
@@ -191,7 +191,7 @@
       "prewarmTextures": 20,
       "visibleImageRequests": 34,
       "imageBytes": 1806616,
-      "gzipReferenceBytes": 2381032,
+      "gzipReferenceBytes": 2382097,
       "budgetBytes": 1572864,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
@@ -203,7 +203,7 @@
       "prewarmTextures": 12,
       "visibleImageRequests": 16,
       "imageBytes": 807970,
-      "gzipReferenceBytes": 1382386,
+      "gzipReferenceBytes": 1383451,
       "budgetBytes": 1572864,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
@@ -215,7 +215,7 @@
       "prewarmTextures": 6,
       "visibleImageRequests": 6,
       "imageBytes": 752364,
-      "gzipReferenceBytes": 1326780,
+      "gzipReferenceBytes": 1327845,
       "budgetBytes": null,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
