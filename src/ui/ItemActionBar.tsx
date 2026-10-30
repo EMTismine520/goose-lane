@@ -8,6 +8,8 @@ import { ItemIcon } from './parts';
 import { BAND_COSTS } from '../content/expansion';
 import { DeviceIcon } from './DeviceIcon';
 import { getApplianceDrawerModel, formatCookingTime } from './ApplianceDrawer';
+import { getApplianceTarget } from './ui-guidance';
+import type { ApplianceTargets } from './ui-guidance';
 
 type Props = {
   state: GameState; selected: number | null; now: number; act: (c: Command) => Promise<boolean>;
@@ -15,10 +17,11 @@ type Props = {
   onDevices?: (family?: string) => void; newDiscoveries?: number;
   onAppliance?: (id: string) => void; onFindPair?: () => void;
   focusSummary?: string; onOrder?: () => void;
+  applianceTargets?: ApplianceTargets;
 };
 
 /** The tools never move when the selected board object changes. */
-export function ItemActionBar({ state, selected, now, act, onStorage, onBook, onItem, onDevices, newDiscoveries = 0, onAppliance, onFindPair, focusSummary, onOrder }: Props) {
+export function ItemActionBar({ state, selected, now, act, onStorage, onBook, onItem, onDevices, newDiscoveries = 0, onAppliance, onFindPair, focusSummary, onOrder, applianceTargets }: Props) {
   const item = selected !== null ? state.board[selected] : null;
   const device = activeDevices(state).find(e => e.index === selected);
   const appliance = state.appliances.find(a => a.id === device?.id);
@@ -35,12 +38,25 @@ export function ItemActionBar({ state, selected, now, act, onStorage, onBook, on
   } else if (appliance) {
     const model = getApplianceDrawerModel(state, appliance.id, now)!;
     const { status } = model;
-    const recipe = status.recipe;
+    const target = applianceTargets?.[appliance.id] ?? getApplianceTarget(state, appliance.id, null);
+    const recipe = target?.recipe ?? status.recipe;
+    const canStart = target?.canStart ?? status.canStart;
     const open = () => onAppliance ? onAppliance(appliance.id) : onDevices ? onDevices(device?.familyId ?? device?.id) : onBook();
-    const title = status.phase === 'cooking' || status.phase === 'ready' || status.canStart ? recipe?.name ?? device!.name : device!.name;
-    const description = status.phase === 'ready' ? model.freeCells ? '做好啦 · 趁热领取' : '棋盘已满 · 成品为你保留' : status.phase === 'cooking' ? '制作中 · ' + formatCookingTime(status.remaining) : status.canStart ? model.later.length ? '可开火 · 也可继续补料' : '材料齐了 · 可以开火' : status.phase === 'loaded' ? '已投' + appliance.inputSlots.length + '份 · 查看缺料' : '拖入食材 · 查看食谱';
-    summary = <button className="context-summary" onClick={open} aria-label={'查看' + device!.name + '食谱与进度'}>{recipe && (appliance.job || status.canStart) ? <ItemIcon item={recipe.output} size={36}/> : instance ? <DeviceIcon family={instance.familyId} level={instance.level} size={34}/> : <CookingPot size={27}/>}<span><b>{title}</b><small>{description}</small></span></button>;
-    action = status.phase === 'ready' ? <button className={'dock-primary ' + (model.freeCells ? '' : 'dock-neutral')} onClick={model.freeCells ? () => act({ type: 'collectAppliance', appliance: appliance.id, expectedJobId: appliance.job?.id }) : open}>{model.freeCells ? <Check size={16}/> : <Archive size={16}/>}<span>{model.freeCells ? '领取' : '整理'}</span></button> : status.canStart ? <button className="dock-primary" aria-label={'开火 · ' + recipe!.name} onClick={() => act({ type: 'startCooking', appliance: appliance.id, recipe: recipe!.id, expectedVersion: appliance.version })}><Play size={14}/><span>开火</span></button> : <button className="dock-secondary" onClick={open}>{status.phase === 'cooking' ? <Clock3 size={16}/> : <BookOpen size={16}/>}<span>{status.phase === 'cooking' ? '进度' : '食谱'}</span></button>;
+    const title = status.phase === 'cooking' || status.phase === 'ready' ? recipe?.name ?? device!.name : device!.name;
+    const description = status.phase === 'ready' ? model.freeCells ? '做好啦 · 趁热领取' : '棋盘已满 · 成品为你保留' : status.phase === 'cooking' ? '制作中 · ' + formatCookingTime(status.remaining) : '拖入食材 · 查看食谱';
+    const ingredientLabel = target?.ingredients.map(need => `${ITEMS[need.item].name}${need.complete ? '已投入' : need.loaded ? '部分投入' : '未投入'}，${need.loaded}/${need.required}`).join('；');
+    summary = status.phase === 'loaded' && target ? (
+      <button className="context-summary appliance-inline" onClick={open} aria-label={`查看${device!.name}食谱，目标${target.recipe.name}；${ingredientLabel}`}>
+        <span className="appliance-identity" aria-hidden="true">{instance ? <DeviceIcon family={instance.familyId} level={instance.level} size={24}/> : <CookingPot size={24}/>}<b className="appliance-name">{device!.name}</b></span>
+        <span className="appliance-ingredients" aria-hidden="true">{target.ingredients.map(need => (
+          <span key={need.item} className={`appliance-ingredient ${need.loaded ? 'has-input' : 'is-missing'}`} title={`${ITEMS[need.item].name}，${need.loaded}/${need.required}`}>
+            <ItemIcon item={need.item} size={28} muted={!need.loaded}/>
+            {need.required > 1 ? <span className={`appliance-ingredient-count ${need.complete ? 'is-complete' : ''}`}>{need.loaded}/{need.required}</span> : need.complete ? <span className="appliance-ingredient-check"><Check size={8} strokeWidth={3}/></span> : null}
+          </span>
+        ))}</span>
+      </button>
+    ) : <button className="context-summary" onClick={open} aria-label={'查看' + device!.name + '食谱与进度'}>{recipe && appliance.job ? <ItemIcon item={recipe.output} size={36}/> : instance ? <DeviceIcon family={instance.familyId} level={instance.level} size={34}/> : <CookingPot size={27}/>}<span><b>{title}</b><small>{description}</small></span></button>;
+    action = status.phase === 'ready' ? <button className={'dock-primary ' + (model.freeCells ? '' : 'dock-neutral')} onClick={model.freeCells ? () => act({ type: 'collectAppliance', appliance: appliance.id, expectedJobId: appliance.job?.id }) : open}>{model.freeCells ? <Check size={16}/> : <Archive size={16}/>}<span>{model.freeCells ? '领取' : '整理'}</span></button> : canStart ? <button className="dock-primary" aria-label={'开火 · ' + recipe!.name} onClick={() => act({ type: 'startCooking', appliance: appliance.id, recipe: recipe!.id, expectedVersion: appliance.version })}><Play size={14}/><span>开火</span></button> : <button className="dock-secondary" onClick={open}>{status.phase === 'cooking' ? <Clock3 size={16}/> : <BookOpen size={16}/>}<span>{status.phase === 'cooking' ? '进度' : '食谱'}</span></button>;
   } else if (instance && device?.kind === 'generator') {
     const chain = CHAINS.find(c => c.id === instance.selectedChain);
     const start = instance.band * 3 + 1;

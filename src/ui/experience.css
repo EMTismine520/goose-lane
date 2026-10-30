@@ -10,6 +10,28 @@
 .object-menu{position:relative;flex-shrink:0}.object-menu>summary{list-style:none;cursor:pointer;background:#f0e4ce;color:#705336}.object-menu>summary::-webkit-details-marker{display:none}.object-menu[open]>summary{background:#e6d5b8}.object-menu-actions{position:absolute;bottom:calc(100% + 8px);right:0;width:205px;border:1px solid #d8bf98;border-radius:14px;background:#fffaf0;padding:9px;box-shadow:0 8px 28px #49372938;z-index:45}.object-menu-actions>b{display:block;font-size:14px;padding:5px 5px 8px}.object-menu-actions>button{min-height:44px;display:flex;align-items:center;gap:8px;width:100%;padding:6px;font-size:14px;text-align:left;border-radius:8px}.object-menu-actions>button:active{background:#f0e4ce}.object-menu-actions>small{display:block;font-size:11px;line-height:1.5;color:#806c53;padding:4px 6px}
 .action-dock button:focus-visible,.object-menu>summary:focus-visible{outline:3px solid #9aaf77;outline-offset:-3px}
 
+/* Loaded appliances show the whole recipe beside their name, within the existing rail. */
+.context-summary.appliance-inline{gap:6px}
+.appliance-inline>.appliance-identity{display:flex;align-items:center;flex:0 1 auto;min-width:0;gap:3px}
+.appliance-identity>.device-icon,.appliance-identity>svg{width:24px!important;height:24px!important;flex:0 0 24px}
+.appliance-identity>svg{color:#a66b42}
+.appliance-inline .appliance-name{min-width:0;max-width:65px;font-size:13px;line-height:1.3}
+.appliance-inline>.appliance-ingredients{display:flex;align-items:center;flex:0 0 auto;gap:4px;margin-left:auto}
+.appliance-ingredient{position:relative;display:block;width:28px;height:28px;flex:0 0 28px}
+.appliance-ingredient>.item-icon{display:block;width:100%!important;height:100%!important}
+.appliance-ingredient.is-missing>.item-icon{filter:grayscale(1);opacity:.55}
+.appliance-ingredient-check,.appliance-ingredient-count{position:absolute;right:-1px;bottom:0;display:grid;place-items:center;min-width:11px;height:11px;padding:0 1px;border:1px solid #fff9ed;border-radius:6px;background:#3f7b58;color:#fff9ed;font-size:8px;font-weight:800;line-height:1}
+.appliance-ingredient-count{background:#ede3d1;color:#675139;border-radius:4px}
+.appliance-ingredient-count.is-complete{background:#3f7b58;color:#fff9ed}
+@media(max-width:359px){
+  .context-summary.appliance-inline{gap:4px}
+  .appliance-inline>.appliance-identity{gap:2px}
+  .appliance-identity>.device-icon,.appliance-identity>svg{width:22px!important;height:22px!important;flex-basis:22px}
+  .appliance-inline .appliance-name{max-width:60px;font-size:12px}
+  .appliance-inline>.appliance-ingredients{gap:2px}
+  .appliance-ingredient{width:24px;height:24px;flex-basis:24px}
+}
+
 /* Cooking details: ingredients are readable as one row, even for three-input dishes. */
 .appliance-drawer{color:#493729}.appliance-drawer-heading{display:flex;align-items:center;gap:10px;padding:0 0 16px}.appliance-drawer-heading>div{min-width:0;flex:1}.drawer-eyebrow{display:block;font-size:11px;font-weight:750;letter-spacing:1px;color:#967041}.appliance-drawer-heading h2{font-size:21px;line-height:1.3;margin:5px 0;color:#493729}.appliance-drawer-heading p{font-size:12px;line-height:1.6;color:#7b654e;margin:0}.drawer-icon-button{width:44px;min-height:44px;display:grid;place-items:center;border-radius:12px;background:#f2e7d2;color:#786044;flex-shrink:0}
 .drawer-section-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px}.drawer-section-heading h3{font-size:16px;margin:0;display:flex;align-items:center;gap:7px;color:#493729}.drawer-section-heading h3 small{font-size:11px;background:#e8ddc7;color:#79654b;border-radius:12px;padding:2px 7px;font-weight:600}.drawer-section-heading>span{font-size:11px;color:#826e53}.drawer-section-note{margin:0 0 10px;font-size:12px;color:#7d6850;line-height:1.6}

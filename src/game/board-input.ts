@@ -1,5 +1,6 @@
 import { getApplianceStatus, getBoardEntity, mergeTarget } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
+import type { ApplianceTarget } from '../ui/ui-guidance';
 
 export const BOARD_COLUMNS = 7;
 export const BOARD_ROWS = 9;
@@ -48,7 +49,7 @@ export type BoardTapAction =
   | { kind: 'command'; command: Command; identity?: string };
 
 /** Selection is inspection only; only a drag may move or load an object. */
-export function boardTapAction(state: GameState, index: number, selected: number | null): BoardTapAction {
+export function boardTapAction(state: GameState, index: number, selected: number | null, target?: ApplianceTarget): BoardTapAction {
   const entity = getBoardEntity(state, index);
   if (entity.kind === 'generator' && entity.chain) {
     return { kind: 'command', command: { type: 'generate', chain: entity.chain, ...(state.campaign === 'fresh' ? { device: entity.id } : {}) } };
@@ -57,7 +58,7 @@ export function boardTapAction(state: GameState, index: number, selected: number
     const status = getApplianceStatus(state, entity.id);
     const identity = `appliance:${entity.id}`;
     if (status?.phase === 'ready') return { kind: 'command', command: { type: 'collectAppliance', appliance: entity.id, expectedJobId: status.appliance.job?.id }, identity };
-    if (status?.canStart) return { kind: 'command', command: { type: 'startCooking', appliance: entity.id }, identity };
+    if (status && (target?.canStart ?? status.canStart)) return { kind: 'command', command: { type: 'startCooking', appliance: entity.id, ...(target ? { recipe: target.recipe.id, expectedVersion: status.appliance.version } : {}) }, identity };
     return { kind: 'select', index };
   }
   return { kind: 'select', index: entity.kind === 'empty' || entity.kind === 'blocker' || selected === index ? null : index };

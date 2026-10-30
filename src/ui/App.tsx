@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Archive, BookOpen, Check, ChefHat, Coins, Hammer, LoaderCircle, Sparkles, Wrench, Zap } from 'lucide-react';
 import { useGame } from './useGame';
 import type { SaveRepository } from '../persistence/save';
@@ -21,7 +21,8 @@ import { useThemeOffline } from './useThemeOffline';
 import { ApplianceDrawer } from './ApplianceDrawer';
 import { OrderFocus } from './OrderFocus';
 import { StreetProgress, ThemeProgressPanel } from './StreetProgress';
-import { focusedOrder, locateItem, orderSummary } from './ui-guidance';
+import { focusedOrder, getApplianceTarget, locateItem, orderSummary } from './ui-guidance';
+import type { ApplianceTargets } from './ui-guidance';
 import { THEME_NAMES, DEVICE_FAMILIES } from '../content/expansion';
 import { loadEngine } from '../game/load-engine';
 import { afterPlayIdle } from '../platform/play-idle';
@@ -51,6 +52,16 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const [codexView,setCodexView]=useState(EMPTY_CODEX),[detailHistory,setDetailHistory]=useState<Dialog[]>([]);
  const [codexSeen,setCodexSeen]=useState(0);
  const [focusedOrderId,setFocusedOrderId]=useState<string|null>(null),[guidance,setGuidance]=useState<string[]>([]);
+ const applianceTargets=useMemo<ApplianceTargets>(()=>{
+  if(!state)return {};
+  const targets:Record<string,NonNullable<ReturnType<typeof getApplianceTarget>>>={};
+  for(const device of activeDevices(state)){
+   if(device.kind!=='appliance')continue;
+   const target=getApplianceTarget(state,device.id,focusedOrderId);
+   if(target)targets[device.id]=target;
+  }
+  return targets;
+ },[state,focusedOrderId]);
  const [newTheme,setNewTheme]=useState<number|null>(null),[discovery,setDiscovery]=useState<string|null>(null);
  const [giftPending,setGiftPending]=useState(false);
  const giftRunning=useRef(false);
@@ -126,8 +137,8 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  <div className="merge-page" data-selection-background hidden={page!=='merge'}>
   <CustomerStrip key={game.sessionEpoch} active={page==='merge'} state={state} act={act} onItem={showItem} onScroll={saveScroll} focusedOrderId={focusedOrderId} onFocus={setFocusedOrderId}/>
   <div className={`guide-bar ${focus?'is-focused':''}`}><Sparkles size={14}/><span>{tutorial?.text??(focus?orderSummary(state,focus):state.campaign!=='fresh'?`第${state.day}天 · ${getDayProgress(state).completed}/${getDayProgress(state).total}份款待`:theme.allCompleted?'每一份滋味，都成为小馆的回忆。':`${theme.name} · ${theme.completed}/${theme.total}份心愿`)}</span></div>
-  <div className="board-area" data-selection-background ref={area}><div className="board-frame" data-selection-background style={{width:cell*7+12,height:cell*9+12}}><Suspense fallback={<div className="board-loading"><LoaderCircle className="spinning"/></div>}><Board onReady={setBoardReady} selectionCancelSequence={selectionCancelSequence} sessionEpoch={game.sessionEpoch} state={state} selected={selected} onSelect={select} act={act} active={page==='merge'} inputEnabled={!dialog&&!game.readOnly&&!game.busy} hint={hint} tutorialTarget={tutorialIndex>=0?tutorialIndex:null} guidanceUids={guidance}/></Suspense></div></div>
-  <footer className="game-footer"><SecondClock active={page==='merge'&&selected!==null}>{now=><ItemActionBar state={state} selected={selected} now={effectiveNow(state,now)} act={act} onStorage={()=>setDialog({type:'storage'})} newDiscoveries={Math.max(0,state.discovered.length+state.deviceDiscovered.length-codexSeen)} onBook={openBook} onItem={showItem} onDevices={state.campaign==='fresh'?showDevices:undefined} onAppliance={id=>setDialog({type:'appliance',id})} onFindPair={findPair} focusSummary={focus?orderSummary(state,focus):undefined} onOrder={focus?()=>setDialog({type:'order'}):undefined}/>}</SecondClock></footer>
+  <div className="board-area" data-selection-background ref={area}><div className="board-frame" data-selection-background style={{width:cell*7+12,height:cell*9+12}}><Suspense fallback={<div className="board-loading"><LoaderCircle className="spinning"/></div>}><Board onReady={setBoardReady} selectionCancelSequence={selectionCancelSequence} sessionEpoch={game.sessionEpoch} state={state} applianceTargets={applianceTargets} selected={selected} onSelect={select} act={act} active={page==='merge'} inputEnabled={!dialog&&!game.readOnly&&!game.busy} hint={hint} tutorialTarget={tutorialIndex>=0?tutorialIndex:null} guidanceUids={guidance}/></Suspense></div></div>
+  <footer className="game-footer"><SecondClock active={page==='merge'&&selected!==null}>{now=><ItemActionBar state={state} selected={selected} now={effectiveNow(state,now)} applianceTargets={applianceTargets} act={act} onStorage={()=>setDialog({type:'storage'})} newDiscoveries={Math.max(0,state.discovered.length+state.deviceDiscovered.length-codexSeen)} onBook={openBook} onItem={showItem} onDevices={state.campaign==='fresh'?showDevices:undefined} onAppliance={id=>setDialog({type:'appliance',id})} onFindPair={findPair} focusSummary={focus?orderSummary(state,focus):undefined} onOrder={focus?()=>setDialog({type:'order'}):undefined}/>}</SecondClock></footer>
  </div>
  <div className="street-page-new" hidden={page!=='street'}><Suspense fallback={<div className="board-loading" role="status">正在准备小馆…</div>}>{(page==='street'||streetVisited)&&<><ShopScene state={state} onBuild={()=>setDialog({type:'build'})}/><ReadySignal onReady={markStreetReady}/></>}</Suspense><footer className="game-footer"><div className="action-dock"><div className="context-rail"><StreetProgress state={state} onBuild={()=>setDialog({type:'build'})} onTheme={()=>setDialog({type:'theme'})}/></div><div className="tool-rail">{state.campaign==='fresh'&&<button onClick={()=>showDevices()} aria-label="打开设备架"><Wrench size={19}/>设备</button>}<button onClick={()=>setDialog({type:'storage'})} aria-label="打开仓库"><Archive size={19}/>仓库</button><button onClick={openBook} aria-label="打开图鉴"><BookOpen size={19}/>图鉴</button></div></div></footer></div>
  <RewardFlight key={'reward:'+game.sessionEpoch} event={game.notice} reducedMotion={state.settings.reducedMotion}/><PageSwitch page={page} onClick={switchPage} highlight={tutorial?.target==='page-switch'}/>

@@ -11,6 +11,7 @@ import { BoardRenderer, itemDisplaySize, itemTexture } from './board-render';
 import { boardPixelRatio, boardPoint, refreshBoardViewport } from './board-viewport';
 import { boardRendererMode } from './board-renderer-mode';
 import { useItemArt } from '../ui/ItemArtContext';
+import type { ApplianceTargets } from '../ui/ui-guidance';
 import { planBoardAssets } from './board-assets';
 import { loadArtImage } from '../platform/asset-queue';
 import { loadEngine } from './load-engine';
@@ -31,6 +32,7 @@ export interface BoardProps {
   sessionEpoch?: number;
   selectionCancelSequence?: number;
   onReady?: (ready: boolean) => void;
+  applianceTargets?: ApplianceTargets;
 }
 interface BoardBridge { sync: () => void; resize: () => void; activate: (index: number) => void; cancel: () => void; retry: () => void; }
 interface Gesture { index: number; x: number; y: number; pointerId: number; uid: string | null; selected: number | null; maxDistance: number; }
@@ -54,7 +56,7 @@ function Board(props: BoardProps) {
   live.current = props;
   useEffect(() => { if (props.active !== false) setStarted(true); }, [props.active]);
 
-  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.guidanceUids, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence]);
+  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.guidanceUids, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence, props.applianceTargets]);
 
   useEffect(() => {
     if (!started) return;
@@ -170,7 +172,7 @@ function Board(props: BoardProps) {
             this.game.renderer.gameContext.imageSmoothingQuality = 'high';
           }
           this.installLegacyFrames();
-          this.board = new BoardRenderer(this, () => live.current.state, pixelRatio, () => this.decoration.reduced);
+          this.board = new BoardRenderer(this, () => live.current.state, pixelRatio, () => this.decoration.reduced, () => live.current.applianceTargets);
           this.input.on('pointerdown', this.press, this);
           this.input.on('pointermove', this.drag, this);
           this.input.on('pointerup', this.release, this);
@@ -339,7 +341,7 @@ function Board(props: BoardProps) {
           if (!gesture) { this.selectionIntent++; this.pendingSelection = null; void audio.unlock(); }
           const state = live.current.state;
           const selected = gesture ? gesture.selected : live.current.selected;
-          const action = boardTapAction(state, index, selected);
+          const action = boardTapAction(state, index, selected, live.current.applianceTargets?.[getBoardEntity(state, index).id]);
           live.current.onSelect(action.kind === 'select' ? action.index : index);
           if (action.kind === 'command') void this.submit(action.command, action.identity);
         }
@@ -439,7 +441,8 @@ function Board(props: BoardProps) {
           const index = row * BOARD_COLUMNS + column;
           const entity = getBoardEntity(props.state, index);
           const appliance = entity.kind === 'appliance' ? getApplianceStatus(props.state, entity.id) : null;
-          const details = entity.item ? CHAINS.some(c=>c.items.includes(entity.item!.item))?`${ITEMS[entity.item.item].level}级`:`成品${ITEMS[entity.item.item].kind==='drink'?'饮品':'料理'}` : appliance ? { idle: '等待投料', loaded: '已投料', cooking: '烹饪中', ready: '点击领取' }[appliance.phase] : '';
+          const target = props.applianceTargets?.[entity.id];
+          const details = entity.item ? CHAINS.some(c=>c.items.includes(entity.item!.item))?`${ITEMS[entity.item.item].level}级`:`成品${ITEMS[entity.item.item].kind==='drink'?'饮品':'料理'}` : appliance ? { idle: '等待投料', loaded: `${target?.recipe.name ?? appliance.recipe?.name ?? '食材'}，${(target?.canStart ?? appliance.canStart) ? '点击开火' : '待投料'}`, cooking: '烹饪中', ready: '点击领取' }[appliance.phase] : '';
           return <div key={index} role="gridcell" aria-selected={props.selected === index} aria-rowindex={row + 1} aria-colindex={column + 1} style={{ minWidth: 0, minHeight: 0 }}>
             <button ref={node => { if (node) buttons.current.set(index, node); else buttons.current.delete(index); }} type="button" data-board-index={index} data-board-item={entity.item?.item} data-board-uid={entity.id} disabled={!interactive} tabIndex={interactive && index === (focused ?? 0) ? 0 : -1}
               aria-label={`第${row + 1}行第${column + 1}列，${entity.name}${details ? `，${details}` : ''}`}

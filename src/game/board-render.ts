@@ -4,6 +4,7 @@ import { ITEMS } from '../content/catalog';
 import { devicePresentation, itemPresentation } from '../content/assets';
 import { getApplianceStatus, getBoardEntity } from '../domain/engine';
 import type { GameState, ItemInstance } from '../domain/types';
+import type { ApplianceTargets } from '../ui/ui-guidance';
 import { BoardEffects } from './board-fx';
 import { BOARD_COLUMNS, BOARD_HEIGHT, BOARD_ROWS, BOARD_WIDTH, cellCenter, dropKind } from './board-input';
 import { perfSpan } from '../platform/performance';
@@ -56,7 +57,7 @@ export class BoardRenderer {
   private highlightSignature = '';
   private pendingUids = new Set<string>();
 
-  constructor(private scene: Phaser.Scene, private state: () => GameState, private pixelRatio = 1, private decorationsReduced: () => boolean = () => false) {
+  constructor(private scene: Phaser.Scene, private state: () => GameState, private pixelRatio = 1, private decorationsReduced: () => boolean = () => false, private applianceTargets: () => ApplianceTargets | undefined = () => undefined) {
     this.tiles = scene.add.graphics().setDepth(0);
     this.highlights = scene.add.graphics().setDepth(2);
     this.crates = scene.add.container(0, 0).setDepth(1);
@@ -277,7 +278,8 @@ export class BoardRenderer {
       const status = getApplianceStatus(state, device.id, now);
       if (!status) continue;
       const phase = status.phase;
-      const label = phase === 'cooking' ? `${Math.ceil(status.remaining / 1000)}s` : phase === 'ready' ? '领取' : phase === 'loaded' ? status.canStart ? '开火' : '待投料' : '';
+      const canStart = this.applianceTargets()?.[device.id]?.canStart ?? status.canStart;
+      const label = phase === 'cooking' ? `${Math.ceil(status.remaining / 1000)}s` : phase === 'ready' ? '领取' : phase === 'loaded' ? canStart ? '开火' : '待投料' : '';
       const color = phase === 'ready' ? 0x70ac4b : phase === 'cooking' ? 0xd78b43 : 0x79ad4c;
       const progress = phase === 'cooking' && status.appliance.job ? Math.min(1, (now - status.appliance.job.startedAt) / Math.max(1, status.appliance.job.endsAt - status.appliance.job.startedAt)) : 0;
       const steam = phase === 'cooking' && !state.settings.reducedMotion && !this.decorationsReduced();

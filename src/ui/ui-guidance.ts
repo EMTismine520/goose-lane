@@ -1,8 +1,8 @@
 import { CHAINS, CUSTOMERS, ITEMS, RECIPES } from '../content/catalog';
 import { DEVICE_FAMILIES } from '../content/expansion';
 import { activeDevices } from '../content/board-layouts';
-import { availableOrders, inventoryCount } from '../domain/engine';
-import type { GameState, OrderDef } from '../domain/types';
+import { availableOrders, getApplianceStatus, inventoryCount } from '../domain/engine';
+import type { GameState, OrderDef, RecipeDef } from '../domain/types';
 
 export type LayoutDensity = 'regular' | 'compact' | 'short' | 'tiny';
 export function layoutDensity(height: number): LayoutDensity {
@@ -11,6 +11,39 @@ export function layoutDensity(height: number): LayoutDensity {
 
 export function focusedOrder(state: GameState, id: string | null): OrderDef | null {
   return availableOrders(state).find(order => order.id === id) ?? null;
+}
+
+export interface ApplianceTarget {
+  recipe: RecipeDef;
+  orderId: string | null;
+  ingredients: { item: string; loaded: number; required: number; complete: boolean }[];
+  canStart: boolean;
+}
+export type ApplianceTargets = Readonly<Partial<Record<string, ApplianceTarget>>>;
+
+/** An order guides the UI; only the appliance's committed inputs count as loaded. */
+export function getApplianceTarget(state: GameState, applianceId: string, focusedOrderId: string | null): ApplianceTarget | null {
+  const status = getApplianceStatus(state, applianceId);
+  if (!status) return null;
+  const { appliance } = status;
+  const committed = !!(appliance.job || appliance.outputSlot);
+  let recipe = appliance.job ? RECIPES.find(value => value.id === appliance.job!.recipe)
+    : appliance.outputSlot ? RECIPES.find(value => value.output === appliance.outputSlot!.item) : status.recipe;
+  let orderId: string | null = null;
+  if (!committed) {
+    const orders = availableOrders(state);
+    const focus = orders.find(order => order.id === focusedOrderId);
+    for (const order of focus ? [focus, ...orders.filter(order => order.id !== focus.id)] : orders) {
+      const candidate = status.candidates.find(({ recipe }) => order.needs.some(need => need.item === recipe.output && inventoryCount(state, need.item) < need.count));
+      if (candidate) { recipe = candidate.recipe; orderId = order.id; break; }
+    }
+  }
+  if (!recipe) return null;
+  const ingredients = recipe.inputs.map(need => {
+    const loaded = committed ? need.count : appliance.inputSlots.filter(input => input.item === need.item).length;
+    return { item: need.item, loaded, required: need.count, complete: loaded >= need.count };
+  });
+  return { recipe, orderId, ingredients, canStart: status.phase === 'loaded' && ingredients.every(need => need.complete) };
 }
 
 export function orderSummary(state: GameState, order: OrderDef): string {

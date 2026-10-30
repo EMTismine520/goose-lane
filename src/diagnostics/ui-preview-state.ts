@@ -8,7 +8,7 @@ import MILESTONES from './v3-milestones.json';
 import COMPLETE from './v3-played-state.json';
 import LEGACY from './ui-legacy-state.json';
 
-export const UI_SCENARIOS = ['opening', 'orders', 'theme-unlock', 'prefix', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
+export const UI_SCENARIOS = ['opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
 export type UiScenario = typeof UI_SCENARIOS[number];
 
 /** Isolated visual fixtures. These are never loaded by the production game entry. */
@@ -57,6 +57,24 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
     const appliance=state.appliances.find(value=>value.id==='home-cooking-pot')!;
     const input=appliance.inputSlots.find(value=>value.item==='fresh-veg-1');
     if (input) state=execute(state,{type:'withdrawInput',appliance:appliance.id,uid:input.uid},now).state;
+  }
+  if (scenario === 'one-input' || scenario === 'two-ingredients') {
+    const appliance = state.appliances.find(value => value.id === 'home-cooking-pot')!;
+    for (const input of [...appliance.inputSlots]) {
+      if (scenario === 'one-input' && input.item === 'fresh-poultry-1') continue;
+      state = execute(state, { type: 'withdrawInput', appliance: appliance.id, uid: input.uid }, now).state;
+    }
+    if (scenario === 'two-ingredients') {
+      const from = state.board.findIndex((_, index) => getBoardEntity(state, index).kind === 'empty');
+      state.board[from] = { uid: `g${state.nextId++}`, item: 'fresh-veg-2' };
+      state = execute(state, { type: 'stageInput', from, appliance: appliance.id }, now).state;
+    }
+  }
+  if (scenario === 'long-name') {
+    const from = state.board.findIndex((_, index) => getBoardEntity(state, index).kind === 'empty');
+    state.board[from] = { uid: `g${state.nextId++}`, item: 'fresh-fruit-1' };
+    state = execute(state, { type: 'stageInput', from, appliance: 'fruit-press' }, now).state;
+    state.session.selectedUid = 'fruit-press';
   }
   if (['cooking','ready','full'].includes(scenario)) {
     const status=getApplianceStatus(state,'home-cooking-pot',now)!;
