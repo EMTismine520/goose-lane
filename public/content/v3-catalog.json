@@ -1,6 +1,6 @@
 {
-  "version": "4.0.0",
-  "schema": 3,
+  "version": "5.0.0",
+  "schema": 4,
   "counts": {
     "items": 245,
     "recipes": 123,

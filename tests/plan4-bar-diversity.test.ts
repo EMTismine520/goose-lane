@@ -1,8 +1,10 @@
+import { validateSave as normalizeKitchen } from '../src/persistence/save';
 import { describe, expect, it } from 'vitest';
 import { FRESH_ORDERS, HOME_ORDERS, ITEMS, MODERN_ORDERS, MODERN_RECIPES } from '../src/content/catalog';
 import { EXPANSION } from '../src/content/expansion';
 import { activeDevices, BUILD_NODES } from '../src/content/board-layouts';
-import { createInitialState, execute, getApplianceStatus, getBoardEntity, getRecipeDurationAtLevel, inventoryCount, stateInvariantErrors } from '../src/domain/engine';
+import { execute, getApplianceStatus, getBoardEntity, getRecipeDurationAtLevel, inventoryCount, stateInvariantErrors } from '../src/domain/engine';
+import { historicalState as createInitialState } from './chapter-fixtures';
 import { reconcileDeviceGrants } from '../src/domain/devices';
 import { parseSave, serializeSave } from '../src/persistence/save';
 import type { Command, GameState } from '../src/domain/types';
@@ -21,7 +23,7 @@ function barReady(level: number) {
   state.construction.completed = BUILD_NODES.map(node => node.id);
   for (let stage = 3; stage < 8; stage++) state.completedOrders.push(...MODERN_ORDERS.filter(order => order.stage === stage).slice(0, 3).map(order => order.id));
   state.coins = 100000;
-  reconcileDeviceGrants(state);
+  reconcileDeviceGrants(state); state=normalizeKitchen(state);
   if (!activeDevices(state).some(device => device.id === 'bar')) state = act(state, { type: 'retrieveDevice', device: 'bar' });
   for (let nextLevel = 2; nextLevel <= level; nextLevel++) {
     const spare = `d${state.nextId}`;

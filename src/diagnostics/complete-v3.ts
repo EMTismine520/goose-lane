@@ -1,3 +1,4 @@
+import { WORKSPACE_FIELDS } from '../domain/workspaces';
 import { writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { CHAINS, ITEMS, MODERN_ITEMS, MODERN_ORDERS, MODERN_RECIPES } from '../content/catalog';
@@ -10,7 +11,7 @@ import type { Command, DeviceInstance, GameState } from '../domain/types';
 
 /** Plays production, upgrades, cooking and orders through the same commands as the UI. */
 export function simulateCompleteV3(seed=42) {
-  let now=1_000_000,state=createInitialState(now);state.seed=seed;
+  let now=1_000_000;const base=createInitialState(now);let state={...base,...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,base[k]])),schemaVersion:3,contentVersion:'4.0.0'} as GameState;delete state.workspaces;delete state.activeWorkspaceId;delete state.chapterAccess;state.seed=seed;
   const started=now,cooked=new Set<string>(),protectedItems=new Map<string,number>();
   let commands=0,recoveryWaitMs=0,cookingWaitMs=0,peakOccupancy=0,deviceSwitches=0,goldFarmed=0;
   const milestones:Record<string,GameState>={'1':structuredClone(state)};

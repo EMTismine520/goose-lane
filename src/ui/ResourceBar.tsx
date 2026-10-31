@@ -21,7 +21,7 @@ export function ResourceBar({ state, now, onSettings, onEnergy, onRedeem, onThem
   const energy = getEnergyStatus(state, now);
   const theme = themeProgress(state);
   const coinLabel = resourceLabel(state.coins);
-  const themeContent = <><span className="theme-emblem"><Leaf size={16}/></span><span className="theme-badge-copy"><small>风味 {theme.stage}/8</small><b>{theme.name}</b></span></>;
+  const themeContent = <><span className="theme-emblem"><Leaf size={16}/></span><span className="theme-badge-copy"><small>{state.workspaces?'切换章节':`风味 ${theme.stage}/8`}</small><b>{theme.name}</b></span></>;
   return <header className="resource-bar guest-resources">
     {state.campaign === 'fresh'
       ? onTheme ? <button className="theme-badge" onClick={onTheme} aria-label={`${theme.name}，第${theme.stage}个主题，查看风味进度`}>{themeContent}</button> : <div className="theme-badge" aria-label={`${theme.name}，第${theme.stage}个主题`}>{themeContent}</div>

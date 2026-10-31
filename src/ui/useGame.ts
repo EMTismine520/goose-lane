@@ -16,7 +16,7 @@ export function downloadText(text: string, name: string): void {
 
 export function useGame(repository?: SaveRepository, sessionScope?: string) {
   const controller = useRef<GameController | null>(null);
-  const [view, setView] = useState<GameView>({ state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0 });
+  const [view, setView] = useState<GameView>({ state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0, workspaceEpoch: 0 });
   useEffect(() => {
     const current = new GameController(downloadText, { repository, acquire: sessionScope ? change => acquireSession(change, sessionScope) : undefined });
     controller.current = current;

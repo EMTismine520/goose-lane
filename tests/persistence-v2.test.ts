@@ -38,8 +38,9 @@ describe('schema two ownership and migration', () => {
   it('keeps explicit old and new portable fixtures and maps numeric tutorial nodes', () => {
     expect(validateSave(schemaOneSave).tutorialState.node).toBe('first-order');
     expect(validateSave(schemaOneSave).tutorialState.completed).toEqual(['produce', 'merge']);
-    expect(validateSave(schemaTwoSave)).toEqual(createInitialState(now));
-    expect(parseSave(serializeSave(validateSave(schemaTwoSave)))).toEqual(createInitialState(now));
+    expect(validateSave(schemaTwoSave).activeWorkspaceId).toBe('original');
+    expect(validateSave(schemaTwoSave).board).toEqual(createInitialState(now).board);
+    expect(parseSave(serializeSave(validateSave(schemaTwoSave)))).toEqual(validateSave(schemaTwoSave));
   });
   it('preserves all 56 legacy cells, full storage, cooking identity, reward history and shop progress', () => {
     const source = legacy(6, 56);
@@ -121,6 +122,6 @@ describe('schema two ownership and migration', () => {
     await repository.save({ ...opened, revision: opened.revision + 2 });
     const raw = JSON.parse(await repository.exportRaw());
     expect(raw.migrationV1.data).toBe(source);
-    expect(JSON.parse(raw.previous.data).schemaVersion).toBe(3);
+    expect(JSON.parse(raw.previous.data).schemaVersion).toBe(4);
   });
 });

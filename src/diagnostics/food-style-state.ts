@@ -1,3 +1,7 @@
+import { WORKSPACE_FIELDS } from '../domain/workspaces';
+import { reconcileDeviceGrants } from '../domain/devices';
+import { validateSave } from '../persistence/save';
+import type { GameState } from '../domain/types';
 import { HOME_CHAINS, HOME_RECIPES } from '../content/catalog';
 import { getBoardEntity } from '../domain/engine';
 import { resumeManualSlot } from '../persistence/save';
@@ -8,7 +12,9 @@ export const FOOD_STYLE_ITEMS = [...HOME_CHAINS.flatMap(chain => chain.items), .
 
 /** All 34 B foods, eight intact devices, old produce, and room for real play. */
 export function createFoodStyleState(now = Date.now(), layout: 'showcase' | 'sausages' = 'showcase') {
-  const played = simulateOpening().state;
+  const base=simulateOpening().state;
+  const old={...base,...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,base[k]])),schemaVersion:3,contentVersion:'4.0.0'} as GameState;delete old.workspaces;delete old.chapterAccess;delete old.activeWorkspaceId;reconcileDeviceGrants(old);
+  const played=validateSave(old);
   const state = resumeManualSlot({ id: 1, status: 'ready', state: played, capturedAt: played.lastSeen, savedAt: played.lastSeen }, now);
   state.board.fill(null);
   state.undo = null;

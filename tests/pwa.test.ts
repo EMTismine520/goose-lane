@@ -18,6 +18,18 @@ const assetsFor = (files: Record<string, string>): Asset[] => Object.entries(fil
   url, size: Buffer.byteLength(body), integrity: 'sha256-' + createHash('sha256').update(body).digest('base64'),
 }));
 
+describe('explicit nonconsecutive chapter packs',()=>{
+  it('caches only the requested dependency set rather than chapters one through eight',async()=>{
+    const files={'index.html':'game','assets/mobile/tea.webp':'tea','assets/mobile/bar.webp':'bar','assets/mobile/oven.webp':'oven'};
+    const metadata=Object.fromEntries(Object.keys(files).filter(p=>p.endsWith('.webp')).map((p,i)=>[p,{role:'art',variant:'mobile',stage:i+3}]));
+    const h=workerHarness(files,metadata,['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    await h.lifecycle('message',{type:'CACHE_CHAPTER',chapter:8,urls:['assets/mobile/tea.webp','assets/mobile/bar.webp'],variant:'mobile'});
+    expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual([h.scope+'assets/mobile/tea.webp',h.scope+'assets/mobile/bar.webp']);
+    expect(h.messages).toContainEqual({type:'CHAPTER_CACHED',chapter:8,variant:'mobile'});
+    h.fetcher.mockClear();await h.lifecycle('message',{type:'CACHE_CHAPTER',chapter:8,urls:['https://other.test/data']});expect(h.fetcher).not.toHaveBeenCalled();
+  });
+});
+
 function workerHarness(files: Record<string, string>, metadata: Record<string, Partial<Asset>> = {}, coreUrls?: string[]) {
   const scope = 'https://example.test/game/';
   const listeners = new Map<string, (event: any) => void>();

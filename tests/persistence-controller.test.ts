@@ -1,3 +1,4 @@
+import { cloneGameState } from '../src/domain/workspaces';
 import 'fake-indexeddb/auto';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createInitialState, execute } from '../src/domain/engine';
@@ -35,6 +36,37 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
   return { controller, repository, session, audio, download };
 }
 afterEach(() => { controllers.splice(0).forEach((controller) => controller.dispose()); vi.restoreAllMocks(); });
+
+describe('exclusive committed chapter changes',()=>{
+  it('publishes purchase, wallet and workspace together only after saving; duplicate input is blocked',async()=>{
+    const initial=createInitialState(now);initial.coins=60;
+    const {controller,repository}=setup(initial);await controller.start();
+    const gate=deferred<void>();repository.save.mockReturnValueOnce(gate.promise);
+    const purchase=controller.dispatch({type:'unlockAndEnterChapter',chapter:7});
+    await Promise.resolve();expect(controller.view.busy).toBe(true);expect(controller.view.state).toBe(initial);
+    expect(await controller.dispatch({type:'unlockAndEnterChapter',chapter:7})).toBe(false);
+    expect(await controller.dispatch({type:'generate',chain:'fresh-veg'})).toBe(false);
+    gate.resolve();expect(await purchase).toBe(true);expect(controller.view.state?.coins).toBe(0);expect(controller.view.state?.activeWorkspaceId).toBe('chapter-7');
+    expect(controller.view.sessionEpoch).toBe(1);expect(controller.view.workspaceEpoch).toBe(2);expect(repository.save).toHaveBeenCalledOnce();
+  });
+  it('keeps every asset, entitlement and coin on failure, and retries exactly once',async()=>{
+    const initial=createInitialState(now);initial.coins=60;
+    const {controller,repository}=setup(initial);await controller.start();const before=serializeSave(initial);
+    repository.save.mockRejectedValueOnce(new SaveError('测试磁盘写入失败','storage'));
+    expect(await controller.dispatch({type:'unlockAndEnterChapter',chapter:6})).toBe(false);
+    expect(serializeSave(controller.view.state!)).toBe(before);expect(controller.view.workspaceEpoch).toBe(1);
+    expect(await controller.dispatch({type:'unlockAndEnterChapter',chapter:6})).toBe(true);expect(controller.view.state?.coins).toBe(0);
+    const current=controller.view.state!;repository.save.mockRejectedValueOnce(new SaveError('测试切换失败','storage'));
+    expect(await controller.dispatch({type:'enterChapter',chapter:1})).toBe(false);expect(controller.view.state).toBe(current);
+  });
+  it('drains accepted writes, then cancels the purchase if any drained write failed',async()=>{
+    const initial=createInitialState(now);initial.coins=60;const {controller,repository}=setup(initial);await controller.start();
+    const gate=deferred<void>();repository.save.mockReturnValueOnce(gate.promise);
+    const moving=controller.dispatch({type:'move',from:16,to:15});const entering=controller.dispatch({type:'unlockAndEnterChapter',chapter:8});
+    gate.reject(new SaveError('测试旧操作保存失败','storage'));expect(await moving).toBe(false);expect(await entering).toBe(false);
+    expect(controller.view.state).toBe(initial);expect(controller.view.state?.chapterAccess?.unlocked).toEqual([1]);
+  });
+});
 
 describe('committed gift redemption feedback', () => {
   it('preserves the exact amount and balance for different high-value gifts in the same queue', async () => {
@@ -156,7 +188,7 @@ describe('UI persistence orchestration', () => {
     await controller.importSave(serializeSave(imported));
     expect(controller.view.sessionEpoch).toBe(2);
     expect(controller.view.state?.session).toEqual(imported.session);
-    const restored = { ...imported, revision: 3, session: { ...imported.session, orderScroll: 20 } };
+    const restored=cloneGameState(imported);restored.revision=3;restored.session.orderScroll=20;
     repository.restorePrevious.mockResolvedValue(restored);
     await controller.recoverPrevious();
     expect(controller.view.sessionEpoch).toBe(3);

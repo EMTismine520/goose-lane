@@ -60,6 +60,7 @@ function idle() {
   return !activities.size || visible.length > 0 && visible.every(activity => activity.until <= Date.now());
 }
 function artFor(job) {
+  if(job.urls)return [...resources.values()].filter(asset=>job.urls.has(asset.url));
   return PACKS.filter(asset => {
     if (job.legacy) return asset.role === 'legacy';
     if (asset.role && asset.role !== 'art') return false;
@@ -69,7 +70,8 @@ function artFor(job) {
   });
 }
 async function notify(job, failed = false) {
-  if (failed) { for (const source of job.sources) source?.postMessage({ type: 'THEMES_CACHE_FAILED' }); return; }
+  if (failed) { for (const source of job.sources) source?.postMessage({ type: job.chapter?'CHAPTER_CACHE_FAILED':'THEMES_CACHE_FAILED', chapter:job.chapter }); return; }
+  if(job.chapter){for(const source of job.sources)source?.postMessage({type:'CHAPTER_CACHED',chapter:job.chapter,variant:job.variant});return;}
   const cache = await caches.open(PACK_CACHE);
   const present = new Set((await cache.keys()).map(request => request.url));
   let stage = 0;
@@ -105,6 +107,13 @@ self.addEventListener('message', event => {
   }
   if (data?.type === 'CACHE_RESUME') {
     activities.set(event.source?.id || 'current', { visible: true, until: 0 }); event.waitUntil(pumpPacks()); return;
+  }
+  if(data?.type==='CACHE_CHAPTER'){
+    if(!Number.isInteger(data.chapter)||data.chapter<1||data.chapter>8||!Array.isArray(data.urls)||data.urls.length>1000)return;
+    const urls=new Set(data.urls.filter(url=>typeof url==='string'&&resources.has(new URL(url,SCOPE).href)&&resources.get(new URL(url,SCOPE).href).role==='art'));
+    if(urls.size!==data.urls.length||!urls.size)return;
+    const key='chapter:'+data.chapter+':mobile';
+    pendingPacks.set(key,{chapter:data.chapter,urls,variant:'mobile',sources:new Set([event.source])});event.waitUntil(pumpPacks());return;
   }
   if (data?.type !== 'CACHE_THEMES') return;
   const stage = Number(data.stage);

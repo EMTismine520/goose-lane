@@ -2,7 +2,8 @@ import 'fake-indexeddb/auto';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FRESH_ORDERS } from '../src/content/catalog';
 import { BUILD_NODES, homeCookingUnlocked } from '../src/content/board-layouts';
-import { createInitialState, execute } from '../src/domain/engine';
+import { execute } from '../src/domain/engine';
+import { historicalState as createInitialState } from './chapter-fixtures';
 import { reconcileHomeDevices } from '../src/domain/home-progression';
 import { SaveRepository, resumeManualSlot } from '../src/persistence/save';
 import { GameController } from '../src/platform/game-controller';
@@ -19,7 +20,7 @@ async function repository() {
 }
 
 describe('home kitchen persistence transactions', () => {
-  it('rolls back the last build, relocation and unlock notification together on quota failure', async () => {
+  it('rolls back construction on quota failure without automatically granting another chapter', async () => {
     const { repo } = await repository();
     const initial = createInitialState(now);
     initial.completedOrders = FRESH_ORDERS.map(order => order.id);
@@ -43,10 +44,11 @@ describe('home kitchen persistence transactions', () => {
     expect(await controller.dispatch({ type: 'build', node: 'shop-counter' })).toBe(true);
     const state = controller.view.state!;
     expect(homeCookingUnlocked(state)).toBe(true);
-    expect(state.board[37]).toBeNull();
+    expect(state.board[37]?.uid).toBe(initial.board[37]!.uid);
+    expect(state.chapterAccess!.unlocked).toEqual([1]);
     expect(state.board.some(item => item?.uid === initial.board[37]!.uid)).toBe(true);
     expect(state.coins).toBe(0);
-    expect(controller.view.notice?.type).toBe('home-unlocked');
+    expect(controller.view.notice?.type).toBe('build');
     expect((await repo.open()).state).toEqual(state);
   });
   it('normalizes an old manual checkpoint without rewriting its raw record during list/read', async () => {
@@ -61,7 +63,7 @@ describe('home kitchen persistence transactions', () => {
     const listed = await repo.listManualSlots();
     expect(listed[0].status).toBe('ready');
     const read = await repo.readManualSlot(1);
-    expect(read.state.contentVersion).toBe('4.0.0');
+    expect(read.state.contentVersion).toBe('5.0.0');
     expect(read.state.appliances).toHaveLength(3);
     expect(await repo.exportRaw()).toBe(rawBefore);
   });

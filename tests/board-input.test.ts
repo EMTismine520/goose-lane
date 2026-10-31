@@ -1,3 +1,4 @@
+import { cloneGameState } from '../src/domain/workspaces';
 import { describe, expect, it } from 'vitest';
 import { createInitialState, execute, getApplianceStatus, stateInvariantErrors } from '../src/domain/engine';
 import { CHAINS } from '../src/content/catalog';
@@ -162,7 +163,7 @@ describe('clicks inspect objects and operate devices without transporting the pr
     }
     expect(state.stats.generated).toBe(20);
     expect(state.energy.value).toBe(40);
-    expect(state.board[0]?.uid).toBe('g5');
+    expect(state.board[0]?.uid).toBe('g8');
     expect(state.devices.find(device => device.id === 'vegetable-cart')?.index).toBe(35);
     expect(stateInvariantErrors(state)).toEqual([]);
   });
@@ -180,7 +181,7 @@ describe('clicks inspect objects and operate devices without transporting the pr
 
   it.each(['idle', 'cooking'] as const)('selects an %s appliance without loading or clearing it on a second tap', phase => {
     const state = kitchen(phase);
-    const before = structuredClone(state);
+    const before = cloneGameState(state);
     for (const selected of [null, 0, 1, 35, 40, 41]) {
       expect(boardTapAction(state, 40, selected)).toEqual({ kind: 'select', index: 40 });
       expect(boardTapAction(state, 41, selected)).toEqual({ kind: 'select', index: 41 });
@@ -189,9 +190,9 @@ describe('clicks inspect objects and operate devices without transporting the pr
   });
 
   it('only switches or clears selection for same-level food, different food, empty cells and locks', () => {
-    const state = kitchen(), before = structuredClone(state);
+    const state = kitchen(), before = cloneGameState(state);
     state.board[2] = { uid: `g${state.nextId++}`, item: 'fresh-veg-3' };
-    const snapshot = structuredClone(state);
+    const snapshot = cloneGameState(state);
     for (const selected of [null, 0, 1, 2, 35, 40]) {
       expect(boardTapAction(state, 2, selected)).toEqual({ kind: 'select', index: selected === 2 ? null : 2 });
       expect(boardTapAction(state, 3, selected)).toEqual({ kind: 'select', index: null });
@@ -208,7 +209,7 @@ describe('clicks inspect objects and operate devices without transporting the pr
     state.board[2] = { uid: `g${state.nextId++}`, item: 'fresh-veg-5' };
     state.board[3] = { uid: `g${state.nextId++}`, item: 'fresh-veg-3' };
     state = execute(state, { type: 'stageInput', from: 2, appliance: 'chopping-board' }, state.lastSeen).state;
-    const before = structuredClone(state);
+    const before = cloneGameState(state);
     expect(getApplianceStatus(state, 'chopping-board')?.canStart).toBe(false);
     expect(dropKind(state, 3, 40)).toBe('stage');
     expect(boardTapAction(state, 40, 3)).toEqual({ kind: 'select', index: 40 });

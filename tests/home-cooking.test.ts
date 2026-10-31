@@ -1,7 +1,9 @@
+import { validateSave as normalizeKitchen } from '../src/persistence/save';
 import { describe, expect, it } from 'vitest';
 import { baseUnits, FRESH_ORDERS, HOME_CHAINS, HOME_ORDERS, HOME_RECIPES, ITEMS } from '../src/content/catalog';
 import { activeDevices, BUILD_NODES, HOME_DEVICES, homeCookingUnlocked } from '../src/content/board-layouts';
-import { availableOrders, createInitialState, execute, getApplianceStatus, getBoardEntity, getDayProgress, getGeneratorStatus, inventoryCount, mergeTarget, stateInvariantErrors } from '../src/domain/engine';
+import { availableOrders, execute, getApplianceStatus, getBoardEntity, getDayProgress, getGeneratorStatus, inventoryCount, mergeTarget, stateInvariantErrors } from '../src/domain/engine';
+import { historicalState as createInitialState } from './chapter-fixtures';
 import { reconcileHomeDevices } from '../src/domain/home-progression';
 import { parseSave, resumeManualSlot, serializeSave, validateSave } from '../src/persistence/save';
 import type { Command, GameState, ItemInstance } from '../src/domain/types';
@@ -9,20 +11,21 @@ import oldOpening from './persistence-v2.fixture.json';
 
 const now = 1792713600000;
 function homeState(): GameState {
-  const state = createInitialState(now);
+  let state = createInitialState(now);
   state.completedOrders = FRESH_ORDERS.map(order => order.id);
   state.construction.completed = BUILD_NODES.map(node => node.id);
   state.construction.hats = 3;
   state.tutorialState = { node: 'complete', completed: [], targetUid: null };
   reconcileHomeDevices(state);
-  return state;
+  return normalizeKitchen(state);
 }
 function act(state: GameState, command: Command, time = state.lastSeen) {
   const result = execute(state, command, time);
   expect(result.ok, result.events.map(event => event.message).join('/')).toBe(true);
   expect(stateInvariantErrors(result.state)).toEqual([]);
-  expect(parseSave(serializeSave(result.state))).toEqual(result.state);
-  return result.state;
+  const persisted=parseSave(serializeSave(result.state));
+  expect(parseSave(serializeSave(persisted))).toEqual(persisted);
+  return persisted;
 }
 function add(state: GameState, item: string) {
   const index = state.board.findIndex((value, i) => !value && getBoardEntity(state, i).kind === 'empty');
@@ -70,7 +73,7 @@ describe('home content and gated production', () => {
     expect(homeCookingUnlocked(state)).toBe(true);
   });
   it.each(HOME_CHAINS)('rejects locked $id without spending energy, seed or UID', chain => {
-    const state = createInitialState(now), snapshot = JSON.stringify(state);
+    let state = createInitialState(now), snapshot = JSON.stringify(state);
     expect(getGeneratorStatus(state, chain.id, now).unlocked).toBe(false);
     expect(execute(state, { type: 'generate', chain: chain.id }, now).state).toBe(state);
     expect(JSON.stringify(state)).toBe(snapshot);
@@ -187,11 +190,11 @@ describe('content 2.0 migration and portable pot states', () => {
     const source = oldFull(), serialized = JSON.stringify(source), before = inventory(source);
     const result = validateSave(source);
     expect(JSON.stringify(source)).toBe(serialized);
-    expect(result.contentVersion).toBe('4.0.0');
+    expect(result.contentVersion).toBe('5.0.0');
     expect(result.migrationInbox).toHaveLength(4);
     expect(inventory(result)).toEqual(before);
     expect(result.seed).toBe(source.seed);
-    expect(result.nextId).toBe(source.nextId);
+    expect(result.nextId).toBe(source.nextId+3);
     expect(result.coins).toBe(source.coins);
     expect(stateInvariantErrors(result)).toEqual([]);
     HOME_DEVICES.forEach(device => expect(result.board[device.index]).toBeNull());

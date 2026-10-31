@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { createInitialState, execute } from '../src/domain/engine';
+import { execute } from '../src/domain/engine';
+import { historicalState as createInitialState } from './chapter-fixtures';
 import { FRESH_ORDERS, ITEMS } from '../src/content/catalog';
 import { BUILD_NODES } from '../src/content/board-layouts';
 import { reconcileHomeDevices } from '../src/domain/home-progression';

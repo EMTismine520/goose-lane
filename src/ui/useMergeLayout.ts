@@ -2,7 +2,7 @@ import { useLayoutEffect, useState, type RefObject } from 'react';
 import { getMergeLayout, type MergeLayout } from './ui-guidance';
 
 /** Observe fixed chrome and the shell, never the board whose size this hook changes. */
-export function useMergeLayout(area: RefObject<HTMLDivElement | null>, active: boolean): MergeLayout {
+export function useMergeLayout(area: RefObject<HTMLDivElement | null>, active: boolean, contentEpoch: number): MergeLayout {
   const [layout, setLayout] = useState<MergeLayout>({ cell: 40, footerHeight: 104, scroll: false });
   useLayoutEffect(() => {
     if (!active || !area.current) return;
@@ -23,6 +23,7 @@ export function useMergeLayout(area: RefObject<HTMLDivElement | null>, active: b
     for (const element of [shell, resource, orders, guide]) observer.observe(element);
     measure();
     return () => observer.disconnect();
-  }, [area, active]);
+  // Switching kitchens replaces the keyed order strip; observe the new chrome nodes.
+  }, [area, active, contentEpoch]);
   return layout;
 }

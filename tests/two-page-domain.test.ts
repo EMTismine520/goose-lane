@@ -1,3 +1,6 @@
+import { parseSave } from '../src/persistence/save';
+import { flatSource } from './chapter-fixtures';
+import { cloneGameState } from '../src/domain/workspaces';
 import { describe, expect, it } from 'vitest';
 import { baseUnits, FRESH_CHAINS, FRESH_ORDERS, FRESH_RECIPES, ITEMS, RECIPES } from '../src/content/catalog';
 import { BOARD_LAYOUT, BUILD_NODES } from '../src/content/board-layouts';
@@ -62,7 +65,7 @@ describe('opening content and production', () => {
       expect(unlockedCells(state)).toBe(49 + index * 7);
       expect(getBoardEntity(state, 42 + index * 7).kind).toBe('empty');
     }
-    const legacy = { ...state, campaign: 'legacy' as const, day: 1 };
+    const legacy = { ...flatSource(state), campaign: 'legacy' as const, day: 1 };
     expect(unlockedCells(legacy)).toBe(42);
     expect(getBoardEntity(legacy, 42).name).toBe('第 3 天扩建');
     expect(unlockedCells({ ...legacy, day: 5 })).toBe(63);
@@ -78,7 +81,7 @@ describe('exclusive input ownership and timed appliance settlement', () => {
     expect(state.board[16]).toBeNull();
     expect(state.appliances[0].inputSlots[0]).toEqual(input);
     expect(inventoryCount(state, input.item)).toBe(before - 1);
-    state = JSON.parse(JSON.stringify(state));
+    state = parseSave(JSON.stringify(state));
     expect(getApplianceStatus(state, 'chopping-board', 1000)?.phase).toBe('loaded');
     state = act(state, { type: 'withdrawInput', appliance: 'chopping-board', uid: input.uid });
     expect(state.board.some(item => item?.uid === input.uid)).toBe(true);
@@ -101,14 +104,14 @@ describe('exclusive input ownership and timed appliance settlement', () => {
     const job = state.appliances[0].job!;
     expect(state.appliances[0].inputSlots).toEqual([]);
     expect(execute(state, { type: 'collectAppliance', appliance: 'chopping-board' }, job.endsAt - 1).state).toBe(state);
-    state = JSON.parse(JSON.stringify(state));
+    state = parseSave(JSON.stringify(state));
     fill(state);
     state = act(state, { type: 'recover' }, job.endsAt);
     const output = state.appliances[0].outputSlot!;
     expect(getApplianceStatus(state, 'chopping-board', job.endsAt)?.phase).toBe('ready');
     expect(execute(state, { type: 'collectAppliance', appliance: 'chopping-board' }, job.endsAt).state).toBe(state);
     expect(state.appliances[0].outputSlot).toEqual(output);
-    state = JSON.parse(JSON.stringify(state));
+    state = parseSave(JSON.stringify(state));
     state = act(state, { type: 'sell', index: 0 }, job.endsAt);
     state = act(state, { type: 'collectAppliance', appliance: 'chopping-board', expectedJobId: job.id }, job.endsAt);
     expect(state.board.some(item => item?.uid === output.uid)).toBe(true);
@@ -241,7 +244,7 @@ describe('event-driven, resumable tutorial', () => {
     state = act(state, { type: 'stageInput', from: 23, appliance: 'fruit-press' });
     expect(state.tutorialState.node).toBe('start');
     expect(state.tutorialState.targetUid).toBe('fruit-press');
-    state = JSON.parse(JSON.stringify(state));
+    state = parseSave(JSON.stringify(state));
     expect(getTutorialStep(state)!.target).toBe('fruit-press');
     state = act(state, { type: 'startCooking', appliance: 'fruit-press' });
     state = act(state, { type: 'generate', chain: 'fresh-fruit' });
@@ -255,7 +258,7 @@ describe('event-driven, resumable tutorial', () => {
     state = act(state, { type: 'startCooking', appliance: 'chopping-board' });
     const endsAt = state.appliances[0].job!.endsAt;
     state = act(state, { type: 'session', session: { page: 'street' } });
-    state = JSON.parse(JSON.stringify(state));
+    state = parseSave(JSON.stringify(state));
     state = act(state, { type: 'session', session: { page: 'merge' } }, endsAt);
     state = act(state, { type: 'collectAppliance', appliance: 'chopping-board' }, endsAt);
     state = act(state, { type: 'deliver', order: FRESH_ORDERS[1].id }, endsAt);

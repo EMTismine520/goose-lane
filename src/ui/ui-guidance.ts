@@ -1,3 +1,5 @@
+import { allWorkspaces, familyAllowed, hasChapters } from '../domain/workspaces';
+import { THEME_NAMES } from '../content/expansion';
 import { CHAINS, CUSTOMERS, ITEMS, RECIPES } from '../content/catalog';
 import { DEVICE_FAMILIES } from '../content/expansion';
 import { activeDevices } from '../content/board-layouts';
@@ -66,7 +68,7 @@ export function orderSummary(state: GameState, order: OrderDef): string {
     : `${customer}的心愿备齐啦，去交付吧`;
 }
 
-export type ItemLocation = { kind: 'board'; uids: string[]; message: string } | { kind: 'storage'; message: string } | { kind: 'shelf'; family: string; message: string } | { kind: 'unavailable'; message: string };
+export type ItemLocation = { kind: 'board'; uids: string[]; message: string } | { kind: 'storage'; message: string } | { kind: 'shelf'; family: string; message: string } | { kind: 'unavailable'; message: string } | {kind:'workspace'; chapter:number|'original'; message:string};
 
 /** Presentation only. Locating never changes equipment configuration or inventory. */
 export function locateItem(state: GameState, id: string): ItemLocation {
@@ -81,6 +83,7 @@ export function locateItem(state: GameState, id: string): ItemLocation {
   const family = DEVICE_FAMILIES.find(value => chain ? value.chains.includes(chain.id) : recipes.some(recipe => recipe.deviceFamilyId === value.id));
   const devices = activeDevices(state).filter(device => family ? device.familyId === family.id || device.id === family.id : chain ? device.chain === chain.id : recipes.some(recipe => recipe.appliance === device.slot));
   if (devices.length) return { kind: 'board', uids: devices.map(device => device.id), message: chain ? `从${devices[0].name}产出，再沿食材链合成。` : `在${devices[0].name}中配齐材料制作。` };
+  if(family&&hasChapters(state)&&!familyAllowed(state,family.id)){const other=allWorkspaces(state).find(w=>w.id!==state.activeWorkspaceId&&(w.board.some(i=>i?.item===id)||w.storage.some(i=>i.item===id)||w.devices.some(d=>d.familyId===family.id)));if(other)return {kind:'workspace',chapter:other.mode==='original'?'original':other.chapter,message:`前往${other.mode==='original'?'原厨房':THEME_NAMES[other.chapter-1]}查看来源。`};return {kind:'unavailable',message:'请在章节手册中选择提供这种食材的厨房。'};}
   if (family) return { kind: 'shelf', family: family.id, message: `到设备架查看${family.name}。` };
   return { kind: 'unavailable', message: '查看食材来源，继续完成当前主题心愿。' };
 }

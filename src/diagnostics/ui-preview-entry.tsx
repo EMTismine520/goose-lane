@@ -18,4 +18,4 @@ if(!loaded.state){
   await repository.save(initial);
 }
 document.title=`界面验收样板 · ${scenario} · 独立存档`;
-createRoot(document.getElementById('root')!).render(<ItemArtProvider value={{renderer:query.get('renderer')==='canvas'?'canvas':'auto',pixelRatio}}><App repository={repository} sessionScope={scope} offline={false}/></ItemArtProvider>);
+createRoot(document.getElementById('root')!).render(<ItemArtProvider value={{renderer:query.get('renderer')==='canvas'?'canvas':'auto',pixelRatio}}><App repository={repository} sessionScope={scope} offline={query.get('offline')==='1'}/></ItemArtProvider>);

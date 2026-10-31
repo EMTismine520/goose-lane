@@ -17,7 +17,16 @@ export interface TutorialState { node: string; completed: string[]; targetUid: s
 export interface SessionState { page: 'merge' | 'street'; selectedUid: string | null; orderScroll: number; }
 export interface GeneratorState { remaining: number; readyAt: number; }
 export interface Settings { music: boolean; sound: boolean; reducedMotion: boolean; volume: number; }
+export interface Workspace {
+  id: string; chapter: number; mode: 'chapter' | 'original'; originalStage?: number;
+  board: (ItemInstance | null)[]; storage: ItemInstance[]; storageCapacity: number;
+  generators: Record<string, GeneratorState>; jobs: (CookingJob | null)[];
+  appliances: ApplianceState[]; devices: DeviceInstance[]; deviceGrants: string[];
+  session: SessionState; cellVersions: number[]; migrationInbox: ItemInstance[];
+  regularOrders: OrderDef[]; regularCompleted: number; orderTab: 'story' | 'regular'; starterGranted: boolean;
+}
 export interface GameState {
+  activeWorkspaceId?: string; chapterAccess?: { unlocked: number[]; paidUnlocks: number }; workspaces?: Record<string, Workspace>;
   schemaVersion: number; contentVersion: string; revision: number; seed: number; nextId: number;
   board: (ItemInstance | null)[]; storage: ItemInstance[]; storageCapacity: number;
   generators: Record<string, GeneratorState>; jobs: (CookingJob | null)[];
@@ -25,15 +34,20 @@ export interface GameState {
   shops: Record<string, number>; decorations: string[]; discovered: ItemId[];
   stats: { merges: number; generated: number; cooked: number; earned: number; };
   tutorial: number; settings: Settings; lastSeen: number;
-  undo: { item: ItemInstance; index: number; coins: number; revision: number } | null;
+  undo: { item: ItemInstance; index: number; coins: number; revision: number; workspaceId?: string } | null;
   campaign: 'fresh' | 'legacy'; energy: EnergyState; appliances: ApplianceState[];
   construction: { completed: string[]; hats: number; rewardClaimed: boolean };
   tutorialState: TutorialState; session: SessionState; migrationInbox: ItemInstance[];
   processedCommandIds: string[]; cellVersions: number[];
   devices: DeviceInstance[]; deviceGrants: string[]; deviceDiscovered: string[];
 }
-export type CommandMetadata = { commandId?: string; expectedUid?: string; expectedTargetUid?: string | null; expectedTargetVersion?: number; expectedVersion?: number; expectedJobId?: string };
+export type CommandMetadata = { commandId?: string; expectedWorkspaceId?: string; expectedUid?: string; expectedTargetUid?: string | null; expectedTargetVersion?: number; expectedVersion?: number; expectedJobId?: string };
 export type Command = CommandMetadata & (
+  | { type: 'unlockAndEnterChapter'; chapter: number }
+  | { type: 'enterChapter'; chapter: number | 'original' }
+  | { type: 'orderTab'; tab: 'story' | 'regular' }
+  | { type: 'arrangeRecipe'; recipe: string }
+  | { type: 'skipTutorial' }
   | { type: 'generate'; chain: string; device?: string; band?: number }
   | { type: 'configureDevice'; device: string; chain: string; band: number }
   | { type: 'buyDevice'; family: string }
@@ -64,5 +78,5 @@ export type Command = CommandMetadata & (
   | { type: 'claimMigration'; uid: string }
   | { type: 'session'; session: Partial<SessionState> }
   | { type: 'recover' });
-export interface GameEvent { type: string; message: string; index?: number; from?: number; item?: ItemId; uid?: string; appliance?: string; order?: string; node?: string; amount?: number; }
+export interface GameEvent { type: string; message: string; workspaceId?: string; index?: number; from?: number; item?: ItemId; uid?: string; appliance?: string; order?: string; node?: string; amount?: number; }
 export interface CommandResult { state: GameState; ok: boolean; events: GameEvent[]; }

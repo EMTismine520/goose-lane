@@ -1,4 +1,8 @@
-import { APPLIANCES, CHAINS, CONTENT_VERSION, DECORATIONS, HOME_CHAINS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
+import { CHAPTERS, MAX_DEVICES, chapterDefinition, regularTemplates } from '../content/chapters';
+import { activeWorkspace, allWorkspaces, bindWorkspaceViews, cloneGameState, deviceCount, initializeChapters, reservedDevices, WORKSPACE_FIELDS } from '../domain/workspaces';
+import type { Workspace, OrderDef } from '../domain/types';
+const SCHEMA_VERSION=3, CONTENT_VERSION='4.0.0';
+import { APPLIANCES, CHAINS, CONTENT_VERSION as CURRENT_CONTENT_VERSION, DECORATIONS, HOME_CHAINS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION as CURRENT_SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import { perfSpan } from '../platform/performance';
 import { ENERGY_CONFIG } from '../content/production';
 import type { GameState, ItemInstance } from '../domain/types';
@@ -86,7 +90,9 @@ function migrate(value: unknown): RecordValue {
   const oldBoard = array(legacy.board, '旧版棋盘', 56);
   const oldLimit = day < 3 ? 42 : day < 5 ? 49 : 56;
   if (oldBoard.length !== 56 || oldBoard.some((entry, index) => entry !== null && index >= oldLimit)) return invalid('旧版棋盘格数');
-  const initial = createInitialState(integer(legacy.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER));
+  const base=createInitialState(integer(legacy.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER));
+  const initial={...base,...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,base[k]]))};
+  delete initial.workspaces;delete initial.activeWorkspaceId;delete initial.chapterAccess;
   const limit = day >= 5 ? 63 : day >= 4 ? 56 : day >= 3 ? 49 : 42;
   const occupied = new Set(BOARD_LAYOUT.entities.map((entry) => entry.index));
   const board: unknown[] = Array(63).fill(null);
@@ -127,7 +133,7 @@ function migrate(value: unknown): RecordValue {
 }
 
 /** Validate every persisted field and build a detached, bounded, known-shape state. */
-export function validateSave(input: unknown): GameState {
+function validateFlatSave(input: unknown, scope?: Workspace): GameState {
   const value = object(migrate(input), '根对象', CURRENT_FIELDS);
   const oldSchema=value.schemaVersion===2;
   const oldContent = value.contentVersion === '2.0.0';
@@ -157,14 +163,14 @@ export function validateSave(input: unknown): GameState {
   const construction = { completed, hats: integer(constructionRaw.hats, '厨师帽'), rewardClaimed };
   const completedOrders = uniqueIds(value.completedOrders, ORDERS.map((order) => order.id), '已完成订单');
   const progressState = { schemaVersion: oldSchema?2:SCHEMA_VERSION, day, campaign, construction, completedOrders } as GameState;
-  const limit = unlockedCells(progressState);
+  const limit = scope?.mode==='chapter'&&scope.chapter!==1?63:unlockedCells(progressState);
   const oldDefinitions = oldContent ? BOARD_LAYOUT.entities : activeDevices(progressState);
-  const devices: DeviceInstance[]=oldSchema ? oldDefinitions.map(d=>({id:d.id,familyId:d.id,level:1,index:d.index,selectedChain:d.chain??null,band:0,version:0})) : array(value.devices,'设备',256).map(raw=>{
+  const devices: DeviceInstance[]=oldSchema ? oldDefinitions.map(d=>({id:d.id,familyId:d.id,level:1,index:d.index,selectedChain:d.chain??null,band:0,version:0})) : array(value.devices,'设备',MAX_DEVICES).map(raw=>{
     const d=object(raw,'设备',['id','familyId','level','index','selectedChain','band','version']);
     const familyId=known(d.familyId,DEVICE_FAMILIES.map(f=>f.id),'设备类别'), family=DEVICE_FAMILIES.find(f=>f.id===familyId)!;
     const id=text(d.id,'设备编号');
     const match=/^d([1-9]\d*)$/.exec(id);
-    if(id!==familyId&&(!match||Number(match[1])>=nextId)||used.has(id)||family.stage>themeStage(progressState)&&campaign==='fresh')return invalid('设备编号或开放状态');
+    if(id!==familyId&&(!match||Number(match[1])>=nextId)||used.has(id)||(scope ? scope.mode==='original'?family.stage>scope.originalStage!:!chapterDefinition(scope.chapter)!.dependencies.families.includes(familyId):family.stage>themeStage(progressState))&&campaign==='fresh')return invalid('设备编号或开放状态');
     used.add(id);
     const level=integer(d.level,'设备等级',1,3), band=integer(d.band,'产出段',0,4);
     const selectedChain=d.selectedChain===null?null:known(d.selectedChain,family.chains,'选择的系列');
@@ -225,7 +231,7 @@ export function validateSave(input: unknown): GameState {
   const energyRaw = object(value.energy, '体力', ['value', 'lastRecoveryAt']);
   const energy = { value: integer(energyRaw.value, '体力数值', 0, ENERGY_CONFIG.maxValue), lastRecoveryAt: integer(energyRaw.lastRecoveryAt, '体力回复时间', 0, lastSeen) };
   const applianceDefinitions = devices.filter(d=>DEVICE_FAMILIES.find(f=>f.id===d.familyId)!.kind==='appliance').map(d=>({...d,index:d.index??-1,slot:DEVICE_FAMILIES.find(f=>f.id===d.familyId)!.slot}));
-  const allowedRecipes = availableApplianceRecipes(progressState);
+  const allowedRecipes = scope ? scope.mode==='chapter'?chapterDefinition(scope.chapter)!.dependencies.recipes:RECIPES.filter(r=>(r.stage??1)<=scope.originalStage!) : availableApplianceRecipes(progressState);
   const applianceIds = new Set<string>();
   const appliances = array(value.appliances, '厨具', applianceDefinitions.length).map((raw) => {
     const entry = object(raw, '厨具', ['id', 'slot', 'index', 'inputSlots', 'job', 'outputSlot', 'version']);
@@ -276,14 +282,82 @@ export function validateSave(input: unknown): GameState {
     // Validate the complete old shape before changing layout. Never repair corrupt input.
     for (const chain of CHAINS) result.generators[chain.id] ??= { remaining: 12, readyAt: 0 };
     reconcileHomeDevices(result);
-    return validateSave(result);
+    return validateFlatSave(result);
   }
-  if(campaign==='fresh'&&DEVICE_FAMILIES.filter(f=>f.stage<=themeStage(result)).some(f=>!deviceGrants.includes(f.id)))return invalid('主题设备赠送记录');
+  if(!scope&&campaign==='fresh'&&DEVICE_FAMILIES.filter(f=>f.stage<=themeStage(result)).some(f=>!deviceGrants.includes(f.id)))return invalid('主题设备赠送记录');
   if(campaign==='fresh'&&devices.some(d=>!deviceDiscovered.includes(`${d.familyId}-l${d.level}`)))return invalid('设备发现记录');
   return result;
 }
 
-export function serializeSave(state: GameState): string { return JSON.stringify(validateSave(state), null, 2); }
+/** Validate all kitchens, then bind non-persisted lenses for existing presentation consumers. */
+export function validateSave(input: unknown): GameState {
+  const raw=object(input,'根对象');
+  if(raw.schemaVersion!==CURRENT_SCHEMA_VERSION){
+    const flat=validateFlatSave(raw);
+    const originalStage=themeStage(flat);
+    flat.schemaVersion=CURRENT_SCHEMA_VERSION;flat.contentVersion=CURRENT_CONTENT_VERSION;
+    return flat.campaign==='fresh'?initializeChapters(flat,originalStage):flat;
+  }
+  if(raw.contentVersion!==CURRENT_CONTENT_VERSION)throw new SaveError('存档内容版本不兼容，原档已保留。','future');
+  if(raw.campaign!=='fresh'){
+    const flat=validateFlatSave({...raw,schemaVersion:3,contentVersion:'4.0.0'});
+    flat.schemaVersion=CURRENT_SCHEMA_VERSION;flat.contentVersion=CURRENT_CONTENT_VERSION;return flat;
+  }
+  const globals=CURRENT_FIELDS.filter(k=>!(WORKSPACE_FIELDS as readonly string[]).includes(k));
+  object(raw,'根对象',[...globals,'activeWorkspaceId','chapterAccess','workspaces']);
+  const access=object(raw.chapterAccess,'章节权益',['unlocked','paidUnlocks']);
+  const unlocked=array(access.unlocked,'已开放章节',8).map(n=>integer(n,'章节编号',1,8));
+  if(!unlocked.includes(1)||new Set(unlocked).size!==unlocked.length)return invalid('章节权益');
+  const paidUnlocks=integer(access.paidUnlocks,'已购买章节',0,7);
+  if(paidUnlocks>unlocked.length-1)return invalid('购买记录');
+  const rawWorkspaces=object(raw.workspaces,'厨房', ['original',...CHAPTERS.map(c=>'chapter-'+c.id)]);
+  const activeId=known(raw.activeWorkspaceId,Object.keys(rawWorkspaces),'当前厨房');
+  const workspaces:Record<string,Workspace>={};let root:GameState|undefined;
+  for(const [id,source] of Object.entries(rawWorkspaces)){
+    const w=object(source,'厨房'+id,[...WORKSPACE_FIELDS,'id','chapter','mode','originalStage','regularOrders','regularCompleted','orderTab','starterGranted']);
+    const chapter=integer(w.chapter,'厨房章节',1,8),mode=known(w.mode,['chapter','original'],'厨房类型') as Workspace['mode'];
+    if(w.id!==id||!unlocked.includes(chapter)||id!==(mode==='original'?'original':'chapter-'+chapter))return invalid('厨房标识');
+    const scope={chapter,mode,...(mode==='original'?{originalStage:integer(w.originalStage,'原厨房权限',1,8)}:{})} as Workspace;
+    if(mode==='original'&&scope.originalStage!==chapter)return invalid('原厨房权限');
+    const rawUndo=raw.undo===null?null:object(raw.undo,'撤销',['item','index','coins','revision','workspaceId']);
+    if(rawUndo&&rawUndo.workspaceId!==activeId)return invalid('撤销所属厨房');
+    const flatInput={...Object.fromEntries(globals.map(k=>[k,raw[k]])),...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,w[k]])),schemaVersion:3,contentVersion:'4.0.0',undo:id===activeId&&rawUndo?Object.fromEntries(Object.entries(rawUndo).filter(([k])=>k!=='workspaceId')):null};
+    const flat=validateFlatSave(flatInput,scope);
+    const regularRaw=array(w.regularOrders,'常客订单',3),templates=regularTemplates(chapter);
+    if(regularRaw.length!==3)return invalid('常客订位');
+    const regularOrders=regularRaw.map((value,i)=>{
+      const o=object(value,'常客单',['id','day','stage','customer','title','message','thanks','needs','coins','reputation']);
+      const id=text(o.id,'常客编号');const match=/^regular:g([1-9]\d*)$/.exec(id);
+      if(!match||Number(match[1])>=flat.nextId)return invalid('常客编号');
+      const needs=array(o.needs,'常客需求',12).map(raw=>{const n=object(raw,'需求',['item','count']);return {item:known(n.item,Object.keys(ITEMS),'常客物品'),count:integer(n.count,'常客数量',1,12)};});
+      if(JSON.stringify(needs)!==JSON.stringify(templates[i].needs)||o.day!==1||o.stage!==chapter||o.reputation!==0)return invalid('常客需求');
+      return {id,day:1,stage:chapter,customer:known(o.customer,['momo','uncle','taro','lin'],'常客'),title:text(o.title,'常客标题'),message:text(o.message,'常客留言',200),thanks:text(o.thanks,'常客答谢',200),needs,coins:integer(o.coins,'常客奖励',1,1000),reputation:0} as OrderDef;
+    });
+    workspaces[id]={...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,flat[k]])),id,chapter,mode,...(scope.originalStage?{originalStage:scope.originalStage}:{}),regularOrders,regularCompleted:integer(w.regularCompleted,'常客完成次数'),orderTab:known(w.orderTab,['story','regular'],'订单类型') as Workspace['orderTab'],starterGranted:boolean(w.starterGranted,'启动赠送')} as Workspace;
+    if(!workspaces[id].starterGranted)return invalid('启动赠送');
+    if(mode==='chapter'){
+      const allowed=chapterDefinition(chapter)!.dependencies;
+      if(allowed.families.some(f=>!flat.deviceGrants.includes(f)))return invalid('章节设备配套');
+      const items=[...flat.board.filter(Boolean),...flat.storage,...flat.migrationInbox,...flat.appliances.flatMap(a=>[...a.inputSlots,...(a.outputSlot?[a.outputSlot]:[])])];
+      if(items.some(i=>!allowed.items.includes(i!.item)))return invalid('章节物品权限');
+    }
+    if(id===activeId){root=flat;if(root.undo)root.undo.workspaceId=id;}
+  }
+  if(!root||!Object.keys(workspaces).length)return invalid('厨房缺失');
+  root.schemaVersion=CURRENT_SCHEMA_VERSION;root.contentVersion=CURRENT_CONTENT_VERSION;root.activeWorkspaceId=activeId;root.chapterAccess={unlocked,paidUnlocks};root.workspaces=workspaces;
+  bindWorkspaceViews(root);
+  const used=new Set<string>();
+  for(const w of Object.values(workspaces)){
+    const items=[...w.board.filter(Boolean),...w.storage,...w.migrationInbox,...w.appliances.flatMap(a=>[...a.inputSlots,...(a.outputSlot?[a.outputSlot]:[])])];
+    const ids=[...items.map(i=>i!.uid),...w.devices.map(d=>d.id),...w.jobs.filter(Boolean).map(j=>j!.id),...w.appliances.flatMap(a=>a.job?[a.job.id]:[]),...w.regularOrders.map(o=>o.id)];
+    for(const id of ids){if(used.has(id))return invalid('跨厨房重复编号');used.add(id);}
+  }
+  if(root.undo&&used.has(root.undo.item.uid))return invalid('撤销重复物品');
+  if(deviceCount(root)+reservedDevices(root)>MAX_DEVICES)return invalid('设备总量或开章预留');
+  return root;
+}
+
+export function serializeSave(state: GameState): string { const source=JSON.stringify(validateSave(state), null, 2); if(new TextEncoder().encode(source).length>MAX_SAVE_BYTES)throw new SaveError('存档超过1 MB限制，原进度未修改。','storage');return source; }
 export function parseSave(source: string): GameState {
   if (typeof source !== 'string' || source.length > MAX_SAVE_BYTES || new TextEncoder().encode(source).length > MAX_SAVE_BYTES) throw new SaveError('存档文件超过 1 MB 限制。', 'invalid');
   let value: unknown;
@@ -296,7 +370,6 @@ export function parseImportSave(source: string): GameState {
   if (typeof source !== 'string' || source.length > MAX_SAVE_BYTES || new TextEncoder().encode(source).length > MAX_SAVE_BYTES) throw new SaveError('存档文件超过 1 MB 限制。','invalid');
   let value: unknown;
   try { value=JSON.parse(source); } catch (cause) { throw new SaveError('存档不是有效的 JSON 文件，现有进度未修改。','invalid',{cause}); }
-  if (!value || typeof value !== 'object' || (value as Record<string,unknown>).schemaVersion !== SCHEMA_VERSION || (value as Record<string,unknown>).contentVersion !== CONTENT_VERSION) throw new SaveError('V4 使用全新进度，只能导入 V4 存档；当前进度未修改。','future');
   return validateSave(value);
 }
 
@@ -326,7 +399,7 @@ function parseManualSlot(raw: unknown, id: SaveSlotId): Extract<ManualSlot, { st
 
 /** Resume the saved instant, rather than granting time elapsed while a slot was on the shelf. */
 export function resumeManualSlot(slot: Extract<ManualSlot, { status: 'ready' }>, now: number, current?: GameState | null): GameState {
-  const state = structuredClone(slot.state);
+  const state = cloneGameState(slot.state);
   const time = integer(now, '读取时间', 0, Number.MAX_SAFE_INTEGER - 172_800_000);
   const delta = time - slot.capturedAt;
   const shift = (value: number) => Math.max(0, value + delta);
@@ -335,9 +408,11 @@ export function resumeManualSlot(slot: Extract<ManualSlot, { status: 'ready' }>,
   };
   state.lastSeen = time;
   state.energy.lastRecoveryAt = shift(state.energy.lastRecoveryAt);
-  Object.values(state.generators).forEach(generator => { if (generator.readyAt) generator.readyAt = shift(generator.readyAt); });
-  state.jobs.forEach(jobTime);
-  state.appliances.forEach(appliance => jobTime(appliance.job));
+  for(const w of allWorkspaces(state)){
+  Object.values(w.generators).forEach(generator => { if (generator.readyAt) generator.readyAt = shift(generator.readyAt); });
+  w.jobs.forEach(jobTime);
+  w.appliances.forEach(appliance => jobTime(appliance.job));
+  }
   state.revision = Math.max(current?.revision ?? -1, state.revision) + 1;
   if (state.undo) state.undo.revision = state.revision;
   if (current) state.settings = { ...current.settings };
@@ -465,7 +540,7 @@ export class SaveRepository {
             if (valid) {
               store.put(valid, 'previous');
               const originalVersion: unknown = JSON.parse(valid.data).schemaVersion;
-              if (originalVersion === 0 || originalVersion === 1 || originalVersion === 2) store.put(valid, `migration-v${originalVersion}`);
+              if (originalVersion === 0 || originalVersion === 1 || originalVersion === 2 || originalVersion === 3) store.put(valid, `migration-v${originalVersion}`);
             }
             else store.put(rawCurrent, 'recovery');
           }
@@ -555,9 +630,9 @@ export class SaveRepository {
     const transaction = this.database.transaction(STORE, 'readonly');
     const done = completed(transaction);
     const store = transaction.objectStore(STORE);
-    const [current, previous, recovery, migrationV0, migrationV1, migrationV2, ...manualSlots] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1', 'migration-v2', ...SAVE_SLOT_IDS.map(id => `manual-slot-${id}`)].map((key) => request(store.get(key))));
+    const [current, previous, recovery, migrationV0, migrationV1, migrationV2, migrationV3, ...manualSlots] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1', 'migration-v2', 'migration-v3', ...SAVE_SLOT_IDS.map(id => `manual-slot-${id}`)].map((key) => request(store.get(key))));
     await done;
-    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1, migrationV2, manualSlots }, null, 2);
+    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1, migrationV2, migrationV3, manualSlots }, null, 2);
   }
 
   close(): void { this.database?.close(); this.database = null; this.opened = false; this.corrupt = false; }

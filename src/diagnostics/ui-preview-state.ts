@@ -8,7 +8,7 @@ import MILESTONES from './v3-milestones.json';
 import COMPLETE from './v3-played-state.json';
 import LEGACY from './ui-legacy-state.json';
 
-export const UI_SCENARIOS = ['opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
+export const UI_SCENARIOS = ['chapters-all', 'chapter-dessert', 'chapter-harbor', 'opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
 export type UiScenario = typeof UI_SCENARIOS[number];
 
 /** Isolated visual fixtures. These are never loaded by the production game entry. */
@@ -17,31 +17,14 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
   let state = ['opening', 'orders', 'build'].includes(scenario) ? createInitialState(now)
     : scenario === 'legacy' ? resumeManualSlot({id:1,status:'ready',state:validateSave(LEGACY),capturedAt:LEGACY.lastSeen,savedAt:LEGACY.lastSeen},now)
     : resumeManualSlot({id:1,status:'ready',state:validateSave(captured),capturedAt:captured.lastSeen,savedAt:captured.lastSeen},now);
+  if(['chapters-all','chapter-dessert','chapter-harbor'].includes(scenario)){
+    state=createInitialState(now);state.coins=10000;state.tutorialState.node='complete';
+    for(const chapter of scenario==='chapters-all'?[6,2,8,4,7,3,5]:[scenario==='chapter-dessert'?7:6])state=execute(state,{type:'unlockAndEnterChapter',chapter},now).state;
+  }
   state.settings.sound = false;
   state.settings.music = false;
   if (scenario !== 'opening') state.tutorialState.node = 'complete';
-  if (scenario === 'theme-unlock') {
-    // Rewind only the last delivery and its automatic gifts from the played milestone.
-    // This is a visual fixture, not a claim that its restored serving was newly cooked.
-    const order = FRESH_ORDERS.at(-1)!;
-    const giftFamilies = new Set(DEVICE_FAMILIES.filter(family => family.stage === 2).map(family => family.id));
-    const giftIds = new Set(state.devices.filter(device => giftFamilies.has(device.familyId)).map(device => device.id));
-    state.completedOrders = state.completedOrders.filter(id => id !== order.id);
-    const reward = getOrderReward(state, order);
-    state.coins -= reward;
-    state.reputation -= order.reputation;
-    state.stats.earned -= reward;
-    state.devices = state.devices.filter(device => !giftIds.has(device.id));
-    state.appliances = state.appliances.filter(appliance => !giftIds.has(appliance.id));
-    state.deviceGrants = state.deviceGrants.filter(family => !giftFamilies.has(family));
-    state.deviceDiscovered = state.deviceDiscovered.filter(id => ![...giftFamilies].some(family => id.startsWith(family + '-l')));
-    for (const need of order.needs) for (let count = 0; count < need.count; count++) {
-      const index = state.board.findIndex((_, index) => getBoardEntity(state, index).kind === 'empty');
-      if (index < 0) throw new Error('Theme unlock fixture needs room for its final serving');
-      state.board[index] = { uid: `g${state.nextId++}`, item: need.item };
-    }
-    state.session = { page: 'merge', selectedUid: null, orderScroll: 0 };
-  }
+  if (scenario === 'theme-unlock') {state=createInitialState(now);state.coins=60;state.tutorialState.node='complete';}
   if (scenario === 'orders') {
     for (const need of availableOrders(state).slice(0,2).flatMap(order => order.needs)) {
       for (let count=0; count<need.count; count++) {

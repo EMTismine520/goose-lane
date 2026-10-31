@@ -1,3 +1,4 @@
+import { allWorkspaces } from '../domain/workspaces';
 import { useEffect, useState, type ReactNode } from 'react';
 import { effectiveNow, getEnergyStatus } from '../domain/engine';
 import type { Command, GameState } from '../domain/types';
@@ -24,10 +25,10 @@ export function RecoveryClock({ state, readOnly, busy, act }: { state: GameState
       clearTimeout(timer);
       if (disposed || document.hidden || recovering) return;
       const now = effectiveNow(state, Date.now()), energy = getEnergyStatus(state, now);
-      if (state.appliances.some(appliance => appliance.job && appliance.job.endsAt <= now && !appliance.outputSlot) || energy.value !== state.energy.value) {
+      if (allWorkspaces(state).flatMap(w=>w.appliances).some(appliance => appliance.job && appliance.job.endsAt <= now && !appliance.outputSlot) || energy.value !== state.energy.value) {
         recovering = true; void act({ type: 'recover' }).finally(() => { recovering = false; }); return;
       }
-      const next = Math.min(...state.appliances.flatMap(appliance => appliance.job && !appliance.outputSlot && appliance.job.endsAt > now ? [appliance.job.endsAt - now] : []), energy.nextRecoveryIn || Infinity);
+      const next = Math.min(...allWorkspaces(state).flatMap(w=>w.appliances).flatMap(appliance => appliance.job && !appliance.outputSlot && appliance.job.endsAt > now ? [appliance.job.endsAt - now] : []), energy.nextRecoveryIn || Infinity);
       if (Number.isFinite(next)) timer = setTimeout(check, Math.max(16, next + 1));
     };
     check(); document.addEventListener('visibilitychange', check);

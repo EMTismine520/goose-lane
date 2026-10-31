@@ -1,3 +1,5 @@
+import { MAX_DEVICES, chapterDefinition, chapterOrders, regularTemplates, resolveDependencies as resolveRecipeDevices } from '../content/chapters';
+import { activeWorkspace, allWorkspaces, bindWorkspaceViews, chapterPrice, cloneGameState, createWorkspace, currentChapter, deviceCount, deviceGrowthAvailable, familyAllowed, fillRegularOrders, hasChapters, initializeChapters, recipeAllowed, reservedDevices, WORKSPACE_FIELDS } from './workspaces';
 import { APPLIANCES, baseUnits, CHAINS, CONTENT_VERSION, DECORATIONS, FRESH_ORDERS, FRESH_RECIPES, HOME_CHAINS, HOME_ORDERS, ITEMS, LEGACY_ORDERS, LEGACY_RECIPES, MODERN_RECIPES, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES, HOME_UNLOCK_HINT, homeCookingUnlocked } from '../content/board-layouts';
 import { reconcileHomeDevices } from './home-progression';
@@ -20,6 +22,7 @@ export function effectiveNow(state: GameState, now = Date.now()): number {
 }
 export function unlockedCells(state: GameState): number {
   if (state.schemaVersion < 2) return state.day >= 5 ? 56 : state.day >= 3 ? 49 : 42;
+  if (activeWorkspace(state)?.mode === 'chapter' && currentChapter(state) !== 1) return 63;
   if (state.campaign === 'fresh') return 42 + Math.min(3, state.construction.completed.length) * 7;
   return state.day >= 5 ? 63 : state.day >= 4 ? 56 : state.day >= 3 ? 49 : 42;
 }
@@ -50,12 +53,14 @@ export function createInitialState(now = Date.now()): GameState {
     session: { page: 'merge', selectedUid: null, orderScroll: 0 }, migrationInbox: [], processedCommandIds: [], cellVersions: Array(BOARD_SIZE).fill(0),
   };
   reconcileDeviceGrants(state);
-  return state;
+  return initializeChapters(state);
 }
 
 /** Schema-one fixture for historical simulation and regression, never written as a new save. */
 export function createLegacyInitialState(now = Date.now()): GameState {
-  const state = createInitialState(now);
+  const base = createInitialState(now);
+  const state = { ...base, ...Object.fromEntries(WORKSPACE_FIELDS.map(k => [k, base[k]])) } as GameState;
+  delete state.workspaces; delete state.activeWorkspaceId; delete state.chapterAccess;
   state.schemaVersion = 1; state.contentVersion = '1.0.0'; state.campaign = 'legacy';
   state.board = state.board.slice(0, 56); state.cellVersions = state.cellVersions.slice(0, 56); state.appliances = [];
   state.board[16]!.item = state.board[17]!.item = 'grain-1'; state.board[23]!.item = state.board[24]!.item = 'coffee-1';
@@ -84,6 +89,9 @@ export function canAffordRequirements(state: GameState, needs: Requirement[]): b
 export function availableOrders(state: GameState) {
   const completed = new Set(state.completedOrders);
   if(state.schemaVersion>=3&&state.campaign==='fresh') {
+    const w=activeWorkspace(state);
+    if(w?.orderTab==='regular')return w.regularOrders;
+    if(w?.mode==='chapter')return chapterOrders(w.chapter).filter(o=>!completed.has(o.id)).slice(0,3);
     const stage=themeStage(state);
     return ORDERS.filter(o=>!completed.has(o.id)&&(stage===1?FRESH_ORDERS.includes(o):stage===2?HOME_ORDERS.includes(o):o.id.startsWith('v3-order-')&&(o.stage??8)<=stage)).slice(0,3);
   }
@@ -102,7 +110,7 @@ export function getGeneratorStatus(state: GameState, chain: string, now = Date.n
   const generator = state.generators[chain];
   const definition = CHAINS.find(item => item.id === chain);
   const time = effectiveNow(state, now);
-  if (state.schemaVersion >= 2) return { remaining: getEnergyStatus(state, time).value, readyAt: 0, waiting: 0, unlocked: !!definition && state.day >= definition.unlockDay && (state.campaign==='fresh'?(definition.stage??1)<=themeStage(state):!HOME_CHAINS.some(value => value.id === chain)) };
+  if (state.schemaVersion >= 2) return { remaining: getEnergyStatus(state, time).value, readyAt: 0, waiting: 0, unlocked: !!definition && state.day >= definition.unlockDay && (state.campaign==='fresh'?(hasChapters(state)?familyAllowed(state,definition.producer??''):(definition.stage??1)<=themeStage(state)):!HOME_CHAINS.some(value => value.id === chain)) };
   if (!generator || !definition) return { remaining: 0, readyAt: 0, waiting: 0, unlocked: false };
   const waiting = generator.remaining === 0 ? Math.max(0, generator.readyAt - time) : 0;
   return { remaining: generator.remaining === 0 && waiting === 0 ? GENERATOR_CAPACITY : generator.remaining, readyAt: waiting === 0 ? 0 : generator.readyAt, waiting, unlocked: state.day >= definition.unlockDay };
@@ -182,7 +190,7 @@ export function getBoardEntity(state: GameState, index: number): BoardEntityView
 }
 
 export function availableApplianceRecipes(state: GameState): RecipeDef[] {
-  if(state.schemaVersion>=3&&state.campaign==='fresh')return MODERN_RECIPES.filter(r=>(r.stage??1)<=themeStage(state));
+  if(state.schemaVersion>=3&&state.campaign==='fresh')return MODERN_RECIPES.filter(r=>activeWorkspace(state)?.mode==='chapter'?recipeAllowed(state,r.id):(r.stage??1)<=themeStage(state));
   return (state.campaign === 'legacy' ? [...LEGACY_RECIPES, ...FRESH_RECIPES] : homeCookingUnlocked(state) ? MODERN_RECIPES : FRESH_RECIPES).filter(recipe => recipe.unlockDay <= state.day);
 }
 function compatibleRecipes(state: GameState, appliance: ApplianceState, inputs = appliance.inputSlots) {
@@ -207,7 +215,7 @@ export function getConstructionProgress(state: GameState) {
   return { completed, total: BUILD_NODES.length, ratio: completed / BUILD_NODES.length, percent: completed === 0 ? 0 : BUILD_NODES[completed - 1].progress, next: BUILD_NODES[completed] ?? null, canClaimReward: completed === BUILD_NODES.length && !state.construction.rewardClaimed };
 }
 export function getTutorialStep(state: GameState) {
-  if(homeCookingUnlocked(state))return null;
+  if(activeWorkspace(state)?.mode==='chapter'&&currentChapter(state)!==1 || homeCookingUnlocked(state))return null;
   const step = TUTORIAL_STEPS.find(value => value.id === state.tutorialState.node);
   if (!step) return null;
   let target: string = step.target;
@@ -252,11 +260,11 @@ function reconcileTime(state: GameState, time: number, events: GameEvent[]) {
   if (state.schemaVersion < 2) return;
   const energy = getEnergyStatus(state, time);
   state.energy = { value: energy.value, lastRecoveryAt: energy.lastRecoveryAt };
-  for (const appliance of state.appliances) if (appliance.job && appliance.job.endsAt <= time && !appliance.outputSlot) {
+  for (const w of allWorkspaces(state)) for (const appliance of w.appliances) if (appliance.job && appliance.job.endsAt <= time && !appliance.outputSlot) {
     const output = appliance.job.output ?? RECIPES.find(recipe => recipe.id === appliance.job!.recipe)?.output;
     if (output) {
       appliance.outputSlot = instance(state, output); appliance.version++;
-      events.push({ type: 'ready', message: `${ITEMS[output].name}做好啦，轻点厨具领取。`, appliance: appliance.id, item: output, index: appliance.index });
+      events.push({ type: 'ready', workspaceId:w.id, message: `${ITEMS[output].name}做好啦，轻点厨具领取。`, appliance: appliance.id, item: output, index: appliance.index });
     }
   }
 }
@@ -265,6 +273,8 @@ function reconcileTime(state: GameState, time: number, events: GameEvent[]) {
 export function execute(original: GameState, command: Command, now = Date.now()): CommandResult {
   const reject = (message: string): CommandResult => ({ state: original, ok: false, events: [{ type: 'error', message }] });
   if (!command || typeof command !== 'object') return reject('操作未识别，请重试。');
+  bindWorkspaceViews(original);
+  if (command.expectedWorkspaceId !== undefined && command.expectedWorkspaceId !== original.activeWorkspaceId) return reject('厨房已切换，原操作已取消。');
   if(['configureDevice','storeDevice','retrieveDevice','moveDevice','mergeDevices'].includes(command.type)&&(original.campaign!=='fresh'||original.schemaVersion<3))return reject('设备成长与设备架在当前图鉴主线中使用。');
   if (command.commandId && original.processedCommandIds.includes(command.commandId)) return reject('这次操作已经完成，无需重复。');
   const sourceIndex = 'from' in command ? command.from : 'index' in command ? command.index : undefined;
@@ -277,14 +287,41 @@ export function execute(original: GameState, command: Command, now = Date.now())
   }
   if ('appliance' in command && command.expectedVersion !== undefined && original.appliances.find(appliance => appliance.id === command.appliance)?.version !== command.expectedVersion) return reject('厨具状态已改变，请重试。');
   if (!Number.isSafeInteger(original.revision + 1) || !Number.isSafeInteger(original.nextId + 1)) return reject('存档编号已到上限，请导出备份。');
-  const state = structuredClone(original);
+  const state = cloneGameState(original);
   const time = effectiveNow(state, now);
   if (!Number.isSafeInteger(time) || !Number.isSafeInteger(time + MAX_OFFLINE_MS)) return reject('存档时间超出安全范围，请恢复有效备份。');
   const events: GameEvent[] = [];
   reconcileTime(state, time, events);
-  const preserveUndo = ['session', 'recover', 'settings', 'redeemGift'].includes(command.type);
+  const sameKitchen=(command.type==='enterChapter'||command.type==='unlockAndEnterChapter')&&state.activeWorkspaceId===(command.chapter==='original'?'original':`chapter-${command.chapter}`);
+  const preserveUndo = ['session', 'recover', 'settings', 'redeemGift'].includes(command.type)||sameKitchen;
   state.undo = preserveUndo ? state.undo : null;
   switch (command.type) {
+    case 'unlockAndEnterChapter':
+    case 'enterChapter': {
+      if(!hasChapters(state))return reject('请在章节模式中选择厨房。');
+      const originalKitchen=command.chapter==='original';
+      if(originalKitchen&&command.type==='unlockAndEnterChapter')return reject('原厨房无需购买。');
+      const chapter=originalKitchen?0:command.chapter as number;
+      if(!originalKitchen&&!chapterDefinition(chapter))return reject('章节不存在。');
+      const unlocked=originalKitchen?!!state.workspaces!.original:state.chapterAccess!.unlocked.includes(chapter);
+      if(!unlocked&&command.type==='enterChapter')return reject('请先解锁这个章节。');
+      if(!unlocked){const price=chapterPrice(state);if(state.coins<price)return reject(`还差 ${price-state.coins} 金币，常客订单可以继续赚金币。`);state.coins-=price;state.chapterAccess!.unlocked.push(chapter);state.chapterAccess!.paidUnlocks++;}
+      const w=originalKitchen?state.workspaces!.original:state.workspaces![`chapter-${chapter}`]??createWorkspace(state,chapter);
+      state.activeWorkspaceId=w.id;state.session.page='merge';fillRegularOrders(state);
+      events.push({type:'chapter-entered',message:`已进入${originalKitchen?'原厨房':chapterDefinition(chapter)!.name}，其他厨房已保存。`,workspaceId:w.id});break;
+    }
+    case 'orderTab': {const w=activeWorkspace(state);if(!w||!['story','regular'].includes(command.tab))return reject('订单类型不存在。');w.orderTab=command.tab;w.session.orderScroll=0;break;}
+    case 'skipTutorial': {state.tutorialState.node='complete';break;}
+    case 'arrangeRecipe': {
+      if(!hasChapters(state))return reject('请在独立章节中布置设备。');
+      const recipe=availableApplianceRecipes(state).find(r=>r.id===command.recipe);if(!recipe)return reject('这份配方不在当前厨房。');
+      const preview=getRecipeLayoutPreview(state,recipe.id)!;
+      if(preview.families.some(f=>!f.device))return reject('本章缺少所需设备，请先到设备架准备。');
+      for(const selection of preview.families){const d=state.devices.find(d=>d.id===selection.device)!;if(d.index!==null)continue;
+        let index=emptyCell(state);if(index<0){const spare=state.devices.find(d=>d.index!==null&&!preview.families.some(f=>f.device===d.id)&&deviceIdle(state,d.id));if(!spare)return reject('请先腾出空格，布局尚未改变。');index=spare.index!;spare.index=null;spare.version++;const a=state.appliances.find(a=>a.id===spare.id);if(a){a.index=-1;a.version++;}}
+        d.index=index;d.version++;const a=state.appliances.find(a=>a.id===d.id);if(a){a.index=index;a.version++;}
+      }events.push({type:'device',message:'所需设备已布置，原有食材和忙碌厨具保留。'});break;
+    }
     case 'redeemGift': {
       if (typeof command.key !== 'string') return reject('兑换码格式不正确，请重新输入。');
       if (command.key.length > GIFT_CODE_MAX_LENGTH) return reject(`兑换码不能超过 ${GIFT_CODE_MAX_LENGTH} 个字符。`);
@@ -299,13 +336,13 @@ export function execute(original: GameState, command: Command, now = Date.now())
     }
     case 'configureDevice': {
       const device=state.devices.find(d=>d.id===command.device), chain=CHAINS.find(c=>c.id===command.chain), production=productionFor(command.chain,command.band);
-      if(!device||!chain||DEVICE_FAMILIES.find(f=>f.id===device.familyId)?.chains[0]!==command.chain||device.selectedChain!==command.chain||!production||production.minLevel>device.level||(chain.stage??1)>themeStage(state)||command.band>0&&themeStage(state)<3)return reject('系列或产出段尚未开放。');
+      if(!device||!chain||DEVICE_FAMILIES.find(f=>f.id===device.familyId)?.chains[0]!==command.chain||device.selectedChain!==command.chain||!production||production.minLevel>device.level||(hasChapters(state)?!familyAllowed(state,device.familyId):(chain.stage??1)>themeStage(state))||command.band>0&&!(hasChapters(state)?deviceGrowthAvailable(state):themeStage(state)>=3))return reject('系列或产出段尚未开放。');
       device.selectedChain=chain.id;device.band=command.band;device.version++;break;
     }
     case 'buyDevice': {
       const family=DEVICE_FAMILIES.find(f=>f.id===command.family);
-      if(state.campaign!=='fresh'||themeStage(state)<3||!family||family.stage>themeStage(state))return reject('完成家常烟火后，可购买已开放设备的副本。');
-      if(state.devices.length>=256)return reject('设备架已满，先合成闲置副本。');
+      if(state.campaign!=='fresh'||!family||(hasChapters(state)?!deviceGrowthAvailable(state)||!familyAllowed(state,family.id):themeStage(state)<3||family.stage>themeStage(state)))return reject(hasChapters(state)?'这台设备不在当前厨房的开放范围，可在独立章节中管理相应设备。':'完成家常烟火后，可购买已开放设备的副本。');
+      if(hasChapters(state)?deviceCount(state)+1+reservedDevices(state)>MAX_DEVICES:state.devices.length>=256)return reject('设备架已满，先合成闲置副本。');
       if(state.coins<family.price)return reject(`还差 ${family.price-state.coins} 金币，完成订单或出售多余食材可获得。`);
       state.coins-=family.price;makeDevice(state,family.id,`d${state.nextId++}`);
       events.push({type:'device',message:`${family.name}已放入设备架，可与同类同级设备合成。`});break;
@@ -327,7 +364,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
     }
     case 'mergeDevices': {
       const source=state.devices.find(d=>d.id===command.device), target=state.devices.find(d=>d.id===command.target);
-      if(themeStage(state)<3)return reject('设备成长将在晨间茶饮主题开放。');
+      if(!(hasChapters(state)?deviceGrowthAvailable(state):themeStage(state)>=3))return reject('设备成长将在晨间茶饮主题开放。');
       if(!source||!target||source.id===target.id||source.familyId!==target.familyId||source.level!==target.level||target.level>=3)return reject('需要两台同类同级设备，最高可升至三级。');
       if(!deviceIdle(state,source.id)||!deviceIdle(state,target.id))return reject('请先撤回投料或领取料理，再合成空闲设备。');
       target.level++;target.band=0;target.version++;
@@ -337,8 +374,8 @@ export function execute(original: GameState, command: Command, now = Date.now())
     }
     case 'generate': {
       const chain = CHAINS.find(chain => chain.id === command.chain);
-      if (!chain || chain.unlockDay > state.day || state.campaign==='fresh'&&(chain.stage??1)>themeStage(state)) return reject('这条食材链将在后续主题开放。');
-      if (HOME_CHAINS.some(value => value.id === chain.id) && !homeCookingUnlocked(state)) return reject(HOME_UNLOCK_HINT);
+      if (!chain || chain.unlockDay > state.day || state.campaign==='fresh'&&(hasChapters(state)?!familyAllowed(state,chain.producer??''):(chain.stage??1)>themeStage(state))) return reject('这条食材链将在后续主题开放。');
+      if (!hasChapters(state) && HOME_CHAINS.some(value => value.id === chain.id) && !homeCookingUnlocked(state)) return reject(HOME_UNLOCK_HINT);
       const family=DEVICE_FAMILIES.find(f=>f.chains.includes(chain.id));
       const device = activeDevices(state).find(entity => entity.kind === 'generator' && (state.schemaVersion>=3&&state.campaign==='fresh'?entity.familyId===family?.id&&(!command.device||entity.id===command.device):entity.chain===chain.id));
       if(state.schemaVersion>=3&&state.campaign==='fresh'&&(!device||state.devices.find(d=>d.id===device.id)?.selectedChain!==chain.id))return reject('先从设备架取出本系列的专用生产器。');
@@ -348,7 +385,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
         const producer=state.devices?.find(d=>d.id===device?.id);
         const band=command.band??(command.device?producer?.band??0:0);
         const production = state.campaign==='fresh'&&state.schemaVersion>=3 ? productionFor(chain.id,band) : PRODUCTION[chain.id] ?? { energyCost: 1, drops: [{ item: chain.items[0], weight: 1 }] };
-        if(!production||'minLevel' in production&&((producer?.level??1)<Number(production.minLevel)||band>0&&themeStage(state)<3))return reject('此产出段需要升级生产器。');
+        if(!production||'minLevel' in production&&((producer?.level??1)<Number(production.minLevel)||band>0&&!(hasChapters(state)?deviceGrowthAvailable(state):themeStage(state)>=3)))return reject('此产出段需要升级生产器。');
         if (state.energy.value < production.energyCost) return reject(`体力不足，${Math.ceil(getEnergyStatus(state, time).nextRecoveryIn / 1000)} 秒后恢复，也可建设领取体力。`);
         const random = nextRandom(state.seed);
         const total = production.drops.reduce((sum, drop) => sum + drop.weight, 0);
@@ -458,7 +495,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       const coins = ITEMS[item.item].sell;
       state.coins += coins;
       state.board[command.index] = null;
-      state.undo = { item, index: command.index, coins, revision: state.revision + 1 };
+      state.undo = { item, index: command.index, coins, revision: state.revision + 1, ...(state.activeWorkspaceId?{workspaceId:state.activeWorkspaceId}:{}) };
       events.push({ type: 'sell', message: `出售${ITEMS[item.item].name}，获得 ${coins} 金币；继续操作前可撤销。`, amount: coins });
       break;
     }
@@ -506,7 +543,9 @@ export function execute(original: GameState, command: Command, now = Date.now())
       const coins = getOrderReward(state, order);
       state.coins += coins;
       state.reputation += order.reputation;
-      state.completedOrders.push(order.id);
+      const workspace=activeWorkspace(state);
+      if(order.id.startsWith('regular:')&&workspace){const i=workspace.regularOrders.findIndex(o=>o.id===order.id);const template=regularTemplates(workspace.chapter)[i]!;workspace.regularOrders[i]={...structuredClone(template),id:`regular:g${state.nextId++}`};workspace.regularCompleted++;}
+      else state.completedOrders.push(order.id);
       state.stats.earned += coins;
       events.push({ type: 'deliver', message: order.thanks, amount: coins, order: order.id });
       if (order.needs.some(need => ITEMS[need.item].kind !== 'ingredient')) events.push({ type: 'deliver-dish', message: '', order: order.id });
@@ -594,10 +633,10 @@ export function execute(original: GameState, command: Command, now = Date.now())
     }
     default: return reject('操作未识别，请重试。');
   }
-  if (reconcileHomeDevices(state)) events.push(themeStage(state)===2?{ type: 'home-unlocked', message: '家常菜厨房开放啦！两类肉车、香料盒和料理锅已经就位。', index: 47 }:{type:'theme-unlocked',message:'新主题开放啦！赠送设备已收入设备架，继续探索下一街区。'});
+  if (!hasChapters(state) && reconcileHomeDevices(state)) events.push(themeStage(state)===2?{ type: 'home-unlocked', message: '家常菜厨房开放啦！两类肉车、香料盒和料理锅已经就位。', index: 47 }:{type:'theme-unlocked',message:'新主题开放啦！赠送设备已收入设备架，继续探索下一街区。'});
   if (!Number.isSafeInteger(state.coins) || state.coins < 0 || !Number.isSafeInteger(state.reputation)) return reject('这次操作超出了可保存范围。');
   if (!Number.isSafeInteger(state.energy.value) || state.energy.value < 0) return reject('体力超出了可保存范围。');
-  for (let index = 0; index < state.board.length; index++) {
+  for (let index = 0; state.activeWorkspaceId === original.activeWorkspaceId && index < state.board.length; index++) {
     const device = deviceAt(state, index);
     const changedDevice = device?.kind === 'appliance' && state.appliances.find(value => value.id === device.id)?.version !== original.appliances.find(value => value.id === device.id)?.version;
     if (state.board[index]?.uid !== original.board[index]?.uid || changedDevice || device?.id !== deviceAt(original, index)?.id) state.cellVersions[index] = (original.cellVersions[index] ?? 0) + 1;
@@ -611,7 +650,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
   return { state, ok: true, events };
 }
 
-export function stateInvariantErrors(state: GameState): string[] {
+function flatInvariantErrors(state: GameState): string[] {
   const errors: string[] = [];
   if (state.board.length !== (state.schemaVersion >= 2 ? BOARD_SIZE : 56) || state.jobs.length !== 4) errors.push('board/job length');
   if (state.storage.length > state.storageCapacity) errors.push('storage overflow');
@@ -648,4 +687,25 @@ export function stateInvariantErrors(state: GameState): string[] {
     if (appliance.inputSlots.length && !compatibleRecipes(state, appliance).length) errors.push('incompatible inputs');
   }
   return errors;
+}
+
+export function stateInvariantErrors(state: GameState): string[] {
+  bindWorkspaceViews(state);
+  if(!hasChapters(state))return flatInvariantErrors(state);
+  const errors:string[]=[];const ids=new Set<string>();
+  for(const w of allWorkspaces(state)){
+    const view=bindWorkspaceViews({...state,activeWorkspaceId:w.id});errors.push(...flatInvariantErrors(view).map(e=>w.id+': '+e));
+    const objects=[...w.board.filter(Boolean),...w.storage,...w.migrationInbox,...w.appliances.flatMap(a=>[...a.inputSlots,...(a.outputSlot?[a.outputSlot]:[])])];
+    const used=[...objects.map(o=>o!.uid),...w.devices.map(d=>d.id),...w.jobs.filter(Boolean).map(j=>j!.id),...w.appliances.flatMap(a=>a.job?[a.job.id]:[]),...w.regularOrders.map(o=>o.id)];
+    for(const id of used){if(ids.has(id))errors.push('duplicate global id');ids.add(id);}
+  }
+  if(deviceCount(state)+reservedDevices(state)>MAX_DEVICES)errors.push('reserved device capacity');
+  return errors;
+}
+
+export function getRecipeLayoutPreview(state:GameState, recipeId:string) {
+  const recipe=availableApplianceRecipes(state).find(r=>r.id===recipeId);if(!recipe)return null;
+  const dep=resolveRecipeDevices([recipe.output]);
+  const families=dep.families.map(id=>{const device=state.devices.filter(d=>d.familyId===id).sort((a,b)=>b.level-a.level||Number(b.index!==null)-Number(a.index!==null))[0];return {id,name:DEVICE_FAMILIES.find(f=>f.id===id)!.name,level:dep.levels[id]??1,ownedLevel:device?.level??0,device:device?.id,onBoard:!!device&&device.index!==null};});
+  return {families,requiredSpaces:families.filter(f=>!f.onBoard).length,freeSpaces:state.board.filter((_,i)=>getBoardEntity(state,i).kind==='empty').length,stowable:state.devices.filter(d=>d.index!==null&&!families.some(f=>f.device===d.id)&&deviceIdle(state,d.id)).length};
 }

@@ -1,3 +1,4 @@
+import { cloneGameState } from '../src/domain/workspaces';
 import 'fake-indexeddb/auto';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createInitialState, execute, getApplianceStatus, getEnergyStatus } from '../src/domain/engine';
@@ -189,9 +190,9 @@ describe('controller save/load/restart boundary', () => {
   it('round trips A and B, restarts without deleting slots, then continues B after reopening', async () => {
     const { controller, repo, clock, download } = await harness();
     await controller.dispatch({ type: 'generate', chain: 'fresh-veg' }); await controller.saveSlot(1);
-    const a = structuredClone(controller.view.state!);
+    const a = cloneGameState(controller.view.state!);
     await controller.dispatch({ type: 'generate', chain: 'fresh-fruit' }); await controller.dispatch({ type: 'session', session: { page: 'street', selectedUid: 'g3', orderScroll: 120 } }); await controller.saveSlot(2);
-    const b = structuredClone(controller.view.state!);
+    const b = cloneGameState(controller.view.state!);
     await controller.dispatch({ type: 'settings', settings: { volume: 0.2, reducedMotion: true } });
     clock.now += 86_400_000;
     await controller.loadSlot(1); expect(controller.view.state!.board).toEqual(a.board); expect(controller.view.state!.energy.value).toBe(a.energy.value);

@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import type Phaser from 'phaser';
 import { BoardRenderer } from '../src/game/board-render';
-import { createInitialState } from '../src/domain/engine';
+import {  } from '../src/domain/engine';
+import { historicalState as createInitialState } from './chapter-fixtures';
 import { reconcileHomeDevices } from '../src/domain/home-progression';
 import { FRESH_ORDERS } from '../src/content/catalog';
 import { BUILD_NODES } from '../src/content/board-layouts';

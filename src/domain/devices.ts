@@ -1,9 +1,12 @@
+import { activeWorkspace, currentChapter, hasChapters } from './workspaces';
 import { FRESH_ORDERS, HOME_ORDERS, ITEMS, MODERN_ORDERS } from '../content/catalog';
 import { BAND_COSTS, BAND_LEVELS, DEVICE_FAMILIES, EXPANSION, THEME_NAMES } from '../content/expansion';
 import type { ApplianceState, DeviceInstance, GameState, RecipeDef } from './types';
 
-export function themeStage(state: Pick<GameState,'campaign'|'completedOrders'|'construction'>): number {
+export function themeStage(state: Pick<GameState,'campaign'|'completedOrders'|'construction'> & Partial<Pick<GameState,'workspaces'|'activeWorkspaceId'>>): number {
   if(state.campaign!=='fresh')return 1;
+  const workspace=state.workspaces?.[state.activeWorkspaceId!];
+  if(workspace)return workspace.mode==='original'?workspace.originalStage!:workspace.chapter;
   if(!FRESH_ORDERS.every(o=>state.completedOrders.includes(o.id))||state.construction.completed.length<3)return 1;
   if(!HOME_ORDERS.every(o=>state.completedOrders.includes(o.id)))return 2;
   let stage=3;
@@ -13,7 +16,7 @@ export function themeStage(state: Pick<GameState,'campaign'|'completedOrders'|'c
 export function themeProgress(state: GameState) {
   const stage=themeStage(state), orders=MODERN_ORDERS.filter(o=>stage===1?o.id.startsWith('opening-'):stage===2?o.id.startsWith('home-'):o.stage===stage);
   const completed=orders.filter(o=>state.completedOrders.includes(o.id)).length;
-  return {stage,name:THEME_NAMES[stage-1],completed,total:orders.length,toNext:stage<3?orders.length:Math.min(3,orders.length),allCompleted:MODERN_ORDERS.every(o=>state.completedOrders.includes(o.id)),overall:MODERN_ORDERS.filter(o=>state.completedOrders.includes(o.id)).length};
+  return {stage,name:activeWorkspace(state)?.mode==='original'?'原厨房':THEME_NAMES[stage-1],completed,total:orders.length,toNext:stage<3?orders.length:Math.min(3,orders.length),allCompleted:MODERN_ORDERS.every(o=>state.completedOrders.includes(o.id)),overall:MODERN_ORDERS.filter(o=>state.completedOrders.includes(o.id)).length};
 }
 export const deviceFamily = (device: DeviceInstance) => DEVICE_FAMILIES.find(f=>f.id===device.familyId)!;
 export const deviceArtId = (device: DeviceInstance) => `${device.familyId}-l${device.level}`;
@@ -40,7 +43,7 @@ export function makeDevice(state: GameState,familyId:string,id=familyId,index:nu
 }
 /** Free first copies are granted once. Later themes put them safely on the device shelf. */
 export function reconcileDeviceGrants(state: GameState): boolean {
-  if(state.schemaVersion<3||state.campaign!=='fresh')return false;
+  if(hasChapters(state)||state.schemaVersion<3||state.campaign!=='fresh')return false;
   let added=false;
   const pending=DEVICE_FAMILIES.filter(f=>f.stage<=themeStage(state)&&!state.deviceGrants.includes(f.id));
   const limit=42+state.construction.completed.length*7;

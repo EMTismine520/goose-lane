@@ -1,3 +1,4 @@
+import { activeWorkspace } from '../domain/workspaces';
 import { memo, useEffect, useRef, useState } from 'react';
 import { Check, Coins, LoaderCircle, Pin } from 'lucide-react';
 import { availableOrders, canAffordRequirements, getDayProgress, getOrderReward, inventoryCount } from '../domain/engine';
@@ -48,8 +49,8 @@ function CustomerStripView({ state, act, onItem, onScroll, active, focusedOrderI
     }
   };
 
-  return <section className={`customer-section guest-orders ${state.campaign === 'fresh' ? 'v3-orders' : ''}`} aria-label="顾客订单">
-    <div className="customer-caption"><span>小馆来客</span><span>{state.campaign === 'fresh' ? theme.name : '今日款待'} <b>{state.campaign === 'fresh' ? theme.completed : progress.completed}/{state.campaign === 'fresh' ? theme.total : progress.total}</b></span></div>
+  return <section className={`customer-section guest-orders ${state.campaign === 'fresh' ? 'v3-orders'+(state.workspaces?' chapter-orders':'') : ''}`} aria-label="顾客订单">
+    <div className="customer-caption"><span>{state.workspaces?<span className="order-mode-tabs" aria-label="订单类型">{(['story','regular'] as const).map(tab=><button key={tab} aria-pressed={activeWorkspace(state)?.orderTab===tab} onClick={()=>act({type:'orderTab',tab})}>{tab==='story'?'故事':'常客'}</button>)}</span>:'小馆来客'}</span><span>{state.campaign === 'fresh' ? theme.name : '今日款待'} <b>{state.campaign === 'fresh' ? theme.completed : progress.completed}/{state.campaign === 'fresh' ? theme.total : progress.total}</b></span></div>
     <div className="customer-strip" data-order-strip ref={ref} onScroll={event => onScroll(event.currentTarget.scrollLeft)}>
       {orders.map(order => {
         const ready = canAffordRequirements(state, order.needs);
@@ -81,7 +82,7 @@ function CustomerStripView({ state, act, onItem, onScroll, active, focusedOrderI
           </button>
         </article>;
       })}
-      {!orders.length && <div className="orders-finished"><Check size={23}/><span><b>{theme.allCompleted ? '所有心愿，都有了好滋味' : '今天的客人都吃饱啦'}</b><small>{theme.allCompleted ? '继续收集喜欢的风味，慢慢逛逛小馆。' : '去完成小店建设，迎接下一份心愿。'}</small></span></div>}
+      {!orders.length && <div className="orders-finished"><Check size={23}/><span><b>{theme.allCompleted ? '所有心愿，都有了好滋味' : '今天的客人都吃饱啦'}</b><small>{theme.allCompleted ? '继续收集喜欢的风味，慢慢逛逛小馆。' : state.workspaces?'切到常客订单继续赚金币，或挑选喜欢的新章节。':'去完成小店建设，迎接下一份心愿。'}</small></span></div>}
     </div>
   </section>;
 }

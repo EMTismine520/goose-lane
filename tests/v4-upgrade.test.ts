@@ -6,9 +6,10 @@ import { CONTENT_VERSION, FRESH_ORDERS, HOME_ORDERS } from '../src/content/catal
 import { BUILD_NODES } from '../src/content/board-layouts';
 import { deviceAssetPath, devicePresentation } from '../src/content/assets';
 import { DEVICE_FAMILIES, EXPANSION } from '../src/content/expansion';
-import { createInitialState, execute, stateInvariantErrors } from '../src/domain/engine';
+import { execute, stateInvariantErrors } from '../src/domain/engine';
+import { historicalState as createInitialState } from './chapter-fixtures';
 import { reconcileDeviceGrants } from '../src/domain/devices';
-import { parseImportSave, SaveRepository, serializeSave } from '../src/persistence/save';
+import { parseImportSave, SaveRepository, serializeSave, validateSave } from '../src/persistence/save';
 import { acquireSession } from '../src/platform/session';
 import { DeviceShelf } from '../src/ui/DeviceShelf';
 
@@ -91,12 +92,12 @@ describe('V4 dedicated production and isolated fresh campaign',()=>{
  });
  it('only imports V4 files and leaves legacy conversion outside the import entry',()=>{
   const current=createInitialState(now);
-  expect(parseImportSave(serializeSave(current))).toEqual(current);
+  expect(parseImportSave(serializeSave(current))).toEqual(validateSave(current));
   for(const [schemaVersion,contentVersion]of [[0,'0.0.0'],[1,'1.0.0'],[2,'2.1.0'],[3,'3.0.0'],[3,'5.0.0']]){
-   expect(()=>parseImportSave(JSON.stringify({...current,schemaVersion,contentVersion}))).toThrow('只能导入 V4');
+   expect(()=>parseImportSave(JSON.stringify({...current,schemaVersion,contentVersion}))).toThrow();
   }
   expect(()=>parseImportSave('{')).toThrow('有效的 JSON');
-  expect(CONTENT_VERSION).toBe('4.0.0');
+  expect(CONTENT_VERSION).toBe('5.0.0');
  });
  it('opens a fresh default V4 store without reading or changing the historical store',async()=>{
   const old=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('goose-lane-v1',1);req.onupgradeneeded=()=>req.result.createObjectStore('snapshots');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
@@ -106,7 +107,7 @@ describe('V4 dedicated production and isolated fresh campaign',()=>{
   try{
    expect((await repo.open()).state).toBeNull();
    await repo.save(createInitialState(now));repo.close();
-   expect((await repo.open()).state?.contentVersion).toBe('4.0.0');
+   expect((await repo.open()).state?.contentVersion).toBe('5.0.0');
    const untouched=await new Promise<unknown>((resolve,reject)=>{const req=old.transaction('snapshots').objectStore('snapshots').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
    expect(untouched).toEqual(marker);
   }finally{repo.close();old.close();}

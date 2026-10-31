@@ -1,7 +1,9 @@
+import { validateSave as normalizeKitchen } from '../src/persistence/save';
 import { describe, expect, it } from 'vitest';
 import { FRESH_ORDERS } from '../src/content/catalog';
 import { BUILD_NODES } from '../src/content/board-layouts';
-import { createInitialState, execute, getBoardEntity, getApplianceStatus, unlockedCells } from '../src/domain/engine';
+import { execute, getBoardEntity, getApplianceStatus, unlockedCells } from '../src/domain/engine';
+import { historicalState as createInitialState } from './chapter-fixtures';
 import { reconcileHomeDevices } from '../src/domain/home-progression';
 import type { Command, GameState } from '../src/domain/types';
 import { getApplianceDrawerModel } from '../src/ui/ApplianceDrawer';
@@ -14,11 +16,11 @@ function act(state: GameState, command: Command, time = now) {
   return result.state;
 }
 function kitchen() {
-  const state = createInitialState(now);
+  let state = createInitialState(now);
   state.completedOrders = FRESH_ORDERS.map(order => order.id);
   state.construction.completed = BUILD_NODES.map(node => node.id);
   reconcileHomeDevices(state);
-  return state;
+  return normalizeKitchen(state);
 }
 function load(state: GameState, item: string) {
   const from = Array.from({ length: unlockedCells(state) }, (_, i) => i).find(i => getBoardEntity(state, i).kind === 'empty')!;

@@ -23,7 +23,7 @@ export function streetThemeCards(state: GameState) {
     const completed = orders.filter(order => state.completedOrders.includes(order.id)).length;
     return {
       ...presentation, stage, name: THEME_NAMES[index], completed, total: orders.length,
-      unlocked: stage <= unlockedStage, current: stage === unlockedStage,
+      unlocked: state.chapterAccess?state.chapterAccess.unlocked.includes(stage):stage <= unlockedStage, current: stage === unlockedStage,
       families: DEVICE_FAMILIES.filter(family => family.stage === stage),
       nextCondition: stage === 1 ? '完成 12 份开张订单与 3 项建设' : stage === 2 ? '完成 10 份家常订单' : stage < 8 ? '完成本主题前 3 份基础订单' : '收集全部风味，慢慢款待每一位来客',
     };

@@ -1,3 +1,5 @@
+import { bindWorkspaceViews } from '../domain/workspaces';
+import { availableOrders } from '../domain/engine';
 import type { Command, GameEvent, GameState } from '../domain/types';
 import { createInitialState, execute } from '../domain/engine';
 import { ORDERS, RECIPES } from '../content/catalog';
@@ -20,6 +22,8 @@ export interface GameView {
   pendingCommands: number;
   pendingUids: string[];
   sessionEpoch: number;
+  workspaceEpoch: number;
+  workspaceTransitionStartedAt?: number;
 }
 type Repository = Pick<SaveRepository, 'open' | 'save' | 'restorePrevious' | 'replaceCorrupt' | 'exportRaw' | 'close' | 'listManualSlots' | 'readManualSlot' | 'saveManualSlot'>;
 interface Dependencies {
@@ -36,7 +40,7 @@ export type GiftRedemptionResult =
 
 /** Owns the async boundary: the UI only observes states whose transaction committed. */
 export class GameController {
-  view: GameView = { state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0 };
+  view: GameView = { state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0, workspaceEpoch: 0 };
   private session: GameSession | null = null;
   private live = true;
   private conflict = false;
@@ -110,9 +114,11 @@ export class GameController {
     });
   }
 
-  private publish(state: GameState, savedAt = this.now(), restoreSession = false): void {
+  private publish(state: GameState, savedAt = this.now(), restoreSession = false, transitionStartedAt?: number): void {
     if (!this.live) return;
-    this.update({ state, savedAt, error: '', bootError: '', sessionEpoch: this.view.sessionEpoch + (restoreSession ? 1 : 0) });
+    bindWorkspaceViews(state);
+    const changed=this.view.state?.activeWorkspaceId!==state.activeWorkspaceId;
+    this.update({ state, savedAt, workspaceTransitionStartedAt:transitionStartedAt, workspaceEpoch:this.view.workspaceEpoch+(changed?1:0), error: '', bootError: '', sessionEpoch: this.view.sessionEpoch + (restoreSession ? 1 : 0) });
     this.sound.configure(state.settings);
   }
 
@@ -130,7 +136,21 @@ export class GameController {
     if (this.conflict || this.session?.readOnly !== false) throw new Error('本窗口暂时只读，请先重新取得经营权限并载入最新进度。');
   }
 
-  dispatch = (input: Command): Promise<boolean> => this.enqueue(input).then(result => result.ok);
+  dispatch = (input: Command): Promise<boolean> => {
+    if(input.type==='unlockAndEnterChapter'||input.type==='enterChapter')return this.changeChapter(input);
+    return this.enqueue(input).then(result=>result.ok);
+  };
+  private async changeChapter(input: Command): Promise<boolean> {
+    const expected=input.expectedWorkspaceId??this.view.state?.activeWorkspaceId, started=performance.now();
+    let success=false;
+    try { await this.withExclusive(async()=>{
+      const result=execute(this.view.state!,{...input,expectedWorkspaceId:expected,commandId:input.commandId??`${this.commandSession}:${++this.commandSequence}`},this.now());
+      if(!result.ok){this.setNotice(result.events[0]);return;}
+      await this.repository.save(result.state);if(!this.live)return;
+      this.publish(result.state,this.now(),false,started);this.setNotice(result.events.find(e=>e.type==='chapter-entered')!);success=true;
+    }); }catch(cause){this.setNotice({type:'error',message:this.message(cause)});}
+    return success;
+  }
 
   redeemGift = async (key: string): Promise<GiftRedemptionResult> => {
     const result = await this.enqueue({ type: 'redeemGift', key });
@@ -156,8 +176,8 @@ export class GameController {
       const entries = Object.entries(input.session ?? {});
       if (entries.length && entries.every(([key, value]) => key === 'selectedUid' ? (value === null || typeof value === 'string') && original.session.selectedUid === value : key === 'orderScroll' && typeof value === 'number' && Number.isFinite(value) && value >= 0 && original.session.orderScroll === Math.min(100000, Math.round(value)))) return Promise.resolve({ ok: true, state: original, events: [] });
     }
-    const command = { ...input, commandId: input.commandId ?? `${this.commandSession}:${++this.commandSequence}` } as Command;
-    const checks: ((state: GameState) => boolean)[] = [];
+    const command = { ...input, expectedWorkspaceId:input.expectedWorkspaceId??original.activeWorkspaceId, commandId: input.commandId ?? `${this.commandSession}:${++this.commandSequence}` } as Command;
+    const checks: ((state: GameState) => boolean)[] = [(state)=>state.activeWorkspaceId===original.activeWorkspaceId];
     const reserved: string[] = [];
     const captureCell = (index: number, target = false) => {
       const entry = original.board[index];
@@ -196,7 +216,7 @@ export class GameController {
       if (appliance && command.expectedVersion === undefined) command.expectedVersion = appliance.version;
       if (appliance?.job && command.expectedJobId === undefined) command.expectedJobId = appliance.job.id;
     }
-    const requirements = command.type === 'deliver' ? ORDERS.find((order) => order.id === command.order)?.needs
+    const requirements = command.type === 'deliver' ? availableOrders(original).find((order) => order.id === command.order)?.needs
       : command.type === 'cook' ? RECIPES.find((recipe) => recipe.id === command.recipe)?.inputs : undefined;
     if (requirements) {
       const available = [...original.board.filter((item) => item !== null), ...[...original.storage].reverse()];
@@ -254,7 +274,7 @@ export class GameController {
             if (this.live) {
               const finishPublish = perfSpan('publish', pending.command.type);
               this.publish(result.state); finishPublish();
-              const event = result.events.find(entry => entry.type === 'home-unlocked'||entry.type==='theme-unlocked') ?? result.events.find((entry) => entry.type !== 'move');
+              const event = result.events.find(entry => entry.type === 'home-unlocked'||entry.type==='theme-unlocked') ?? result.events.find((entry) => entry.type !== 'move'&&(!entry.workspaceId||entry.workspaceId===result.state.activeWorkspaceId));
               if (event) this.setNotice(event);
               if (result.events.some((event) => event.type === 'ready')) this.sound.play('complete');
               else if (result.state.stats.merges > original.stats.merges) this.sound.play('merge');
