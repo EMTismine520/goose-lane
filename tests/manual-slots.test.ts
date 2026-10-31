@@ -36,6 +36,37 @@ async function harness(readOnly = false) {
 }
 function deferred() { let resolve!: () => void; const promise = new Promise<void>(yes => { resolve = yes; }); return { promise, resolve }; }
 
+describe('speed-up wallet in checkpoint and replacement workflows', () => {
+  it('restores tickets with their job across slots, import, previous and restart without deleting checkpoints', async () => {
+    const { controller, repo } = await harness();
+    const initial = controller.view.state!, a = initial.appliances[0], recipe = getApplianceStatus(initial, a.id, now)!.recipes[0];
+    a.inputSlots = recipe.inputs.flatMap(need => Array.from({ length: need.count }, () => ({ uid: `g${initial.nextId++}`, item: need.item })));
+    expect(await controller.dispatch({ type: 'startCooking', appliance: a.id, recipe: recipe.id })).toBe(true);
+    await controller.saveSlot(1);
+    const target = { appliance: a.id, expectedJobId: controller.view.state!.appliances[0].job!.id };
+    expect(await controller.speedUpCooking(target)).toMatchObject({ ok: true, ticketsRemaining: 99 });
+    await controller.saveSlot(2); const exported = serializeSave(controller.view.state!);
+    await controller.loadSlot(1); expect(controller.view.state!.speedUpTickets).toBe(100); expect(controller.view.state!.appliances[0].outputSlot).toBeNull();
+    await controller.loadSlot(2); expect(controller.view.state!.speedUpTickets).toBe(99); expect(controller.view.state!.appliances[0].outputSlot).not.toBeNull();
+    await controller.importSave(exported); expect(controller.view.state!.speedUpTickets).toBe(99);
+    await controller.restartGame(); expect(controller.view.state!.speedUpTickets).toBe(100);
+    expect((await repo.listManualSlots()).map(slot => slot.status === 'ready' ? slot.state.speedUpTickets : null)).toEqual([100, 99, null]);
+    await controller.recoverPrevious(); expect(controller.view.state!.speedUpTickets).toBe(99); expect(controller.view.state!.appliances[0].outputSlot).not.toBeNull();
+  });
+
+  it('reads a v4 manual slot as its own 100-ticket snapshot while preserving its original bytes', async () => {
+    const { repo, name } = await repository();
+    const old = JSON.parse(serializeSave(createInitialState(now))); delete old.speedUpTickets; old.schemaVersion = 4; old.contentVersion = '5.0.0';
+    const raw = { format: 1, slotId: 1, token: 'old-ticket-slot', savedAt: now, capturedAt: now, data: JSON.stringify(old) };
+    await rawWrite(name, 'manual-slot-1', raw);
+    const slot = await repo.readManualSlot(1); expect(slot.status).toBe('ready');
+    if (slot.status !== 'ready') throw new Error('Expected old checkpoint to migrate');
+    const current = createInitialState(now); current.speedUpTickets = 17;
+    expect(resumeManualSlot(slot, now + 1000, current).speedUpTickets).toBe(100);
+    expect(JSON.parse(await repo.exportRaw()).manualSlots[0]).toEqual(raw);
+  });
+});
+
 describe('gift energy in existing save workflows', () => {
   it('round-trips through slots and imports, while restart preserves the manual gifts', async () => {
     const { controller } = await harness();

@@ -9,7 +9,7 @@ const catalog={version:CONTENT_VERSION,schema:SCHEMA_VERSION,counts:{items:items
 if(items.length!==245||equipment.length!==DEVICE_FAMILIES.length*3||MODERN_RECIPES.length!==123||MODERN_ORDERS.length!==145)throw new Error('Catalog is incomplete');
 mkdirSync('public/content',{recursive:true});writeFileSync('public/content/v3-catalog.json',JSON.stringify(catalog,null,2)+'\n');
 const kind=(value:string)=>({ingredient:'食材',dish:'料理',drink:'饮品'}[value]??value);
-let doc='# 完整料理图鉴 · 内容 4.0.0\n\n245个食物材料、78个设备形态，共323个唯一收藏。139种成品通过123道配方或16个合成饮品节点获得。配方、阶数和成长为本项目设计。表中配方秒数为基础耗时，实际按厨具等级与已拥有的速度加成缩短。\n\n';
+let doc='# 完整料理图鉴 · 内容 '+CONTENT_VERSION+'\n\n245个食物材料、78个设备形态，共323个唯一收藏。139种成品通过123道配方或16个合成饮品节点获得。配方、阶数和成长为本项目设计。表中配方秒数为基础耗时，实际按厨具等级与已拥有的速度加成缩短。\n\n';
 for(const group of ['dish','drink','ingredient']){
  doc+=`## ${kind(group)}\n\n| ID | 名称 | 获取方法与材料 | 主题 | 资产 |\n|---|---|---|---|---|\n`;
  for(const item of items.filter(i=>i.kind===group)){const r=MODERN_RECIPES.find(r=>r.output===item.id);const chain=CHAINS.find(c=>c.items.includes(item.id));doc+=`| ${item.id} | ${item.name} | ${r?`${DEVICE_FAMILIES.find(f=>f.id===r.deviceFamilyId)!.name}${r.minDeviceLevel}级；${r.inputs.map(n=>items.find(i=>i.id===n.item)!.name+'×'+n.count).join('＋')}；${r.duration/1000}秒`:`${chain!.name} ${item.level}阶，${item.source}生产与二合`} | ${THEME_NAMES[(item.stage??1)-1]} | ${item.assetPath} |\n`;}

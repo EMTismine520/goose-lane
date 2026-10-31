@@ -54,7 +54,7 @@ export function Avatar({id,size=54}: {id:string;size?:number}) {
   return <span className="avatar" style={{'--avatar':c?.color??'#71927a',width:size,height:size} as CSSProperties}><Goose color={c?.color} accessory={c?.accessory}/></span>;
 }
 
-export function Modal({title,eyebrow,children,onClose,wide=false,busy=false,variant='dialog',scrollKey,initialScrollTop=0,className=''}: {title:string;eyebrow?:string;children:ReactNode;onClose:()=>void;wide?:boolean;busy?:boolean;variant?:'dialog'|'sheet';scrollKey?:string;initialScrollTop?:number;className?:string}) {
+export function Modal({title,eyebrow,children,onClose,wide=false,busy=false,variant='dialog',scrollKey,initialScrollTop=0,className='',returnFocus}: {title:string;eyebrow?:string;children:ReactNode;onClose:()=>void;wide?:boolean;busy?:boolean;variant?:'dialog'|'sheet';scrollKey?:string;initialScrollTop?:number;className?:string;returnFocus?:HTMLElement|null}) {
   const ref=useRef<HTMLDivElement>(null);
   const busyRef=useRef(busy);busyRef.current=busy;
   const closeRef=useRef(onClose);closeRef.current=onClose;
@@ -63,7 +63,7 @@ export function Modal({title,eyebrow,children,onClose,wide=false,busy=false,vari
   const previousFocus=useRef<HTMLElement|null>(null);
   const initialPosition=useRef(initialScrollTop);initialPosition.current=initialScrollTop;
   const positionKey=scrollKey??title;
-  useLayoutEffect(()=>{previousFocus.current=document.activeElement as HTMLElement|null},[]);
+  useLayoutEffect(()=>{previousFocus.current=returnFocus??document.activeElement as HTMLElement|null},[]);
   useLayoutEffect(()=>{
     const element=ref.current;
     if(!element)return;

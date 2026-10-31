@@ -47,7 +47,7 @@ describe('order guidance stays read-only and follows authoritative inventory',()
   });
   it.each(UI_SCENARIOS)('produces a valid isolated %s acceptance fixture',scenario=>{
     const state=createUiPreviewState(scenario,100000);
-    expect(state.schemaVersion).toBe(4);
+    expect(state.schemaVersion).toBe(5);
     expect(state.board).toHaveLength(63);
     if(scenario==='ready'||scenario==='full')expect(getApplianceStatus(state,'home-cooking-pot',100000)?.phase).toBe('ready');
     if(scenario==='cooking')expect(getApplianceStatus(state,'home-cooking-pot',100000)?.phase).toBe('cooking');

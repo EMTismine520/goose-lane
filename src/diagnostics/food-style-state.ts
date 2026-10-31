@@ -13,7 +13,7 @@ export const FOOD_STYLE_ITEMS = [...HOME_CHAINS.flatMap(chain => chain.items), .
 /** All 34 B foods, eight intact devices, old produce, and room for real play. */
 export function createFoodStyleState(now = Date.now(), layout: 'showcase' | 'sausages' = 'showcase') {
   const base=simulateOpening().state;
-  const old={...base,...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,base[k]])),schemaVersion:3,contentVersion:'4.0.0'} as GameState;delete old.workspaces;delete old.chapterAccess;delete old.activeWorkspaceId;reconcileDeviceGrants(old);
+  const old={...base,...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,base[k]])),schemaVersion:3,contentVersion:'4.0.0'} as GameState;delete old.workspaces;delete old.chapterAccess;delete old.activeWorkspaceId;delete (old as Partial<GameState>).speedUpTickets;reconcileDeviceGrants(old);
   const played=validateSave(old);
   const state = resumeManualSlot({ id: 1, status: 'ready', state: played, capturedAt: played.lastSeen, savedAt: played.lastSeen }, now);
   state.board.fill(null);

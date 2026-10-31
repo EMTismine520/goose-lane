@@ -1,8 +1,8 @@
 import type { ChainDef, CustomerDef, DecorationDef, ItemDef, OrderDef, RecipeDef, Requirement, ShopDef } from '../domain/types';
 import { installExpansion } from './expansion';
 
-export const SCHEMA_VERSION = 4;
-export const CONTENT_VERSION = '5.0.0';
+export const SCHEMA_VERSION = 5;
+export const CONTENT_VERSION = '5.1.0';
 
 const chainData: [string, string, string, number, string[]][] = [
   ['grain', '麦香篮', '#e7b568', 1, ['麦穗', '小麦粉', '柔软面团', '金黄吐司', '牛角面包', '手作面包', '丰收面包篮']],

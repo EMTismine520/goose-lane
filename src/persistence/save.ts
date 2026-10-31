@@ -4,7 +4,7 @@ import type { Workspace, OrderDef } from '../domain/types';
 const SCHEMA_VERSION=3, CONTENT_VERSION='4.0.0';
 import { APPLIANCES, CHAINS, CONTENT_VERSION as CURRENT_CONTENT_VERSION, DECORATIONS, HOME_CHAINS, ITEMS, ORDERS, RECIPES, SCHEMA_VERSION as CURRENT_SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import { perfSpan } from '../platform/performance';
-import { ENERGY_CONFIG } from '../content/production';
+import { ENERGY_CONFIG, SPEED_UP_CONFIG } from '../content/production';
 import type { GameState, ItemInstance } from '../domain/types';
 import { availableApplianceRecipes, createInitialState, unlockedCells } from '../domain/engine';
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES } from '../content/board-layouts';
@@ -93,6 +93,7 @@ function migrate(value: unknown): RecordValue {
   const base=createInitialState(integer(legacy.lastSeen, '最后游玩时间', 0, Number.MAX_SAFE_INTEGER));
   const initial={...base,...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,base[k]]))};
   delete initial.workspaces;delete initial.activeWorkspaceId;delete initial.chapterAccess;
+  delete (initial as Partial<GameState>).speedUpTickets;
   const limit = day >= 5 ? 63 : day >= 4 ? 56 : day >= 3 ? 49 : 42;
   const occupied = new Set(BOARD_LAYOUT.entities.map((entry) => entry.index));
   const board: unknown[] = Array(63).fill(null);
@@ -269,7 +270,8 @@ function validateFlatSave(input: unknown, scope?: Workspace): GameState {
   if (new Set(processedCommandIds).size !== processedCommandIds.length) return invalid('重复命令编号');
   const cellVersions = array(value.cellVersions, '格子版本', 63).map((version) => integer(version, '格子版本'));
   if (cellVersions.length !== 63) return invalid('格子版本数量');
-  const result: GameState = {
+  // Historical flat projections have no ticket wallet; validateSave adds it once at the root.
+  const result = {
     schemaVersion: SCHEMA_VERSION, contentVersion: CONTENT_VERSION, revision,
     seed: integer(value.seed, '随机种子', 0, 0xffffffff), nextId, board, storage, storageCapacity,
     generators, jobs, completedOrders, day, coins, reputation: integer(value.reputation, '声望'), shops, decorations, discovered,
@@ -277,7 +279,7 @@ function validateFlatSave(input: unknown, scope?: Workspace): GameState {
     tutorial: integer(value.tutorial, '教学进度', 0, 5),
     settings: { music: boolean(settingsRaw.music, '音乐开关'), sound: boolean(settingsRaw.sound, '音效开关'), reducedMotion: boolean(settingsRaw.reducedMotion, '减少动态'), volume: settingsRaw.volume },
     lastSeen, undo, energy, appliances, construction, tutorialState, session, migrationInbox, processedCommandIds, cellVersions, campaign,devices,deviceGrants,deviceDiscovered,
-  };
+  } as GameState;
   if (oldSchema) {
     // Validate the complete old shape before changing layout. Never repair corrupt input.
     for (const chain of CHAINS) result.generators[chain.id] ??= { remaining: 12, readyAt: 0 };
@@ -292,19 +294,26 @@ function validateFlatSave(input: unknown, scope?: Workspace): GameState {
 /** Validate all kitchens, then bind non-persisted lenses for existing presentation consumers. */
 export function validateSave(input: unknown): GameState {
   const raw=object(input,'根对象');
-  if(raw.schemaVersion!==CURRENT_SCHEMA_VERSION){
+  const version=integer(raw.schemaVersion,'版本',0,Number.MAX_SAFE_INTEGER);
+  if(version>CURRENT_SCHEMA_VERSION)throw new SaveError('这是较新版本的存档，请使用新版游戏打开。原档已保留。','future');
+  if(version<4){
     const flat=validateFlatSave(raw);
     const originalStage=themeStage(flat);
+    flat.speedUpTickets=SPEED_UP_CONFIG.initial;
     flat.schemaVersion=CURRENT_SCHEMA_VERSION;flat.contentVersion=CURRENT_CONTENT_VERSION;
     return flat.campaign==='fresh'?initializeChapters(flat,originalStage):flat;
   }
-  if(raw.contentVersion!==CURRENT_CONTENT_VERSION)throw new SaveError('存档内容版本不兼容，原档已保留。','future');
+  if(raw.contentVersion!==(version===4?'5.0.0':CURRENT_CONTENT_VERSION))throw new SaveError('存档内容版本不兼容，原档已保留。','future');
+  const ticketFields=version===4?[]:['speedUpTickets'];
+  const tickets=version===4?SPEED_UP_CONFIG.initial:integer(raw.speedUpTickets,'加速券',0,SPEED_UP_CONFIG.maxValue);
   if(raw.campaign!=='fresh'){
-    const flat=validateFlatSave({...raw,schemaVersion:3,contentVersion:'4.0.0'});
+    object(raw,'根对象',[...CURRENT_FIELDS,...ticketFields]);
+    const flat=validateFlatSave({...Object.fromEntries(CURRENT_FIELDS.map(k=>[k,raw[k]])),schemaVersion:3,contentVersion:'4.0.0'});
+    flat.speedUpTickets=tickets;
     flat.schemaVersion=CURRENT_SCHEMA_VERSION;flat.contentVersion=CURRENT_CONTENT_VERSION;return flat;
   }
   const globals=CURRENT_FIELDS.filter(k=>!(WORKSPACE_FIELDS as readonly string[]).includes(k));
-  object(raw,'根对象',[...globals,'activeWorkspaceId','chapterAccess','workspaces']);
+  object(raw,'根对象',[...globals,...ticketFields,'activeWorkspaceId','chapterAccess','workspaces']);
   const access=object(raw.chapterAccess,'章节权益',['unlocked','paidUnlocks']);
   const unlocked=array(access.unlocked,'已开放章节',8).map(n=>integer(n,'章节编号',1,8));
   if(!unlocked.includes(1)||new Set(unlocked).size!==unlocked.length)return invalid('章节权益');
@@ -345,6 +354,7 @@ export function validateSave(input: unknown): GameState {
   }
   if(!root||!Object.keys(workspaces).length)return invalid('厨房缺失');
   root.schemaVersion=CURRENT_SCHEMA_VERSION;root.contentVersion=CURRENT_CONTENT_VERSION;root.activeWorkspaceId=activeId;root.chapterAccess={unlocked,paidUnlocks};root.workspaces=workspaces;
+  root.speedUpTickets=tickets;
   bindWorkspaceViews(root);
   const used=new Set<string>();
   for(const w of Object.values(workspaces)){
@@ -540,7 +550,7 @@ export class SaveRepository {
             if (valid) {
               store.put(valid, 'previous');
               const originalVersion: unknown = JSON.parse(valid.data).schemaVersion;
-              if (originalVersion === 0 || originalVersion === 1 || originalVersion === 2 || originalVersion === 3) store.put(valid, `migration-v${originalVersion}`);
+              if (originalVersion === 0 || originalVersion === 1 || originalVersion === 2 || originalVersion === 3 || originalVersion === 4) store.put(valid, `migration-v${originalVersion}`);
             }
             else store.put(rawCurrent, 'recovery');
           }
@@ -630,9 +640,9 @@ export class SaveRepository {
     const transaction = this.database.transaction(STORE, 'readonly');
     const done = completed(transaction);
     const store = transaction.objectStore(STORE);
-    const [current, previous, recovery, migrationV0, migrationV1, migrationV2, migrationV3, ...manualSlots] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1', 'migration-v2', 'migration-v3', ...SAVE_SLOT_IDS.map(id => `manual-slot-${id}`)].map((key) => request(store.get(key))));
+    const [current, previous, recovery, migrationV0, migrationV1, migrationV2, migrationV3, migrationV4, ...manualSlots] = await Promise.all(['current', 'previous', 'recovery', 'migration-v0', 'migration-v1', 'migration-v2', 'migration-v3', 'migration-v4', ...SAVE_SLOT_IDS.map(id => `manual-slot-${id}`)].map((key) => request(store.get(key))));
     await done;
-    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1, migrationV2, migrationV3, manualSlots }, null, 2);
+    return JSON.stringify({ format: 'goose-lane-recovery-v1', current, previous, recovery, migrationV0, migrationV1, migrationV2, migrationV3, migrationV4, manualSlots }, null, 2);
   }
 
   close(): void { this.database?.close(); this.database = null; this.opened = false; this.corrupt = false; }

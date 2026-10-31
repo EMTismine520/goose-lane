@@ -15,7 +15,7 @@ describe('chapter migration and complete manual checkpoints',()=>{
     await new Promise<void>((resolve,reject)=>{const tx=db.transaction('snapshots','readwrite');tx.objectStore('snapshots').put({format:1,token:'original-schema-three',savedAt:now,data:source},'current');tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);});db.close();
     try{let state=(await repo.open()).state!;expect(state.activeWorkspaceId).toBe('original');
       for(let i=0;i<3;i++){state=execute(state,{type:'recover'},now+i).state;await repo.save(state);}
-      const raw=JSON.parse(await repo.exportRaw());expect(raw.migrationV3.data).toBe(source);expect(JSON.parse(raw.current.data).schemaVersion).toBe(4);expect(JSON.parse(raw.previous.data).schemaVersion).toBe(4);
+      const raw=JSON.parse(await repo.exportRaw());expect(raw.migrationV3.data).toBe(source);expect(JSON.parse(raw.current.data).schemaVersion).toBe(5);expect(JSON.parse(raw.previous.data).schemaVersion).toBe(5);
     }finally{repo.close();}
   });
   it('freezes every background job in a manual slot and restores wallet and entitlements as one snapshot',()=>{

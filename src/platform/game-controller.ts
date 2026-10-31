@@ -1,6 +1,6 @@
 import { bindWorkspaceViews } from '../domain/workspaces';
 import { availableOrders } from '../domain/engine';
-import type { Command, GameEvent, GameState } from '../domain/types';
+import type { Command, CommandMetadata, GameEvent, GameState, SpeedUpTarget } from '../domain/types';
 import { createInitialState, execute } from '../domain/engine';
 import { ORDERS, RECIPES } from '../content/catalog';
 import { SaveError, SaveRepository, parseImportSave, serializeSave, resumeManualSlot } from '../persistence/save';
@@ -36,6 +36,10 @@ interface Dependencies {
 type DispatchResult = { ok: true; state: GameState; events: GameEvent[] } | { ok: false; message: string };
 export type GiftRedemptionResult =
   | { ok: true; energyAdded: number; energyValue: number }
+  | { ok: false; message: string };
+export type SpeedUpResult =
+  | { ok: true; status: 'accelerated'; ticketsSpent: 1; ticketsRemaining: number }
+  | { ok: true; status: 'already-ready'; ticketsSpent: 0; ticketsRemaining: number }
   | { ok: false; message: string };
 
 /** Owns the async boundary: the UI only observes states whose transaction committed. */
@@ -158,6 +162,15 @@ export class GameController {
     return { ok: true, energyAdded: result.events.find(event => event.type === 'redeem')!.amount!, energyValue: result.state.energy.value };
   };
 
+  speedUpCooking = async (target: SpeedUpTarget & CommandMetadata): Promise<SpeedUpResult> => {
+    const result = await this.enqueue({ ...target, type: 'speedUpCooking' });
+    if (!result.ok) return result;
+    const event = result.events.find(event => event.type === 'speed-up' && event.jobId === target.expectedJobId)!;
+    return event.amount === 1
+      ? { ok: true, status: 'accelerated', ticketsSpent: 1, ticketsRemaining: result.state.speedUpTickets }
+      : { ok: true, status: 'already-ready', ticketsSpent: 0, ticketsRemaining: result.state.speedUpTickets };
+  };
+
   /** Capture identity at pointer-up, never reinterpret stale cell indices after an earlier save. */
   private enqueue = (input: Command): Promise<DispatchResult> => {
     if (!this.view.state) return Promise.resolve({ ok: false, message: '正在打开游戏，请稍后重试。' });
@@ -197,7 +210,19 @@ export class GameController {
       const uid = command.uid; reserved.push(uid);
       checks.push((state) => [...state.storage, ...state.migrationInbox, ...state.appliances.flatMap((entry) => entry.inputSlots)].some((entry) => entry.uid === uid));
     }
-    if ('slot' in command && typeof command.slot === 'number') {
+    if (command.type === 'speedUpCooking') {
+      // A natural completion may change the version/output, but it is still the same job.
+      if ('appliance' in command) {
+        const id = command.appliance, jobId = command.expectedJobId;
+        reserved.push(`appliance:${id}`);
+        checks.push(state => state.appliances.find(entry => entry.id === id)?.job?.id === jobId);
+      } else {
+        const slot = command.slot, jobId = command.expectedJobId;
+        reserved.push(`appliance:${slot}`);
+        checks.push(state => state.jobs[slot]?.id === jobId);
+      }
+    }
+    if (command.type !== 'speedUpCooking' && 'slot' in command && typeof command.slot === 'number') {
       const slot = command.slot;
       const appliance = original.appliances.find((entry) => entry.slot === slot);
       const signature = JSON.stringify([original.jobs[slot], appliance]);
@@ -207,7 +232,7 @@ export class GameController {
       const job = original.jobs[slot] ?? appliance?.job;
       if (job && command.expectedJobId === undefined) command.expectedJobId = job.id;
     }
-    if ('appliance' in command && typeof command.appliance === 'string') {
+    if (command.type !== 'speedUpCooking' && 'appliance' in command && typeof command.appliance === 'string') {
       const id = command.appliance;
       const appliance = original.appliances.find((entry) => entry.id === id);
       const signature = JSON.stringify(appliance);
@@ -274,7 +299,7 @@ export class GameController {
             if (this.live) {
               const finishPublish = perfSpan('publish', pending.command.type);
               this.publish(result.state); finishPublish();
-              const event = result.events.find(entry => entry.type === 'home-unlocked'||entry.type==='theme-unlocked') ?? result.events.find((entry) => entry.type !== 'move'&&(!entry.workspaceId||entry.workspaceId===result.state.activeWorkspaceId));
+              const event = result.events.find(entry => entry.type === 'speed-up') ?? result.events.find(entry => entry.type === 'home-unlocked'||entry.type==='theme-unlocked') ?? result.events.find((entry) => entry.type !== 'move'&&(!entry.workspaceId||entry.workspaceId===result.state.activeWorkspaceId));
               if (event) this.setNotice(event);
               if (result.events.some((event) => event.type === 'ready')) this.sound.play('complete');
               else if (result.state.stats.merges > original.stats.merges) this.sound.play('merge');
@@ -282,7 +307,7 @@ export class GameController {
               else if (pending.command.type === 'deliver') this.sound.play('deliver');
               else if (['cook', 'startCooking'].includes(pending.command.type)) this.sound.play('cook');
               else if (['upgrade', 'build'].includes(pending.command.type)) this.sound.play('upgrade');
-              else if (['collect', 'collectAppliance', 'redeemGift'].includes(pending.command.type)) this.sound.play('complete');
+              else if (['collect', 'collectAppliance', 'redeemGift', 'speedUpCooking'].includes(pending.command.type)) this.sound.play('complete');
               else if (!['session', 'recover'].includes(pending.command.type)) this.sound.play('click');
               outcome = { ok: true, state: result.state, events: result.events };
             }

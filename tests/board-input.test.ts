@@ -179,11 +179,11 @@ describe('clicks inspect objects and operate devices without transporting the pr
     expect(result.state.board[0]).toEqual(state.board[0]);
   });
 
-  it.each(['idle', 'cooking'] as const)('selects an %s appliance without loading or clearing it on a second tap', phase => {
+  it.each(['idle', 'cooking'] as const)('inspects or confirms an %s appliance without changing its inputs on a second tap', phase => {
     const state = kitchen(phase);
     const before = cloneGameState(state);
     for (const selected of [null, 0, 1, 35, 40, 41]) {
-      expect(boardTapAction(state, 40, selected)).toEqual({ kind: 'select', index: 40 });
+      expect(boardTapAction(state, 40, selected)).toEqual(phase === 'cooking' ? { kind: 'confirmSpeedup', appliance: state.appliances[0].id, jobId: state.appliances[0].job!.id } : { kind: 'select', index: 40 });
       expect(boardTapAction(state, 41, selected)).toEqual({ kind: 'select', index: 41 });
     }
     expect(state).toEqual(before);

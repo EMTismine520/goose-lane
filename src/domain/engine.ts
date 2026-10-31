@@ -3,7 +3,7 @@ import { activeWorkspace, allWorkspaces, bindWorkspaceViews, chapterPrice, clone
 import { APPLIANCES, baseUnits, CHAINS, CONTENT_VERSION, DECORATIONS, FRESH_ORDERS, FRESH_RECIPES, HOME_CHAINS, HOME_ORDERS, ITEMS, LEGACY_ORDERS, LEGACY_RECIPES, MODERN_RECIPES, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES, HOME_UNLOCK_HINT, homeCookingUnlocked } from '../content/board-layouts';
 import { reconcileHomeDevices } from './home-progression';
-import { ENERGY_CONFIG, nextRandom, PRODUCTION } from '../content/production';
+import { ENERGY_CONFIG, nextRandom, PRODUCTION, SPEED_UP_CONFIG } from '../content/production';
 import { GIFT_CODES, GIFT_CODE_MAX_LENGTH } from '../content/gift-codes';
 import { TUTORIAL_STEPS } from '../content/tutorial';
 import type { ApplianceState, Command, CommandResult, GameEvent, GameState, ItemInstance, OrderDef, RecipeDef, Requirement } from './types';
@@ -42,7 +42,7 @@ export function createInitialState(now = Date.now()): GameState {
     schemaVersion: SCHEMA_VERSION, contentVersion: CONTENT_VERSION, revision: 0, seed: 0x6f657321, nextId: 5,
     board, storage: [], storageCapacity: STORAGE_CAPACITY,
     generators: Object.fromEntries(CHAINS.map(chain => [chain.id, { remaining: GENERATOR_CAPACITY, readyAt: 0 }])),
-    jobs: [null, null, null, null], completedOrders: [], day: 1, coins: 0, reputation: 0,
+    jobs: [null, null, null, null], completedOrders: [], day: 1, coins: 0, reputation: 0, speedUpTickets: SPEED_UP_CONFIG.initial,
     shops: Object.fromEntries(SHOPS.map(shop => [shop.id, 0])), decorations: [], discovered: ['fresh-veg-1', 'fresh-fruit-1'],
     stats: { merges: 0, generated: 0, cooked: 0, earned: 0 }, tutorial: 0,
     settings: { music: false, sound: true, reducedMotion: false, volume: 0.55 }, lastSeen: boundedTimestamp(now), undo: null,
@@ -286,7 +286,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
     const target = deviceAt(original, command.to);
     if (target?.kind === 'appliance') return execute(original, { ...command, type: 'stageInput', appliance: target.id }, now);
   }
-  if ('appliance' in command && command.expectedVersion !== undefined && original.appliances.find(appliance => appliance.id === command.appliance)?.version !== command.expectedVersion) return reject('厨具状态已改变，请重试。');
+  if (command.type !== 'speedUpCooking' && 'appliance' in command && command.expectedVersion !== undefined && original.appliances.find(appliance => appliance.id === command.appliance)?.version !== command.expectedVersion) return reject('厨具状态已改变，请重试。');
   if (!Number.isSafeInteger(original.revision + 1) || !Number.isSafeInteger(original.nextId + 1)) return reject('存档编号已到上限，请导出备份。');
   const state = cloneGameState(original);
   const time = effectiveNow(state, now);
@@ -466,6 +466,25 @@ export function execute(original: GameState, command: Command, now = Date.now())
       events.push({ type: 'cook', message: `${recipe.name}开始制作，可以继续合成。`, appliance: appliance.id, index: appliance.index, item: recipe.output });
       break;
     }
+    case 'speedUpCooking': {
+      const appliance = 'appliance' in command ? state.appliances.find(value => value.id === command.appliance) : undefined;
+      const slot = 'slot' in command ? command.slot : undefined;
+      if (slot !== undefined && (!Number.isInteger(slot) || slot < 0 || slot >= state.jobs.length)) return reject('厨具不存在，请重新选择。');
+      const job = appliance?.job ?? (slot !== undefined ? state.jobs[slot] : null);
+      if (!command.expectedJobId || !job || job.id !== command.expectedJobId) return reject('这份料理已领取或任务已经改变，请重新选择。');
+      const alreadyReady = job.endsAt <= time;
+      if (!alreadyReady) {
+        if (state.speedUpTickets < SPEED_UP_CONFIG.cost) return reject('加速券不足，可以等待自然完成。');
+        state.speedUpTickets -= SPEED_UP_CONFIG.cost;
+        job.endsAt = time;
+        // Use the natural-completion path: preserve the job and create its output exactly once.
+        reconcileTime(state, time, events);
+      }
+      events.push({ type: 'speed-up', workspaceId: state.activeWorkspaceId, appliance: appliance?.id, slot, jobId: job.id,
+        amount: alreadyReady ? 0 : SPEED_UP_CONFIG.cost,
+        message: alreadyReady ? '料理已经完成，本次未消耗加速券。' : `料理做好啦！消耗 1 张加速券，剩余 ${state.speedUpTickets} 张。` });
+      break;
+    }
     case 'collectAppliance': {
       const appliance = state.appliances.find(value => value.id === command.appliance);
       if (!appliance?.job || (command.expectedJobId && command.expectedJobId !== appliance.job.id)) return reject('这份料理已领取或任务已经改变。');
@@ -530,6 +549,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       if (!Number.isInteger(command.slot) || command.slot < 0 || command.slot >= 4) return reject('厨具不存在。');
       const job = state.jobs[command.slot];
       if (!job) return reject('这台厨具没有待领取的料理。');
+      if (command.expectedJobId && command.expectedJobId !== job.id) return reject('这份料理已领取或任务已经改变。');
       if (job.endsAt > time) return reject('料理还差一点火候，再等等吧。');
       const index = emptyCell(state);
       if (index < 0 && state.storage.length >= state.storageCapacity) return reject('棋盘和仓库都满啦，料理会在厨具里保温。');
@@ -642,6 +662,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
   if (!hasChapters(state) && reconcileHomeDevices(state)) events.push(themeStage(state)===2?{ type: 'home-unlocked', message: '家常菜厨房开放啦！两类肉车、香料盒和料理锅已经就位。', index: 47 }:{type:'theme-unlocked',message:'新主题开放啦！赠送设备已收入设备架，继续探索下一街区。'});
   if (!Number.isSafeInteger(state.coins) || state.coins < 0 || !Number.isSafeInteger(state.reputation)) return reject('这次操作超出了可保存范围。');
   if (!Number.isSafeInteger(state.energy.value) || state.energy.value < 0) return reject('体力超出了可保存范围。');
+  if ((state.schemaVersion >= 5 || command.type === 'speedUpCooking') && (!Number.isSafeInteger(state.speedUpTickets) || state.speedUpTickets < 0 || state.speedUpTickets > SPEED_UP_CONFIG.maxValue)) return reject('加速券超出了可保存范围。');
   for (let index = 0; state.activeWorkspaceId === original.activeWorkspaceId && index < state.board.length; index++) {
     const device = deviceAt(state, index);
     const changedDevice = device?.kind === 'appliance' && state.appliances.find(value => value.id === device.id)?.version !== original.appliances.find(value => value.id === device.id)?.version;
@@ -661,6 +682,7 @@ function flatInvariantErrors(state: GameState): string[] {
   if (state.board.length !== (state.schemaVersion >= 2 ? BOARD_SIZE : 56) || state.jobs.length !== 4) errors.push('board/job length');
   if (state.storage.length > state.storageCapacity) errors.push('storage overflow');
   if (!Number.isSafeInteger(state.coins) || state.coins < 0) errors.push('coins');
+  if (state.schemaVersion >= 5 && (!Number.isSafeInteger(state.speedUpTickets) || state.speedUpTickets < 0 || state.speedUpTickets > SPEED_UP_CONFIG.maxValue)) errors.push('speed-up tickets');
   if (state.board.slice(unlockedCells(state)).some(Boolean)) errors.push('locked cell occupied');
   if (activeDevices(state).some(entity => state.board[entity.index])) errors.push('device cell occupied');
   if (state.schemaVersion >= 3 && state.campaign==='fresh') {

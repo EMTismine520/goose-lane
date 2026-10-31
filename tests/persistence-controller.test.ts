@@ -1,7 +1,7 @@
 import { cloneGameState } from '../src/domain/workspaces';
 import 'fake-indexeddb/auto';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { createInitialState, execute } from '../src/domain/engine';
+import { createInitialState, execute, getApplianceStatus } from '../src/domain/engine';
 import type { GameState } from '../src/domain/types';
 import { GameController } from '../src/platform/game-controller';
 import type { GameSession } from '../src/platform/session';
@@ -16,7 +16,7 @@ function deferred<T>() {
   const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
   return { promise, resolve, reject };
 }
-function setup(initial: GameState | null = createInitialState(now), readonly = false) {
+function setup(initial: GameState | null = createInitialState(now), readonly = false, getNow = () => now) {
   let readOnly = readonly;
   const session: GameSession = {
     get readOnly() { return readOnly; }, supported: true,
@@ -31,11 +31,91 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
   const audio = { unlock: vi.fn().mockResolvedValue(undefined), configure: vi.fn(), play: vi.fn(), dispose: vi.fn() };
   const download = vi.fn();
   const acquire = vi.fn(async (change: (value: boolean) => void) => { change(readOnly); return session; });
-  const controller = new GameController(download, { repository, audio, acquire, now: () => now });
+  const controller = new GameController(download, { repository, audio, acquire, now: getNow });
   controllers.push(controller);
   return { controller, repository, session, audio, download };
 }
 afterEach(() => { controllers.splice(0).forEach((controller) => controller.dispose()); vi.restoreAllMocks(); });
+
+function cookingFixture() {
+  const state = createInitialState(now);
+  for (const appliance of state.appliances) {
+    const recipe = getApplianceStatus(state, appliance.id, now)!.recipes[0];
+    appliance.job = { id: `g${state.nextId++}`, recipe: recipe.id, output: recipe.output, startedAt: now, endsAt: now + 10_000 };
+  }
+  const target = { appliance: state.appliances[0].id, expectedJobId: state.appliances[0].job!.id, expectedWorkspaceId: state.activeWorkspaceId };
+  return { state, target };
+}
+
+describe('committed targeted speed-up results', () => {
+  it('publishes neither tickets, output nor sound before save, and rejects simultaneous duplicate input', async () => {
+    const { state, target } = cookingFixture(); const { controller, repository, audio } = setup(state); await controller.start();
+    const gate = deferred<void>(); repository.save.mockReturnValueOnce(gate.promise);
+    const pending = controller.speedUpCooking(target);
+    expect(controller.view.state).toBe(state); expect(controller.view.state!.speedUpTickets).toBe(100);
+    expect(controller.view.state!.appliances[0].outputSlot).toBeNull(); expect(audio.play).not.toHaveBeenCalled();
+    expect(await controller.speedUpCooking(target)).toMatchObject({ ok: false });
+    gate.resolve(); expect(await pending).toEqual({ ok: true, status: 'accelerated', ticketsSpent: 1, ticketsRemaining: 99 });
+    expect(controller.view.state!.appliances[0].outputSlot).not.toBeNull(); expect(audio.play).toHaveBeenCalledExactlyOnceWith('complete');
+    expect(repository.save).toHaveBeenCalledOnce();
+  });
+
+  it('reports each committed debit accurately for two separate jobs in one queue', async () => {
+    const { state, target } = cookingFixture(); const { controller, repository } = setup(state); await controller.start();
+    const gate = deferred<void>(); repository.save.mockReturnValueOnce(gate.promise);
+    const one = controller.speedUpCooking(target), other = state.appliances[1];
+    const two = controller.speedUpCooking({ appliance: other.id, expectedJobId: other.job!.id });
+    gate.resolve(); expect(await one).toMatchObject({ ticketsRemaining: 99, ticketsSpent: 1 });
+    expect(await two).toMatchObject({ ticketsRemaining: 98, ticketsSpent: 1 });
+    expect(controller.view.state!.appliances.every(a => !!a.outputSlot)).toBe(true);
+  });
+
+  it('allows a queued recover to finish the same job and returns a committed free completion', async () => {
+    const { state, target } = cookingFixture(); state.speedUpTickets = 0;
+    const { controller, repository } = setup(state, false, () => now + 10_000); await controller.start();
+    const gate = deferred<void>(); repository.save.mockReturnValueOnce(gate.promise);
+    const recovering = controller.dispatch({ type: 'recover' });
+    const accelerating = controller.speedUpCooking(target);
+    gate.resolve(); expect(await recovering).toBe(true);
+    expect(await accelerating).toEqual({ ok: true, status: 'already-ready', ticketsSpent: 0, ticketsRemaining: 0 });
+    expect(repository.save).toHaveBeenCalledTimes(2);
+    expect(controller.view.state!.nextId).toBe(state.nextId + state.appliances.length);
+    expect(controller.view.notice).toMatchObject({ type: 'speed-up', jobId: target.expectedJobId, amount: 0 });
+  });
+
+  it('returns the requested result when a different kitchen finishes first', async () => {
+    const fixture = cookingFixture(); fixture.state.coins = 1000;
+    let state = execute(fixture.state, { type: 'unlockAndEnterChapter', chapter: 2 }, now).state;
+    const background = state.workspaces!['chapter-1'].appliances[0]; background.job!.endsAt = now + 100;
+    const pot = state.appliances[0], recipe = getApplianceStatus(state, pot.id, now)!.recipes[0];
+    pot.job = { id: `g${state.nextId++}`, recipe: recipe.id, output: recipe.output, startedAt: now, endsAt: now + 10_000 };
+    const { controller } = setup(state, false, () => now + 1000); await controller.start();
+    expect(await controller.speedUpCooking({ appliance: pot.id, expectedJobId: pot.job.id })).toMatchObject({ status: 'accelerated', ticketsSpent: 1, ticketsRemaining: 99 });
+    expect(controller.view.notice).toMatchObject({ type: 'speed-up', jobId: pot.job.id, workspaceId: 'chapter-2' });
+    expect(controller.view.state!.workspaces!['chapter-1'].appliances[0].outputSlot).not.toBeNull();
+  });
+
+  it('retains all state on failed storage and only debits the explicit retry', async () => {
+    const { state, target } = cookingFixture(); const { controller, repository, audio } = setup(state); await controller.start();
+    repository.save.mockRejectedValueOnce(new SaveError('测试写入失败', 'storage'));
+    expect(await controller.speedUpCooking(target)).toMatchObject({ ok: false, message: '测试写入失败' });
+    expect(controller.view.state).toBe(state); expect(audio.play).not.toHaveBeenCalled();
+    expect(await controller.speedUpCooking(target)).toMatchObject({ ok: true, ticketsRemaining: 99 });
+    expect(await controller.speedUpCooking(target)).toMatchObject({ ok: true, status: 'already-ready', ticketsSpent: 0, ticketsRemaining: 99 });
+  });
+
+  it('rejects conflicts, read-only windows, old targets and another workspace without deducting', async () => {
+    const { state, target } = cookingFixture(); const { controller, repository } = setup(state); await controller.start();
+    expect(await controller.speedUpCooking({ ...target, expectedJobId: 'old-job' })).toMatchObject({ ok: false });
+    expect(await controller.speedUpCooking({ ...target, expectedWorkspaceId: 'chapter-2' })).toMatchObject({ ok: false });
+    expect(repository.save).not.toHaveBeenCalled();
+    repository.save.mockRejectedValueOnce(new SaveError('其他窗口已保存新进度', 'conflict'));
+    expect(await controller.speedUpCooking(target)).toMatchObject({ ok: false }); expect(controller.view.readOnly).toBe(true);
+    expect(await controller.speedUpCooking(target)).toMatchObject({ ok: false }); expect(controller.view.state).toBe(state);
+    const readonly = setup(cookingFixture().state, true); await readonly.controller.start();
+    expect(await readonly.controller.speedUpCooking(target)).toMatchObject({ ok: false }); expect(readonly.repository.save).not.toHaveBeenCalled();
+  });
+});
 
 describe('exclusive committed chapter changes',()=>{
   it('publishes purchase, wallet and workspace together only after saving; duplicate input is blocked',async()=>{

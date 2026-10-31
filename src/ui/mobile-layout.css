@@ -5,25 +5,33 @@
 .game-shell[data-density] .board-area[data-board-scroll="true"]{overflow-y:auto;align-items:flex-start;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b99a70 transparent}
 .board-area::-webkit-scrollbar{width:6px}.board-area::-webkit-scrollbar-thumb{background:#b99a70;border-radius:4px}
 
-/* The guide sits beside energy. Actions keep their 44px targets at every width. */
-.game-shell .guest-resources{grid-template-columns:minmax(80px,1.1fr) minmax(74px,1fr) 44px minmax(64px,.9fr) 44px 44px}
+/* Seven entries, one row; all controls retain a 44px target. */
+.game-shell .guest-resources{grid-template-columns:minmax(60px,1.1fr) minmax(54px,1fr) 44px minmax(54px,.9fr) minmax(54px,.9fr) 44px 44px;gap:2px;padding:0 6px}
+.guest-resources .theme-compact{display:none}
+.guest-resources .resource-pill.speed-tickets{height:44px;min-width:44px;gap:2px;padding:0 2px;justify-content:center;border:0;background:transparent;box-shadow:none;color:#44725d}
+.guest-resources .speed-tickets b{font-size:13px;white-space:nowrap}
+.guest-resources .speed-tickets:focus-visible{outline:2px solid #47775d;outline-offset:-2px;border-radius:10px}
 .guest-resources .resource-pill.coins{gap:2px;padding:0 3px}.guest-resources .coins svg{width:14px}
 .guest-resources .codex-button{position:relative;display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:0;border:0;background:none;box-shadow:none;color:#5e7045}
 .codex-discovery{position:absolute;top:0;right:0;display:grid;place-items:center;min-width:15px;height:15px;padding:0 3px;border-radius:8px;background:#b66a3e;color:#fff9ed;font-size:9px;font-weight:800;line-height:1}
 .guest-resources .energy b,.guest-resources .coins b{white-space:nowrap;flex-shrink:0}
-@media(min-width:360px) and (max-width:389px){
-  .game-shell .guest-resources{gap:3px;grid-template-columns:minmax(0,1fr) minmax(66px,1fr) 44px minmax(58px,.9fr) 44px 44px}
-  .guest-resources .theme-emblem{display:none}
+@media(min-width:360px) and (max-width:415px){
+  .game-shell .guest-resources{gap:1px;padding:0 4px;grid-template-columns:44px minmax(54px,1fr) 44px minmax(54px,1fr) minmax(54px,1fr) 44px 44px}
+  .guest-resources .theme-badge{justify-content:center;padding:0}.guest-resources .theme-emblem,.guest-resources .theme-badge-copy{display:none}
+  .guest-resources .theme-compact{display:flex;align-items:center;gap:3px;color:#557557}.theme-compact b{font-size:14px}
   .guest-resources .energy b{font-size:13px}.guest-resources .energy svg{width:16px}
   .guest-resources .energy>span{display:none}
-  .guest-resources .resource-pill.coins{gap:2px;padding:0 2px}.guest-resources .coins svg{width:12px}.guest-resources .coins b{font-size:12px}
+  .guest-resources .resource-pill.energy,.guest-resources .resource-pill.coins,.guest-resources .resource-pill.speed-tickets{height:44px;flex-direction:column;gap:0;padding:0;border:0;background:transparent;box-shadow:none}
+  .guest-resources .energy svg,.guest-resources .coins svg{width:16px;height:18px}.guest-resources .speed-ticket{width:24px;height:19px}
+  .guest-resources .resource-pill b{font-size:12px;line-height:17px}
 }
 @media(max-width:359px){
-  .game-shell .guest-resources{gap:2px;grid-template-columns:44px minmax(68px,1fr) 44px minmax(48px,.8fr) 44px 44px}
+  .game-shell .guest-resources{gap:0;padding:0 2px;grid-template-columns:44px minmax(44px,1fr) 44px minmax(44px,1fr) minmax(44px,1fr) 44px 44px}
   .guest-resources .theme-badge{justify-content:center;padding:0}.guest-resources .theme-badge-copy{display:none}
   .guest-resources .energy{padding:0;gap:2px}.guest-resources .energy b{font-size:13px}.guest-resources .energy svg{width:16px}.guest-resources .energy>span{display:none}
-  .guest-resources .resource-pill.coins{height:42px;flex-direction:column;gap:0;padding:1px 0;border:0;background:transparent;box-shadow:none}
-  .guest-resources .coins svg{width:12px;height:14px}.guest-resources .coins b{font-size:12px;line-height:16px}
+  .guest-resources .theme-emblem{display:none}.guest-resources .theme-compact{display:flex;align-items:center;gap:3px}
+  .guest-resources .resource-pill.energy,.guest-resources .resource-pill.coins,.guest-resources .resource-pill.speed-tickets{height:44px;flex-direction:column;gap:0;padding:0;border:0;background:transparent;box-shadow:none}
+  .guest-resources .energy svg,.guest-resources .coins svg{width:14px;height:18px}.guest-resources .speed-ticket{width:24px;height:19px}.guest-resources .resource-pill b{font-size:11px;line-height:16px}
 }
 
 /* Two information bands replace the old permanent tool row. */

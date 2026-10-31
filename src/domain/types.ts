@@ -30,7 +30,7 @@ export interface GameState {
   schemaVersion: number; contentVersion: string; revision: number; seed: number; nextId: number;
   board: (ItemInstance | null)[]; storage: ItemInstance[]; storageCapacity: number;
   generators: Record<string, GeneratorState>; jobs: (CookingJob | null)[];
-  completedOrders: string[]; day: number; coins: number; reputation: number;
+  completedOrders: string[]; day: number; coins: number; reputation: number; speedUpTickets: number;
   shops: Record<string, number>; decorations: string[]; discovered: ItemId[];
   stats: { merges: number; generated: number; cooked: number; earned: number; };
   tutorial: number; settings: Settings; lastSeen: number;
@@ -42,6 +42,9 @@ export interface GameState {
   devices: DeviceInstance[]; deviceGrants: string[]; deviceDiscovered: string[];
 }
 export type CommandMetadata = { commandId?: string; expectedWorkspaceId?: string; expectedUid?: string; expectedTargetUid?: string | null; expectedTargetVersion?: number; expectedVersion?: number; expectedJobId?: string };
+export type SpeedUpTarget =
+  | { appliance: string; expectedJobId: string }
+  | { slot: number; expectedJobId: string };
 export type Command = CommandMetadata & (
   | { type: 'unlockAndEnterChapter'; chapter: number }
   | { type: 'enterChapter'; chapter: number | 'original' }
@@ -72,11 +75,12 @@ export type Command = CommandMetadata & (
   | { type: 'withdrawInput'; appliance: string; uid: string }
   | { type: 'startCooking'; appliance: string; recipe?: string }
   | { type: 'collectAppliance'; appliance: string }
+  | ({ type: 'speedUpCooking' } & SpeedUpTarget)
   | { type: 'build'; node: string }
   | { type: 'claimConstructionReward' }
   | { type: 'redeemGift'; key: string }
   | { type: 'claimMigration'; uid: string }
   | { type: 'session'; session: Partial<SessionState> }
   | { type: 'recover' });
-export interface GameEvent { type: string; message: string; workspaceId?: string; index?: number; from?: number; item?: ItemId; uid?: string; appliance?: string; order?: string; node?: string; amount?: number; }
+export interface GameEvent { type: string; message: string; workspaceId?: string; index?: number; from?: number; item?: ItemId; uid?: string; appliance?: string; slot?: number; jobId?: string; order?: string; node?: string; amount?: number; }
 export interface CommandResult { state: GameState; ok: boolean; events: GameEvent[]; }

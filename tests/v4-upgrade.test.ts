@@ -97,7 +97,7 @@ describe('V4 dedicated production and isolated fresh campaign',()=>{
    expect(()=>parseImportSave(JSON.stringify({...current,schemaVersion,contentVersion}))).toThrow();
   }
   expect(()=>parseImportSave('{')).toThrow('有效的 JSON');
-  expect(CONTENT_VERSION).toBe('5.0.0');
+  expect(CONTENT_VERSION).toBe('5.1.0');
  });
  it('opens a fresh default V4 store without reading or changing the historical store',async()=>{
   const old=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('goose-lane-v1',1);req.onupgradeneeded=()=>req.result.createObjectStore('snapshots');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
@@ -107,7 +107,7 @@ describe('V4 dedicated production and isolated fresh campaign',()=>{
   try{
    expect((await repo.open()).state).toBeNull();
    await repo.save(createInitialState(now));repo.close();
-   expect((await repo.open()).state?.contentVersion).toBe('5.0.0');
+   expect((await repo.open()).state?.contentVersion).toBe('5.1.0');
    const untouched=await new Promise<unknown>((resolve,reject)=>{const req=old.transaction('snapshots').objectStore('snapshots').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
    expect(untouched).toEqual(marker);
   }finally{repo.close();old.close();}

@@ -46,6 +46,7 @@ export function dropKind(state: GameState, from: number, to: number): DropKind {
 
 export type BoardTapAction =
   | { kind: 'select'; index: number | null }
+  | { kind: 'confirmSpeedup'; appliance: string; jobId: string }
   | { kind: 'command'; command: Command; identity?: string };
 
 /** Selection is inspection only; only a drag may move or load an object. */
@@ -58,6 +59,7 @@ export function boardTapAction(state: GameState, index: number, selected: number
     const status = getApplianceStatus(state, entity.id);
     const identity = `appliance:${entity.id}`;
     if (status?.phase === 'ready') return { kind: 'command', command: { type: 'collectAppliance', appliance: entity.id, expectedJobId: status.appliance.job?.id }, identity };
+    if (status?.phase === 'cooking' && status.appliance.job) return { kind: 'confirmSpeedup', appliance: entity.id, jobId: status.appliance.job.id };
     if (status && (target?.canStart ?? status.canStart)) return { kind: 'command', command: { type: 'startCooking', appliance: entity.id, ...(target ? { recipe: target.recipe.id, expectedVersion: status.appliance.version } : {}) }, identity };
     return { kind: 'select', index };
   }
