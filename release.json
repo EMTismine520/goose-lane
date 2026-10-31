@@ -1,8 +1,8 @@
 {
-  "sourceCommit": "f0f5d1261d13b1837c7ba38e2b39d7928af88934",
+  "sourceCommit": "36855c4662b0230ed05d188dbe69e4f67ac0bfbc",
   "sourceDirty": false,
-  "contentVersion": "5.0.0",
-  "schemaVersion": 4,
+  "contentVersion": "5.1.0",
+  "schemaVersion": 5,
   "artwork": "V4-warm-cartoon",
   "vectorSize": null,
   "vectorSizes": [

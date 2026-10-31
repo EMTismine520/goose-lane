@@ -1,8 +1,8 @@
-# 鹅巷食光 V5
+# 鹅巷食光 5.1.0
 
-源码提交：f0f5d1261d13b1837c7ba38e2b39d7928af88934
+源码提交：36855c4662b0230ed05d188dbe69e4f67ac0bfbc
 
-Plan V9：全章订单等级配套，每类器材一台，全部生产器与厨具直接上盘。保留额外副本管理、必需器材收纳保护、合成坐标继承与短屏滚动恢复。
+加速券：新旧存档赠送一次100张，全章节共享。点击制作中厨具确认使用1张，立即完成当前料理，仍需手动领取；自然完成不扣券。
 
 [正式游戏](https://emtismine520.github.io/goose-lane/) · [独立试玩](https://emtismine520.github.io/goose-lane-art-preview/v3-preview.html)
 
