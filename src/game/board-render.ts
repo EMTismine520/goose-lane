@@ -124,6 +124,7 @@ export class BoardRenderer {
 
   refreshArt(keys: readonly string[]) {
     const changed = new Set(keys);
+    if (changed.has('entity:crate')) this.paintTiles();
     for (const sprite of this.items.values()) {
       const definition = ITEMS[sprite.item];
       if (!changed.has(`item:${definition?.assetId ?? sprite.item}`) && !changed.has('legacy-foods')) continue;

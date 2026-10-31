@@ -70,13 +70,14 @@ function workerHarness(files: Record<string, string>, metadata: Record<string, P
   const skipWaiting = vi.fn(async () => {});
   const claim = vi.fn(async () => {});
   const messages:any[]=[];
-  runInNewContext(builder.renderServiceWorker(assetsFor(files).map(asset => ({ ...asset, ...metadata[asset.url] })), coreUrls), {
+  const boot = () => runInNewContext(builder.renderServiceWorker(assetsFor(files).map(asset => ({ ...asset, ...metadata[asset.url] })), coreUrls), {
     self: { registration: { scope }, location: { origin: 'https://example.test' }, clients: { claim }, skipWaiting,
       addEventListener: (event: string, handler: (event: any) => void) => listeners.set(event, handler) },
-    caches: cacheApi, fetch: fetcher, Request, Response, URL, crypto: webcrypto, Uint8Array, btoa,
+    caches: cacheApi, fetch: fetcher, Request, Response, URL, crypto: webcrypto, Uint8Array, btoa, AbortController, setTimeout, clearTimeout,
   });
+  boot();
   return {
-    scope, stores, fetcher, skipWaiting, claim, cacheApi,messages,
+    scope, stores, fetcher, skipWaiting, claim, cacheApi,messages, restart: boot,
     lifecycle: async (name: string, data?: unknown) => {
       let pending: Promise<void> | undefined;
       listeners.get(name)!({ data,source:{postMessage:(value:any)=>messages.push(value)}, waitUntil: (value: Promise<void>) => { pending = value; } });
@@ -84,7 +85,7 @@ function workerHarness(files: Record<string, string>, metadata: Record<string, P
     },
     request: async (request: { url: string; method: string; mode: string } | Request) => {
       let response: Promise<Response> | undefined;
-      listeners.get('fetch')!({ request, respondWith: (value: Promise<Response>) => { response = value; } });
+      listeners.get('fetch')!({ request, respondWith: (value: Promise<Response>) => { response = value; }, waitUntil: (value: Promise<void>) => { void value.catch(() => {}); } });
       return response ? await response : undefined;
     },
   };
@@ -131,7 +132,7 @@ describe('production offline release', () => {
   });
   it.each(['v3','v3-b'])('keeps %s theme assets out of install and makes a downloaded theme available offline',async directory=>{
     const drink=`assets/${directory}/dish-fresh-ico-0009.webp`,cart=`assets/${directory}/vegetable-cart-l1.webp`;
-    const worker=workerHarness({'index.html':'game',[drink]:'milk tea',[cart]:'cart'});
+    const worker=workerHarness({'index.html':'game',[drink]:'milk tea',[cart]:'cart'},{[drink]:{role:'art',variant:'large',stage:3},[cart]:{role:'art',variant:'large',stage:1}});
     await worker.lifecycle('install');
     expect([...worker.stores.values()][0].size).toBe(2);
     expect([...worker.stores.values()][0].has(worker.scope+drink)).toBe(false);
@@ -338,5 +339,63 @@ describe('explicit update activation', () => {
     vi.stubGlobal('navigator', { serviceWorker: { register } });
     registerPwa(() => {} )();
     expect(register).not.toHaveBeenCalled();
+  });
+});
+
+
+describe('automatic complete game preparation', () => {
+  const a='assets/mobile/a.webp', b='assets/mobile/b.webp', mid='assets/mobile/a-256.webp', hd='assets/v3-b/a.webp', code='assets/panel.js';
+  const files={'index.html':'shell',[a]:'a',[b]:'b',[mid]:'medium',[hd]:'original',[code]:'code','art-review.html':'review'};
+  const meta={ [a]:{role:'art',variant:'mobile',stage:1}, [b]:{role:'art',variant:'mobile',stage:8}, [mid]:{role:'art',variant:'medium',stage:1}, [hd]:{role:'art',variant:'large',stage:1}, [code]:{role:'code'} };
+  it('automatically prepares current resources before all chapters, code, and high resolution, excluding review pages', async () => {
+    const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    await h.lifecycle('message',{type:'CACHE_PAUSE',visible:false});
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'one',urls:[b]});expect(h.fetcher).not.toHaveBeenCalled();
+    await h.lifecycle('message',{type:'CACHE_RESUME'});
+    const downloaded=h.fetcher.mock.calls.map(([r])=>r.url.replace(h.scope,''));
+    expect(downloaded[0]).toBe(b);expect(downloaded.indexOf(hd)).toBeGreaterThan(downloaded.indexOf(mid));
+    expect(downloaded).not.toContain('art-review.html');expect(new Set(downloaded).size).toBe(downloaded.length);
+    expect(h.messages.at(-1)).toMatchObject({type:'GAME_CACHE_STATE',requestId:'one',currentReady:true,playableReady:true,fullReady:true,state:'complete',totalFiles:6});
+  });
+  it('restores intent after worker termination and only fetches missing files', async () => {
+    const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    const normal=h.fetcher.getMockImplementation()!;
+    h.fetcher.mockImplementation(async r=>{const response=await normal(r);if(r.url.endsWith('/a.webp'))await h.lifecycle('message',{type:'CACHE_PAUSE',visible:false});return response;});
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'first',urls:[a]});
+    expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual([h.scope+a]);
+    h.restart();h.fetcher.mockImplementation(normal);h.fetcher.mockClear();
+    await h.lifecycle('message',{type:'GAME_CACHE_STATUS',requestId:'second'});
+    await h.lifecycle('message',{type:'CACHE_RESUME'});
+    expect(h.fetcher.mock.calls.some(([r])=>r.url===h.scope+a)).toBe(false);
+    expect(h.messages.at(-1)).toMatchObject({requestId:'second',fullReady:true});
+  });
+  it('persists player pause across reopens, while foreground resources remain usable', async () => {
+    const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');
+    await h.lifecycle('message',{type:'GAME_DOWNLOAD_PAUSE',requestId:'first',paused:true});
+    h.restart();h.fetcher.mockClear();
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'second',urls:[a]});await h.lifecycle('message',{type:'CACHE_RESUME'});
+    expect(h.fetcher).not.toHaveBeenCalled();expect(h.messages.at(-1)).toMatchObject({state:'paused',fullReady:false});
+    expect(await(await h.request(new Request(h.scope+a)))!.text()).toBe('a');
+    await h.lifecycle('message',{type:'GAME_DOWNLOAD_PAUSE',requestId:'second',paused:false});expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+  });
+  it('reports storage failure without marking the complete package ready and still serves online assets', async () => {
+    const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');
+    const open=h.cacheApi.open;
+    h.cacheApi.open=async name=>{const cache=await open(name);if(name.endsWith('::themes'))return {...cache,put:async()=>{throw new DOMException('Full','QuotaExceededError')}};return cache;};
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'one',urls:[a]});
+    expect(h.messages.at(-1)).toMatchObject({state:'storage',fullReady:false});
+    expect(await(await h.request(new Request(h.scope+a)))!.text()).toBe('a');
+  });
+  it('rejects foreign and unclassified URLs before starting preparation', async () => {
+    const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    for(const urls of [['https://foreign.test/a.webp'],['art-review.html']])await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'one',urls});
+    expect(h.fetcher).not.toHaveBeenCalled();
+  });
+  it('can retry when resource metadata storage becomes available again', async () => {
+    const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');const open=h.cacheApi.open;
+    h.cacheApi.open=async()=>{throw new DOMException('Unavailable','QuotaExceededError');};
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'one',urls:[a]});expect(h.messages.at(-1)).toMatchObject({state:'storage'});
+    h.cacheApi.open=open;
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'two',urls:[a]});expect(h.messages.at(-1)).toMatchObject({fullReady:true});
   });
 });

@@ -9,7 +9,8 @@ const directory = path.join(root, 'public/assets/mobile');
 const digest = data => createHash('sha256').update(data).digest('hex');
 const sourceRows = JSON.parse(await readFile(path.join(root, 'public/assets/v3-manifest.json'), 'utf8'));
 const check = process.argv.includes('--check');
-const mapping = {}, rows = [];
+const listed = check ? JSON.parse(await readFile(path.join(root, 'public/assets/mobile-manifest.json'), 'utf8')) : [];
+const mapping = {}, medium = {}, rows = [];
 if (!check) await mkdir(directory, { recursive: true });
 for (const source of sourceRows) {
   const original = await readFile(path.join(root, 'public', source.path));
@@ -18,18 +19,37 @@ for (const source of sourceRows) {
     const metadata = await sharp(original).metadata();
     if (metadata.width !== 512 || metadata.height !== 512 || !metadata.hasAlpha || digest(original) !== source.selectedExports?.sha256?.image) throw new Error(`Selected mobile source differs: ${source.id}`);
   }
-  const data = selected ? original : await sharp(original).resize(128, 128, { kernel: 'lanczos3' }).webp({ lossless: true, effort: 6, quality: 100 }).toBuffer();
-  const hash = digest(data), filename = `${source.id}-${hash.slice(0, 12)}.webp`;
-  const relative = `assets/mobile/${filename}`;
-  mapping[source.id] = relative;
-  rows.push({ id: source.id, path: relative, stage: source.stage, bytes: data.length, sha256: hash, sourceSha256: digest(original), ...(selected ? { mode: source.mode, width: 512, height: 512, byteIdenticalToSource: true } : {}) });
-  if (check) {
-    const actual = await readFile(path.join(directory, filename));
-    if (!data.equals(actual)) throw new Error(`Mobile art differs: ${source.id}`);
-  } else await writeFile(path.join(directory, filename), data);
+  // Derive from the approved transparent canvas, preserving its composition and source bytes.
+  for (const width of [128, 256]) {
+    let data;
+    if (check) {
+      const row = listed.find(row => row.id === source.id && row.width === width);
+      if (!row || !/^assets\/mobile\/[a-z0-9-]+\.webp$/.test(row.path)) throw new Error(`Mobile manifest missing: ${source.id}/${width}`);
+      data = await readFile(path.join(root, 'public', row.path));
+      const metadata = await sharp(data).metadata();
+      if (metadata.width !== width || metadata.height !== width || !metadata.hasAlpha) throw new Error(`Mobile dimensions differ: ${source.id}/${width}`);
+      const expected = await sharp(original).resize(width, width, { kernel: 'lanczos3' }).ensureAlpha().raw().toBuffer();
+      const actual = await sharp(data).ensureAlpha().raw().toBuffer();
+      // WebP may discard RGB under alpha zero. Every visible pixel and alpha must match.
+      for (let i = 0; i < expected.length; i += 4) if (expected[i + 3] === 0) {
+        expected[i] = expected[i + 1] = expected[i + 2] = 0;
+        actual[i] = actual[i + 1] = actual[i + 2] = 0;
+      }
+      if (!actual.equals(expected)) throw new Error(`Mobile pixels differ: ${source.id}/${width}`);
+    } else data = await sharp(original).resize(width, width, { kernel: 'lanczos3' }).webp({ lossless: true, effort: 6, quality: 100 }).toBuffer();
+    const hash = digest(data), filename = `${source.id}-${width}-${hash.slice(0, 12)}.webp`;
+    const relative = `assets/mobile/${filename}`;
+    (width === 128 ? mapping : medium)[source.id] = relative;
+    rows.push({ id: source.id, path: relative, stage: source.stage, bytes: data.length, sha256: hash, sourceSha256: digest(original), width, height: width, variant: width === 128 ? 'mobile' : 'medium' });
+    if (check) {
+      const actual = await readFile(path.join(directory, filename));
+      if (!data.equals(actual)) throw new Error(`Mobile art differs: ${source.id}/${width}`);
+    } else await writeFile(path.join(directory, filename), data);
+  }
 }
 const files = [
   ['src/content/mobile-art.json', JSON.stringify(mapping, null, 2) + '\n'],
+  ['src/content/medium-art.json', JSON.stringify(medium, null, 2) + '\n'],
   ['public/assets/mobile-manifest.json', JSON.stringify(rows, null, 2) + '\n'],
 ];
 for (const [relative, content] of files) {
@@ -48,6 +68,5 @@ if (!check) {
   }
 }
 const bytes = rows.reduce((sum, row) => sum + row.bytes, 0);
-if (rows.length !== sourceRows.length || Object.keys(mapping).length !== sourceRows.length) throw new Error(`Mobile art inventory differs: ${rows.length} files`);
-const selectedCopies = rows.filter(row => row.mode === 'plan4-selected-export').length;
-console.log(`Mobile art ${check ? 'verified' : 'built'}: ${rows.length} transparent WebP (${selectedCopies} selected 512×512 byte-identical aliases, ${rows.length-selectedCopies} legacy 128×128), ${(bytes / 1024 / 1024).toFixed(2)} MiB.`);
+if (rows.length !== sourceRows.length * 2 || Object.keys(mapping).length !== sourceRows.length || Object.keys(medium).length !== sourceRows.length) throw new Error(`Mobile art inventory differs: ${rows.length} files`);
+console.log(`Mobile art ${check ? 'verified' : 'built'}: ${sourceRows.length} approved sources, 128/256px lossless derivatives, ${(bytes / 1024 / 1024).toFixed(2)} MiB; 512px originals unchanged.`);

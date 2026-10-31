@@ -1,4 +1,3 @@
-import { ChapterPanel } from './ChapterPanel';
 import { prepareChapter } from '../platform/chapter-resources';
 import { activeWorkspace } from '../domain/workspaces';
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -20,7 +19,7 @@ import { RewardFlight } from './RewardFlight';
 import { SaveSlotsPanel, RestartPanel } from './SaveSlotsPanel';
 import { DeviceIcon, EMPTY_CODEX } from './DeviceIcon';
 import { themeProgress } from '../domain/devices';
-import { useThemeOffline } from './useThemeOffline';
+import { OfflineProvider, OfflineSettings } from './OfflineResources';
 import { ApplianceDrawer } from './ApplianceDrawer';
 import { OrderFocus } from './OrderFocus';
 import { StreetProgress, ThemeProgressPanel } from './StreetProgress';
@@ -33,6 +32,7 @@ import { perfMark } from '../platform/performance';
 import { SecondClock, RecoveryClock, ReadySignal } from './GameClock';
 import { useMergeLayout } from './useMergeLayout';
 const Board=lazy(()=>import('../game/Board'));
+const ChapterPanel=lazy(()=>import('./ChapterPanel').then(module=>({default:module.ChapterPanel})));
 const ShopScene=lazy(()=>import('../game/ShopScene'));
 const V3Codex=lazy(()=>import('./V3Codex').then(module=>({default:module.V3Codex})));
 const V3ItemDetails=lazy(()=>import('./V3Codex').then(module=>({default:module.V3ItemDetails})));
@@ -73,7 +73,6 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const onGiftPending=useCallback((pending:boolean)=>{giftRunning.current=pending;setGiftPending(pending)},[]);
  const observedProgress=useRef<{epoch:number;stage:number;items:string[];devices:string[]}|null>(null);
  const ready=boardReady||streetReady;
- const themeOffline=useThemeOffline(state?themeProgress(state).stage:1,offline,ready,state?.campaign==='legacy',state?.activeWorkspaceId);
  const dialogRef=useRef<Dialog>(null);dialogRef.current=dialog;
  const area=useRef<HTMLDivElement>(null),hydrated=useRef(-1),selectedUid=useRef<string|null>(null),stateRef=useRef(state),gameRef=useRef(game),scrollTimer=useRef<ReturnType<typeof setTimeout>|null>(null),input=useRef<HTMLInputElement>(null);
  stateRef.current=state; gameRef.current=game;
@@ -84,7 +83,8 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const showDevices=useCallback((family?:string)=>{const previous=dialogRef.current;setDetailHistory(h=>previous?[...h,previous]:[null]);setDialog({type:'devices',family});},[]);
  const showStorage=useCallback(()=>{const previous=dialogRef.current;setDetailHistory(h=>previous?[...h,previous]:[null]);setDialog({type:'storage'});},[]);
  const backItem=()=>{const prior=detailHistory.at(-1);setDetailHistory(h=>h.slice(0,-1));setDialog(prior===undefined?{type:'book'}:prior);};
- useEffect(()=>{void loadEngine().catch(()=>{});perfMark('app-mounted')},[]);
+ useEffect(()=>{perfMark('app-mounted')},[]);
+ useEffect(()=>{if(state?.session.page==='merge')void loadEngine().catch(()=>{})},[state?.session.page]);
  useEffect(()=>{if(page==='street')setStreetVisited(true)},[page]);
  useEffect(()=>offline&&ready?afterPlayIdle(()=>registerPwa(activate=>setUpdate(()=>activate),setCacheError)):undefined,[offline,ready]);
  useEffect(()=>{document.documentElement.dataset.motion=state?.settings.reducedMotion?'reduced':'full'},[state?.settings.reducedMotion]);
@@ -140,7 +140,7 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const time=effectiveNow(state,Date.now()),tutorial=getTutorialStep(state),construction=getConstructionProgress(state),theme=themeProgress(state);
  const tutorialIndex=tutorial?activeDevices(state).find(e=>e.id===tutorial.target)?.index??state.board.findIndex(i=>i?.uid===tutorial.target):-1;
  const title=dialog?.type==='gift'?'兑换礼包':dialog?.type==='order'?'这份心愿':dialog?.type==='theme'?'章节手册':dialog?.type==='appliance'?activeDevices(state).find(device=>device.id===dialog.id)?.name??'我的厨具':dialog?.type==='save'?'保存存档':dialog?.type==='load'?'读取存档':dialog?.type==='restart'?'重新开始':dialog?.type==='item'?ITEMS[dialog.id].name:dialog?.type==='build'?'今日鲜果蔬店':dialog?.type==='devices'?'小鹅设备架':dialog?.type==='book'?'完整风味图鉴':dialog?.type==='storage'?'小鹅仓库':dialog?.type==='energy'?'满满活力':dialog?.type==='recipes'?'料理配方':dialog?.type==='legacy'?'旧日食光':'设置与存档';
- return <GameShell page={page} workspaceId={state.activeWorkspaceId} transitionStartedAt={game.workspaceTransitionStartedAt} footerHeight={page==='merge'?mergeLayout.footerHeight:88} backgroundEnabled={page==='merge'&&!dialog&&!game.readOnly&&!game.busy} onBackgroundTap={()=>select(null)}><RecoveryClock state={state} readOnly={game.readOnly} busy={game.busy} act={act}/><ResourceBar state={state} now={time} onSettings={openSettings} onRedeem={()=>setDialog({type:'gift'})} onEnergy={()=>setDialog({type:'energy'})} onTheme={()=>setDialog({type:'theme'})} onBook={openBook} newDiscoveries={Math.max(0,state.discovered.length+state.deviceDiscovered.length-codexSeen)}/>
+ return <OfflineProvider stage={themeProgress(state).stage} enabled={offline} ready={ready} busy={game.busy||giftPending}><GameShell page={page} workspaceId={state.activeWorkspaceId} transitionStartedAt={game.workspaceTransitionStartedAt} footerHeight={page==='merge'?mergeLayout.footerHeight:88} backgroundEnabled={page==='merge'&&!dialog&&!game.readOnly&&!game.busy} onBackgroundTap={()=>select(null)}><RecoveryClock state={state} readOnly={game.readOnly} busy={game.busy} act={act}/><ResourceBar state={state} now={time} onSettings={openSettings} onRedeem={()=>setDialog({type:'gift'})} onEnergy={()=>setDialog({type:'energy'})} onTheme={()=>setDialog({type:'theme'})} onBook={openBook} newDiscoveries={Math.max(0,state.discovered.length+state.deviceDiscovered.length-codexSeen)}/>
  <div className="merge-page" data-selection-background hidden={page!=='merge'}>
   <CustomerStrip key={viewEpoch} active={page==='merge'} state={state} act={act} onItem={showItem} onScroll={saveScroll} focusedOrderId={focusedOrderId} onFocus={setFocusedOrderId}/>
   <div className={`guide-bar ${focus?'is-focused':''}`}><Sparkles size={14}/><span>{tutorial?.text??(focus?orderSummary(state,focus):state.campaign!=='fresh'?`第${state.day}天 · ${getDayProgress(state).completed}/${getDayProgress(state).total}份款待`:theme.allCompleted?'每一份滋味，都成为小馆的回忆。':`${theme.name} · ${theme.completed}/${theme.total}份心愿`)}</span>{tutorial&&state.workspaces&&<button className='subtle' onClick={()=>act({type:'skipTutorial'})}>跳过引导</button>}</div>
@@ -161,7 +161,7 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  {dialog.type==='theme'&&(state.workspaces?<ChapterPanel state={state} onEnter={async (chapter,stillOpen)=>{const source=state.activeWorkspaceId;await prepareChapter(state,chapter);if(!stillOpen())return false;const success=await act(chapter==='original'?{type:'enterChapter',chapter,expectedWorkspaceId:source}:state.chapterAccess?.unlocked.includes(chapter)?{type:'enterChapter',chapter,expectedWorkspaceId:source}:{type:'unlockAndEnterChapter',chapter,expectedWorkspaceId:source});if(success)close();return success;}}/>:<ThemeProgressPanel state={state} onDevices={showDevices}/>)}
  {dialog.type==='appliance'&&<SecondClock>{now=><ApplianceDrawer state={state} applianceId={dialog.id} now={effectiveNow(state,now)} act={act} onItem={showItem} onDevices={showDevices} onOrganize={close} onStorage={showStorage}/>}</SecondClock>}
 
- {dialog.type==='settings'&&<>{offline&&import.meta.env.PROD&&<div className='offline-packs'><b>离线风味包</b><p>{!themeOffline.supported?'当前浏览器使用普通资源缓存，联网即可继续游玩。':themeOffline.fullCached?(state.campaign==='legacy'?'旧日食光资源已准备好，可离线继续经营。':'全部主题与原图已下载。'):themeOffline.cachedStage>0?'当前章节资源已准备好，可离线继续经营。':themeOffline.failed?'主题图片下载暂未完成，联网后可重试。':'正在准备当前主题的离线图片。'}</p><button className='outline' disabled={!themeOffline.supported||themeOffline.fullCached} onClick={themeOffline.downloadAll}>{state.campaign==='legacy'?'下载旧版离线素材':'下载全部主题与原图'}</button></div>}<SettingsPanel state={state} dispatch={act} onDevices={state.campaign==='fresh'?()=>showDevices():undefined} onStorage={showStorage} onSave={()=>setDialog({type:'save'})} onLoad={()=>setDialog({type:'load'})} onRestart={()=>setDialog({type:'restart'})}/>{state.workspaces&&<button className="outline chapter-entry" onClick={()=>setDialog({type:'theme'})}>切换章节 · 每间厨房独立保存</button>}{state.campaign==='legacy'&&<button className="outline" onClick={()=>setDialog({type:'legacy'})}>查看保留的旧日店铺与料理</button>}</>}
+ {dialog.type==='settings'&&<>{offline&&import.meta.env.PROD&&<OfflineSettings/>}<SettingsPanel state={state} dispatch={act} onDevices={state.campaign==='fresh'?()=>showDevices():undefined} onStorage={showStorage} onSave={()=>setDialog({type:'save'})} onLoad={()=>setDialog({type:'load'})} onRestart={()=>setDialog({type:'restart'})}/>{state.workspaces&&<button className="outline chapter-entry" onClick={()=>setDialog({type:'theme'})}>切换章节 · 每间厨房独立保存</button>}{state.campaign==='legacy'&&<button className="outline" onClick={()=>setDialog({type:'legacy'})}>查看保留的旧日店铺与料理</button>}</>}
  {(dialog.type==='save'||dialog.type==='load')&&<SaveSlotsPanel key={dialog.type} mode={dialog.type} busy={game.busy} readOnly={!game.canWriteSaves()} listSlots={game.listSlots} saveSlot={game.saveSlot} loadSlot={game.loadSlot} onBack={()=>setDialog({type:'settings'})}/>}
  {dialog.type==='restart'&&<RestartPanel busy={game.busy} readOnly={game.readOnly} onRestart={game.restartGame} onBack={()=>setDialog({type:'settings'})}/>}
  {dialog.type==='storage'&&<><button className="subtle detail-back" onClick={backItem}>返回</button><Storage state={state} dispatch={act}/>{state.migrationInbox.length>0&&<section><h3>迁移待领取 · {state.migrationInbox.length} 件</h3><p>旧存档的每件食材都在这里，棋盘有空位时可领取。</p><div className="storage-grid">{state.migrationInbox.map(i=><button key={i.uid} onClick={()=>act({type:'claimMigration',uid:i.uid})}><ItemIcon item={i.item}/><small>{ITEMS[i.item].name}</small></button>)}</div></section>}</>}
@@ -174,5 +174,5 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  {dialog.type==='energy'&&<SecondClock>{now=>{const energy=getEnergyStatus(state,effectiveNow(state,now));return <div className="energy-dialog"><Zap size={45} fill="currentColor"/><h3>{energy.value} 点体力</h3><p>基础产出消耗 1 点体力；定向高阶产出消耗 2、4、8 或 16 点。移动与合成免费。</p><div className="rule-row"><span>自然恢复上限</span><b>100 点</b></div><div className="rule-row"><span>恢复速度</span><b>每 2 分钟 +1</b></div><div className="rule-row"><span>下一点恢复</span><b>{energy.nextRecoveryIn?Math.ceil(energy.nextRecoveryIn/1000)+' 秒':'体力充足'}</b></div><p>建设小店可获得体力奖励，奖励超过 100 点也会完整保留。</p><button className="primary" onClick={()=>{close();setPage('street');void act({type:'session',session:{page:'street'}})}}>去看看建设奖励 <Hammer size={16}/></button></div>;}}</SecondClock>}
  {dialog.type==='build'&&<div className="construction-card"><div className="build-hero"><Hammer size={35}/><div><b>{construction.next?.name??'小店正式开张'}</b><span>{construction.next?.description??'每一份新鲜，都是你亲手准备的心意。'}</span></div></div><div className="construction-steps">{BUILD_NODES.map((node,i)=><div key={node.id} className={i<construction.completed?'done':i===construction.completed?'current':''}><span>{i<construction.completed?<Check size={14}/>:i+1}</span><small>{node.name}</small></div>)}</div>{construction.next?<><div className="build-rewards"><span><Zap size={20}/> 体力 +{construction.next.energy}</span><span><ChefHat size={20}/> 厨师帽 +{construction.next.hats}</span></div><button className="primary build-button" disabled={state.coins<construction.next.cost} onClick={async()=>{if(construction.next&&await act({type:'build',node:construction.next.id})){close()}}}>{state.coins>=construction.next.cost?<><Hammer size={17}/>开始建设 <Coins size={17}/>{construction.next.cost}</>:<>还差 {construction.next.cost-state.coins} 金币</>}</button>{state.coins<construction.next.cost&&<button className="outline" onClick={()=>{close();setPage('merge');void act({type:'session',session:{page:'merge'}})}}>回合成交订单</button>}</>:<button className="primary build-button" disabled={!construction.canClaimReward} onClick={()=>act({type:'claimConstructionReward'})}>{state.construction.rewardClaimed?<><Check size={18}/>开张奖励已领取</>:<><Zap size={18}/>领取开张奖励 · 体力 +50</>}</button>}<div className="stage-reward"><ChefHat size={24}/><div><b>开张心愿 {construction.completed}/3</b><small>完成全部建设，额外获得 50 点体力</small></div></div></div>}
  </Suspense></Modal>}
- </GameShell>;
+ </GameShell></OfflineProvider>;
 }

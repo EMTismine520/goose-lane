@@ -12,8 +12,8 @@ import { boardPixelRatio, boardPoint, refreshBoardViewport } from './board-viewp
 import { boardRendererMode } from './board-renderer-mode';
 import { useItemArt } from '../ui/ItemArtContext';
 import type { ApplianceTargets } from '../ui/ui-guidance';
-import { planBoardAssets } from './board-assets';
-import { loadArtImage } from '../platform/asset-queue';
+import { planBoardAssets, type BoardAsset } from './board-assets';
+import { acquireArtImage, type AssetLease } from '../platform/asset-queue';
 import { loadEngine } from './load-engine';
 import { DecorationBudget, perfFrame, perfMark, perfMilestone, perfSpan, resetFrameClock } from '../platform/performance';
 
@@ -85,22 +85,29 @@ function Board(props: BoardProps) {
     progress('正在加载绘图引擎…');
 
     const prepared = new Map<string, HTMLImageElement>();
-    const prepare = async () => {
-      let signature: string;
-      do {
-        const resources = planBoardAssets(live.current.state).critical;
-        signature = `${live.current.sessionEpoch}:${resources.map(resource => resource.key).join(',')}`;
-        let complete = 0;
-        await Promise.all(resources.map(async resource => {
-          const image = await loadArtImage(artUrl(resource.path), 0);
-          prepared.set(resource.key, image);
-          progress(`正在摆好料理台… ${++complete}/${resources.length}`);
-        }));
-      } while (!disposed && signature !== `${live.current.sessionEpoch}:${planBoardAssets(live.current.state).critical.map(resource => resource.key).join(',')}`);
+    const requests = new Map<string, { lease: AssetLease<HTMLImageElement>; epoch: number | undefined }>();
+    const failedArt = new Set<string>();
+    let acceptArt: ((key: string, image: HTMLImageElement) => void) | undefined;
+    const enqueue = (resource: BoardAsset, priority: number) => {
+      const epoch = live.current.sessionEpoch, existing = requests.get(resource.key);
+      if (existing && existing.epoch === epoch || failedArt.has(resource.key)) return;
+      existing?.lease.release();
+      const lease = acquireArtImage(artUrl(resource.path), priority), task = { lease, epoch };
+      requests.set(resource.key, task);
+      void lease.promise.then(image => {
+        if (disposed || epoch !== live.current.sessionEpoch) return;
+        if (acceptArt) acceptArt(resource.key, image); else prepared.set(resource.key, image);
+      }, error => {
+        if (!disposed && epoch === live.current.sessionEpoch && error?.name !== 'AbortError') {
+          failedArt.add(resource.key);
+          if (priority === 0) setDeferredError('有张图片还没准备好，可按名称继续操作');
+        }
+      }).finally(() => { lease.release(); if (requests.get(resource.key) === task) requests.delete(resource.key); });
     };
-    void Promise.all([loadEngine(), prepare()]).then(([{ default: Engine }]) => {
+    // Fetch current art alongside the engine; no image is a global scene-start barrier.
+    for (const resource of planBoardAssets(live.current.state, pixelRatio).critical) enqueue(resource, 0);
+    void loadEngine().then(({ default: Engine }) => {
       if (disposed || failed || !mount.current) return;
-      perfMark('board-assets-ready');
       progress('正在初始化料理台…');
       class PantryScene extends Engine.Scene {
         private board!: BoardRenderer;
@@ -113,8 +120,10 @@ function Board(props: BoardProps) {
         private selectionIntent = 0;
         private paused = false;
         private lastPressed = -Infinity;
-        private queuedArt = new Set<string>();
-        private waitingForRestore = false;
+        private painted = false;
+        private incomingArt = new Map<string, HTMLImageElement>();
+        private artRevision = -1;
+        private pruneTimer: Phaser.Time.TimerEvent | undefined;
         private nextPointer: Phaser.Input.Pointer | null = null;
         private cssScale = 1;
         private measuredDrag = false;
@@ -125,28 +134,50 @@ function Board(props: BoardProps) {
 
         preload() {
           for (const [key, image] of prepared) this.textures.addImage(key, image);
+          prepared.clear();
+          acceptArt = (key, image) => this.incomingArt.set(key, image);
           const placeholder = this.make.graphics({ x: 0, y: 0 });
           placeholder.fillStyle(0xeadcc6).fillCircle(48, 48, 33).lineStyle(3, 0xfffcf2).strokeCircle(48, 48, 25);
           placeholder.generateTexture('pending-food', 96, 96); placeholder.destroy();
         }
 
         private queueArt() {
-          const plan = planBoardAssets(live.current.state), epoch = live.current.sessionEpoch;
-          for (const [priority, resources] of [[0, plan.critical], [2, plan.soon]] as const) for (const resource of resources) {
-            if (this.queuedArt.has(resource.key) || this.textures.exists(resource.key)) continue;
-            this.queuedArt.add(resource.key);
-            void loadArtImage(artUrl(resource.path), priority).then(image => {
-              if (disposed || epoch !== live.current.sessionEpoch) return;
-              if (!this.textures.exists(resource.key)) this.textures.addImage(resource.key, image);
-              this.installLegacyFrames();
-              this.board.refreshArt([resource.key]);
-              if (this.waitingForRestore && planBoardAssets(live.current.state).critical.every(asset => this.textures.exists(asset.key))) {
-                this.waitingForRestore = false; setStatus('ready'); live.current.onReady?.(true); this.sync();
-              }
-            }, () => {
-              if (!disposed && epoch === live.current.sessionEpoch && priority === 0) setDeferredError('有张食材图片还没准备好');
-            }).finally(() => { this.queuedArt.delete(resource.key); if (!disposed && epoch !== live.current.sessionEpoch) this.queueArt(); });
+          const plan = planBoardAssets(live.current.state, pixelRatio);
+          const wanted = new Set([...plan.critical, ...plan.soon].map(asset => asset.key));
+          for (const [key, task] of requests) if (!wanted.has(key) || task.epoch !== live.current.sessionEpoch) {
+            task.lease.release(); requests.delete(key);
           }
+          for (const [priority, resources] of [[0, plan.critical], [2, this.painted ? plan.soon : []]] as const) for (const resource of resources) {
+            if (this.textures.exists(resource.key) || this.incomingArt.has(resource.key)) continue;
+            if (priority === 0 && failedArt.has(resource.key)) setDeferredError('有张图片还没准备好，可按名称继续操作');
+            enqueue(resource, priority);
+          }
+        }
+
+        private flushArt() {
+          const changed: string[] = [];
+          for (const [key, image] of this.incomingArt) {
+            if (!this.textures.exists(key)) this.textures.addImage(key, image);
+            this.incomingArt.delete(key); changed.push(key);
+            if (changed.length === 2) break;
+          }
+          if (changed.length) {
+            this.installLegacyFrames(); this.board.refreshArt(changed);
+            if (planBoardAssets(live.current.state, pixelRatio).critical.every(asset => this.textures.exists(asset.key))) perfMark('board-assets-ready');
+          }
+        }
+
+        private pruneTextures() {
+          const plan = planBoardAssets(live.current.state, pixelRatio), keep = new Set([...plan.critical, ...plan.soon].map(asset => asset.key));
+          const visit = (objects: readonly Phaser.GameObjects.GameObject[]) => {
+            for (const object of objects) {
+              const child = object as Phaser.GameObjects.Image & { list?: Phaser.GameObjects.GameObject[] };
+              if (child.texture) keep.add(child.texture.key);
+              if (child.list) visit(child.list);
+            }
+          };
+          visit(this.children.list);
+          for (const key of this.textures.getTextureKeys()) if (/^(item:|entity:)/.test(key) && !keep.has(key)) this.textures.remove(key);
         }
 
         private installLegacyFrames() {
@@ -178,6 +209,7 @@ function Board(props: BoardProps) {
           this.input.on('pointerup', this.release, this);
           this.input.on('pointerupoutside', this.cancel, this);
           const cancel = () => this.cancel();
+          const retryArt = () => { failedArt.clear(); setDeferredError(''); this.queueArt(); };
           const visibility = () => this.sync();
           const rendered = () => { const now = performance.now(); perfFrame(now); this.decoration.sample(now); };
           this.game.events.on(Engine.Core.Events.POST_RENDER, rendered);
@@ -189,6 +221,7 @@ function Board(props: BoardProps) {
             }
           };
           window.addEventListener('blur', cancel);
+          window.addEventListener('online', retryArt);
           document.addEventListener('visibilitychange', visibility);
           document.addEventListener('keydown', keydown);
           this.game.canvas.addEventListener('pointercancel', cancel);
@@ -196,25 +229,30 @@ function Board(props: BoardProps) {
           this.game.canvas.setAttribute('aria-hidden', 'true');
           removeListeners = () => {
             window.removeEventListener('blur', cancel);
+            window.removeEventListener('online', retryArt);
             document.removeEventListener('visibilitychange', visibility);
             document.removeEventListener('keydown', keydown);
             this.game.canvas.removeEventListener('pointercancel', cancel);
             this.game.canvas.removeEventListener('touchcancel', cancel);
             this.game.events.off(Engine.Core.Events.POST_RENDER, rendered);
           };
-          bridge.current = { sync: () => this.sync(), resize: () => this.refreshViewport(), activate: index => this.activate(index), cancel: () => this.cancel(), retry: () => { setDeferredError(''); this.queueArt(); } };
+          bridge.current = { sync: () => this.sync(), resize: () => this.refreshViewport(), activate: index => this.activate(index), cancel: () => this.cancel(), retry: () => { setDeferredError(''); failedArt.clear(); this.queueArt(); } };
           this.sync();
           this.refreshViewport();
           perfMark('board-objects-ready');
           clearTimeout(loadTimer);
           this.game.events.once(Engine.Core.Events.POST_RENDER, () => {
-            if (!disposed) { setStatus('ready'); live.current.onReady?.(true); perfMark('board-ready'); }
+            if (!disposed) {
+              this.painted = true; setStatus('ready'); live.current.onReady?.(true); perfMark('board-ready');
+              if (planBoardAssets(live.current.state, pixelRatio).critical.every(asset => this.textures.exists(asset.key))) perfMark('board-assets-ready');
+              this.sync();
+            }
           });
         }
 
-        update() { if (this.nextPointer) { const pointer = this.nextPointer; this.nextPointer = null; this.flushDrag(pointer); } this.board?.updateClock(Date.now()); }
+        update() { if (this.nextPointer) { const pointer = this.nextPointer; this.nextPointer = null; this.flushDrag(pointer); } if (this.board) { this.flushArt(); this.board.updateClock(Date.now()); } }
 
-        private allowed() { return !this.waitingForRestore && live.current.active !== false && live.current.inputEnabled !== false && !document.hidden; }
+        private allowed() { return this.painted && live.current.active !== false && live.current.inputEnabled !== false && !document.hidden; }
 
         private refreshViewport() {
           if (mount.current && live.current.active !== false && !document.hidden) {
@@ -228,13 +266,12 @@ function Board(props: BoardProps) {
 
         private sync() {
           if (!this.board) return;
-          this.queueArt();
           const restoring = this.restoredEpoch !== live.current.sessionEpoch;
           if (restoring) {
-            this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.board.settle(); setDeferredError('');
-            this.waitingForRestore = planBoardAssets(live.current.state).critical.some(asset => !this.textures.exists(asset.key));
-            if (this.waitingForRestore) { setStatus('loading'); live.current.onReady?.(false); }
+            this.restoredEpoch = live.current.sessionEpoch; this.cancel(); this.board.settle(); setDeferredError(''); failedArt.clear();
+            this.incomingArt.clear();
           }
+          this.queueArt();
           if (this.selectionCancelSequence !== live.current.selectionCancelSequence) {
             this.selectionCancelSequence = live.current.selectionCancelSequence;
             this.cancel();
@@ -255,6 +292,10 @@ function Board(props: BoardProps) {
           }
           this.input.enabled = this.allowed();
           this.board.sync(!inactive && !restoring);
+          if (this.artRevision !== live.current.state.revision) {
+            this.artRevision = live.current.state.revision; this.pruneTextures();
+            if (!this.pruneTimer) this.pruneTimer = this.time.delayedCall(1000, () => { this.pruneTextures(); this.pruneTimer = undefined; });
+          }
           this.reconcileSelection();
           this.paintHighlights();
         }
@@ -425,6 +466,8 @@ function Board(props: BoardProps) {
     return () => {
       disposed = true;
       clearTimeout(loadTimer);
+      for (const task of requests.values()) task.lease.release();
+      requests.clear(); prepared.clear(); acceptArt = undefined;
       bridge.current = null;
       resizeObserver?.disconnect();
       removeListeners?.();

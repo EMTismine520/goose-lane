@@ -2,6 +2,7 @@ import { Settings, Zap, Coins, Gift, Leaf, BookOpen } from 'lucide-react';
 import type { GameState } from '../domain/types';
 import { getEnergyStatus } from '../domain/engine';
 import { themeProgress } from '../domain/devices';
+import { OfflineStatus } from './OfflineResources';
 
 interface ResourceBarProps {
   state: GameState;
@@ -30,6 +31,6 @@ export function ResourceBar({ state, now, onSettings, onEnergy, onRedeem, onThem
     <button className="round-button codex-button" aria-label="打开图鉴" title="图鉴" onClick={onBook}><BookOpen size={22}/>{newDiscoveries > 0 && <span className="codex-discovery" aria-label={`${newDiscoveries}个新发现`}>{newDiscoveries > 9 ? '9+' : newDiscoveries}</span>}</button>
     <div className="resource-pill coins" data-resource-anchor="coins" aria-label={`金币 ${state.coins}`} title={`${state.coins.toLocaleString()} 金币`}><Coins size={20}/><b key={state.coins}>{coinLabel}</b></div>
     <button className="round-button gift-button" aria-label="兑换礼包" title="兑换礼包" onClick={onRedeem}><Gift size={22}/></button>
-    <button className="round-button settings-button" aria-label="设置与存档" onClick={onSettings}><Settings size={22}/></button>
+    <button className="round-button settings-button" aria-label="设置与存档" onClick={onSettings}><Settings size={22}/><OfflineStatus/></button>
   </header>;
 }

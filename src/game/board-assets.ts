@@ -1,6 +1,6 @@
 import { activeDevices } from '../content/board-layouts';
 import { CHAINS, ITEMS, RECIPES } from '../content/catalog';
-import { deviceAssetPath, itemPresentation, mobileAssetPath } from '../content/assets';
+import { devicePresentation, itemPresentation, sizedArtPath } from '../content/assets';
 import { mergeTarget } from '../domain/engine';
 import { productionFor } from '../domain/devices';
 import { PRODUCTION } from '../content/production';
@@ -10,18 +10,20 @@ export interface BoardAsset { key: string; path: string; }
 export interface BoardAssetPlan { critical: BoardAsset[]; soon: BoardAsset[]; }
 
 /** Unlock/discovery history never expands the blocking set. Only visible ownership does. */
-export function planBoardAssets(state: GameState): BoardAssetPlan {
+export function planBoardAssets(state: GameState, pixelRatio = 2): BoardAssetPlan {
   const critical = new Map<string, BoardAsset>(), soon = new Map<string, BoardAsset>();
   const addItem = (item: string, target: Map<string, BoardAsset>) => {
     const definition = ITEMS[item];
     if (!definition?.assetId) { target.set('legacy-foods', { key: 'legacy-foods', path: 'assets/foods.webp' }); return; }
     const key = `item:${definition.assetId}`;
-    target.set(key, { key, path: mobileAssetPath(itemPresentation(item).path!) });
+    const presentation = itemPresentation(item);
+    target.set(key, { key, path: sizedArtPath(presentation.path!, presentation.displaySize, pixelRatio) });
   };
   for (const item of state.board) if (item) addItem(item.item, critical);
   for (const device of activeDevices(state)) {
     const id = device.artId ?? device.id, key = `entity:${id}`;
-    critical.set(key, { key, path: mobileAssetPath(deviceAssetPath(id)) });
+    const presentation = devicePresentation(id);
+    critical.set(key, { key, path: sizedArtPath(presentation.path, presentation.displaySize, pixelRatio) });
   }
   // Crates have a tiny native SVG; historical sheet art is requested only by historical items.
   critical.set('entity:crate', { key: 'entity:crate', path: 'assets/entities/crate.svg' });

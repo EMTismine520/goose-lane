@@ -15,7 +15,7 @@ const visit = key => {
   for (const dependency of entry.imports || []) visit(dependency);
 };
 visit('index.html'); visit('src/game/Board.tsx');
-const engine = Object.keys(manifest).find(key => /(?:^|\/)engine-[\w-]+\.js$/.test(manifest[key].file));
+const engine = Object.keys(manifest).find(key => /(?:^|\/)phaser-[\w-]+\.js$/.test(manifest[key].file));
 if (!engine) throw new Error('Missing Phaser chunk'); visit(engine);
 const files = [];
 for (const file of startup) { const data = await readFile('dist/' + file); files.push({ file, bytes: data.length, gzipReferenceBytes: gzipSync(data).length }); }
@@ -30,11 +30,11 @@ for (const scenario of ['opening', 'late', 'full', 'legacy']) {
   let imageBytes = 0; for (const image of images) imageBytes += (await stat('dist/' + image)).size;
   const gzipReferenceBytes = codeBytes + imageBytes;
   const budget = scenario === 'opening' ? 1024 * 1024 : scenario === 'legacy' ? null : 1.5 * 1024 * 1024;
-  scenarios.push({ scenario, blockingTextures: plan.critical.length, prewarmTextures: plan.soon.length, visibleImageRequests: images.size, imageBytes, gzipReferenceBytes, budgetBytes: budget, budgetScope: 'startup-code-gzip', artBytesInformational: true, pass: budget === null || codeBytes <= budget });
+  scenarios.push({ scenario, blockingTextures: 0, initialTextures: plan.critical.length, prewarmTextures: plan.soon.length, visibleImageRequests: images.size, imageBytes, gzipReferenceBytes, budgetBytes: budget, budgetScope: 'startup-code-and-visible-art', artBytesInformational: false, pass: budget === null || gzipReferenceBytes <= budget });
 }
 const offline = JSON.parse(await readFile('dist/offline-budget.json', 'utf8'));
 const mobile = JSON.parse(await readFile('public/assets/mobile-manifest.json', 'utf8'));
 const report = { note: 'Build-time gzip reference, not a real iPhone network or frame-rate result. HTTP transfer and true-device timing are separate acceptance items.', startupCode: files, codeGzipReferenceBytes: codeBytes, mobileArt: { files: mobile.length, bytes: mobile.reduce((sum, row) => sum + row.bytes, 0) }, offline, scenarios };
 await writeFile('dist/performance-budget.json', JSON.stringify(report, null, 2) + '\n');
-if (scenarios.some(scenario => !scenario.pass)) throw new Error('Startup code budget exceeded; see dist/performance-budget.json');
-console.log('Startup code budget passed; art transfer sizes recorded: ' + scenarios.map(row => row.scenario + ' ' + (row.gzipReferenceBytes / 1024).toFixed(0) + ' KiB / ' + row.blockingTextures + ' blocking textures').join('; '));
+if (scenarios.some(scenario => !scenario.pass)) throw new Error('Startup code + visible art budget exceeded; see dist/performance-budget.json');
+console.log('Startup code + visible art budget passed: ' + scenarios.map(row => row.scenario + ' ' + (row.gzipReferenceBytes / 1024).toFixed(0) + ' KiB / ' + row.initialTextures + ' initial textures').join('; '));
