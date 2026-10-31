@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "90c90a61671e8965603355559bdafd8ff13a775b",
+  "sourceCommit": "0cda3103a96c35912a9a7631d0e80670296ad379",
   "sourceDirty": false,
   "contentVersion": "5.0.0",
   "schemaVersion": 4,
@@ -10,8 +10,13 @@
     256
   ],
   "sourceSize": 512,
+  "runtimeSizes": [
+    128,
+    256,
+    512
+  ],
   "runtimeSize": 512,
-  "mobileRuntimeSize": 512,
+  "mobileRuntimeSize": 128,
   "boardDprLimit": 2,
   "assets": 323,
   "finished": 139,

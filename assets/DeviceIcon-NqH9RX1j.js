@@ -1,0 +1,1 @@
+import{j as t}from"./react-CMlQYkyh.js";import{D as o,x as i}from"./asset-queue-H8koQxQn.js";import{A as c}from"./parts-CutUw9_a.js";const E={query:"",filter:"all",scroll:0};function f({family:a,level:s=1,size:e=64}){return t.jsx(c,{className:"device-icon",path:i(`${a}-l${s}`),size:e,alt:`${o.find(r=>r.id===a)?.name} ${s}级`,draggable:!1})}export{f as D,E};
