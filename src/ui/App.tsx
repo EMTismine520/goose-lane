@@ -30,7 +30,7 @@ import { loadEngine } from '../game/load-engine';
 import { afterPlayIdle } from '../platform/play-idle';
 import { perfMark } from '../platform/performance';
 import { SecondClock, RecoveryClock, ReadySignal } from './GameClock';
-import { useMergeLayout } from './useMergeLayout';
+import { useBoardScroll, useMergeLayout } from './useMergeLayout';
 const Board=lazy(()=>import('../game/Board'));
 const ChapterPanel=lazy(()=>import('./ChapterPanel').then(module=>({default:module.ChapterPanel})));
 const ShopScene=lazy(()=>import('../game/ShopScene'));
@@ -91,6 +91,7 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  useEffect(()=>{if(!state||hydrated.current===viewEpoch)return;orderPosition.current=state.session.orderScroll;hydrated.current=viewEpoch;if(scrollTimer.current)clearTimeout(scrollTimer.current);giftRunning.current=false;setGiftPending(false);setDialog(null);setHint(null);setFocusedOrderId(null);setGuidance([]);setNewTheme(null);setDiscovery(null);setDetailHistory([]);setCodexView(EMPTY_CODEX);setCodexSeen(state.discovered.length+state.deviceDiscovered.length);setPage(state.session.page);selectedUid.current=state.session.selectedUid;const index=state.board.findIndex(i=>i?.uid===state.session.selectedUid);setSelected(index>=0?index:activeDevices(state).find(e=>e.id===state.session.selectedUid)?.index??null)},[state,viewEpoch]);
  useEffect(()=>{if(!state||!selectedUid.current)return;const index=state.board.findIndex(i=>i?.uid===selectedUid.current);const device=activeDevices(state).find(e=>e.id===selectedUid.current);if(index>=0)setSelected(index);else if(device)setSelected(device.index);else{setSelected(null);selectedUid.current=null}},[state?.revision]);
  const mergeLayout=useMergeLayout(area,!!state&&page==='merge',viewEpoch),cell=mergeLayout.cell;
+ useBoardScroll(area,!!state&&page==='merge',`${game.sessionEpoch}:${state?.activeWorkspaceId??'legacy'}`,viewEpoch,mergeLayout);
  useEffect(()=>{if(!hint)return;const timer=setTimeout(()=>setHint(null),4000);return()=>clearTimeout(timer)},[hint]);
  useEffect(()=>()=>{if(scrollTimer.current)clearTimeout(scrollTimer.current)},[]);
  useEffect(()=>{if(state&&focusedOrderId&&!focusedOrder(state,focusedOrderId))setFocusedOrderId(null)},[state,focusedOrderId]);
@@ -117,13 +118,20 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
   // Queue the latest intent even if an earlier session write has not published yet.
   if(uid!==priorUid||uid!==s.session.selectedUid)void act({type:'session',session:{selectedUid:uid}});
  },[act]);
+ const revealBoardCell=(index:number)=>requestAnimationFrame(()=>{
+  const element=area.current;if(!element||index<0)return;
+  const top=6+Math.floor(index/7)*cell,bottom=top+cell;
+  if(top<element.scrollTop)element.scrollTop=Math.max(0,top-6);
+  else if(bottom>element.scrollTop+element.clientHeight)element.scrollTop=bottom-element.clientHeight+6;
+ });
  const locate=(id:string)=>{
   const current=stateRef.current;if(!current)return;
   const target=locateItem(current,id);
   if(target.kind==='board'){
    setPage('merge');void act({type:'session',session:{page:'merge'}});close();
-   const index=current.board.findIndex(item=>item&&target.uids.includes(item.uid));
-   select(index>=0?index:activeDevices(current).find(device=>target.uids.includes(device.id))?.index??null);
+   const itemIndex=current.board.findIndex(item=>item&&target.uids.includes(item.uid));
+   const index=itemIndex>=0?itemIndex:activeDevices(current).find(device=>target.uids.includes(device.id))?.index??null;
+   select(index);if(index!==null)revealBoardCell(index);
    setGuidance(target.uids);
   }else if(target.kind==='storage')showStorage();
   else if(target.kind==='shelf')showDevices(target.family);
@@ -166,7 +174,7 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  {dialog.type==='restart'&&<RestartPanel busy={game.busy} readOnly={game.readOnly} onRestart={game.restartGame} onBack={()=>setDialog({type:'settings'})}/>}
  {dialog.type==='storage'&&<><button className="subtle detail-back" onClick={backItem}>返回</button><Storage state={state} dispatch={act}/>{state.migrationInbox.length>0&&<section><h3>迁移待领取 · {state.migrationInbox.length} 件</h3><p>旧存档的每件食材都在这里，棋盘有空位时可领取。</p><div className="storage-grid">{state.migrationInbox.map(i=><button key={i.uid} onClick={()=>act({type:'claimMigration',uid:i.uid})}><ItemIcon item={i.item}/><small>{ITEMS[i.item].name}</small></button>)}</div></section>}</>}
  {dialog.type==='book'&&(state.campaign==='fresh'?<V3Codex state={state} onItem={showItem} onDevice={showDevices} view={codexView} onView={setCodexView}/>:<Codex state={state} onItem={showItem}/>)}
- {dialog.type==='devices'&&<DeviceShelf state={state} act={act} onItem={showItem} initialFamily={dialog.family} onBack={backItem} onFamilyChange={family=>setDialog(current=>current?.type==='devices'?{...current,family:family||undefined}:current)} onLocate={index=>{setPage('merge');void act({type:'session',session:{page:'merge'}});select(index);close();}}/>}
+ {dialog.type==='devices'&&<DeviceShelf state={state} act={act} onItem={showItem} initialFamily={dialog.family} onBack={backItem} onFamilyChange={family=>setDialog(current=>current?.type==='devices'?{...current,family:family||undefined}:current)} onLocate={index=>{setPage('merge');void act({type:'session',session:{page:'merge'}});select(index);close();revealBoardCell(index);}}/>}
  {dialog.type==='item'&&state.campaign==='fresh'&&<V3ItemDetails state={state} item={dialog.id} onItem={showItem} onDevice={showDevices} onBack={backItem} onLocate={locate}/>}
  {dialog.type==='item'&&state.campaign==='legacy'&&<ItemDetails state={state} item={dialog.id} onItem={showItem} onCook={slot=>{const device=activeDevices(state).find(e=>e.slot===slot);if(device){setPage('merge');void act({type:'session',session:{page:'merge'}});select(device.index);close()}else setDialog({type:'recipes',slot})}}/>}
  {dialog.type==='recipes'&&<RecipePicker state={state} slot={dialog.slot} dispatch={act} onClose={close} onItem={showItem}/>}

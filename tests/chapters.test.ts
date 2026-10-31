@@ -43,15 +43,14 @@ describe('free chapter choice and isolated kitchens',()=>{
   it('resolves every order including nested dishes and directly produced drinks',()=>{
     expect(CHAPTERS.flatMap(c=>c.orders)).toHaveLength(145);expect(new Set(CHAPTERS.flatMap(c=>c.orders.map(o=>o.id))).size).toBe(145);
     expect(CHAPTERS.map(c=>c.dependencies.families.length)).toEqual([4,6,14,13,11,18,9,13]);
-    expect(CHAPTERS.every(c=>c.starter.families.length<=8)).toBe(true);
     expect(resolveDependencies(['dish-fresh-tomato-salad']).recipes.length).toBeGreaterThan(0);
     expect(CHAPTERS[7].orders[0].needs[0].item).toBe(MODERN_RECIPES.find(r=>r.name==='香甜蛋奶饮')!.output);
   });
   it.each([2,3,4,5,6,7,8])('can buy chapter %i first for exact 60, with a usable startup and zero coins',chapter=>{
     let s=createInitialState(now);s.coins=60;s=act(s,{type:'unlockAndEnterChapter',chapter});
-    expect(s.coins).toBe(0);expect(s.chapterAccess!.unlocked).toEqual([1,chapter]);expect(activeWorkspace(s)!.devices.filter(d=>d.index!==null).length).toBeLessThanOrEqual(8);
+    expect(s.coins).toBe(0);expect(s.chapterAccess!.unlocked).toEqual([1,chapter]);expect(activeWorkspace(s)!.devices.filter(d=>d.index!==null)).toHaveLength(CHAPTERS[chapter-1].dependencies.families.length);
     expect(availableOrders(s).map(o=>o.id)).toEqual(chapterOrders(chapter).slice(0,3).map(o=>o.id));
-    for(const f of CHAPTERS[chapter-1].starter.families)expect(s.devices.find(d=>d.familyId===f)!.level).toBeGreaterThanOrEqual(CHAPTERS[chapter-1].starter.levels[f]??1);
+    for(const e of CHAPTERS[chapter-1].equipment)expect(s.devices.find(d=>d.familyId===e.familyId)).toMatchObject({level:e.level,index:e.index,band:e.initialBand});
     expect(parseSave(serializeSave(s))).toEqual(s);
     s=act(s,{type:'orderTab',tab:'regular'});const order=availableOrders(s)[0];
     expect(order.id).toMatch(/^regular:/);expect(CHAPTERS[chapter-1].starter.families.some(f=>s.devices.some(d=>d.familyId===f&&d.index!==null))).toBe(true);
@@ -88,7 +87,9 @@ describe('free chapter choice and isolated kitchens',()=>{
   });
   it('arranges dependencies as one operation, preserving the entire full kitchen when the second placement cannot fit',()=>{
     let s=opened();s=act(s,{type:'unlockAndEnterChapter',chapter:2});
-    for(const d of [...s.devices])if(d.index!==null)s=act(s,{type:'storeDevice',device:d.id});
+    // A deliberately incomplete fixture exercises transactional placement failure;
+    // real chapter play can no longer hide its required representatives.
+    for(const d of s.devices){d.index=null;const a=s.appliances.find(a=>a.id===d.id);if(a)a.index=-1;}
     for(let i=1;i<63;i++)s.board[i]={uid:`g${s.nextId++}`,item:'fresh-poultry-1'};
     const before=serializeSave(s),recipe=CHAPTERS[1].dependencies.recipes.find(r=>r.name==='葱香蛋饭')!;
     const failed=execute(s,{type:'arrangeRecipe',recipe:recipe.id},now);expect(failed.ok).toBe(false);expect(failed.state).toBe(s);expect(serializeSave(failed.state)).toBe(before);

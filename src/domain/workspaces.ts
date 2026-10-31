@@ -53,22 +53,38 @@ export function fillRegularOrders(state: GameState) {
   }
 }
 export function createWorkspace(state: GameState, chapter: number) {
-  const definition = chapterDefinition(chapter)!;
   const w: Workspace = { id: `chapter-${chapter}`, chapter, mode: 'chapter', board: Array(63).fill(null), storage: [], storageCapacity: 8,
     generators: Object.fromEntries(CHAINS.map(c => [c.id, { remaining: 12, readyAt: 0 }])), jobs: [null,null,null,null], devices: [], appliances: [], deviceGrants: [],
     session: { page: 'merge', selectedUid: null, orderScroll: 0 }, cellVersions: Array(63).fill(0), migrationInbox: [], regularOrders: [], regularCompleted: 0, orderTab: 'story', starterGranted: true };
-  for (const familyId of definition.dependencies.families) {
-    const f = DEVICE_FAMILIES.find(f => f.id === familyId)!;
-    const starter = definition.starter.families.includes(f.id), level = starter ? definition.starter.levels[f.id] ?? 1 : 1;
-    const band = starter && f.kind === 'generator' ? definition.starter.bands[f.id] ?? 0 : 0;
-    const id = `d${state.nextId++}`, index = starter ? 49 + definition.starter.families.indexOf(f.id) : null;
-    w.devices.push({ id, familyId, level, band, index, selectedChain: f.chains[0] ?? null, version: 0 });
-    w.deviceGrants.push(f.id);
-    if (f.kind === 'appliance') w.appliances.push({ id, slot: f.slot!, index: index ?? -1, inputSlots: [], job: null, outputSlot: null, version: 0 });
-    const art = `${familyId}-l${level}`; if (!state.deviceDiscovered.includes(art)) state.deviceDiscovered.push(art);
-  }
+  equipNewChapter(state, w, chapter);
   state.workspaces![w.id] = w;
   return w;
+}
+
+/** Called only when creating a kitchen, never when restoring or re-entering one. */
+export function equipNewChapter(state: GameState, w: Pick<Workspace, 'devices' | 'deviceGrants' | 'appliances'>, chapter: number) {
+  for (const { familyId, level, initialBand: band, index } of chapterDefinition(chapter)!.equipment) {
+    const f = DEVICE_FAMILIES.find(f => f.id === familyId)!;
+    const existing = w.devices.find(d => d.familyId === familyId);
+    const id = existing?.id ?? `d${state.nextId++}`;
+    if (existing) Object.assign(existing, { level, band, index });
+    else w.devices.push({ id, familyId, level, band, index, selectedChain: f.chains[0] ?? null, version: 0 });
+    if (!w.deviceGrants.includes(f.id)) w.deviceGrants.push(f.id);
+    if (f.kind === 'appliance') {
+      const appliance = w.appliances.find(a => a.id === id);
+      if (appliance) appliance.index = index;
+      else w.appliances.push({ id, slot: f.slot!, index, inputSlots: [], job: null, outputSlot: null, version: 0 });
+    }
+    const art = `${familyId}-l${level}`; if (!state.deviceDiscovered.includes(art)) state.deviceDiscovered.push(art);
+  }
+}
+
+/** A capable representative must remain on the board; optional copies may be stored. */
+export function isRequiredBoardDevice(state: GameState, id: string): boolean {
+  const w = activeWorkspace(state), device = state.devices.find(d => d.id === id);
+  if (w?.mode !== 'chapter' || !device || device.index === null) return false;
+  const required = chapterDefinition(w.chapter)!.equipment.find(e => e.familyId === device.familyId);
+  return !!required && device.level >= required.level && !state.devices.some(d => d.id !== id && d.familyId === device.familyId && d.index !== null && d.level >= required.level);
 }
 export const deviceCount = (state: GameState) => allWorkspaces(state).reduce((n, w) => n + w.devices.length, 0);
 export const reservedDevices = (state: GameState) => CHAPTERS.filter(c => !state.workspaces?.[`chapter-${c.id}`]).reduce((n, c) => n + c.dependencies.families.length, 0);

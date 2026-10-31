@@ -9,6 +9,9 @@ import type { GameState } from '../src/domain/types';
 /** An actual schema-three source, for migration and original-kitchen regressions. */
 export function historicalState(now: number, stage=1): GameState {
   const current=createInitialState(now);
+  // Historical grants were level one, independently of today's chapter provisioning.
+  current.devices.forEach(d=>{d.level=1;d.band=0;});
+  current.deviceDiscovered=current.devices.map(d=>`${d.familyId}-l1`);
   const s={...current,...Object.fromEntries(WORKSPACE_FIELDS.map(k=>[k,current[k]])),schemaVersion:3,contentVersion:'4.0.0'} as GameState;
   delete s.workspaces;delete s.chapterAccess;delete s.activeWorkspaceId;
   if(stage>=2){s.completedOrders=FRESH_ORDERS.map(o=>o.id);s.construction.completed=BUILD_NODES.map(n=>n.id);}

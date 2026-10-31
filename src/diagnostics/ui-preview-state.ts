@@ -8,7 +8,7 @@ import MILESTONES from './v3-milestones.json';
 import COMPLETE from './v3-played-state.json';
 import LEGACY from './ui-legacy-state.json';
 
-export const UI_SCENARIOS = ['chapters-all', 'chapter-dessert', 'chapter-harbor', 'opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
+export const UI_SCENARIOS = ['chapters-all', 'chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5', 'chapter-6', 'chapter-7', 'chapter-8', 'chapter-dessert', 'chapter-harbor', 'opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
 export type UiScenario = typeof UI_SCENARIOS[number];
 
 /** Isolated visual fixtures. These are never loaded by the production game entry. */
@@ -20,6 +20,11 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
   if(['chapters-all','chapter-dessert','chapter-harbor'].includes(scenario)){
     state=createInitialState(now);state.coins=10000;state.tutorialState.node='complete';
     for(const chapter of scenario==='chapters-all'?[6,2,8,4,7,3,5]:[scenario==='chapter-dessert'?7:6])state=execute(state,{type:'unlockAndEnterChapter',chapter},now).state;
+  }
+  const numberedChapter = /^chapter-([1-8])$/.exec(scenario);
+  if (numberedChapter) {
+    state = createInitialState(now); state.coins = 10000;
+    if (Number(numberedChapter[1]) !== 1) state = execute(state, { type: 'unlockAndEnterChapter', chapter: Number(numberedChapter[1]) }, now).state;
   }
   state.settings.sound = false;
   state.settings.music = false;

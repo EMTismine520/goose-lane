@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, type RefObject } from 'react';
+import { useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { getMergeLayout, type MergeLayout } from './ui-guidance';
 
 /** Observe fixed chrome and the shell, never the board whose size this hook changes. */
@@ -26,4 +26,19 @@ export function useMergeLayout(area: RefObject<HTMLDivElement | null>, active: b
   // Switching kitchens replaces the keyed order strip; observe the new chrome nodes.
   }, [area, active, contentEpoch]);
   return layout;
+}
+
+/** Keep the equipment block visible on first entry, and remember each kitchen's scrolling. */
+export function useBoardScroll(area: RefObject<HTMLDivElement | null>, active: boolean, workspace: string, epoch: number, layout: MergeLayout) {
+  const positions = useRef(new Map<string, number>());
+  useLayoutEffect(() => {
+    const element = area.current;
+    if (!active || !element || !layout.scroll) return;
+    element.scrollTop = positions.current.get(workspace) ?? element.scrollHeight;
+    const remember = () => positions.current.set(workspace, element.scrollTop);
+    remember();
+    element.addEventListener('scroll', remember, { passive: true });
+    // Hidden pages report scrollTop=0; capture scrolling while visible, not during teardown.
+    return () => element.removeEventListener('scroll', remember);
+  }, [area, active, workspace, epoch, layout.cell, layout.scroll]);
 }

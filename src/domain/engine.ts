@@ -1,5 +1,5 @@
 import { MAX_DEVICES, chapterDefinition, chapterOrders, regularTemplates, resolveDependencies as resolveRecipeDevices } from '../content/chapters';
-import { activeWorkspace, allWorkspaces, bindWorkspaceViews, chapterPrice, cloneGameState, createWorkspace, currentChapter, deviceCount, deviceGrowthAvailable, familyAllowed, fillRegularOrders, hasChapters, initializeChapters, recipeAllowed, reservedDevices, WORKSPACE_FIELDS } from './workspaces';
+import { activeWorkspace, allWorkspaces, bindWorkspaceViews, chapterPrice, cloneGameState, createWorkspace, currentChapter, deviceCount, deviceGrowthAvailable, equipNewChapter, familyAllowed, fillRegularOrders, hasChapters, initializeChapters, isRequiredBoardDevice, recipeAllowed, reservedDevices, WORKSPACE_FIELDS } from './workspaces';
 import { APPLIANCES, baseUnits, CHAINS, CONTENT_VERSION, DECORATIONS, FRESH_ORDERS, FRESH_RECIPES, HOME_CHAINS, HOME_ORDERS, ITEMS, LEGACY_ORDERS, LEGACY_RECIPES, MODERN_RECIPES, ORDERS, RECIPES, SCHEMA_VERSION, SHOPS } from '../content/catalog';
 import { activeDevices, BOARD_LAYOUT, BUILD_NODES, HOME_UNLOCK_HINT, homeCookingUnlocked } from '../content/board-layouts';
 import { reconcileHomeDevices } from './home-progression';
@@ -53,6 +53,7 @@ export function createInitialState(now = Date.now()): GameState {
     session: { page: 'merge', selectedUid: null, orderScroll: 0 }, migrationInbox: [], processedCommandIds: [], cellVersions: Array(BOARD_SIZE).fill(0),
   };
   reconcileDeviceGrants(state);
+  equipNewChapter(state, state, 1);
   return initializeChapters(state);
 }
 
@@ -318,7 +319,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
       const preview=getRecipeLayoutPreview(state,recipe.id)!;
       if(preview.families.some(f=>!f.device))return reject('本章缺少所需设备，请先到设备架准备。');
       for(const selection of preview.families){const d=state.devices.find(d=>d.id===selection.device)!;if(d.index!==null)continue;
-        let index=emptyCell(state);if(index<0){const spare=state.devices.find(d=>d.index!==null&&!preview.families.some(f=>f.device===d.id)&&deviceIdle(state,d.id));if(!spare)return reject('请先腾出空格，布局尚未改变。');index=spare.index!;spare.index=null;spare.version++;const a=state.appliances.find(a=>a.id===spare.id);if(a){a.index=-1;a.version++;}}
+        let index=emptyCell(state);if(index<0){const spare=state.devices.find(d=>d.index!==null&&!preview.families.some(f=>f.device===d.id)&&deviceIdle(state,d.id)&&!isRequiredBoardDevice(state,d.id));if(!spare)return reject('请先腾出空格，布局尚未改变。');index=spare.index!;spare.index=null;spare.version++;const a=state.appliances.find(a=>a.id===spare.id);if(a){a.index=-1;a.version++;}}
         d.index=index;d.version++;const a=state.appliances.find(a=>a.id===d.id);if(a){a.index=index;a.version++;}
       }events.push({type:'device',message:'所需设备已布置，原有食材和忙碌厨具保留。'});break;
     }
@@ -350,6 +351,7 @@ export function execute(original: GameState, command: Command, now = Date.now())
     case 'storeDevice': {
       const device=state.devices.find(d=>d.id===command.device);
       if(!device||device.index===null||!deviceIdle(state,device.id))return reject('只有完全空闲的设备可以收纳。');
+      if(isRequiredBoardDevice(state,device.id))return reject('本章必需器材需保留在棋盘，可拖动调整位置。');
       device.index=null;device.version++;const appliance=state.appliances.find(a=>a.id===device.id);if(appliance){appliance.index=-1;appliance.version++;}
       events.push({type:'device',message:'设备已收好，随时可以从设备架取出。'});break;
     }
@@ -367,6 +369,10 @@ export function execute(original: GameState, command: Command, now = Date.now())
       if(!(hasChapters(state)?deviceGrowthAvailable(state):themeStage(state)>=3))return reject('设备成长将在晨间茶饮主题开放。');
       if(!source||!target||source.id===target.id||source.familyId!==target.familyId||source.level!==target.level||target.level>=3)return reject('需要两台同类同级设备，最高可升至三级。');
       if(!deviceIdle(state,source.id)||!deviceIdle(state,target.id))return reject('请先撤回投料或领取料理，再合成空闲设备。');
+      if(target.index===null&&isRequiredBoardDevice(state,source.id)){
+        target.index=source.index;
+        const appliance=state.appliances.find(a=>a.id===target.id);if(appliance){appliance.index=target.index!;appliance.version++;}
+      }
       target.level++;target.band=0;target.version++;
       state.devices=state.devices.filter(d=>d.id!==source.id);state.appliances=state.appliances.filter(a=>a.id!==source.id);
       const art=deviceArtId(target);if(!state.deviceDiscovered.includes(art))state.deviceDiscovered.push(art);
@@ -706,6 +712,6 @@ export function stateInvariantErrors(state: GameState): string[] {
 export function getRecipeLayoutPreview(state:GameState, recipeId:string) {
   const recipe=availableApplianceRecipes(state).find(r=>r.id===recipeId);if(!recipe)return null;
   const dep=resolveRecipeDevices([recipe.output]);
-  const families=dep.families.map(id=>{const device=state.devices.filter(d=>d.familyId===id).sort((a,b)=>b.level-a.level||Number(b.index!==null)-Number(a.index!==null))[0];return {id,name:DEVICE_FAMILIES.find(f=>f.id===id)!.name,level:dep.levels[id]??1,ownedLevel:device?.level??0,device:device?.id,onBoard:!!device&&device.index!==null};});
-  return {families,requiredSpaces:families.filter(f=>!f.onBoard).length,freeSpaces:state.board.filter((_,i)=>getBoardEntity(state,i).kind==='empty').length,stowable:state.devices.filter(d=>d.index!==null&&!families.some(f=>f.device===d.id)&&deviceIdle(state,d.id)).length};
+  const families=dep.families.map(id=>{const level=dep.levels[id]??1;const device=state.devices.filter(d=>d.familyId===id).sort((a,b)=>Number(b.index!==null&&b.level>=level)-Number(a.index!==null&&a.level>=level)||b.level-a.level||Number(b.index!==null)-Number(a.index!==null))[0];return {id,name:DEVICE_FAMILIES.find(f=>f.id===id)!.name,level,ownedLevel:device?.level??0,device:device?.id,onBoard:!!device&&device.index!==null};});
+  return {families,requiredSpaces:families.filter(f=>!f.onBoard).length,freeSpaces:state.board.filter((_,i)=>getBoardEntity(state,i).kind==='empty').length,stowable:state.devices.filter(d=>d.index!==null&&!families.some(f=>f.device===d.id)&&deviceIdle(state,d.id)&&!isRequiredBoardDevice(state,d.id)).length};
 }
