@@ -8,13 +8,13 @@ import { GiftArtwork, giftTierFor } from '../src/ui/GiftArtwork';
 const noop = () => {};
 describe('gift interface accessibility contracts', () => {
   it.each([createInitialState, createLegacyInitialState])('provides the gift entry in each campaign', create => {
-    const html = renderToStaticMarkup(<ResourceBar state={create(1000)} now={1000} onEnergy={noop} onSettings={noop} onRedeem={noop}/>);
+    const html = renderToStaticMarkup(<ResourceBar state={create(1000)} now={1000} onEnergy={noop} onSettings={noop} onRedeem={noop} onBook={noop}/>);
     expect(html).toContain('aria-label="兑换礼包"');
   });
 
   it('keeps the exact large energy accessible and shows the denominator only at or below the natural cap', () => {
     const state = createInitialState(1000);
-    const render = () => renderToStaticMarkup(<ResourceBar state={state} now={1000} onEnergy={noop} onSettings={noop} onRedeem={noop}/>);
+    const render = () => renderToStaticMarkup(<ResourceBar state={state} now={1000} onEnergy={noop} onSettings={noop} onRedeem={noop} onBook={noop}/>);
     expect(render()).toContain('/100');
     state.energy.value = 12345678;
     const html = render();

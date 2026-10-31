@@ -9,6 +9,18 @@ export function layoutDensity(height: number): LayoutDensity {
   return height < 606 ? 'tiny' : height < 640 ? 'short' : height < 740 ? 'compact' : 'regular';
 }
 
+export interface MergeLayout { cell: number; footerHeight: number; scroll: boolean; }
+export function getMergeLayout({ width, height, resourceHeight, ordersHeight, guideHeight }: {
+  width: number; height: number; resourceHeight: number; ordersHeight: number; guideHeight: number;
+}): MergeLayout {
+  const widthCell = Math.max(1, Math.floor((width - 28) / 7));
+  const available = Math.round(height - resourceHeight - ordersHeight - guideHeight);
+  const footerHeight = Math.round(Math.max(104, Math.min(144, available - (widthCell * 9 + 12) - 12)));
+  const boardAreaHeight = available - footerHeight;
+  const cell = Math.max(Math.min(40, widthCell), Math.min(widthCell, Math.floor((boardAreaHeight - 12) / 9)));
+  return { cell, footerHeight, scroll: cell * 9 + 12 > boardAreaHeight };
+}
+
 export function focusedOrder(state: GameState, id: string | null): OrderDef | null {
   return availableOrders(state).find(order => order.id === id) ?? null;
 }

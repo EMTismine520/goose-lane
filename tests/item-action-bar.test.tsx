@@ -12,7 +12,7 @@ function render(state: GameState, override?: ApplianceTarget) {
   const appliance = state.appliances.find(value => value.id === pot)!;
   const target = override ?? getApplianceTarget(state, pot, 'home-order-02')!;
   return renderToStaticMarkup(<ItemActionBar state={state} selected={appliance.index} now={now} act={async () => true}
-    onStorage={noop} onBook={noop} onItem={noop} onDevices={noop} onAppliance={noop} applianceTargets={{ [pot]: target }}/>);
+    onBook={noop} onItem={noop} onDevices={noop} onAppliance={noop} applianceTargets={{ [pot]: target }}/>);
 }
 
 describe('inline appliance ingredients', () => {
@@ -26,7 +26,10 @@ describe('inline appliance ingredients', () => {
     expect(html.match(/class="appliance-ingredient /g)).toHaveLength(3);
     expect(html.match(/class="appliance-ingredient is-missing"/g)).toHaveLength(2);
     expect(html.match(/class="appliance-ingredient-check"/g)).toHaveLength(1);
-    expect(html).toContain('目标番茄炒蛋；番茄未投入，0/1；鸡蛋已投入，1/1；香葱未投入，0/1');
+    expect(html).toContain('目标番茄炒蛋');
+    expect(html).toContain('番茄，未投入 0/1，查看介绍');
+    expect(html).toContain('鸡蛋，已投入 1/1，查看介绍');
+    expect(html).toContain('香葱，未投入 0/1，查看介绍');
     expect(html).not.toContain('已投1份');
     expect(html).not.toContain('查看缺料');
     expect(html).not.toContain('aria-label="开火');
@@ -43,7 +46,7 @@ describe('inline appliance ingredients', () => {
 
   it('does not offer the ready short recipe while the displayed order is missing tomato', () => {
     const html = render(createUiPreviewState('prefix', now));
-    expect(html).toContain('番茄未投入，0/1');
+    expect(html).toContain('番茄，未投入 0/1，查看介绍');
     expect(html).not.toContain('aria-label="开火');
   });
 
@@ -53,7 +56,7 @@ describe('inline appliance ingredients', () => {
     const html = render(execute(state, { type: 'withdrawInput', appliance: pot, uid: input.uid }, now).state);
     expect(html.match(/class="appliance-ingredient /g)).toHaveLength(3);
     expect(html.match(/class="appliance-ingredient is-missing"/g)).toHaveLength(1);
-    expect(html).toContain('番茄未投入，0/1');
+    expect(html).toContain('番茄，未投入 0/1，查看介绍');
   });
 
   it('keeps a partially loaded multi-unit ingredient colored and shows its exact quantity', () => {
@@ -62,7 +65,7 @@ describe('inline appliance ingredients', () => {
     target.recipe = { ...target.recipe, inputs: target.recipe.inputs.map(need => need.item === 'fresh-poultry-1' ? { ...need, count: 2 } : need) };
     target.ingredients = target.ingredients.map(need => need.item === 'fresh-poultry-1' ? { ...need, required: 2, complete: false } : need);
     const html = render(state, target);
-    expect(html).toContain('鸡蛋部分投入，1/2');
+    expect(html).toContain('鸡蛋，部分投入 1/2，查看介绍');
     expect(html).toContain('>1/2</span>');
     expect(html.match(/class="appliance-ingredient has-input"/g)).toHaveLength(2);
     expect(html.match(/class="appliance-ingredient-check"/g)).toHaveLength(1);

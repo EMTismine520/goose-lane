@@ -1,0 +1,65 @@
+/* Size the board and its reading surface from the usable mobile viewport. */
+.game-shell{--resource:56px;--guide:24px}
+.game-shell[data-density="compact"],.game-shell[data-density="short"],.game-shell[data-density="tiny"]{--resource:48px;--guide:24px}
+.game-shell[data-density] .board-area{padding:0;overflow:hidden;align-items:center}
+.game-shell[data-density] .board-area[data-board-scroll="true"]{overflow-y:auto;align-items:flex-start;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b99a70 transparent}
+.board-area::-webkit-scrollbar{width:6px}.board-area::-webkit-scrollbar-thumb{background:#b99a70;border-radius:4px}
+
+/* The guide sits beside energy. Actions keep their 44px targets at every width. */
+.game-shell .guest-resources{grid-template-columns:minmax(80px,1.1fr) minmax(74px,1fr) 44px minmax(64px,.9fr) 44px 44px}
+.guest-resources .resource-pill.coins{gap:2px;padding:0 3px}.guest-resources .coins svg{width:14px}
+.guest-resources .codex-button{position:relative;display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:0;border:0;background:none;box-shadow:none;color:#5e7045}
+.codex-discovery{position:absolute;top:0;right:0;display:grid;place-items:center;min-width:15px;height:15px;padding:0 3px;border-radius:8px;background:#b66a3e;color:#fff9ed;font-size:9px;font-weight:800;line-height:1}
+.guest-resources .energy b,.guest-resources .coins b{white-space:nowrap;flex-shrink:0}
+@media(min-width:360px) and (max-width:389px){
+  .game-shell .guest-resources{gap:3px;grid-template-columns:minmax(0,1fr) minmax(66px,1fr) 44px minmax(58px,.9fr) 44px 44px}
+  .guest-resources .theme-emblem{display:none}
+  .guest-resources .energy b{font-size:13px}.guest-resources .energy svg{width:16px}
+  .guest-resources .energy>span{display:none}
+  .guest-resources .resource-pill.coins{gap:2px;padding:0 2px}.guest-resources .coins svg{width:12px}.guest-resources .coins b{font-size:12px}
+}
+@media(max-width:359px){
+  .game-shell .guest-resources{gap:2px;grid-template-columns:44px minmax(68px,1fr) 44px minmax(48px,.8fr) 44px 44px}
+  .guest-resources .theme-badge{justify-content:center;padding:0}.guest-resources .theme-badge-copy{display:none}
+  .guest-resources .energy{padding:0;gap:2px}.guest-resources .energy b{font-size:13px}.guest-resources .energy svg{width:16px}.guest-resources .energy>span{display:none}
+  .guest-resources .resource-pill.coins{height:42px;flex-direction:column;gap:0;padding:1px 0;border:0;background:transparent;box-shadow:none}
+  .guest-resources .coins svg{width:12px;height:14px}.guest-resources .coins b{font-size:12px;line-height:16px}
+}
+
+/* Two information bands replace the old permanent tool row. */
+.selection-dock{padding:6px;grid-template-rows:minmax(44px,1fr) 44px;gap:4px}
+.selection-primary,.selection-secondary{display:flex;align-items:center;min-width:0;gap:8px}
+.selection-dock .context-summary{width:100%;height:100%;min-height:44px;gap:6px;border-radius:9px}
+.selection-dock .context-summary b{font-size:16px;line-height:1.35}
+.selection-dock .context-summary>.item-icon{width:40px!important;height:40px!important}
+.selection-dock .context-summary>.device-icon,.selection-dock .context-summary>svg{width:32px!important;height:32px!important}
+.selection-description{min-width:0;flex:1;margin:0;color:#786149;font-size:13px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.selection-dock .dock-primary,.selection-dock .dock-secondary,.selection-dock .object-menu>summary{min-width:72px;min-height:44px;max-width:none;font-size:14px;padding:0 9px}
+.selection-dock .appliance-inline{gap:8px}
+.selection-dock .appliance-identity{display:flex;align-items:center;gap:4px;flex:1 1 auto;min-width:0;min-height:44px;padding:0;text-align:left;color:#493729;border-radius:9px}
+.selection-dock .appliance-identity>.device-icon,.selection-dock .appliance-identity>svg{width:32px!important;height:32px!important;flex:0 0 32px}
+.selection-dock .appliance-name{max-width:none;min-width:0;font-size:16px;line-height:1.35}
+.selection-dock .appliance-ingredients{display:flex;align-items:center;gap:4px;flex:0 0 auto;margin-left:auto}
+.selection-dock .appliance-ingredient{display:grid;place-items:center;position:relative;flex:0 0 44px;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border-radius:10px}
+.appliance-ingredient-art{display:block;position:relative;width:36px;height:36px;pointer-events:none}
+.selection-dock .appliance-ingredient-art>.item-icon{display:block;width:100%!important;height:100%!important}
+.selection-dock .appliance-ingredient.is-missing .item-icon{filter:grayscale(1);opacity:.55}
+.selection-dock .appliance-ingredient-check,.selection-dock .appliance-ingredient-count{min-width:13px;height:13px;right:-1px;bottom:0;font-size:9px}
+.selection-dock .appliance-ingredient:active,.selection-dock .appliance-identity:active{background:#f0e6d3}
+.game-shell[data-dock-size="relaxed"] .selection-dock .context-summary b{font-size:18px}
+.game-shell[data-dock-size="relaxed"] .selection-description{font-size:14px}
+.game-shell[data-dock-size="relaxed"] .selection-dock .appliance-identity>.device-icon,.game-shell[data-dock-size="relaxed"] .selection-dock .appliance-identity>svg{width:36px!important;height:36px!important;flex-basis:36px}
+.game-shell[data-dock-size="relaxed"] .selection-dock .appliance-ingredient{width:52px;height:52px;min-width:52px;min-height:52px;flex-basis:52px}
+.game-shell[data-dock-size="relaxed"] .appliance-ingredient-art{width:44px;height:44px}
+@media(max-width:359px){
+  .selection-dock .appliance-identity>.device-icon,.selection-dock .appliance-identity>svg{display:none}
+  .game-shell[data-dock-size] .selection-dock .context-summary .appliance-name{font-size:16px}
+}
+
+.street-page-new .action-dock{display:flex;align-items:stretch;padding:8px}
+.street-page-new .context-rail{width:100%;padding:0}
+.street-page-new .street-context-copy b{font-size:16px}.street-page-new .street-context-copy small{font-size:13px;line-height:1.4;white-space:normal}
+.street-page-new .street-context-action{min-width:72px;min-height:44px;font-size:14px}
+.utility-settings-actions{display:grid;gap:8px}.utility-settings-actions>.outline{display:flex;align-items:center;gap:10px;min-height:64px;text-align:left;padding:10px 12px}
+.utility-settings-actions>button>span{min-width:0;flex:1}.utility-settings-actions b,.utility-settings-actions small{display:block}.utility-settings-actions b{font-size:16px}.utility-settings-actions small{font-size:12px;color:#806c58;margin-top:3px}
+.utility-settings-actions>button>svg{flex-shrink:0}.detail-back{min-height:44px}

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import { DRAG_THRESHOLD } from '../game/board-input';
 import { installGameViewport } from '../platform/viewport';
 import { layoutDensity } from './ui-guidance';
@@ -8,13 +8,13 @@ const backgroundSurface = (x:number,y:number) => {
  const surface=document.elementFromPoint(x,y);
  return surface instanceof HTMLElement&&surface.hasAttribute('data-selection-background')?surface:null;
 };
-export function GameShell({children,page,backgroundEnabled=false,onBackgroundTap}:{children:ReactNode;page:string;backgroundEnabled?:boolean;onBackgroundTap?:()=>void}) {
+export function GameShell({children,page,footerHeight,backgroundEnabled=false,onBackgroundTap}:{children:ReactNode;page:string;footerHeight?:number;backgroundEnabled?:boolean;onBackgroundTap?:()=>void}) {
  const press=useRef<BackgroundPress|null>(null);
  const shell=useRef<HTMLElement>(null);
  useLayoutEffect(() => installGameViewport(), []);
  useLayoutEffect(()=>{
   const element=shell.current;if(!element)return;
-  const measure=()=>{element.dataset.density=layoutDensity(element.getBoundingClientRect().height)};
+  const measure=()=>{element.dataset.density=layoutDensity(Math.round(element.getBoundingClientRect().height))};
   const observer=new ResizeObserver(measure);observer.observe(element);measure();
   return()=>observer.disconnect();
  },[]);
@@ -26,6 +26,8 @@ export function GameShell({children,page,backgroundEnabled=false,onBackgroundTap
   return()=>{window.removeEventListener('blur',cancel);document.removeEventListener('visibilitychange',cancel)};
  },[]);
  return <main ref={shell} className={`game-shell page-${page}`} aria-label="鹅巷食光" data-selection-background
+  data-dock-size={footerHeight !== undefined && footerHeight >= 120 ? 'relaxed' : 'compact'}
+  style={footerHeight === undefined ? undefined : { '--footer': `${footerHeight}px` } as CSSProperties}
   onPointerDown={event=>{
    if(!event.isPrimary)return;
    const surface=backgroundSurface(event.clientX,event.clientY);

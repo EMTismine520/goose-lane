@@ -8,7 +8,7 @@ import MILESTONES from './v3-milestones.json';
 import COMPLETE from './v3-played-state.json';
 import LEGACY from './ui-legacy-state.json';
 
-export const UI_SCENARIOS = ['opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
+export const UI_SCENARIOS = ['opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
 export type UiScenario = typeof UI_SCENARIOS[number];
 
 /** Isolated visual fixtures. These are never loaded by the production game entry. */
@@ -58,10 +58,10 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
     const input=appliance.inputSlots.find(value=>value.item==='fresh-veg-1');
     if (input) state=execute(state,{type:'withdrawInput',appliance:appliance.id,uid:input.uid},now).state;
   }
-  if (scenario === 'one-input' || scenario === 'two-ingredients') {
+  if (['one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients'].includes(scenario)) {
     const appliance = state.appliances.find(value => value.id === 'home-cooking-pot')!;
     for (const input of [...appliance.inputSlots]) {
-      if (scenario === 'one-input' && input.item === 'fresh-poultry-1') continue;
+      if (scenario !== 'two-ingredients' && input.item === 'fresh-poultry-1') continue;
       state = execute(state, { type: 'withdrawInput', appliance: appliance.id, uid: input.uid }, now).state;
     }
     if (scenario === 'two-ingredients') {
@@ -70,6 +70,9 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
       state = execute(state, { type: 'stageInput', from, appliance: appliance.id }, now).state;
     }
   }
+  if (scenario === 'large-resources') { state.energy.value = 11_111; state.coins = 9_999_999; }
+  if (scenario === 'natural-cap') state.energy.value = 100;
+  if (scenario === 'max-resources') { state.energy.value = 1_000_000_000_000; state.coins = 1_000_000_000_000; }
   if (scenario === 'long-name') {
     const from = state.board.findIndex((_, index) => getBoardEntity(state, index).kind === 'empty');
     state.board[from] = { uid: `g${state.nextId++}`, item: 'fresh-fruit-1' };
