@@ -1,8 +1,8 @@
-# 鹅巷食光 V4
+# 鹅巷食光 V5
 
-源码提交：6130ec1111f7d570aab9a18df1ae493e383fc49b
+源码提交：90c90a61671e8965603355559bdafd8ff13a775b
 
-Plan V6.1：减少棋盘留白，放大底部介绍和食材按钮；图鉴移到顶部体力旁，设备与仓库入口移入设置；点击食材直接查看对应介绍。
+Plan V7：金币自由选章，每章独立厨房、仓库与设备；常客持续收益、原厨房完整保留，切章先保存，旧食材不挤占新棋盘。
 
 [正式游戏](https://emtismine520.github.io/goose-lane/) · [独立试玩](https://emtismine520.github.io/goose-lane-art-preview/v3-preview.html)
 

@@ -4,12 +4,12 @@
     {
       "file": "index.html",
       "bytes": 2607,
-      "gzipReferenceBytes": 1103
+      "gzipReferenceBytes": 1096
     },
     {
-      "file": "assets/game-DZ8XUcVW.js",
+      "file": "assets/game-CCEV7L6h.js",
       "bytes": 2213,
-      "gzipReferenceBytes": 1157
+      "gzipReferenceBytes": 1154
     },
     {
       "file": "assets/modulepreload-polyfill-B5Qt9EMX.js",
@@ -17,14 +17,14 @@
       "gzipReferenceBytes": 399
     },
     {
-      "file": "assets/load-engine-DezAFPj2.js",
-      "bytes": 7837,
-      "gzipReferenceBytes": 3184
+      "file": "assets/load-engine-DuF8Pnz1.js",
+      "bytes": 7838,
+      "gzipReferenceBytes": 3185
     },
     {
-      "file": "assets/asset-queue-DMAv7LHf.js",
-      "bytes": 236981,
-      "gzipReferenceBytes": 47300
+      "file": "assets/asset-queue-hg-dFuSn.js",
+      "bytes": 246653,
+      "gzipReferenceBytes": 50430
     },
     {
       "file": "assets/gift-codes-Djut_bYv.js",
@@ -37,19 +37,19 @@
       "gzipReferenceBytes": 4207
     },
     {
-      "file": "assets/game-BiiinQey.js",
-      "bytes": 292652,
-      "gzipReferenceBytes": 94215
+      "file": "assets/game-BHWcQpc-.js",
+      "bytes": 306593,
+      "gzipReferenceBytes": 98839
     },
     {
-      "file": "assets/game-Gk-SN4zA.css",
-      "bytes": 99250,
-      "gzipReferenceBytes": 21593
+      "file": "assets/game-CPhBRmfK.css",
+      "bytes": 102682,
+      "gzipReferenceBytes": 22256
     },
     {
-      "file": "assets/zap-kn8U2GMe.js",
-      "bytes": 694,
-      "gzipReferenceBytes": 356
+      "file": "assets/ThemeEmblem-B5F1n8pw.js",
+      "bytes": 6081,
+      "gzipReferenceBytes": 2793
     },
     {
       "file": "assets/check-CPbIflhE.js",
@@ -57,19 +57,34 @@
       "gzipReferenceBytes": 718
     },
     {
-      "file": "assets/DeviceIcon-C8LecwLm.js",
-      "bytes": 1465,
-      "gzipReferenceBytes": 707
+      "file": "assets/parts-strxUTjb.js",
+      "bytes": 8818,
+      "gzipReferenceBytes": 3635
     },
     {
-      "file": "assets/parts-DrROYYIH.js",
-      "bytes": 8815,
-      "gzipReferenceBytes": 3635
+      "file": "assets/DeviceIcon-Cmq-gEeM.js",
+      "bytes": 1465,
+      "gzipReferenceBytes": 706
     },
     {
       "file": "assets/coins-B3BwfpIc.js",
       "bytes": 821,
       "gzipReferenceBytes": 422
+    },
+    {
+      "file": "assets/arrow-right-DB7M5Fx_.js",
+      "bytes": 333,
+      "gzipReferenceBytes": 264
+    },
+    {
+      "file": "assets/zap-kn8U2GMe.js",
+      "bytes": 694,
+      "gzipReferenceBytes": 356
+    },
+    {
+      "file": "assets/lock-keyhole-CREuBMs9.js",
+      "bytes": 423,
+      "gzipReferenceBytes": 321
     },
     {
       "file": "assets/gift-BTPPin2Y.js",
@@ -87,24 +102,9 @@
       "gzipReferenceBytes": 330
     },
     {
-      "file": "assets/ThemeEmblem-BUfDJY7h.js",
-      "bytes": 6021,
-      "gzipReferenceBytes": 2768
-    },
-    {
       "file": "assets/sparkles-BvZ7cZbY.js",
       "bytes": 677,
       "gzipReferenceBytes": 401
-    },
-    {
-      "file": "assets/lock-keyhole-CREuBMs9.js",
-      "bytes": 423,
-      "gzipReferenceBytes": 321
-    },
-    {
-      "file": "assets/arrow-right-DB7M5Fx_.js",
-      "bytes": 333,
-      "gzipReferenceBytes": 264
     },
     {
       "file": "assets/ItemArtContext-8U5_pQTt.js",
@@ -112,9 +112,9 @@
       "gzipReferenceBytes": 173
     },
     {
-      "file": "assets/Board-Cjs-F1UN.js",
-      "bytes": 27776,
-      "gzipReferenceBytes": 10188
+      "file": "assets/Board-knZYow01.js",
+      "bytes": 27782,
+      "gzipReferenceBytes": 10185
     },
     {
       "file": "assets/engine-DMjGVukU.js",
@@ -122,49 +122,49 @@
       "gzipReferenceBytes": 381663
     }
   ],
-  "codeGzipReferenceBytes": 576794,
+  "codeGzipReferenceBytes": 585223,
   "mobileArt": {
     "files": 323,
     "bytes": 18051776
   },
   "offline": {
     "files": 37,
-    "bytes": 2477682,
-    "totalBytes": 42094960,
+    "bytes": 2506375,
+    "totalBytes": 42123430,
     "themeFiles": 749,
     "coreUrls": [
       "app-icon-180.png",
       "app-icon-192.png",
       "app-icon-512.png",
       "assets/arrow-right-DB7M5Fx_.js",
-      "assets/asset-queue-DMAv7LHf.js",
-      "assets/Board-Cjs-F1UN.js",
+      "assets/asset-queue-hg-dFuSn.js",
+      "assets/Board-knZYow01.js",
       "assets/check-CPbIflhE.js",
       "assets/coins-B3BwfpIc.js",
-      "assets/DeviceIcon-C8LecwLm.js",
-      "assets/DeviceShelf-B2ZaqFVb.js",
+      "assets/DeviceIcon-Cmq-gEeM.js",
+      "assets/DeviceShelf-KsJzAFUb.js",
       "assets/engine-DMjGVukU.js",
       "assets/flame-Cx-Uy0-0.js",
-      "assets/game-BiiinQey.js",
-      "assets/game-DZ8XUcVW.js",
-      "assets/game-Gk-SN4zA.css",
+      "assets/game-BHWcQpc-.js",
+      "assets/game-CCEV7L6h.js",
+      "assets/game-CPhBRmfK.css",
       "assets/gift-BTPPin2Y.js",
       "assets/gift-codes-Djut_bYv.js",
       "assets/ItemArtContext-8U5_pQTt.js",
-      "assets/load-engine-DezAFPj2.js",
+      "assets/load-engine-DuF8Pnz1.js",
       "assets/lock-keyhole-CREuBMs9.js",
       "assets/modulepreload-polyfill-B5Qt9EMX.js",
       "assets/package-open-Bg-znRSs.js",
-      "assets/panels-D6fZqXdr.js",
-      "assets/parts-DrROYYIH.js",
-      "assets/PerformanceTools-BKEkPwcw.js",
+      "assets/panels-fVk7TWyW.js",
+      "assets/parts-strxUTjb.js",
+      "assets/PerformanceTools-Dm9FhyRO.js",
       "assets/react-Bzgz95E1.js",
       "assets/RedeemGiftPanel-CM1OAFH8.js",
       "assets/search-CyDeMNGJ.js",
-      "assets/ShopScene-M2H28p2S.js",
+      "assets/ShopScene-Bt-UORtz.js",
       "assets/sparkles-BvZ7cZbY.js",
-      "assets/ThemeEmblem-BUfDJY7h.js",
-      "assets/V3Codex-nOlvyhMP.js",
+      "assets/ThemeEmblem-B5F1n8pw.js",
+      "assets/V3Codex-CuwXP5qT.js",
       "assets/wrench-ce4wuoVK.js",
       "assets/zap-kn8U2GMe.js",
       "favicon.svg",
@@ -179,7 +179,7 @@
       "prewarmTextures": 4,
       "visibleImageRequests": 10,
       "imageBytes": 470808,
-      "gzipReferenceBytes": 1047602,
+      "gzipReferenceBytes": 1056031,
       "budgetBytes": 1048576,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
@@ -191,7 +191,7 @@
       "prewarmTextures": 20,
       "visibleImageRequests": 34,
       "imageBytes": 1806616,
-      "gzipReferenceBytes": 2383410,
+      "gzipReferenceBytes": 2391839,
       "budgetBytes": 1572864,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
@@ -203,7 +203,7 @@
       "prewarmTextures": 12,
       "visibleImageRequests": 16,
       "imageBytes": 807970,
-      "gzipReferenceBytes": 1384764,
+      "gzipReferenceBytes": 1393193,
       "budgetBytes": 1572864,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
@@ -215,7 +215,7 @@
       "prewarmTextures": 6,
       "visibleImageRequests": 6,
       "imageBytes": 752364,
-      "gzipReferenceBytes": 1329158,
+      "gzipReferenceBytes": 1337587,
       "budgetBytes": null,
       "budgetScope": "startup-code-gzip",
       "artBytesInformational": true,
