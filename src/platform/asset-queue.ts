@@ -59,6 +59,17 @@ let decodedBytes = 0;
 const baseUrl = (source: string) => new URL(source, document.baseURI).href;
 export function isArtBusy() { return queue.pendingCount > 0; }
 
+const uncontrolledArt = new Set<string>();
+let handoffSequence = 0;
+export function artHandoffState() { return { sequence: handoffSequence, urls: [...uncontrolledArt] }; }
+function trackUncontrolledArt(url: string): () => void {
+  if (typeof navigator !== 'undefined' && navigator.serviceWorker?.controller) return () => {};
+  const changed = () => { handoffSequence++; window.dispatchEvent(new Event('goose:art-handoff')); };
+  uncontrolledArt.add(url); changed();
+  let ended = false;
+  return () => { if (!ended) { ended = true; uncontrolledArt.delete(url); changed(); } };
+}
+
 /** React and Phaser both use native images, sharing URLs, decoding, and the four-slot queue. */
 function artRequest(source: string) {
   return (signal: AbortSignal) => new Promise<HTMLImageElement>((resolve, reject) => {
@@ -68,12 +79,14 @@ function artRequest(source: string) {
     const finishLoad = perfSpan('image-load', source);
     let finished = false;
     const image = new Image(); image.decoding = 'async';
+    const endHandoff = trackUncontrolledArt(url);
     const abort = () => { finish(); image.src = ''; reject(new DOMException('Image consumer released', 'AbortError')); };
     const timeout = setTimeout(() => { finish(); image.src = ''; reject(new Error('素材加载超时，请联网重试。')); }, 30000);
-    const finish = () => { if (finished) return; finished = true; clearTimeout(timeout); signal.removeEventListener('abort', abort); image.onload = null; image.onerror = null; finishLoad(); };
+    const finish = () => { if (finished) return; finished = true; endHandoff(); clearTimeout(timeout); signal.removeEventListener('abort', abort); image.onload = null; image.onerror = null; finishLoad(); };
     signal.addEventListener('abort', abort, { once: true });
     image.onerror = () => { finish(); reject(new Error('素材暂未加载成功。')); };
     image.onload = () => {
+      endHandoff();
       const finishDecode = perfSpan('image-decode', source);
       void (typeof image.decode === 'function' ? image.decode() : Promise.resolve()).then(() => {
         if (finished) return;

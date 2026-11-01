@@ -18,23 +18,28 @@ const assetsFor = (files: Record<string, string>): Asset[] => Object.entries(fil
   url, size: Buffer.byteLength(body), integrity: 'sha256-' + createHash('sha256').update(body).digest('base64'),
 }));
 
-describe('explicit nonconsecutive chapter packs',()=>{
-  it('caches only the requested dependency set rather than chapters one through eight',async()=>{
+describe('current chapter without a stage barrier',()=>{
+  it('prepares the requested chapter and every other chapter together',async()=>{
     const files={'index.html':'game','assets/mobile/tea.webp':'tea','assets/mobile/bar.webp':'bar','assets/mobile/oven.webp':'oven'};
     const metadata=Object.fromEntries(Object.keys(files).filter(p=>p.endsWith('.webp')).map((p,i)=>[p,{role:'art',variant:'mobile',stage:i+3}]));
     const h=workerHarness(files,metadata,['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
-    await h.lifecycle('message',{type:'CACHE_CHAPTER',chapter:8,urls:['assets/mobile/tea.webp','assets/mobile/bar.webp'],variant:'mobile'});
-    expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual([h.scope+'assets/mobile/tea.webp',h.scope+'assets/mobile/bar.webp']);
-    expect(h.messages).toContainEqual({type:'CHAPTER_CACHED',chapter:8,variant:'mobile'});
-    h.fetcher.mockClear();await h.lifecycle('message',{type:'CACHE_CHAPTER',chapter:8,urls:['https://other.test/data']});expect(h.fetcher).not.toHaveBeenCalled();
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'chapter',urls:['assets/mobile/tea.webp','assets/mobile/bar.webp']});
+    expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual(Object.keys(metadata).map(url=>h.scope+url));
+    expect(h.messages.at(-1)).toMatchObject({currentReady:true,fullReady:true});
+    h.fetcher.mockClear();await h.lifecycle('message',{type:'PREPARE_GAME',urls:['https://other.test/data']});expect(h.fetcher).not.toHaveBeenCalled();
   });
 });
 
+const cleanups: (()=>void)[]=[];
 function workerHarness(files: Record<string, string>, metadata: Record<string, Partial<Asset>> = {}, coreUrls?: string[]) {
   const scope = 'https://example.test/game/';
   const listeners = new Map<string, (event: any) => void>();
   const stores = new Map<string, Map<string, Response>>();
   const storedHeaders=new Map<string,Headers>();
+  const timers=new Set<ReturnType<typeof setTimeout>>(), writes:string[]=[];
+  const clock=(fn:()=>void,ms:number)=>{const id=setTimeout(()=>{timers.delete(id);fn();},ms);timers.add(id);return id;};
+  const clearClock=(id:ReturnType<typeof setTimeout>)=>{timers.delete(id);clearTimeout(id);};
+  const stop=()=>{for(const id of timers)clearTimeout(id);timers.clear();};cleanups.push(stop);
   const key = (value: any) => typeof value === 'string' ? value : value.url ?? String(value);
   const fetcher = vi.fn(async (request: any) => {
     const name = key(request).replace(scope, '');
@@ -54,7 +59,7 @@ function workerHarness(files: Record<string, string>, metadata: Record<string, P
         }
         return response.clone();
       },
-      put: async (request: any, response: Response) => { store.set(key(request), response.clone());storedHeaders.set(name+'|'+key(request),new Headers(typeof request==='string'?undefined:request.headers)); },
+      put: async (request: any, response: Response) => { writes.push(key(request));store.set(key(request), response.clone());storedHeaders.set(name+'|'+key(request),new Headers(typeof request==='string'?undefined:request.headers)); },
       keys: async () => [...store.keys()].map(url => new Request(url)),
       addAll: async (requests: Request[]) => {
         const responses = await Promise.all(requests.map(async request => {
@@ -66,21 +71,22 @@ function workerHarness(files: Record<string, string>, metadata: Record<string, P
       },
     };
   };
-  const cacheApi = { open, keys: async () => [...stores.keys()], delete: vi.fn(async (name: string) => stores.delete(name)) };
+  const cacheApi = { open, keys: vi.fn(async () => [...stores.keys()]), delete: vi.fn(async (name: string) => stores.delete(name)) };
   const skipWaiting = vi.fn(async () => {});
   const claim = vi.fn(async () => {});
   const messages:any[]=[];
+  const matchAll=vi.fn(async()=>[{id:'window-1',visibilityState:'visible'}]);
   const boot = () => runInNewContext(builder.renderServiceWorker(assetsFor(files).map(asset => ({ ...asset, ...metadata[asset.url] })), coreUrls), {
-    self: { registration: { scope }, location: { origin: 'https://example.test' }, clients: { claim }, skipWaiting,
+    self: { registration: { scope }, location: { origin: 'https://example.test' }, clients: { claim,matchAll }, skipWaiting,
       addEventListener: (event: string, handler: (event: any) => void) => listeners.set(event, handler) },
-    caches: cacheApi, fetch: fetcher, Request, Response, URL, crypto: webcrypto, Uint8Array, btoa, AbortController, setTimeout, clearTimeout,
+    caches: cacheApi, fetch: (input:any,init?:RequestInit)=>fetcher(typeof input==='string'?new Request(input,init):input), Request, Response, Headers, URL, crypto: webcrypto, Uint8Array, btoa, AbortController, DOMException, Date, setTimeout:clock, clearTimeout:clearClock,
   });
   boot();
   return {
-    scope, stores, fetcher, skipWaiting, claim, cacheApi,messages, restart: boot,
-    lifecycle: async (name: string, data?: unknown) => {
+    scope, stores, fetcher, skipWaiting, claim, cacheApi,messages,writes,matchAll, restart:()=>{stop();boot();},
+    lifecycle: async (name: string, data?: unknown, clientId='window-1') => {
       let pending: Promise<void> | undefined;
-      listeners.get(name)!({ data,source:{postMessage:(value:any)=>messages.push(value)}, waitUntil: (value: Promise<void>) => { pending = value; } });
+      listeners.get(name)!({ data,source:{id:clientId,postMessage:(value:any)=>messages.push(value)}, waitUntil: (value: Promise<void>) => { pending = value; } });
       await pending;
     },
     request: async (request: { url: string; method: string; mode: string } | Request) => {
@@ -91,7 +97,7 @@ function workerHarness(files: Record<string, string>, metadata: Record<string, P
   };
 }
 
-afterEach(() => { vi.unstubAllGlobals(); vi.unstubAllEnvs(); vi.useRealTimers(); });
+afterEach(() => {cleanups.splice(0).forEach(stop=>stop());vi.unstubAllGlobals();vi.unstubAllEnvs();vi.useRealTimers();});
 
 describe('production offline release', () => {
   it('hashes output contents, excludes sw/source maps, and writes a deterministic worker', async () => {
@@ -136,9 +142,8 @@ describe('production offline release', () => {
     await worker.lifecycle('install');
     expect([...worker.stores.values()][0].size).toBe(2);
     expect([...worker.stores.values()][0].has(worker.scope+drink)).toBe(false);
-    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:3});
-    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1});
-    expect(worker.messages.at(-1)).toEqual({type:'THEMES_CACHED',stage:8});
+    await worker.lifecycle('message',{type:'PREPARE_GAME',requestId:'all',urls:[cart]});
+    expect(worker.messages.at(-1)).toMatchObject({fullReady:true});
     worker.fetcher.mockRejectedValue(new Error('offline'));
     const image=await worker.request(new Request(worker.scope+drink));
     expect(await image!.text()).toBe('milk tea');
@@ -250,7 +255,7 @@ describe('mobile resource scheduling and fast navigation', () => {
     expect(await response!.text()).toBe('installed shell');
     expect(worker.fetcher).not.toHaveBeenCalled();
   });
-  it('downloads only mobile theme variants automatically and all variants on explicit request', async () => {
+  it('automatically downloads every art variant and excludes review pages', async () => {
     const files={'index.html':'shell','assets/mobile/a-hash.webp':'small','assets/v3-b/a.webp':'large','ui-preview.html':'preview'};
     const metadata:Record<string,Partial<Asset>>={
       'assets/mobile/a-hash.webp':{role:'art',variant:'mobile',stage:1},
@@ -258,13 +263,11 @@ describe('mobile resource scheduling and fast navigation', () => {
     };
     const worker=workerHarness(files,metadata,['index.html']);await worker.lifecycle('install');
     expect([...worker.stores.values()][0].size).toBe(1);
-    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1,variant:'mobile'});
+    await worker.lifecycle('message',{type:'PREPARE_GAME',requestId:'all',urls:[]});
     const requested=worker.fetcher.mock.calls.map(([request])=>String(request.url??request));
     expect(requested.some(url=>url.endsWith('assets/mobile/a-hash.webp'))).toBe(true);
-    expect(requested.some(url=>url.endsWith('assets/v3-b/a.webp'))).toBe(false);
+    expect(requested.some(url=>url.endsWith('assets/v3-b/a.webp'))).toBe(true);
     expect(requested.some(url=>url.endsWith('ui-preview.html'))).toBe(false);
-    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:8,variant:'full'});
-    expect(worker.fetcher.mock.calls.some(([request])=>String(request.url??request).endsWith('assets/v3-b/a.webp'))).toBe(true);
   });
   it('shares simultaneous foreground image misses', async () => {
     const image='assets/mobile/image.webp';
@@ -276,16 +279,16 @@ describe('mobile resource scheduling and fast navigation', () => {
     await vi.waitFor(()=>expect(worker.fetcher).toHaveBeenCalledOnce());release(new Response('image'));
     expect(await (await first)!.text()).toBe('image');expect(await (await second)!.text()).toBe('image');
   });
-  it('pauses background work during input and resumes without re-downloading completed images', async () => {
+  it('does not let input or hidden-page pause messages block the complete download', async () => {
     const a='assets/mobile/a.webp',b='assets/mobile/b.webp';
     const worker=workerHarness({'index.html':'shell',[a]:'a',[b]:'b'},{[a]:{role:'art',variant:'mobile',stage:1},[b]:{role:'art',variant:'mobile',stage:1}},['index.html']);
     await worker.lifecycle('install');worker.fetcher.mockClear();
     await worker.lifecycle('message',{type:'CACHE_PAUSE',visible:false});
-    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1,variant:'mobile'});
-    expect(worker.fetcher).not.toHaveBeenCalled();
+    await worker.lifecycle('message',{type:'PREPARE_GAME',requestId:'all',urls:[a]});
+    expect(worker.fetcher).toHaveBeenCalledTimes(2);
     await worker.lifecycle('message',{type:'CACHE_RESUME'});
     expect(worker.fetcher).toHaveBeenCalledTimes(2);
-    await worker.lifecycle('message',{type:'CACHE_THEMES',stage:1,variant:'mobile'});
+    await worker.lifecycle('message',{type:'PREPARE_GAME',requestId:'all',urls:[a]});
     expect(worker.fetcher).toHaveBeenCalledTimes(2);
   });
   it('continues serving online resources when browser cache storage is unavailable', async () => {
@@ -320,6 +323,8 @@ describe('explicit update activation', () => {
     expect(serviceWorker.register).toHaveBeenCalledWith('https://example.test/game/sw.js', { scope: '/game/', updateViaCache: 'none' });
     expect(activate).toBeTypeOf('function');
     expect(waiting.postMessage).not.toHaveBeenCalled();
+    documentMock.dispatchEvent(new Event('visibilitychange'));
+    expect(registration.update).toHaveBeenCalledOnce();
     serviceWorker.dispatchEvent(new Event('controllerchange'));
     expect(reload).not.toHaveBeenCalled();
     const completed = activate!();
@@ -347,25 +352,23 @@ describe('automatic complete game preparation', () => {
   const a='assets/mobile/a.webp', b='assets/mobile/b.webp', mid='assets/mobile/a-256.webp', hd='assets/v3-b/a.webp', code='assets/panel.js';
   const files={'index.html':'shell',[a]:'a',[b]:'b',[mid]:'medium',[hd]:'original',[code]:'code','art-review.html':'review'};
   const meta={ [a]:{role:'art',variant:'mobile',stage:1}, [b]:{role:'art',variant:'mobile',stage:8}, [mid]:{role:'art',variant:'medium',stage:1}, [hd]:{role:'art',variant:'large',stage:1}, [code]:{role:'code'} };
-  it('automatically prepares current resources before all chapters, code, and high resolution, excluding review pages', async () => {
+  it('submits current resources, all chapters, code and high resolution without a stage barrier', async () => {
     const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
     await h.lifecycle('message',{type:'CACHE_PAUSE',visible:false});
-    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'one',urls:[b]});expect(h.fetcher).not.toHaveBeenCalled();
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'one',urls:[b]});
     await h.lifecycle('message',{type:'CACHE_RESUME'});
     const downloaded=h.fetcher.mock.calls.map(([r])=>r.url.replace(h.scope,''));
-    expect(downloaded[0]).toBe(b);expect(downloaded.indexOf(hd)).toBeGreaterThan(downloaded.indexOf(mid));
+    expect(downloaded[0]).toBe(b);expect(downloaded).toContain(hd);
     expect(downloaded).not.toContain('art-review.html');expect(new Set(downloaded).size).toBe(downloaded.length);
     expect(h.messages.at(-1)).toMatchObject({type:'GAME_CACHE_STATE',requestId:'one',currentReady:true,playableReady:true,fullReady:true,state:'complete',totalFiles:6});
   });
   it('restores intent after worker termination and only fetches missing files', async () => {
     const h=workerHarness(files,meta,['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
-    const normal=h.fetcher.getMockImplementation()!;
-    h.fetcher.mockImplementation(async r=>{const response=await normal(r);if(r.url.endsWith('/a.webp'))await h.lifecycle('message',{type:'CACHE_PAUSE',visible:false});return response;});
-    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'first',urls:[a]});
+    await h.request(new Request(h.scope+a));
+    await vi.waitFor(()=>expect([...h.stores.values()].some(store=>store.has(h.scope+a))).toBe(true));
     expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual([h.scope+a]);
-    h.restart();h.fetcher.mockImplementation(normal);h.fetcher.mockClear();
-    await h.lifecycle('message',{type:'GAME_CACHE_STATUS',requestId:'second'});
-    await h.lifecycle('message',{type:'CACHE_RESUME'});
+    h.restart();h.fetcher.mockClear();
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'second',urls:[a]});
     expect(h.fetcher.mock.calls.some(([r])=>r.url===h.scope+a)).toBe(false);
     expect(h.messages.at(-1)).toMatchObject({requestId:'second',fullReady:true});
   });
@@ -398,4 +401,228 @@ describe('automatic complete game preparation', () => {
     h.cacheApi.open=open;
     await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'two',urls:[a]});expect(h.messages.at(-1)).toMatchObject({fullReady:true});
   });
+});
+
+describe('V12 unrestricted resource preparation', () => {
+  const art = (urls: string[]) => Object.fromEntries(urls.map((url,i)=>[url,{role:'art',variant:i%3===0?'large':i%3===1?'medium':'mobile',stage:i%8+1}]));
+  it('starts all 64 files before any response, sharing foreground, background and window consumers', async()=>{
+    const images=Array.from({length:64},(_,i)=>`assets/mobile/file-${i}.webp`);
+    const files={'index.html':'shell',...Object.fromEntries(images.map(url=>[url,url]))};
+    const h=workerHarness(files,art(images),['index.html']); await h.lifecycle('install'); h.fetcher.mockClear();
+    h.matchAll.mockResolvedValue([{id:'window-1',visibilityState:'visible'},{id:'window-2',visibilityState:'hidden'}]);
+    const releases=new Map<string,(response:Response)=>void>();
+    h.fetcher.mockImplementation(request=>new Promise<Response>(resolve=>{releases.set(request.url,resolve);}));
+    const first=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'one',urls:[images[63]],diagnostic:true});
+    await vi.waitFor(()=>expect(h.fetcher).toHaveBeenCalledTimes(64));
+    const second=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'two',urls:[images[4]]},'window-2');
+    const visible=[h.request(new Request(h.scope+images[0])),h.request(new Request(h.scope+images[0]))];
+    expect(releases.size).toBe(64); expect(h.writes.filter(url=>url.endsWith('.webp'))).toHaveLength(0);
+    for(const [url,release] of releases)release(new Response(url.replace(h.scope,'')));
+    await Promise.all([first,second,...visible]);
+    expect(h.fetcher).toHaveBeenCalledTimes(64);
+    expect(h.writes.filter(url=>url===h.scope+images[0])).toHaveLength(1);
+    expect(h.messages.at(-1)).toMatchObject({fullReady:true,totalFiles:65,completedFiles:65,totalBytes:Object.values(files).reduce((sum,v)=>sum+Buffer.byteLength(v),0)});
+    const recorded=[...h.messages].reverse().find(message=>message.requestId==='one'&&message.diagnostics?.files);
+    expect(recorded.diagnostics.files).toHaveLength(64);
+    expect(h.cacheApi.keys.mock.calls.length).toBeLessThan(5);
+  });
+  it('lets healthy and high-resolution files finish while a failed file independently retries',async()=>{
+    vi.useFakeTimers();
+    const a='assets/mobile/a.webp',b='assets/v3-b/b.webp',files={'index.html':'shell',[a]:'a',[b]:'b'};
+    const h=workerHarness(files,art([a,b]),['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    const normal=h.fetcher.getMockImplementation()!;let attempts=0;
+    h.fetcher.mockImplementation(async request=>{if(request.url.endsWith('/a.webp')&&++attempts===1)throw new Error('temporary');return normal(request);});
+    const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'retry',urls:[a]});
+    await vi.waitFor(()=>expect(h.writes).toContain(h.scope+b));
+    expect(h.fetcher.mock.calls.filter(([r])=>r.url===h.scope+b)).toHaveLength(1);
+    expect(attempts).toBe(1);
+    await vi.advanceTimersByTimeAsync(1100);await preparing;
+    expect(attempts).toBe(2);expect(h.messages.at(-1)).toMatchObject({fullReady:true,failedFiles:0});
+  });
+  it('exhausts only the broken file and a manual retry keeps every completed file',async()=>{
+    vi.useFakeTimers();
+    const a='assets/mobile/a.webp',b='assets/mobile/b.webp',files={'index.html':'shell',[a]:'a',[b]:'b'};
+    const h=workerHarness(files,art([a,b]),['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    const normal=h.fetcher.getMockImplementation()!;
+    h.fetcher.mockImplementation(async request=>request.url===h.scope+a?new Response('missing',{status:404}):normal(request));
+    const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'broken',urls:[a]});
+    for(const [index,delay] of [1000,3000,10000].entries()){
+      await vi.waitFor(()=>expect(h.fetcher.mock.calls.filter(([r])=>r.url===h.scope+a)).toHaveLength(index+1));
+      await vi.advanceTimersByTimeAsync(delay+100);
+    }
+    await preparing;
+    expect(h.messages.at(-1)).toMatchObject({fullReady:false,state:'network',failedFiles:1,completedFiles:2});
+    h.fetcher.mockImplementation(normal);h.fetcher.mockClear();
+    await h.lifecycle('message',{type:'GAME_DOWNLOAD_PAUSE',requestId:'fixed',paused:false});
+    expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual([h.scope+a]);
+    expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+  });
+  it('waits for every concurrent core write before removing an incomplete installation',async()=>{
+    const h=workerHarness({'index.html':'shell','assets/app.js':'code'});
+    let release!:(response:Response)=>void;
+    h.fetcher.mockImplementation(request=>request.url.endsWith('.js')?new Promise<Response>(resolve=>{release=resolve;}):Promise.reject(new Error('failed core')));
+    const installing=h.lifecycle('install'); const rejected=expect(installing).rejects.toThrow('failed core');
+    await vi.waitFor(()=>expect(h.fetcher).toHaveBeenCalledTimes(2));
+    expect(h.cacheApi.delete).not.toHaveBeenCalled();
+    release(new Response('code'));await rejected;
+    expect(h.stores.size).toBe(0);
+  });
+  it('does not abort a response that keeps making progress for longer than 30 seconds',async()=>{
+    vi.useFakeTimers();const a='assets/mobile/slow.webp';
+    const h=workerHarness({'index.html':'shell',[a]:'ab'},art([a]),['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    let sink!:ReadableStreamDefaultController<Uint8Array>,signal!:AbortSignal;
+    h.fetcher.mockImplementation(async request=>{signal=request.signal;return new Response(new ReadableStream<Uint8Array>({start(controller){sink=controller;}}));});
+    const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'slow',urls:[a]});
+    await vi.waitFor(()=>expect(sink).toBeDefined());
+    await vi.advanceTimersByTimeAsync(20000);sink.enqueue(new TextEncoder().encode('a'));
+    await vi.advanceTimersByTimeAsync(20000);sink.enqueue(new TextEncoder().encode('b'));sink.close();
+    await preparing;expect(signal.aborted).toBe(false);expect(h.fetcher).toHaveBeenCalledOnce();
+    expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+  });
+  it('joins only the uncontrolled URL at handoff while other files download immediately',async()=>{
+    const a='assets/mobile/slow.webp',b='assets/mobile/fast.webp';
+    const h=workerHarness({'index.html':'shell',[a]:'a',[b]:'b'},art([a,b]),['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+    const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'handoff',urls:[a],handoff:{session:'page',sequence:1,urls:[a]}});
+    await vi.waitFor(()=>expect(h.writes).toContain(h.scope+b));
+    expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual([h.scope+b]);
+    await h.lifecycle('message',{type:'ART_HANDOFF',requestId:'handoff',handoff:{session:'page',sequence:2,urls:[]}});
+    await preparing;expect(h.fetcher.mock.calls.filter(([r])=>r.url===h.scope+a)).toHaveLength(1);
+    expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+  });
+  it('releases a handoff owned by a closed client, without pausing the other window',async()=>{
+    vi.useFakeTimers();const a='assets/mobile/closed.webp';
+    const h=workerHarness({'index.html':'shell',[a]:'a'},art([a]),['index.html']);await h.lifecycle('install');
+    const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'gone',urls:[],handoff:{session:'page',sequence:1,urls:[a]}});
+    await vi.waitFor(()=>expect(h.matchAll).toHaveBeenCalled());
+    h.matchAll.mockResolvedValue([{id:'window-2',visibilityState:'visible'}]);
+    await vi.advanceTimersByTimeAsync(1100);await preparing;
+    expect([...h.stores.values()].some(store=>store.has(h.scope+a))).toBe(true);
+  });
+  it('only counts a shared file after its cache write completes and serves verified bytes sooner',async()=>{
+    const a='assets/mobile/a.webp',files={'index.html':'shell',[a]:'a'};
+    const h=workerHarness(files,art([a]),['index.html']);await h.lifecycle('install');
+    const open=h.cacheApi.open;let release!:()=>void;
+    h.cacheApi.open=async name=>{const cache=await open(name);return name.endsWith('::themes')?{...cache,put:async(r:any,response:Response)=>{await new Promise<void>(resolve=>{release=resolve;});await cache.put(r,response);}}:cache;};
+    const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'writing',urls:[a]});
+    const response=await h.request(new Request(h.scope+a));expect(await response!.text()).toBe('a');
+    await vi.waitFor(()=>expect(release).toBeTypeOf('function'));
+    expect(h.messages.at(-1).fullReady).toBe(false);
+    release();await preparing;expect(h.messages.at(-1)).toMatchObject({fullReady:true,completedFiles:2});
+  });
+  it('reconciles deleted disk entries without a worker restart',async()=>{
+    const a='assets/mobile/a.webp';const h=workerHarness({'index.html':'shell',[a]:'a'},art([a]),['index.html']);
+    await h.lifecycle('install');await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'before',urls:[a]});
+    for(const store of h.stores.values())store.delete(h.scope+a);
+    h.fetcher.mockClear();
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'after',urls:[a],reconcile:true});
+    expect(h.fetcher.mock.calls.map(([r])=>r.url)).toEqual([h.scope+a]);expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+  });
+  it('normalizes compressed response headers and supports browsers without body streams',async()=>{
+    const a='assets/mobile/a.webp';const h=workerHarness({'index.html':'shell',[a]:'a'},art([a]),['index.html']);await h.lifecycle('install');
+    h.fetcher.mockImplementation(async()=>{
+      const response=new Response('a',{headers:{'Content-Type':'image/webp','Content-Encoding':'gzip','Content-Length':'123'}});
+      Object.defineProperty(response,'body',{value:null});return response;
+    });
+    await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'fallback',urls:[a]});
+    const response=await h.request(new Request(h.scope+a));
+    expect(await response!.text()).toBe('a');expect(response!.headers.get('Content-Encoding')).toBeNull();
+    expect(response!.headers.get('Content-Length')).toBe('1');expect(response!.headers.get('Content-Type')).toBe('image/webp');
+    expect(h.messages.at(-1)).toMatchObject({fullReady:true,bytesPerSecond:null});
+  });
+});
+
+describe('pause and handoff races',()=>{
+ it('keeps a foreground consumer alive through a manual pause and replaces cancelled optional work',async()=>{
+  const a='assets/mobile/a.webp',b='assets/mobile/b.webp';
+  const h=workerHarness({'index.html':'shell',[a]:'a',[b]:'b'},{[a]:{role:'art'},[b]:{role:'art'}},['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+  const pending:{request:Request;resolve:(r:Response)=>void}[]=[];
+  h.fetcher.mockImplementation(request=>new Promise<Response>((resolve,reject)=>{pending.push({request,resolve});request.signal.addEventListener('abort',()=>reject(new DOMException('paused','AbortError')),{once:true});}));
+  const initial=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'initial',urls:[]});
+  await vi.waitFor(()=>expect(pending).toHaveLength(2));
+  const visible=h.request(new Request(h.scope+a));
+  await h.lifecycle('message',{type:'GAME_DOWNLOAD_PAUSE',requestId:'pause',paused:true});
+  expect(pending[0].request.signal.aborted).toBe(false);expect(pending[1].request.signal.aborted).toBe(true);
+  const resumed=h.lifecycle('message',{type:'GAME_DOWNLOAD_PAUSE',requestId:'resume',paused:false});
+  await vi.waitFor(()=>expect(pending).toHaveLength(3));
+  pending[0].resolve(new Response('a'));pending[2].resolve(new Response('b'));
+  expect(await(await visible)!.text()).toBe('a');await Promise.all([initial,resumed]);
+  expect(h.messages.at(-1)).toMatchObject({fullReady:true,failedFiles:0});
+ });
+ it('does not restore a stale pending handoff after a newer completion snapshot',async()=>{
+  const a='assets/mobile/a.webp';const h=workerHarness({'index.html':'shell',[a]:'a'},{[a]:{role:'art'}},['index.html']);await h.lifecycle('install');
+  await h.lifecycle('message',{type:'ART_HANDOFF',requestId:'new',handoff:{session:'page',sequence:10,urls:[]}});
+  await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'old',urls:[],handoff:{session:'page',sequence:9,urls:[a]}});
+  expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+ });
+});
+
+describe('integrity and browser queue time',()=>{
+ it('never hands unverified code to a foreground consumer or the offline cache',async()=>{
+  const a='assets/panel.js';const h=workerHarness({'index.html':'shell',[a]:'trusted code'},{[a]:{role:'code'}},['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+  h.fetcher.mockResolvedValue(new Response('untrusted bytes'));
+  await expect(h.request(new Request(h.scope+a))).rejects.toThrow('Resource integrity check failed');
+  expect(h.fetcher).toHaveBeenCalledTimes(2);
+  expect(h.fetcher.mock.calls.map(([r])=>r.cache)).toEqual(['default','reload']);
+  expect(h.writes).not.toContain(h.scope+a);
+ });
+ it('does not give queued requests a 30-second total deadline while the batch makes progress',async()=>{
+  vi.useFakeTimers();const a='assets/mobile/queued.webp',b='assets/mobile/receiving.webp';
+  const h=workerHarness({'index.html':'shell',[a]:'a',[b]:'ab'},{[a]:{role:'art'},[b]:{role:'art'}},['index.html']);await h.lifecycle('install');
+  let release!:(r:Response)=>void,signal!:AbortSignal,sink!:ReadableStreamDefaultController<Uint8Array>;
+  h.fetcher.mockImplementation(request=>request.url===h.scope+a?new Promise<Response>(resolve=>{signal=request.signal;release=resolve;}):Promise.resolve(new Response(new ReadableStream<Uint8Array>({start(c){sink=c;}}))));
+  const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'queue',urls:[]});
+  await vi.waitFor(()=>expect(sink).toBeDefined());
+  await vi.advanceTimersByTimeAsync(20000);sink.enqueue(new TextEncoder().encode('a'));
+  await vi.advanceTimersByTimeAsync(16000);expect(signal.aborted).toBe(false);
+  release(new Response('a'));sink.enqueue(new TextEncoder().encode('b'));sink.close();await preparing;
+  expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+ });
+ it('retries a body that really stops delivering bytes without blocking the healthy file',async()=>{
+  vi.useFakeTimers();const a='assets/mobile/stalled.webp',b='assets/mobile/healthy.webp';
+  const h=workerHarness({'index.html':'shell',[a]:'a',[b]:'b'},{[a]:{role:'art'},[b]:{role:'art'}},['index.html']);await h.lifecycle('install');
+  const normal=h.fetcher.getMockImplementation()!;let attempts=0;
+  h.fetcher.mockImplementation(async request=>{
+   if(request.url===h.scope+a&&++attempts===1)return new Response(new ReadableStream<Uint8Array>({start(c){request.signal.addEventListener('abort',()=>c.error(new DOMException('stalled','AbortError')),{once:true});}}));
+   return normal(request);
+  });
+  const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'stall',urls:[]});
+  await vi.waitFor(()=>expect(h.writes).toContain(h.scope+b));
+  await vi.advanceTimersByTimeAsync(31200);await preparing;
+  expect(attempts).toBe(2);expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+ });
+});
+
+describe('cache opening does not delay network submission',()=>{
+ it('starts all missing fetches and serves verified responses before the new cache opens',async()=>{
+  const a='assets/mobile/a.webp',b='assets/mobile/b.webp';const h=workerHarness({'index.html':'shell',[a]:'a',[b]:'b'},{[a]:{role:'art'},[b]:{role:'art'}},['index.html']);
+  await h.lifecycle('install');h.fetcher.mockClear();const original=h.cacheApi.open;let release!:()=>void;
+  const gate=new Promise<void>(resolve=>{release=resolve;});
+  h.cacheApi.open=async name=>{if(name.endsWith('::themes'))await gate;return original(name);};
+  const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'cache-open',urls:[]});
+  await vi.waitFor(()=>expect(h.fetcher).toHaveBeenCalledTimes(2));
+  expect(await(await h.request(new Request(h.scope+a)))!.text()).toBe('a');
+  expect(h.writes).not.toContain(h.scope+a);release();await preparing;
+  expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+ });
+});
+
+describe('intent persistence alongside dispatch',()=>{
+ it('downloads without waiting for metadata to finish saving',async()=>{
+  const a='assets/mobile/a.webp';const h=workerHarness({'index.html':'shell',[a]:'a'},{[a]:{role:'art'}},['index.html']);await h.lifecycle('install');h.fetcher.mockClear();
+  const original=h.cacheApi.open;let release!:()=>void;const gate=new Promise<void>(resolve=>{release=resolve;});
+  h.cacheApi.open=async name=>{const cache=await original(name);return name.endsWith('::downloads')?{...cache,put:async(request:any,response:Response)=>{await gate;await cache.put(request,response);}}:cache;};
+  const preparing=h.lifecycle('message',{type:'PREPARE_GAME',requestId:'parallel-meta',urls:[]});
+  await vi.waitFor(()=>expect(h.writes).toContain(h.scope+a));
+  expect(h.fetcher).toHaveBeenCalledOnce();release();await preparing;
+  expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+ });
+});
+
+describe('cache inventory across activation',()=>{
+ it('reuses the verified install inventory rather than blocking first preparation on a second scan',async()=>{
+  const a='assets/mobile/a.webp';const h=workerHarness({'index.html':'shell',[a]:'a'},{[a]:{role:'art'}},['index.html']);
+  await h.lifecycle('install');await h.lifecycle('activate');const enumerations=h.cacheApi.keys.mock.calls.length;
+  await h.lifecycle('message',{type:'PREPARE_GAME',requestId:'installed-index',urls:[]});
+  expect(h.cacheApi.keys).toHaveBeenCalledTimes(enumerations);expect(h.messages.at(-1)).toMatchObject({fullReady:true});
+ });
 });

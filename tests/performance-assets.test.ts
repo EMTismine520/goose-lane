@@ -5,7 +5,7 @@ import sharp from 'sharp';
 import { createInitialState, createLegacyInitialState } from '../src/domain/engine';
 import { createUiPreviewState } from '../src/diagnostics/ui-preview-state';
 import { planBoardAssets } from '../src/game/board-assets';
-import { AssetQueue } from '../src/platform/asset-queue';
+import { AssetQueue, acquireArtImage, artHandoffState } from '../src/platform/asset-queue';
 import { DecorationBudget } from '../src/platform/performance';
 import { deviceAssetPath, itemAssetPath, mobileAssetPath, sizedArtPath } from '../src/content/assets';
 
@@ -119,5 +119,45 @@ describe('decoration load budget', () => {
     budget.sample(now += 60000); expect(budget.reduced).toBe(true);
     for (let index = 0; index < 700; index++) budget.sample(now += 16);
     expect(budget.reduced).toBe(false);
+  });
+});
+
+describe('uncontrolled image handoff',()=>{
+  function images(){
+    const created:any[]=[];
+    class ImageStub {
+      src='';decoding='';naturalWidth=128;naturalHeight=128;onload:(()=>void)|null=null;onerror:(()=>void)|null=null;
+      decode=vi.fn(async()=>{});
+      constructor(){created.push(this);}
+    }
+    vi.stubGlobal('Image',ImageStub);
+    vi.stubGlobal('document',{baseURI:'https://images.test/game/'});
+    vi.stubGlobal('window',new EventTarget());
+    vi.stubGlobal('navigator',{serviceWorker:{controller:null}});
+    return created;
+  }
+  it('releases the URL at network completion without waiting for image decode',async()=>{
+    const created=images();let decode!:()=>void;
+    const lease=acquireArtImage('assets/handoff-success.webp');
+    try{
+      await Promise.resolve();
+      created[0].decode=()=>new Promise<void>(resolve=>{decode=resolve;});
+      expect(artHandoffState().urls).toContain('https://images.test/game/assets/handoff-success.webp');
+      const sequence=artHandoffState().sequence;created[0].onload();
+      expect(artHandoffState().urls).not.toContain('https://images.test/game/assets/handoff-success.webp');
+      expect(artHandoffState().sequence).toBeGreaterThan(sequence);
+      decode();await lease.promise;
+    }finally{lease.release();vi.unstubAllGlobals();}
+  });
+  it('reports the end of an abandoned request and does not track controlled requests',async()=>{
+    const created=images();const lease=acquireArtImage('assets/handoff-cancel.webp');
+    try{
+      const rejected=expect(lease.promise).rejects.toMatchObject({name:'AbortError'});
+      await Promise.resolve();expect(artHandoffState().urls).toHaveLength(1);
+      lease.release();await rejected;expect(artHandoffState().urls).toHaveLength(0);
+      vi.stubGlobal('navigator',{serviceWorker:{controller:{}}});
+      const controlled=acquireArtImage('assets/already-controlled.webp');await Promise.resolve();
+      expect(artHandoffState().urls).toHaveLength(0);created[1].onload();await controlled.promise;controlled.release();
+    }finally{lease.release();vi.unstubAllGlobals();}
   });
 });

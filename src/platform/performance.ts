@@ -2,6 +2,8 @@ type Sample = { name: string; ms: number; detail?: string; };
 const enabled = typeof location !== 'undefined' && new URLSearchParams(location.search).get('perf') === '1';
 if (enabled) performance.setResourceTimingBufferSize?.(3000);
 const samples: Sample[] = [], milestones: Record<string, number> = {}, frameBuckets = new Map<number, number>();
+let downloads: Record<string, unknown> | undefined;
+export function recordDownloadDiagnostics(value: Record<string, unknown>) { if (enabled) downloads = { ...downloads, ...value }; }
 let frameCount = 0, frameTime = 0, slowFrames = 0, lastFrame = 0;
 
 export function perfMark(name: string) {
@@ -36,7 +38,7 @@ export function performanceSnapshot() {
   });
   const navigation = typeof performance === 'undefined' ? undefined : performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
   return { enabled, measuredAt: new Date().toISOString(), userAgent: typeof navigator === 'undefined' ? '' : navigator.userAgent,
-    milestones: { ...milestones }, samples: [...samples], resources,
+    milestones: { ...milestones }, samples: [...samples], resources, downloads,
     navigation: navigation && { dns: navigation.domainLookupEnd - navigation.domainLookupStart, connect: navigation.connectEnd - navigation.connectStart,
       tls: navigation.secureConnectionStart > 0 ? navigation.connectEnd - navigation.secureConnectionStart : 0,
       ttfb: navigation.responseStart - navigation.requestStart, download: navigation.responseEnd - navigation.responseStart,

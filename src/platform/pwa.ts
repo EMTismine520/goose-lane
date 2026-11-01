@@ -1,5 +1,5 @@
 export type ActivateUpdate = () => Promise<void>;
-import { afterPlayIdle } from './play-idle';
+import { perfMark } from './performance';
 
 /** Registers only a production build. Updates remain waiting until the caller has saved safely. */
 export function registerPwa(
@@ -16,7 +16,6 @@ export function registerPwa(
   let announced: ServiceWorker | null = null;
   let activating: Promise<void> | undefined;
   let cancelActivation: (() => void) | undefined;
-  let cancelCheck: (() => void) | undefined;
   const container = navigator.serviceWorker;
 
   const controllerChanged = () => {
@@ -65,14 +64,11 @@ export function registerPwa(
   };
   const checkForUpdate = () => {
     if (disposed || document.visibilityState === 'hidden') return;
-    cancelCheck?.();
-    cancelCheck = afterPlayIdle(() => {
-      void registration?.update().catch(() => { /* Offline is expected; the installed release remains available. */ });
-      return () => {};
-    });
+    void registration?.update().catch(() => { /* The installed release remains available offline. */ });
   };
 
   const base = new URL(import.meta.env.BASE_URL, document.baseURI);
+  perfMark('worker-register');
   void container.register(new URL('sw.js', base).href, { scope: base.pathname, updateViaCache: 'none' }).then(result => {
     if (disposed) return;
     registration = result;
@@ -87,7 +83,6 @@ export function registerPwa(
 
   return () => {
     disposed = true;
-    cancelCheck?.();
     cancelActivation?.();
     container.removeEventListener('controllerchange', controllerChanged);
     registration?.removeEventListener('updatefound', updateFound);
