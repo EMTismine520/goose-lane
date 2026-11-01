@@ -34,7 +34,7 @@ function CustomerStripView({ state, act, onItem, onScroll, active, focusedOrderI
     }
   }, [state.session.orderScroll, active]);
 
-  const focus = (id: string) => onFocus?.(currentFocus.current === id ? null : id);
+  const focus = (id: string) => onFocus?.(state.campaign === 'fresh' ? id : currentFocus.current === id ? null : id);
   const deliver = async (id: string) => {
     if (pending.current.has(id)) return;
     pending.current.add(id);
@@ -61,7 +61,7 @@ function CustomerStripView({ state, act, onItem, onScroll, active, focusedOrderI
         const demand = ready ? 'ready' : partial ? 'partial' : 'missing';
         return <article key={order.id} className={`customer-card ${ready ? 'ready' : ''} ${focused ? 'focused' : ''}`} data-order-id={order.id} data-demand-status={demand} data-focused={focused || undefined}
           onClick={event => { if (!(event.target as Element).closest('button')) focus(order.id); }}>
-          <button className="customer-portrait" onClick={() => focus(order.id)} aria-label={`${focused ? '取消关注' : '关注'}${customer?.name ?? '顾客'}的订单`} aria-pressed={focused}>
+          <button className="customer-portrait" onClick={() => focus(order.id)} aria-label={`${state.campaign === 'fresh' ? '查看' : focused ? '取消关注' : '关注'}${customer?.name ?? '顾客'}的订单`} aria-pressed={focused}>
             <Goose color={customer?.color} accessory={customer?.accessory} expression={ready ? 'eager' : partial || focused ? 'expectant' : 'waiting'}/>
             <span>{customer?.name}</span>
             {focused && <Pin className="order-focus-pin" size={11} fill="currentColor"/>}
@@ -70,7 +70,7 @@ function CustomerStripView({ state, act, onItem, onScroll, active, focusedOrderI
             {order.needs.map(need => {
               const count = Math.min(inventoryCount(state, need.item), need.count);
               const enough = count >= need.count;
-              return <button className="order-item" key={need.item} onClick={() => onItem(need.item)} aria-label={`${ITEMS[need.item].name}，已有${count}份，需要${need.count}份，查看来源`}>
+              return <button className="order-item" key={need.item} onClick={() => state.campaign === 'fresh' ? focus(order.id) : onItem(need.item)} aria-label={`${ITEMS[need.item].name}，已有${count}份，需要${need.count}份，${state.campaign === 'fresh' ? '查看订单配料' : '查看来源'}`}>
                 <ItemIcon item={need.item} size={38}/>
                 <small className={enough ? 'enough' : ''}>{enough && <Check size={10}/>}<span>{count}/{need.count}</span></small>
               </button>;

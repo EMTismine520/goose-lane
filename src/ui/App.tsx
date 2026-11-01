@@ -12,7 +12,7 @@ import { PageSwitch } from './PageSwitch';
 import { Goose, ItemIcon, Modal } from './parts';
 import { activeDevices, BUILD_NODES, } from '../content/board-layouts';
 import { ITEMS, CHAINS } from '../content/catalog';
-import { effectiveNow, getConstructionProgress, getDayProgress, getEnergyStatus, getTutorialStep, mergeTarget } from '../domain/engine';
+import { effectiveNow, getConstructionProgress, getDayProgress, getEnergyStatus, getTutorialStep } from '../domain/engine';
 import type { Command, SpeedUpTarget } from '../domain/types';
 import type { SpeedUpSelection } from './SpeedUpPanel';
 import { registerPwa, type ActivateUpdate } from '../platform/pwa';
@@ -22,7 +22,7 @@ import { DeviceIcon, EMPTY_CODEX } from './DeviceIcon';
 import { themeProgress } from '../domain/devices';
 import { OfflineProvider, OfflineSettings } from './OfflineResources';
 import { ApplianceDrawer } from './ApplianceDrawer';
-import { OrderFocus } from './OrderFocus';
+import { GameToast } from './GameToast';
 import { StreetProgress, ThemeProgressPanel } from './StreetProgress';
 import { focusedOrder, getApplianceTarget, locateItem, orderSummary } from './ui-guidance';
 import type { ApplianceTargets } from './ui-guidance';
@@ -48,10 +48,10 @@ const SpeedUpPanel=lazy(()=>import('./SpeedUpPanel').then(module=>({default:modu
 const SpeedUpBalance=lazy(()=>import('./SpeedUpPanel').then(module=>({default:module.SpeedUpBalance})));
 const Storage=lazy(()=>import('./panels').then(module=>({default:module.Storage})));
 const Street=lazy(()=>import('./panels').then(module=>({default:module.Street})));
-type Dialog = {type:'settings'|'save'|'load'|'restart'|'storage'|'book'|'build'|'energy'|'gift'|'help'|'legacy'|'order'|'theme'|'tickets'}|{type:'speedup';target:SpeedUpSelection}|{type:'item';id:string}|{type:'devices';family?:string;back?:string}|{type:'recipes';slot:number}|{type:'appliance';id:string}|null;
+type Dialog = {type:'settings'|'save'|'load'|'restart'|'storage'|'book'|'build'|'energy'|'gift'|'help'|'legacy'|'theme'|'tickets'}|{type:'speedup';target:SpeedUpSelection}|{type:'item';id:string}|{type:'devices';family?:string;back?:string}|{type:'recipes';slot:number}|{type:'appliance';id:string}|null;
 export default function App({repository,sessionScope,offline=true}:{repository?:SaveRepository;sessionScope?:string;offline?:boolean}={}){
  const game=useGame(repository,sessionScope),state=game.state;
- const [page,setPage]=useState<'merge'|'street'>('merge'),[dialog,setDialog]=useState<Dialog>(null),[selected,setSelected]=useState<number|null>(null),[hint,setHint]=useState<[number,number]|null>(null);
+ const [page,setPage]=useState<'merge'|'street'>('merge'),[dialog,setDialog]=useState<Dialog>(null),[selected,setSelected]=useState<number|null>(null);
  const [boardReady,setBoardReady]=useState(false),[streetVisited,setStreetVisited]=useState(false),[streetReady,setStreetReady]=useState(false);
  const markStreetReady=useCallback(()=>{setStreetReady(true);perfMark('street-ready')},[]);
  const [selectionCancelSequence,setSelectionCancelSequence]=useState(0);
@@ -78,7 +78,7 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const speedRunning=useRef(false);
  const speedReturnFocus=useRef<HTMLElement|null>(null);
  const onSpeedPending=useCallback((pending:boolean)=>{speedRunning.current=pending;setSpeedPending(pending)},[]);
- const observedProgress=useRef<{epoch:number;stage:number;items:string[];devices:string[]}|null>(null);
+ const observedProgress=useRef<{epoch:number;stage:number;}|null>(null);
  const ready=boardReady||streetReady;
  const dialogRef=useRef<Dialog>(null);dialogRef.current=dialog;
  const area=useRef<HTMLDivElement>(null),hydrated=useRef(-1),selectedUid=useRef<string|null>(null),stateRef=useRef(state),gameRef=useRef(game),scrollTimer=useRef<ReturnType<typeof setTimeout>|null>(null),input=useRef<HTMLInputElement>(null);
@@ -96,11 +96,10 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  useEffect(()=>{if(page==='street')setStreetVisited(true)},[page]);
  useEffect(()=>offline&&ready?afterPlayIdle(()=>registerPwa(activate=>setUpdate(()=>activate),setCacheError)):undefined,[offline,ready]);
  useEffect(()=>{document.documentElement.dataset.motion=state?.settings.reducedMotion?'reduced':'full'},[state?.settings.reducedMotion]);
- useEffect(()=>{if(!state||hydrated.current===viewEpoch)return;orderPosition.current=state.session.orderScroll;hydrated.current=viewEpoch;if(scrollTimer.current)clearTimeout(scrollTimer.current);giftRunning.current=false;setGiftPending(false);speedRunning.current=false;setSpeedPending(false);setDialog(null);setHint(null);setFocusedOrderId(null);setGuidance([]);setNewTheme(null);setDiscovery(null);setDetailHistory([]);setCodexView(EMPTY_CODEX);setCodexSeen(state.discovered.length+state.deviceDiscovered.length);setPage(state.session.page);selectedUid.current=state.session.selectedUid;const index=state.board.findIndex(i=>i?.uid===state.session.selectedUid);setSelected(index>=0?index:activeDevices(state).find(e=>e.id===state.session.selectedUid)?.index??null)},[state,viewEpoch]);
+ useEffect(()=>{if(!state||hydrated.current===viewEpoch)return;orderPosition.current=state.session.orderScroll;hydrated.current=viewEpoch;if(scrollTimer.current)clearTimeout(scrollTimer.current);giftRunning.current=false;setGiftPending(false);speedRunning.current=false;setSpeedPending(false);setDialog(null);setFocusedOrderId(null);setGuidance([]);setNewTheme(null);setDiscovery(null);setDetailHistory([]);setCodexView(EMPTY_CODEX);setCodexSeen(state.discovered.length+state.deviceDiscovered.length);setPage(state.session.page);selectedUid.current=state.session.selectedUid;const index=state.board.findIndex(i=>i?.uid===state.session.selectedUid);setSelected(index>=0?index:activeDevices(state).find(e=>e.id===state.session.selectedUid)?.index??null)},[state,viewEpoch]);
  useEffect(()=>{if(!state||!selectedUid.current)return;const index=state.board.findIndex(i=>i?.uid===selectedUid.current);const device=activeDevices(state).find(e=>e.id===selectedUid.current);if(index>=0)setSelected(index);else if(device)setSelected(device.index);else{setSelected(null);selectedUid.current=null}},[state?.revision]);
  const mergeLayout=useMergeLayout(area,!!state&&page==='merge',viewEpoch),cell=mergeLayout.cell;
  useBoardScroll(area,!!state&&page==='merge',`${game.sessionEpoch}:${state?.activeWorkspaceId??'legacy'}`,viewEpoch,mergeLayout);
- useEffect(()=>{if(!hint)return;const timer=setTimeout(()=>setHint(null),4000);return()=>clearTimeout(timer)},[hint]);
  useEffect(()=>()=>{if(scrollTimer.current)clearTimeout(scrollTimer.current)},[]);
  useEffect(()=>{if(state&&focusedOrderId&&!focusedOrder(state,focusedOrderId))setFocusedOrderId(null)},[state,focusedOrderId]);
  useEffect(()=>{if(!guidance.length)return;const timer=setTimeout(()=>setGuidance([]),3200);return()=>clearTimeout(timer)},[guidance]);
@@ -110,18 +109,15 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
   const stage=themeProgress(state).stage,previous=observedProgress.current;
   if(previous&&previous.epoch===viewEpoch){
    if(!state.workspaces&&stage>previous.stage)setNewTheme(stage);
-   const item=state.discovered.find(id=>!previous.items.includes(id));
-   const device=state.deviceDiscovered.find(id=>!previous.devices.includes(id));
-   if(item)setDiscovery(ITEMS[item]?.name??'新滋味');
-   else if(device)setDiscovery('新设备');
   }
-  observedProgress.current={epoch:viewEpoch,stage,items:state.discovered,devices:state.deviceDiscovered};
+  observedProgress.current={epoch:viewEpoch,stage};
  },[state,viewEpoch]);
+ useEffect(()=>{const event=game.discovery;if(event)setDiscovery(event.type==='item'?ITEMS[event.id]?.name??'新滋味':'新设备')},[game.discovery]);
  const select=useCallback((index:number|null)=>{
   const s=stateRef.current;if(!s)return;
   const priorUid=selectedUid.current;
   const uid=index!==null?s.board[index]?.uid??activeDevices(s).find(e=>e.index===index)?.id??null:null;
-  if(index===null){setHint(null);setSelectionCancelSequence(sequence=>sequence+1)}
+  if(index===null){setSelectionCancelSequence(sequence=>sequence+1)}
   setSelected(index);selectedUid.current=uid;
   // Queue the latest intent even if an earlier session write has not published yet.
   if(uid!==priorUid||uid!==s.session.selectedUid)void act({type:'session',session:{selectedUid:uid}});
@@ -150,32 +146,31 @@ export default function App({repository,sessionScope,offline=true}:{repository?:
  const switchPage=()=>{const next=page==='merge'?'street':'merge';setPage(next);void act({type:'session',session:{page:next}})};
  const saveScroll=useCallback((x:number)=>{orderPosition.current=x;if(scrollTimer.current)clearTimeout(scrollTimer.current);scrollTimer.current=setTimeout(()=>{if(stateRef.current?.session.orderScroll!==x)void act({type:'session',session:{orderScroll:x}})},220)},[act]);
  const openSettings=()=>{if(scrollTimer.current)clearTimeout(scrollTimer.current);const current=stateRef.current;if(current&&!game.readOnly&&!game.busy)void act({type:'session',session:{page,selectedUid:selectedUid.current,orderScroll:orderPosition.current}});setDialog({type:'settings'})};
- const findPair=()=>{if(!state)return;const seen=new Map<string,number>();for(let i=0;i<state.board.length;i++){const item=state.board[i];if(!item||!mergeTarget(item.item))continue;const other=seen.get(item.item);if(other!==undefined){setSelectionCancelSequence(sequence=>sequence+1);setHint([other,i]);select(other);return}seen.set(item.item,i)}game.setNotice({type:'hint',message:'还没有相同的一对，轻点推车补充食材吧。'})};
+ const focusOrder=useCallback((id:string|null)=>{if(id)select(null);setFocusedOrderId(id)},[select]);
  if(!state)return <div className="boot-screen"><Goose accessory="chef"/><h1>鹅巷食光</h1>{!game.bootError?<><LoaderCircle className="spinning"/><p>正在摆好今天的料理台…</p></>:<><p role="alert">{game.bootError}</p><button className="primary" onClick={()=>setDialog({type:'load'})}>读取存档</button><button onClick={()=>game.recoverPrevious().catch(e=>setBootMessage(String(e)))}>恢复上一份快照</button><button onClick={()=>input.current?.click()}>导入备份</button><button onClick={()=>game.exportRaw()}>导出原始存档</button><button onClick={game.retry}>重试</button><input hidden ref={input} type="file" accept=".json" onChange={async e=>{try{const file=e.target.files?.[0];if(file&&file.size<2_000_000)await game.importSave(await file.text())}catch(error){setBootMessage(String(error))}}}/><p>{bootMessage}</p>{dialog?.type==='load'&&<Modal title="读取存档" onClose={close} busy={game.busy}><SaveSlotsPanel mode="load" busy={game.busy} readOnly={!game.canWriteSaves()} listSlots={game.listSlots} saveSlot={game.saveSlot} loadSlot={game.loadSlot} onBack={close}/></Modal>}</>}</div>;
  const focus=focusedOrder(state,focusedOrderId);
  const time=effectiveNow(state,Date.now()),tutorial=getTutorialStep(state),construction=getConstructionProgress(state),theme=themeProgress(state);
  const tutorialIndex=tutorial?activeDevices(state).find(e=>e.id===tutorial.target)?.index??state.board.findIndex(i=>i?.uid===tutorial.target):-1;
- const title=dialog?.type==='speedup'?'立即完成这份料理？':dialog?.type==='tickets'?'我的加速券':dialog?.type==='gift'?'兑换礼包':dialog?.type==='order'?'这份心愿':dialog?.type==='theme'?'章节手册':dialog?.type==='appliance'?activeDevices(state).find(device=>device.id===dialog.id)?.name??'我的厨具':dialog?.type==='save'?'保存存档':dialog?.type==='load'?'读取存档':dialog?.type==='restart'?'重新开始':dialog?.type==='item'?ITEMS[dialog.id].name:dialog?.type==='build'?'今日鲜果蔬店':dialog?.type==='devices'?'小鹅设备架':dialog?.type==='book'?'完整风味图鉴':dialog?.type==='storage'?'小鹅仓库':dialog?.type==='energy'?'满满活力':dialog?.type==='recipes'?'料理配方':dialog?.type==='legacy'?'旧日食光':'设置与存档';
+ const title=dialog?.type==='speedup'?'立即完成这份料理？':dialog?.type==='tickets'?'我的加速券':dialog?.type==='gift'?'兑换礼包':dialog?.type==='theme'?'章节手册':dialog?.type==='appliance'?activeDevices(state).find(device=>device.id===dialog.id)?.name??'我的厨具':dialog?.type==='save'?'保存存档':dialog?.type==='load'?'读取存档':dialog?.type==='restart'?'重新开始':dialog?.type==='item'?ITEMS[dialog.id].name:dialog?.type==='build'?'今日鲜果蔬店':dialog?.type==='devices'?'小鹅设备架':dialog?.type==='book'?'完整风味图鉴':dialog?.type==='storage'?'小鹅仓库':dialog?.type==='energy'?'满满活力':dialog?.type==='recipes'?'料理配方':dialog?.type==='legacy'?'旧日食光':'设置与存档';
  return <OfflineProvider stage={themeProgress(state).stage} enabled={offline} ready={ready} busy={game.busy||giftPending||speedPending}><GameShell page={page} workspaceId={state.activeWorkspaceId} transitionStartedAt={game.workspaceTransitionStartedAt} footerHeight={page==='merge'?mergeLayout.footerHeight:88} backgroundEnabled={page==='merge'&&!dialog&&!game.readOnly&&!game.busy} onBackgroundTap={()=>select(null)}><RecoveryClock state={state} readOnly={game.readOnly} busy={game.busy} act={act}/><ResourceBar state={state} now={time} onSettings={openSettings} onRedeem={()=>setDialog({type:'gift'})} onSpeedUp={()=>setDialog({type:'tickets'})} onEnergy={()=>setDialog({type:'energy'})} onTheme={()=>setDialog({type:'theme'})} onBook={openBook} newDiscoveries={Math.max(0,state.discovered.length+state.deviceDiscovered.length-codexSeen)}/>
  <div className="merge-page" data-selection-background hidden={page!=='merge'}>
-  <CustomerStrip key={viewEpoch} active={page==='merge'} state={state} act={act} onItem={showItem} onScroll={saveScroll} focusedOrderId={focusedOrderId} onFocus={setFocusedOrderId}/>
+  <CustomerStrip key={viewEpoch} active={page==='merge'} state={state} act={act} onItem={showItem} onScroll={saveScroll} focusedOrderId={focusedOrderId} onFocus={focusOrder}/>
   <div className={`guide-bar ${focus?'is-focused':''}`}><Sparkles size={14}/><span>{tutorial?.text??(focus?orderSummary(state,focus):state.campaign!=='fresh'?`第${state.day}天 · ${getDayProgress(state).completed}/${getDayProgress(state).total}份款待`:theme.allCompleted?'每一份滋味，都成为小馆的回忆。':`${theme.name} · ${theme.completed}/${theme.total}份心愿`)}</span>{tutorial&&state.workspaces&&<button className='subtle' onClick={()=>act({type:'skipTutorial'})}>跳过引导</button>}</div>
-  <div className="board-area" data-selection-background data-board-scroll={mergeLayout.scroll} ref={area}><div className="board-frame" data-selection-background style={{width:cell*7+12,height:cell*9+12}}><Suspense fallback={<div className="board-loading"><LoaderCircle className="spinning"/></div>}><Board onSpeedUp={(appliance,jobId)=>showSpeedUp({appliance,expectedJobId:jobId})} onReady={setBoardReady} selectionCancelSequence={selectionCancelSequence} sessionEpoch={viewEpoch} state={state} applianceTargets={applianceTargets} selected={selected} onSelect={select} act={act} active={page==='merge'} inputEnabled={!dialog&&!game.readOnly&&!game.busy} hint={hint} tutorialTarget={tutorialIndex>=0?tutorialIndex:null} guidanceUids={guidance}/></Suspense></div></div>
-  <footer className="game-footer"><SecondClock active={page==='merge'&&selected!==null}>{now=><ItemActionBar state={state} selected={selected} now={effectiveNow(state,now)} applianceTargets={applianceTargets} act={act} onBook={openBook} onItem={showItem} onDevices={state.campaign==='fresh'?showDevices:undefined} onAppliance={id=>setDialog({type:'appliance',id})} onFindPair={findPair} focusSummary={focus?orderSummary(state,focus):undefined} onOrder={focus?()=>setDialog({type:'order'}):undefined}/>}</SecondClock></footer>
+  <div className="board-area" data-selection-background data-board-scroll={mergeLayout.scroll} ref={area}><div className="board-frame" data-selection-background style={{width:cell*7+12,height:cell*9+12}}><Suspense fallback={<div className="board-loading"><LoaderCircle className="spinning"/></div>}><Board onSpeedUp={(appliance,jobId)=>showSpeedUp({appliance,expectedJobId:jobId})} onReady={setBoardReady} selectionCancelSequence={selectionCancelSequence} sessionEpoch={viewEpoch} state={state} applianceTargets={applianceTargets} selected={selected} onSelect={select} act={act} active={page==='merge'} inputEnabled={!dialog&&!game.readOnly&&!game.busy} tutorialTarget={tutorialIndex>=0?tutorialIndex:null} guidanceUids={guidance}/></Suspense></div></div>
+  <footer className="game-footer"><SecondClock active={page==='merge'&&selected!==null}>{now=><ItemActionBar state={state} selected={selected} now={effectiveNow(state,now)} applianceTargets={applianceTargets} act={act} onBook={openBook} onItem={showItem} onDevices={state.campaign==='fresh'?showDevices:undefined} onAppliance={id=>setDialog({type:'appliance',id})} focusOrder={focus}/>}</SecondClock></footer>
  </div>
  <div className="street-page-new" hidden={page!=='street'}><Suspense fallback={<div className="board-loading" role="status">正在准备小馆…</div>}>{(page==='street'||streetVisited)&&<><ShopScene state={state} onBuild={()=>setDialog({type:'build'})}/><ReadySignal onReady={markStreetReady}/></>}</Suspense><footer className="game-footer"><div className="action-dock"><div className="context-rail"><StreetProgress state={state} onBuild={()=>setDialog({type:'build'})} onTheme={()=>setDialog({type:'theme'})}/></div></div></footer></div>
  <RewardFlight key={'reward:'+viewEpoch} event={game.notice} reducedMotion={state.settings.reducedMotion}/><PageSwitch page={page} onClick={switchPage} highlight={tutorial?.target==='page-switch'}/>
  
- {game.notice?.message&&!discovery&&<div key={'toast:'+state.revision} className={`game-toast ${game.notice.type==='error'?'error':''}`} role="status">{game.notice.type==='deliver'?<Coins size={17}/>:game.notice.type==='error'?null:<Check size={17}/>}<span>{game.notice.message}</span></div>}
+ <GameToast event={game.notice} revision={state.revision} hidden={!!discovery}/>
  {(game.error||game.readOnly||update||cacheError)&&<div className="connection-banner" role="alert">{game.error|| (game.readOnly?'另一窗口正在经营，当前只读':update?'新版本已准备好':cacheError)}{game.readOnly?<button onClick={game.retry}>接管</button>:update?<button disabled={game.busy} onClick={()=>game.applyUpdate(update).catch(e=>setCacheError(String(e)))}>更新</button>:<button onClick={()=>setDialog({type:'settings'})}>查看</button>}</div>}
  {newTheme!==null&&<aside className="theme-unlock-card" aria-label="新主题开放"><Sparkles size={25}/><div><b>{THEME_NAMES[newTheme-1]}，开张啦</b><small>{DEVICE_FAMILIES.filter(f=>f.stage===newTheme).length} 类新设备已备好</small><div className="theme-gifts">{DEVICE_FAMILIES.filter(f=>f.stage===newTheme).slice(0,3).map(f=><DeviceIcon key={f.id} family={f.id} size={32}/>)}</div></div><button className="primary" onClick={()=>{setNewTheme(null);showDevices()}}>去看看</button><button className="dismiss" aria-label="关闭主题提示" onClick={()=>setNewTheme(null)}>收起</button></aside>}
- {discovery&&!newTheme&&<div className="discovery-stamp" role="status"><BookOpen size={17}/><span>风味收录 · <b>{discovery}</b></span></div>}
+ {discovery&&!newTheme&&game.notice?.type!=='error'&&<div className="discovery-stamp" role="status"><BookOpen size={17}/><span>风味收录 · <b>{discovery}</b></span></div>}
  {dialog&&<Modal key={'modal:'+viewEpoch} returnFocus={dialog.type==='speedup'?speedReturnFocus.current:undefined} title={title} className={dialog.type==='gift'?'gift-dialog':dialog.type==='speedup'||dialog.type==='tickets'?'speed-up-dialog':''} initialScrollTop={dialog.type==='book'?codexView.scroll:0} onClose={close} busy={game.busy||giftPending||speedPending} variant={['settings','save','load','restart','gift','speedup','tickets'].includes(dialog.type)?'dialog':'sheet'} scrollKey={dialog.type+('id' in dialog?':'+dialog.id:dialog.type==='devices'?':'+dialog.family:'')}>
  <Suspense fallback={<p className="panel-loading" role="status">正在准备…</p>}>
  {dialog.type==='gift'&&<RedeemGiftPanel busy={game.busy} readOnly={game.readOnly} redeemGift={game.redeemGift} onPendingChange={onGiftPending}/>}
  {dialog.type==='tickets'&&<SpeedUpBalance tickets={state.speedUpTickets} onClose={close}/>}
  {dialog.type==='speedup'&&<SecondClock>{now=><SpeedUpPanel key={dialog.target.expectedJobId} state={state} target={dialog.target} now={now} busy={game.busy} readOnly={game.readOnly} speedUpCooking={game.speedUpCooking} act={act} onPendingChange={onSpeedPending} onClose={close} onStorage={showStorage}/>}</SecondClock>}
- {dialog.type==='order'&&focus&&<OrderFocus state={state} order={focus} onItem={showItem} onLocate={locate} onClear={()=>{setFocusedOrderId(null);close()}} onBack={close}/>}
  {dialog.type==='theme'&&(state.workspaces?<ChapterPanel state={state} onEnter={async (chapter,stillOpen)=>{const source=state.activeWorkspaceId;await prepareChapter(state,chapter);if(!stillOpen())return false;const success=await act(chapter==='original'?{type:'enterChapter',chapter,expectedWorkspaceId:source}:state.chapterAccess?.unlocked.includes(chapter)?{type:'enterChapter',chapter,expectedWorkspaceId:source}:{type:'unlockAndEnterChapter',chapter,expectedWorkspaceId:source});if(success)close();return success;}}/>:<ThemeProgressPanel state={state} onDevices={showDevices}/>)}
  {dialog.type==='appliance'&&<SecondClock>{now=><ApplianceDrawer state={state} applianceId={dialog.id} now={effectiveNow(state,now)} act={act} onSpeedUp={(appliance,jobId)=>showSpeedUp({appliance,expectedJobId:jobId})} onItem={showItem} onDevices={showDevices} onOrganize={close} onStorage={showStorage}/>}</SecondClock>}
 

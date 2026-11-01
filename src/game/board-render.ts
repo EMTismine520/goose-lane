@@ -204,9 +204,9 @@ export class BoardRenderer {
     }
   }
 
-  highlight(selected: number | null, hint: [number, number] | null | undefined, hovered: number | null = null, dragged: number | null = null, tutorialTarget?: number | null, guidanceUids: readonly string[] = []) {
+  highlight(selected: number | null, hovered: number | null = null, dragged: number | null = null, tutorialTarget?: number | null, guidanceUids: readonly string[] = []) {
     const state = this.state();
-    const signature = `${state.revision}:${selected}:${hint?.join(',')}:${hovered}:${dragged}:${tutorialTarget}:${guidanceUids.join(',')}`;
+    const signature = `${state.revision}:${selected}:${hovered}:${dragged}:${tutorialTarget}:${guidanceUids.join(',')}`;
     if (signature === this.highlightSignature) return;
     this.highlightSignature = signature;
     this.highlights.clear();
@@ -217,16 +217,15 @@ export class BoardRenderer {
       const at = cellCenter(index);
       const isSource = source === index;
       const matching = dragged !== null && dropKind(state, dragged, index) === 'merge';
-      const isHint = tutorialTarget == null && hint?.includes(index);
       const isTutorialTarget = dragged === null && tutorialTarget === index;
       const isGuidance = dragged === null && tutorialTarget == null && guidanceUids.includes(entity.id);
       const over = hovered === index && dragged !== index;
-      if (!isSource && !matching && !isHint && !over && !isTutorialTarget && !isGuidance) continue;
+      if (!isSource && !matching && !over && !isTutorialTarget && !isGuidance) continue;
       const kind = over && source !== null ? dropKind(state, source, index) : null;
-      const color = kind === 'blocked' ? 0xc5694e : kind === 'stage' ? 0x389d9e : isGuidance ? 0x488db5 : matching || isHint || isTutorialTarget ? 0xd29a35 : 0x3f7b58;
+      const color = kind === 'blocked' ? 0xc5694e : kind === 'stage' ? 0x389d9e : isGuidance ? 0x488db5 : matching || isTutorialTarget ? 0xd29a35 : 0x3f7b58;
       this.highlights.fillStyle(color, over ? 0.25 : 0.13).fillRoundedRect(at.x - 23, at.y - 23, 46, 46, 8);
       this.highlights.lineStyle(isSource || over ? 2.5 : 1.7, color, 1).strokeRoundedRect(at.x - 23, at.y - 23, 46, 46, 8);
-      if (matching || isHint) this.highlights.fillStyle(color, 1).fillCircle(at.x + 18, at.y - 18, 3);
+      if (matching) this.highlights.fillStyle(color, 1).fillCircle(at.x + 18, at.y - 18, 3);
       if (isTutorialTarget) {
         this.highlights.lineStyle(2.5, 0xf0ad37, 1).strokeRoundedRect(at.x - 23, at.y - 23, 46, 46, 8);
         this.highlights.fillStyle(0xffd366, 1).fillTriangle(at.x + 10, at.y - 23, at.x + 24, at.y - 23, at.x + 17, at.y - 12);

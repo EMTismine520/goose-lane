@@ -43,26 +43,8 @@
 .selection-dock .context-summary>.device-icon,.selection-dock .context-summary>svg{width:32px!important;height:32px!important}
 .selection-description{min-width:0;flex:1;margin:0;color:#786149;font-size:13px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .selection-dock .dock-primary,.selection-dock .dock-secondary,.selection-dock .object-menu>summary{min-width:72px;min-height:44px;max-width:none;font-size:14px;padding:0 9px}
-.selection-dock .appliance-inline{gap:8px}
-.selection-dock .appliance-identity{display:flex;align-items:center;gap:4px;flex:1 1 auto;min-width:0;min-height:44px;padding:0;text-align:left;color:#493729;border-radius:9px}
-.selection-dock .appliance-identity>.device-icon,.selection-dock .appliance-identity>svg{width:32px!important;height:32px!important;flex:0 0 32px}
-.selection-dock .appliance-name{max-width:none;min-width:0;font-size:16px;line-height:1.35}
-.selection-dock .appliance-ingredients{display:flex;align-items:center;gap:4px;flex:0 0 auto;margin-left:auto}
-.selection-dock .appliance-ingredient{display:grid;place-items:center;position:relative;flex:0 0 44px;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border-radius:10px}
-.appliance-ingredient-art{display:block;position:relative;width:36px;height:36px;pointer-events:none}
-.selection-dock .appliance-ingredient-art>.item-icon{display:block;width:100%!important;height:100%!important}
-.selection-dock .appliance-ingredient.is-missing .item-icon{filter:grayscale(1);opacity:.55}
-.selection-dock .appliance-ingredient-check,.selection-dock .appliance-ingredient-count{min-width:13px;height:13px;right:-1px;bottom:0;font-size:9px}
-.selection-dock .appliance-ingredient:active,.selection-dock .appliance-identity:active{background:#f0e6d3}
 .game-shell[data-dock-size="relaxed"] .selection-dock .context-summary b{font-size:18px}
 .game-shell[data-dock-size="relaxed"] .selection-description{font-size:14px}
-.game-shell[data-dock-size="relaxed"] .selection-dock .appliance-identity>.device-icon,.game-shell[data-dock-size="relaxed"] .selection-dock .appliance-identity>svg{width:36px!important;height:36px!important;flex-basis:36px}
-.game-shell[data-dock-size="relaxed"] .selection-dock .appliance-ingredient{width:52px;height:52px;min-width:52px;min-height:52px;flex-basis:52px}
-.game-shell[data-dock-size="relaxed"] .appliance-ingredient-art{width:44px;height:44px}
-@media(max-width:359px){
-  .selection-dock .appliance-identity>.device-icon,.selection-dock .appliance-identity>svg{display:none}
-  .game-shell[data-dock-size] .selection-dock .context-summary .appliance-name{font-size:16px}
-}
 
 .street-page-new .action-dock{display:flex;align-items:stretch;padding:8px}
 .street-page-new .context-rail{width:100%;padding:0}

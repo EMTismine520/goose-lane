@@ -1,5 +1,5 @@
 import { availableOrders, createInitialState, execute, getApplianceStatus, getBoardEntity, getOrderReward, getRecipeDuration } from '../domain/engine';
-import { FRESH_ORDERS } from '../content/catalog';
+import { FRESH_ORDERS, MODERN_RECIPES } from '../content/catalog';
 import { DEVICE_FAMILIES } from '../content/expansion';
 import { resumeManualSlot, validateSave } from '../persistence/save';
 import type { GameState } from '../domain/types';
@@ -8,7 +8,7 @@ import MILESTONES from './v3-milestones.json';
 import COMPLETE from './v3-played-state.json';
 import LEGACY from './ui-legacy-state.json';
 
-export const UI_SCENARIOS = ['chapters-all', 'chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5', 'chapter-6', 'chapter-7', 'chapter-8', 'chapter-dessert', 'chapter-harbor', 'opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
+export const UI_SCENARIOS = ['chapters-all', 'harbor-orders', 'chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5', 'chapter-6', 'chapter-7', 'chapter-8', 'chapter-dessert', 'chapter-harbor', 'opening', 'orders', 'theme-unlock', 'prefix', 'one-input', 'natural-cap', 'large-resources', 'max-resources', 'two-ingredients', 'long-name', 'loaded', 'cooking', 'ready', 'full', 'build', 'street', 'late', 'complete', 'legacy'] as const;
 export type UiScenario = typeof UI_SCENARIOS[number];
 
 /** Isolated visual fixtures. These are never loaded by the production game entry. */
@@ -17,7 +17,7 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
   let state = ['opening', 'orders', 'build'].includes(scenario) ? createInitialState(now)
     : scenario === 'legacy' ? resumeManualSlot({id:1,status:'ready',state:validateSave(LEGACY),capturedAt:LEGACY.lastSeen,savedAt:LEGACY.lastSeen},now)
     : resumeManualSlot({id:1,status:'ready',state:validateSave(captured),capturedAt:captured.lastSeen,savedAt:captured.lastSeen},now);
-  if(['chapters-all','chapter-dessert','chapter-harbor'].includes(scenario)){
+  if(['chapters-all','harbor-orders','chapter-dessert','chapter-harbor'].includes(scenario)){
     state=createInitialState(now);state.coins=10000;state.tutorialState.node='complete';
     for(const chapter of scenario==='chapters-all'?[6,2,8,4,7,3,5]:[scenario==='chapter-dessert'?7:6])state=execute(state,{type:'unlockAndEnterChapter',chapter},now).state;
   }
@@ -25,6 +25,17 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
   if (numberedChapter) {
     state = createInitialState(now); state.coins = 10000;
     if (Number(numberedChapter[1]) !== 1) state = execute(state, { type: 'unlockAndEnterChapter', chapter: Number(numberedChapter[1]) }, now).state;
+  }
+  if (scenario === 'harbor-orders') {
+    state.completedOrders.push(...availableOrders(state).slice(0, 2).map(order => order.id));
+    const wok = state.devices.find(device => device.familyId === 'wok')!;
+    const recipe = MODERN_RECIPES.find(recipe => recipe.name === '蒜香炒虾')!;
+    const from = state.board.findIndex((_, index) => getBoardEntity(state, index).kind === 'empty');
+    state.board[from] = { uid: `g${state.nextId++}`, item: recipe.inputs[1].item };
+    const staged = execute(state, { type: 'stageInput', appliance: wok.id, from }, now);
+    if (!staged.ok) throw new Error('Harbor review fixture must stage the actual wok ingredient');
+    state = staged.state;
+    state.session.selectedUid = wok.id;
   }
   state.settings.sound = false;
   state.settings.music = false;
@@ -81,6 +92,7 @@ export function createUiPreviewState(scenario: UiScenario, now = Date.now()): Ga
   if (scenario === 'full') state.board.forEach((_,index)=>{
     if(getBoardEntity(state,index).kind==='empty')state.board[index]={uid:`g${state.nextId++}`,item:'fresh-veg-1'};
   });
+  if (['prefix', 'one-input', 'loaded', 'cooking', 'ready', 'full'].includes(scenario)) state.session.selectedUid = 'home-cooking-pot';
   state.lastSeen=now;
   return validateSave(state);
 }

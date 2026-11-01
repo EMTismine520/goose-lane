@@ -17,6 +17,7 @@ export interface GameView {
   error: string;
   bootError: string;
   notice: GameEvent | null;
+  discovery: { type: 'item' | 'device'; id: string } | null;
   savedAt: number;
   recovered: boolean;
   pendingCommands: number;
@@ -44,7 +45,7 @@ export type SpeedUpResult =
 
 /** Owns the async boundary: the UI only observes states whose transaction committed. */
 export class GameController {
-  view: GameView = { state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0, workspaceEpoch: 0 };
+  view: GameView = { state: null, readOnly: true, busy: false, error: '', bootError: '', notice: null, discovery: null, savedAt: 0, recovered: false, pendingCommands: 0, pendingUids: [], sessionEpoch: 0, workspaceEpoch: 0 };
   private session: GameSession | null = null;
   private live = true;
   private conflict = false;
@@ -118,11 +119,19 @@ export class GameController {
     });
   }
 
-  private publish(state: GameState, savedAt = this.now(), restoreSession = false, transitionStartedAt?: number): void {
+  private publish(state: GameState, savedAt = this.now(), restoreSession = false, transitionStartedAt?: number, source?: Command['type']): void {
     if (!this.live) return;
     bindWorkspaceViews(state);
     const changed=this.view.state?.activeWorkspaceId!==state.activeWorkspaceId;
-    this.update({ state, savedAt, workspaceTransitionStartedAt:transitionStartedAt, workspaceEpoch:this.view.workspaceEpoch+(changed?1:0), error: '', bootError: '', sessionEpoch: this.view.sessionEpoch + (restoreSession ? 1 : 0) });
+    const previous = this.view.state;
+    let discovery = restoreSession || changed ? null : this.view.discovery;
+    if (previous && !restoreSession && !changed && source !== 'generate') {
+      const item = state.discovered.find(id => !previous.discovered.includes(id));
+      const device = state.deviceDiscovered.find(id => !previous.deviceDiscovered.includes(id));
+      if (item) discovery = { type: 'item', id: item };
+      else if (device) discovery = { type: 'device', id: device };
+    }
+    this.update({ state, savedAt, discovery, workspaceTransitionStartedAt:transitionStartedAt, workspaceEpoch:this.view.workspaceEpoch+(changed?1:0), error: '', bootError: '', sessionEpoch: this.view.sessionEpoch + (restoreSession ? 1 : 0) });
     this.sound.configure(state.settings);
   }
 
@@ -298,7 +307,7 @@ export class GameController {
             try { await this.repository.save(result.state); } finally { finishSave(); }
             if (this.live) {
               const finishPublish = perfSpan('publish', pending.command.type);
-              this.publish(result.state); finishPublish();
+              this.publish(result.state, this.now(), false, undefined, pending.command.type); finishPublish();
               const event = result.events.find(entry => entry.type === 'speed-up') ?? result.events.find(entry => entry.type === 'home-unlocked'||entry.type==='theme-unlocked') ?? result.events.find((entry) => entry.type !== 'move'&&(!entry.workspaceId||entry.workspaceId===result.state.activeWorkspaceId));
               if (event) this.setNotice(event);
               if (result.events.some((event) => event.type === 'ready')) this.sound.play('complete');

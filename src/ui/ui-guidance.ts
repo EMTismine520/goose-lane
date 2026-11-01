@@ -27,6 +27,60 @@ export function focusedOrder(state: GameState, id: string | null): OrderDef | nu
   return availableOrders(state).find(order => order.id === id) ?? null;
 }
 
+export interface OrderTarget {
+  item: string;
+  available: number;
+  required: number;
+  complete: boolean;
+  recipe?: RecipeDef;
+  ingredients: { item: string; available: number; required: number; complete: boolean }[];
+}
+
+/** One recipe's inputs, using this kitchen's inventory rather than discovery history. */
+export function getOrderTarget(state: GameState, order: OrderDef): OrderTarget | null {
+  const need = order.needs.find(need => inventoryCount(state, need.item) < need.count) ?? order.needs[0];
+  if (!need) return null;
+  const available = inventoryCount(state, need.item);
+  const recipe = RECIPES.find(recipe => recipe.output === need.item);
+  return {
+    item: need.item, available, required: need.count, complete: available >= need.count, recipe,
+    ingredients: recipe?.inputs.map(input => {
+      const available = inventoryCount(state, input.item);
+      return { item: input.item, available, required: input.count, complete: available >= input.count };
+    }) ?? [],
+  };
+}
+
+export interface OrderDevice {
+  family: string;
+  level: number;
+  applianceId?: string;
+  available: boolean;
+}
+
+/** Resolve an actual device in this kitchen without configuring it or starting a job. */
+export function getOrderDevice(state: GameState, target: OrderTarget): OrderDevice | null {
+  const { recipe } = target;
+  const chain = recipe ? undefined : CHAINS.find(chain => chain.items.includes(target.item));
+  const family = DEVICE_FAMILIES.find(family => recipe
+    ? recipe.deviceFamilyId ? family.id === recipe.deviceFamilyId : family.kind === 'appliance' && family.slot === recipe.appliance
+    : !!chain && family.kind === 'generator' && family.chains.includes(chain.id));
+  if (!family) return null;
+  const minimum = recipe?.minDeviceLevel ?? 1;
+  const candidates = activeDevices(state).filter(device =>
+    (device.familyId === family.id || !device.familyId && (recipe ? device.kind === 'appliance' && device.slot === recipe.appliance : device.chain === chain?.id))
+    && (device.level ?? 1) >= minimum);
+  const preferred = recipe ? candidates.find(device => {
+    const status = getApplianceStatus(state, device.id);
+    return status && !status.appliance.job && !status.appliance.outputSlot && status.candidates.some(candidate => candidate.recipe.id === recipe.id);
+  }) : undefined;
+  const device = preferred ?? candidates[0];
+  return {
+    family: family.id, level: device?.level ?? minimum, available: !!device,
+    ...(device && family.kind === 'appliance' && state.appliances.some(appliance => appliance.id === device.id) ? { applianceId: device.id } : {}),
+  };
+}
+
 export interface ApplianceTarget {
   recipe: RecipeDef;
   orderId: string | null;
@@ -52,7 +106,7 @@ export function getApplianceTarget(state: GameState, applianceId: string, focuse
       if (candidate) { recipe = candidate.recipe; orderId = order.id; break; }
     }
   }
-  if (!recipe) return null;
+  if (!recipe || status.phase === 'idle' && !orderId) return null;
   const ingredients = recipe.inputs.map(need => {
     const loaded = committed ? need.count : appliance.inputSlots.filter(input => input.item === need.item).length;
     return { item: need.item, loaded, required: need.count, complete: loaded >= need.count };

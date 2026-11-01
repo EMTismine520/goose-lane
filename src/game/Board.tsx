@@ -24,7 +24,6 @@ export interface BoardProps {
   act?: (command: Command) => Promise<boolean | void> | boolean | void;
   /** Compatibility for consumers which have not yet moved to command dispatch. */
   onMove?: (from: number, to: number) => void;
-  hint?: [number, number] | null;
   tutorialTarget?: number | null;
   guidanceUids?: readonly string[];
   active?: boolean;
@@ -57,7 +56,7 @@ function Board(props: BoardProps) {
   live.current = props;
   useEffect(() => { if (props.active !== false) setStarted(true); }, [props.active]);
 
-  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.hint, props.tutorialTarget, props.guidanceUids, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence, props.applianceTargets]);
+  useLayoutEffect(() => { bridge.current?.sync(); }, [props.state, props.selected, props.tutorialTarget, props.guidanceUids, props.active, props.inputEnabled, props.sessionEpoch, props.selectionCancelSequence, props.applianceTargets]);
 
   useEffect(() => {
     if (!started) return;
@@ -446,7 +445,7 @@ function Board(props: BoardProps) {
           this.paintHighlights();
         }
 
-        private paintHighlights() { this.board?.highlight(live.current.selected, live.current.hint, this.hovered, this.dragged, live.current.tutorialTarget, live.current.guidanceUids); }
+        private paintHighlights() { this.board?.highlight(live.current.selected, this.hovered, this.dragged, live.current.tutorialTarget, live.current.guidanceUids); }
       }
 
       game = new Engine.Game({

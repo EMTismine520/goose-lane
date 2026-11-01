@@ -35,7 +35,7 @@ export function GameShell({children,page,footerHeight,workspaceId,transitionStar
  },[]);
  return <main ref={shell} className={`game-shell page-${page}`} aria-label="鹅巷食光" data-chapters={workspaceId?true:undefined} data-selection-background
   data-dock-size={footerHeight !== undefined && footerHeight >= 120 ? 'relaxed' : 'compact'}
-  style={footerHeight === undefined ? undefined : { '--footer': `${footerHeight}px` } as CSSProperties}
+  style={footerHeight === undefined ? undefined : { '--footer': `${footerHeight}px`, '--recipe-hero-size': footerHeight >= 116 ? '64px' : '52px' } as CSSProperties}
   onPointerDown={event=>{
    if(!event.isPrimary)return;
    const surface=backgroundSurface(event.clientX,event.clientY);

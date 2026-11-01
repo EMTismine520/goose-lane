@@ -3,7 +3,7 @@ import { createInitialState, execute, availableOrders, getBoardEntity, getApplia
 import { themeStage } from '../src/domain/devices';
 import { FRESH_ORDERS } from '../src/content/catalog';
 import { DEVICE_FAMILIES } from '../src/content/expansion';
-import { focusedOrder, layoutDensity, locateItem } from '../src/ui/ui-guidance';
+import { focusedOrder, getApplianceTarget, getOrderDevice, getOrderTarget, layoutDensity, locateItem } from '../src/ui/ui-guidance';
 import { createUiPreviewState, UI_SCENARIOS } from '../src/diagnostics/ui-preview-state';
 
 describe('order guidance stays read-only and follows authoritative inventory',()=>{
@@ -49,8 +49,62 @@ describe('order guidance stays read-only and follows authoritative inventory',()
     const state=createUiPreviewState(scenario,100000);
     expect(state.schemaVersion).toBe(5);
     expect(state.board).toHaveLength(63);
+    if(scenario==='harbor-orders'){
+      const wok=state.devices.find(device=>device.familyId==='wok')!;
+      expect(getApplianceStatus(state,wok.id,100000)?.phase).toBe('loaded');
+      expect(getApplianceTarget(state,wok.id,null)?.ingredients.filter(need=>need.complete)).toHaveLength(1);
+    }
     if(scenario==='ready'||scenario==='full')expect(getApplianceStatus(state,'home-cooking-pot',100000)?.phase).toBe('ready');
     if(scenario==='cooking')expect(getApplianceStatus(state,'home-cooking-pot',100000)?.phase).toBe('cooking');
     if(scenario==='full')expect(state.board.some((_,index)=>getBoardEntity(state,index).kind==='empty')).toBe(false);
+  });
+});
+
+describe('order device navigation uses real on-board equipment', () => {
+  it('resolves the bun recipe to this kitchen\'s qualified steamer without changing state', () => {
+    const state = createUiPreviewState('harbor-orders', 100000);
+    const order = availableOrders(state).find(order => order.needs[0].item === 'dish-fresh-ico-0077')!;
+    const target = getOrderTarget(state, order)!;
+    const before = JSON.stringify(state);
+    const result = getOrderDevice(state, target)!;
+    const instance = state.devices.find(device => device.id === result.applianceId)!;
+    expect(result).toMatchObject({ family: 'steamer', available: true, level: instance.level });
+    expect(instance.index).not.toBeNull();
+    expect(instance.level).toBeGreaterThanOrEqual(target.recipe!.minDeviceLevel!);
+    expect(JSON.stringify(state)).toBe(before);
+  });
+
+  it('prefers an idle matching instance over a busy same-family device', () => {
+    let state = createUiPreviewState('loaded', 100000);
+    const order = availableOrders(state).find(order => order.id === 'home-order-02')!;
+    const target = getOrderTarget(state, order)!;
+    state = execute(state, { type: 'startCooking', appliance: 'home-cooking-pot', recipe: target.recipe!.id }, 100000).state;
+    const current = state.devices.find(device => device.id === 'home-cooking-pot')!;
+    const original = state.appliances.find(appliance => appliance.id === current.id)!;
+    const index = state.board.findIndex((_, index) => getBoardEntity(state, index).kind === 'empty');
+    state.devices.push({ ...current, id: 'idle-pot', index });
+    state.appliances.push({ ...original, id: 'idle-pot', index, inputSlots: [], job: null, outputSlot: null, version: 0 });
+    const before = JSON.stringify(state);
+    expect(getOrderDevice(state, target)).toMatchObject({ family: 'home-cooking-pot', applianceId: 'idle-pot', available: true });
+    expect(JSON.stringify(state)).toBe(before);
+  });
+
+  it.each(['shelf', 'level'] as const)('does not treat an unavailable %s device as usable', reason => {
+    const state = createUiPreviewState('harbor-orders', 100000);
+    const order = availableOrders(state).find(order => order.needs[0].item === 'dish-fresh-ico-0077')!;
+    const target = getOrderTarget(state, order)!;
+    for (const device of state.devices.filter(device => device.familyId === 'steamer')) {
+      if (reason === 'shelf') device.index = null;
+      else device.level = 1;
+    }
+    expect(getOrderDevice(state, target)).toEqual({ family: 'steamer', level: target.recipe!.minDeviceLevel, available: false });
+  });
+
+  it('resolves a direct ingredient order to its producer rather than a cooking appliance', () => {
+    const state = createUiPreviewState('chapter-1', 100000);
+    const target = getOrderTarget(state, availableOrders(state)[0])!;
+    expect(target.recipe).toBeUndefined();
+    expect(getOrderDevice(state, target)).toMatchObject({ family: 'vegetable-cart', available: true });
+    expect(getOrderDevice(state, target)?.applianceId).toBeUndefined();
   });
 });

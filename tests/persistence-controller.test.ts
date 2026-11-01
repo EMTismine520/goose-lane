@@ -1,7 +1,7 @@
 import { cloneGameState } from '../src/domain/workspaces';
 import 'fake-indexeddb/auto';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { createInitialState, execute, getApplianceStatus } from '../src/domain/engine';
+import { createInitialState, execute, getApplianceStatus, getBoardEntity } from '../src/domain/engine';
 import type { GameState } from '../src/domain/types';
 import { GameController } from '../src/platform/game-controller';
 import type { GameSession } from '../src/platform/session';
@@ -36,6 +36,41 @@ function setup(initial: GameState | null = createInitialState(now), readonly = f
   return { controller, repository, session, audio, download };
 }
 afterEach(() => { controllers.splice(0).forEach((controller) => controller.dispose()); vi.restoreAllMocks(); });
+
+describe('discovery feedback follows the committed operation', () => {
+  it('records generation quietly and still announces a subsequent merge with an old generate notice', async () => {
+    const state = createInitialState(now);
+    state.discovered = [];
+    const positions: number[] = [];
+    for (let i = 0; i < 2; i++) {
+      const index = state.board.findIndex((_, index) => getBoardEntity(state, index).kind === 'empty');
+      state.board[index] = { uid: `g${state.nextId++}`, item: 'fresh-fruit-1' };
+      positions.push(index);
+    }
+    const { controller, repository, audio } = setup(state);
+    await controller.start();
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(true);
+    expect(controller.view.state!.discovered.length).toBeGreaterThan(0);
+    expect(controller.view.notice?.type).toBe('generate');
+    expect(controller.view.discovery).toBeNull();
+    expect(audio.play).toHaveBeenCalledWith('generate');
+    const saved = deferred<void>(); repository.save.mockReturnValueOnce(saved.promise);
+    const merge = controller.dispatch({ type: 'move', from: positions[0], to: positions[1] });
+    expect(controller.view.discovery).toBeNull();
+    expect(controller.view.state!.discovered).not.toContain('fresh-fruit-2');
+    saved.resolve(); expect(await merge).toBe(true);
+    expect(controller.view.discovery).toEqual({ type: 'item', id: 'fresh-fruit-2' });
+  });
+  it('does not announce or publish a discovery when its save fails', async () => {
+    const state = createInitialState(now); state.discovered = [];
+    const { controller, repository } = setup(state); await controller.start();
+    repository.save.mockRejectedValueOnce(new SaveError('保存失败', 'storage'));
+    expect(await controller.dispatch({ type: 'generate', chain: 'fresh-veg' })).toBe(false);
+    expect(controller.view.discovery).toBeNull();
+    expect(controller.view.state!.discovered).toEqual([]);
+    expect(controller.view.notice).toMatchObject({ type: 'error' });
+  });
+});
 
 function cookingFixture() {
   const state = createInitialState(now);

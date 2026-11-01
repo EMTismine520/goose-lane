@@ -1,0 +1,37 @@
+/* One composition at every width: food above device/actions, ingredients in one row. */
+.game-footer{container-type:inline-size}
+.recipe-dock{--dock-left:90px;--dock-gap:6px;--dock-pad:4px;--ingredient-tile:44px;--ingredient-gap:2px;grid-template-columns:var(--dock-left) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:var(--dock-gap);padding:4px var(--dock-pad);min-height:0}
+.recipe-left{min-width:0;min-height:0;display:grid;grid-template-rows:minmax(52px,1fr) 44px}
+.recipe-identity{display:grid;place-items:center;min-width:0;min-height:0}
+.recipe-food{position:relative;display:grid;place-items:center;width:var(--recipe-hero-size,52px);height:var(--recipe-hero-size,52px);min-height:44px;padding:0;border-radius:10px}
+.recipe-food>.item-icon{display:block;width:100%!important;height:100%!important}
+.recipe-food>.item-icon.muted{opacity:.78}
+.recipe-status{display:grid;grid-template-columns:44px 44px;justify-content:center;align-items:center;gap:2px;min-width:0}
+.recipe-device{display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:2px;border-radius:10px;background:#edf0dc;background-clip:content-box}
+.recipe-device>.device-icon{width:40px!important;height:40px!important}
+.recipe-device.is-unavailable>.device-icon{filter:grayscale(1);opacity:.65}
+.recipe-device>svg{color:#a66b42}
+.recipe-action{width:44px;height:44px}
+.recipe-action>.dock-primary,.recipe-action>.dock-secondary{width:44px;min-width:44px;max-width:44px;height:44px;min-height:44px;padding:2px;gap:2px;flex-direction:column;border-radius:10px;font-size:12px;line-height:1.2;background-clip:content-box}
+.order-stock,.recipe-timer{position:absolute;right:-8px;bottom:0;display:flex;align-items:center;justify-content:center;gap:1px;min-height:16px;min-width:26px;padding:0 3px;border-radius:5px;background:#eee5d4;box-shadow:0 0 0 1px #fff9ed;color:#786149;font-size:11px;line-height:16px;font-weight:600;font-variant-numeric:tabular-nums;pointer-events:none}
+.order-stock.is-complete{background:#e2eddb;color:#327553}
+.recipe-timer{right:-9px;min-width:40px}
+.recipe-ingredients{--ingredient-count:3;display:grid;grid-template-columns:repeat(var(--ingredient-count),var(--ingredient-tile));justify-content:center;align-content:center;align-items:center;gap:var(--ingredient-gap);min-height:0;height:100%}
+.recipe-ingredients[data-count="1"]{--ingredient-count:1}
+.recipe-ingredients[data-count="2"]{--ingredient-count:2}
+.recipe-ingredient{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--ingredient-tile);min-width:44px;min-height:44px;padding:0;border-radius:9px}
+.recipe-ingredient>.item-icon{display:block;width:var(--ingredient-tile)!important;height:var(--ingredient-tile)!important;flex-shrink:0}
+.recipe-quantity{display:flex;align-items:center;justify-content:center;gap:1px;min-width:25px;min-height:18px;padding:0 2px;color:#786149;font-size:11px;font-weight:600;line-height:18px;font-variant-numeric:tabular-nums;pointer-events:none}
+.recipe-quantity.is-complete{color:#327553}
+.recipe-empty{min-width:0}
+.recipe-food:active,.recipe-ingredient:active{background:#f0e6d3}
+.recipe-device:active{background-color:#e0e8cb}
+@container (min-width:280px){
+  .recipe-dock{--dock-left:108px;--dock-gap:8px;--dock-pad:6px;--ingredient-tile:48px;--ingredient-gap:4px}
+}
+@container (min-width:310px){
+  .recipe-dock{--dock-left:120px;--dock-gap:10px;--dock-pad:6px;--ingredient-tile:52px;--ingredient-gap:6px}
+}
+@container (min-width:350px){
+  .recipe-dock{--dock-left:138px;--dock-gap:12px;--dock-pad:8px;--ingredient-tile:56px;--ingredient-gap:8px}
+}
