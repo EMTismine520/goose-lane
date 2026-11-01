@@ -4,12 +4,12 @@
     {
       "file": "index.html",
       "bytes": 2154,
-      "gzipReferenceBytes": 1018
+      "gzipReferenceBytes": 1013
     },
     {
-      "file": "assets/game-DVSjRZPz.js",
+      "file": "assets/game-CDo-KIZT.js",
       "bytes": 1889,
-      "gzipReferenceBytes": 1034
+      "gzipReferenceBytes": 1029
     },
     {
       "file": "assets/modulepreload-polyfill-B5Qt9EMX.js",
@@ -17,17 +17,17 @@
       "gzipReferenceBytes": 399
     },
     {
-      "file": "assets/load-engine-C0lbhhW4.js",
+      "file": "assets/load-engine-zIb7u3Fb.js",
       "bytes": 8129,
-      "gzipReferenceBytes": 3301
+      "gzipReferenceBytes": 3302
     },
     {
-      "file": "assets/engine-BMHQotG7.js",
-      "bytes": 38491,
-      "gzipReferenceBytes": 14027
+      "file": "assets/engine-D-14Ebd4.js",
+      "bytes": 38485,
+      "gzipReferenceBytes": 14025
     },
     {
-      "file": "assets/asset-queue-DT1ZMfRv.js",
+      "file": "assets/asset-queue-fCZzz9_R.js",
       "bytes": 237979,
       "gzipReferenceBytes": 43428
     },
@@ -42,39 +42,39 @@
       "gzipReferenceBytes": 60546
     },
     {
-      "file": "assets/game-CYFt7H66.js",
-      "bytes": 114924,
-      "gzipReferenceBytes": 38492
+      "file": "assets/game-BsRTrvch.js",
+      "bytes": 115474,
+      "gzipReferenceBytes": 38864
     },
     {
-      "file": "assets/game-D5eGqDAJ.css",
-      "bytes": 105696,
-      "gzipReferenceBytes": 22720
+      "file": "assets/game-EhhirvGA.css",
+      "bytes": 105590,
+      "gzipReferenceBytes": 22827
     },
     {
-      "file": "assets/ApplianceDrawer-DUcflSgZ.js",
+      "file": "assets/ApplianceDrawer-DEOzhhr1.js",
       "bytes": 7319,
-      "gzipReferenceBytes": 3101
+      "gzipReferenceBytes": 3094
     },
     {
-      "file": "assets/parts-jJMCVu8G.js",
+      "file": "assets/parts-Bu8ltD2u.js",
       "bytes": 8698,
-      "gzipReferenceBytes": 3533
+      "gzipReferenceBytes": 3534
     },
     {
-      "file": "assets/icons-DHPp7w5S.js",
-      "bytes": 18156,
-      "gzipReferenceBytes": 4345
+      "file": "assets/icons-fNWrdloe.js",
+      "bytes": 17293,
+      "gzipReferenceBytes": 4185
     },
     {
-      "file": "assets/DeviceIcon-DlWcf8Om.js",
+      "file": "assets/DeviceIcon-Czm-08Kd.js",
       "bytes": 361,
-      "gzipReferenceBytes": 297
+      "gzipReferenceBytes": 295
     },
     {
-      "file": "assets/ThemeEmblem-BqvQ7ieg.js",
+      "file": "assets/ThemeEmblem-cfsfxAJD.js",
       "bytes": 5544,
-      "gzipReferenceBytes": 2467
+      "gzipReferenceBytes": 2469
     },
     {
       "file": "assets/ItemArtContext-CdTJngCJ.js",
@@ -82,9 +82,9 @@
       "gzipReferenceBytes": 170
     },
     {
-      "file": "assets/Board-DTb2lGnW.js",
-      "bytes": 28976,
-      "gzipReferenceBytes": 10633
+      "file": "assets/Board-DASv7MTq.js",
+      "bytes": 28896,
+      "gzipReferenceBytes": 10580
     },
     {
       "file": "assets/phaser-wmuqB2X1.js",
@@ -92,38 +92,38 @@
       "gzipReferenceBytes": 334971
     }
   ],
-  "codeGzipReferenceBytes": 544590,
+  "codeGzipReferenceBytes": 544839,
   "mobileArt": {
     "files": 646,
     "bytes": 8514800
   },
   "offline": {
     "files": 22,
-    "bytes": 2047798,
-    "totalBytes": 28708169,
+    "bytes": 2047293,
+    "totalBytes": 28707653,
     "themeFiles": 979,
-    "runtimeBytes": 10656393,
+    "runtimeBytes": 10655877,
     "excludedFiles": 103,
     "coreUrls": [
       "app-icon-180.png",
       "app-icon-192.png",
-      "assets/ApplianceDrawer-DUcflSgZ.js",
-      "assets/asset-queue-DT1ZMfRv.js",
-      "assets/Board-DTb2lGnW.js",
-      "assets/DeviceIcon-DlWcf8Om.js",
-      "assets/engine-BMHQotG7.js",
-      "assets/game-CYFt7H66.js",
-      "assets/game-D5eGqDAJ.css",
-      "assets/game-DVSjRZPz.js",
+      "assets/ApplianceDrawer-DEOzhhr1.js",
+      "assets/asset-queue-fCZzz9_R.js",
+      "assets/Board-DASv7MTq.js",
+      "assets/DeviceIcon-Czm-08Kd.js",
+      "assets/engine-D-14Ebd4.js",
+      "assets/game-BsRTrvch.js",
+      "assets/game-CDo-KIZT.js",
+      "assets/game-EhhirvGA.css",
       "assets/gift-codes-BoJkuaXX.js",
-      "assets/icons-DHPp7w5S.js",
+      "assets/icons-fNWrdloe.js",
       "assets/ItemArtContext-CdTJngCJ.js",
-      "assets/load-engine-C0lbhhW4.js",
+      "assets/load-engine-zIb7u3Fb.js",
       "assets/modulepreload-polyfill-B5Qt9EMX.js",
-      "assets/parts-jJMCVu8G.js",
+      "assets/parts-Bu8ltD2u.js",
       "assets/phaser-wmuqB2X1.js",
       "assets/react-CMlQYkyh.js",
-      "assets/ThemeEmblem-BqvQ7ieg.js",
+      "assets/ThemeEmblem-cfsfxAJD.js",
       "favicon.svg",
       "index.html",
       "manifest.webmanifest"
@@ -137,7 +137,7 @@
       "prewarmTextures": 4,
       "visibleImageRequests": 10,
       "imageBytes": 67754,
-      "gzipReferenceBytes": 612344,
+      "gzipReferenceBytes": 612593,
       "budgetBytes": 1048576,
       "budgetScope": "startup-code-and-visible-art",
       "artBytesInformational": false,
@@ -150,7 +150,7 @@
       "prewarmTextures": 33,
       "visibleImageRequests": 22,
       "imageBytes": 182276,
-      "gzipReferenceBytes": 726866,
+      "gzipReferenceBytes": 727115,
       "budgetBytes": 1572864,
       "budgetScope": "startup-code-and-visible-art",
       "artBytesInformational": false,
@@ -163,7 +163,7 @@
       "prewarmTextures": 20,
       "visibleImageRequests": 34,
       "imageBytes": 238002,
-      "gzipReferenceBytes": 782592,
+      "gzipReferenceBytes": 782841,
       "budgetBytes": 1572864,
       "budgetScope": "startup-code-and-visible-art",
       "artBytesInformational": false,
@@ -176,7 +176,7 @@
       "prewarmTextures": 12,
       "visibleImageRequests": 16,
       "imageBytes": 106650,
-      "gzipReferenceBytes": 651240,
+      "gzipReferenceBytes": 651489,
       "budgetBytes": 1572864,
       "budgetScope": "startup-code-and-visible-art",
       "artBytesInformational": false,
@@ -189,7 +189,7 @@
       "prewarmTextures": 6,
       "visibleImageRequests": 6,
       "imageBytes": 567736,
-      "gzipReferenceBytes": 1112326,
+      "gzipReferenceBytes": 1112575,
       "budgetBytes": null,
       "budgetScope": "startup-code-and-visible-art",
       "artBytesInformational": false,
